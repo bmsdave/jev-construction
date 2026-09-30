@@ -1,4 +1,4 @@
-# Prompt for ChatGPT: migrate jev-construction to the Decision API and ship it as a ChatGPT app
+# Prompt for ChatGPT: migrate jev-construction to the OpenAI Decisions API and ship it as a ChatGPT app
 
 Attach the repository (GitHub link or zip of `jev-construction`, commit `6717070` or later) and paste
 everything below the line.
@@ -6,7 +6,7 @@ everything below the line.
 ---
 
 You are taking over an open-source project, **jev-construction** (MIT licence). Your job has two parts:
-(1) migrate its model calls to the **Decision API**, and (2) ship it as an app/plugin in the
+(1) move its typed decisions to the **OpenAI Decisions API**, and (2) ship it as an app/plugin in the
 **ChatGPT marketplace**. You choose the strategy; I set the constraints and the evidence you must respect.
 
 Reply to the owner in **Russian**, briefly (answer first, 5–10 lines, details in files). Write code, docs
@@ -56,18 +56,24 @@ Conclusions so far: the Jev-centred pipeline failed its gate; the bottleneck is 
 and on the reference set were assigned by Claude (the reference ones from cited pages), so treat the
 numbers as provisional until a human spot-check is done.
 
-## 4. Part 1 — migrate to the Decision API
+## 4. Part 1 — migrate to the OpenAI Decisions API
 
-- "Decision API" here means the typed-decision endpoint for Jev (TypeSafe System One), today reachable as
-  `POST https://openrouter.ai/api/alpha/decisions` or `POST https://openrouter.ai/api/v1/systemone`, body
-  `{model, state, questions}`, question types `choice` / `score` / `noul`. **Check the current official
-  docs first** (TypeSafe docs index `https://docs.typesafe.ai/llms.txt`, OpenRouter docs) — endpoints are
-  alpha and may have changed. If "Decision API" turns out to mean a different or newer product (including
-  an OpenAI one), say so, compare, and recommend.
-- Keep: record/replay by request hash, the spend ledger and cap, key only from the environment or a
-  gitignored `private/.env` (never printed or committed), the pinned model version, the offline test suite.
-- Re-run the Phase 0 benchmark on the new endpoint and report whether the numbers changed. The reference
-  set is the regression test.
+- Target: **OpenAI Decisions API** (announced at OpenAI DevDay, 29 September 2026; limited preview at
+  launch). As reported: built on a specialised GPT-6 Luna, the developer defines a bounded question with a
+  finite answer set, sends context (text or images), and gets a decision back in ~150 ms, for
+  classification, routing or an agent's next step. **Read the current official OpenAI API docs first**
+  (request/response shape, whether probabilities/confidence are returned, limits, price, preview access,
+  data retention) — do not rely on this summary or on press articles.
+- Map our questions onto it: the 4-label route question (today a Jev `choice`), the per-clause relevance
+  check used for reranking (today Jev `noul`), and the binary "needs any notice" view. If the API returns
+  no calibrated probabilities, say how you will calibrate or gate on our own labels (`core/calibrate.py`).
+- Keep the existing Jev client (TypeSafe System One via OpenRouter) as a **comparison arm**, not the
+  default: re-run the Phase 0 benchmark with the Decisions API as a new arm next to A/B/C/D and report
+  accuracy, macro-F1, calibration, cost and latency per row on the **reference set** (the regression test).
+- Images: the API accepts them, but the first release stays text-only; note in `docs/strategy.md` whether
+  drawings are worth a later pack.
+- Keep: record/replay by request hash, the spend ledger and cap, keys only from the environment or a
+  gitignored `private/.env` (never printed or committed), a pinned model/version, the offline test suite.
 
 ## 5. Part 2 — ship it in the ChatGPT marketplace
 
@@ -83,8 +89,8 @@ numbers as provisional until a human spot-check is done.
 ## 6. Decide the strategy yourself (this is the open part)
 
 Propose and justify, with cost/latency/accuracy estimates from the numbers above:
-- **Where decisions happen**: e.g. deterministic rules + clause lookup first; Jev (Decision API) for cheap
-  binary/typed decisions; the ChatGPT model itself as the judge for the route (it plays the role Claude
+- **Where decisions happen**: e.g. deterministic rules + clause lookup first; the Decisions API (or Jev) for cheap
+  typed decisions; the ChatGPT model itself as the judge for the route (it plays the role Claude
   played in arm D); or another split. Say which model answers the route question in the shipped app and why.
 - **Retrieval**: e.g. a curated work-type → clause table, query expansion, embeddings, or letting the
   model pick clauses from the index. Target: recall@3 ≥ 0.8 on the benchmark before relying on it.
@@ -110,7 +116,7 @@ trade-off needs the owner, ask one short question instead of guessing.
 ## 8. Deliverables for your first session
 
 1. `docs/strategy.md` with your chosen strategy (section 6).
-2. Decision API client migrated, tests green, Phase 0 benchmark re-run with a comparison table.
+2. Decisions API client, tests green, Phase 0 benchmark re-run with the Decisions API as a new arm and a comparison table.
 3. A minimal ChatGPT app (per the current official format) that runs the Building Control check end to end
    on a sample CSV, plus the steps and checklist for marketplace submission.
 4. A short note in Russian for the owner: what you chose, numbers, cost per 100 lines, what is left.
