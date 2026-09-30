@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a new circuit from the house to a detached garden shed\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.3\", \"document\": \"ADP2013\", \"text\": \"2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677880-Mjs1FpOOFnrgnGNqugYN",
+  "object": "chat.completion",
+  "created": 1790677880,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A new circuit is notifiable electrical work, and a registered electrician can self-certify it, so the competent person scheme route applies.\n\n- **Part P applies:** under regulation 9(3), sheds that share their electricity with a dwelling are not exempt. So the Schedule 2 exemption for small detached buildings does not remove Part P.\n- **It is notifiable:** installing a new circuit is listed in regulation 12(6A)(a), and paragraph 2.8 of Approved Document P confirms this. That rules out not_notifiable.\n- **It can be self-certified:** Schedule 3 lists electrical installation work covered by Part P, so a registered competent person can certify it under regul",
+     "refusal": null,
+     "reasoning": "This new circuit is notifiable under regulation 12(6A), and since Schedule 3 requires the work be done by a Part P registered competent person, this falls under the competent person scheme route. Since the shed shares electricity with the dwelling, it isn't exempt from these requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This new circuit is notifiable under regulation 12(6A), and since Schedule 3 requires the work be done by a Part P registered competent person, this falls under the competent person scheme route. Since the shed shares electricity with the dwelling, it isn't exempt from these requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9gUKEAgSGAI4AUIIdGhpbmtpbmcSDJxl/CuQaQaEYLPOahoMDn0EdSUB9WC62P5rIjC846U86e7cZGeg4flZ5Y/Ohs9JTA35ipKpQPv1M+U/XKDxVo1i81X+5Hz17o1Onx0qkwUZ0wBd1NZEUrdPAF6Tsej/cvsZBRpw3nVYktzOtLXselJrEp3ciq351jtrLbKz+QWgqMdOvLq5dSh76fNbnmmvLyv7GgGQEBYw0MxzhEqWamVIBIkMFbVjafOo8JoY9P3aBdZiQ9Qf0xzgWdLoOGcdHkwgyiDDXT8yzW/PBugaSns2iXutDbmJf9/XkgaJV0V9iv78dfcB5YOqq0VxbTlqnlzb1qNSgy1RxPufw4KT7QZv9WJkVzVT5/urXM/SS7qOj+oq4HIeJaoNtFL27VyZ77ym+ZJWlaSIh/Yfly97XLKtHkAbgSdccAgZ18R5y7OPBm+RtO6rw4WSrGGYvdVDPBGU8sTCbXU/XaBTMBOfx8Oyp6RZThdcq0bN4dYfm0BQh5iQLal0ADZMeowkK16kqjdHGXyc72oIRubMB0OCjsU0bqQdNI3Ky+J/+i3XUkzE2JViSbKXXqzeTonX4TnLCmRfpR5JrnxiD97zUzBlIZg4PE05iHbBK1O+rBlStMuFTuSB7Q9h7o13vEhwyStbcI7ylZ0RbZn+CmAg6jvM3W+D067p3I2dWMjaqW0WspHuAlClGtKxBcZ38nQWDjPAQ1ncfCSPGlhnGwM0FEF8W0H9GIymNxVbcCRjqXL7ZYooEiv0OQVEznUmjPfHZqUB+adVMv81vc2qRhRB+D5Jy3S3TVN0ZaeUqg65xNm8vjGU7fFL5ZFrLB6YiHFqoXhc3mMwbd77w3VgM1T9t9edstpb/X0etm1WbcQG0GtTwB3yepIWJrFvarm400NlGQcGnwtB8BI6EyMlFwQxvZLipltDgtqjTpuQgAodnK9sFlVVF9DALnkwlYi3Mrv5OR8UhuWzi6RP4BInF2eg+I2Dc8zNohgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1068,
+   "completion_tokens": 300,
+   "total_tokens": 1368,
+   "cost": 0.010272,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010272,
+    "upstream_inference_prompt_cost": 0.004272,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 77,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.887
+}

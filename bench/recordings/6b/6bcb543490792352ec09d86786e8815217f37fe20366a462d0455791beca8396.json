@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Work to a converted building containing flats with shared common areas",
+   "project": "Building containing flats in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 E3",
+     "document": "BR2010",
+     "text": "Reverberation in common internal parts of buildings containing flats or rooms for residential purposes: E3. The common internal parts of buildings which contain flats or rooms for residential purposes shall be designed and constructed in such a way as to prevent more reverberation around the common parts than is reasonable. | Requirement E3 only applies to corridors, stairwells, hallways and entrance halls which give access to the flat or room for residential purposes."
+    },
+    "c2": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c3": {
+     "ref": "para 0.3",
+     "document": "ADF1-2021",
+     "text": "0.3 The guidance in Approved Document F, Volume 1 applies only to dwellings. For blocks of flats with shared communal rooms, Approved Document F, Volume 2: Buildings other than dwellings should be consulted. NOTE: Dwellings are self-contained units. Rooms for residential purposes and buildings that contain only rooms for residential purposes are not dwellings and are covered by Approved Document F, Volume 2: Buildings other than dwellings. Exemptions"
+    },
+    "c4": {
+     "ref": "para 11.5",
+     "document": "ADL1-2021",
+     "text": "11.5 A material change of use, in relation to dwellings, is when a building satisfies any of the following: a. is used as a dwelling, where previously it was not b. contains a flat, where previously it did not c. contains a greater or lesser number of dwellings than it did, having previously contained at least one dwelling."
+    },
+    "c5": {
+     "ref": "reg 5(b)",
+     "document": "BR2010",
+     "text": "For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (b) the building contains a flat, where previously it did not;"
+    },
+    "c6": {
+     "ref": "para 0.3",
+     "document": "ADL1-2021",
+     "text": "0.3 The guidance in Approved Document L, Volume 1 applies to dwellings only. In a mixed-use building, Approved Document L, Volume 2: Buildings other than dwellings should be consulted for building work in parts of the building that are not dwellings. NOTE: Dwellings are self-contained units. Rooms for residential purposes and buildings that contain only rooms for residential purposes are not dwellings; Approved Document L, Volume 2: Buildings other than dwellings applies. Common areas in buildings that contain multiple dwellings"
+    },
+    "c7": {
+     "ref": "para 0.12",
+     "document": "ADF1-2021",
+     "text": "0.12 The commercial part of the building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments"
+    },
+    "c8": {
+     "ref": "para 0.17",
+     "document": "ADL1-2021",
+     "text": "0.17 The commercial part of a building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and the living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments"
+    },
+    "c9": {
+     "ref": "para 0.4",
+     "document": "ADL1-2021",
+     "text": "0.4 For the common areas of buildings that contain more than one dwelling, the following guidance applies. a. If the common areas are heated, the guidance in Approved Document L, Volume 2: Buildings other than dwellings should be followed. b. If the common areas are unheated, individual fabric elements should meet the minimum standards set out in Section 4. New dwellings"
+    },
+    "c10": {
+     "ref": "para 11.6",
+     "document": "ADL1-2021",
+     "text": "11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.24
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.27
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.28
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.14
+   }
+  },
+  "usage": {
+   "input_tokens": 2666,
+   "output_tokens": 175,
+   "cost": 0.000111972
+  },
+  "id": "gen-dec-1790677223-YXBRlcsHi9vTuoaZ0UqH",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.357
+}

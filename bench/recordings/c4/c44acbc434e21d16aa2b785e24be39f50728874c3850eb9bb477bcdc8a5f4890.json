@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Bedroom fan coils\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678411-WTU1LMxzgPxLFRlNDor7",
+  "object": "chat.completion",
+  "created": 1790678411,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Fan coil units installed in bedrooms would fall under heating system work, which is a controlled service under Part L, and I need to check whether Schedule 3 exempts this kind of air conditioning or ventilation installation in an existing dwelling, since some minor installations that don't involve altering the existing system may be exempt from notification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Fan coil units installed in bedrooms would fall under heating system work, which is a controlled service under Part L, and I need to check whether Schedule 3 exempts this kind of air conditioning or ventilation installation in an existing dwelling, since some minor installations that don't involve altering the existing system may be exempt from notification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrwsKEAgSGAI4AUIIdGhpbmtpbmcSDFeFmBaHwkcHrGUFxxoMCDG+48S9IJgzU4t/IjBY738Y/MTAOUAM3xgiH5PHLj2w14FOvsYhKsS2v+JPVbWxNb71NeNPLk3dbysEdwUqzAp1O8L9xv9EkSn26JjeKvHiTSYY5lOXJpNQeLea9/RMfT7gi/xacUiewOcG9zOt42ayup0Orlj0Vg9TCLydaBNlCoK8EqxeX/6QPbJOfmbc7yJ0FIUpi/mEqzr6ehGzzvOOc5NmfuVd+Hm0lxOenOjeqjWc2/sxv/ddKeoyTqrz8kRxEeuUKn4dPo08s6DuOdn0u0CM+d7Jj2ryLKm9+yx2uM5+mxqcqAwqQ0jnAWYYf/Pbq/XN8VNcgmtD0nIOnxjsC3p5SxEINm007KWnmHO0aT3aiyIkQ3uVzgGRJJ+H3ifWxBy4MfYX+6uZtUYvSQZBR2fr/shOBncMe/D2ruqBN11XAPgwphpLyRq0tVlvSLXC6/2wUlI/CvfPnprmm9mH1yClasot8wrjNyoTHGP0GOeb4fK5MKt6a3PWhQdWLm+Etl+/9lRXpzctFt7WEeshnQbzC4r8gQsJ81nTBqYH5q/bmOnSFLIjsIHz6ux9TKhKMZSBnJY4lcKcUYy6MQ8wKEqcpW2qy99HMwhCUV7Ql1htixefQZl2+EeXcxAZZ4y/BouhnyOFNJyXHfz9poWwY1zJY9nEInCkU4vosHc2ytonEwm2Ejpirzl20Js5/zHMivBk/C9I9nd1rbrKLpse2f5JeXKW+dPKYQAatg/qkY78q8evKJJkZqov/o2gbpurBUaLtf18Y+g1qNVAmAgjYA2f45QXY0+xoCuaUb5IxY2hQqfG3gATHdoVK1CrARX8znAdlaFN+DRgqrpJjnIsEdPosDYJSKCqvA7/+pnWK1RBLpzVPCM868gdUKuU1GliVQJrjRr9kRYXVLVveW+PcaxAvuUkrFLah4V7HGlSF0KfGYzUIhGZrXI7s64hskH2NL3QUrgubwztOqvIafgUxrR4/sQeVvExVXsKopMgN8xILouG18Xj8Kzlhgvc7Rdctsg0LCrBcSBfvGG/vheYBkNnxRlBiMuFQSA7kahiCbxjxqEt6J/J5LFGUJF5j5xr/JxGIKFqQIY4heC14KpD944MWBSFlV8XoV8DcEXJPfSw3SQ6Cd6SJ6tLagPZnDc9v5wjafHjOyQ/ro2l5AzqUj3EfiKcxHtSlP+pKLcI83w9dib6bCZ40R5KnKkmjDBdFt2fviqrQXU8mA9kPLYE5Nl8RiyzSmhbyToxirIZaAt3tJ1gtYy00XgHF/LEdzcG/F1+96SqUqNcbLqhhSraHN01xmqmBSP3JfYOkERGp0jd65RwCbizwqeF3q6zpwgHHuNgM3yh0Al4mO3Tf2GR/PSeulUn4rXbwd0DU4/T4t/aO4wxGzcwj82GYZFGucSvQ0DQJTkREdL8Ga1bvFHhJRN4JhXAK7SD2HyiGu21Pmp2TGFWqv6cGrw6x35nBvLdQrww/tlrVcTamHiJop6LyE1/Iu29GGl+TXJRCyx2Cdgkv7WLQdkjTC98amqs2JqygS79YIg19z/lmgEC72Hxrw4hpAbzbCzGszSV/fO0U6Q6wXqqG2CBX/cAoKpyAzZhtQ5wV8xmuZNIrCQ2w9Rg96ygPgx6EnMAVmhYZVPJNb4an1d3VMJMOtkjqko5tLCncqSZL7Sv/pmn2ZkLGwfxDkdewg1WO8kjP5xVP+k1pttepu/trvolE1PEKryE3tIhCX8W880guV97/E6LR42VF2MqTEDZKsU3cx+bBKCBnltuKwyuM+qJaNL5UjB9x4xLPpVyAFeO7Z7Xi+LkmTOBeD+do83iHGr79IPc0nPTDA2ewmPVR8YpdSNwBtDWmyQQ0EkPCCoWdS9BCdy6CDvZkHqZZZciW/ZoR/0YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 506,
+   "completion_tokens": 300,
+   "total_tokens": 806,
+   "cost": 0.008024,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008024,
+    "upstream_inference_prompt_cost": 0.002024,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.056
+}

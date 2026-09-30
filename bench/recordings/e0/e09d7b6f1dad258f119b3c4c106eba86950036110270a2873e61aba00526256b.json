@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Service sleeves and transit frames\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Fire stopping. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678255-hJ3cxNwBExMQDO8VK723",
+  "object": "chat.completion",
+  "created": 1790678255,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether installing fire stopping sleeves through a party wall counts as building work on its own, since party walls in terraced houses are compartment walls under B3. The question is whether creating that penetration itself constitutes a material alteration affecting fire safety requirements, even if the installer treats it as standalone work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether installing fire stopping sleeves through a party wall counts as building work on its own, since party walls in terraced houses are compartment walls under B3. The question is whether creating that penetration itself constitutes a material alteration affecting fire safety requirements, even if the installer treats it as standalone work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS2AsKEAgSGAI4AUIIdGhpbmtpbmcSDLeLdzoiCLdnjKTQVBoMfE0CuHLLFPbCcLyfIjD7u3Iv73q/D3o98lcxCVx2sSuKsAuYUfDM9QUwobPoN7jhSFi0saSB30+O//nKSFoq9QpWc3keP1ITHaxKzicQyQQp1Dx7TEFQDyEcQnEUznHQX+vGPWVmo/OeH1HtnRWDgM69dyKsfoEfN84E7nrMbfKteRZcM/DAFereZioCYC9V/aXNWAUyWip3CyJM3Dautko4dmzEmpFX+PK5uij9Lgmqu6Jkcw3wnoflSRISzNNwOKxeMf0qSlRkr5DeJ4BQDo7dg6aEj+B1x94GkF00koh3rJ8qm9PlZ8jF+oRCtjfhRthiOoAp22H2fwxEVughwSz3S4auaYJeeIQXStYNB9fKe/mC5cOpxplXNIDzNQ3t2QQiYlXl06Wi4N8ZQ9YseX2GjeEt6M9meOBg+agpwPnWvhHdt2JI9Mgex75FvY3WCm179P1eMxbutoNyHrI2UOGzW9aDqTd0uwYW+GWA0Y6L9Td5wRCv10NGf6MbSCmAp7FO5zvAb8/s6ZudziSPCj299j7HfK3F9iGY35BG1B+ft4PZdjthksqDpTuocqiAOfjNppwn72vKEm//M8HDDdbBBEmxi2/6K66A8EA5YIHzRNmAZE64xrQaLW+4AQGYs4mOxV1MAEns9aTG2KshmT/mEZjSxwHuAEoxtGpmGfpFiWtP0T40Xsl8L6pYnZcH7e3KTDL/Y9VOvmhF8UUbM2cDdApMSp5i4ms7Bx3H7DojOtTHzSmEYMWy8vYl1sP44hA69/C482DHukuOgj7ovGbNJ4Fs2i2rl7KRoXvKI5jeDpiufkFTH89YfOb2L1judSwk/jPb++kH18F2BChFFmTuorEcLINR0atwrfqkXZs0oG5NJLWRB/2lbISTTMefiBkNm2HhjyeJZtA9DMyR/ouDgdPH3pmtCvgp5vrBdJdTNpHyM6KlOZ21rU2VFF6CSriENRxdhE4y6GS1UQEvLPCXUFFdNDvVnW56WlCsqGmXMaVR5us9yQbECoXxsQKkd1MYndbm43Wq53rABGKNe3Z9nKmnkYuFhdCSwfHXdkkeEiVIDDqabjD9o3a/ktgU1ztqXGtQMKwU0IGoFy3fiwD43YMaSYDapmmUPFoPhyp66sgWIbt73PK2X4qXH2X8vKxSWRABSSz3N7goXqot/2WUYscmTLd1UaGJxTx+2QXLFJRdoTgHD4Kg1/R4CymQBwO/6u9bHP1facHcWze2RmxiIeaEBZOFUNuCDFk5junyr31OMQ4PxByLc3HgQajiNZOllnXLJXoF93TD5zWaaQ9VdFoRhxVnr4r1uaYp2Q3xNHR4DHEnn/oZdrxhzmmhRZXGYLsdIxNJXmyGrf3g3sydxJkY2NGyDdKao3BGMOrQMxiH5iE59VXFQm6nNiAWwtl+YfNChIhzypsQUK00/bJ1v68XcUS1cR0qrtXBVnq1ownkzD1vQ4PekmlmTooCM64zjkV6Na/7Wfktu/yT57vrdsoqpKIEoUAql9l9Fu3kWZHyfp1W4i5NEupZx8sul/PQTrrSqPfCApe1cLzdHwkdkhsUSHcYlLM1Jo88HjB7LiekrAko1KQ7w0lC4fJeRb0xU+iUT3VB9QLvp6/a25uA60lTk3zNYYVl3Xq7sUw7RKBSfDT9E/1Nlm67plyAC23V/PtaSwuiA02hvsuWfiibf82E1yiKPsvrNgDrWR1PSWpH9RBIrISS99ZycZ1gHiJIvDVoKfc9+ryVyt00ATzhqeHPk9IdDEfYzw+N43eCb9wIx7fikwBUkmQPXaAvdaGf/HGAX3wgsM0oC4MPCKTcKKB3EMyxXtwWd7hAS4IRCO9nl2nE08UMXYQrpQcpAO1/Cay1mHbUEGTSa3ymcCx0fFeHcIUBrhMAw65dxptYtdBLsYF/HCT7caCdHjMu6SQ/czqfICU9IH0QaPwXIP+X3Dp5nBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 507,
+   "completion_tokens": 300,
+   "total_tokens": 807,
+   "cost": 0.008028,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008028,
+    "upstream_inference_prompt_cost": 0.002028,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.224
+}

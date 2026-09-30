@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Loft conversion with a rear dormer and a new stair\", \"project\": \"Semi-detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678650-YfDpIXz8qZBcg9BM0JhT",
+  "object": "chat.completion",
+  "created": 1790678650,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A loft conversion with a rear dormer and a new stair is building work. It is a material alteration affecting structure (Part A), fire safety and means of escape (Part B) and stairs (Part K), and it also brings in thermal and other requirements.\n\n- **Not Schedule 3:** it is not listed there, so no competent person scheme can self-certify it.\n- **Not Schedule 4:** it is not minor work there either.\n- **Full plans not required on these facts:** a single private dwelling house is not a building to which the Fire Safety Order applies. Nothing given says it fronts a private street, and nothing points to building over or near a sewer.\n\nSo the default route under reg 12(2) appl",
+     "refusal": null,
+     "reasoning": "A loft conversion counts as building work involving material and structural alteration, and it isn't exempt under Schedule 3. Since this is a single dwelling not subject to the Fire Safety Order, and there's no frontage to a private street or nearby sewer to complicate things, the applicant would need to submit either a building notice or full plans.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A loft conversion counts as building work involving material and structural alteration, and it isn't exempt under Schedule 3. Since this is a single dwelling not subject to the Fire Safety Order, and there's no frontage to a private street or nearby sewer to complicate things, the applicant would need to submit either a building notice or full plans.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSjgYKEAgSGAI4AUIIdGhpbmtpbmcSDPJJbRXzBO/hnIilrhoMM9Z2GHB5ucISFckGIjCm1VzwA1ai41JYM2bcZOWfbfUesXvzWd2nEB884FMBn7o6NMo221TZowj39Vs8hNYqqwXYXhohcLgJITHH46M0PB9gWikdSs9vEk2C7FPtnjxnuWmen3mkU7C5oxF15+jD6XvNadbe3XGaX2f98xdQvvfXPPucRfOgxcGyCeZTKTyO60sALzmvH0SuNfgTBL6UemNqoYVzQRXawYxNu68BUQywFlMxxAHM90I/T2v8H9NLG9tFkTVhE/0wkEy1HeBXQKzVOAWe3Gdq13aHkAjQtwP1QlkXHOOX++KbkV4VqHPNyyHbZNT7XTqljirlivmFSR8SBgQ/4ygJSPRv0+5FvBmE9Ifh6HSmXw4obzqrwIcp2k6tIPSfug5yT11/+v9bDtbIoHUWBC4aWuCCyEDuef5eGde26KjgiqxDUE7jCqs0bk1LCQZqPbUQ7f98PBWvZT6AAGazDgeyJU8a3l+2cv71QMG0WcvYMhIpODn5JIsADHhQdoFdlGr2Mmkoa3aFBk5CSMl/IXeZv1M6pUDZUAlbIhSpzlt61iXQxbA7AbN6rcE7780tK7WZmOG30O2BK0QZFzuXjE2ocTqmpZ38VyV8Ovv+Zw0I/tN5dpJJ0W/+Q7dtylbg9BjFr4MnmppC1LCuKRyoq3soQhwCQp/x3iIhoIoHxvIYybq9mXGoh6qkJP2R556IJP253nW3vzd3aNSkbfNWW4bwVQPcDgxNjiEFXH42yurG3yBi2v1B73oJ3dCa/lAtW6W59GxoWtip9L58gifp1ryFe7ZUrBhJ0QakwnNPVLMaIv81SfqL9kz27gd11owTzH+BALfqL0fABYdwDvv+8tJGdBNOu5xteBQBbgij+mLi0i99mhlmXyA9UGvJ1PpXrptErvC+VMusoEAY4cBLtAHrTAkJTV7eCnRLnFbaaXTzMj6jRZEUQnmVVBL6rAx84+AeHygZNks9wmS/79pvspDCDGxe8BgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 470,
+   "completion_tokens": 300,
+   "total_tokens": 770,
+   "cost": 0.00788,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00788,
+    "upstream_inference_prompt_cost": 0.00188,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 82,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.416
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace a gas combi boiler with a new condensing boiler\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 1\", \"document\": \"BR2010\", \"text\": \"1. Installation of a heat-producing gas appliance. This paragraph does not apply to the provision of a masonry chimney. | A person, or an employee of a person, who is a member of a class of persons approved in accordance with regulation 3 of the Gas Safety (Installation and Use) Regulations 1998.\"}, {\"ref\": \"para 10.1\", \"document\": \"ADL1-2021\", \"text\": \"10.1 This section provides guidance for new elements in existing dwellings, including all the following types of work. a. Providing a new thermal element in an existing dwelling – follow paragraph 10.1. b. Providing a replacement thermal element in an existing dwelling – follow paragraph 10.2. c. Replacing windows, doors or rooflights (controlled fittings) in an existing dwelling – follow paragraphs 10.3 to 10.6. d. Extending an existing dwelling – follow paragraphs 10.7 to 10.11. e. Adding a conservatory or porch to an existing dwelling – follow paragraphs 10.12 and 10.13. NOTE: Guidance for renovating elements in existing dwellings is given in Section 11. New and replacement fabric elements\"}, {\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677893-F6EEunT3ZfWPuPkrIRq2",
+  "object": "chat.completion",
+  "created": 1790677893,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing a gas boiler is notifiable building work, and Schedule 3 para 1 lets a Gas Safe registered installer self-certify it.\n\n- **It is building work.** A heat-producing gas appliance is a controlled service. Installing a replacement brings in Part J (combustion appliances and flues) and Part L (energy efficiency). So it is not excluded under reg 3.\n- **No exemption applies.** Schedule 4 does not cover replacing a boiler, and a house is not an exempt building under reg 9 or Schedule 2.\n- **The self-certification route.** Schedule",
+     "refusal": null,
+     "reasoning": "Replacing a gas boiler falls under Building Regulations as a controlled fitting affecting heating, Part L and J, but since it's gas work it goes through the Gas Safe competent person scheme rather than Schedule 4 self-certification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing a gas boiler falls under Building Regulations as a controlled fitting affecting heating, Part L and J, but since it's gas work it goes through the Gas Safe competent person scheme rather than Schedule 4 self-certification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSqwYKEAgSGAI4AUIIdGhpbmtpbmcSDNNbzpTtR0/8ZioQGRoMJxuRhIaWjDjM52mTIjAYFwVO621vTXx+AiRUsRbldNWAqevvo7oYQzMLTYLPz7T6urbA4RXu4tPxGkERawIqyAUN0q44T9V98+h/d/BK2Ee/MgGPbvgg1rKrFos/MfozZVGhYVnv/+nh2JmJW0s6Y2+hZn2uuqhqCOjqeMWN08zbg6aKw4cbJCJnMzeaMAFkNhJhzYeElPdbNpb731c5MnMxxVNR3U6D0BoHAY6IfMsIQLkaLlw5KwpZA5hG5bxxaILRZGKiO+DamPknr5FkHLZpyU8iNtVQnoD06NwjkYOaghC8XXdVcKU+fQUqTzCZk3rsrPDvfXXn48q/ulbTRTKqHBdXVHT6F+WLkAc695XDbQY8iUaVmAaUOEhP6hxBCXyBq/nKE7SIsDHLOr4eDk0SdB9xKmf2n5aack7saBV0+43nOlqN7jlS+Q/uNhp72GTX3K1FZYjaq1nVuXD139T0vV+QH4qF4M28J3ibrf/+cncvZSa2J69fQd3i/aeZudknvpMd89YT9cd7eOVa0nXkSg5+bJ1CJ6K/rzbmHD+ji7xX34BBKt0koT5vviWK8sMHPNXjbUM7JoQ7mCbtl57SJi9U38gGM1E/Mj/ms76WtaVxjW+h2jzeuz417ge3vNoHm+D5DiVTTK95xwF7voCbuYMHPv4FaIuuOu9CQwPS7lZY5shWwZfgaMyiImDPg7ws3KCeJlD+0LR/OOSg0CVRmYbo4UWDMVfQZH6zLNDfheVaS26oL9c9veqTUeodnyRGxqcvG/sr8uFLfufp7CZiUlgbLS0m0usbepsnhahXm1DBWxGx/9llVhbkmyKxaHbjFXokay6+QqOsMx734GHhBz7IxDeR0dbQa8NxYuwuPUNoiLVp8lmKMcxUFfoZ2pU/giK9sLDbYaGqkvh+a2WjJxRblKBhCyEYIYHPZ1XCN3JSvJJH+xcYnFqfy5WvAtG9zBRzVpsRFoej1eY03gyph7tvZrMrzg7nHcXYXHvXhhlDa3ri3G/TLTbQ0YdUNXjfT+duk6PTGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1035,
+   "completion_tokens": 300,
+   "total_tokens": 1335,
+   "cost": 0.01014,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01014,
+    "upstream_inference_prompt_cost": 0.00414,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 106,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.151
+}

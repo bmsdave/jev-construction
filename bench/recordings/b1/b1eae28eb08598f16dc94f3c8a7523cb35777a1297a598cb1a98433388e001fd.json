@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front porch canopy\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678225-G8ZM28NGfA782cLccwsd",
+  "object": "chat.completion",
+  "created": 1790678225,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.8, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.15, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "For a front porch canopy on a terraced house, this likely falls under the Schedule 2 Class VII porch exemption — open on at least two sides, ground floor, under 30m², provided glazing meets Part K — so it's probably not_notifiable, though there's some chance building control would still want a notice or full plans.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "For a front porch canopy on a terraced house, this likely falls under the Schedule 2 Class VII porch exemption — open on at least two sides, ground floor, under 30m², provided glazing meets Part K — so it's probably not_notifiable, though there's some chance building control would still want a notice or full plans.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrAcKEAgSGAI4AUIIdGhpbmtpbmcSDGU2EpLZF7GgPlLokxoMN6ecZbt6+xxn0nekIjCHfATUaV1eybQQl6h0d4A3EcpEs8lBLK7Ltm1ZEZ048pfT64meY3YnFaaxJqAKB2sqyQY7zOHmLri9XylW6ru0jchWpU1jWaWEIdan1qEeZ7n/C4s5tzZNYG2PJtc07ZIVjanUGmE7cWDgVfvb4fQzhaFkI7dN4slbliM/94i4cRPnOmMiBjTg4zIUHVOOpLaoRjy7uaW5zJPQuc/sDOSRwY+2W5/MQObXv8e8vDSLUH/gJx3aOOpn90/EaO+oDVlQMV5Dmdc+UhPHG4jGQQo49tnWr1cAunfco/yGUDHB4xlbFV9BbJuUw4urlx16bPDnoawPKHb1ESxKyvms5QWTwZH7QV2R2LL/AvlcdleXgT/+M/H24XRu6dOW0q4hT0Vp2WGGgHYE5yiX9QJ1ExTVy0pQh6ZVLnurkYVAwsShn7v/nuMD63j2kyaJ/0pxQLqj44ECYepLxHvJskM76YmDh+KqlCeRiB3lxAmyuEYtSSqE7e44hJhuv5oFZsGZQwO29/+pAdl7gSfaNVSFMF9jAdNE2GY/0aKEgB9XIZpKtXyKcb2wciYe16h/jJqVvEEYYs1Vznwh6xXH8oy9T3GpGxOtk561/Ac80u9px7FlMH4V6EoeDdnjuVGdbx46is9OupauD2i1f0n0CtGCi9ArFU5BGotx2M2TvTLRdhSnBotpYYwKY79yZf7lnmKN8i+b31qSYq+w5ymB2Dl9Rwu1dW+gxRt+kvNow5uP1TLKRLt+BDghHYem/vesX4yd64Jyw7Ombaa+Sqfisg4GDdWp54crck5nfKuKob8CSMNDTe1OXa4FEotu1rva97sKWqoWG2oLGon7fZFQKYjc6RfVNuYtPdf6a5wEF/SAOdE1bQe87jY21JmxUEV3+TAJ9GI10zYCvd2sS5nLnod1VmCYuVjomQmU5UMRMy8EhDtq5h8QZpHOhWw3ASWpAq4EueBa6l73zyHVzHJTB+kF80j878I6ym0mtxoBQITzTVBsD2TOczmXqC2/N2rWCyH+fHsj0Vxcti7UYgXXcMDMc6NkpMGDdwbQXk+CtMAcge2ZT1PuCGrzm+3HeWyGM1VtEG9uBLuYBQC1rNaXa70v4gi8aAbMhn3hI6vizquFvAVagsvSCUnvZ0mgACfitufYmOklHXQ5sNlFKUppLCn86/qYnA1F8zU/uqJMmVd5GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 486,
+   "completion_tokens": 226,
+   "total_tokens": 712,
+   "cost": 0.006464,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006464,
+    "upstream_inference_prompt_cost": 0.001944,
+    "upstream_inference_completions_cost": 0.00452
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 145,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 21.765
+}

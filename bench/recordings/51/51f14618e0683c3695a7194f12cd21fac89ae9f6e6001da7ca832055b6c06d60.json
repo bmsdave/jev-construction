@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Gutters\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678230-k58N1SWbm0F6NcZMRcj3",
+  "object": "chat.completion",
+  "created": 1790678230,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether replacing gutters counts as building work under the regs—checking if rainwater drainage falls under a controlled service or fitting, since Part H3 covers rainwater and could trigger requirements for material alterations even on a like-for-like swap.\n\nCommon guidance from LABC and Planning Portal suggests replacing guttering like-for-like doesn't require building regs approval, treating it as repair rather than building work, so I'm leaning toward not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether replacing gutters counts as building work under the regs—checking if rainwater drainage falls under a controlled service or fitting, since Part H3 covers rainwater and could trigger requirements for material alterations even on a like-for-like swap.\n\nCommon guidance from LABC and Planning Portal suggests replacing guttering like-for-like doesn't require building regs approval, treating it as repair rather than building work, so I'm leaning toward not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSiAsKEAgSGAI4AUIIdGhpbmtpbmcSDCSNIhJImdtlsvRrGRoMmXvfrrb2Q0x/F92FIjDSf9YgmpcSRW9PEqaxgAiV7YD+YY52xebOIU74sTytfpYZd1kcrS7LgMK2+z/2avUqpQpnPqKhW6yvSeOvNt2J7tatjqKP7mDqHbr0ruHkmrvYqIPcK8Dr16L5uK2qjYn0C8E/vZ+Mmi2EP4UzN120+pw/gGIwHZTsEjU6Bfe0aIRRmrh6GjWpp0Ue0eQtPtPnz3RPRL+h9rUl4zU3+4QHSvoKlJcJA5KsS5NEVnBDPqCc9e14NpOG7mEfwn+D9ax7B+PhFaT/tv2UPDaH9AHSx/+s0DVZ+13vqV71Z9k4e+2G35qQD+bhK5JqWoV6Kj6Ie1+soDai/riKEZMtkWKk8wJ/8Pun1K1RwlGFhd/0lVsjnv65dtPqLfnIIUtzP+lMZ4FzHbfd+syxgKHXMov8JRDBaa5C6xU8HR4kViPE8c54nh8mbJeKVMtidZSePKCu2hS1VWvbPrpTrtm5LV1HIFrhxHzOVVufPzP2o+XJJ7/cZAj7BzEvlYzrhFCBmoFO96hZUTHmK1y1l0AIqbxBuPmpO512MnwyoUDswptbohgsC8gLWqZp5qDWlAj1L0NOpuaOLG6VF3MzgI6nMNn5VYLBHi4ysOf0pIWev9nmCGaUbKZCWcn/T7Vk+5zmLEbcnLGJsN4awil+i2aAyONpBOLEtOdnW5Ii+um/67T0T6RB+xA07N99NVGQvFwXMpWD6Gg2zOt6Du4XuZIQlDcTq0P85jLzRQR8481+MwlkOVY0KhByFSrCostDEl3V84oLIdHrkjEdIGl/tErwMN8itfgj5GPh1xuEgnJZnexDiVIeyRyZE8bhhKDHFrnOOnZg1u4EEGAjdheVK2kY4pwmKX06WS/OER4OTrAFDIogSjkdJVxgWxpfNEIZ6zh70ywiRrwTT9/KkbxCj53iBk9FxqUai8CsrQWMfZKHJX4thHla+j8Afd2XmGnbcZuqnAcGucjaDgSihhiyl28W5ERI23qEHCRDwzi9RU09PGsZmjpwCzCUksi6dBpIFrC5Rvgp9A5erjpEcZ7xmec4ZxVx8m9cen6YVT+3QZH3B/e3ZzqU4fgHQJVA094cWtV1PN+793CvGSFjH1PBIh/xVq4ppJpM0Gjr5M1Dh93TWoWDO1ZPyQVcqa04U12ol+478y1opE2e6n/b+aKmNOmsRUhrpXTpTPqVhjVLxr8jdTUKSU42YL3nn44d6JYrkmyAwWPrfpgsngu+PltzU+/wf/Dzh261teAd94QmpNYT5DGICFlOJwtIvOSKRW5N7X0KjRMSBigdbE2pYUjezg3fQgOxyb6QhtHZMbFZAQRFNDNgYtWVhDIfika7IYroAwTfe/3tY2yrSvcrWAXpTpWePY19mCRpvNqS7jrepSVvcJ/45EwL5jN+CDUkwgU8YMlQEhTcxUk9b/LtBxoO1aqCgztaFMMs67mEgTDH6ZJ2QSCYenF+DLmBRholIR9OhP4swSpuhA5zrR1Q9Jbn/EUdmLA2b6mJGwLCF6NWg7bwc5nYnMKzX5WLWGN0SlRBTZwOxsJXXCjgSDuvAAyvCYcR5Mnx1DRY3t6RlaENJcwRhU4Uv38C9AjwuZ3Yce8oVQszHWONEkFO0pHDVAVIvY/TjPYbNvU9Ior7PdqwyuAz5+VIN1Bj/z1cd+81tGUxstwl0wgMyzsIvOR6v1FXPs1AyaqsxElGyGeJKk6ZIUe4smGfnkzTv0EHn+NHMGxyu+SwgyFsx8MnvGfWKGWWMtUZayzOiTCmHIlFe/Vj48TxdkoBntLOp1mI5V9WNCxCHZg9V+YliaEMVW/G+FHJBuFmOph3oxMN0jO6S/0YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 498,
+   "completion_tokens": 300,
+   "total_tokens": 798,
+   "cost": 0.007992,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007992,
+    "upstream_inference_prompt_cost": 0.001992,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.89
+}

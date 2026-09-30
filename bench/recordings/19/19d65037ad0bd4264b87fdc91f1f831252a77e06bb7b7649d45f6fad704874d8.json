@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replacing the communal staircase in a block of flats\", \"project\": \"Block of flats in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678580-davHiulRrL2EuMmBQayd",
+  "object": "chat.completion",
+  "created": 1790678580,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing a communal staircase in a block of flats is building work. It is a material alteration because it affects means of escape (Part B1) and stair safety (Part K). It is not listed in Schedule 3 (competent person self-certification) or Schedule 4 (non-notifiable work).\n\nThe common parts of a block of flats fall under the Regulatory Reform (Fire Safety) Order 2005. Under reg 12(3), a building notice cannot be used where the Fire Safety Order applies",
+     "refusal": null,
+     "reasoning": "This is a communal staircase replacement in a block of flats, which falls under the Fire Safety Order for common parts and counts as building work affecting means of escape and structural fire safety. Since regulation 12(3) applies, full plans are required, though if the building is 18m+ or 7+ storeys, this could shift into the higher-risk building/BSR route instead.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a communal staircase replacement in a block of flats, which falls under the Fire Safety Order for common parts and counts as building work affecting means of escape and structural fire safety. Since regulation 12(3) applies, full plans are required, though if the building is 18m+ or 7+ storeys, this could shift into the higher-risk building/BSR route instead.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSyAcKEAgSGAI4AUIIdGhpbmtpbmcSDGI3Mrql/1bPTJwGCxoMhcuE7oXwBEj2EBBKIjBjOPgFcicJ9sc7t9ijbGReROy+OfCTvyKtk5D65ilOlU+tAT6dl3vUFSFW6JCwQvUq5QYBRBtua87norDumnJGr6VWL1hSEe/jXQctY6wwaKLCqzCtBFnK46g0JmV7xf+ceVOKypjLdH+sTw9zUOXl/UU1igeZh5gf2pTqpSUnkPcOXauRW8dQjvVCv6xBy441gOn8ike2gVMRgHL5irBJi6YQ/f5caYRjPLyQlFBOa8Lpl+kYFnHC/yfCKKiWAFRY7QDzLayyX4iRd3ZbR68nTZ0o3orB8JdpwYxwMeVwxwRyfocrZaAnBUqWyMJyr3m3irEsqchv1sVg7K/cUL6ILcAxKcDn06FHrDuRE8x90rfWmIvJFl64VNGPxiUHM5fff3o6j9u/mP18TRNt/3QUcneq/xtj90JAvZMUVBaVgkpxlCtQfdl1J6uMGF9M9Ac4ksDw5kUR4h7pnu16TIyY6Q0IOsEVK1BN/TnA1gaan74RmSxCoMICg1tT6G8da/8QJ6S9+T1YKK4Mbzsk0sO6+XKH3EEyNLymFcLWrV2bm7f0fhGNPgzJHBxkYm3l8+H/Har+xJeQtf4AHCVd7M8qW3vlFkeaPEnrOO/pUHRM1xNedgSLgFmX64baAvBKur48kncB022Nb6AgxnrojiqjjDdFnlFngfi6YtfnYF6WFJSe+aNpCwPfGleuQsFR3OGLwlVRso2jrVwlqkpTMveC3/3h95P6kvTgCY5fE64N6WE3l84DXL9s2Yv6mYS7Cji6AfBTf1vSrZFxSpyWxnopJy9+Qwu8W4csRYIWnG8aYYOaQjup2kf5YYhccAcMgo79aI1K6eSgReUHUzZtLHX0MLqEWxXMxvv1Y0ELld9U23pBBPI1XDU5tc4YxNyF3hicd3jlZLvOGWMeiXa3eARCGIt5ooyAhONKoEeU7bHJz+uLmvML+XCypj5PaKk4+u9xSiUqr5xmdpuJfKRybq3iZtGGj4062DfAtbWzurSQ2O7IHe8FX+Knc3aFX6rtOYpyu1tatjMBXbED2MCgUSW/Wu7s5uSrupAYkTkGA75hZ7jUL6ao/xGa0ruCtGMao4PR4qkXfbv2AcvfrpGFZOushGNpE1rktF0djUCikNfHv9R5ueGl/h+4K520mt6TAnmtTIPQp6L40qqkM66M8lVbcradMPhQJc6eKvngZ1C4SzHN8BJkpUJJRznGHFXovOybB1gsdZ5cQhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 466,
+   "completion_tokens": 300,
+   "total_tokens": 766,
+   "cost": 0.007864,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007864,
+    "upstream_inference_prompt_cost": 0.001864,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 143,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 22.383
+}

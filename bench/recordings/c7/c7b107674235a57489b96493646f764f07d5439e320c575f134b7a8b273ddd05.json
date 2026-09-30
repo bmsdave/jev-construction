@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Removing a loadbearing wall at the back of a ground-floor shop\", \"project\": \"Retail unit in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 0.14\", \"document\": \"ADL1-2021\", \"text\": \"0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677651-D0kimUFdeV44ngmUszr9",
+  "object": "chat.completion",
+  "created": 1790677651,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Full plans required.** Removing a loadbearing wall is a material alteration affecting structure (Part A), so it is building work under reg 3. It is not in Schedule 3, so a competent person cannot self-certify it, and it is not minor Schedule 4 work.\n\nA shop is non-domestic premises, so the Regulatory Reform (Fire Safety) Order 2005 applies to it. Under reg 12(3), a building notice cannot be used, and a full plans application is needed.\n\nThe clauses supplied",
+     "refusal": null,
+     "reasoning": "Removing a load-bearing wall in a shop counts as material alteration to structure A, and since it's a non-domestic premises the Fire Safety Order applies, meaning full plans are required under reg 12(3).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Removing a load-bearing wall in a shop counts as material alteration to structure A, and since it's a non-domestic premises the Fire Safety Order applies, meaning full plans are required under reg 12(3).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQcKEAgSGAI4AUIIdGhpbmtpbmcSDMiDVdkSut9dwnBP2hoMODO+Pe67bvNz2eHdIjCX+9bEpXgI7TfkbXMnUXTXDRqjApB8teRjERTM4AO1EQWLroTDDHJ1vnuIP5pN/Q4qrgZK8VmtnaMLeHmODRYJQUDRdZWoqGW8onH7dNspCraLre9wn7RUNAxvvju6/EI5pOSF7pGJePs4ED6Z23Z17po9yuNuLLAGpYUo+CpD7HUfOSHdNjk34Ky5Y4ZGlM2SQSxWk6kQWR8S+ZREO6xKBlUnrQ8o+AG3MRdJM1FaTbTuOgTbyXXdrdsqiATszdS6UMeaijfNDtEi493SDicveE+16+iUZuYeR2vZ4zLP8u1Rg9hN1Yxv3LYC9jqS61x53Al8D2ETvdXRs8Wh597f3PmdBmQIomevgpWqqpA3xCNvjGizKX3DgsST+SSuPUV7Duw604fZpM2UvCAv90JxPS5IAupJ2KW2OOJVyHiwcWyz9pYa1X+rOGUCrcD12hIlvMY14oGHJA5Cej+SS6MQNBqBx/pK7GvS6Rmw7abSUvHpe0+0vqTbOZO4GUftwEN8Jo/LCkC73BKzGzHv70wXAHlQf+/NVVmPVnK+U07C2exo/QZjVQtgpyWtvTWm1MFyW9hWlmtyCkGEHCgzf4otrhSswURSGWLoMtl9ZhTMeTvNZLVK2uXv4+H2ZVZ4H9kXk0BBEp0oAR7nzmro+/ECukDJI6qIA+MtayF6IB6k/Njq9m/xnGIHWC28nrpfX7rdtTAF4aHUU8fyTw5lnnh1nSb258qChgOi9Wkdiq3RA/aAvxZr9XCpV2cIdqHD3+3aLmUqVYU5i3jBD5PLEODKIGE3rNb1XEGCA19fvu10ee/669xMDCoSk/7s4MC4VwAInypQkZDQQWma1fNk786PPBkgIFrfwQbntX+dYPSptyNrUYicezFIsz7/bk5eTuZrPHy6wMD4Z6xWMScFBu721HNkiouZyBv1NXlaAR9puk+S5ujf1dKXVoIG5ul5q8e8y7OCQXawaiOX9r71eMHgRK+jPpUwRbxjq1UCoWh4C9M7doNsUvB/7om3H//FoXKKFhj8kXRkb4z8KkEcdFzd7481cUZyoZFJZ3f7/JShhLvU7+MeexHwQBAORGtWOfg14vKpPO9WUyRXEcAGactteoiqJuVw4qGOf6rODY4Y4aZe7lIeDhpbsatlOnnBxWwNGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1525,
+   "completion_tokens": 300,
+   "total_tokens": 1825,
+   "cost": 0.0121,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0121,
+    "upstream_inference_prompt_cost": 0.0061,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 135,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.6
+}

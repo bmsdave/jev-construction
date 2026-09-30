@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Air-to-water heat pump package (7 kW)",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: garden and external works of the house.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c2": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c3": {
+     "ref": "Sch 1 L1",
+     "document": "BR2010",
+     "text": "Conservation of fuel and power: L1. Reasonable provision shall be made for the conservation of fuel and power in buildings by—(a) limiting heat gains and losses—(i) through thermal elements and other parts of the building fabric; and(ii) from pipes, ducts and vessels used for space heating, space cooling and hot water services;(b) providing fixed building services which—(i) are energy efficient to a reasonable standard;(ii) have effective controls; and(iii) are commissioned by testing and adjusting as necessary to ensure they use no more fuel and power than is reasonable in the circumstances."
+    },
+    "c4": {
+     "ref": "reg 2(1)",
+     "document": "BR2010",
+     "text": "(1) In these Regulations, unless the context otherwise requires—“the Act” means the Building Act 1984; “Green Deal Framework Regulations” means the Green Deal Framework (Disclosure, Acknowledgment, Redress etc.) Regulations 2012; “amendment notice” means a notice given under section 51A of the Act ;“application for building control approval with full plans” means an application for building control approval in accordance with regulations 12(2)(b) and 14;“application for a completion certificate” in relation to a higher-risk building work, has the same meaning as “completion certificate application” in regulation 2 of the Building (Higher-Risk Buildings Procedures) (England) Regulations 2023;“building” means any permanent or temporary building but not any other kind of structure or erection, and a reference to a building includes a reference to part of a building; “building”—in the application of any provision of these Regulations to the construction of a higher-risk building, has the meaning given in regulation 4 of the Higher-Risk Buildings (Descriptions and Supplementary Provisions) Regulations 2023;in any other case, means any permanent or temporary building but not any other kind of structure or erection, and a reference to a building includes a reference to part of a building; “building control approval” has the meaning given by paragraph 1B of Schedule 1 to the Act; “building control authority” has the meaning given in section 121A of the Act;“building notice” means a notice given in accordance with regulations 12(2)(a) and 13;“building work” has the meaning given in regulation 3(1); “business” means a trade, business or other undertaking (whether for profit or not); “change to a building's energy status” means any change which results in a building becoming a building to which the energy efficiency requirements of these Regulations apply, where previously it was not;“client” means any person for whom a project is carried out; “completion certificate application” has the meaning given in regulation 39(1) of the Building (Higher-Risk Buildings Procedures) (Wales) Regulations 2025; “construction phase” means the period beginning when any building work on a project starts and ending when that project is completed;“contractor” means any person (including a client, but not a domestic client) who, in the course of a business, carries out, manages or controls any building work;“controlled service or fitting” means a service or fitting in relation to which Part G, H, J, L or P of Schedule 1 imposes a requirement;“day” means any period of 24 hours commencing at midnight and excludes any Saturday, Sunday, Bank holiday or public holiday; “design work” means design of any building work;“designer” means any person (including a client, contractor or other person referred to in Part 2A of these Regulations) who in the course of a business—carries out any design work, orarranges for, or instructs, any person under their control to do so;“domestic client” means a client for whom a project is being carried out which is not in the course or furtherance of a business of that client;“dwelling” includes a dwelling-house and a flat;“dwelling-house” does not include a flat or a building containing a flat;“electrical installation” means fixed electrical cables or fixed electrical equipment located on the consumer's side of the electricity supply meter;“energy efficiency requirements” means the requirements of regulations 23, 25A, 25B 26, 26A, 26B, 26A , 26C, 28 ... , 40 and 43 40 and 40A, and Part L of Schedule 1;... “excepted energy building” has the meaning given in the Schedule to The Welsh Ministers (Transfer of Functions) (No. 2) Order 2009 “extra-low voltage” means voltage not exceeding—in relation to alternating current, 50 volts between conductors and earth; orin relation to direct current, 120 volts between conductors;“final certificate” means a certificate given under section 51 of the Act ; “fixed building services” means any part of, or any controls associated with—fixed internal or external lighting systems (but not including emergency escape lighting or specialist process lighting);fixed systems for heating, hot water, air conditioning or mechanical ventilation; orany combination of systems of the kinds referred to in paragraph (a) or (b); “flat” means separate and self-contained premises constructed or adapted for use for residential purposes and forming part of a building from some other part of which it is divided horizontally;“floor area” means the aggregate area of every floor in a building or extension, calculated by reference to the finished internal faces of the walls enclosing the area, or if at any point there is no such wall, by reference to the outermost edge of the floor;... “green deal disclosure obligations” means the obligations to provide an energy performance certificate in section 12 of the Energy Act 2011 and Part 7 of the Green Deal Framework Regulations; “green deal property” has the meaning given in section 12(5)(b) of the Energy Act 2011;“height” means the height of the building measured from the mean level of the ground adjoining the outside of the external walls of the building to the level of half the vertical height of the roof of the building, or to the top of the walls or of the parapet, if any, whichever is the higher; “higher-risk building” has the meaning given in regulation 3 of the Building Safety (Description of Higher-Risk Building) (Design and Construction Phase) (Wales) Regulations 2023; “higher-risk building work” means any work relating to higher-risk building or a proposed higher-risk building, including—any work relating to a building that is not a higher-risk building that causes it to become such a building, andany work relating to a higher-risk building that causes it to cease to be such a building.“independent access” means, in relation to a part of a building (including any extension to that building), a route of access to that part which does not require the user to pass through any other part of the building;“initial notice” means a notice given under section 47 of the Act ;“institution” means an institution (whether described as a hospital, home, school or other similar establishment) which is used as living accommodation for, or for the treatment, care or maintenance of persons—suffering from disabilities due to illness or old age or other physical or mental incapacity, orunder the age of five years under the age of 18,where such persons sleep on the premises;“low voltage” means voltage not exceeding—in relation to alternating current, 1000 volts between conductors or 600 volts between conductors and earth; orin relation to direct current, 1500 volts between conductors or 900 volts between conductors and earth;“material alteration” has the meaning given in regulation 3(2);“material change of use” has the meaning given in regulation 5;“microgeneration” means the use for the generation of electricity or the production of heat or cooling of any plant (which for this purpose includes any equipment, apparatus or appliance) which, in generating electricity or (as the case may be) producing heat or cooling, relies wholly or mainly on a source of energy or a technology mentioned in section 26(2) of the Climate Change and Sustainable Energy Act 2006 ; “new dwelling” includes, except in Parts 6 and 7, a dwelling that is formed by a material change of use of a building within the meaning of regulation 5(a), (b) or (g);“optional requirement” means an optional requirement as described in regulation 4(1A)(b) or in regulation 36(2)(b); “payment period” has the meaning given in regulation 2(1) of the Green Deal Framework Regulations; “planning permission” has the meaning given in section 336(1) (interpretation) of the Town and Country Planning Act 1990; “principal contractor” means the contractor appointed under regulation 11D (principal designer and principal contractor) to perform the duties of a principal contractor under these Regulations; “principal designer” means the designer appointed under regulation 11D (principal designer and principal contractor) to perform the duties of a principal designer under these Regulations; “principal contractor” means—the contractor appointed under regulation 11U (principal designer and principal contractor) to perform the duties of a principal contractor under these Regulations, ora person assigned under regulation 11T(1) (domestic clients), including where a domestic client assigns themselves to perform the duties of a principal contractor under these Regulations; “principal designer” means—the designer appointed under regulation 11U (principal designer and principal contractor) to perform the duties of a principal designer under these Regulations, ora person assigned under regulation 11T(1) (domestic clients), including where a domestic client assigns themselves to perform the duties of a principal designer under these Regulations;“project” means a project which includes or is intended to include any building work and includes all planning work, design work, management or other work involved in a project until the end of the construction phase;“public body's final certificate” means a certificate given under paragraph 3 of Schedule 4 to the Act;“public body's notice” means a notice given under section 54 of the Act; “recipient”, in relation to a compliance notice or a stop notice, means the person to whom the notice will be or has been given;“relevant authority” means—in cases where the regulator is the building control authority by virtue of section 91ZB of the Act (the regulator: building control authority for other work), the regulator;in any other case, the local authority for the area in which the building is situated or the proposed building is to be situated;“relevant day” means any day excluding Christmas Day, Good Friday or a day which is a bank holiday in England and Wales under section 1 of the Banking and Financial Dealings Act 1971;“renovation” in relation to a thermal element means the provision of a new layer in the thermal element (other than where that new layer is provided solely as a means of repair to a flat roof) or the replacement of an existing layer, but excludes decorative finishes, and “renovate” shall be construed accordingly;“room for residential purposes” means a room, or a suite of rooms, which is not a dwelling-house or a flat and which is used by one or more persons to live and sleep and includes a room in a hostel, an hotel, a boarding house, a hall of residence or a residential home, but does not include a room in a hospital, or other similar establishment, used for patient accommodation;“shop” includes premises—used for the sale to members of the public of food or drink for consumption on or off the premises,used for retail sales by auction to members of the public,used by members of the public as a barber or hairdresser, or for the hiring of any item, andwhere members of the public may take goods for repair or other treatment;“softened wholesome water” means water which would be regarded as wholesome for the purposes of regulations made under section 67 of the Water Industry Act 1991 (standards of wholesomeness) as they apply for the purposes of Part G of Schedule 1 in accordance with paragraph (5) but for the presence of sodium in excess of the level specified in those regulations if it is caused by a water softener or water softening process which reduces the concentrations of calcium and magnesium ; “sole contractor” means a person fulfilling the duties of the principal contractor by virtue of regulation 11D(6); “sole or lead designer” means a person fulfilling the duties of the principal designer by virtue of regulation 11D(7); “sole contractor” means a person fulfilling the duties of the principal contractor by virtue of regulation 11U(6); “sole or lead designer” means a person fulfilling the duties of the principal designer by virtue of regulation 11U(7); “system for on-site electricity generation” means a system that produces electricity and has a direct electrical connection to the building in question...."
+    },
+    "c5": {
+     "ref": "Sch 1 E1",
+     "document": "BR2010",
+     "text": "Protection against sound from other parts of the building and adjoining buildings: E1. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that they provide reasonable resistance to sound from other parts of the same building and from adjoining buildings."
+    },
+    "c6": {
+     "ref": "Sch 3 para 15",
+     "document": "BR2010",
+     "text": "15. Installation in a building of a system to produce electricity, heat or cooling—(a) by microgeneration; or(b) from renewable sources (as defined in Directive 2009/28/EC of the European Parliament and of the Council on the promotion of the use of energy from renewable sources). | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ...."
+    },
+    "c7": {
+     "ref": "para 0.22",
+     "document": "ADL1-2021",
+     "text": "0.22 This approved document, Approved Document L, Volume 1, provides guidance on reducing unwanted heat loss, by achieving optimum airtightness. When specifying the minimum amount of purpose-provided ventilation, consider the air infiltration of a dwelling; follow Approved Document F. Interaction with Part J"
+    },
+    "c8": {
+     "ref": "Sch 1 J1",
+     "document": "BR2010",
+     "text": "Air supply: J1. Combustion appliances shall be so installed that there is an adequate supply of air to them for combustion, to prevent over-heating and for the efficient working of any flue. | Requirements J1 and J2 apply only to fixed combustion appliances (including incinerators)."
+    },
+    "c9": {
+     "ref": "Sch 1 O1",
+     "document": "BR2010",
+     "text": "Overheating Mitigation: O1.—(1) Reasonable provision must be made to—(a) limit unwanted solar gains in summer;(b) provide an adequate means to remove heat from the indoor environment.(2) In meeting the obligations in sub-paragraph (1)—(a) account must be taken of the safety of any occupant, and their reasonable enjoyment of the building; and(b) mechanical cooling may only be used where insufficient heat is capable of being removed from the indoor environment without it. | Requirement O1 applies only to the erection of the following buildings—(a) a dwelling;(b) an institution; or(c) any other building containing one or more rooms for residential purposes (other than a room in a hotel)."
+    },
+    "c10": {
+     "ref": "Sch 1 G3",
+     "document": "BR2010",
+     "text": "Hot water supply and systems: G3.—(1) There must be a suitable installation for the provision of heated wholesome water or heated softened water to—(a) any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(b) any washbasin, bidet, fixed bath and shower in a bathroom; and(c) any sink provided in any area where food is prepared. (2) A hot water system, including any cistern or other vessel that supplies water to or receives expansion water from a hot water system, must be designed, constructed and installed so as to resist the effects of temperature and pressure that may occur either in normal use or in the event of such malfunctions as may reasonably be anticipated, and must be adequately supported.(3) A hot water system that has a hot water storage vessel must incorporate precautions to—(a) prevent the temperature of the water stored in the vessel at any time exceeding 100°C;(b) ensure that any discharge from safety devices is safely conveyed to where it is visible but will not cause a danger to persons in or about the building.(4) The hot water supply to any fixed bath must be so designed and installed as to incorporate measures to ensure that the temperature of the water than can be delivered to that bath does not exceed 48°C. | Requirement G3(3) does not apply to a system which heats or stores water for the purposes only of an industrial process.Requirement G3(4) applies only when a dwelling is—(a) erected; or (b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b)."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.27
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.15
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.18
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.66
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.09
+   }
+  },
+  "usage": {
+   "input_tokens": 5512,
+   "output_tokens": 175,
+   "cost": 0.000231504
+  },
+  "id": "gen-dec-1790676024-FMYY4v3U9euaeyOdE6BG",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.382
+}

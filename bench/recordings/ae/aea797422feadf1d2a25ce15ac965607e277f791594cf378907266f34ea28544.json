@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Inject chemical damp-proof course into existing walls\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"Sch 2 Part 5 para 2\", \"document\": \"BR2010\", \"text\": \"(2) A building on the site of construction or civil engineering works, which is intended to be used only during the course of those works and contains no sleeping accommodation.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678013-R6XM12sq3uqvumVRXJ00",
+  "object": "chat.completion",
+  "created": 1790678013,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether injecting chemical damp-proof course into existing walls counts as building work requiring notification, thinking through Schedule 3 of the Building Regulations and whether cavity insulation or DPC insertion falls under exempt work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether injecting chemical damp-proof course into existing walls counts as building work requiring notification, thinking through Schedule 3 of the Building Regulations and whether cavity insulation or DPC insertion falls under exempt work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStQoKEAgSGAI4AUIIdGhpbmtpbmcSDBjyu7rDLOHnj/Lm4BoMi6Wvlo22g8hR56pKIjDuKRPbmPxGul34oqflY7kkF8/R5MFAaGRvayAQnYr9+a5wOm88tgRFNDiVrRpP46wq0gnW+1SPnFnCcNDBVf9ENZe8Q46Uuqm3Ebgg6uj/dKutm6VX22jExxQ9+Zc4Qrhuhs+4o6Sgj1WSrkXMStZ5SafQR8883kVH2+jQFXLuz+z+jB5HYtrx4BWtIavVHAta+alOGBHbkFID1w0zbt8Bvh+QhAnupW75rH+qTuHJkN7SEz3yMeErxPjYb5zG/daBUvj5Tmm+uqvWt+VBrf3X05KEvm7aAkuuPL3dJBMCDjIVfJorrbb3fRqXr9uYoFsuCfm0w4oPllZR1WmQZJz0XT9bSHwwlbfdYY/720N3Wbe3n3jm73NeXZdTuTfXLkfK2DqV3HFeWmtNaK+FuLEpcS2YvOmti2YiudQS63lrg2sv0av5qy2m44jqNf/9DrVZNbu5AVRYaJv6Naj9mq1jh4XrUp93oS9/IivJh3eFKftIfR+dzeFbdFF7sRHbnepiysDmFihvzsnCRpkcJrMxguEzPUuoFed+tvBDNXxivCt/NY9idN1KZAj1kn12VnKiw3Nc+TXPjmBHhXWONn5xLWUvtcEgG9zlzy+ux+5xTGJR1n5IzMfHjp8gUm6vELHS0LovxSGuXyaqKkS4K86xvA+/eJUQRdIGF4jvONOWcJtkOKVWyMfkXWYUQHxCvUsBoUMy5yE3uLhIaJGvQnEevn51EXllc+2j4vY0GQAlTYoFvSoH9XCoHEprQqNvxkpGCdlXxEb665jUrVua0mPNdJMQuIletGM29fsgT9UuTAjPpeLaWUW6+L2sglTDHbiwQgS30dC+xmXs8gXIgfT4bC8qhCM4zVY+NX7abs2rdFq5L9NdWzyha+zlO9Q0RxZ6CzyWMlLOwvgNWQH2jA65lKFrbll+y6G2vQZAVxGRMcoYF+BokF/5uzgx4bPx/qzAJDQSsFTt8kujjv4lPJgHHqeOu5YzBdr/gNhibUqd94WAHy+R2alAJsCGd+xM758vQ5kSDpPQabCQZ2pyO9fq+3RCe/gkITyaYx6ptVZ0iJxQsTTMkk987DjUq3q9HeI4Rb7iuQgRoxsVWAN5rlf+YlmsvAMlgrjn6VgcTlzj3StPcLGt4h0zzA/+Cy8a3GnhF67X7YfMyr35sMyHgF4XQLVuqYEqhdELJgd+E5PFHv2mPFyYJujnOCFuH4LkeyRMZFQPCZ1kYp/x3rFjHS/9t5305uS4J8H+QLpYD0w+slBSS3i+LpQ9G9Sgp+x/pyoAdoWJ7fmstMh6nP1dtfYi9oIyJcjJLU1o8j6ImLL67qPSI94p8BL+ws9UCyZ1ht2ecvK2a+JfxW6W0YRcrcSKP2YpwJyX7plNeb5uzY9xiTANdB9h3JCUk6/B5NlBHbvx5Ib5XEB+7RKuSVYJqSbrZqounQAt6gLI/US4Mblxiv8pnWpzUXqzs+BemXKqu3474LYMcYJA/Mush73ASL5HZX8tKvn0pftL/NzUMIhpGnuuWgGBJKvdcqEFzRjryHlvM3s1dGSXr97mWl5+lb0/n418Qj+/0AxiWA0YwpnTKQ7NlFWITkR85L0piuamsTbekIjInd2HmxsuU4hAchJ3b4pLOXB8hsEMR81BbLP8tQzrljT1ipy9jQBDfngLvRGexEIbFc9m1M7nb0E0nlVinOrNT3vEkfaFGtErX12ItwlI2+pwGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1205,
+   "completion_tokens": 300,
+   "total_tokens": 1505,
+   "cost": 0.01082,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01082,
+    "upstream_inference_prompt_cost": 0.00482,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.474
+}

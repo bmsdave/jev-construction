@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rear extension to a dental surgery\", \"project\": \"Dental surgery in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678553-7bC6C90fIpo2xWGo4NIX",
+  "object": "chat.completion",
+  "created": 1790678553,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.9, \"building_notice_or_full_plans\": 0.07, \"not_notifiable\": 0.02, \"competent_person_scheme\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Since a dental surgery counts as a workplace under the Fire Safety Order, and the extension is building work on a building subject to that order, full plans are required under regulation 12(3) - the Schedule 2 exemptions for small extensions like conservatories or porches only cover domestic buildings, not a surgery.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since a dental surgery counts as a workplace under the Fire Safety Order, and the extension is building work on a building subject to that order, full plans are required under regulation 12(3) - the Schedule 2 exemptions for small extensions like conservatories or porches only cover domestic buildings, not a surgery.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSngcKEAgSGAI4AUIIdGhpbmtpbmcSDEivsp94+wg4Lz7M2hoMVcyeUNbSJs0lo3v1IjAFJE8/VnZZklVTVsyepljtYbCIZXn5RyIq8MiQ7FpOq0PADbgVJMn/pAIju8UHC7squwYtVws9/lRJszvgCqrbjAqY4/934R33rpnZ4cCTXXQNXWo6Q3gsdZMT2wL+tXI/ZMx/qILL7hNqvBWWMJpWTxrZrMRJIXOOcEO7n0Re1Z5VEfPo1bnZosViO0iqCR3Tt6hKFapiXRrXpBFDSmrMj8pBzGKbuEbz4myAmwk75tFhWO7mIr5fLXz5ZFdud6ZXUkzuyTU8QKqxSHCJinNt91vfVFH+Jwj6y/OjyIxZi4Ysuq1mDIwOXOebB5qFcCcJq9TDBmO9ib6vmQ1tia581mFvzxXHifJwTyp3jc3wZeA7Q5ljxiifAFHZskHVGidjCQ9cIaVbcFJhim2Gcu/KRfhEmJs8R1Ddc13esOPrJJt3EexRHBDnsPRo7qwp+sI1a6bF5KnIJ6/cfywYKs7DfC0Fk0YN8uwMESWrb+PEKOkfAnpLZUZBlsz0sdHbD0VZtk+C2YygMc69nZoAlXdDMlhVKfNP4Wk87S5rBs3us5lkMQyrEIAlmgvqFOE+wM27Oi5EkOyDh+91thprE2olsno7gh5cuodzDKOPd4gJkwvowVutYSK0uQcxHqgQEtEIpjOd9nJRwtx2dPKRP9Xoz9aM6nJUks2yRhPjJL30RIkAIATMYC/av8IuB7eUNyDhnSujs2evT5mz7SN+SpEDoTEVbYWtsyxeNVLiQ+gtSbS3RjFVzw6AJFP2FRBplHS+jFFxnHideNo0GGH6h54AujFNv5zQ5c4xZg5AfMIRCkhbrsyohTMGrvaFZdtRgUUZK0a0MPHnDofd54Rv8nj0narQ7xeqzRge/RaHJFpye1tQJlGcYIosk3d2LecU1iDCzZMTFxdHFqGYGb9HsrzjBZ6U+73rbUxEslXWA8ZkcQYOpq2EJgwp8gwwFxNZPM/Vdi3SqE+j2F1AGX0o4CUY47q9+aMoiaeAOTptyUhWqj9jSJ1amHcmbyMYqWJ7tOnXEEinHF4t+OYgFmMsZvg+n7VB1NmRSLUKvZvOfqktnlu+H/QKAyS2H5d2H6bOSYkS/ZFsFNE2NU3p6t+lgbOQaGATaGcdNieSJizEL1SD5rxdYCp2I3cxStmfXv83h4jN+9nCPyP1Zeb5gvzITBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 463,
+   "completion_tokens": 209,
+   "total_tokens": 672,
+   "cost": 0.006032,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006032,
+    "upstream_inference_prompt_cost": 0.001852,
+    "upstream_inference_completions_cost": 0.00418
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 128,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.244
+}

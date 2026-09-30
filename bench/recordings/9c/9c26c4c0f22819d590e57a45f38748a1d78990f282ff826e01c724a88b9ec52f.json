@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Side return extension with new foundations within 3 m of a public sewer\", \"project\": \"Semi-detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 7\", \"document\": \"BR2010\", \"text\": \"The extension of a building by the addition at ground level of— (a) a conservatory, porch, covered yard or covered way; or (b) a carport open on at least two sides;\"}, {\"ref\": \"Sch 1 H4\", \"document\": \"BR2010\", \"text\": \"Building over sewers: H4.—(1) The erection or extension of a building or work involving the underpinning of a building shall be carried out in a way that is not detrimental to the building or building extension or to the continued maintenance of the drain, sewer or disposal main. (2) In this paragraph “disposal main” means any pipe, tunnel or conduit used for the conveyance of effluent to or from a sewage disposal works, which is not a public sewer. (3) In this paragraph and paragraph H5 “map of sewers” means any records kept by a sewerage undertaker under section 199 of the Water Industry Act 1991. | Requirement H4 applies only to work carried out—(a) over a drain, sewer or disposal main which is shown on any map of sewers; or(b) on any site or in such a manner as may result in interference with the use of, or obstruction of the access of any person to, any drain, sewer or disposal main which is shown on any map of sewers.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677637-pz1GOziNYbUWndebqF13",
+  "object": "chat.completion",
+  "created": 1790677637,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.8, \"building_notice_or_full_plans\": 0.17, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Since the foundations sit within 3m of a public sewer, H4 is triggered under ADH4, which means Building Regulation 12(5) requires full plans rather than just building notice — this extension isn't exempt as a conservatory or porch, so full plans are required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since the foundations sit within 3m of a public sewer, H4 is triggered under ADH4, which means Building Regulation 12(5) requires full plans rather than just building notice — this extension isn't exempt as a conservatory or porch, so full plans are required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkwcKEAgSGAI4AUIIdGhpbmtpbmcSDDHZ/PFbJVldR760jBoMS27j0YU9tFEMKZZnIjAY6W0PslZ9UJ3tlUjZYpjrc51MxN+M/wYIdNUk0FjmEJYLzzwwAm94qIRQItyCIPgqsAbUIazzpCg81unnIBNxvMKTRydpnVf4BBX1FBE9E/AM6IzqMs/QaJlh5me/xWSWLDvQGrEZUGB/u5RGElITAhipM8D1hP4yHNLr9oal88zB5rIMY8OlIdUP0EQ/4/vTBF0Wx5mqO1pFBePhDmGZpea7q0rkJcBaAn1ujsOPBdF7cOB1tH4SPiiP8vHsC1MjoEreD1B9cjjhjm+7b0/j1G1lxJuWq6ePunFeWbvZyycOPbSY2ZVespYp4FSfnSdlC2b4awYRAE1mUji7IdgcqA1I2MOWa60yhjoTQlMdmfLEw/PZ/vyHEl66SG2urzA5EKz0UgXVQSpfYpDZsMy5sIsw9g+pXZnVLaV1Gwg6eTxg6JUxJFK8wk4YC/AefvDHXn9EMUBgtXcLNKIEy6jMXjoArfcN7R42ONOmtJ1C/BxxhArTrUqftxEzv3WTOwl8uAE88ZuYa3L6sYwNIymHfgZ/JGlyNEhp136t5s2JgLYAbImYnhlMNYd4K19rYcDXc4dUnxIyHZs5hnAIB86Q0GlILqHE1zwP3BtsFWVKv2HhGSYANwJ89KjnV3o0MTkuLBcIy3lC5TAY+jB1SgCnt9AulRAxc8S5/cPLP4hZQp8fs7sbnjoXF0YphAsA+tS+RNaT5jF/kyA7jnP6aferksgquEV94P/Wuiua11opSvpDCYOCYZ1SNcT/VI0dsqqqCwbPmjXQYezoJNvWCoiTNx7d06oq9if3hTzJ7/0/VN9u/jAAAMLyM2lngUbkmSon2geDd5sltPKNUK5/B9VvFbr3LRtPbn87YFuB+RB1SiNS3d499WqL54fCPX0HeJ045kXqP2tPofBYnfbJVrRroZGLSq81ElwAL6HZRJvrOssIGjBeU+uhM2rS4vCh8GAZBwQvDVeoWXqpD+SYtJCUP1ZPRCfR+1Z1+a5luCuk/j53kjrcTs3iOBlCRmlDy8DNH2Xt9/vpe4kpRH8rsGyvWsxqWzBF5YCzFwmKb59ViDzvFs1JgwbfD14waWYvPxQ/UBb+vifmB1jkj+F92rfK1oEjabZWxWqQHtH3LyEtcS6wa9xaNhL+SUgpMbGzosRsJb0YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1169,
+   "completion_tokens": 212,
+   "total_tokens": 1381,
+   "cost": 0.008916,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008916,
+    "upstream_inference_prompt_cost": 0.004676,
+    "upstream_inference_completions_cost": 0.00424
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 131,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.431
+}

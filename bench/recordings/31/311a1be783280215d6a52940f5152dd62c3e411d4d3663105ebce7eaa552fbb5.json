@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"EV duct provision\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678494-sVbpgziPqSuaQaMRlcBM",
+  "object": "chat.completion",
+  "created": 1790678494,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Installing EV cable ducting on its own is not building work under regulation 3, so it is **not notifiable**.\n\n- **No electrical installation:** an empty duct carries no cable. It is not work to a fixed electrical installation under Part P and does not extend or alter a controlled service.\n- **Part S does not apply:** EV charging requirements are triggered by new dwellings, material changes of use, or major renov",
+     "refusal": null,
+     "reasoning": "Installing empty ducting for future EV charging isn't itself electrical installation since no cable is run, and Part S's \"major renovation\" trigger only applies to buildings with more than 10 parking spaces, so it doesn't apply here. This means the ducting work alone isn't notifiable building work under Regulation 3.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Installing empty ducting for future EV charging isn't itself electrical installation since no cable is run, and Part S's \"major renovation\" trigger only applies to buildings with more than 10 parking spaces, so it doesn't apply here. This means the ducting work alone isn't notifiable building work under Regulation 3.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSswgKEAgSGAI4AUIIdGhpbmtpbmcSDH3noDUwrFOjjbYlFBoMFcurzGwxTRnIJra3IjAjiVUz4Rfpz1A2qzDco/epieU30/RkH7jxC0+I1ksuZiGV034AZxgfwSo7kEaTuecq0Af+yfiMdt3KW8GP3FAy0oQnUkxRJdHioADlVwol0pmwNAFchAgNxcchXksutAE6EUoALLlhWhNmXnoQUDXhlaeHmLnZVT6fxHMaCtKkAv36Ywnc3IJ6/jD4GYT4knj7HX8ebMX9xu5ynsO8QUtp+iBVuwBiGUTbLyOkV94YYMV1ztJRrNKYIQy97Iyy55FY+rV14NFB+nMu/GOstH4WnHNXZB9aflmRx9OsTG3XR1ZLdXCsHp0IW7MfVxCIdcFfufRcvs77fvt5MOA+55Rsv0I2V0UpbqS/4WiFbFqN613ZQ7Svi7iu206YSB70L/jSAsPCPhxd/nD8IkJ20dkNDEdmcsawi7b1ATh4rPI49NdNcyKp4LztKFbi0ZTeUEOEctxa4L77WtgxJY3HC8jFn6dLpW3+1onXuyrj8LZu+rGcKpJ8xiZIG1NLaQth2Fb0EgCgzquBLlJgOZyUfygwF0E9KA9oy+LVoIxJPQ03YXcsWEA2EwWvwkiHl8lodEMYagyrUtLObYqFb8GJnJR1E/RIU/eyyUVTiqQCauD3q8tYyN1dkGkFNUZW4QorWCOq5YpXVutI6TIP6yK1PS/PsM14LnPkMd+sbye9hhmPIYb887iJCi/23kXzHAuHNEKnV2NjqQ8jwQzMK8tfU2zpeG4KepXl3vUmkz0cGB8UafCJaCh4+CVxP2TSecN0ASwUIqIw300Gk+UsW2liNFLtmpQzO22awGUed5oi5P7ns70h7G2E2H+2I86xxjmG0RGw7SMg1UUhz004nuXoo3P9jq2AALOyxSuczAj0f0lWk0lxsA4Kn12vt1LdunFzU80CTvXhN3t6UiUSv/bruGgkKNltvlGty3BwHofSlEMOzI6iqstp/aExDB6vysOgbdtDGusiciFV1lgASXFOE35KaejacQg4wL9G7J3YdhNjzkTkyiXWaTaJVn/32qKrtGXCkCI5NQYdqpXJbox7/qYshI5a5fBh9Ar9lAt6gY3lDYh9Q6gEU7tz/+r9ql8K1/nm8DgVbDfCvqLubYg/eKnb+9cny9CeB9C6nkFdtwi/Kq01QVQhUDaQdEzv53jhhGOljXSj7qOEhIFJ6IXQ/hpSzhAyJfcSXnNglxnozOCTaFgxQuINhtA+jpuOHPLmktbXqPnqLm2GhPSkgvKU/3KA7M08iX7rt9nMwbIecKDwwnGTC+DbrRjd4vzeLnKmm5LpuTS/ry9Vh6YdoCiZfRUwzMpE85eUCp7m/J3ULtQELHs0nJkDNVYTw5XjmUki/3YoU0AygjBsY86rfCNu9s415WiwGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 490,
+   "completion_tokens": 300,
+   "total_tokens": 790,
+   "cost": 0.00796,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00796,
+    "upstream_inference_prompt_cost": 0.00196,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 171,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.731
+}

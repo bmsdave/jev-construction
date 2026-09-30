@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Supply upgrade (provisional)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678422-xUJHxp8Ll1loea4NBTgr",
+  "object": "chat.completion",
+  "created": 1790678422,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Most likely not notifiable, but it is close.** A \"supply upgr",
+     "refusal": null,
+     "reasoning": "A supply upgrade could mean the DNO increasing capacity to the property (like for an EV charger), which wouldn't fall under Part P since it's the distributor's equipment before the meter. But if it involves a new consumer unit or meter tails, that's notifiable work requiring self-certification—so the classification really depends on where the boundary of work falls.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A supply upgrade could mean the DNO increasing capacity to the property (like for an EV charger), which wouldn't fall under Part P since it's the distributor's equipment before the meter. But if it involves a new consumer unit or meter tails, that's notifiable work requiring self-certification—so the classification really depends on where the boundary of work falls.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSjgoKEAgSGAI4AUIIdGhpbmtpbmcSDOCWYHmT0iv80BPwDhoM24rTZiOvWvAixJg0IjAI9+eUr6eyxWtQHPNPLtjmO96EPQs8813BKIW+KqVbdRakHFTeyI8sjBna+kEnYrMqqwkhCHy5Cu3of+RUOQPbPA8npLqIS3OjBD+//NgjTHW/eH06m1kUzkiByY+BapZNw8/P7jrWjcU4FgBZiQAxnqYCE3TcnXxQ71f0qxdiZLh8dUUo7/I+FWhwtwnJhi4vZJW4vXyyEkzoj8AP+zsM7ZrD03l5JOhnuCQCg5YzzOCn6cMx3StU8xFNsuZ3LgSqaBS6Wav+BVSXd6Xpi8aJzj4xSvxZrLjT7daFmQtUeDjaY1XiwCwSxzgamr7hbtKC/NX5juIAg5IjpupygjNd/ftC2HSy7Jd2ng9GBueRNH253rn8LfZq5aiWOdOvdVHMEMZhfheN6X/KVsxLntFfLVN5F1jGuF4YTPRymIwbcp8WjPlFej/gmh6bexVNoBDkCC5YzFNtmgpckJg7nuAqnodJ/IZ5N5qUzSNlmxhrOU6iC4oD7Ep7TflC2/PLmqZv2erT4Sqy+m+WQnzy1yjmMMK69DMT5yq3PsW2x/b5FWDmp6mDs+D1WCFXvNKROxTLqXZeJMdXLGHdg/NN7rm1Ywqx77XFajMLVxhp1xkcsrXFzNZdHDKS+sVAdHYj92WzuBdxvXZEjHOIkzWDDXhvGi1hi6oVTUMJsPVXRJw8lYQ7zQ/CWfnSRiTZyGr0MdmEzgFpD/NRu0WRO2WVJYYWLzTXxMzQ0BVWeNRsnPIt0QrgKg9rX5KIL9wfFeJe8hkwXNUeJCAqmdZGl6BwTKAVWCYoFV7/Ug/+RqQ8KijQ7zaJy+sKKHGX9Cq479E9AUk9htTdlhNY8MnHib5a0Rsr8GEeM4/UE/SCzTSINGZxaoESooSt12b0Q7x6pG0pANgZuq07IZMMlh+hYQgXEHAxWxvV4o7oXqkbRJKbfF0fwrpjtO0eFVZGdEYT2pZDK7yNdkueCfdCipqcRvrFaSfeLafO8mcufvCKFSZ2cYNiV5H7ik6U5zbMnOTFUeP+MMeh6c7krHk5k8jmkbdNWYfWsfSgTGOmLnS6zrAovbbqG9T1/3FMw5IGhu/6S4aA5T1FjvMAbvWR/+UaMJmdpMyDmI4bfdRHTsd0Hn3FVeApWsYIge8m5Npr6s+yz6j6hl0IIFn1uxQ4ExQVV0rwABTK0YLtAhZ7a68EOxwjV8emxqKe3LjfJMNRzrlmEvvtfBIgXmVDkSV8aS7O8/scLMiDIrej5ikrI6moCRB7/BLgB21KQjKLAlJvmcP53r3EKvVdYPKKw+Q+xsWgOAfr950TtN/Mdr21Fnv7wiCZS9MawKuebIDieHQkVpbx8WOzAmgFui70rywPJBHonNi0Zx3dZurISg1PdTwPG96XieNrRQL9FtDFwgY35LxbS92sXoJLaTQSNUHBmJbse8MTtmtE0uHhpkRR+HyIVlVYpnMe9twBF7Nb28fc2rXmHWuqwz1NMCLBcuBC4KWWpHqqPvu6qLQu6cgvzkcbFUX0Vzse5auqWadplwt+Gou9681hXrCLfO3JzilT6JrX7X/2vFx9w84Gv9MQmYzig4riKr0HhyByfwYMvyHGOM0d3yWlYkQ+Dhzhfd4X0RgirxBcJ/D9nwT+fXoUCWMc5nfLatLzdzTvHE58gmyv5AlRJjIBGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 496,
+   "completion_tokens": 300,
+   "total_tokens": 796,
+   "cost": 0.007984,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007984,
+    "upstream_inference_prompt_cost": 0.001984,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 276,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 10.377
+}

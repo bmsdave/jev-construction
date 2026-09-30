@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Build a detached timber garden shed of 10 m2\", \"project\": \"House garden in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.3\", \"document\": \"ADP2013\", \"text\": \"2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements.\"}, {\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677817-huWC0xIjuaMeXJfbH7Xc",
+  "object": "chat.completion",
+  "created": 1790677817,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.93, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.04, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "A 10 m2 detached shed falls under Schedule 2 Class VI, which exempts small detached buildings up to 15 m2 with no sleeping accommodation, so this is exempt and not notifiable, with no electrical work mentioned to complicate things.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A 10 m2 detached shed falls under Schedule 2 Class VI, which exempts small detached buildings up to 15 m2 with no sleeping accommodation, so this is exempt and not notifiable, with no electrical work mentioned to complicate things.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSnAYKEAgSGAI4AUIIdGhpbmtpbmcSDKGyAmLMZPhx0TegSBoMyqdbq+cC1+A+ny/GIjAjT13wgFkyoDpi4QutsQ2GVN//okz4vPxE+qauBx6f/GmFT0XeHdFlIda388bSoSMquQWyUYi4Np1XvApC2Tbfv7JcumScYOlPzZAvzOsD6SR7tFi4Dtke3cbMI5ScmTFIKuXHrLkLph1kHG3CiS2bkCzpPWKwaHMsHvCjT0Uy2f1Ow5A5WftJU2PY/gIxuzcKGRbB/uy/pvodewCzVqLqzp82cVjhiGk5AFqHsfeTf9ub6NMdyyz625Ag7dnoTOVvHokx3uhzRZmY/aBRhK+yodtJvx7KZ3fPan52dneCPlJgUIzilOICr9bLbWQxyu3xFeLjNZluZcvNVg6du6CKzwoRc+7My5Zeg9mxy7cFvGadtiXc3mtEZm/Jz9ve1wggrAuVf+WXT1WOuRV36jQ4hq8S5OSbFajxHsobf8u1kFU5KNdTKUiac6AVSh/9X7qVTxpIz9mpnn6bA3oT6umA7sDhtfN34q6580oHDdLBZG5ACMsig4yHfOCbEEgSjSe8sRQn+enHTbDyYjRbZO83zj9BX5Iw2whMiAjM0Kxp6ZhPysQNOfFcqkBGyTWS4hxltLPd49/aLmJumo/5ZBxYbxjd6qnikKQj9f4Utt8orMasnVKV9MJX/bIk9NkeJHIAj7Ykr7l7tft0UFOS08fulx1NTEAId5+pR/hcQ5wtoxLpXqYfGWHatU4+E5TK2FwzHiNBAvm+8VVOATkygsBYPR0vruH4gMvhndzGlmUwyI2KHvwX5beTxjVN8h1cBK0kDBJim+GS6Xl+aYVAN2pm6/uXrFfmXZAUhkhvhYbIPldQqM6mzd8HMHjGdrFEHfluLN/ohS5jrfdZ7MATfEN4VIMXM9xDKp4MTGxQeSUrDfWwzPx8Mo33ff2HU6NfwSByRgzXTJLjRAobFMAXnNMUelLJv+oMAtP2bs/NX3HfwEsUuO+qP1yiLCEZV+pq9LRlTaKLWAgpg23hJHRgE4YH8Y6AWrJWtjLtYFcvGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1318,
+   "completion_tokens": 190,
+   "total_tokens": 1508,
+   "cost": 0.009072,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009072,
+    "upstream_inference_prompt_cost": 0.005272,
+    "upstream_inference_completions_cost": 0.0038
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 109,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.6
+}

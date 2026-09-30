@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Insulate the loft floor between and over the joists\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 0.16\", \"document\": \"ADL1-2021\", \"text\": \"0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677825-QM9w2fgcunvi8Wu3w93B",
+  "object": "chat.completion",
+  "created": 1790677825,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to work out whether laying loft insulation counts as \"building work\" under the regulations—checking if it falls under the definition of renovating a thermal element, which specifically covers adding cladding, rendering, or dry-lining layers rather than simple loft insulation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to work out whether laying loft insulation counts as \"building work\" under the regulations—checking if it falls under the definition of renovating a thermal element, which specifically covers adding cladding, rendering, or dry-lining layers rather than simple loft insulation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrQsKEAgSGAI4AUIIdGhpbmtpbmcSDITb/KoMv0Q4Qo3JWRoMr826uNxxVsAJamEsIjAaN10Zuv41kcMjO41v3APmgz7Z6erm7yPPN6o3w/i8aBFecZvqcQL4nVEAUfpMZ00qygqzdAcj6/TLv6tw4RqX2SFmziztuCgjg1rtRIqGg+zAqeGYkVfm+b2zVvCxcjm1FTa51b/jJzU9Zs3TJ91wWVq7Ie52H/XQ7W7irj78Rk174emNLE0DXqtT0onBfigBDLlcIxECafyqPWfvIefXj3Ye9DfToJORRF6RpRi9dCwX7tCitavFSEZOAlafhAuSuyJRuclaJtu60Q6upXVgkYVlSkY6C+cv7yzg19p7+gWv8CIx05ovjZYiZysgp0lcVFywlt5STl+Dvv2U+PuJEIVlvQ4xhoHSP1sZUO67vaBnvZHtvFEhqXGoaTR93mgV87VwBy7MjN85UkKvN02ZMmlRGP6B1ddRpYcfdwbLMgT/4CcmqaRYs4FkTTeiB9Wsb4polZWhVdSKo++qw6aLJJKx0xDL7WEuftTNA+mVuRc1Lj3qRDHCPzLRBcDfQCQ7/pjUtOpkVwXREL6LPaElEhQtlCtpwlo3E+I9WagOp3Iv5dL2Nme9pCz0vi1QRZG9qLFcRDNulrIV0/Guo1pd3Wm6rvMzY69fa6Y+gzYJlW5PzSS3vKH2zoa8YhCF13lqMplknFRDrieJJdob3EhzeL3amB5zSNdba9gTtN2cQEdPr0Qo6mscmncfzdmo49yuqeLoPpXT1gi+VsnX8R/RmgHRynIsOnwmIuPvHUVKbSXswTBJgGX8qpdKEVFEEYfAQExpOk6EDkf+0IPCd8FbFCiH5moeotP7JZLJ/lMTim6gnp2NU9BK6gHGD+RqKURRf0MnF4L/OzTzyxwGYmnRGIQxZj4IasxCMtdxKUQQKXT2RkpMOETTZwM4x48ors8/AmG85UwnAw3ODFmznYwlhNX+risER1oOer1aVpaiyNNssg0f4Fxz/bSa0SyuCjeWSrBLC6J3zs3X7zovmY80Dnqt4AhfL23H1Xth3tWI6HJDsA4H7Sc2lfh1lVcUeVYSHzHKbbH6U903VxJbWWOS0VoRPJAUdbzqfeLx1I25YGE0GQwlLXl33RRIlUkI9w7gksD2cvFfpesS9/hQaJia8S1p4y+OllU3n+qt13ISVl/LtLSZuytsN9fSpfjDt5aFcmK6BBsHrvM04ljM4Q5tkPoVmPnU5Vb5MMXjs2gk3758adduNp0B1am53sJLOl3w1U6fE1bFQFydCE7buOVEYcn70RBjr8RqjPgTxD5JDS7nHtLM7VDn5nYEVoqGcVHBc/bSYrebdpMyddAsS3fXrCEUUnPFeZsbfmJ5xzZ/tWzTYVAs//skiqkyAYgtXjCkBNtVw17TvPGoCD3LaHYVATTH7EO169eS7EQt5oaKrShyayryE+KE16MtjiKcHOuPL6v3PaZGw4xys8QHQ60DNKGJaXdnlekGjMD1vHUY8Hh8lAE/48BNwy3Y5b340NptEupQ7+H85PzaibMYpACU0oVm4pS5yMl0ZSC2LvYYGSph846opaLujalpVUByFjKCvEAKzQRQV/oEOUheJcwJ+K1bIff0z0lMMeF+N6cj377rHeGEsXkZ9D+qINq5H6eiFp7zOFrD9CW66UJXoUoMf35mM+OG+g9cbENhrRdtYklHGPs1H3cQjbbSueay5JpzCnIFUyc+PidjlOQdLGm5I98t1rkEIRXECIyXqCshv0twT0iWsAI9rKWaqReMqo4aMXvJeRDSPZk2E/2kYJmIt4BXC+GBt0oVl1GW3EcmUYY5pZwtNwUfR9aDhsbZSHSo9l+2NKMdT5Is2sGVzsl8OCsh/hWW9pOoVoDRlPBOxA6tAGYsd4JhiOMJq4Po6Ha5E4VQZQ2tAZoIAsP/GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1572,
+   "completion_tokens": 300,
+   "total_tokens": 1872,
+   "cost": 0.012288,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012288,
+    "upstream_inference_prompt_cost": 0.006288,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.34
+}

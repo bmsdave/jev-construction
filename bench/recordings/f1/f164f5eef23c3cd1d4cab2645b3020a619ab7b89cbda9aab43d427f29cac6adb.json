@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front sash windows (7 frames)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Windows & doors. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"para 10.6\", \"document\": \"ADL1-2021\", \"text\": \"10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling\"}, {\"ref\": \"para 11.7\", \"document\": \"ADL1-2021\", \"text\": \"11.7 If there is a material change of use and/or a change to energy status, elements should satisfy all of the following. a. Existing thermal elements should meet the limiting standards in Table 4.3, following the guidance in paragraphs 4.11 and 4.12. b. If both of the following apply to existing windows, roof windows, rooflights and doors (controlled fittings), they should be replaced to meet the limiting standards in Table 4.2. i. They separate a conditioned space from an unconditioned space or the external environment. ii. They have a U-value higher than either of the following. • For windows, roof windows and doors – 3.30W/(m2·K). • For rooflights – 3.80W/(m2·K), calculated by following paragraph 4.5. In addition, all of the following should be met. a. New or replaced thermal elements should meet the standards in Table 4.2, following the guidance in paragraphs 4.7 and 4.8. b. New or replaced windows, roof windows, rooflights and doors (controlled fittings) should meet the standards in Table 4.2. c. The area of openings in the newly created dwelling should not be more than 25% of the total floor area. In buildings that contain more than one dwelling a larger percentage area of openings may be achieved by following the guidance in paragraph 11.8. d. Any fixed building services including building automation and control systems and/or on-site electricity generation that are provided or extended should meet the standards in Sections 5 and 6.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677258-yM9zikssaQmZV5ixNOWp",
+  "object": "chat.completion",
+  "created": 1790677258,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.8, \"not_notifiable\": 0.13, \"building_notice_or_full_plans\": 0.05, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Replacing 7 sash window frames counts as window replacement work under Schedule 3, Paragraph 10 — since whole frames are involved rather than just sash refurbishment, this falls under Building Regulations and needs sign-off via a competent person scheme, regardless of conservation area status.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing 7 sash window frames counts as window replacement work under Schedule 3, Paragraph 10 — since whole frames are involved rather than just sash refurbishment, this falls under Building Regulations and needs sign-off via a competent person scheme, regardless of conservation area status.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7wYKEAgSGAI4AUIIdGhpbmtpbmcSDAxPvNokQE357f9mlRoM765F3LUTH6avF0gXIjCNFGbsbg859SMwqeCbP41uy/yPj78ETioGw8QBqdTPJnMWeWwB8igreh0I5t5+sSAqjAb7uxxMauy3nQXLvwJd7/pji0pq+3QFAuDlODMf0Ya3927JsH1YgX7lhGjqteC7tfbNSA6uIZIvozXQ5uWY6jvrAhYrFsu5WgsKl97rh6u9vGoWnRH1BfDWYrUO57QLeiblJl1xnwBT+EeDrq+3B9yZdc4f1HB5VoK7DyA1ee0jZj6cqfRGgBquxa6h6xH3hy/Bo7L8MZp9oQPy9fKmzp8MhnjNHOgX4HEA+WSnuyFHw77cwLpAZyxQ1GLD2dthe39vmitWw4WeJvj1AEU/iSDFIXDheDnQHoE0u3lONzK3lvGuaM8hqY0xIQ8Lkkdw+6KoY86Yy67gbAkMMS9i/b4Jt/PA8VpRLbb2cYJjYhEBB8BtyT/jF8672b5b7lHZevRtJHCRJrpwgU5BQpWW0/SZJ+Mk6GVdFZfzbsz//zy81BN03KBp4Axqe6J8nVu9ATrn8P++NVtLTRnH6MpM5XDFnhZlZBvJhBqVfXm9IhbScUiNkdlwf1ej5ni15d2d0HMduZDpIpF/JjOWTsdjjAr4QTDzaMMvHFoms7oJO9/XdUiiYhj5ml30TysTw8+bGq6vWplRSnumtMVM1gZqX6xXWV25NtYZsuxCS5BYXugRHO6xM9OsQqdGOiArvzgiumTwQm+kbzG/D1esQRbYqsiVVziPltF87h0aJC+RfDFAaT8uErwikMxGzmO2BUDAdHDZgc6em/MGH5heKLXqDBOPeKU7C6YgWxqQQYHfcS5K9VEYf/jH4yCQ/efZZdalX1y9/8DemOGn2v+b6qMA1RWibaChpdHiBBV2xiMj2ATds3nRZy/mlPd4Rt0HgwWKqu025V/gWoSZCLyPARNjZRHTP2QBGCQzy2Erf6RXh0Ka7oc2WFgOVkjgc2RCuVPeNbixkjai1diC7d+pkhhd+lqIt36WyndytwSS68n5SuBFMwGmuG7W+ptTvNr/Qid3fKfJl+ls7biSKwmcgHo4cdTx0w44+T448qFDkCuDlXtaFWgjwf6L9dQqHfYzUFTLsgGj5EDzQnlVbiTn00cYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1303,
+   "completion_tokens": 204,
+   "total_tokens": 1507,
+   "cost": 0.009292,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009292,
+    "upstream_inference_prompt_cost": 0.005212,
+    "upstream_inference_completions_cost": 0.00408
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 121,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.652
+}

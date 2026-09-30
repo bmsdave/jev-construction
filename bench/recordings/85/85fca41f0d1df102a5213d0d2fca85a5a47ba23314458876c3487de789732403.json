@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Replace all windows with uPVC double glazing",
+   "project": "Semi-detached house in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 B3",
+     "document": "BR2010",
+     "text": "Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952."
+    },
+    "c2": {
+     "ref": "Sch 3 para 11",
+     "document": "BR2010",
+     "text": "11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ...."
+    },
+    "c3": {
+     "ref": "para 0.14",
+     "document": "ADL1-2021",
+     "text": "0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See"
+    },
+    "c4": {
+     "ref": "para 10.6",
+     "document": "ADL1-2021",
+     "text": "10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling"
+    },
+    "c5": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c6": {
+     "ref": "para 3.14",
+     "document": "ADF1-2021",
+     "text": "3.14 If the existing windows have background ventilators, the replacement windows should include background ventilators. The new background ventilators should comply with both of the following conditions. a. Not be smaller than the background ventilators in the original window. b. Be controllable either automatically or by the occupant. If the size of the background ventilators in the existing window is not known, the ventilator sizes in paragraph 3.15 may be applied. Existing windows without background ventilators"
+    },
+    "c7": {
+     "ref": "para 10.3",
+     "document": "ADL1-2021",
+     "text": "10.3 For new and replacement windows, roof windows, rooflights and doors (controlled fittings), if the entire unit of that fitting is provided, all the following apply. a. Units should be draught-proofed. b. Units should meet the minimum standards given in Table 4.2. c. Insulated cavity closers should be installed where appropriate."
+    },
+    "c8": {
+     "ref": "Sch 3 para 10",
+     "document": "BR2010",
+     "text": "10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ...."
+    },
+    "c9": {
+     "ref": "Sch 1 N2",
+     "document": "BR2010",
+     "text": "Manifestation of glazing: N2. Transparent glazing, with which people are likely to come into contact while moving in or about the building, shall incorporate features which make it apparent. | Requirement N2 does not apply to dwellings."
+    },
+    "c10": {
+     "ref": "para 3.3",
+     "document": "ADF1-2021",
+     "text": "3.3 For common types of work, the requirements of paragraphs 3.1 and 3.2 may be demonstrated by following the guidance detailed below. a. For installing energy efficiency measures excluding window replacement, paragraphs 3.6 to 3.13. b. For installing energy efficiency measures including window replacement, paragraphs 3.6 to 3.13 and 3.14 to 3.16. c. For replacing windows only, paragraphs 3.14 to 3.16. d. For the addition of a habitable room, paragraphs 3.17 to 3.20. e. For the addition of a conservatory, paragraphs 3.21 to 3.24. f. For the addition of a wet room, paragraphs 3.25 to 3.29. g. For refurbishing a kitchen or bathroom, paragraphs 3.30 to 3.32. h. For work done to improve the ventilation of the dwelling that was not triggered by the building work in (a) to (g), Section 1 should be followed."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.25
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.43
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.14
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.92
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.17
+   }
+  },
+  "usage": {
+   "input_tokens": 2870,
+   "output_tokens": 175,
+   "cost": 0.00012054
+  },
+  "id": "gen-dec-1790676127-3EqvesmpiwoDD3HZe486",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.284
+}

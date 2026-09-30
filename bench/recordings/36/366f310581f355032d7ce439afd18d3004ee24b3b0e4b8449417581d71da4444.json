@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Luminaires (model count)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 3.6\", \"document\": \"ADP2013\", \"text\": \"3.6 Within 5 days of completing the work, the installer must notify the registered third-party certifier who, subject to the results of the inspection and testing being satisfactory, should then complete an electrical installation condition report and give it to the person ordering the work. NOTE: The electrical installation condition report should be the model BS 7671 form or one developed specifically for Part P purposes.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677551-XgNdHXfCV3IaiJsJLTzh",
+  "object": "chat.completion",
+  "created": 1790677551,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Fitting luminaires on their own in a dwelling is most likely **not notifiable**, though it would become notifiable in some cases.\n\n- **",
+     "refusal": null,
+     "reasoning": "Fitting luminaires onto existing points isn't itself notifiable work under Part P, though I should check whether energy efficiency requirements for fixed lighting apply if this is part of a renovation or extension.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Fitting luminaires onto existing points isn't itself notifiable work under Part P, though I should check whether energy efficiency requirements for fixed lighting apply if this is part of a renovation or extension.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+QkKEAgSGAI4AUIIdGhpbmtpbmcSDFs26fcjOqwb2A/VzhoMwmqVKi3iAGIVT4OCIjAwx2+vUjb9yzpku+MSAYHyj7xRyMTNCEDMfqj1gsbarbstwjkuotqhGjXLaCfPoe8qlgkWSn0sFLy9KMi8JEjibMPAKoE2iGLrcZUzQCt2cwGSpavKnm5o1pjmHA9/DtgPL2d72WaUKibMiZ2PlciqdBfBFfkUHC+FkhCqj+O6hLasMlubmVlOVoAfl6109LuGEQVaLolJfj1V3I2adj+wMGpEwUS78lQ2Ax5w8uKuRt6U3hpmjfYeE28e0IZuuimQ3omoJWomqaZlrkVp9jqDPvK/LS4wghx93+ZZFFjvkAMcw5PIMFM5EsHo8cy18K17Ai1eRErPs5G6DIx7CRV4I8756VIxCCsiPhUG85UDXevyiPK0NpBUtF1+vr/bkOgWIy9E1KOFTDM/R5KieXjKTnqR4v6vlRHmYvLzCpDGEe23ZoYDDNQNXtrhKwkuduPacSlsrBtTotAmGD+VGOn0lCs6Z8ROF8JNlcpcWqsHhtbIacgvn1dWahZn/INGVpw4CwSCNzRo7JMlS6F/z7iLUBmJRAwoyjmCeZMmEW67EPpMHzL3pZaFXsjyuqKax4OxkZs8iZ7uXuLXODnlFYzHFR/38r2J/4NjGnHkLdhlW/+zgIHvJQ2TR93T+euFA9mrkYodeH2d0ueTHX64391U4db6ClPDMp5yTlBaHZQdRV7fjXYI3TSKOlqHIePCK49rbYMHG8yThmyYGOZYFiVzbMbX72OOWzh2KvXCj5tSEVglikdUPV8olJPOo8LPuA5W01Q9xvV5DaTZu3iV/hxW/qhe9AA8Ee6a2K/ux1pgNzkZZHztZcEJtKi8mqVBFhz/snbum7m5O2zPLZEo33ihGkARAqXxfRZokieGKWxrJeNSKNgC/3HkvL1uQBjqVmO+pkD0OXhT0wSYalEjG8Vd4jVeH9tTbNb95YNfqDnkan5gb0/O0OmVVKm3RjDRBXUYfI2J+GxCMNlJ3jmdtQNnhiVLhpeApF7wDn7x2Tfcm0aaTbxvAfZxxXQNfA+QcQKIF1OCWgFFoO7T1bg3doq/Vw75vrNK9q52y6tseB+FKYorrGSZWZVimeEPmHV3eOUw/e6hmxwA+kq5heM9ykoA+XJunR3yfRYS5Gz/riQb7rUaahPJvl9Ynn9Z6ZVXxMVfmUVKnAmzC1Zg2K/ZUuTKy7N4vWxLuQeHrQKOz7cBNI8M9kShAVsW+C08yATafrqTuFAp/oNbm/1+mV7gg7E5GDt+OM/mHbP4JruEi8OwJV3r9yop/y3qY1/N3vkkIfGq8Y2uslshhg5p1bHtSmc0YjT+ReT3q3ycGTOYr9FfaaVXJ507BdstUQymBwiBF2vmRxnijzWXYt4ZfkAyDqAjf0bIw+cwu+JhvPhqwLJc6rAj1fEa3Rpmq4DnPR8QI8kaKfVTndrXxenpdz+Orej6h2zxpwMFB/uonP9ZadWJV7GnP8ovAIYga9+vIh3USfm5uHH1s6TwMJ9vOfWfEtBqAToO/h0UhTIinj52dN/1EvwLxjqrmNfMnMw0rDpQ5WTeVF7lt9ywnqJsDjb5gtkEx6qDMgOyoMyox7FX+9FNqOiYKRGyC6aZOo35cgzbGkArFtN7ImyJ+B/cOqrkRMkoTHF1F+T0M4A2GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1255,
+   "completion_tokens": 300,
+   "total_tokens": 1555,
+   "cost": 0.01102,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01102,
+    "upstream_inference_prompt_cost": 0.00502,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 255,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.071
+}

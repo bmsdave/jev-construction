@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Engineered oak floors (dry rooms incl. office)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Floor finishes. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"Sch 1 E2\", \"document\": \"BR2010\", \"text\": \"Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677449-NMjGNUNyW2mbUJJvERK5",
+  "object": "chat.completion",
+  "created": 1790677449,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.07, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Fitting an engineered oak floor finish in dry rooms of an existing dwelling isn't controlled work since floor finishes aren't a controlled fitting or material alteration, so it's not notifiable — even if done alongside a loft conversion or extension, since it's carried out on its own as a distinct task.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Fitting an engineered oak floor finish in dry rooms of an existing dwelling isn't controlled work since floor finishes aren't a controlled fitting or material alteration, so it's not notifiable — even if done alongside a loft conversion or extension, since it's carried out on its own as a distinct task.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7AYKEAgSGAI4AUIIdGhpbmtpbmcSDEZHHw9go/sRJ0+FPRoM6I7mfEhgWnOYNQkGIjDFyod4X1Xh5mISwNsUGBdFkyg8oI6d1p6c56tyRy9316g7l+PjDVviZidok1p22ZsqiQZX9AypA0u3e/e3Pmm4rY/M+xxuBg3QxsXKYEK6vHl0IoOPYy2yimsANleb69sEnfsTcoN+BC39i7mQwWJgoq4PiEjJmmuV9ojnJDKUrLLpeX0+S2yNhFVkeCM7XWvn/pLYqLpUuy1HYFBVk55o7VPYPbNMLPkTzSTEF2YVdd72yAmVr9treA/9t5p4vPA0VvdjsDKx0rmWL0f69YatoZdfMEMNpfKVm7G/Vkkc4WDPf4pqnsQ1ivwEpZ8wF1PBxmFQfHobWaZAwTuyws4/+D/YcYQqnswnvJZv38KL+8WzJqEDkROxDoOI9goxqzaellfi+qam6gqpqlEsUcQghpq4jRdN932SF94oCdenNMWGCYT/MEh6NWbn/HH3ZKDBncBslPCERWNmK8CVrmcfCuo4uQTfruBj0GNUQ728dbroLXY0pG1+1swXe87Xeze56FInBbQbkZu8WsmvxUHEtpYZ44e3Akd4jtYuvSw0JbF0JNUK1B58FCJWpBxvXnA9fBAjYl6nTBt7Yz4PcV6mbAZ/f/g8K5XExTxAKxXduGKzx1WPKSr1Gjg0Dnf7iytQqZUqjVrFBWiUbMgEyDhdcQvj68MtA/eXfB4ddos6HPjBh4zpPM8eM3EHPrB5fEQTn07WfhfE+cEhTwPvammpTCv62E13YLSdxCoScFkG4x3c8prEGT1MQ6lz3wxAiyJOIAYXawcl0ibPivTrDjkYoMUMH43wymIjEps3UNQoV1CJgT+gX5eyE3aE+CNeQzUj9TGmqiKmf14e+zaryz3sOsk3lxzl/4+Vw+7cBG49RXvIbmrb6mQb5Sg/yrGczH6cpSWlY3cod97h5sfMRvXRVlEKKDPIJQ/woqMScF9y9cjNYNj6U10rxCOo+/O3id6IZz9JduGIH6HDa3mk7i/VXE94kq/hrtLaYYSLa0MRm/5b541jTMRZujAyNCpRRtw1L9Or1bRNSRsV7Tr4YQx2gaLNtTFWOApjzijYPhM5CYvdku9jskDrw2AaFFbdmSvd/tmNmAkuKDcG/K8YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1466,
+   "completion_tokens": 191,
+   "total_tokens": 1657,
+   "cost": 0.009684,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009684,
+    "upstream_inference_prompt_cost": 0.005864,
+    "upstream_inference_completions_cost": 0.00382
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 110,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.366
+}

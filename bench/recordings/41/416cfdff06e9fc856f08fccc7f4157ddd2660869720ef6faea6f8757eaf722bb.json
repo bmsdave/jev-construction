@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Kitchen hood extract route",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Ventilation. Part of: new single-storey rear extension.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 2 Part 6 para 1",
+     "document": "BR2010",
+     "text": "(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material."
+    },
+    {
+     "ref": "para 3.1",
+     "document": "ADF1-2021",
+     "text": "3.1 When building work in an existing dwelling includes work on ventilation, for example: a. adding a habitable room b. adding a wet room c. replacing part of the ventilation system, including extract fans the work should meet the relevant standards in this approved document."
+    },
+    {
+     "ref": "para 3.25",
+     "document": "ADF1-2021",
+     "text": "3.25 When a wet room is added to an existing dwelling, whole dwelling ventilation should be extended and extract ventilation should be provided by one of the following means. a. Intermittent extract, as specified in Table 1.1, and a background ventilator of at least 5000mm2 equivalent area. b. Continuous extract, as specified in Table 1.2. c. Single-room heat recovery ventilator, as detailed in paragraph 3.26."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person_scheme",
+    "probabilities": {
+     "competent_person_scheme": 0.63,
+     "not_notifiable": 0.16,
+     "building_notice_or_full_plans": 0.21,
+     "full_plans_required": 0
+    },
+    "confidence": 0.5
+   }
+  },
+  "usage": {
+   "input_tokens": 946,
+   "output_tokens": 64,
+   "cost": 3.9732e-05
+  },
+  "id": "gen-dec-1790676046-RuXvp6D4z8XsCSK17mH0",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.255
+}

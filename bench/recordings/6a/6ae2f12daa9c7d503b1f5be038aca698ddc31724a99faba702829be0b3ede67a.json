@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Single-storey rear kitchen extension built over the public sewer that runs under the garden\", \"project\": \"Terraced house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678536-Ls0Udp0Il7xSgIS9Jv7U",
+  "object": "chat.completion",
+  "created": 1790678536,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "Building over a public sewer brings in requirement H4 of Schedule 1. Under reg 12(5), where H4 applies, a building notice cannot be used and a full plans application must be deposited. The extension is ordinary building work that no competent person scheme covers, and it is not exempt. The reg 12(5) restriction therefore decides the route.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.93, \"building_notice_or_full_plans\": 0.05, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Since this building work is over a public sewer, H4 applies and regulation 12(5) kicks in, meaning full plans submission is required rather than a building notice for this dwelling house extension.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this building work is over a public sewer, H4 applies and regulation 12(5) kicks in, meaning full plans submission is required rather than a building notice for this dwelling house extension.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQUKEAgSGAI4AUIIdGhpbmtpbmcSDP+27GidQrLsGyUgUBoMV2A07xFDCd0O6V2yIjAy5Vz+C/kKn9YxbhXVMeMHd9HDCcFGpVx9pXNq4X9+Wua5FEz/gRhlbZbQ2kzK0RcqrgQoCEMtUNCkBv5b+7tbr6BaD0TO/NtzP2ows2W1sRjSPVwiFGO6piqUn/SgLyxBwLoEnoNcFOHUByy0+baYVt8MNEYhzQ2URKwBPFy9DmQ89hxYimBjqhXv+dQcUuiuEIVTkq3meJn5kk/oV41UneoHeKVDkw9YZz5aIFfhPOW4XfJL/5Q8eApHq0e8Kf2vURpCbAxwPdYmXAcIyS1olkwAVqYgb5bZTu2HsnaLYUGRJ2dddQM/za+dFPix5Yy2NW7ErN4gn+30gGf4j+RrNXYIpL6/ZozrozTQn0exhyxkJbUtqXG11qdY7P0Qa/R+arETlCCfYSy4/CCyrlcp/iHzX/5At2Ayn4d1sGuKFJNopHI/TqK3xH+binpKXlkbdx322lvgJ5+YFjDL7fymf7XlkEVMNopPdsv327TfPzphDNRf8woRWgCqyHAe5tIlvamjQAkQDzcg0bVC11BH3ew83Eih1AS7iC9Svi1pr7OJZogdS7WqKBeiY4RhEE5PalMvzeI0vZ3WyhF/kdE5BeIS5jlt9wurN9sxQONATxu9lXSzezAst5EDsJTUqfmbFkd0fbju/8P/NRGVbqmKDdOR9LQcptaiYFp3ammKNJ3NwSrK2eSnEJfr0I7cNEDSkgWzFdjI7J1rMyFd5abrQW7t0OlwJ2qwRshAdZ6nByb3yqjoHzhSwPPfvYZI63ObeHuPFUgNKt9L0As0r9qft5KEM+wfUFbnQa+CuNV9BIIYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 477,
+   "completion_tokens": 237,
+   "total_tokens": 714,
+   "cost": 0.006648,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006648,
+    "upstream_inference_prompt_cost": 0.001908,
+    "upstream_inference_completions_cost": 0.00474
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 45,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 4.619
+}

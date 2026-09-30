@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Strip-out existing house (103 m2 GIFA)",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Demolition & enabling. Part of: existing house.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    {
+     "ref": "reg 23",
+     "document": "BR2010",
+     "text": "(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible."
+    },
+    {
+     "ref": "para 10.13",
+     "document": "ADL1-2021",
+     "text": "10.13 If the conservatory or porch is not exempt from the energy efficiency requirements (see paragraph 0.14), all the following elements should meet the minimum standards of paragraphs 4.7 and 4.8 and Table 4.2. a. New thermal elements. b. Replacement thermal elements. c. New windows, roof windows, rooflights and doors. The limitations on area of windows, doors and rooflights in paragraph 10.7d do not apply. In addition, both of the following should apply. a. Any walls, doors and windows should be insulated and draught-proofed to at least the same extent as in the existing dwelling. b. Fixed building services and/or on-site electricity generation within the conservatory or porch should both: i. meet the standards in Sections 5 and 6 ii. have independent temperature and on/off controls. Building Regulations 2010 R23(1), L1(a) Regulation 23(1) and requirement L1(a): Renovating elements in existing dwellings and limiting heat gains and losses This section deals with the requirements of regulation 23(1) and Part L1(a) of Schedule 1 to the Building Regulations 2010. Regulation Requirements for the renovation or replacement of thermal elements 23. (1) \u0007Where the renovation of an individual thermal element— (a) \u0007constitutes a major renovation; or (b) \u0007amounts to the renovation of more than 50% of the element’s surface area; \u0007 the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is …"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "not_notifiable",
+    "probabilities": {
+     "full_plans_required": 0,
+     "building_notice_or_full_plans": 0.36,
+     "competent_person_scheme": 0.22,
+     "not_notifiable": 0.42
+    },
+    "confidence": 0.23
+   }
+  },
+  "usage": {
+   "input_tokens": 1446,
+   "output_tokens": 63,
+   "cost": 6.0732e-05
+  },
+  "id": "gen-dec-1790675929-MTU5mnk7bJDT8nmW5OtY",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.263
+}

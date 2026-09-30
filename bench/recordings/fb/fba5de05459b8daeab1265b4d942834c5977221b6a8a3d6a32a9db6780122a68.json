@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Heating/cooling pipe 22 mm\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 10.13\", \"document\": \"ADL1-2021\", \"text\": \"10.13 If the conservatory or porch is not exempt from the energy efficiency requirements (see paragraph 0.14), all the following elements should meet the minimum standards of paragraphs 4.7 and 4.8 and Table 4.2. a. New thermal elements. b. Replacement thermal elements. c. New windows, roof windows, rooflights and doors. The limitations on area of windows, doors and rooflights in paragraph 10.7d do not apply. In addition, both of the following should apply. a. Any walls, doors and windows should be insulated and draught-proofed to at least the same extent as in the existing dwelling. b. Fixed building services and/or on-site electricity generation within the conservatory or porch should both: i. meet the standards in Sections 5 and 6 ii. have independent temperature and on/off controls. Building Regulations 2010 R23(1), L1(a) Regulation 23(1) and requirement L1(a): Renovating elements in existing dwellings and limiting heat gains and losses This section deals with the requirements of regulation 23(1) and Part L1(a) of Schedule 1 to the Building Regulations 2010. Regulation Requirements for the renovation or replacement of thermal elements 23. (1) \\u0007Where the renovation of an individual thermal element— (a) \\u0007constitutes a major renovation; or (b) \\u0007amounts to the renovation of more than 50% of the element’s surface area; \\u0007 the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677396-xlq78Nwa1Nlm9jfURhTb",
+  "object": "chat.completion",
+  "created": 1790677396,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether installing a single 22mm heating pipe counts as building work requiring notification, checking against Schedule 4's exemptions for heating system work like replacing non-combustion parts.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether installing a single 22mm heating pipe counts as building work requiring notification, checking against Schedule 4's exemptions for heating system work like replacing non-combustion parts.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrwsKEAgSGAI4AUIIdGhpbmtpbmcSDPv1hx6D702clYFl8RoMDMPP3u3R/Cg+7fZ2IjBMAmxmoEfVAMJh8DeuSiAOi1QY0tNzqSmdHOCCngij+BStBsfUEASLnN2Nc0NuzuUqzAr69XwJ6sDZFbtHBOjBqs4KgNsz0NTJZNlHeN5MN/IGftmFVKjXYipZWj54+RdvWqsyC2WMmHmIX/8bepIYQkaTlSn1WJSzK4EmPHJdWEI4avJs/LrHl+gP9NEPq0BzgIFlmTd/v068FmCPLzm75V5dc550Js4qV1jfMf+2YiD+i/OtjN8yQ66Bj/VqPKR70qpAG6Q9Ql2mJEaZ7k+43kh/DlTVmvn9xSrq2HTpktKpuqsMT+oBPym9s8wEgk2Svfnkw5w3PZzHmkyO8an0FVxFp9BUZzkPdvh7Iv0UApKRJhI75x0zsP4T1/MexXdvnFjWQWOOS3nub5Y+oBuMpcZBuaDrpj0mfIRAWGWhGepXrnIyKZkeI71xUQCOF1CLTLb3kKCR5KYekBZ9fBpZZDff85H/zwRi2pOCaaJtGYneHKNLqw3xR6aj+FOGgaaBXC23/zomjCTTyZnZT4cszK5yFQLVGHXawc7anoUKkOajNufIs28MrcVJPFxBG+mW+Wg2PkdEEzn/q+1leHXELmhg4n1CRcqYmefETpbd8nmHPLa++aeF4WtrlpisQOkLMSyDqdYh5CEx9q5uYPErc0h8VvEJGAxckobVMCsxp7eM0pTQTsh9rQrRkuDg1rN+czUaOXR3mmQhIRsYoli5JvfKePBOpBaLj76lS2N1UMm2X4kkL5Z94lJl74eTW8CsJ8i3YvA9nP14vCcAKYa13sg7yUWkywXoN/vC2FOKYEVDBgQE8wbC/jhfqnUnfy1Ly/ojOdOqNR5WbqUVWvZR68k8zU7R9lOcWZqTYTvljy5WouofPjfKkdOLC2zcJa28ZL9yTJzpV0Xu96WOAs79yarSZQ/dd5erq0j092jcAn9zTVTuwQQ/Jh6FKL67Udyb0hLYdB0LfUKuwke8MtWD3GIWF0BwagT30HxJzXYQf2tLDncSOcN6a68wHpmh3TXPMnyjyEBmzhzR2e5r2lYRo8lLgn+65WEiQds/ehih1Wz/iVuI55x+Ybgn9XYglYYxdJ5WWhRBC7MYJHZvWJzdM5vLL4X1cfB3G3lqT6g+vDRxa7ONR04V7fe2Msst74N2JgZQpqkPKIC6sMtBfLy8hDwO8YRjZ4ZOrTxVKXO8oteJibXo7w7JHg6x5ov/yqonQmnovrSdlEbXxb7DrkPcjUGg7Fx3ehP8MKU+qtSxQRjh3UdYqqcqE2j/Yg7YQdcdIdeNhcfQcc30EkPyHkyO05m2k8vPkO6U+40uXp/Hl4aALWXSg8wQIGdpxVcwq43jeVqhw4g+wVUhMYXaZvYkBGu4RGnLyBd9sSUL0d2H9/0PNF5GZlwJHVY4jXBj0uFGN7kziH3da+z4TrlHppuhFw5BACX46LJu5qt+zQwok0Ml/PtlR3d/llqUTp1yH/5liKrQZGInUt6Jzz7sDRA9pWG4ERqxksxv2KhHhBF0TF27kwpeAP2gfaaHuess7UkWXYKL1nvp/UrIq2RNmpB7oRiciMx6Ezh8SCVa3EBDh5z9waogSiRZZ8xIXF3JAbZmMEjGe4a3tDDA3zt+kEXg0pL5hLrN+DsXyka8jWvqCxlixvKrV8dq/p6laveAatyuixME0WMvkl6l6GmMT0UrODiBAjk28TWWiUkhYDQY/MwpCRRhopMsFA6XPoVhzVmneRqDl7Wk1E9Xy503LNvOZfPhkWY8tjmEfB1oV6xKVcO0+v4z72FB0nnayQRKztgdF5f3nDyJGDfcpeArd33xa+CRWPJ+4E0oKRrA07+46fPqae07tLNm6Vy9mCvPeN6GXjsl5FqjWOae0whKtFQYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1570,
+   "completion_tokens": 300,
+   "total_tokens": 1870,
+   "cost": 0.01228,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01228,
+    "upstream_inference_prompt_cost": 0.00628,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.904
+}

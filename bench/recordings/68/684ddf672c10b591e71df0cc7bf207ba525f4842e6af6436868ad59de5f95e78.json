@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cold 28 mm pipework\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677409-hl7XQ10iy2yDLttvi5v7",
+  "object": "chat.completion",
+  "created": 1790677409,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking through whether installing 28mm cold water pipework counts as notifiable building work under Part G, and trying to recall the specific exemption under Schedule 4 covering cold water supply installations.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through whether installing 28mm cold water pipework counts as notifiable building work under Part G, and trying to recall the specific exemption under Schedule 4 covering cold water supply installations.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9woKEAgSGAI4AUIIdGhpbmtpbmcSDB5HIAEQT5W/7PV2NRoMDY1/0UYK48qZb5aIIjCQzzsTsrYaEnQGs7rdANnKZnsybRYypu/ShDzKG1xDeO8ZNJ+azCx1XbWRbO3kywkqlApeiG4f2gKff3QtvNYzh5XRYAqwVJ99BJqN8NLuS4TK90qfYxyA8FdAKXsw75QVxwjLlqZvW0HjER555fBbZOyN5SsYTuGIL/rN3Y4K+2hr6sCqgF6+K7jj6eUhY5OGO3C+LnwyIUps7ERwCOfZBVRJHlFJa4fgEV0itAlqGdK+ds1qhTvS8jTOKdsGWCuBH2ipVguaW6bVbXBKSX5pbOAkdZlm9ChSyD2sXFwQw7g27StEP9yVW0zsgy8GIOW+/2VA2sjo24OEPHCKzG+etgsiWNSo5++0Q62NHCN+dZr0vsX8tMM/NEmK3MHtN/z7k7clexU5264w0jUH77FEiPeT/xB7ILp52qw7nj6glVKTqP7Czupmfeo6ci5zPhCpzNbJyi83veM11SEivVToxgK5eMzkPjiH5iIYTR+UvVYeFTluBd+eme7U+iTTpBd1soKKJTX1zvxeoqtqSVCP/KZ4RBMSd0qfq5kvsU2W3a2ateGkAF3/+mLzY1CYh74S8xRghhTqnBmAgZedCEBybqHHUef5rXjcgRrSYkFtKRqjoQPhgs7rgA+xtNEYI7rb+b92poe1mD4uK5JB3fJiMy+FNq1vMC2OfJN9Jqs2810uRocZlKmlh16AonFG6Hm4kCxARrZD/+WV6cAxtj5WhaOdTPHRkkUyo9x27mYqYmHRBoyXWbAAlarpyXC6/IZvjuTrKTFqyXeI3fB+V+av6hJ8jG6mZapALGs/7PdSvtXIyffAWydq0G9vnvhWDEX8siwUM/gswwRUZKUcUzmHrLxO0Od2e+zzFsD2gE3vY7xUQzza8AZLwiiv7uNF9BxAAcIwsyYc4IdWrQoScYy8YLfxeydkZrclXp02WJZuKDZoId4fOf33Ub8ZJPPPAVHUF2b1rKDUnlrcRw1Nr5OtBx5x0Nt0N9K+/dkKSKjxs4TAxpeMRhS13HUvsL514VAY62k9328K/rxcZHo0wHLup0Mz9pTjgBgd0z6PEd0k90wCRFmv9MCsRRuxFDYJvJQE+hqk8Z3hyuJiMnlGUSsm89WcJ2AwryczLirggiaXrul9PEmb0i56lsFxa+CL3wLWJQ63OYxlRv/bZKojHVPxK4nNt7kEF57vCZ/s+YdCrp9UpNk7kFIOW34WmDaDH6WmpuH382ua82onRj8BD7lEetHHQ/8K5tOIbqR/VAfLP1c1ItfGyQncaJx0yVXbDyiajeUUr4HsV7QlYwESgbefTdmwUoqzyeY8t1apjzNF9umn7Gp1grTD+GS2HBdjyNVTRvly8QTImT4XASzouJX+m1BuRFYOl5goSoFM2SB4Bi2WjWan4eoaK5FRr4CKNkRq9US1NXsZiGZXKd1De4j0KrXwDVtSQC/iIxnCtbhMN5k6FnheMTnAYY89pKaBGP3iAqUBPAOrSwaAyoE7ZbcvQ1W+3VNCWJ5frxUrN+EX5uJbeoVFDhL8o0Un6rWzFrFm7+fuj7uJ9s2R2Fb/WNkIkt1w6sNT/ROYapFKCk4hKcSUXXi+kr76eCaW3qFLkNXpZhJx6J0vXJwTpqmNgM4Xgxs8uqsZ8cGOcngAIVR53maa7jPJddXXHCGKscLJVUqYQZ14K+dQWmJ1HMfx+YYGEODNWuZaepFBfZtpDago3/sWyBPUe6QRskYtvL1oBPCHiI9W1GedvF7fCujUBpB/D9vWxhyFmcXAp96iH3UbbtbHkDJQzoT/Ps8vywPoXKrPoXZAQ8mhGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1542,
+   "completion_tokens": 300,
+   "total_tokens": 1842,
+   "cost": 0.012168,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012168,
+    "upstream_inference_prompt_cost": 0.006168,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.374
+}

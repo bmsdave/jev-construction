@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Loft conversion to create extra guest rooms in a small hotel",
+   "project": "Hotel in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "reg 5(c)",
+     "document": "BR2010",
+     "text": "For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (c) the building is used as an hotel or a boarding house, where previously it was not;"
+    },
+    "c2": {
+     "ref": "Sch 1 O1",
+     "document": "BR2010",
+     "text": "Overheating Mitigation: O1.—(1) Reasonable provision must be made to—(a) limit unwanted solar gains in summer;(b) provide an adequate means to remove heat from the indoor environment.(2) In meeting the obligations in sub-paragraph (1)—(a) account must be taken of the safety of any occupant, and their reasonable enjoyment of the building; and(b) mechanical cooling may only be used where insufficient heat is capable of being removed from the indoor environment without it. | Requirement O1 applies only to the erection of the following buildings—(a) a dwelling;(b) an institution; or(c) any other building containing one or more rooms for residential purposes (other than a room in a hotel)."
+    },
+    "c3": {
+     "ref": "para 11.6",
+     "document": "ADL1-2021",
+     "text": "11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat."
+    },
+    "c4": {
+     "ref": "para 3.9",
+     "document": "ADF1-2021",
+     "text": "3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …"
+    },
+    "c5": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c6": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c7": {
+     "ref": "para 0.12",
+     "document": "ADF1-2021",
+     "text": "0.12 The commercial part of the building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments"
+    },
+    "c8": {
+     "ref": "para 0.17",
+     "document": "ADL1-2021",
+     "text": "0.17 The commercial part of a building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and the living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments"
+    },
+    "c9": {
+     "ref": "para 2.4",
+     "document": "ADP2013",
+     "text": "2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work"
+    },
+    "c10": {
+     "ref": "Sch 4 para 1(m)",
+     "document": "BR2010",
+     "text": "Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.19
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.27
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.5
+   }
+  },
+  "usage": {
+   "input_tokens": 2873,
+   "output_tokens": 175,
+   "cost": 0.000120666
+  },
+  "id": "gen-dec-1790676087-pGy1QgeyKku2nNR0zc49",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.325
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office standing-seam roof\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 0.11\", \"document\": \"ADF1-2021\", \"text\": \"0.11 A unit that contains both living accommodation and space for commercial purposes (e.g. for a workshop or office) should be treated as a dwelling if the commercial part can be reverted to domestic use. Building Regulations 2010\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677600-2jTiA18E6YF1pl875tdS",
+  "object": "chat.completion",
+  "created": 1790677600,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.06, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "This looks like a detached building under 15m2 with no sleeping accommodation, which qualifies as exempt under Class VI para 3 of Schedule 2, reg 9 — so it's not notifiable, including the roof work on that exempt structure.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This looks like a detached building under 15m2 with no sleeping accommodation, which qualifies as exempt under Class VI para 3 of Schedule 2, reg 9 — so it's not notifiable, including the roof work on that exempt structure.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStgUKEAgSGAI4AUIIdGhpbmtpbmcSDKHxb1LKDRSWUliGvBoM8knRlQWYx/PkeW6dIjA7eYKyb70/qGgfGN/wzSuPkrUFxxbG9IFLGZgcWk5MzuuC+DVFOTlTmEHI8TpUBQoq0wTp24SdIHTTzrdUvhArvrnM395WCEPzd5iUS9yp0FSu9dcUkFnhr3JoMX3lFY3o2XtbJElNOHSJ0R2mL52Tkb/HdLYbIp8uwrtfSHVFM+mX+4aZ5HYfNVQ8IX/ww5hdR2RKUl2fUFKSKEBoHPwIf8jBdkhNOh8GD+ho2ZQcGWdX6gt4fsEobyOR/sQzPXUMECpKohpRuLqAIW9w041VD83kpUh4VIaNACSuUsBvph4Xwr0fWqn9AwiZgNLTohIKu25hHqxLGWXL5l9oeQAMR+KfQV83peMOkWtXIRNjFCUOZ/NnfQzJB55c2RSiElxRWa3jgXJnIDLnqHAEkH77sT3vIC95THOyi9CNZ4AfosLXtHwRPOlIqKOdtR8fGXIsGeEghAfLtA5yJfd1/mHodBlPlk5A7CxyGK3A0kkD6lse6I4jhvrz9Ye0bok/6TKiotOUPJ8/+X+l4s3RwElevGLnQCZdNawmLv7svzRHCe22f6NedwXSuMTXWGOyJEafc4vaunJt6zScgELlcLsdVj3E75XMV+zyXfG2GFibhyzHGSLm2MDJYHIFqVOeRoGu7XKv5Z7cil3qVaPJJ+25QwT3V/g0WldhHHnVALzFdmVuts9frkrrBKwNuwkSAaAizlf+9sOgZ2okXNbIdh8ogDReIICcsQZITqLKzfTVYQ07H3fqg4vCQwjsHtglWosuOGu2jcOyrrOIrcrV6nGod8CL+Mzc7yF5eNjGFhyqCitqtTKm5jBrifY5H2OIs+m03qBjdZ5awiGKB1z0jS6185mjs7HIGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 821,
+   "completion_tokens": 145,
+   "total_tokens": 966,
+   "cost": 0.006184,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006184,
+    "upstream_inference_prompt_cost": 0.003284,
+    "upstream_inference_completions_cost": 0.0029
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 64,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.888
+}

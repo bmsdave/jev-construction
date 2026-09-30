@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Repair and skim retained walls\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"Sch 3 para 17\", \"document\": \"BR2010\", \"text\": \"17. Insertion of insulating material into the cavity walls of an existing building. | A person registered in respect of that type of work by Blue Flame Certification Limited, CERTASS Limited, The Insulation Assurance Authority Limited ... under the Cavity Wall Insulation Self Certification Scheme, by Certsure LLP or NAPIT Registration Limited, ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677355-ITK8S66lvlT9DBQ835bV",
+  "object": "chat.completion",
+  "created": 1790677355,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Skim coating retained walls is repair work, not renovation of a thermal element—the regulation's definition of \"renovation\" for thermal elements excludes decorative finishes, and a skim coat likely falls into that excluded category rather than counting as a new or replacement layer.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Skim coating retained walls is repair work, not renovation of a thermal element—the regulation's definition of \"renovation\" for thermal elements excludes decorative finishes, and a skim coat likely falls into that excluded category rather than counting as a new or replacement layer.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkAsKEAgSGAI4AUIIdGhpbmtpbmcSDNO/gVDjGaWkBcTfNBoMxR5lOW/qyHzok8RaIjAZnOpuQvaBvJcK4Zsem0gZysFOY2gr8aOycltphsSK46sGxe4L4rXkhZJsCPT6ZVMqrQoyEwFp9ZDnW4DvUl6S4BqSv6P+zFO1GN2sM2brjmn48xOE7ZDgVRNYO0HKlMgLE+tfCXDRTkJ76n7JpygXdWDa4txxGYPwQLtZKlLwauSOpSpQGS9wcmVR+bzp2sOMfgkmk5wzib1TTxc3Jra4zTTefM3/pFBYPtLtr9NO53FEyuxHkyc1Gu1rRtw7lnJIRV4xjtCeacpdnv0+IqsPDn+rfbTVoEnrC4WjeL2VPw9Shy82dg5gjSb4J0HYr/Qv0A1GhPvYoLoVh+moJrjpz7iBubkv5uHZbmWOrVd1UQujWU8QvXZkrH1u348vzzEaKfLmCy0r4abUGLH85j8VlEVRrY6e19bICLsfwHfnIutIkBj5Kzfs5xVdd2xD4v0xlGBIyqgHv5ew2d7GjTnWi6CCjoYncMMV1z1xfMke1TdL8ttOS42ZVZK4VNHJ8b+jfdIh3OCgKVsRz4Ks3D3Iv46emR+XRbCqfku+4SvT7OtpohJG5/Q71ba+ha8rDduRZDnDogBBWnYgjwpLXvUoxDEL5bzWq0wl0yQfDdRPdvmkhjLFYc8hkpqWgiiBiVN/tRFXuYij4ndWPmOCzNLHZzDRF8ERW/xNdxER9Avelgv0YfHqHV+Sc4pDSyr7mJVPwMhSeD5AHDlZr5lBcD0ULvGBpLGRz+fiv6ra09klWsmfMqGozJuJuy1YUhsF5gzpVKlGeGQhDofNX8TL/DZ+dzUrsFvKV/fBo0Pn7weLZpq+UDgMht9IrqvO+6bsZ1xdm5j0VdUQaYVqlI1LW880VWtVI43jaF9vv5PQCtR6D7ZTfJWg8B9j6s7CxTmbZny1hj/E0Sq1uPedv+zwxx6YXzSzrjLLbaebWzU0uO5s2onitWI07gR2XlnMs760lYKF6BIXRa78FbR1NZlJRiYspRazPK8DPn2I0O9ugKZqcz0xkKuvXiuv9AvU/ZsiuOmSXgK70gkvD4VZo5s+vcnK/L47IBR/b8In8FtcCwjcs08ujb4rdU7KQn6cGkZ6y/BzZfKw8+UjTWpwFTYf8jlfwxYqil1zuwcnvpMU/JeDhr89Gas6K0W2T3D53+DToPt586mxvqlco0dYhnO2ux+8Kj5NBLBUpGMjB9h42nwpuxdIWLF6/eTbI4vqg64dEvhvUnMXRLMcT3bIhZ/DcSgaMsUBxfzX881rhyGQedotbgK0Cnya4I2cLEFaHlTzJ7pJWnZkch3XhB1XG/Tbp42OlJOLxikdO999HXVTGsmmvUlXDkzWiEdDaYSQVmnUGoWf9i1UdKw1bFTwmm2NcZjnwhYPuaYfzqb6eQTxfrmDOx//Kbqt72dKkJT2DjyTWfsH6OHioh4N4JTL3cuEXu/XWZxMHiCPhxRhprHJ3pY1nN949dicVc+AXuWj+iSv1kVaoQw5cY/6l7HFfNXBtV0QJQPmKNE3sp6lQ6nJhde156rfkVIJSaT2FUt578eEfUMzhMPe8HS9MleVdAqFvu6+T9/A+DwDDNNxYUuyFIlJsUyDxc2eJZNpt63RKaxbTxmrFBegj20tI0nmtUrB8p35ac5qPFG3mPEycawW4wsbvWTvE0UXoNR1+zR8zTVkx7YBRaueG+aHQkQ+VYNBoJQ/4g2OyMqjBpQ8q4LcpKOPm+2c3DVRSlA3NzR6Gk47qILc2bIsj193rbiCJY4RDA7hl9+XkfjW/1HlK8aM9GkXnhebjWU2vaqDJgbZyrf1Zca+KP6uFYfL+wyOJx5e0XFW2YqP+E+GtVzZ9EeY/XBQoBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1389,
+   "completion_tokens": 300,
+   "total_tokens": 1689,
+   "cost": 0.011556,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011556,
+    "upstream_inference_prompt_cost": 0.005556,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.761
+}

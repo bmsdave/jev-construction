@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Freestanding bath\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Sanitaryware. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677476-nRxQjro1FGOBOlM65m7P",
+  "object": "chat.completion",
+  "created": 1790677476,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether swapping in a freestanding bath counts as building work requiring approval, thinking through whether it falls under Part G sanitary facilities or one of the Schedule 3/4 exemptions for minor works.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether swapping in a freestanding bath counts as building work requiring approval, thinking through whether it falls under Part G sanitary facilities or one of the Schedule 3/4 exemptions for minor works.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6woKEAgSGAI4AUIIdGhpbmtpbmcSDAD3tqbLGNumPTshkhoMFdQjSfChH7RO/pwnIjChynJKAtCakfwj0S3Q2qltyDmuuI2xwZCTMDIOXXVflO5Sz5WQ9ukXT+u6o5SVwesqiAoaVTRkxGNXCWBHcegFrx0Pkto+s56Dvc03K0xjiGlq0Z7aXUPNYSWxgKRNYoexczsS3T6IDi5U2Zt/nXuEBYzHOysmCunjdDAPC3aW9bGK0EwrYxt8IhZyXeh/2jexKdtrmhUb/uD5I+SqwNDQDKGRGPh7X6B5LYicTGoJTt5znxsVu63hKlU954zvovuh5k3WC0ZDBkpdFrFGeFTqSwQPqJnrpNwVcqilAyUeWZywXTqj1ZOGnSYW2/Zzy5L5FhitkeLswNl7acVgpe1SRnx0gdN3lZVuwuDHe8+Bj0DKiE4WMMax0KFxaEaAXSE2YiHw7qON6ZnO2omj/DSAm0NHcwvoU+4e8ca7mcCMx5l/1p7zgHqhBF2qnd7gQuDhOFZDYsAfDo7krMLaR/K/np2oJY/YQJsSs/QP+teVYnsb5lpG/gZk8BZBIYo5YSADwu8BxyjO3/8j/qBdx3ZMOEFZ6Vy2xsW9LhDxktokUvS5FLfVPtf/ZAd5V6AIEJYjnmp8M8bu+zEaCLub3fGrvD7LV5kOchWZQdB0Tsu5PhoGXp+Be6ATaVMQr5aqBjThCTsAOZRSgasFqtzkm9x6ogxs05FjADa5n29Pj6qoSuynK0C2gV9oU9ehBFJN7nwIkvNI4DtYdyHc/kXoCP4r0vsrQUiDKYkeEv7jNkOM+c7tp+PvrihDHRUH6uPxI3399G4EaN8eN+4P8Rbnh29qZ93SnbFtV0S1SbHe1jQy0McBOf08MnpnpvpDKI6CeCOcl/5UOWbEIbomEJr6er+FnjpUkNdhUykK09/GF0NGH97VUbe57G6qP6cjDNshU77Vu+DCy4LpfwfKChl0QoQe4wzOYlGc45ltpw9N2Kqo9RCaVp+rN4kjpmAO86GjfJRhvzN1W0QAo84lKKUz61jK5yVqZdaYbkXeRRaSuZcAn38MCCdOJMeL+VHeZIk/jnG3y4ntxNwdvM6rV448/3ruL4A5zvLkODOKtHB8gm5MTY/lEXJhhr/BOs4zHtTfaVDTvewm5vkIgI4uJh6FCQ0OeiAUh3Wu0nltqkPILg4z8kuzhdYhdXbGsBKZhL4t9oVGteah2+SAsBHpQyfcHCB8WpG+M6//8X9bzxtoKiXh0hrJ6TDFc2UcaE7jPaqyc716HAIC1RFNv+6vRJz8mNong3MQfbqfXZeOFdryHICGALTB8uxr4I60f0J7sm6BfJxXcKGy/DB/Xh+9pvHtrqo365vXTqJOGbAVfopFaTrbJ87+SfKyU4w3HWkroD+/UeXLP6vaPNLtBq2drQoiV6oz/2fMYAn2PCVauwBDwMHPeosIK0t+7tQQui+4/tfrKyuWivEdu0B2ZdhJWl2hR1n7hiS8edITaHre5iBosbgcNhD/VWCNlBZ/4dEVU1W92Pab09tgSTInutuMbtxU7QJZd80LjwN6xfBqbB9Po1GwMlElQaTK4Sj1R61yZbbfe1WLwpY6GzAiHx9O9UmwhmfT047QkzAaU3y9ot8J6ETIP2rF4YcjAPkezUTLuGtRughbVazeNlU6IrBVWTmx/J6WMgOIEuZB8ypzmOIpSOWNsAd4i/9LfAFYBtZQKeCtwDj6EVWa9OLY/m8cxhs3N1+dEZkIxSTEsAjNhSip5Gcyg+41d1shTCOMuyeLx1vAN45+icdDVT4R+ui5JbBjOyj1rLOPVn5lDkLteq+syr6ERWAGXvyi5VFXwqxlGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1291,
+   "completion_tokens": 300,
+   "total_tokens": 1591,
+   "cost": 0.011164,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011164,
+    "upstream_inference_prompt_cost": 0.005164,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.878
+}

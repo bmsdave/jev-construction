@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Structural alterations during a shop fit-out\", \"project\": \"Shop in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.7\", \"document\": \"ADP2013\", \"text\": \"2.7 Regulation 12(6A) sets out electrical installation work that is notifiable. All other electrical installation work is not notifiable – namely additions and alterations to existing installations outside special locations, and replacements, repairs and maintenance anywhere.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678025-MuLZBnW74pERYE4hvEXx",
+  "object": "chat.completion",
+  "created": 1790678025,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Structural alteration in a shop is building work: a material alteration affecting Part A. The quoted Part P clauses are not relevant, because this item involves no electrical installation work. A shop is a workplace, so the Regulatory Reform (Fire Safety) Order 2005 applies to it. Under reg 12(3), a building notice therefore cannot be used, and a full plans application is required.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.85, \"building_notice_or_full_plans\": 0.1, \"competent_person_scheme\": 0.02, \"not_notifiable\": 0.03",
+     "refusal": null,
+     "reasoning": "Since a shop is a non-domestic building, the Fire Safety Order applies, meaning full plans are required under regulation 12(3) for this structural alteration, which counts as building work. The Part P references are distractors here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since a shop is a non-domestic building, the Fire Safety Order applies, meaning full plans are required under regulation 12(3) for this structural alteration, which counts as building work. The Part P references are distractors here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1QYKEAgSGAI4AUIIdGhpbmtpbmcSDPt/MMzN08rTlWxzFhoMzq1diWU+Hz56ohE9IjCZ52iMDSx6E42KK2tOGSWtC/cHOBx7mwZDqlwAPI8i3IOBF+UPhT7nVt5nn55wUzIq8gXA97qXKz2WPNg4kqU+0GHMWODJxYs5qKZBl4QarQjZYjB79qUhOgOay6JJ2p2EifuIjj5Y6i9SBSTSXDtfVp4kzv7lbHyW7KIj76r4bEcVXWqyTL3cYqhWhVjROOgNYTUGhjdvpxQwcFnv0RCxOOkdSL0NF1pnsOS66VuZsUDPsgWxahrgZ9BsKYiPxg9jlQ+EznbjhaaQT+yJTnQEala5qvfmc4XDPU8fZYZOXiVrMLMV7unpNMt7jOHguWVb00ftUfn8rl15A/KrOdlgk6w7iHzJy9S9jTtjb9Qm4SgfaN2C8nqhZ7qYSDHEz8wUR3H4VOY9mB4oVBkVxkQq3v5rzwqzhz42U1s6BxDLER72FOWaslZkUTkOBkNETJsstaUY85Lc5UKyjomMDZinoy4+j+ew9KeRo+bjGs4swtD58sefh0F8vlQk/FGNa8Wn1DFTBAJ8IXZxtcNKYJjotScqVEK9xeaYuYhl9Sw11OwlVHJScmeqUZyKNF5jvSPUcXH+AcS2osauouq5EYFcCzCkVqy0P1Ho42obd+GXxxyAyW47hMFF6tItyo5mEj7RGE9OuyRifkYDYnpouTGJRMMqL6s1Tr46QtPk9Baj6YpZA3WvcXMwqyvNC176AHCxGdqiKx42yWc18JCrTffw+EXDwUHVn7v09RH2DFQECR1vOmc5pnfH2Cmrobo3jwFkYLnwj4HbSt+ESbI1uBpkptL1khINgyOw9GMeXh237ZtVJ7MfP8vBDcti1LkHQLJErwmv6RBeHiFzaVlXsLulhhzjDHfhIsiTAn3K2Hf6WB30NK9C5LcYTID8LHV0uhifFPwgsXMKlhyZMyXVNX95B8aNTEDypAks3u9K+yKf41WrhM+Iq336mquWnxIfsTWHNcUF23vJPw9iZpClP3Z02aSJ3E30/LZXhwDcm+Hyi97Aunu0/nm0nSoZr6Kie0eX/Od/bWrpxCuX9Is9QDNz7z/VlR+hZTtQbuugBhe8ohP4ltreGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 992,
+   "completion_tokens": 300,
+   "total_tokens": 1292,
+   "cost": 0.009968,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009968,
+    "upstream_inference_prompt_cost": 0.003968,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 98,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.131
+}

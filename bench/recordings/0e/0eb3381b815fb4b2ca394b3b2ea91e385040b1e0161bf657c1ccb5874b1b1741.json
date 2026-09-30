@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace front door with new door more than half glazed (door and frame)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(h)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (h) replacing an external door (where the door together with its frame has not more than 50% of its internal face area glazed);\"}, {\"ref\": \"para 10.6\", \"document\": \"ADL1-2021\", \"text\": \"10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling\"}, {\"ref\": \"Sch 3 para 11\", \"document\": \"BR2010\", \"text\": \"11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677936-rqGnCcKy555NusvYvULs",
+  "object": "chat.completion",
+  "created": 1790677936,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through whether replacing a door with more than 50% glazing counts as exempt work, since Schedule 4 para 1(h) only covers doors with 50% or less glazing. I'm trying to pin down which Schedule 3 provision applies for a replacement door with a highly glazed frame in a dwelling.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether replacing a door with more than 50% glazing counts as exempt work, since Schedule 4 para 1(h) only covers doors with 50% or less glazing. I'm trying to pin down which Schedule 3 provision applies for a replacement door with a highly glazed frame in a dwelling.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSzgoKEAgSGAI4AUIIdGhpbmtpbmcSDNglIFU4IFL+CSg9rRoMqs5Ypfusnmg0IxSHIjDsp7JRTaStUSC00lmB6Aa5Jal5gtMtksRrdrjpsHug4oIY5a13ceLfOwR6ZNPKk5wq6wk7fOQXr4RnbvLWXvjnd2fFacWIz9yDtGOGX5I+KlWkOkL9l+3oimcvNk9+yuazLdC//E/9zQRloN6SmGpGW8rF/DdWbbxFsQFtVEwRXS7A2NVF9hrqfywg7Cl6AkVwpTknQXaJdf7iJ/e7HPG5/7ZWDmn53XGSldhR0Rtiyi9cDnLFurcJ/T5+GKQg+Hsl7WW8rKjlYhzB5pggvF1jumntpwtCEUTl4bIiurWq7qSiO4al2ccgyzWDDq/i2U3p8qWrPBciVU+4tSH8J0pPW8kPE7U8e8c5IRYrz4odc89E+Bv/atgEEnkJGzhEvKo6xcIJIKKZ3TSlDams6Ya0iLiCNq+ZhCTV/44tvqTmcoVvck9Vjkk0thVpyQGQHEhNNJNTvVEC8K9w834w6eOVf7VE68mJj2LgJmL5KurZbrqa+nYF83SIoJ2WcdezsWjPJB9bcoUHvNBORkkIT+XQrjEK3Y2wQO+nDoy37Ee6sLv3/OpAC1z+u4wBWANEC6PHkPC1pQoSa3ndUo0F5vi9C+47IywZroFP418GlBawOrxiJj5LkuJ4ePfYrJB3o/eWIQenvONPWQo26McELIFkLt7fuT+fdU+Wj4hI0Mu9N6lJY8+37bG+GNCSzr9INRLl3QRXVpyVRfjVP/Ept5cnTIgcVHFd2/UgFGGFif0HgPR9CaDZ5FsK3KfimknFkrYNxhxWws2TuxkF1DX99wLGAEe+rSvEkeCp63GzLBOvCPcPQY9HX16AwG7+jl6g4GHVFRK+SBtbDOjmUR77rnFfWlst810+bmzgF6kmh0TKGQxxmxGwGTDN1dg56FwKYO1A3vBEgoO8xiVvi09BKeWGOoR4yV50CFsiLP3n+5jCvaCI8KfwEK3+dkFFs9Tu6Scqq97Q3ZeBx78NAsPg9FbcncYiPumTMxnmv2htBkovgs7PidpM6vHPlXR+bwNiKXUyUWWU7P8Quz3CiyjQxzDWQ3uVRz0aJwLmrhyeLQU0DQnoy0p4a7cmhhOnfk8EUzdj9PhKrKEvdwmzQ6k0XwsaBOacSDTHTnjmtoKhZEJihl5lugOkHZnvAEJNT5DurBqTL/LqxU/1WFIc+9jZ0YsjEToKqmy6KcNx6iN4Urp1ENLr8vHXThW2F1/OS8+PUHc5TkRYyHmwB9445SQcNk6jPlpw5wdmOxtNwZdO2TcNwR3AcdexK/YIZZUN+s6Gr3cKA+QsnIaaXlGXT5rAG9h6n0YzHh8eOKmIu+KA3KEyMh41zWqdVceBZ22IdmN5Hpz853nVs0gwEUmf59ynuTy03wBeHfF2qAbuhSXckmof2qeZsPfo/4t9eilXjRFUaNXpUYtWAxO0HVBfXAAsxvdFEPKiBauz7dvcxmY3V3SE/6Hf+yYl71ixfSr+UlnjKh1rdYVJy4drLw39iO4d2ha/Ocoyiq0Qc9O8k1Bs6cmrzqYI+gNjmQArNHzegjD51oBUkcsG484TcbUCGXeAfb7TcRA+2CFxkeeqzHuymC14g+Z36Jp4qkE9PhkcVpzkxYsAVRzSkSq/p9GlH2kJ/4S7MSPC3Pw0d9DLoVaPpuRCTpwVwO+wJV6n+3FN5TJKgk2fENgm8aneQxsP/6SSPIO0tLK/hRNHsOsY/PK0txiJbadBZRgB7aLh+luBo2Qij4rHohBMe4wMJQy0viM7fBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 894,
+   "completion_tokens": 300,
+   "total_tokens": 1194,
+   "cost": 0.009576,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009576,
+    "upstream_inference_prompt_cost": 0.003576,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.871
+}

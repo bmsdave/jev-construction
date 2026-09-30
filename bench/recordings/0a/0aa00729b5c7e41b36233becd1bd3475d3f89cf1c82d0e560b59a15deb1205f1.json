@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace a solid timber back door\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"Sch 3 para 11\", \"document\": \"BR2010\", \"text\": \"11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"para 10.3\", \"document\": \"ADL1-2021\", \"text\": \"10.3 For new and replacement windows, roof windows, rooflights and doors (controlled fittings), if the entire unit of that fitting is provided, all the following apply. a. Units should be draught-proofed. b. Units should meet the minimum standards given in Table 4.2. c. Insulated cavity closers should be installed where appropriate.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677828-boQq9UdGyxpe5twdr5wX",
+  "object": "chat.completion",
+  "created": 1790677828,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall the exact definition of a \"controlled fitting\" under Part L and whether the 50% glazing threshold applies to distinguishing doors from windows in this context.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall the exact definition of a \"controlled fitting\" under Part L and whether the 50% glazing threshold applies to distinguishing doors from windows in this context.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9QoKEAgSGAI4AUIIdGhpbmtpbmcSDFiMewKLNkv3U22fuxoMRiVPAx3Gyx759sH2IjDoZW7veqBYeQJbU1WrlOHXybFryMYRjTduQ0v5sTI3kt+L7h9J4J/Cr0OtJa2dxIoqkgrc1K9hawaGLFmVbrGgx7mscWLmxMeNkX4RllnfiKxSmGbNPWIT0bvNZjDQXH7kQ6Mk/6yJVZ+x6SBob+c8MXuHBoG49qpbsLJhlukqVSR4qiqoN60+Sp3laFuacvZ5PKESzyd53VTFe6UieRtJM5JSo8xJU+y3NWymztgDieSZ6NHTusfdAwI6Cb9lHYEwhc8+9WbJdnooVyzlp9AWKuBE2By5NCyBtd5WNtnvyRO/EMnVJpytNYT2hAimqyxNCIGBoWU+Z4fQW0VJUlFGA5WzvpPRMSijlHn7lS+9AF7fV0HidxsarmEV2ZAqU+KwL1BGJPy4Hhb+d+lw23lcJ5vurf2lJBiEw4KJ++9CU+xrT5iKmkrfXPb8D7Xy3vpHcsVT8iothXksjr9Vq2XqZPXG+MmXsrdu008RDAemfSL9idWdx3wao5bqtXWABV3QBhtSvLMR6/LQJUlTzJBnSdklaJqew35nn2me6q77IkZT0/mY15LHgOQEaBjW01lXl3+By+oeu0ErXpZuhslEZXBBUUMjfugDm84mGrqijIW/fg6kgkON65u5xo8/gSfXW2HtZU1TdXMW4G70DJvDnBhdA8oFbTMakzX5WnWYexyUDO16nH6+d86OSDKTzvoHWZjxX3kt8mbQGeQdPyY2pziKmh/qrV8r73sj5oQ4UFq2OBIRKrjnHLQF6P/eBXhJc8vckKFGx7wj4bRvGtDkK0/08S8QDYFRyOjpZVzhtmcEurFrqTNF1UMwx9Y71JmmM5kwgteMfBrkOEhi8k354ni9bzZq9/oSboB7jlUcDGAuFhjR5GK58ocD5ffS1AB+1SBHR2QgGKs47s9xvvKnFRlRgN9fgzmydK+8F+EQT610c6CHemx7IsofVsHcaaUtdBo5dmUH20G/GSz3fzRVsNeIZD2JKhXBp4i+041LCwMLyVRuQHonFGyhFWenYfDgDvXlQwuekcNFVrvqa+GdjO6E4cEOl0CLgZ8pRhqnJ14yEZthBCWDZUq2PAtU40P8accaIg1PqQwF0VhRSQ0sF+uvxF31vVBRogzysAqBpLxHvG+yDhlYU1P49ThMwHkofUYNLMTRL7G1llDPuHjPqTkUvElsgOCQe71rabTGNjHayyXIWDCxEdz1BpA+3UBrv9zN2Oi4U3spnP2x91/ImUDlprBiUcafFaDlB22LUW92dtmK/7Chbnw2oOFWoB9ciXxHYKkE8BlbnDuB11cNhd3zEZoVqpYCD+UTpRCrWI0sy6QDx50yjaleRQJ8BEwb34p45rYJVCnyT0edts19EzmyOFamWE3JsT2eOvTjXk+xBPRad4zFGiIvyc3mWleKNNHR1CQu6IU0x1aRv6WB0Zfg6Qq2dsPsrNua4rPle5qKU7rhk/5tPqoZCCjz5ZTqENyO26u7sZTzLF4j8kqO4rUexBDy8Su3OjpU8uBJ0vw5QJlbNi/M87+Q4+ivHe4q1nvAUHXjQ6j5nOePwlAubHxsl/ouv2r/wpDceiNWpLTeIUZ8F5OIRp1dZCIuUVVFht3YZXCnufKBVSc1LgZklG/aktEr0joENdNCS+pfNSATmk3yLwu5qPvKKjBziY6FaD4XfbMsnlGTpJQv50kwFBux65DLg5GxHfmMC2Yy9P09VXXgiw+ogpqL8ateV7VD9uUyAimLkdNq2o89f+khzBxURmJBoMGmVRBzIWQNeWnjbpRnTj9odB+WyLU0HX4jAn/LhxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 985,
+   "completion_tokens": 300,
+   "total_tokens": 1285,
+   "cost": 0.00994,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00994,
+    "upstream_inference_prompt_cost": 0.00394,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.961
+}

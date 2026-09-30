@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Hot 22 mm pipework\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"reg 9(2)\", \"document\": \"BR2010\", \"text\": \"(2) The requirements of paragraphs G1 and G3(2) and (3) of Schedule 1 apply— (a) to any greenhouse which receives a cold or hot water supply from a source shared with or located inside a dwelling; and (b) to— (i) any small detached building falling within class 6 in Schedule 2; and (ii) any extension of a building falling within class 7 in Schedule 2,which in either case receives a cold or hot water supply from a source shared with or located inside any building other than a building or extension of a kind described in Schedule 2.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677412-bWhnwjl6SZGQgWAVhYkT",
+  "object": "chat.completion",
+  "created": 1790677412,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether installing hot water pipework alone counts as building work requiring notification, and specifically whether it falls under one of the Schedule 4 exemptions for self-contained systems that don't need a building notice or full plans.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether installing hot water pipework alone counts as building work requiring notification, and specifically whether it falls under one of the Schedule 4 exemptions for self-contained systems that don't need a building notice or full plans.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSigsKEAgSGAI4AUIIdGhpbmtpbmcSDB1FLQ641g6/VgoGCRoMXJA6a1+GSKtY0RzyIjB+OBYx6Zo2e6A8V0kvqzxnmKQN+i9qahLydPglc4uzQIOHGg6ex8yCTg7A7XNMU08qpwrBtjXW8m98jGxgKy6q2PF5c6jhOJ+5CoU/N4Vs5HHzlVDKFpe6rYNl4Pn8W9mWhfp+ZEsqMYF1WcwmVYZUSuAfNp7wN+e8H0Kdfh3HhGZy1zB+zF6tBURD/jeG518iceE5YDYZw2zCFupXlZZ+rRYtXe4t1aOPjq17aUcXhaaHQ6bLStkwOlqq9ZRZJ2nsCh4UOpgl8yHdV+0MfN9iyRFwjOl3itXbSVtDsC95EcV7ZtZYh+4ngCiZpdUiMRCKrEYeJj569nC8UHUgvMBnpBDnv/G9wZkfOCM7AKxOFw/UBl6bNUn8XypuelNaZcPCv4vwSXD7FlLKwo/IKuUA43E56yrwbrEqOtn0Upa4J2mG36dPIAvDGylTsKRCR9sN6YBLtxWCfAeef8d3DUBzPNRAJPS3Ioa/7y0+qVDv7mk1pDGYtfkDS3N995gB9apU6zFvK0Gs+zEOE5dqE0J1HqdjkJbed3RT2M0wYKMCd1huXuxGo/AgzFHTJkPeTwB4xobguPBnFQq2Q+tg6mQxYsVvXuNSC/KCfYWNOmb7uXC7AQ+7juOeReyseEiwf7XucSCLdbW/ZHBevluS1lcEAGmph2i3GLofdWu/e+WZaysXRLid0yA7D4gqKg/WMy9xEx7VUCM7Fy+H4/fH3+JrCk+f0sWyQ+DydTneft6MeIZhiHP47fpicyj/ObA9eeQJSa5MC+wDvjHvHyD+xaDel1rsqYG1FQFlA8Yy3dJM+WH9VcvcX52yGERJ/qpgjva5P2D8o3c92PqZUHGY0t1txRhUUkVBg5lstcO426YZ/TIoI1d23h0y5sXE96IgWOJ4cqmSJdMVAzBugpPsPGn4PXwcWQfJ6a61LRQIZruaVbTV56/9ROvVF8nPgd5vSEhHf/ob25fK2XP5Bp45UYiXwikn89v0czxFZ/7XT/H4JD6I4gzt99WYoMIx4IJl2I5sNdPG9jXHFQombAf2AhZ4aIN8uIJhI3xikTj/D6zOP0NXTrVPKhq6w13ngHeZqWRelQHLmb4a6pKh4bA8nYKSCDEwjOaa8xR1CYtcgEak/+6/QKhCwAF0XPc2G8n3RPmM+IYwHQ3X9TtyKwmbGFugheDAOEt1VCsdXxQeGkx3YjVkAsDKWpeQBTvJmEv6xVVRAHk01cDq1bMCy/ujtLEtcYBPQrbxu6UAFCa24lWSNnxOjE9LIWfpOuZ0rwiewFim43IoKzskx4bOKfQYnpw220MBjvBPcTY3tRFpBcwC30u48OFSleh2snZuxB8P5vpWxKXSbg6+Q3vcIMoswVhadmDz8fBdcIZ5towTaX/Kc1P+xlBcSRRcifR4+yEk3ZNahpwTb3fYjJRolTfMto+dob2UM1E0uJ566bojFlubD+P1XVQBGoQJMFqfUdhovj2Zhv4W+CK4ozjbBfCxUoAhqXZE6zm9WS+AKtM2g8ZmSjsHb0VbknUAoC52UgR0U/Uspwcb6vRcdzp2GcTtFUXB7LOTQzRGRop6RIb8bFew2nop07j18Hd1hZPHoLrG7hgycu8ZOodFZAe9xOIiZSzsvEjuG4ZC+xJ+pnpO/rt+3yrCoLUvvCTwmfNbTrQ7TXFWvO20FmkyIvLp5bNo1+B2dgUkYePltkoTBdzLrjJ0IXby4q236rRWpypDgVDA0kixTOJQuBjG3kQ2xPogdxwgOGlFnP29x23v4pyPsJZnTTUYjW+QpK55htGLXkfJcJKNfEq7Zz8RBevas2iT87BkTSAk0r3M4DGrphgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1025,
+   "completion_tokens": 300,
+   "total_tokens": 1325,
+   "cost": 0.0101,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0101,
+    "upstream_inference_prompt_cost": 0.0041,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.876
+}

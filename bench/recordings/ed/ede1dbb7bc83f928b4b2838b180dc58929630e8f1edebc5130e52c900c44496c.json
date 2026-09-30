@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a built-in cooker connected to the existing cooker circuit\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"Sch 4 para 1(g)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (g) providing a self-contained fixed building service, which is not a fixed internal or external lighting system, where— (i) it is not a combustion appliance (other than a fixed flueless gas cooker), (ii) any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6A), (iii) testing and adjustment is not possible or would not affect its energy efficiency, and (iv) in the case of a mechanical ventilation appliance, the appliance is not installed in a room containing an open-flued combustion appliance whose combustion products are discharged through a natural draught flue;\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677775-NzbPdATGChK2NgkuPSh2",
+  "object": "chat.completion",
+  "created": 1790677775,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.92, \"competent_person_scheme\": 0.06, \"building_notice_or_full_plans\": 0.015, \"full_plans_required\": 0.005}}",
+     "refusal": null,
+     "reasoning": "Since this is a built-in cooker on an existing circuit, it falls under 2.8 and reg 12(6A), and a kitchen isn't a special location, so this work isn't notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this is a built-in cooker on an existing circuit, it falls under 2.8 and reg 12(6A), and a kitchen isn't a special location, so this work isn't notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSnQUKEAgSGAI4AUIIdGhpbmtpbmcSDE30qKBVbD9PjuakehoMu1E2rbWV6D75uo3rIjDJTH/bvJLpec9kDkC7Wxm+FFsO3aBAyRXgtOJbfHm5klyLPUZZ61qJau1QIMVXAg8qugTjX90DAt2j7fmdpoqBXm1LZ/ZwFhzeEq+g76KgiNTzyvVMEPmnSreMwc4dYRAcWo/Bel17NCLZG7VQE9IUBVGG+M2qKvqAhdlwSJYXRvswyOuPQG6eGnsBxjsto97YGYnuVkmYONICur5EcfVjkDY+yZaDO73UDoRPv5A2Pcf/uUfPBpq6WDs1VdHUf1wPlNtRXwx/87ageNTs5LQ6xbhMXNh5e60QcOy5FInZl/eXdtEPsCEe6XmInlAYWC2O77QeJtf5vkwA8eemh+lrQmDSRUR8S959sDocbzug7LhoSaDhE1xdnvFoGtJM9BD7fJFiUfXe1zZvDqoZER/TK52r6rLQeTkCNE1IwKSqqE9gvSLdPiad7jrFBTawn4/jV9Z79wsTgKY9PG84mM9esLOWybZ0NZiJfBG2/9OLpUvob9+ia9SdSQ+VZRzAKgxJrYBcWvKz0Qdwv86gmBqrRrOjISjAGPWbCjLQPhI4L/utjnT2ji4Ynuu0IDchUymsgdRPYIPQ7IzWnm7TL/DifshR3h7/ng/9XpJxM0SCCl3cCPR0HQyuRcwwZNFQkn9+rLyXygMNirONk6iEWikLu5aYsnynwnU3wXRLtL8TGjOEo2gVkYThe3qe3yYoBDMfvkCGfrOxg+kXg00kzOBy5UP3NZLSq541xMoPGqY9OkI40Bxoy1t/QgUFANzvM8u8gD+eCoA7mu1uaRq3E31/809n5J3rPFEeDfGpMAsVvNDVNZSi+8zXrzdPpEkYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1082,
+   "completion_tokens": 136,
+   "total_tokens": 1218,
+   "cost": 0.007048,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007048,
+    "upstream_inference_prompt_cost": 0.004328,
+    "upstream_inference_completions_cost": 0.00272
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 55,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.076
+}

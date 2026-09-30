@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Internal doors (allowance)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Joinery. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678357-1WpE6HVb3ACLYIaeZhhK",
+  "object": "chat.completion",
+  "created": 1790678357,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.8, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.15, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "Replacing internal doors on its own isn't building work generally, though in a loft conversion context fire doors matter for escape routes. Since it's not a material alteration affecting fire safety unless part of a larger scheme, I'd lean toward labeling this as not notifiable, with some caveat about fire doors on escape routes in a three-storey property.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing internal doors on its own isn't building work generally, though in a loft conversion context fire doors matter for escape routes. Since it's not a material alteration affecting fire safety unless part of a larger scheme, I'd lean toward labeling this as not notifiable, with some caveat about fire doors on escape routes in a three-storey property.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxwcKEAgSGAI4AUIIdGhpbmtpbmcSDN0CngewB+RjIcnbGhoMNo8sWn63Bl3pSdecIjBMgiRCiugdb3Y3hRqKlNh+YMrwVXldIxaXI4gBIibWV7RNKiGaFVWbstCQGuwj4pYq5Ab/djGFum+ptqX2YOFb02ZlfRvv+eoH36PVoZhIeyBIl4jluFgEP6WyPugSCeYKPIun9ni8QRCJmZFIKBoS4jFU8PoOOXH1EfLPJIsZ3VCWW4W63ZtYKsxlqRWEO907IxHC6HiaCtK4s8IPkLEyw8cfNqphfVmIT9ocbJcDB3MynVd895IJZyQtON9EmAAUGMyog+RrilSM2NsNfGYhgSsfVOlsI3tKDLlkVld58srIUs3MrplyJQIkWfN/8jhWHnDmxgc0FFRcGm6EGLvFabAM9Ve/CRwzSXEJZEMJ5KdWj+Cc+1Hq2BF1gVSetFZ8ZI6doN27YMqEa/VZQQjebdKwfiK44JekvnO7kZxdESh73ZX0Z7noW4CeTCnEdLYEDE7WCST/+uzBDPmxTQKASBh057NwcuJk5HUO5TsoNky0mU+I6lmyuKAksZvnk6NWYbutmtWaMU1se6PT0GCOvJeU41E/RCs48RbDDYf+C4hJ2x7b0nRV+adg+TwVWV6Go7IOziD3eS4n2/wjvQdgmM0sF0NBnTGWNg1qadPTlWlHpdB+yRDHbRwNsdFn1EIWLLP4L0Qq3UEzr7eiSJMEgguLvI5nTy2YAsR7KttzX5XekGVvuM3iQViWm9FtXMF6Ysl3Jn0sCTTMxIsHbpt4Jlb0+doZjolTyXvK+Vmcsa3MQQNgJSWkb51YZAXGNbOnT/UgtgDrd2aoTTGb8mALmjguzcQpJkVQZCD68v2KeOocOF+LeujSyUMfNziHeuhM3M+cxCr8HXx5hS9H+cZFFVfKnCkjRYLgotNd5Dv8aiTuE5xaxH3cHKfbU2hzdQ96qRqp7PcTV5ihNUz4qLKv3BesxXcyT9N9ZIbbNZLqAQ/Qy2a/lEoBpmZSNCsyeIMbY/4IcXfYi0kzo60DQ3xWHDXEYDJ44xeuG7JLnH6YEUIgux6wgOLqdFrIqc2bqq60az6LL8+DRFEDIFWEeiMiqvORMZMISU3FgjAXh+EVhjZTF4Kl9P6pDDbvjxG91hHFbu+C/6MddC/qBqTFGaOlDeMf8gVQ0sH7bbtYhZwE0XOehOvE1qNK1XVfN0lvcKR5XOahTUsGMzngXR5W9lKFptlEij3tCt1MY3npHiW1T2gp2NqAWb1JtKcNY401TBO4RPqZ3+x8GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 504,
+   "completion_tokens": 215,
+   "total_tokens": 719,
+   "cost": 0.006316,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006316,
+    "upstream_inference_prompt_cost": 0.002016,
+    "upstream_inference_completions_cost": 0.0043
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 134,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.215
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Garage converted and extended forward over the public sewer in the front garden\", \"project\": \"Semi-detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678544-sGqOu3z2j6p0oT78wYMT",
+  "object": "chat.completion",
+  "created": 1790678544,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Extending the garage forward over a public sewer brings Part H4 into play (building over or near a sewer). Under regulation 12(5), work to which H4 applies must go through a full plans application, not a building notice. The Fire Safety Order route under reg 12(3) is not relevant here, because a single dwelling falls outside it. The garage conversion on its own would normally allow either a building notice or full plans, but the sewer is what forces full plans.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.93, \"building_notice_or_full_plans\": 0.05, \"competent_person_scheme\":",
+     "refusal": null,
+     "reasoning": "Since this is a semi-detached dwelling, FSO doesn't apply, but building over a public sewer triggers H4, meaning full plans are required under reg 12(5).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this is a semi-detached dwelling, FSO doesn't apply, but building over a public sewer triggers H4, meaning full plans are required under reg 12(5).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmwYKEAgSGAI4AUIIdGhpbmtpbmcSDKZ1kz8p+vHh2bE99xoMMylv9y0jRbfALJ6IIjBklCCpWxbccD83W8n/4NUDUaHPauICTrg6OdLBZtcxVFn/y//iHwgBDaHZoGhfJ5kquAUMed+Z3PhhD5YkGwEVk4JmwWXGsIxMUUGFBfMrYSF7kG6jcuSMFI/P7cd5xXMbid2+PYjkEwq7uGDAN+nnlJnak4gsJP6C2atYeKZZgFrqrL3EXd8EjVVIASYtDumT9XAJq/03wwcWJr6HRclrXYVXxJQtoLr5okvP/353sB3RQquRo0OuVUREFYBVOg9teE4I1ZIVjt70gqHkBt186t8RsQ5wwJN+H/c6clIRJFLVDit48weT4ubL3oW73Md81oqAiVNnuVHRVwcHIZCABasyNHcuIZxfy+/ekQ0tUqVRZ2iMAgf1N21PH797o7+IdaR8pJURd7CsrwCIU1iqnoXFuqSWXYDyrdTACgGXd5oSoQAYRnTLo2b3mA15fDj/GjhgKCD6L6iXrGKeGwCg1cwP4AdxkRi6k55Ua4HFJ+jR54BDMJWShGXsJszPjwasfT/cCFxFrU4MYe2ibbGZJ2xyKarzbqzslYE1A5aChNYjjQhfd+D3rRT8Iyb8Lwxl46sixDp3eWQR14D8P8WQOhlM7NZ6f8by80R+fCpocSUqib+BDnGxR7QdZcAl9acoxgjkbOPaqLgYe2evlzc8UkLY94j9+w7UYPMpar2B7z+Vxybe+9Q1yYJIZG+rkxuTnEyCOY4Yn2psPxbI568n6wqBaYHKwjb3eikOpCa8xULazYcNQ3IZjKeBgu2bk1+KMSnHXutTGFFH/8quqiQTBDbW9+tKeBphF0s7pXxocZeUMhutW5OK9RSNuPXmefl2e8cpT3U7mDC2bCjaeRXzEiZGs4ciL9c6rjD5U/9JGaEU/Dzw+eTJIIyMrbWFRsv6pUldhUrPVQ63ZHwTzwMLx+HFaX1l8F3DcSm1t+6/HT47CEZNFoU5325eLK7cXVoZIgjGbIyUvrIomVPQ38TLj5Qdh7up1k2IAiMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 473,
+   "completion_tokens": 300,
+   "total_tokens": 773,
+   "cost": 0.007892,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007892,
+    "upstream_inference_prompt_cost": 0.001892,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 98,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.289
+}

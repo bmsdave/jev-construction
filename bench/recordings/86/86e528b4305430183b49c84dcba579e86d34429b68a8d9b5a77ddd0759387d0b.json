@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Loft pitched-roof insulation and lining\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678199-vsPgKhdKdSD70hHwJd1o",
+  "object": "chat.completion",
+  "created": 1790678199,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether insulating a pitched roof between rafters counts as notifiable building work under the renovation of a thermal element rules, since that trigger depends on replacing a significant proportion of the surface area or adding a new insulating layer.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether insulating a pitched roof between rafters counts as notifiable building work under the renovation of a thermal element rules, since that trigger depends on replacing a significant proportion of the surface area or adding a new insulating layer.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQsKEAgSGAI4AUIIdGhpbmtpbmcSDC9TliCU8uiUs3ehthoMhpv/8vCHR1H9EvnQIjCd/YTP9cJH5umil9WMXls8vZr0Kxu0z9C0w9GSNBsXPlp/cg0D1BIheLjSP+EPbPEqrgo2ispnM7R5mW1oPiXgB/KlKnaauGERGukI7dVKUE8ofe6Q7vxFAwZg9zzqCbFyrE6j5jxD71z99O34XVsCAOgpdH7ra6do2E3Kp0va/SVISI9dx3IxUTuC+ruASX6JetH3MkZACiqbfmfY3MDBOT4a4GnN2XPeWhebDolSLOwg7eH+9/Ui3RMkrq+rLFQH2BcijCaLUc624Q8H8AL4LIKEyDqfYDvepcdbuK/VeDID2VyF2jfleyVhMCO28ZEX4VT5c50Gkewe1ZV/5Fnqcu+/uZXSBZCKEo2jkDh8ZhJEpflESC6n3RA5UvmWdzvaoBvLcBhR1K1poeuUaLE+yXVzLLzT5IFblekybQmvy/lqSNsBawSd760tek76xKb3+zCGlW8SqaoXamUhdz6l8mEvZOtGq2dVv3IbeBCL38ogDoOZQz203i6/ND+RzhRAFVFSgrqgdPyPrCEj8GX0hMRdXuART0jOEIiJYT8cb4tiVkXaTqjYcHTn+MmkzEygwX8oNvdEU2nt+mO2vS5UNBmwPI7JGeK5tekd9DQpNqLLFmXXh5rO4H59ZjSIoRFhJjwkTFyERqr/DvmVw4rIJr+/SdO8sTl/vEJ8s+wv+Fes/XMziJA9iTueh+4KqsgWYKoILY1/NH+rXw3oyvxF6icQ820dcT2JfejehWjJNodfGwRAkkzFgV6HNOyOEVjlNNCeIqQE/2CEsk72rqJB3ub4M06NLGxuojTPayXKihy7XUWBrBXugBHf/rTZ5qD8G/x4C5bOAKjvO/8+S3ZE5DjhlHHeuOUbe6YYdcfOXe+09x5NfrKKM7/pTFAiEANwuMJPNLLlG8Dd54D1W9ZSFUT7NVaoEKXsznr+qIbZRJOn8TbcoMvhxHHPXWDVmLavstZ7fQyHTAvFFUWdFIEFxBmfdl9S1pQUlezAzY1ObXXNzqncXVwS05xOeWh4IeBDPScBGEeYKi58EPaX/K12vNMbcFsb+ycqRqwMxK9sFmwsipyb+BZ5QDx0glFW+rPG+6O7hqi3MEpKnRK5O3dmTE0nHzex5GhszJ7fUGeq/ajCyBw7/8MOufAlcycfPlRem4846dNPUHmAwcAp1zqyOGBGN6WnU17d5z1YkOx2GJ/eqCjAO6ZtWWlELdVHP0Bm4tTWWP7zOBE68ZrXz+5ImzcofzrfNLlGCl5eDmkmvEOvm4G5/jvz4x1gOpwtxpWGG2bhzEo2LHOwZDOjnjMaD1KhpGLd4iXd/OwOFYdbj7ERr2WGqiuiC1/O18LZ09wZWyBMzzeacKfppZCMFZV7OJHZjaAPLdKqtLT39x9OouKmO3Pwg4Nq36QA6ljbFnMPoCfdmk+EaE9gVBH9uEMMCC70dDh8uWhIcLkAQG/BfjsiZRsFqDkIMeROhEP1KCdCwRd7/CZRv2ZBsxMnlmdSBvJv4ARvPNlQGR/1fdvRJwBVRf8aB+01lQrlAYeycEaq9Bs2aJFubhFeM4d0AaV5fdDBKjPBv4tcDPpnuCH0L8LrLR4U4pMyz0JM8IE3Yxgpq2nlMCcm89unmNfL883cW0nn4bOQCcf65E1r/vCNIt5zRgce3AAeL++SYTo+XVM8qAx08fAT8fVOClbammBhPFkH1BhmYZpw14vP5ZknlwPCA1wIGRS0gyaJdx37/p/LC7kTbsCxAlOTGTEL5c/McxUvPbH2AaNBP3p5D7aCvy5xurIPYr8KmZqOIXNpNUvBVl3ii2ZYSTL3+cyL9VRTF0Vwj9N9EEu6mvQMlS7EDSAYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 506,
+   "completion_tokens": 300,
+   "total_tokens": 806,
+   "cost": 0.008024,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008024,
+    "upstream_inference_prompt_cost": 0.002024,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.094
+}

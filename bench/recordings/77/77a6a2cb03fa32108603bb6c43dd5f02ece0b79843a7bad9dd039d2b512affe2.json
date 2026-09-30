@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Smoke/heat alarms\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678460-MEQBh7Svxfs69wJfxQZi",
+  "object": "chat.completion",
+  "created": 1790678460,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.6, \"competent_person_scheme\": 0.3, \"building_notice",
+     "refusal": null,
+     "reasoning": "I'm thinking about whether installing a smoke or heat alarm counts as notifiable electrical work - battery-operated units aren't building work at all, and mains-wired alarms on an existing circuit fall outside notifiable work under reg 12(6A), which only covers new circuits, consumer unit replacement, or special locations.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about whether installing a smoke or heat alarm counts as notifiable electrical work - battery-operated units aren't building work at all, and mains-wired alarms on an existing circuit fall outside notifiable work under reg 12(6A), which only covers new circuits, consumer unit replacement, or special locations.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+AkKEAgSGAI4AUIIdGhpbmtpbmcSDE3QwxAjYq5Wqra0lhoMJGL0Tbr7ZD28lH7nIjABjT2ifnUUwLxJ1PmsfKf3AUBmvkz3GzhW8c/kV8YXrnlb4aX48AZvOL2URujEvscqlQmeSNvuqZhpEKxB1374ntkgEvDIgVAHBp/qBeJCDUXnBVSgmIq8BPumxc16+k0yUUiGDk95de8r3uduO/xyd6WFPMt5GP+LSWNMVuXeOCrUgpfQyN9Deyu5/41lQVYEJJpfw/j9A3G+G1JZosA+jekQRqoC74jnW3DkSJibjnCPpjlUJedxtAZE0SAicHaKIGZPaBnZ3Wyhbl3ackKpi1Jw8b+qKIuwLdtyAX94FJQTHBse1lakTSm7gx9D5CQW++fjame01melaokrsy1v05q0QtWvNIZ1Lu+dbw2y4U3TvROK9MvrZOQGVPFewZgzKj9CG5VRMM0k3UL/+N2YS0r8GOGSWWJEkQmzKHglZQk92n0e/JU2QSR5r36uSYnQL1gJe8AFtnf7bKoT0sKvcbS5o+7iMWL9JznKEHNOPgf/Tyk5AYUGmSyoSLT+biY+f4uoOOCWRQqhwwLYf4IXDubfccqGKObFiCzE3AubEly/oI1D33WN0pIFUVLy7yEzm24H7xNBPs6hjvs7uKit7JYjqSYCosGUpM3RMhqvy8thzrvGNT9iF1l/LGSgcfHpGf8iJGV9ABQt9S5n0ArNdsBTVg/5bBAhU+VrHN7SzzBkjsMRp4yPoA1HntLZALtQIReq7A9ShsWikHQK0G2meqcG0QbPHS70P0NFT2UI5FF1IlS8okvgj5JHHDel5geP1T1C8lXBn5F/aM592L1XYZcLw2C1wBRRIuCvCOOt/hz8gpFgTJHMuRr8bxaGP2FhCGvYWbTDwlGISkGOQjrw466PnljF3zdelRfy0ioQYOkBlQGNYCg6Tz/6e+aOyh2315n53GTcwXypWJZhkJoskT8e+Ef9UqXK86jc89/0n/b6Q75+LMT6FNwQKxikO8o9KaJBc+H2tfiMqqiGAQCoC5I/Z1eh63+WIQajXG6kzmUjuxFuxaec4/SWC42HFHrf5g8UR1oNhSDlHoJ7lPWxl1IWKRlFTrroY25v65B4P+AXXLiwzcDfQMuUMA+DgULn17xwf66PIw0JRLRj/gDK8E8OQIFYM3Ewb4Hv3b/6ETxQz9h5X+9cAgs/ZSCqDXdoaXn1LjvfNeqAb/c3o4Ez0u/umeR4C0gB+nY0FKxdSTEBFouU0z0Q988v/6YgVCxh/eUrM5pzb4oKZO70JvybaV9vFNkMsv+F9izTJ1eXNdp6An4vMwPqbF+9itp41l9v/Dx3VWjnujNDe+z/ICMHoH+wk+2+/h6P3E7JJTunsf6eImMgGkGrMYZBbDqlWYpG3y/yUl4J4rU8ju4Nmaq6VAaM8Gpk5iU1r9KTECTMWTWr9zELqQgOn2H9oRdoClCkKGJ/d2ZCAAqmH2G9JVNm31S7UkR6tBZYbCW2njqTQCyy/lmiuoEJfEukGiIe5dEC7Z5CU7uPBY2dLDJrUCj3ZkMJFNR6kF8z5rC6M1dqNcfa5kNV+EndcHlaKN6IQt718tWTvFwLnxrJV8h5xeqF4LoCJ6eMPDZ0be1WCT2r+aJdJpgHFP7PNzusTeVDTSlbfovFgCYDObql7WRGYZuDtg/Sv8qrffQYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 504,
+   "completion_tokens": 300,
+   "total_tokens": 804,
+   "cost": 0.008016,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008016,
+    "upstream_inference_prompt_cost": 0.002016,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 248,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 11.784
+}

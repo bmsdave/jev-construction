@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Two new houses built along a private street\", \"project\": \"Building plot in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678618-dOKHHTGWKYJWb7pltDbA",
+  "object": "chat.completion",
+  "created": 1790678618,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "New houses fronting a private street fall under the advance payments code in section 219 of the Highways Act 1980. Regulation 12(4) then bars using a building notice, so a full plans application is required. There is a small chance an exemption from the advance payments code could apply.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"not_notifiable\": 0.01, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.06, \"full_plans_required\": 0.92}}",
+     "refusal": null,
+     "reasoning": "I'm recalling that regulation 12(4) blocks a building notice where section 219 of the Highways Act 1980 (the advance payments code) applies, which covers new buildings fronting a private street — meaning full plans are required in that case instead.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm recalling that regulation 12(4) blocks a building notice where section 219 of the Highways Act 1980 (the advance payments code) applies, which covers new buildings fronting a private street — meaning full plans are required in that case instead.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1AcKEAgSGAI4AUIIdGhpbmtpbmcSDCiTLa022HjJYj1dtRoMS7o8+lOM10MeL4dkIjC6PKiZ65QL1PX49mugI1+DmNJm+5B5DAibCUz6sjgA3LhsGOFjinwkYMymlS97gJ0q8QZM9JDppR9TNWoyRz7bjsuYl0jDXdD4NdVyYOAHuHHuG56QIoaDyRliGq0fw8+EIwk7/eX678DW4W1RNTA9ZFGpo9W6UsX8h8Kom2mBLTMHswerVlvoauwKp2Knv6Scw0fF4Mhq4wagLNCgchhxvsIxSBMXnd48juzuwfUcGVxo/2DyUPFWO70eet5hZQy1jxokOeTgk7x7ZgNemoOwLWB9F4bDAxZjawR+merl7b79iV6W9L3cdeGd214xmvNWzkJD0fvEHKd4seyo4jYS2dh+CFZtPydWOmTKikCgjdICuRbsOH5BtAsXc97QEOpOA1qWOdbBbQhDt5ScyjsXfP2GGDsZu/Y1sI6bSI8JXVfBjyaVlNSPl/f6CHwHB0Q1boh8APdyqg9DHHY0yDavSrtxB8WxxlhwAsZlbaWBH/j/xNhKdXwkVgBDRgutDyDK4BiXhHA/S9fOfsb0aoPYJpMT3597bKLQ3Y6Kjr8X2eqfwvOSgptxJd0ZeupiRLlgOEZoG9FcxTKeZYcfoMwhrOY+z+Y5FMKv3/EznhAiNPlTfototDxsxO732rdAGDCQrZiSos6SFjjma2kNId0HTT1XXtMvG9A4TvSTgjkgk0tz9+opJvhHGCul+QrNoUATg1JejbPRTRitZKqo0TVb4RETI41eJjplap1bZK+9kRO1W+UoeNsMUyVLP/BM/7fnqTf7Ze1fJsp7ZswulOOyxJmW1e9bG4tFhhkR72IDcSJn1JJfzaNdPOgzBNx+Et6CMst/WfaylSppWq20s1t86Q5vrFTpWxk1kVHWGzFtLO2tM4ajbqkyMxhojo8IR5+5ugR+54kMxRe64GHBPUYz9+BhOqiMl0dMflkD4gFuk8MIrqFGme8RCh/U+seV3WDkEDYjMXkG+JawZAGsi6whalvZmyAq92bhaBx5t/tO/UJUfWzprwD3efirrtpORdXdfhsy1A7V8YEsT8bOV2qvPIZvszNZSgyUb8zuWOy5ITsgRDhD1Gh88zKkB65KjuQXBoZfQOQo+e4f9VSLejnBA2CVr9Qaz3D4Dcuadp9ForkvbIszw9vnX7zKUQaOPvKLDemMFl5ZWh1S54587m8K1ZVlLkqQNloeRuamPNbS++2i9YH5k+mqab/KxFoYiTDeSOpH9dJMG/CxK4vsh3kEs7hyKhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 459,
+   "completion_tokens": 292,
+   "total_tokens": 751,
+   "cost": 0.007676,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007676,
+    "upstream_inference_prompt_cost": 0.001836,
+    "upstream_inference_completions_cost": 0.00584
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 128,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.421
+}

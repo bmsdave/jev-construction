@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install an electric shower on a new circuit from the consumer unit\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677861-ymTOeS8i7oYA3sYA1so8",
+  "object": "chat.completion",
+  "created": 1790677861,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "A new circuit from the consumer unit is notifiable electrical work under reg 12(6A)(a). Paragraph 2.8 of Approved Document P confirms this: fixed equipment only becomes notifiable when a new circuit is needed. Schedule 3 lists Part P work carried out by a registered electrician, so a competent person can self-certify it; otherwise a building notice is needed. Nothing in the description (fire safety order, private street, sewer) points to full plans being required.\n\n{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.9, \"building_notice_or_full_plans\": 0.07, \"not_notifiable\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "A new circuit is notifiable work under Part P, so this falls under 12(6A), and since it's electrical work, the relevant Schedule 3 route is a competent person scheme like NICEIC.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A new circuit is notifiable work under Part P, so this falls under 12(6A), and since it's electrical work, the relevant Schedule 3 route is a competent person scheme like NICEIC.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStQUKEAgSGAI4AUIIdGhpbmtpbmcSDPH9oh1ltl6rYWaZGhoMKGhFcBLrlovyja7AIjBDBA0Z8seTxuvwEUrRZ2EpAB78Ldz5KZ/LPDw0OvE6lt1hMMb3h5xZvTsalGeXzbAq0gRuEUDjbXo49w7gB+tr4RexhJJNlylk5tDSDAV147vj5q5IOYuKqKfreb/45U/9a41vORxg+Y/u0g7vzBogGvkrE5tajuhGonHzkOJCZuW/qfMoB0vgLJB7rACirPev+32pPyU+6ydI3OjtyCLdHsLFof/XfPXi+KL1yJyTZ1Su4BFRRqAWaQZktYOYkJYiYoxFIGG55/thrMRGykjmOksCgfCem84a11Ehq0LacioYTuQ0O1vi+IzCd7X+2tF+2o4DmnJLgA/umct3JP6jWW1qiFFe5/5aLBMlNU1lGSenp6w5de4jTE/Dk1sGJ5fMjAWt31SPU3m/HyN1XZRJuP2H7kJCIYU8CxXr8ZOc7nguOFmVvdA9TRPR6+O1vrsKMSodeI2yI7xplcEXgAorDEalNE2wrv7OOTMnLwcVmANstezuwfH95jAPPwYy6JCjESuXZ3gMyk18bRk0eMuEaKINpKEhYhQglJcdhyADCpQRkmn6wqxEf0CKykxbMRssqztiFt68P3bWJKxMBeQCi2d+K+g3XoGdmyxteu7tSNvS8KDUI8py2f0CxaCDeoHE9XHOVycOgtjM+Ugp+82L02iTo3FB5rOTGrzq/LVwZ5RxSGmECqF16NqbrjJ89/ZihdjqBx47XCRizUjFuvTPXtHWS83NQob8S4XTdKs8CrtrVVBCBps4penuQe/B4VmSC5pPO4Sg9zH1vYfDvxBNOIUpIPCUdONmVApVfeZfCyURDEps4hNGH6FD9bgGHl9uTFt+Nkh8G/T7jF4hiS0MEeyU97wYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1269,
+   "completion_tokens": 299,
+   "total_tokens": 1568,
+   "cost": 0.011056,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011056,
+    "upstream_inference_prompt_cost": 0.005076,
+    "upstream_inference_completions_cost": 0.00598
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 59,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 21.399
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"UFH actuators\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678321-sxWXxAQcK4TmaxrnTAJY",
+  "object": "chat.completion",
+  "created": 1790678321,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm checking whether replacing thermal actuators on the underfloor heating manifold falls under Schedule 4's provisions for replacing non-combustion parts of a heating system.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether replacing thermal actuators on the underfloor heating manifold falls under Schedule 4's provisions for replacing non-combustion parts of a heating system.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSlwsKEAgSGAI4AUIIdGhpbmtpbmcSDJn3gFj/2X/0ozSRQRoMPHOzqqijjB8ECsq9IjBavdNvhAXARXt9NsVG9euZ7mh12wQLoA75tZKHDnOEoIud1tm5rngWBRpILDgsTSAqtArPYaOWgMKOhlzIX7lr96hVQ/iXfT/1zREsslsn08fsdvyuxxG+LluYTAgNdAwXAPzWK8OeUEXAUtsCG7S5sBZgC7HUEhYZn5d6JK2xRvFde1RgKUjJgHSB/AScgOwPiDLC5hTsnwOyFeS6QWdxPPg0xu/Da1MNsExlOffnR0j+bTZCYGY3brQhFqPbi1DFzVwufVIF0ZCC9TsZsCvwTXpeQZfI40eQYQPAsDf2SEGxdTjNd17sK2fQyf/Ih6sKKrdO2aiZnsProu4OOlB5yU7EQh5FBxwpizhHGG0r29tQ2Aqd0BIFjXsrTHZZckcg2QKQCnTykWsU8gOsVfvHI8na6VbpZ/gQUjwNCoKnv/B/5ivTM5Hs3VxsMuidTU1aCOIHhEkZD5ULz4rTA6eK2/tbWear2Yj14bUBpYmtWC8c4Fe+ZacNFGyNsS7nlz1AfTjJ3SjyAeXaB6/gD03do/8YE3YuGLfDWjT7FduqCnPlWCuNC3NLdMKWp24VbJCpfgJY7GPpC6Hp9QAZp3Wft0PCoqwpB9jRaWuFgyQQjHsG7jANygM+gLrgLD1ZyfuKO2yGOQu/qdBcff3vjjD8nMRZndwz3jlPZCM5COMUcP5J5ySwCwAYabfW+r0OXpXt5i/ClmWknWQfBf8npFMdzvDvbkMdD7KsXIVqbduP7s2l2zI4mSMhxyigxo2+CHWvrkx7KUd9hOvNg2TZa1+zjaoYx/ru+7Pb55dyue6CoWrNQDLAnhNz9CSp+tkAm9o8N4JKyxAnLkR2WCkJM4PN4ViNVNjHhvkDXiQg7XRID2Uy3gRIgMp1hqfKZN5LopC4cofS5c36DYPbAOq0RfGA4yEdMpZLzRsi3ZyVAnnNJUdk9RY55VDUl2QBDyvzNyggAfrhm11dlHDfTt2FcUPE0PeWv+QxTAa2zTxlKM33IZc5tt3OCFgyKp9pwhXSY2QAmv1umINkeBHbIkee69hxQ+MeZO337q775tEdvRwPRQrBecv0dMgyqLCTDEmK5Yfd0CXyYlF5tsW10MQBNYWi9ghJ5PVH1uD+SuAlGR3eOnG+IrKPkx1rnvxUBsjpO+prFoxhPUcQek5c5eBqRXdch9VhqyYBKM2OpLRPvLfJHYwf+/8FXnRXhytZivv+rgN/Vqr3xsKUGCQF3nFrLCx6/6Bq2R9NHeEe52qXgRCHB0lRBBWrM/VPBN1gZNXBzrCnYOtNi0Xs0yPc1OLkpfdjsCs4q21C5CD8yqnpxvBMF7SKdGHM9EL1ZqnEIYjO/8Ad4hvlNNi0y6bEGmZIZNBzhOdIUy9u7kCwoRxoz13aXAmeCuzu68phfCo4YJhuxlUHtMmGO0UZZeg0YhA52EIKkP82V+Yw0mCV0FMDfJzgtguZsresWCVeAQSMACg/XS01vAd4y6t/kFCS1+LwWY8ARuHbJnriP1NNMq6h08GAS5SNGPoxaR+ITMWCmjOy1uRgj3QiR09ltW8LiuBpQFLWzQjGDE1D5nWKa2MgUiZw0moNAeOrjHLvs0PxmdIbu4ALUdYXbs1kKqbzjrImhfQlekUW8ZOLhWGlQetLTfv5v/96sK0zEtHa51kZogHnDKZwMzM37CoRanCCaPYyhfrl5MoQpLNvdxCu+lr2IGAiaWPbw0Vk/uacp9TKCAZ6ZvNLgDuVjdBIiYPGlyCc5sNdGZ1hg9NyCPFyxPBUQvQZYtt9NFYfJ+Toypb4/ekDz4VviXqbiUJlSGjIOM8aWT1Y7pan5DRCFxHOLS+iopHOUUsMqEactXQYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 503,
+   "completion_tokens": 300,
+   "total_tokens": 803,
+   "cost": 0.008012,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008012,
+    "upstream_inference_prompt_cost": 0.002012,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.724
+}

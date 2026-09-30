@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Knocking through the wall between kitchen and dining room with a steel beam\", \"project\": \"Terraced house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 1 B3\", \"document\": \"BR2010\", \"text\": \"Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952.\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"Sch 1 E2\", \"document\": \"BR2010\", \"text\": \"Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677741-X957Kc7HSssvtNUvXdfz",
+  "object": "chat.completion",
+  "created": 1790677741,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Opening up a wall with a steel beam implies the wall is load-bearing. Removing it is a material alteration affecting structure (Part A1). It also affects fire resistance and stability (B3), which is not listed in the clauses above but is well established.\n\n- **Not Schedule 3:** Schedule 3 lists no structural alteration of this kind, so a competent person cannot self-certify it.\n- **Not Schedule 4:** it is not exempt work, so a notice is needed.\n- **Full",
+     "refusal": null,
+     "reasoning": "Removing this load-bearing wall and inserting a steel beam counts as a material structural alteration, and since it's a terraced dwelling, competent person schemes and FSO exemptions don't apply here. This means it likely needs a building notice or full plans submission rather than a simplified route, since the steel beam confirms the wall is load-bearing.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Removing this load-bearing wall and inserting a steel beam counts as a material structural alteration, and since it's a terraced dwelling, competent person schemes and FSO exemptions don't apply here. This means it likely needs a building notice or full plans submission rather than a simplified route, since the steel beam confirms the wall is load-bearing.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxQcKEAgSGAI4AUIIdGhpbmtpbmcSDIkWZ2bFdZiMNcqvnRoMp+RouNGZcaIZW0U1IjBZrWQ8iPK3XlKIePGJE0NcDc5I7sZVZTZ44svGiuiqjBgX1xfvTa1/TApx+a4zHeoq4gZhko4PeObZdJzpSpdNGz7AoMflTKHYbMsnL795TinlOOP+Lcbe9dMhvi1oltNIB7qHiMLimW85bQkqXUOCdUXHM5SoRfCotgndZgcRxsHlBPyoO7/mtzxN196i5vCJEbchC1n375aR1/I3g++yeGe4vU37c4qgI25Zh0p1F41uIVQe2P25+it9BADLHnfLFJAjJI+oWWHAka5k6OWoQXK7wt3+dd1ycwUmw1d6bQSUsCctEtjJmyT+vczRg/OUiZuoqA/JOzDQ2US8lt7gVFf89eYDSKnxRh4bT5NGcn2lNfKB0B1TqvbhQB5rvAbyhl/hqhP2EIcPPqOpxSBWnGLuM9HMoJuAVKgWsHRN1YO+atyfEz3Ozulm3iadscCs0FjCG+rCp9kGVGyvTSeKXjxizXvc2FrKx42npecTzKYzOyyTm8RZ4Paa7JfATdcZQ3c6S+Qbq4Pq4U2Fxbpl+i4EVwXUHSiYJEecZeAiHjjD+dQKn5bCqXkO7VTRxogFPZ3eie4vG+j2Zj7jpBJNpSVcH8sMSoMW0k0jHZHgsDANB3z7WDlI/Cjfh418uKL6eLKTh67exLxEN/qqCeP7qXF1MdKRCO/XrkqpJsCBA9xi8zj+90vMK9oiF4EivdrdAHhBQiZB6JHQOTcJavaejubF6aChiFwFUON2NKMSztPUjpnQp62Jl+kgIfShusRAtCiZUI7jBqdAcWIJPBtLuK/HNGdtEboNMthOjzRswimgNVuh4Wbbbt53uHvT9LfxWLb/GZKNWs8x0YQeUtTi/4yLiE0JirUfa2GGlJdxdnOicK28bMNNmnA/gfBQVEDHKjqiqGyAQbKFHTiEInusZnmde3uMB2f+64uHnNPmiHaD9JSOlJWfu6tdITPUWsybws6SkjBSQTNlMnCtv+zG+a8t/oSKd8uI+qYlP33J2ZMURZvNLNCCg2asiYxy/+YeVGovaMVa/gD70rjUKyo4KfoJq+HQKL897v3heJUgg25dhPfpsDBXvL4z8Wyoj+5C3xW71hBw1OCtvST3kzK8CtvqFai4G3FXQkppNwltmvJSkYWKtfCJln2RWUxgMqCbXPqA4EMX68t2i3XiiELm56iTXqjzas1HylcQhbzSdZ6C2ujEJeW767JAF0MDnWV9ldZ+OBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1258,
+   "completion_tokens": 300,
+   "total_tokens": 1558,
+   "cost": 0.011032,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011032,
+    "upstream_inference_prompt_cost": 0.005032,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 141,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 15.245
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace an oil-fired boiler\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 2\", \"document\": \"BR2010\", \"text\": \"2. Installation of—(a) an oil-fired combustion appliance; or(b) oil storage tanks and the pipes connecting them to combustion appliances. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, ... or NAPIT Registration Limited, Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 3 para 4\", \"document\": \"BR2010\", \"text\": \"4. Installation of a heating or hot water system, or its associated controls. | A person, or an employee of a person, who is a member of a class of persons approved in accordance with regulation 3 of the Gas Safety (Installation and Use) Regulations 1998, or a person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 3 para 8\", \"document\": \"BR2010\", \"text\": \"8. Installation of fixed low or extra-low voltage electrical installations in dwellings. | A person registered in respect of that type of work by ... ... Blue Flame Certification Limited ..., Certsure LLP, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677901-kTCExqFQquOlLGfvA33n",
+  "object": "chat.completion",
+  "created": 1790677901,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.93, \"building_notice_or_full_plans\": 0.04, \"not_notifiable\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "For replacing an oil-fired boiler, Schedule 3 paragraph 2 applies, requiring use of an OFTEC competent person scheme.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "For replacing an oil-fired boiler, Schedule 3 paragraph 2 applies, requiring use of an OFTEC competent person scheme.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSggUKEAgSGAI4AUIIdGhpbmtpbmcSDA2jwaCS08qX+y8yIRoMpEwEj8mmX7ynb41OIjA5AvV+xI2R/HPdKxhIS//KvEc5MJCOuKwpCI7haHt7yvSMoP3273BGq6I59bGz8hIqnwQVnuEiYvM4qjdLQGc1rUO54bj6hK5IrKB9Hiky2iRUDs7ixO+1Zz1rN0qlPZQybwbfH/DizDlweaYNu8yO9JZ+3VZZ6hg52qTdNCXu8up8aa16ayvwa44V7PwfpgFBR/c7RQJC0SJh7KA5MQeX9fc/L+otSy4B6UmFNrVd5wZX9frR60ZRZYCRqEk+GmjYom2ERY9LwhTZ/iC+IqmqPhtKR64CJuLinFi84z2sIxytO3blJMBqBVSYjxFMY0Lqiq1ggvyX2WL+pq2E+8pvv4KMGPfJhbJClXxERLHzfmHXF09bjOVA1K2qIepIZCMkcz6Dc18RL1PGuyIOxXmYLr8ce09Dvbt3KUpFWq0HH+PH/DUNeXTIcqWWs0nrV5VteeXZqsRyFCy2CDQboNj1KIlMmpn/NUGAamfjewNVK+yHIzyTPF77ZlW+1Mq9vCXUbEuPLd3Ns2sOuuU6VJNOFw7KKAnEsu/V6WRb0VOT3/ocNF3+ewvgU4JJhLmqQSCWMS+mus8yozWvQlta+EdZtl2ktQPr2sJwb8aK1Wuyjv5knX8//wKbAZmHM2+/RH9nvhpjxGQJbavlXfVe5xr+4S4RaD3YnnqvUlUy2E+xTkWV2xGM07zSff/rBOzveMVKBR74uwX7nUsgipEilHTa5HMV/7k15grE9r2zNutSDd7rfLLa5yPykRcjjUb+AofcK57iS43mReRNJZ/e0xEyDzUYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1043,
+   "completion_tokens": 131,
+   "total_tokens": 1174,
+   "cost": 0.006792,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006792,
+    "upstream_inference_prompt_cost": 0.004172,
+    "upstream_inference_completions_cost": 0.00262
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 48,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.546
+}

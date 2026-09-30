@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Heating/cooling pipe <=18 mm\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"Sch 1 L1\", \"document\": \"BR2010\", \"text\": \"Conservation of fuel and power: L1. Reasonable provision shall be made for the conservation of fuel and power in buildings by—(a) limiting heat gains and losses—(i) through thermal elements and other parts of the building fabric; and(ii) from pipes, ducts and vessels used for space heating, space cooling and hot water services;(b) providing fixed building services which—(i) are energy efficient to a reasonable standard;(ii) have effective controls; and(iii) are commissioned by testing and adjusting as necessary to ensure they use no more fuel and power than is reasonable in the circumstances.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677404-UzIWBdXsLdP521RbWNZ6",
+  "object": "chat.completion",
+  "created": 1790677404,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether Schedule 4 of the Building Regulations exempts small heating pipe work from notification, thinking through the specific paragraphs about replacing fixed building services and pipework.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether Schedule 4 of the Building Regulations exempts small heating pipe work from notification, thinking through the specific paragraphs about replacing fixed building services and pipework.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShgoKEAgSGAI4AUIIdGhpbmtpbmcSDOZlisrw1BvvW18AMBoMy7c/P5NCdZy6R2FbIjDuQiI3xivGHvcWSpjSetSHEXUk79k05VTpAbJ2r60/prfLih3wNWdi/pkYpt7j59YqowlK0Pvj1BcXK2EsArTcffquWFa/zJsu0RLJ1BYvihSwEoUwoWOw/WxLYfBBsMviDoHITIsoJS6HC9OcedsibpFrtN6MGRZuue9QrlwfQVrwSuHSQQGCsR9JoCcjsT+EmN1gzd5O7kGQTBHG0J6+ayM5oRY01MUagYFkJjat0+GPJTD8s141wzDfKFLz8Bj4y/CzbaKFg4vZtB3Vp+vNPZ54am/ORVIj8rEkLv9Vt8MBj2ZgYQ8/q2z6Y4VGXCUy3aQ091ys76OhTBQLQQZgcHe9rZ6la9r2bz7ikhS1sL9qUjRVlPUJMvLA0VYpF3Oorjzr47usj51mF4AYZ6dDhR3Y+Cb2ik0oZS5WGRNY5hWBWy8hbWKGKCM8Y6tuqUI6ZeZY6RTNjWfiENhOa9zKLSrGmGg5/6rYN7euvmB+aqMp5iFadiNGGYTVXgx1df6FangrtF4F1cNGlYWtTjWIdZa1yvOUZMKanHcKsN3Cju1Ykx0MaZyA+Yx/gEskj7C0qWPw53DLJeVLcEKtoRUt2riK/9XFFRFGzoS2r+BrXadr65RDp7Q+UTtpKHJavzeIUjEDPUunNUMnsF1lhYFvnN4o1+JjC2e836ZfOhhNChA9TlETgL6XUtOJfJ0MXqnjZ5/UjXmmJbs8OsO0t0qsnynVNQgjb9f1AzIKwF6VfuE2NbmW8rUDqXJ+xAbBrZ2JqyAi6xcWCV2wLPv5OT+HtsqtvIG145BDjXZof6ljwLz2fKUsccrA5/2we8DhJQHOJ/QK16ASYLgxlLN/I+ZLXHISK8RQnha7OnAZ74V+81a3jjABI8YKTdsi6QgpQu+W+fD6zDrQpm64jYrkZbFEpbUKKEKTONXltLSys977vekWkhZfDHF3HMrQcfpncWefUK8TLDo06eWqgnxiicJSz1ZMFjlC4ccwKMs+/D4/VTz7d+kuZoLvXiPyJ1zBfjljxM6Gj+SOMjL2bIKs1JiFAswFyGOObpHhM0b0Is/QgP03xdTZWbNVfv8OLJFqzY1Mfw6s2f+BuiKxERYlPBt+5aDlAQkwlHPxc780QwNCbn2VNMtJuvYQKwAUqLPNC50Vdo+I80sCCATzNW8Y1AwF0qo0rcCHJlnRYq4XL6UApsZ2cIIBG4r+Ud9kCFRcCVDyqsFaxZDARqOD3bIaZqRRJXsk2cGfZFNSRTtl/fyDER54QB9UEIkeLZTCnVcCMhakuFlPqgh97xVIjdz/XBAmmNNwe1PFPd43vOWcbY+xsk2YZ2WV/LUVNrisyFarsp8OTreKFTWI+/pdBfmEfuvOfOB9lT8XOlmkNGVSh7S+r5jNffbpAvnTf1DXXSMIVLJ9vh0ajyWnsVwP1MldF3vHr24QslaVFo0pRcrbuoL8YnHFJFZ/HjzWr9oZmxh7ikayVL0RMSgEO4rM6zTipgF2HuD7HQ92zusdiEytzgzquuQGpgIQWG03HRfeh/Iur/pnCKgguQaDXKssKCOoZ5+mZ3DeaY1yQ7qWh0CAL05smjL7h6PYQw7VfRE86Wad9U1+me2Ikm8DnnjojDi2DAjAMjREyztUfNXmFRLXSPRTmYy37RmiuxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1237,
+   "completion_tokens": 300,
+   "total_tokens": 1537,
+   "cost": 0.010948,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010948,
+    "upstream_inference_prompt_cost": 0.004948,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.378
+}

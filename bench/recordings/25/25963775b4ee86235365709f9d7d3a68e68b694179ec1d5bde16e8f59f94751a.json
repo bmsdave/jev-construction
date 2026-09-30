@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Lay mineral wool loft insulation between and over ceiling joists (insulation only)",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 4 para 1(m)",
+     "document": "BR2010",
+     "text": "Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations."
+    },
+    {
+     "ref": "para 3.9",
+     "document": "ADF1-2021",
+     "text": "3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …"
+    },
+    {
+     "ref": "para 0.16",
+     "document": "ADL1-2021",
+     "text": "0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "not_notifiable",
+    "probabilities": {
+     "full_plans_required": 0,
+     "building_notice_or_full_plans": 0.02,
+     "not_notifiable": 0.94,
+     "competent_person_scheme": 0.04
+    },
+    "confidence": 0.92
+   }
+  },
+  "usage": {
+   "input_tokens": 1329,
+   "output_tokens": 63,
+   "cost": 5.5818e-05
+  },
+  "id": "gen-dec-1790677186-hDke7nTZBxIrggqAw6OT",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.883
+}

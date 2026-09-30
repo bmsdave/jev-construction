@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rear awning\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678524-VX5ALNDwtV09utij1EXh",
+  "object": "chat.completion",
+  "created": 1790678524,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.8, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.14, \"full_plans_required\": 0.04}}",
+     "refusal": null,
+     "reasoning": "I'm checking whether a rear awning counts as building work under exempt classes like carports or covered ways—since it's just a retractable fabric attachment rather than an actual structure, it likely falls outside notifiable work and probably qualifies as not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether a rear awning counts as building work under exempt classes like carports or covered ways—since it's just a retractable fabric attachment rather than an actual structure, it likely falls outside notifiable work and probably qualifies as not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5wgKEAgSGAI4AUIIdGhpbmtpbmcSDHUq/YzU4llG7HCMUxoMFuH/99HsjsM6B4hYIjA4DUfCRPYqZwLMPSjmAQbNK3s3hFNkj4cvxqMbKSvXlPGs2KgQhp5nG6BQAguSDYoqhAhuhklwPpuqYjnWq8YUz3KUCWR5F86zczXlsFTaxZ5d8FfBrIPoW7Mvbl0/nbE4bKi3kXh4lfnKKKYpgRRb9JvUcamN5rxJhQiyvCuQeeltvVhqymaKStaIe+s+gxYKv+7+iMPG3WYwj1fp0urSmYER/4/vHBelByq+nh77ZNfRI2iEYDSFsNQGusvZePNz1Q0H4U6SzgzmCWYZW+OyRGTKQY/z03GVoQ9cdhyOc5/P7iGDGgghISVOVIeEVfVjNIfLk4kQB3b0QvZgEOnGkZ1AG/EXHMaOjhE1ZBxoP520uaJne9TjDjBIqJJyGRAeCZNlBLunjvpQOJyzAcO8x0OVHhF4wO8IrkPja538eQkTlQogfcfPQmBS+8kNaBurHjNKc2i/a5POML+a6Iwimb/7nnMBqmDJgTZMNLNHQwD6/nkfXKtd+DkHVXM0yB7hdszY/qcgx4kJamw8W+/S83UFYO3JakVSnf++bIVqTAYcCYfrlu1t5zZxYFTv5h4Gh8LYXTtoJXfW3I5ciZcvKL/iC8EsunsAjliZk2/2KTMbhYp1+T2bcNUiuYjb8Iq18es80zpoZPu2QYFudwBaDDYA+Ikl0aSCRf/6bpb4OdEHZD+c9dzHPdHwbutQwl03MwlS5PPVzqTTi9AmMKan9N/jYENeG2sVJhoM99VIMnbKbGhNgnjl9UxB5vVFjvbwBVwohsCG8Zfw3y1o5u2qSkDn76mhDXmrgeHkp4dzpUXwdZ/PHFcxTvIIpq6bQEhc7qxI4wvndEIBcwGfe+K4KNo1O8HFtc1+xgJTwVEh6xeg+QW+Cw7Hn4M+3OqO3lSiIqe9PG2usthozcXIFm+QQ/w8KmYm2pvTEXK8p718zeLti6RjLV/f+BEah5fpyIBGiyx7B/infkpSbDV+cZkYKFQ6JObTUEDdApwLPEUg0wb4HTZZCFOVyGsIMUGcxM3ew/ABv0wAH1TA76n16Pst0lwgL7ukL0rmUDwiBgeXbTE76SAoXDI1190opI6VvrCM9jewnlGj1A7KCyrhvRB/XyIpKOKNpzl+JW6dNvRw7sl7lX++bQGxy8he/C9acKsjBBqwAYHrubnaOtN39nzpLCHTnHk0pCoU8FgeS6HJy4kZEnRNBQf2jX6VX3nFVnclrUCYKjaObVOnvDHNFHYzYELqDRO/sOXpgnydgkL66B6U7UToxF0GdAvwM7oAo1DEYQMeQynf4FTk2Yz1MtgveRhs0QQ9bSMfbMgLXiDXpxe/rNyil+KBK9O8nuDnAEKhT+tKEKQZB8zGOK/36NmXjLTJL0rC8Z5Y9UddfzsG/pzympS4KQm6bqS3fvGpRtPsf1Rhct7EIXeQAA+0qvydaqOcZm2fEBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 488,
+   "completion_tokens": 280,
+   "total_tokens": 768,
+   "cost": 0.007552,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007552,
+    "upstream_inference_prompt_cost": 0.001952,
+    "upstream_inference_completions_cost": 0.0056
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 199,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.922
+}

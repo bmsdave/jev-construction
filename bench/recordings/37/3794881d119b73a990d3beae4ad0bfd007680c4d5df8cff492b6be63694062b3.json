@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Fit solar PV panels on the roof",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    {
+     "ref": "Sch 3 para 16",
+     "document": "BR2010",
+     "text": "16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited."
+    },
+    {
+     "ref": "reg 2(6)",
+     "document": "BR2010",
+     "text": "(6) In these Regulations— (a) any reference to an “external wall” of a building includes a reference to— (i) anything located within any space forming part of the wall; (ii) any decoration or other finish applied to any external (but not internal) surface forming part of the wall; (iii) any windows and doors in the wall; and (iv) any part of a roof pitched at an angle of more than 70 degrees to the horizontal if that part of the roof adjoins a space within the building to which persons have access, but not access only for the purpose of carrying out repairs or maintenance; ... (b) “relevant metal composite material” means any panel or sheet, having a thickness of no more than 10mm, which is comprised of a number of layers— (i) two or more of which are made of metal, alloy or metal compound; and (ii) one or more of which is substantial and is made of a material having a gross calorific value of more than 35 MJ/kg when tested in accordance with BS EN ISO 1716:2018 entitled “Reaction to fire tests for products – Determination of the gross heat of combustion (calorific value)” (ISBN 978 0 580 93554 1) published by the British Standards Institution on 31st July 2018;and for these purposes a substantial layer is one which is at least 1mm thick or has a mass per unit area of at least 1kg per m²; (c) “specified attachment” means— (i) a balcony attached to an external wall; (ii) a solar shading device (excluding a solar shading device attached to the wall at a height of no more than 4.5 metres above ground level); or (iii) a solar panel attached to an external wall; and (d) “solar shading device” means a device attached to the external surface of an external wall for reducing heat gain within a building by shading or deflecting sunlight. (b) “reaction to fire classification” means BS EN 13501-1:2018 entitled “Fire classification of construction products and building elements. Classification using data from reaction to fire tests.” published by the British Standards Institution in 2019; (c) “relevant metal composite material” means any panel or sheet, having a thickness of no more than 10mm, which is comprised of a number of layers— (i) two or more of which are made of metal, alloy or metal compound; and (ii) one or more of which is substantial and is made of a material having a gross calorific value of more than 35 MJ/kg when tested in accordance with BS EN ISO 1716:2018 entitled “Reaction to fire tests for products – Determination of the gross heat of combustion (calorific value)” published by the British Standards Institution in 2018;and for these purposes a substantial layer is one which is at least 1mm thick or has a mass per unit area of at least 1kg per m²; (d) “specified attachment” means— (i) a balcony attached to an external wall; (ii) a solar shading device (excluding a solar shading device attached to the wall at a height of no more than 4.5 metres above ground level); or (iii) a solar panel attached to an external wall; and (e) “solar shading device” means a device attached to the external surface of an external wall for reducing heat gain within a building by shading or deflecting sunlight."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person_scheme",
+    "probabilities": {
+     "full_plans_required": 0,
+     "building_notice_or_full_plans": 0.37,
+     "competent_person_scheme": 0.46,
+     "not_notifiable": 0.17
+    },
+    "confidence": 0.29
+   }
+  },
+  "usage": {
+   "input_tokens": 1693,
+   "output_tokens": 64,
+   "cost": 7.1106e-05
+  },
+  "id": "gen-dec-1790676126-oHZKhNk51mZihH5Xf0QW",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.452
+}

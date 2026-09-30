@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New dwellings on an unadopted estate road",
+   "project": "Housing development in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 1.11",
+     "document": "ADA2013",
+     "text": "1.11 There may be known or recorded conditions of ground instability, such as that arising from landslides, disused mines or unstable strata which, if ignored, can have a devastating effect on the safety of a building and its environs. Such conditions should be taken into account in the design of the building and its foundations. Attention is drawn to DOE Planning Policy Guidance Note 14 Development on unstable land (obtainable from The Stationery Office), which sets out the broad planning and technical issues relating to development on unstable land. Catalytic Data Ltd, The Spinney, 19 Woodlands Road, Bickley, Kent BRI 2AD. The reports from these reviews, which include 1:250,000 scale maps showing the distribution of the physical constraints, are available from the following organisations: Arup Geotechnics, 1991. Review of mining instability in Great Britain. Obtainable from Arup Geotechnics, Bede House, All Saints, Newcastle-upon-Tyne NE1 2EB. Applied Geology Ltd, 1994. Review of instability due to natural underground cavities in Great Britain. Obtainable from Kennedy & Donkin Ltd, 14 Calthorpe Road, Edgbaston, Birmingham B15 1TH. Wimpey Environmental Ltd, and National House Building Council, 1995. Foundation conditions in Great Britain, a guide for planners and developers. Obtainable from ESNR International Ltd, 16 Frogmore Road, Hemel Hempstead, Hertfordshire HP3 9RW. Existing buildings"
+    },
+    "c2": {
+     "ref": "para 0.11",
+     "document": "ADB1-2019",
+     "text": "0.11 While many of the provisions in this approved document for means of escape from flats are applicable to sheltered housing, the nature of the occupancy may necessitate some additional fire protection measures. The extent of such measures will depend on the form of the development. For example, a group of specially adapted bungalows or two storey flats, with few communal facilities, will not need to be treated differently from other single storey or two storey dwellinghouses or flats. Fire safety engineering"
+    },
+    "c3": {
+     "ref": "para 0.13",
+     "document": "ADF1-2021",
+     "text": "0.13 When constructing a dwelling as part of a larger building that contains other types of accommodation, sometimes called a mixed-use development, refer to the two volumes of a. For guidance on each individual dwelling, use this approved document: Approved Document F, Volume 1: Dwellings. b. For guidance on the non-dwelling parts of the building, such as shared communal rooms and commercial or retail space, use Approved Document F, Volume 2: Buildings other than dwellings. Selected key interactions with other parts of the Building Regulations"
+    },
+    "c4": {
+     "ref": "para 0.18",
+     "document": "ADL1-2021",
+     "text": "0.18 When constructing a dwelling as part of a larger building that contains other types of accommodation, sometimes called a mixed-use development, refer to the two volumes of a. For guidance on each individual dwelling, use this approved document, Approved Document L, Volume 1: Dwellings. b. For guidance on the non-dwelling parts of the building, such as heated common areas and any commercial or retail space, use Approved Document L, Volume 2: Buildings other than dwellings. Selected key interactions with other parts of the Building Regulations"
+    },
+    "c5": {
+     "ref": "para 1.4",
+     "document": "ADP2013",
+     "text": "1.4 Wall-mounted socket-outlets, switches and consumer units in new dwellings should be easy to reach, in accordance with Part M of the Building Regulations (Access to and use of buildings). NOTE: Approved Document M recommends that in new dwellings only, switches and socketoutlets for lighting and other equipment should be between 450mm and 1200mm from finished floor level. Approved Document M does not recommend a height for new consumer units. However, one way of complying with Part M in new dwellings is to mount consumer units so that the switches are between 1350mm and 1450mm above floor level. At this height, the consumer unit is out of reach of young children yet accessible to other people when standing or sitting. New dwellings formed by a change of use"
+    },
+    "c6": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c7": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c8": {
+     "ref": "para 0.6",
+     "document": "ADL1-2021",
+     "text": "0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings"
+    },
+    "c9": {
+     "ref": "para 10.1",
+     "document": "ADL1-2021",
+     "text": "10.1 This section provides guidance for new elements in existing dwellings, including all the following types of work. a. Providing a new thermal element in an existing dwelling – follow paragraph 10.1. b. Providing a replacement thermal element in an existing dwelling – follow paragraph 10.2. c. Replacing windows, doors or rooflights (controlled fittings) in an existing dwelling – follow paragraphs 10.3 to 10.6. d. Extending an existing dwelling – follow paragraphs 10.7 to 10.11. e. Adding a conservatory or porch to an existing dwelling – follow paragraphs 10.12 and 10.13. NOTE: Guidance for renovating elements in existing dwellings is given in Section 11. New and replacement fabric elements"
+    },
+    "c10": {
+     "ref": "para 0.7",
+     "document": "ADF1-2021",
+     "text": "0.7 New extensions to historic and traditional dwellings should comply with all ventilation standards in this approved document unless there is a need to match the external appearance or character of the extension to that of the host building."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.04
+   }
+  },
+  "usage": {
+   "input_tokens": 2985,
+   "output_tokens": 175,
+   "cost": 0.00012537
+  },
+  "id": "gen-dec-1790677231-6GViQ0FtfUnsdqSPTg1G",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.308
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a barn into offices\", \"project\": \"Agricultural building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678594-WyMeO5HI1p9F7hNhbGh2",
+  "object": "chat.completion",
+  "created": 1790678594,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether converting a barn to offices counts as a material change of use under Building Regulations reg 5, since an agricultural building exempt under Schedule 2 Class 3 would lose that exemption once used as offices, potentially triggering reg 5(f).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether converting a barn to offices counts as a material change of use under Building Regulations reg 5, since an agricultural building exempt under Schedule 2 Class 3 would lose that exemption once used as offices, potentially triggering reg 5(f).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7woKEAgSGAI4AUIIdGhpbmtpbmcSDGyrnMUJVORnqjjV8xoM8F6YmnRnlqjs0jHbIjAbxA16NHH1bIhLOFrLUnTQ7xiRW8LSF9VO6rYQy6VrehUCWOcoSVfkGsspmdH8jVIqjArcVkC0pI1TO9pZBk7BauWN5oUOfpE/49IQlFNOqrXEWecsm0vdM6xV6buNSJzRsEONxPkppQgJnJIuQCYD5/2DP2VcaIuDHYJRW6SfJ6zR4oLH77unWxPR9wVAFKdFy9NjVBdvfnwDQAW4nSBBfC92UJM0IYiuP6CRx71VJpgz/5qd9UvAdayn81azAwZT0MeS3G1tPBVNsS1dzVOK5lk0axaswp7e8BTY6uSm/Qv3tQsNpJbvIGKqZjqTwcwBT0l5InIvyz/Wh405JY+Z7RoZM+YmIdDk+wpwUbiCaVoiBpWQ0148pYwRah9OdjzMiN7fasApoLhkeDAorFM7Obcj0ZSCg8NWwnYg7C5yx6J6B/501KVxQEsSQ0uG3aqwrGwDBbKiH/Wqa88hciKe0VBjzB3SjQZc5Zgvs3itQsxYh0UtJ/hzt/RBhB0zwWhXYqYofT13VF9tHX5fC8IO6x555Gf7Dw4lwuG0TIq73Vb26iudjfXagt9wlVNxokNxNrmALDbsP+Hu8s4IqP+PwWujFeLyKJN56TqDv5Ti8pra4JQdpNltuX+44EL2Y3HNdU5I+0LXnRSDFjiQBBKgS8aHCjk5WB1+h12gkoYM8BrVR7AQxHWLfjAK5H+5ZI9x44m0msf2N1UR6HpgAThEGad0uJTZ3z01f8NwZITbNdZ8XwAKC9C6+YhD5xwpSo5TeDu5Ief9TGybzxvAXjyKL10guDAsNCSFFrFahGkGhYHrgqGt2LX4DX0uJWamdOf3MYXDeCW+V3Lq2XziWRWB9JyyQExPUjClFwDmz7fJUsCzl8Hc4YsnXq+EjejD4uT1xsrRZUA6qdClt634njxllwejPKKINlImBTxkUNU6Oe4jx6iHNPH/oaCzjB16yJ32S9+3OV+hRUu1xu1lVlA+vJ0ijX8JJFvcSOaQDES3hB2VOtNr8g4bctHfl090DsFzlwk3wJ5dpLb76+v2EPYvySPaTkIaTj2iHK8hMAmxuVpkL5BUUPJhncsQV/R7Df5meGSlHwV5riT26UbtuNwJ1fHAv5gW6CmEtID6Qs2qn1TjSgJuzW4AsQTsn0PDgJqSkN6f04NJ/Oa5WYLni7uuxwzWFMGeYFhs1M40hFe/D8UbPiAe+lvGtvFTeCSGihVuFubCV1MavnN+CAGKGeVXwAq+Iv+N5oTgBsXZP/fc/vR3QUgbWVI52pjI6whjqPtSzEMg7btEgLijYkudiOypshM+yhMLr/extct2dVIWGOx/39aKY7ndg27PDSQ3qwA8Jn46xbclObv0MfwH2B+rytM5PoPxhDQjsnxVUuqEnxWwel9Kvys7ejrI+yjra9WrX+Z7y8M3vGpl0fuE7Wc8exCENHLph1KlWOzpTND8WBEV4bRiCeIpqUJpBI7P9kD7suA2KgUs11NWThI2erK+doSkp6xZFp4/P9mlA7EJiB+7M56UJJEckPi7KX81X04NPvhf6pLr8n/1IBX/h4nKKdB3xkcT/uje30GF6OkSmtF1qY/DblEZfcaQarLn5lAh8JN2bS9i5yIKvHfSJBLoqr4C9aCI2t7Z/dtAge+1ucfSuLAr1XVzRUSDYNHErHs5S7mDrvJkT4Np2Ik2UingBSA2u8hYxCXaBtFgC0PlgaFjUTU8mWF9zfNQa0thME4iW5W5J+otYjlvzS3HYWEFALTBFsfKEnDBhxyrCHVqxPnT2j7Y0tFOZwwCZ4pXTBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 460,
+   "completion_tokens": 300,
+   "total_tokens": 760,
+   "cost": 0.00784,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00784,
+    "upstream_inference_prompt_cost": 0.00184,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.414
+}

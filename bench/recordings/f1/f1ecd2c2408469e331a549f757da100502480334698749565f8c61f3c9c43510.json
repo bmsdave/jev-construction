@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Remove external doors between house and existing conservatory to open plan",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 2 Part 7",
+     "document": "BR2010",
+     "text": "The extension of a building by the addition at ground level of— (a) a conservatory, porch, covered yard or covered way; or (b) a carport open on at least two sides;"
+    },
+    {
+     "ref": "reg 2(3)",
+     "document": "BR2010",
+     "text": "(3) In these Regulations “thermal element” means a wall, floor or roof (but does not include windows, doors, roof windows or roof-lights) which separates a thermally conditioned part of the building (“the conditioned space”) from— (a) the external environment (including the ground); or (b) in the case of floors and walls, another part of the building which is— (i) unconditioned; (ii) an extension falling within class 7 of Schedule 2; or (iii) where this paragraph applies, conditioned to a different temperature,and includes all parts of the element between the surface bounding the conditioned space and the external environment or other part of the building as the case may be."
+    },
+    {
+     "ref": "para 0.6",
+     "document": "ADL1-2021",
+     "text": "0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "not_notifiable": 0.12,
+     "competent_person_scheme": 0.34,
+     "building_notice_or_full_plans": 0.54,
+     "full_plans_required": 0
+    },
+    "confidence": 0.38
+   }
+  },
+  "usage": {
+   "input_tokens": 1084,
+   "output_tokens": 65,
+   "cost": 4.5528e-05
+  },
+  "id": "gen-dec-1790677204-ImOeimNV8UeX2Cl8dyke",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.271
+}

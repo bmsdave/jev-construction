@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Isolators / fused spurs\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}, {\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677538-wFUwfzLi4ckai3rI4Z7U",
+  "object": "chat.completion",
+  "created": 1790677538,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Fitting isolators or fused spurs on its own is most likely **not notifiable**.\n\n- **Schedule 4, para 2(2)(c)(ii):** adding fused spurs to an existing ring or radial circuit is non-notifiable work.\n- **Isolators:** these are treated the same way when added to an existing circuit.\n- **Conditions:** this holds only if the work is not in a kitchen or special location (such as a bathroom) and does not involve a special installation.\n- **ADP 2013 ",
+     "refusal": null,
+     "reasoning": "Adding fused spurs to an existing circuit outside a kitchen or special location is Schedule 4 non-notifiable work, though it's unclear whether this falls in a special location here. Given Part P applies mainly to notifiable work, I'll default to treating this as not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Adding fused spurs to an existing circuit outside a kitchen or special location is Schedule 4 non-notifiable work, though it's unclear whether this falls in a special location here. Given Part P applies mainly to notifiable work, I'll default to treating this as not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrwcKEAgSGAI4AUIIdGhpbmtpbmcSDGxfTMwiTnQbfP1MTBoMD2jNPqSg7Kz9Nf94IjBHSAxLLti0rOzmYvbGpFdTa6PV8t0ykcv3zLGZydbuG4PBMeUuVMHWbW/fBoClS2EqzAbVC9lNTeS/P9XfAgGqEDBs4hDgcRQqYpbM9DfFXI4cy1QsMgFfHfLphRN9FlDCnb77VnfD1svjhq7J/TUVCaRlAnLjNP9LTJ/ALLeqX0iiDQrFK1d2T7yPFCfXi3dWUIfsTfDGn5dgkQJhQB8k0jPcgCw0rtlsWZS7TJDasV1S2axwtHvscn4391+We+l1zX8SjlFUZGUKeS4BjglFsI6ZgthWHWckSTM8Jy6Kb9UvqBfDTjMuin2WgnC0QXL1VtfCVOZ3U57tmTdwmBV4GqhE9e63YjP6nM+BRhpiERGHi6tyENGRGjxTHyc71lOZL+TXuQGCz5hxzFte/fpQtAscNntSVATlKtNpqRXvaBIw94Gwx7rQsCLjy+gQynTjHNSiOJN7N2DLM9Uk8IDk0D/lxE7IObaiTvvFpCuxudMeu3ZLnF8d/qYiVAu2T8TziI1a4DmGOs9IHxvmUJ7ikVePN7oYn+sYW/d0EijM9zVS8MsEGqpQrGGY9cejkgFEm2k04ybgfKviSxUreTVW+2Zy9sJjIlVQsFPGMJaGVApo1p9arqViwLp5fMkEHV57sw2VIck39B2Wv1WkxJVwYsSZvzjNxLi2ZDBPqlubOH+VV79WuZ+SGDMBCaWHOw1id9XGoNqDJL6PpP/lsBu4cfQTNrfPdgsY0PoDVnHSC1/PubL79FtFCLZLBfYZq9Po/VCEjkp/nUcCNEuXVgQJQWZnlgARjvJpjDqoIPM9f0FFW/dwPOYEWZj2AAhEwMtBCObWHP45ypeJtxeop8Mswiovg6Xcm6hO8payZppjHL2Sa4szfsGs0KWOBY83CHU797ZOIeatalV9Vf+dgKDrCc4QHKqHU5SLtSg+diKWCw9oS8xupNDbyRXHshrfYFUiLUEWXXxI7DjmG4NDn8wd4UqvC1t3bXZCZdNlRhL9gbnxvh9ZcCSgWPUUBxy42LBvGPDJo1ZZylGHl+JNLYqA5B1ahh+z40CLDka/v6OskqPcUPbBDl+1iGT2M03ALvZZn5kIWz0upz1US22sDD04MRS25/fZbh3hr8Lxs9dEFf9EPsuweXOKmhgx+Ypdy/RbHZUQVFQA3nxBl0+nCU5uxjlZ+3pLF/lgjdeddy8iGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1175,
+   "completion_tokens": 300,
+   "total_tokens": 1475,
+   "cost": 0.0107,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0107,
+    "upstream_inference_prompt_cost": 0.0047,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 138,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.464
+}

@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Dividing an open-plan office into meeting rooms with new partitions affecting escape routes",
+   "project": "Office building in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 4 para 1(g)",
+     "document": "BR2010",
+     "text": "Work consisting of— (g) providing a self-contained fixed building service, which is not a fixed internal or external lighting system, where— (i) it is not a combustion appliance (other than a fixed flueless gas cooker), (ii) any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6A), (iii) testing and adjustment is not possible or would not affect its energy efficiency, and (iv) in the case of a mechanical ventilation appliance, the appliance is not installed in a room containing an open-flued combustion appliance whose combustion products are discharged through a natural draught flue;"
+    },
+    "c2": {
+     "ref": "Sch 2 Part 5 para 3",
+     "document": "BR2010",
+     "text": "(3) A building, other than a building containing a dwelling or used as an office or showroom, erected for use on the site of and in connection with a mine or quarry."
+    },
+    "c3": {
+     "ref": "para 1.6",
+     "document": "ADP2013",
+     "text": "1.6 Regulation 4(3) states that when building work is complete, the building should be no more unsatisfactory in terms of complying with the applicable parts of Schedule 1 to the Building Regulations than before the building work was started. Therefore, when extending or altering an electrical installation, only the new work must meet current standards. There is no obligation to upgrade the existing installation unless either of the following applies. a. The new work adversely affects the safety of the existing installation. b. The state of the existing installation is such that the new work cannot be operated safely."
+    },
+    "c4": {
+     "ref": "Sch 2 Part 1 para 2",
+     "document": "BR2010",
+     "text": "(2) Any building (other than a building containing a dwelling or a building used for office or canteen accommodation) erected on a site in respect of which a licence under the Nuclear Installations Act 1965 is for the time being in force."
+    },
+    "c5": {
+     "ref": "para 0.11",
+     "document": "ADF1-2021",
+     "text": "0.11 A unit that contains both living accommodation and space for commercial purposes (e.g. for a workshop or office) should be treated as a dwelling if the commercial part can be reverted to domestic use. Building Regulations 2010"
+    },
+    "c6": {
+     "ref": "para 0.10",
+     "document": "ADF1-2021",
+     "text": "0.10 Minor works must comply with the relevant requirements of the Building Regulations, but the building control body does not need to be notified. For mechanical ventilation and air-conditioning systems, minor works include any of the following. a. Replacing parts. b. Adding an output or control device if testing and adjusting the system would not affect its energy efficiency or would not be possible. c. Providing a self-contained mechanical ventilation or air-conditioning appliance when all the following apply. i. Any electrical work is exempt from a requirement to give advance notice to a building control body. ii. Testing and adjusting the system would not affect its energy efficiency or would not be possible. iii. The appliance is not installed in a room that contains an open-flued combustion appliance. Live/work units"
+    },
+    "c7": {
+     "ref": "para 0.16",
+     "document": "ADB1-2019",
+     "text": "0.16 Where there are multiple main uses that are not ancillary to one another (for example, shops with independent offices above), each use should be assigned to a purpose group in its own right. Where there is doubt as to which purpose group is appropriate, the more onerous guidance should be applied."
+    },
+    "c8": {
+     "ref": "para 0.12",
+     "document": "ADF1-2021",
+     "text": "0.12 The commercial part of the building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments"
+    },
+    "c9": {
+     "ref": "para 0.17",
+     "document": "ADL1-2021",
+     "text": "0.17 The commercial part of a building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and the living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments"
+    },
+    "c10": {
+     "ref": "para 2.3",
+     "document": "ADA2013",
+     "text": "2.3 The following meanings apply to terms throughout this section: Buttressing wall A wall designed and constructed to afford lateral support to another wall perpendicular to it, support being provided from the base to the top of the wall. Cavity width The horizontal distance between the two leaves of a cavity wall. Compartment wall A wall constructed as a compartment wall to meet the requirements of regulation B3(2). Dead load The load due to the weight of all walls, permanent partitions, floors, roofs and finishes including services, and all other permanent construction. Imposed load The load assumed to be produced by the intended occupancy or use, including the weight of movable partitions, distributed, concentrated, impact, inertia and snow loads, but excluding wind loads. Structure"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.16
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.04
+   }
+  },
+  "usage": {
+   "input_tokens": 2673,
+   "output_tokens": 175,
+   "cost": 0.000112266
+  },
+  "id": "gen-dec-1790676095-a67SDwxG13E66eIQ9ff5",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.32
+}

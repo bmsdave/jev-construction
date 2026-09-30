@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Kitchen appliances\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Kitchen. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.9\", \"document\": \"ADP2013\", \"text\": \"2.9 Installing prefabricated, modular wiring (for example for kitchen lighting systems) linked by plug and socket connectors is also within the scope of Part P, but again is notifiable only if it involves work set out in regulation 12(6A). Building Regulations 2010 Certification, inspection and testing\"}, {\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677507-Vhb4uvSDzPmtPxopyO4l",
+  "object": "chat.completion",
+  "created": 1790677507,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Fitting kitchen appliances on their own is most likely **not notifiable**.\n\n- **Not building work:** Placing freestanding or plug-in appliances, or plugging them into existing sockets, is not building work under regulation 3. Part P does apply to kitchen electrical work, but the quoted guidance (ADP2013 para 2.9) says such",
+     "refusal": null,
+     "reasoning": "Just plugging in freestanding kitchen appliances isn't building work under Part P, so on its own it's likely not_notifiable — though if it involved a new circuit for something like an electric cooker, that would trigger notification, and gas appliances would fall under Gas Safe rules instead.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Just plugging in freestanding kitchen appliances isn't building work under Part P, so on its own it's likely not_notifiable — though if it involved a new circuit for something like an electric cooker, that would trigger notification, and gas appliances would fall under Gas Safe rules instead.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrQgKEAgSGAI4AUIIdGhpbmtpbmcSDN0QENep2G9gpvagnhoMONrT2PAbjCbaNg2SIjB5mIDwZUWDj7YWRC1U3/cDnTx5iokGTmH95Rri3nQYR2hsHPg8hX/yewN1ad83Yowqygd5t/ypwahRiEMbm9lSxEYC9cw8i792K+Q4QnDByjovI2mJ7+CpuyG94hAgCUtVz6fMaAHirg/+GDl9j4rAHaC2j/9oudv7YJF3ADMrqxBIcBmCVJS/PS6+E5vLYwqldmZrqPHSrX6CNqfX9Aimzm8flDkQOwF/rd6ouXS5/fv7/p4gK7UjhzjY9PveXrRwLdJYTyqmvtqj+c38i+OrY209egTdlkzUKwTYB93H9f/GkfBIZfJlL0S5nkA6zup2MubRWq+HJxNWNfjdugA3K+7Ve1ofFupfRhZmmmu8OIPAwKKU8omE06mKhiPY3KYobp8KCWLSkHFmVMA7othJSFMJ5JV2otuHyeCIp4iDqv1fnYt5zg/H26yk3jor24HUn4iCgWZ4lHjAPJFZZMhwRQDReGRNzJhd6gBuiN0nLyonAjEh+qjS9YjfGygsmeMpyAQS+nL15RM8LDrIALyMxnngGDO+i0Yikn2QAcNdowk69wfzZj0vNwzYmkiU+LCOPZDnpInOgDYWS2e9x0+wyDFVM1taN8jboj5xlOWpVytSyzgwrvZkgQMduQTt8CIzshng83IyC4/JOv3JSu9nos624Kbk8W6HSgj2m79IG6d+LLWa+gRf/QWKnvwrF7Mv4CvmPdEhA87EMRSLUh8D7zqExkzd33vzJAmh8HNqqUIR7V1164Rw5DTX9Le3ZyUY3BP6NQql/rhydIbH90Qw0byJKpoW5e5EimAjzEZJCwPZv63lGjYzqd1JpBrqkKNw4OYBmqPOwsLNj8G54Zkmai5wPyuURNbnTyLOqKUOGIP6SsSWqxsO2QucuR7PqLGr8bta4oudAQXWciP93nP02Dj36bp+okcMqpVCEPMtQdNJeaoB9v+WRf+58IMjOdtgulk9OBWXZhqPW+zkl+oJH8zULzBjH2c+OS8FMsG4qh9qYq7OTLaYjZfciU0fMbhkpQ8/EW86dKexXizVZVFS/b9l8dWdE05ZC4476eI9jFxAKK8BRfjblRDuE0zXb02nY5yGVZ9W8WkhRep8cE2PiKxsB8Vi6i5hhUJtooo4eSFC7ieGwtKCZWRjFmuQ1FSLcynBmcltvOg2DD3YpbhbV1ecAFYcRg56ixaDalErMjLkMQKHi+3YgE3ZSCllXIZcai4FnCO0j0jDGgGTTqHZfJGCCMaN6Kd3LlOIriTFG/kzEngvcRHlVZLEpn3o+rboMEhznkHPvF2GL+4oJdOzOR+Np7RF10GL1WMqh3s8PFNgaQVbE0+urhCmYtYreT39RJGe/9YYvhOm+Us7GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1228,
+   "completion_tokens": 300,
+   "total_tokens": 1528,
+   "cost": 0.010912,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010912,
+    "upstream_inference_prompt_cost": 0.004912,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 187,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.086
+}

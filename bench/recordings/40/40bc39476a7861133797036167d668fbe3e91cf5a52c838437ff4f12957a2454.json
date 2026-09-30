@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace a thermostatic radiator valve\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 10.2\", \"document\": \"ADL1-2021\", \"text\": \"10.2 The minimum standards in paragraphs 4.7 and 4.8 and Table 4.2 should be met for both of the following. a. New thermal elements installed in an existing dwelling. b. Thermal elements constructed to replace existing thermal elements.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677829-aCf9R3tW8ecu3aDroKdq",
+  "object": "chat.completion",
+  "created": 1790677829,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing a thermostatic radiator valve in a house is **not notifiable**.\n\n- **Schedule 4 exemption:** Schedule ",
+     "refusal": null,
+     "reasoning": "I'm considering whether replacing a thermostatic radiator valve falls under Schedule 4's rules on heating system parts - specifically whether it counts as replacing a non-combustion part of a space heating system, which would generally not be notifiable work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether replacing a thermostatic radiator valve falls under Schedule 4's rules on heating system parts - specifically whether it counts as replacing a non-combustion part of a space heating system, which would generally not be notifiable work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+wkKEAgSGAI4AUIIdGhpbmtpbmcSDOsUkOZtYYtGNnNxfhoM6CmvvpTZjO2ipvRaIjCzp7lUmWC77yggOO26lXH/zGHs/HBo6VdQKmQLWP9TYmZJuTpLU+0dI8xcV78v+mAqmAlQcz9GPz0bYb3TgrVN1WRce5+zX9+wsGiF8VEg+6eHxTNSc/Jop2QEeCgy/NJBQ9+kvSWboKdS1I01Lh2Zd8+53Uq5Mqiage+u+dJHKk/ll/poL9hhjXqNspPNDgUFhQDWWB9M22slcD/5wQBjDUZnCTkxWdgxScIAfqsFIVz5xdzuhXsXlD0xkjxbRWrWWIIFZGk/kXtQbOHNGqYrViH/hx6XRPdmzYwBNy2RYyRjA2oD6fFI3yhAqem7IRHVIAUcTOq4X45gStkHy826M28F5KBffMufdEN9lFlkARtUSsA7C6mmIOFgrD9wBnc+EzujjSoh1Q8oflKsFcJN1RoNKe3uSc/nQ6gb1u+YsPlCRC6WCbbrptBK4fTU/0pBo5K+ByzQN18INEO9W3dT4Kd4ZZu8TgUZ1x14ZklxXvmdOb6bPOBvwmcRkwT0Hk4aOueanKkr83eXzay4w2IeAQXmLAMw1gwdF7uaQ6bggfWif6It14quK2JjH8WfkjVEHyl2wWR8FOyYL6dFQbGr2gWRH4IABhS/S5z275VIoYBGpfn/+D0qs5CgENKQUGX4hMgpdZZv1ijZLRDquxYb59oF9Zsq1AAQH5ah7/3BDdal5yLflsDXSmpRTVrtywm6hEzyvL45lvNtgpSpL/9pYWw1F+0aNhvlR9dfpP7ZMdzvU/y5Ad/dfSZqtHdxeOYoLyVLHkZt9dhGzdmgJuzXnCKjQjR6Y7F8mJoQtdTQ3lUhNaD7eRjLKIWDzN4gLt9CrI1nCayyOEml6fhLH4zYczvdtdmBx2Z8hbYAOPubipJJ4agCrtlZj0vu967EOWhweZ0BkVqhCi2S0enTS7LFCxQ7pUNINVLV6H+uRf25KIlam5ZaSdka3eoTrYEentHoPuSOhUqTRNWLj9aje36g3pgDMyVilZalnfCteoMIOkrevMKRKlYXUjn0BlgPHBaW+AvL/81m3K8r5uxhUnfraems0kU0rvWNDShZJ3Z4uBYu7Ggfc+k6anoqmioBQM+pM9e0pcrI1t60nY0gvgENvCxw2JZfCFI58e3LWOz1nu8QSWT3kz0MtSreqZ5MyAg9J/jWEBLrSfituNol28cpvMzZi+S3K263rG3ysc03wr80gkVBO24RrLQpq0YYQMKTKLH2KQFnfLVbWdrOp1RSgyjDvCoxXqZi3CuaGaVX9mkEdl/me/jyBcJe7QG/rLEr32sL+dN+5a3ZumAICYCWMM+PifnPgP+k+70kDpG5UEXS196XcmtzmH1l245POrTfcTVpuIB940373oLQruLMEuqP47mnRbxs2kjBiwcWgP5F1Ug8UHb9wxzYNqqCadEffBvlEUsFjeZHRfVBFD6wF5dz1S7SJObqGgCMaBmRFZXCbeSazR5D3MwEFPTw4FLekLBmv6q+Kon7zjXYUsnYKFB1NsK+XaCdH7B7eH5LWT4hks5MsZio7sYCrcloXwF30grRg6OM2MuMMEr7eiZC/wad2ZNCKWUXn+pKTvq84UI+a5ibwf3DksE90/5KYSNGKLDzIna1B+SpSsMUJ3Q18l0YZ7ZaDss0F0UYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1000,
+   "completion_tokens": 300,
+   "total_tokens": 1300,
+   "cost": 0.01,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01,
+    "upstream_inference_prompt_cost": 0.004,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 253,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.706
+}

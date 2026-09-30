@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Soil and 110 waste (low-noise)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Drainage. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 1 H1\", \"document\": \"BR2010\", \"text\": \"Foul water drainage: H1.—(1) An adequate system of drainage shall be provided to carry foul water from appliances within the building to one of the following, listed in order of priority—(a) a public sewer; or where that is not reasonably practicable,(b) a private sewer communicating with a public sewer; or where that is not reasonably practicable,(c) either a septic tank which has an appropriate form of secondary treatment or another wastewater treatment system; or, where that is not reasonably practicable,(d) a cesspool. (2) In this Part “foul water” means waste water which comprises or includes—(a) waste from a sanitary convenience, bidet or appliance used for washing receptacles for foul waste; or(b) water which has been used for food preparation, cooking or washing. | Requirement H1 does not apply to the diversion of water which has been used for personal washing or for the washing of clothes, linen or other articles to collection systems for reuse.\"}, {\"ref\": \"Sch 1 C1\", \"document\": \"BR2010\", \"text\": \"Preparation of site and resistance to contaminants: C1.—(1) The ground to be covered by the building shall be reasonably free from any material that might damage the building or affect its stability, including vegetable matter, topsoil and pre-existing foundations. (2) Reasonable precautions shall be taken to avoid danger to health and safety caused by contaminants on or in the ground covered, or to be covered by the building and any land associated with the building.(3) Adequate sub-soil drainage shall be provided, if it is needed to avoid—(a) the passage of ground moisture to the interior of the building; (b) damage to the building, including damage through the transport of water-borne contaminants to the foundations of the building.(4) For the purposes of this requirement, “contaminant” means any substance which is or may become harmful to persons or buildings including substances which are corrosive, explosive flammable, radioactive or toxic.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677390-kilWGKKpSFEzhhag4ble",
+  "object": "chat.completion",
+  "created": 1790677390,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking about installing a soil stack and waste pipework, which falls under Building Regulations Schedule 3 exemptions for competent person plumbing schemes—specifically the provision covering installation of sanitary fittings and connected drainage within a dwelling that doesn't touch underground drainage.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about installing a soil stack and waste pipework, which falls under Building Regulations Schedule 3 exemptions for competent person plumbing schemes—specifically the provision covering installation of sanitary fittings and connected drainage within a dwelling that doesn't touch underground drainage.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkAsKEAgSGAI4AUIIdGhpbmtpbmcSDIE+Gr4ewz2+qtRB1RoMIXyhQpRgNpJ3gJ6rIjC5SpgPDiWTHmmlwGM1lfbPKOJYwp2zEbBCnNEFaN2Gci9BBDOXexdEQXZwpyYMtpAqrQqho5Ze9kHdSzypIcaHUYuNVzhZ5Z0cDl9vuBtmh/V+0fIXJqn5IcgfYmT1ErapLTWjurgIs8XyXJmo3JLAzpt4tB0lJr0vhUJSidpQ9o0XUMODlz9MZz8SpvW8ORnBMWeUA5Gi8n74Y5m6XCn8TVvH8CCbY0+5DesXb094BnYhBD+wY3jlEFZtw6TYfHxGA2jO8TwZcnjQPIZelD7o9NnzLP1M0aEIbFEOpBHP9TbcC93as9b/8YMjnBld2bBMdC/yLVwPY/mV8N8cI7Uj9J4LkTuccpHjQZc7TgoQGnOg9vS7lJ/3YxVbwLcakG7M9OjsAr+TgiJxilaoLD/QHk9KCT4qQhwPLtePUGLL4+doRu4dNm2q25RW6BM+P6DLnLDbn7y6odYX5GVxScxKX4ECBam++n4F30h4Jp5ltcYb9vv8O17XokJFG/PiTTykWOL8c0JeDFj9VbwecYg0DyOecSgJ9fbt5Bu70Kmk/SgyInr0hVaPWFmeke7Xb0uRuu7qLh186ghDIb7U6ibgGk3YBYziQOW8cQTObeaHwf4dwxM7YHWsUsn8OQ/X1Tn/C1pFkcD+4sJ8PYmMCjShtrB0fp0q0z+GVfDc2Lc0C7AMUS1BNlaItSfClhkFRn007TlGzhQVzimoa2isJKivgOAEDfSfJbZJRwE3t6Ii3xRPSCfqUYOQnM930BTDsrdWcIRE4wp16OF+/H3K6oq9EVwJro2T2M14bwkj0ioD/Wk9X2izfGAC79AJZMYrUXqvjV1kUEznIHsfK71p7r/+QluX24WzSenrETSEjhOL5CqD8REHjTOtMdJEDUMxJjKmqFUU6qYqh1KxacL+zn9qFj4+HQK11LVznYJG3XgxQH9n94jSwuMCkltHU9nb3IQGx8j+6kYbfgrMU/bRII29V85yO598q/qzTLKZgPv+y4ZjwV/m44/rw9nl7gLjvZRN+WP3npv5vJaI2y+9+804rafLt0QCFJ6aYq4LfhDNzUKiENl8y/xqpvjgVsMXQ0Se/cJflHFaHh9BxPR4XaCl62bGXEMFrLOqN398/0VKzNFCjVfA2E1XpUa3EwfpD/Upy0NjYx2AN6M4IGc1Cj0wpENhbBjUzNi12Wwr/PDPbXBBVM3mymCNcaLaxB5GtdNe3fHu9Uwzw1BVdp7oh/yrPLNd9PUr8tgBzsUyV1gbNneBBhuT2eCxp4iaSNuzpro+TLEFSs/vuuVYsEvYOhA557L4N5ro+j5yZTeydWgGqTdbQFdeJH5NB9MJYVzKS865hMlA0ogmYzu2fGvsg3tfTr7Clr1DUyYwFe0pcnuCeWIodWwEx/auFL/jQ+bmyYfebYWj+L1WWQJZOqAC3zma2Fm8oesF2cbjPhWyAzwsiDqyzZE0/wRFnGQFMEnWN2jaMwjLB/bbg93FjMJdoQ5mOqfdVnRlKTK0dMeVRzdbtqHbhizGQWgarIUM8YFSE5p/7VuTjKeij0VulLFazi+5XTPc9VmPvVi1XmWXy2HytTHlO6s/WXQCP0w5hvMn0PKW8mCNtF/BaToLbpCag9CNtwxYd2b5fSsl5EniWpYl6WKUX1e2zluQ0LXFuCFvE1/EUPUyqtTJsz9Q2cXB8zKWB5loxTocVCBxT/cm+7AQyB1X7ooD5oj0Apt0HIoX8XbFLjsJn3OaWCNsGlPopxGxr+LZ7ABJEHYxbvNKg1uc1iI+MchzkrEsYnQbzj7uOJGcbHjRPdihF8JyhNNykC+LMkJrjSKNAT3qAwFIgU5QURgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1358,
+   "completion_tokens": 300,
+   "total_tokens": 1658,
+   "cost": 0.011432,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011432,
+    "upstream_inference_prompt_cost": 0.005432,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.477
+}

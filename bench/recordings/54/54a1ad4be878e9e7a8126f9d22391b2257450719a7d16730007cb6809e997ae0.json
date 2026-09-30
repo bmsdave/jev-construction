@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Isolators / fused spurs\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678443-bMTeToPo6T03pBrQks94",
+  "object": "chat.completion",
+  "created": 1790678443,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notif",
+     "refusal": null,
+     "reasoning": "Adding a fused spur to an existing circuit outside a special location isn't notifiable under Part P—only new circuits, consumer unit replacements, or work in special locations trigger notification requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Adding a fused spur to an existing circuit outside a special location isn't notifiable under Part P—only new circuits, consumer unit replacements, or work in special locations trigger notification requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSlgoKEAgSGAI4AUIIdGhpbmtpbmcSDFNcqSrISMaa244Y3BoMKZ/YurRo+2tMULhWIjCW9uz/5Btqb+pMJtg1s4VegpQSQeYdGRIfV1BTqCkekeUlGyiVKV336zQ9iYg9jvcqswkKHR6e7Y7j436eH5qUd+jjbuFtna0VqSV90MarwhYXe8dX+D+XSjZE5/VfuK5n3or9dI5gEA+8dLUmQdyDYENmwl9Havt34QnGNQLDPWAvji0sowhbsGXa8ittUYXC89vRLnIrpcOvpT/zs1dv4756guh/VbcvUX4hmXu41Wp0XNdgsIbm3Ra6f2SSdsDZ0psWSkULWH2przcE087RkATAj05jgG8XPkG4zoDcMIL6Ynz1vXVF6ycqavwCfjaZKslYA46PcECWBDDCmW3B3GoBIu9kKdeklWEmKNdJFR8cN3hQ/9DISD8okyntkgjAL/setOIywQVfcYoyWug4I3WGKp15hxpnttrf08P4Huo5WmrdFJeWh6gI2e/dxIonOdYEFHSAHbsmnoKgDuuNp/Ch5Xwz0MzQuewNDj3OVvYqiOhN1eNJEXQO7gtl86vWLXrnrLd4QlCtrL7+ts8AFEwS+acOLj7GTj0eG8dXwG281k3Sk0eyZzvwEtsrUtfCGh5zJCRwvjBoEtyxWDl4E+qafjXWYsNJmN7QelRaDC9A57+ztej7/JtuK5OKohQeSaaabzZhxbvS99ZHwjjkn6GPxquf42d+TwMsCUCvfLlgv3nzchdhOMMYElRVN60XQW4T3Jfy00Wf1ERfi++DlmnuVQnHPKs3uV5kUD/kWQeivAwj2llHYJMkT1ooanVRZxqnbWbXQOkE/trVydlkfbsLr9rrxR/YDdCflHBc22u3oIU923Hdr7WkGHBHeDoElEpSM1Rpd+nxTLskvP8HOl3mJ6xXl5swfJC5ulobCBdCPM1a2fbOenr8yaOHQIpDJ0MMw1b0lYsH6JBF4N9SSXNFwJRKcizteQWxL6a2JGxpoHIWEPbo3c2UbLjtzMS0MatB194JKPU6IdZy9PTPsJmrZZN5Ko5SIbsqerERoQBzi+oeDJ4cGGSPRmB2FU5MG9ZstBeAulwErlBxR2Ivdv96gHvIGYhAq4T29lk3mrJ4SMYQL9OU/DyQDjjhMdiJPZLzYqk3dPzyUVQbgDkL2ciHKaSI5m1y5rezxX673goWN5H//UOpuoanX2UwjUYEzkTUn/ZS4xjsucGeyJgWMvLIkLP75gC5rPVqUqbRLDUEZOpH2OKL8WXrWnuJtEhbEKAoSYrd8Ss0V7KBa9wn31pKSAvPDOBYU8/WMChkuAN1dVhQyN92mUKmo+A9pCe2dUrt8xPEbMHJ1cZ4D6mAKBKHTNQ8usnqvgx2gMS59tMT5sfaUnrFevAnPEpesceQDqhuYvhkNb2PLutZFu3oAsjqa0GaSBzyc7pCYTJo0wQCIscMl5X2lVotj3Ilto8vd+p9nSko9o5+jmfOPjCmG1cyV3PVuriFC2SruLM6WBw956u2Nm83tENsaz4BRSXWGDfa3CtRS5HYY6Hcv07TRF/HAWpZwuYv5BhbflpxDVgMKJD6Hbch+7lFRapyZLoXI1Vsh+M3hiLaXR2et1lJTYhwEQyjPYxn4n+lgDDNz/7FPeRYONV8BrWI2JQ+ZCJAwsV2muE03uvFggecuGXhEQWoTJqwc6gJm4LkR4mJMC+oV8BNFoQvqYPk+kXD4CkPe/dNdaYYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 504,
+   "completion_tokens": 300,
+   "total_tokens": 804,
+   "cost": 0.008016,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008016,
+    "upstream_inference_prompt_cost": 0.002016,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 276,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.616
+}

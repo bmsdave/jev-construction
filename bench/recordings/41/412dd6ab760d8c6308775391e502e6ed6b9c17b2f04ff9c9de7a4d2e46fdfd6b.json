@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Fabricated plates, saddles, seats, stiffeners\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Structural steel. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678163-81AzglodXtqI7PilGF3x",
+  "object": "chat.completion",
+  "created": 1790678163,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Fitting fabricated plates, saddles, seats and stiffeners to support structural steel counts as structural alteration. That makes it a \"material alteration\" under Part A (structure), so it is building work under reg 3.\n\n- **Not self-certifiable or exempt:** it is not listed in Schedule 3 (competent person self-certification) or Schedule 4 (non-notifiable work).\n- **Full plans",
+     "refusal": null,
+     "reasoning": "These structural steel plates, saddles, seats, and stiffeners in this terraced house renovation count as building work under Part A material alteration rules, and since it's not covered by Schedule 3 or 4, and FSO doesn't apply to a single dwelling, this points toward building_notice_or_full_plans. There's a small chance it could be classified differently if the padstones are seen as minor fixings rather than structural work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "These structural steel plates, saddles, seats, and stiffeners in this terraced house renovation count as building work under Part A material alteration rules, and since it's not covered by Schedule 3 or 4, and FSO doesn't apply to a single dwelling, this points toward building_notice_or_full_plans. There's a small chance it could be classified differently if the padstones are seen as minor fixings rather than structural work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS4AcKEAgSGAI4AUIIdGhpbmtpbmcSDNeuKf7BkZi2i2w9qRoMiznyTvPkNDZf9crpIjDQDUSVxxVzxSzjBnYgJzfRsCClYnaFerozKjwZ8WznbRQJUojTAKP4CJtYS8SJfusq/QbxkEpHAt7WC4nXUxmHCZDGm8XIjK09LiikHJoY4ah3zfzZ3xMcKu6lB3Q885vnHEfFd6aLYgbaQ4LuCpSwEGZjvchbQsIjUv8uKB1IPKhGLf50m5r/LRwQ4A1zxFoQ08OM1ktVIoOQafX4vxqwPbbMpgBjCaa7JAhekwvcA/7xmnxZUsALdqh5/548l8ivzlBuWQneXPBWNbqyhEepvjgD9D/JNu5A4CRZTSp/1TyKPHevfxPXndc0WdIi3PJ5KMTk0O3cD/hpUyQtKK8jCKNWbfWoi/aTB2X/vpW9cVjFC7sal79ViPzlUSGunbkXw+8Myf24HPp1M1MZYkRGzgx6HA+HtqZtzSnIud+IPrE2guNY8kI2VbTq3MMuw/ifrkAJDaQGNdqvbPXIU+Jp5vfRqG/MMy70F3yexkFHZD8t+hRetPUhmKaM0aEqej0H5n63IfjBJgrapdRksPQyTvNWBS6mfs1c7mcryaF1UTOEzz09HVOhUFb7BP6msEc6Y43eevDIvAcUlYmW41IxMX/mlhpSXkDRVaJVwajyn9vHUin1SobSl86W9qV/TDeTNtab2erdWFbfpyR7fG/CK7Alt55BEJBSz6Scg1dhf9GN5W3nfYNfHyTNgIG0l8h+z/AYhoweOyO/g7RsZFvhUkyheZzLw31VsYlRZlSL7ySfx3gzN7DTGb2rr8pAjQF51bUWYPMjA6016u3R8bUuUsxMPsB9PJpEFK00PkV/CXFDB/mSwhshRqOwBUIeC1vEN7li396GzPZQbqEjSwJt8rwv5psZv7B8vWbyLqAtcBW6PO+3WXERdAAQdSUeqHArmgFARnmQlTfHFUvbQPsrj2EGySKKgZuflHJfZouAJ3sj5Z99M95YRv+7eT8HNEwOIIxKQBbHwjhOHH8IgbbXqlBdKImvT2y11dSYTca51Q1iH2dVYkoL0r+xjHDI263fITl+RpksG567UMv1oj07KWZVJjH8XK7Hz7O6pug34VQwPOxKLZPU2MTgwEf8pfytUR2aefQE6t0JDX8i1afTTA2zS62F4GDpK8JLETIwfzC2ZiSHAvdnyshmajBdZq4oGh4Hdy/91YfCRr8TSIbCYzcK06D6pJM7NzaszuqOTfj7x7Q2Tt5Tfuw74AFKzT1EhUnOhOAYqyc85nxxaJyU1U/yeSSaWhGs3P4RvJXJ0xgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 515,
+   "completion_tokens": 300,
+   "total_tokens": 815,
+   "cost": 0.00806,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00806,
+    "upstream_inference_prompt_cost": 0.00206,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 169,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 13.717
+}

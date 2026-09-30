@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Ceilings (all rooms, plan area)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678240-QhraDdmuwAVYpropoa5C",
+  "object": "chat.completion",
+  "created": 1790678240,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether replacing ceiling plasterboard counts as building work — internal floor ceilings generally aren't thermal elements (only the top ceiling under a loft is), so this would only trigger regulations if it affects structural fire safety, not as routine renovation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether replacing ceiling plasterboard counts as building work — internal floor ceilings generally aren't thermal elements (only the top ceiling under a loft is), so this would only trigger regulations if it affects structural fire safety, not as routine renovation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSjwsKEAgSGAI4AUIIdGhpbmtpbmcSDA9VegDwkxkrfmduKxoMNJnjoz/ETN0Qo5/DIjAq0Z+4rgYAiVAu4tpeoxBFR3Qx8AkIrRETU2bLRX9TMpYk420ay2aSredgeNobcwMqrApcFob4I+BTYXCwz9e7+SB3BsqpL5/EDxrFS3vjs0fNwcBz1ltsKck3XXnQOKMBYwfl79+M+5YTj5TpwM37SSyIGnuarZfq+IjXxfP2kixZyu0AX3U/pahtUK7rGy8MfAqO/wpxbFmtqG5tcIMsgaFeIw4pKA3ifl1pWE0DQpPR2BMzMseAsF6wQk8grIPT4Ojo3VZwiNupCBMEqBhmPleoU5QCyw6hMradTQw1xY3gu63vj9Z8WZkA0ChKGGiigglQ+irqMkQ/OScly47hgRxl5D71r4hbF7KpnSsZqAZ4DQY7y7wV4pdkaiwiArwOS3Uvej/SijpuMeR21rSYjyzz+ryBgiM49G343g5aJdG5zPNUaGpdtsjnKh65AAiuT1xj93B3G7QmkVmYr9DEFOMpO+QLwn45smeAmRby2wOmRQX7k0t8qm2NUFxshAFfV6X2ibrrTY+sWSrPxhLzQUUATTrYqPYty4q4QIXNjfXSvvNx+8EXuqsFS/gy0WmBS7QCI50BbDll8K+u+dlpFl+FFRROmXrR6sqb5Qa8BGWVIw+MXNc5SxEw74I7X8vqCqKBf1IvyGCubK1miVLnkOB2UDjdtUVOjFqMjIS1liPrbvShS7p62lMbGeaqmzUdP8hCuWgddR29qjpQdrX9CP1ovVao4yPPqx+JdY3+1A2FVoaC2NSreaCONJfjN+qD0mDnmSsnqMYLMHY0mV8KatmXODvuE7bmhZMjQSsiLqNokHYv66p4VGyI9uXKKjNC7h6umkWi2hvw8p2tTbwUKuRZNqebk/dISqJ+vzZfHM4Yhqd17QVZJrNVgTGWpuDRoNJ9WxRXDOIxCXD80HL68LioIcPoN1zsQGDssPGcvri4RZwbgZBPVFKEftJtIZTqVuhgMaFM9t8figOfHsEXNy944ValjOmDaE1rK2Aot8ouvhVcuqv4mNLM/H97x8NTUocgdb6luAfQwz95qI8+2rX5P17xi1hSCoPoyKu35iLiOSr+U23gDMo8QNxCUvvgT/0E+pSoxt2mwIEdFspzDKzbhteI/fygaUuSrekwsEag46C2GS6HUAqxGiOJ1jF5k1llitPc9LOYxgKBeoGrVzR3liIcGp1o23+ExD8T8aGt0AQ3fJpa4ux8wkwDHQxvVf+gfxCt6VfC/6BX6pOqEPvGswRwRA3NGi6ZrLg9f6g85uyPKGLcJuDgKLHwvxK4Kk+CpvnH+R2I1bWXxWFNGGbkWm1CEtsBkmNpAbK1VPiLiCB4MrAmaKWTghlv9BM6z+Jmcizcsc8v+4BCfgDPUsGBN4M77hCxpEj9iflClAOs5zPyExWIQtlyXpNLSQBow+3Z5ySmae+5J79wzYBNHCXioq42P3C2C1LktvynLByBS2R18v4JeK/xBn1DYrd+nfVPRpofq50EtVcZN0u+JiE0znfTjvmQGCv1YzTAbfhEtWGcaJ/lhHsfGvbf0ODj5lxMDAKprANr1oLLH8hUj/gYbccKROrXYc+14+MX1eb2BulOvdAZ/pD6hxgbGzBpanRllUp7y88bk1gIiab9ejPMLc5eHbUzORuttJ76uz02aLMSEDTrFBIEIgfQNy/oNUNQnRUwFPkuY1biTUik+K9YzQ4Il+zjAeAFcPFFIvCKOEDLeyePFUl4aZ/OWXWFpNFmfVYmRUopZiSJVzLMivelZHeTGwVHKEyyBWmYqFQipL5ZGauYA/7uZL5F2aef9bCGxEqAntdyga6yjwhlidsBqW3NMsvDjdnlaR+lGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 513,
+   "completion_tokens": 300,
+   "total_tokens": 813,
+   "cost": 0.008052,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008052,
+    "upstream_inference_prompt_cost": 0.002052,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.446
+}

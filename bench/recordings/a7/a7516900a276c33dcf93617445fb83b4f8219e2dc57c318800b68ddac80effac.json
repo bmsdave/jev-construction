@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace external back door with solid door, glazing under 50% of door and frame\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"Sch 4 para 1(h)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (h) replacing an external door (where the door together with its frame has not more than 50% of its internal face area glazed);\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677941-Po5JYXJEjjZ8jNmsb98M",
+  "object": "chat.completion",
+  "created": 1790677941,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "The work is not notifiable. **Schedule 4 para 1(h)** covers replacing an external door where the door and frame together are not more than 50% glazed on their internal face. A solid back door with glazing under 50% falls within that exemption.\n\nThe **Schedule 3 para 10** competent-person route for replacement windows and doors therefore does not apply. The small residual probability on it allows for a borderline glazing measurement.\n\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person_scheme\": 0.07, \"building_notice_or_full_plans\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Under Schedule 4 para 1(h), replacing an external door with one that's solid or has glazing under 50% isn't notifiable, so this falls under not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Under Schedule 4 para 1(h), replacing an external door with one that's solid or has glazing under 50% isn't notifiable, so this falls under not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSsQUKEAgSGAI4AUIIdGhpbmtpbmcSDJCuYrOXvqdgIP4I1RoMzT2a0knOlEj98yDJIjB5YNtcKdHN39ive4w7sqyWcXlzpPD5J+XFG93hUky63hhRg2dKnNUmvPwsM30S0usqzgRmhrdwdl7eQBrKcDc1eMHrub22K70jr54jsMTM3UTZs832UVInX7KTawJfpmNnKXdRH7gSl9ygIVFj/g8Qbi1Td1KOYuYlgX4ScIKI5F+IVEsKtifwZip+MT+zE+6zPlvD1R7Yl/eqaa9d4Ok9VJkcO5Yz2Kh6kmILYwf73KfG0DJeSzLqDhDuOw2TU/NJC9E7+VLhuwoNMHrRLVvK0Wtg1tz6Q5BW7AJo/JscA/6okSrblzTOR4uQoOhX/xxe5jjM6ouoLG4LFXK/TBEz/braRxdQ1S723eqXf46taa2QD/kHwyzUg60tRH1RZ3olnP72649L9R/X5Ok0UvoHPHobam9rfmZcZ9eCYHNZu5MyKU8MuPn/XF0sTDcaQzrmv5jL4xoLGqXQqGhv7S60WvCcUo+M2GItWzvYNatiGHurLwxoawrerlyCVfEvp9pTY2EgwG9rWSYpdHuEnbm0R1sERHWiZ1euuKhqDpCySy9VUEfAM+HtZAWP/6eR/UHktaRE8TQlVOtH9X9FOUhTdyaxRNrDRCaZ//m+A1vajSxcBxfuBYef/EkIHKFbs5gJXWiS3dNIS+I6xoB8Ph+wE1gc8NcoAc6Pnp/z1up3j/UAagcB0iondY7sczy1jk6SM4sHy1sS0LiBERx3VjpAbuVC+v9JhI7XSyFw6P8A7s8zXfYo18LrKFRwraaxBMQkvY0pVTv5+fNSkJ/4pPipUzY5L4DVXF5r3GlI07LBepp7nxF3ak7RScAsilDbPGzNNOhuf0hbjH85+fNTi4g0bxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1259,
+   "completion_tokens": 274,
+   "total_tokens": 1533,
+   "cost": 0.010516,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010516,
+    "upstream_inference_prompt_cost": 0.005036,
+    "upstream_inference_completions_cost": 0.00548
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 58,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.19
+}

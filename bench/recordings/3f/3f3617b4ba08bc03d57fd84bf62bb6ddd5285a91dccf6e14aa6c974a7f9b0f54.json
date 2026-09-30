@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Internal redecoration: wallpaper, paint and new skirting boards\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"Sch 3 para 18\", \"document\": \"BR2010\", \"text\": \"18. Installation of insulating material to the internal walls of a building, not including the installation of flexible thermal linings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited, ....\"}, {\"ref\": \"Sch 3 para 20\", \"document\": \"BR2010\", \"text\": \"20. Installation of insulating material to the external and internal walls of a building (“hybrid insulation”), not including insulation of demountable-clad buildings, and not including the installation of flexible thermal linings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678017-5jh1oIL9uAzS0mg862Ak",
+  "object": "chat.completion",
+  "created": 1790678017,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "Wallpapering, painting and fitting new skirting boards is not \"building work\" under reg 3. It does not count as renovating a thermal element under ADL1 para 11.2: there is no new dry-lining layer and no stripping back to the structure. Nor is it insulating internal walls under Schedule 3 paras 18 or 20. So no notification is needed.\n\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.96, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "This is just internal redecoration — wallpaper, paint, skirting — not structural building work or thermal element renovation, so it isn't notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is just internal redecoration — wallpaper, paint, skirting — not structural building work or thermal element renovation, so it isn't notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmAUKEAgSGAI4AUIIdGhpbmtpbmcSDFdE3Wx/Hc4dqelGyBoMjfT1FajqL1LfORfZIjAVjjb22Phk8ETJcQ4/9LK8nJjCWNkOP+OWs9HqCzDm1dJ+Z1zy+x3UvCwQEsi9ZqQqtQRMLO1a3ydzBnueqho8otzF/4Kv5dDWPXq+Iv5NXOCPQqluHmwsRKXWWz5786GCDT+2cJfXmFMxDngxFj2/PhljcPQWt+ZF+xt2IZC1JgdM6sQAfMXn688y21CQzl4fby04WCuuTbQ0NgPGDkZ6X8HzUAQh4XoUl6FVo6C+rOR/pKk2ezblH32+d0zsNYkCtnnxH7hxY6rN57NX8yP+N8s6Dlz5ku8gBZR/SIANEM0eWUBlfnVAidNgYBSVA5ufHedhjlhKr1PH1vy2E0zkhWlqQp3hvOKEe4X8sHm8seHXYcFbtkptd5qAt3c4vBkiPedsUFoYJ9KqW/qw0XAdQ+kzm/yfNeJ/Dyl2MaNQPEttD25JCeiXAz0Dk4nrtAcQ1WuW4CWmpKPLyolV8n7NLZqMspBge/o8zyqY4zdq6InnLus5m2OOaiqJADQcrY8dfydcqBnwMMdZrwMvVctz5s4yytWEg3ey/4ZNd9bMn1dG0kFEDGfWJe6TFbbKvVIADlJ640CGkkGt9P5ci3o8yyRE5KZIIQGPHtSd39RYs13h2Y8Kasor6I1fa4pOLdmei2D4jAVpR/kdk3BmQN58Ak2zv/yNX1U8WEvCLpG2j4nSV5EFxIMgoSqRMRckM54dhVWSJSSSiimBT5WxPc1xDLNSkw01OuNR0mWtj1pY+w1weiXLqyX8+tGfHOyQZIKC7oVmfV37mGPqJoolDq0QLoJBra9xRMkyxz5mz/iVaRsVpAhZf1uaGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 969,
+   "completion_tokens": 243,
+   "total_tokens": 1212,
+   "cost": 0.008736,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008736,
+    "upstream_inference_prompt_cost": 0.003876,
+    "upstream_inference_completions_cost": 0.00486
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 46,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 4.745
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New internal stair between two floors of a café\", \"project\": \"Café in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678592-3hqMKgJUf8INfFCjWrJl",
+  "object": "chat.completion",
+  "created": 1790678592,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A new internal stair is building work, a material alteration affecting means of escape (Part B) and stair safety (Part K). It is not in Schedule 3 or Schedule 4. A café is a non-domestic building, so the Regulatory Reform (Fire Safety) Order 2005 applies to it. Under reg 12(3) a building notice cannot be used, so a full plans application is required.\n\n```json\n{\"label\": \"full_plans_required\", \"probabilities\": {\"not_notifiable\": 0.02, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.1, \"",
+     "refusal": null,
+     "reasoning": "Since this café is a non-domestic building, the Fire Safety Order applies, and adding a new internal stair counts as a material alteration to the means of escape. That triggers the requirement for full plans under regulation 12(3).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this café is a non-domestic building, the Fire Safety Order applies, and adding a new internal stair counts as a material alteration to the means of escape. That triggers the requirement for full plans under regulation 12(3).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0wYKEAgSGAI4AUIIdGhpbmtpbmcSDGz0rShqTRvI3xMlXxoMxer67anTEhe+x5icIjCql2Nf0R0kUFfvUSyuLayhB8GZZGNTqdf7DPV2E4PihYlCSe2po3GgBKNZK/3KOfsq8AV5+/AUU5IY9P6Q9+DYaBmKkc4c3TZXwEguXrOis+kVnlp9OVbfvqXaju9st2ea3DJrQOSu1fx8XcZV6ZA3+podI3p7scSWv31QhJKzISibB9VyOK/0EhNa067y0STqcm/LYvYxAfelF1Gp2ZSyOkjhxRakVUajjoIixJk4z4l3eeotWEYcI8w3UhvBABwepbHt9vd0b0CJXlxKqukQyEmyjmA0c9gab13yea++F7sOgF9SW8vQ+TbFBouT01VJT1hPGfMRrYTD2oQDL9VePKnB6Go5wY+ua4RtvvCz3OaVHadDP+hYDhCy4yJ+Sgmtv6R1m8RCeBW3BrVLsvNwIGGEmzhGG58YTfy74r7Ti0dUpDCNyqQ/VouriYKsedVxWrtHnEAODB1VVWsmdn7qjvzwr9fu36BxnEN3M0PlhYt1U4PjnglPDWY+lSOuqcuW1UFNJArG0j2cpeqKfT6SoGIvNRWo+kWdpPXllxqfm8x5T9zHK8nlxuB46Yog3seZzXum36S2zFBtaGshGAz8m2UFn9mWakoEF1aLJr8vqGWZn6gJMyFNNmiF13Zf62d6VUqMFQxhl7Nv2rQzXF1iaFwsFez87el6C7kFsiXVq1JXHfzK0xy2WVZQaTOiWN66FrF4l+C5A0HJWBXPqP2yCLBwU7ROfzvFVr8MY4tbhK4/rvjRyWKKGI4WO55la9kSpK0heHPdkmBgnC0gRHoMT4ljr++iaBpiq+MXFvmVmTGvd/fZzb1prg7BUGLVa3bXszjGeMnFmKlbSqZ8+08hw7N8paOndmpSY3GSinbUiwpJIceIBpmPoTAfzddBWxPouLrO76ZFcJZW19MVQtIrLauPwkCEbGKTLSI+gydMUb1O5CYXVw38N0Ei7G5yuSPW04BWKrn59w0Esv/DQpJOB4DGZRf7AHgM8NeNdNfDeB414Mt82TBujbr47zzjlPPILpgeWXsaK8nT16NkiWPXfyL5pcFhZYghoCDqfOJ1TJhsfhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 459,
+   "completion_tokens": 300,
+   "total_tokens": 759,
+   "cost": 0.007836,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007836,
+    "upstream_inference_prompt_cost": 0.001836,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 106,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.113
+}

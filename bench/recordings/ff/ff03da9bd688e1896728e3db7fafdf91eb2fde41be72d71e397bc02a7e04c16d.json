@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New building facing a private road\", \"project\": \"New building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(4)\", \"document\": \"BR2010\", \"text\": \"(4) A person intending to carry out building work which includes the erection of a building fronting onto a private street shall give an application for building control approval with full plans.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"para 1.7\", \"document\": \"ADP2013\", \"text\": \"1.7 Any new work should be carried out in accordance with BS 7671. The existing electrical installation should be checked to ensure that the following conditions are all satisfied. a. The rating and condition of existing equipment belonging to both the consumer and to the electricity distributor are suitable for the equipment to carry the additional loads arising from the new work. b. Adequate protective measures are used. c. The earthing and equipotential bonding arrangements are satisfactory. Building Regulations 2010 Application of Part P\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678069-QZaAPGu4bph1uNZMmhc3",
+  "object": "chat.completion",
+  "created": 1790678069,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Erecting a building that fronts onto a private street is caught by **reg 12(4)**. It requires an application for building control approval with full plans, so a building notice is not an option. A private road the building faces counts as a \"private street\" for this purpose.\n\n- It is a new building, so it is building work and not exempt.\n- Competent person self-certification does not apply to erecting a whole building.\n- Reg 12(7), on partly completed work, is not engaged.\n- The Part P paragraph (1.7) covers electrical work standards and does not change the notification route.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.9, \"building_notice_or_full_plans\": 0.08, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.01}}\n\n",
+     "refusal": null,
+     "reasoning": "Since this new building fronts a private street, regulation 12(4) kicks in, meaning full plans are required rather than just building notice procedures.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this new building fronts a private street, regulation 12(4) kicks in, meaning full plans are required rather than just building notice procedures.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSsQUKEAgSGAI4AUIIdGhpbmtpbmcSDDvMznzpnGkzQK82fhoMDoju5Qy3Sa0prMRuIjDPfqqGZ7JP/OR8jReJnWgb/hxlWo1nyHq3qqcByeXPSNDz1v6WKOtb7wGF+wZXh4AqzgTfiR8Xq5WUq75eEzMkq6I771AI9iMJPBb/PFYGEsBC0nFgtOGae3IV6ZhN5ro+fIWNfAefyaJyDvMA5pUbdq0H+iw+bgwvMaU+rEqxKUYQ2c2FH7PlRoBYx1zixbag/W6Gzf4U8PmDc2OQ/Sqc2nGYjaU+ogcnzHQW7LBjNLh9ZGYsZznEijmyCVzkWYsI4NrLZg7B+uhF1AsP8VP4xIZLHNDqSbFKbLJpL3oobF1MSFIATDFwO0ecz+b40oFQc0QI9a/kVYiKBorRdw49iPL9Oz055uYT9MD20gfB6fTjsqNUincbc6un/T+o1uwuvhswmorPYQLQ07uSfO1IXv0oMvZ0lAHDeLUgkhOSGeM/6TIUdV8G0B29uGXJkNDiXhpqtK6euO3sij34t+RE4gIKoeG5iNJSgoDZzPNRMiqtleYkgccKxlCDpqHpDPjJwjn/JmN1iTiE5G1uBKjzgISSQfREQqkNZqAXpLYrjbYt9tsv0PDOqacrVaSMNGuL5s1oofkXGI9qcTUjit5Ks0VQHEN7jnNZc/07PYm0UroURLB7vYw7QSmWhFNDlyC3OSaObXKE54YaLIOqh9Fv/YH2q0jBkN8M2ObY14EPEXK96XiyCjkwOiE+Utcf+KSHMKKtCigaJ+MPhpYSlFlrbBXrLhIDIRn20AgTnqzbabktGy6yLCPyf6/QNMMUbdrjfUYKlfJ1rrsg/neRrc8PsNXiqbU4YO+7fCrqYxG4VyCHyqht3wKZF3V10Uljjx1sLIONvHwR3Y7pFDrLw6i3kRgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 843,
+   "completion_tokens": 300,
+   "total_tokens": 1143,
+   "cost": 0.009372,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009372,
+    "upstream_inference_prompt_cost": 0.003372,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 47,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.576
+}

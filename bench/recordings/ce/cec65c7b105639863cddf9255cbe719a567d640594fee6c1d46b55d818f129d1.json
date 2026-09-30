@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Underpin part of house foundations after subsidence\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 1.12\", \"document\": \"ADA2013\", \"text\": \"1.12 Compliance with Part A (Structure) is required in certain classes of change of use of a building, subject to the control of Regulations 5 and 6. Guidance relevant to structural appraisals related to ‘change of use’ is given in the following documents: a. BRE Digest 366: Structural Appraisal of Existing Buildings, Including for a Material Change of Use, 2012 b. The Institution of Structural Engineers Technical Publication Appraisal of Existing Structures (third edition), 2010 Note: With reference to ‘design checks’ in the referenced Institution of Structural Engineers’ Technical Publication the choice of various partial factors should be made to suit the individual circumstances of each case. The Department has also sponsored a series of reviews aimed at determining the scale and nature of problems arising from mining instability, natural underground cavities and adverse foundation conditions. Databases of both subsidence incidents and subsidence potential produced from these reviews are available from the following licence holders: British Geological Survey, Sir Kingsley Dunham Centre, Keyworth, Nottingham NG12 5GG. Landmark, 7 Abbey Court, Eagle Way, Exeter, Devon EX2 7HY. Peter Brett Associates, 16 Westcote Road, Reading, Berkshire RG20 2DE. Structure\"}, {\"ref\": \"Sch 1 A2\", \"document\": \"BR2010\", \"text\": \"Ground Movement: A2. The building shall be constructed so that ground movement caused by—(a) swelling, shrinkage or freezing of the subsoil; or(b) land-slip or subsidence (other than subsidence arising from shrinkage), in so far as the risk can be reasonably foreseen,will not impair the stability of any part of the building.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677999-9WV8nRZyitfzfdQ5BfdF",
+  "object": "chat.completion",
+  "created": 1790677999,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.86, \"full_plans_required\": 0.07, \"competent_person_scheme\": 0.03, \"not_notifiable\": 0.04}}",
+     "refusal": null,
+     "reasoning": "Underpinning falls under building work in the regulations, confirming it needs building control approval rather than falling under Schedule 3 exemptions. Since it's a house, the Fire Safety Order wouldn't apply, so this would go through a building notice or full plans application, though I should check if proximity to a sewer affects the requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Underpinning falls under building work in the regulations, confirming it needs building control approval rather than falling under Schedule 3 exemptions. Since it's a house, the Fire Safety Order wouldn't apply, so this would go through a building notice or full plans application, though I should check if proximity to a sewer affects the requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSoggKEAgSGAI4AUIIdGhpbmtpbmcSDK2Uwycbr22frimnsxoMJZ/9UBEhHHbalzleIjC3WE8DkGzk1bJjoHLhO0/9PZKUl7XCedFbcHJuqBqlT43qBnRe7P7w4zDl7p1eWUwqvwcKjV7JkdIBBOrfAdLUpwT1Cj/9Ic0vgDD4R9uUpXinysnsGf3zpCgengZtBlvQq1d2gN5QGyi8oEJwaJYhyeH4ppUk4FtmOLqfrEL19lsxIrvoaFCH8gJAYFsZMxZ+vIIEtkvIAu6LjkSwiHzANDXjBhUJ5r3Q8yswKMzIYu/GbtTZTDF+BrRidLaSmG9wD0obgaY35rZNompbFlm13RURssvv5kivqyckbP6HxgoLGqP3HtO39T2quDYGuG5T4hg7cG1BNGsjK+kCA+T9ZE8eP3RjChMI75TktimIUAaLj21XPBZ/mRxJyFWvzPlrj8VZFFTctFrigt8tqdcM3QQ5Usf7DGD6lpAHlb62obINFxmzE5mFzZIaLZV8OAVDU81Z3GQRfiKIzOLfM5enHJjGrShHQBOVUxF0CwVBU2W7c7WQV5rJypVfo2yF7nhx/1UN4mZB7K9GTbHQbEarXmGkX2r9RcIINSnsDcCm6oUUC+3SoXV1a97F14Xt8d1NjmslXXHs258Nf2GE0CQhufC0IrolXcbRh2elNNueqq4mKrMc00shDtWowyeqguAUhQzGz+WWLCjk/Y6hBWJkcJ1Kqyx0IJaDXsVgpRAH0bkedQJQRKSsLfFxPGO6WC9DCFUqcqaPnldzq7cF75kQgBt8+XZzNQbmFY/mX9qtDtG4pG/FSb5So8yWbmiE/kGXfWQ/rXh0S2mHVlpMcLOtcSXZfvd3YFAUEApkcuIVZdHsp2YkSVNb0PL4jKUOOH1SAc7H+6NcF/aHW8BOUFMwjtkTUCDI17kVmIzUCLEJ4vw7TlMR2luB7OBzH9N2hVkwAQonjedWxjAD//bxnaXx0okbMXTxdppmmj8+ck6EEgspF4jGqEZ2SKV85PVAp0wATpy7MRrTT+tsgz9gtEskOuIdMuezKCueKvhkZAHfY4/yOCWsURcsfvC+OGGFuqoO8Ktodlu/dsb540URG6sbuZkIecRV5k3J0XoN6zuFxCmNeWmAwe+cRugKYdhwz/y95inBnSVPSkgcW8g15u/8w10wLxMWKuA2cpTbjs+y9IhUHghMplctmYZW9EngYP97Hx8QnB2R2h3zdycKKoCKOzF2+6BQ1+DWOoAMV9NoeaX5KncZuSSRhdrPMSx/e6e3x3diTzW26S6AOhCXr9kRJMLi8TSjf5LiDuFVeftLnqJHhlrXOw+SchX/8DTiQLr7AYcLrEhdzTYvRtZDGmOx8P1RGfCNa/rIf4ngYViLXIQYAWNTaOUbN1UxXv8XM/zc+RgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1199,
+   "completion_tokens": 289,
+   "total_tokens": 1488,
+   "cost": 0.010576,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010576,
+    "upstream_inference_prompt_cost": 0.004796,
+    "upstream_inference_completions_cost": 0.00578
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 203,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.525
+}

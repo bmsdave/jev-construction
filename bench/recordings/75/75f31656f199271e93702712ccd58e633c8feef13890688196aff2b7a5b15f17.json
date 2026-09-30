@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Add a light fitting inside the shower zone of a bathroom\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}, {\"ref\": \"Sch 4 para 4\", \"document\": \"BR2010\", \"text\": \"(4) For the purposes of this Schedule—“kitchen” means a room or part of a room which contains a sink and food preparation facilities;“self-contained” in relation to a fixed building service means consisting of a single appliance and any associated controls which is neither connected to, nor forms part of, any other fixed building service;“special installation” means an electric floor or ceiling heating system, an outdoor lighting or electric power installation, an electricity generator, or an extra-low voltage lighting system which is not a pre-assembled lighting set bearing the CE marking referred to in regulation 39 of the Electrical Equipment (Safety) Regulations 2016;“special location” means a location within the limits of the relevant zones specified for a bath, a shower, a swimming or paddling pool or a hot air sauna in the Wiring Regulations, seventeenth edition, published by the Institution of Electrical Engineers and the British Standards Institution as BS 7671: 2008.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677786-cymHDtIcJTkXHmHaXu9E",
+  "object": "chat.completion",
+  "created": 1790677786,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The work is notifiable, and a registered competent person can self-certify it.\n\n- **Not exempt under Schedule 4:** Sch 4 para 2 only exempts adding light fittings to an existing circuit if the work is not in a \"special location\". Sch 4 para 4 defines a special location as including the zones around a bath or shower in BS 7671. A light fitting inside the shower zone is therefore not exempt.\n- **Covered by Schedule 3:** Electrical installation work in a dwelling falls within Part P (ADP para 2.2). That kind of work is listed in Schedule 3, so a registered electrician can",
+     "refusal": null,
+     "reasoning": "A light fitting in a shower zone counts as a special location, so it falls outside Schedule 4 exemptions. Under Schedule 3, this dwelling electrical work needs to go through a competent person self-certification scheme, since notifiable work covers new circuits, consumer unit changes, or work in special locations like this.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A light fitting in a shower zone counts as a special location, so it falls outside Schedule 4 exemptions. Under Schedule 3, this dwelling electrical work needs to go through a competent person self-certification scheme, since notifiable work covers new circuits, consumer unit changes, or work in special locations like this.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSyAYKEAgSGAI4AUIIdGhpbmtpbmcSDJYGEYcUGCMAC8gWzBoMb0APY3eoW5A27P3rIjCYDESNX3EjjvEea953JpLiwawNtfESluoXLqwBgFXVDYKZpNaKl/1Tl+UpzZZXX7Yq5QVSOWuqJJr5Gk7d5XEiXsUheH7umTjymLEmqlhfSGdHVek/QoLIaX31KGGHe6BOdNajvu6ggGPXZ38bXmh2+AkMh+1eHo1TegED6g0YggonHiAaLGqqJ1jUzmuRMuph77tqOyU5AuQgrrbKC/dCh8MWKOeUpYNqwz6rQZlmF0jGvfieDtcaVieDhqY6oQchClWHuyqeiZaci5Vfrb7tyT2iQF4EQL1EGhIbPT0mSsdA6qnm8+mCzHcvGu/MNaxn2XPDfd+Et93td33zuXsfVsg0Lmdy5hyvpyJICLE7CmX1oxuLgYdjnnAMiUALiQLC3wZoHsuHLTt+CYwn2s/EHS7PTiBWpEMpjNcJoUwqXi92eI3vIUNObsXK29Fdgg+6AK79zm3oRRIstT1V0w9D5lKsVVYlOiWjVgd8xdNX5VQZOKTsO2kEMjCI47ZDfVLe5V7f+9MvDzBMK3HjT81n+GTiNd7zGLgcBMJJ5vQYJq6+ooa4/2bcsElWRb/gt/8WkWHsOjnL+EdvHW3jVOCIMti3FIKGRMOENXRG94O+K0eSaHGl0Pidej08UjATSTkq23gbd/vWPRHdDisEs4o2OcIDLgjLomvC4YQzvwAjhy7vN2NwLOezSRHkuFMn9K5uLFibdGOv7YVqEdjf0MKnIo6AMxMk/iaSpetOyW7FzryvYU4H1kO4rLlnOEBlj6OrgXV2kYd8j7NlaM7a27XX4iPW/WMmfRsHYVMktW9ojUK9FZDPITKOoC3CTojj5qHnP2azVovdPQNBn4Flm1eZB4JiWRT50lBbGqjOJNwtt0as9ZSMRG4NflpSZSpEEUslQUiGm3rs/VGf9f1PsrbHFFVhOU50EKue6bMRRmAakGNsz2+h/cEm3WIQqpUVkxHMOGL6U0S8zqcgqRFE7uXTucX33jnyF9xOOQBamE1Mq5zRpW2ySjHB7WBu5+4Y2oVJ8zdjAuazW/CQa68qr9WyMZjPRLqrq/4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1211,
+   "completion_tokens": 300,
+   "total_tokens": 1511,
+   "cost": 0.010844,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010844,
+    "upstream_inference_prompt_cost": 0.004844,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 100,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.462
+}

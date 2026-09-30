@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New sprinkler-protected storage room in a care home\", \"project\": \"Care home in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 0.17\", \"document\": \"ADB1-2019\", \"text\": \"0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"para 0.9\", \"document\": \"ADB1-2019\", \"text\": \"0.9 The fire safety requirements of the Building Regulations will probably be satisfied by following the relevant guidance in this approved document. However, approved documents provide guidance for some common building situations, and there may be alternative methods of complying with the Building Regulation requirements. If alternative methods are adopted, the overall level of safety should not be lower than the approved document provides. It is the responsibility of those undertaking the work to demonstrate compliance. If other standards or guidance documents are adopted, the relevant fire safety recommendations in those publications should be followed in their entirety. However, in some circumstances it may be necessary to use one publication to supplement another. Care must be taken when using supplementary guidance to ensure that an integrated approach is used in any one building. Guidance documents intended specifically for assessing fire safety in existing buildings often include less onerous provisions than those for new buildings and are therefore unlikely to be appropriate for building work that is controlled by the Building Regulations. Buildings for industrial and commercial activities that present a special fire hazard, e.g. those that sell fuels, may require additional fire precautions to those in this approved document. Buildings of special architectural or historic interest\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677707-Tk5JPXpeUI1MhXKAG1D7",
+  "object": "chat.completion",
+  "created": 1790677707,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Full plans required.** A care home is a non-domestic building where people sleep on the premises. The Regulatory Reform (Fire Safety) Order 2005 therefore applies to it.\n\nForming a new storage room, with its sprinkler protection and fire separation, is a material alteration. It affects compliance with the Part B fire-safety requirements, so it counts as building work.\n\nUnder reg 12(3), a building notice cannot be used where the Fire Safety Order applies. A full plans application is needed",
+     "refusal": null,
+     "reasoning": "Since a care home falls under the Fire Safety Order, Regulation 12(3) means a building notice can't be used here — full plans are required. Creating the new storage room with sprinkler installation and fire compartmentation counts as building work affecting fire safety requirements, so full plans submission is the correct route.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since a care home falls under the Fire Safety Order, Regulation 12(3) means a building notice can't be used here — full plans are required. Creating the new storage room with sprinkler installation and fire compartmentation counts as building work affecting fire safety requirements, so full plans submission is the correct route.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1QcKEAgSGAI4AUIIdGhpbmtpbmcSDNKezlq/As0MdfEHjRoMF6J/kCzo0HtwDI3IIjAAKwVbOwM7y9z/7KdnTrETrHq+M2EuSLcM/Ym0Oq+M6Ik799GMCAoBdspTWcB5OlEq8gYplFZnedXziogSkPzPClGgVJ9unWmbIALOJdMjE9PsUfCvgW/5xZTURox9ormg75abPn5oatNiit18CjOcIE+foGBT03niB0AOziAVUSAZL23a4RUPqO6be0fZx+/V7rnvTT6Dw1uqmHFMjQonVPDapbqrfrT4y+rbZpb7eQjm+q/IeMivzFcNj8op8JUNGB9tZE677c3me/8R9EQ1iQcQdrVFA9h+o93v0TVQQMejzuaDbm26zFI0fssweV61qO//mYSlJunOVrxAxEQJ5w6zOmO+q/Q6rld6Hsdw8gszNHDPFvcSVn2md3ygXKuR8AeluELjE846NIyvMzWsAZlfK8uCXxynaVY1+5fmKHpD1s/3pyYk/NUFmThLI9uNBO2RYz2/uBpB5cIiF9ApZz/LmYhaiiQdTsP9ppEUFOGgQ2dtXlPmuy7ree5z51UEaDsZsjkUzUJAL1Fr0Tn+XWE/ATjQlwajZsJesrd8mJR7ifFRxubfWN8m9Oz2pKXiC4lVT8q48abZbJzWJ320zHppBJVGVz9itmmSX7pwqnBFwTtVF5pZH2HiE5NYLCVvSzG+BvkT8Uq69XKdonGBbuYEnDq3N0c0jgv3C3TbQ30F9HrVmG5bqAwnmSOZbmqiCqLmzgBnRl+ux31RFoKKFnJY6+S7+nYko9I5OQfVL5OR+fd2b1e80jOTeTRxWSMmq5tKz/VMeADqDqLOHrmykEEq2NL55DkOQhJx4hL28OpUvDRk5bWPCmnhVE9nFGi69powwggtsW0OMsSi76aw7x4bTGDm8IuXXPHfFIcQIEsUlpVnoHFEbD4rR/UP/xwSZDGpT3P8cpkQi7KOTlEg3uqjQV6ZuvWKXp3qCj6er1xKLKH3Z04XOs3XmZm9LDzaIWToUuFD5nicpWzQsXGVD7vIuUDXFW8JGsEuDLrI7k/htNPlOGX23/Fq4EsQAcyTUchmQurTBVw8bO5bQMOrwOsblrdOt4vqQjqVkEUsM0wyq6lHONNIOpXj+8umKRFXBA7d5FWTDWki6ho0RjqefzkI24oua6zW9SmHe8jcbEw1uDaaDSl7su1Gg+H7pdngmeSWLmpaVgkqOIH0eqetgH7ZrxitYoaS40IX0VFkVzN4fW8qG/ihZo/AnNA3nmd6x9TUYum3CRu7cWO5FneyRKu411cYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1529,
+   "completion_tokens": 300,
+   "total_tokens": 1829,
+   "cost": 0.012116,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012116,
+    "upstream_inference_prompt_cost": 0.006116,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 140,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.612
+}

@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Adding a single-storey classroom extension to a primary school",
+   "project": "School in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 E4",
+     "document": "BR2010",
+     "text": "Acoustic conditions in schools: E4.—(1) Each room or other space in a school building shall be designed and constructed in such a way that it has the acoustic conditions and the insulation against disturbance by noise appropriate to its intended use.(2) For the purposes of this Part—“school” has the same meaning as in section 4 of the Education Act 1996; and“school building” means any building forming a school or part of a school."
+    },
+    "c2": {
+     "ref": "para 0.11",
+     "document": "ADB1-2019",
+     "text": "0.11 While many of the provisions in this approved document for means of escape from flats are applicable to sheltered housing, the nature of the occupancy may necessitate some additional fire protection measures. The extent of such measures will depend on the form of the development. For example, a group of specially adapted bungalows or two storey flats, with few communal facilities, will not need to be treated differently from other single storey or two storey dwellinghouses or flats. Fire safety engineering"
+    },
+    "c3": {
+     "ref": "Sch 2 Part 6 para 1",
+     "document": "BR2010",
+     "text": "(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material."
+    },
+    "c4": {
+     "ref": "reg 2(2)",
+     "document": "BR2010",
+     "text": "(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted."
+    },
+    "c5": {
+     "ref": "para 0.6",
+     "document": "ADL1-2021",
+     "text": "0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings"
+    },
+    "c6": {
+     "ref": "para 0.17",
+     "document": "ADB1-2019",
+     "text": "0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …"
+    },
+    "c7": {
+     "ref": "Sch 1 M4",
+     "document": "BR2010",
+     "text": "Sanitary conveniences in dwellings: M4.—(1) Reasonable provision shall be made in the entrance storey for sanitary conveniences, or where the entrance storey contains no habitable rooms, reasonable provision for sanitary conveniences shall be made in either the entrance storey or principal storey.(2) In this paragraph “entrance storey” means the storey which contains the principal entrance and “principal storey” means the storey nearest to the entrance storey which contains a habitable room, or if there are two such storeys equally near, either such storey."
+    },
+    "c8": {
+     "ref": "para 0.15",
+     "document": "ADL1-2021",
+     "text": "0.15 Where a dwelling is extended by adding a carport that is open on at least two sides, a covered yard, a covered walkway or a covered driveway, the work is exempt from the energy efficiency requirements if both of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. Live/work units"
+    },
+    "c9": {
+     "ref": "para 10.10",
+     "document": "ADL1-2021",
+     "text": "10.10 As an alternative approach to paragraphs 10.7 or 10.9, the Standard Assessment Procedure may be used to show that the dwelling primary energy rate, the dwelling emission rate and the dwelling fabric energy efficiency rate for the dwelling and proposed extension do not exceed those for the dwelling plus a notional extension. The notional extension should be the same size and shape as the proposed extension and comply with paragraph 10.7. The openings in the notional extension should conform with paragraph 10.7d, with the door area set as equal to the door area of the proposed extension and the remainder of the openings being classified as windows. NOTE: Where the performance of elements of the existing dwelling is unknown, data in the Standard Assessment Procedure Appendix S should be used to estimate the performance. Building Regulations 2010 R23(2), L1(a)"
+    },
+    "c10": {
+     "ref": "para 3.25",
+     "document": "ADF1-2021",
+     "text": "3.25 When a wet room is added to an existing dwelling, whole dwelling ventilation should be extended and extract ventilation should be provided by one of the following means. a. Intermittent extract, as specified in Table 1.1, and a background ventilator of at least 5000mm2 equivalent area. b. Continuous extract, as specified in Table 1.2. c. Single-room heat recovery ventilator, as detailed in paragraph 3.26."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.27
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.14
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.04
+   }
+  },
+  "usage": {
+   "input_tokens": 3049,
+   "output_tokens": 175,
+   "cost": 0.000128058
+  },
+  "id": "gen-dec-1790676086-JrwrpcGlCSRScZSBWX5u",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.289
+}

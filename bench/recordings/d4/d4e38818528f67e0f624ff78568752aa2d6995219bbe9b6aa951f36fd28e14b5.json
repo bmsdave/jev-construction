@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Dormer face opaque wall (allowance)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677279-xMzy5maxSF2WZLS2EJwr",
+  "object": "chat.completion",
+  "created": 1790677279,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.85, \"competent_person_scheme\": 0.05, \"not_notifiable\": 0.04, \"full_plans_required\": 0.06}}",
+     "refusal": null,
+     "reasoning": "Building a dormer into an opaque wall during a loft conversion counts as new construction work, and it isn't covered under Schedule 3's competent person schemes, so this needs a building notice or full plans submission rather than a self-certification route.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Building a dormer into an opaque wall during a loft conversion counts as new construction work, and it isn't covered under Schedule 3's competent person schemes, so this needs a building notice or full plans submission rather than a self-certification route.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7gYKEAgSGAI4AUIIdGhpbmtpbmcSDN9KNftbh96+bXIVVBoMsigIhQ52l7MgFb4NIjCvYCTQZGh6HvOfr+3d48xc2Q+2g4H9zWF3yp+Mi7O771Hv6g4GhCxDT9BbGpEOXjsqiwZbui3iuLwAo6vY/V05DulJuMPvHGehZJ5qZp5mPMFwjmHoG1714+VMcfdSaNT38bJe5ppgekqwTq6kd5+idxQzZF3LLzObCphW7r6nzveo7WgZDMxn7Z/s/c8B+A4Vq32hoHS+i4DAGLu+u3xlbse9akn2MLvYxhxfhOiUfw4BOs/ZX26R/FGiTewBB4BAc7SF/cwPS2swofFLlmwdPIHg6dvFx6ZVBxGK9k5zuejn6kGJncO7fFaNcXxPhKY87PRpx5rPZorVLm/AbUHpLrIMMYXAq9PsCibUAmCEyVPgRM/x31ZenXePaXt37cwXaO5WNvVq9RHvS/a2kzLinvGPgIU3TGirszHVAzwLxxR8jdQfEyHHH8Lbv8KzIfo6QYW3FzBHZmWzM2zBy2DYshDb5GzFnupzdfnSESOodfwvEKNOlMMyogurWbiELsEGjdACpWsLp+jvRHHgekdrmJ5I5FL2qS347DKH9k2CUQ36FB3+93YjNC8D/rpqx9hiQ78IJiCRgNmtQPMhgmMqhpoKssNkKfOv37uu1uzLICp6YW+9kLY9vlzJC0lXqPNtNB4LMEunvVs95sQ2k59CaWnfu0xWA0LO7Y2V7thn/f0dEgnG9Yldj7O1D3anJ65SFJvBvJOcDkbnvQdfiAZl3/iwt6f9EzSoQYgsVnZy58fyXXYi+LTQovswahybmzrrpN5Q5NPxK0wy6zTH5NT44T+Izriv8GUrmHDcf1SYAV3ILWoFMA6hjFxTgRP5LfpArdtGIpohDRzaJtTtvRJ1yVU9xcyv8ZlzfLXhYxXyf+6bQEmwfxGbGPg/Ut+2smVcKOfjO96lYtVOLenGWWJYc7BySB0FdDzh3pza/OAewHFzmzCWe3fU5RtuxbEpaAkZ6n668SHQ2AuRb1X/SHhwddO6hd5YxvdiukSN7DSznKFKmHbc6B17UNxU3IiZmON6V25tjYRCO2/7oaqYjE91b4KxdNrYn65MhDrA3uxbhZLtQyG9aM/1Pmv4qbTuDUcgpbHRGf0d/h85KZSPfhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1433,
+   "completion_tokens": 205,
+   "total_tokens": 1638,
+   "cost": 0.009832,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009832,
+    "upstream_inference_prompt_cost": 0.005732,
+    "upstream_inference_completions_cost": 0.0041
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 119,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.615
+}

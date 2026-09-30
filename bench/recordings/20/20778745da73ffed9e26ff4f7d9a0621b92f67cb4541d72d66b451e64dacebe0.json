@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Steel fire protection\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Structural steel. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678191-6dgaZFzd0nC9KhR9zVb3",
+  "object": "chat.completion",
+  "created": 1790678191,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether applying fire protection to structural steel counts as building work — it's not covered by Schedules 3 or 4, but since it affects compliance with B3 structural fire resistance, it likely counts as a material alteration relevant to Part B.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether applying fire protection to structural steel counts as building work — it's not covered by Schedules 3 or 4, but since it affects compliance with B3 structural fire resistance, it likely counts as a material alteration relevant to Part B.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 502,
+   "completion_tokens": 300,
+   "total_tokens": 802,
+   "cost": 0.008008,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008008,
+    "upstream_inference_prompt_cost": 0.002008,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.781
+}

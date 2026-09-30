@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Lead supply-pipe replacement\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678449-s7VvpLfvMHnE3GsnZldf",
+  "object": "chat.completion",
+  "created": 1790678450,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether replacing a lead water supply pipe counts as building work under Building Regulations, noting that supply pipes actually fall under the Water Supply (Water Fittings) Regulations 1999 rather than Part G, since a simple pipe replacement doesn't constitute an extension or material alteration triggering Building Regs controls.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether replacing a lead water supply pipe counts as building work under Building Regulations, noting that supply pipes actually fall under the Water Supply (Water Fittings) Regulations 1999 rather than Part G, since a simple pipe replacement doesn't constitute an extension or material alteration triggering Building Regs controls.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpgsKEAgSGAI4AUIIdGhpbmtpbmcSDAVZzZcidN/+vN4zXBoMix4IHcNfXH8DJx20IjDRyeEDiJ4A7vfz+Ze1qd3ZEc2iN0RUjB7ADCQlOvz6lBB+6fcXreJLIpabERtKviAqwwqO4EWKwbsCPlOUw6j0RkLgRhLhDlW1is7a5HtHfY/YyKc8J+Zl143dp26dRwUVf1JPHVQ0nAkIjL0HAFA3/vBbHeCvIIV9cQe8ur9u1YQzkYtFJLjf6vD9B4VUvZJFstbZK0gRWY7WEeMyHsDW6iujLJiWmjBJWWf3V9pjmsDZjrpule8efk5UdedyOlB9kaJHme2KvR8DoPzWkhjlfFlx2786elC5u+lp63sm6MSkZvkiYPKxLzPXmBzGESEt4ndl73s/hhxMxCMjvh3BoAuR4eIn0Kx6Xa9JEO6Eti3ItUpUqcLvAQnHnMTGx2ERzVFVIBei+1XqWKgMSRC0eM7MAopmbMwikINMKeIjYV3/bk2Lb8nIQS+Dt9paPnQrGwZQInhOkL57SBQZAHAW9HNiKV/CWmXDObD7AsVe8ZSu6zdvLr0zZekvU8tOFTcs61CNQAae1RuTiZgeRRjTvy48WuQGnh9zJm2GK2X5ZgXOPefQFY4w7PcakKHRLmKVGct9tOKRFoZ4hw/wKFdrELnP9ElP+OvEi3JcrdGaDzlbnXjajOPHGs/YcKTqkRLqleZfemffyy0943jR717/5ODo6iFfVmlPEbkSyAMJIZajP74B+mLpTieFjKB7i6eLXzpSEbQG0Qu3c4ik1XSlJWIE+wJ/v84c3V6+PTJo5MygAnjQI38+W4tyQvriuTV71HxFaDEQyunKA93ikHr96YE0lFCbexQVzH+Z56mhHYTrewPzlf0vnhDQZ0I3kyXga3sdq5WEnMmmdhvqAet2LuqLsJaMhWPxhNd/lLTyqFh7kduoKWaH/fQ2RWa27Ed2/CAm1WYd5gV08Qq+VcCMz9sHt2Ra3pURPjIxiGAifGIM9d+kbBMZX6a1swW57hj6UM80wGJ7jzXyIRShDkBxFs1ILo2moQEI53m9Pi8pVQuPyalOD3Cy9TRM05Ksr3tgi2adONw6dMdJR4i+yIlth6rM8C3QbIjdXAq7cw28/c48TqrvuVGQV3hQXtPAdMJj60+3B27ge5w8SLDOEyLn2fZO6Y3rv3cH+kxdam7kIQax6jecfubjCRGwt7jalsh1A8i+KhPPr1OM31O/a3FnDWqyqnbDiFqNT7d5ZB6qGamCvcYBpzZCuUwoctvRKcMkPoigPgcnYtn6sx/YF4hSw4EwKZqQdvtYtdIKrHEEEIRJ7TfEb0tQo5lPxk7DyFsdgPHRr5miHdTW1UmP3sJwzjVoiLzUKKDX6yOuLNe+xd+xYD3GLrDcHuFRLi2WESaU2wQLYSwycT9p8AirJ9jbybOUCOvW9ZpziOQ0/ucjgnF8kii7snyMQVvYw1Ef7w9UfE8g9mMNdnmkAjjru4efbfvwKPePEu5TTIqfYsVTtieNlQFSmy8IjEPqgd0aZoq2vIJWEfMuyzihUDjDZLUOrk5UWA3xFELIlqiY/Hlozh56Tju40uZQ93TQvnX6xMcGFZqelQ2A+DI0nX5+t0niKXDkSff7DgUIKZl/u+Q5qeORy0/9JNBRmxjkXmuPYqAO5qRWK66m3ngHLP5hinZ3JDGzcnIx64PmfZb6gZAeNrAg4AB4di9EltS1AyU/ryMTlzoV+1IYQyAs6NDMqp8vrYWrtgdtSVI3wS7ejnO3PrVY6duVVC0wEcPMvPdaVlb+/31dbkkIgcUwqafob0M7ZVvwQEf/tox3bNwPL5pcjqD2sWGOhcSrr2HSxTxwdSZ20Yf3qUO8dFkXRcWr0lb6HTMEXysauk52QLJP5VJSj/21JQkoA/z7EGuFdYLCoRY4GXeCcP4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 497,
+   "completion_tokens": 300,
+   "total_tokens": 797,
+   "cost": 0.007988,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007988,
+    "upstream_inference_prompt_cost": 0.001988,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.451
+}

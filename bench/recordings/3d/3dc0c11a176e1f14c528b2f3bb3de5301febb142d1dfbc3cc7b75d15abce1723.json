@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Add a light point in a bathroom more than 0.6 m horizontally from the bath edge (outside the special location)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.7\", \"document\": \"ADP2013\", \"text\": \"2.7 Regulation 12(6A) sets out electrical installation work that is notifiable. All other electrical installation work is not notifiable – namely additions and alterations to existing installations outside special locations, and replacements, repairs and maintenance anywhere.\"}, {\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677886-5RAGtUtQllh7WMvfaXDO",
+  "object": "chat.completion",
+  "created": 1790677886,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Adding a light point to an existing circuit, placed outside the special location, is **not notifiable**.\n\n- **Special location:** Regulation 12(9)(a) defines the special location in a bathroom as the space within 0.6 m horizontally of the bath edge, up to 2.25 m high. A light point more than 0.6 m from the bath edge falls outside it.\n- **Notifiable work:** Under regulation 12(6A), only three kinds of electrical work are notifiable: a new circuit, a replacement consumer unit, or an addition or alteration to existing circuits within a special location. This item is none of these, assuming it is fed from an existing circuit.\n- **Guidance:** ADP 2013 paragraph",
+     "refusal": null,
+     "reasoning": "Adding a light point outside a special location is just an addition to an existing circuit, which falls under Schedule 4 non-notifiable work, so this isn't notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Adding a light point outside a special location is just an addition to an existing circuit, which falls under Schedule 4 non-notifiable work, so this isn't notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS2gUKEAgSGAI4AUIIdGhpbmtpbmcSDLFvOkF943Ml22g9rhoMjb22TbGkv6q34ER3IjDPU8ZYufrKcNJmwoFzFyEZKt4qF93nYHjj+Brg8P7cOHQltX/NgP8zgECh2cWf6wgq9wRiA9B8vojsnzWI3DCEflB66/fzBtxPfTZS8TlKnokFuD6h9M/4zpDS10+cxeiCP3wYIVoMELtbN+gFsRaim3kkhN/dKYStHN4FBneAFhyERL9DeUy8YFgFisoAGN9HpN04WSLEj4OB218mP+ELMd0RGhlMpFX2a1FnFf6QGgIjJ9uqgXdDWA6ddSPVDg2zJ4izT9wdiz7GfSX8tF/9V4QiNOLu/TOIZjl1J13GqTsdUNSB1egmvsRZH5errJvtGA12prcYS9JltI5al2Yq52DaFnoO8LZ7hZVSr35QTgmBxH9dKonTHVne90i5stE2pDmioARl3iVIR0rHtlUDmMRmSD/X+QAcDK8DfErexI4GI2PxDc44Skdv0X9BHdFFVPkmESjALGOwSj/50saWBPFA66Y9kF43Kc7joWVwfvZUoRBP5MnnQC4CtBivybhW1vRFPjnE1C/+7PSM9VuLXFVUVQoF/TxiExtU6HCbn7DZoceHIyJatKAwuFTpJziUvE42M1LEBgfq7ltUIVJ5xdCq4/cyAo0uOVOay/3fjdvoxC+2sdMhkeb62U8u0W31blpFgaI7bRDii0+Z6qtfdQaiqwNShbvCMaE3F/kEr/3KkAcdKm+D81iwecH/RvR3am7RM/s0wh5xQmE3Z4fpr2yKKVI8I+Afqun7MtM7NmFXKyTDqTHUay4ZnblYNxwcE6j4/rbK7OaFftIcVV/+phdqr5D2kiDRmees4c3EY/ZA9i8FUzXwVR63tWXo9vCbokXEotGDlFQd4Wy61+lehCEAcJVPf+0IpvrLMYwQd9hFIKGusMst6aYjXjL5FF6INeetKthOp9xbGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1269,
+   "completion_tokens": 300,
+   "total_tokens": 1569,
+   "cost": 0.011076,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011076,
+    "upstream_inference_prompt_cost": 0.005076,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 69,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.102
+}

@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Knocking through the wall between kitchen and dining room with a steel beam",
+   "project": "Terraced house in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 1 B3",
+     "document": "BR2010",
+     "text": "Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952."
+    },
+    {
+     "ref": "para 11.2",
+     "document": "ADL1-2021",
+     "text": "11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation."
+    },
+    {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "building_notice_or_full_plans": 0.73,
+     "full_plans_required": 0.05,
+     "competent_person_scheme": 0.22,
+     "not_notifiable": 0
+    },
+    "confidence": 0.63
+   }
+  },
+  "usage": {
+   "input_tokens": 1157,
+   "output_tokens": 65,
+   "cost": 4.8594e-05
+  },
+  "id": "gen-dec-1790676104-oZ1OBcmncv9UWWp153xP",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.293
+}

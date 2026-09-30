@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Kitchen hood extract route\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Ventilation. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678461-sBkbI4jpNpc5Bg2jVqLf",
+  "object": "chat.completion",
+  "created": 1790678461,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Installing a kitchen hood extract fan in a new extension on its own falls under Schedule 3's ventilation system provisions, since it doesn't trigger separate building regulation approval beyond F1 and L1 compliance—this can be handled by a competent person scheme like BESA or a similar registered installer.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Installing a kitchen hood extract fan in a new extension on its own falls under Schedule 3's ventilation system provisions, since it doesn't trigger separate building regulation approval beyond F1 and L1 compliance—this can be handled by a competent person scheme like BESA or a similar registered installer.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrQsKEAgSGAI4AUIIdGhpbmtpbmcSDNXBKhKhPb399ERTdxoMUrZbwVdCkjTaawdJIjACyJljo8rOxX9aXaU80vB5xA+6jB21hT1laZ3Lk8V7vbrQAYAiORKdmGudJ85uztgqygp75DLwohAzNVs2rWmC0qN4fwP0IwtVWQCDGSIvGzSQnghOiTOEaCg9ft5cC2mDCPeOJzNHv5L5uMSDS+2kjFtxQr6MdIE18s3i7NPLJpv2I/3WCIsvIpL7YpiAfNq/chz82Rvj4ZCyGICpB/8wgxUFaHA68c4V7U1ieq/obBojP9hbwV29CPRfRsk9bkBLk/fCNdYySCQi+Dp1ZcSu6l4x1umH1tZPSjHxNTY7t968a4qt8tKIQS4sAg2EW1INnEHGJe35NaYLSHiCDEFCyzOj6IYan3mmOIOWS4GBMUtaJ6xDoTuPAV9HRMW1bfT+28EdWKa+vOuFhyuhNQzeD3UkSGf2ZExOg56WXjzROCPs//Fjcxy5wl81aMZXrshx2EmYwXi2Ioxb1cPLNMHw7SUIi4mjcQITUxuJCfSpilLjyWNYXWXOU4Pe8W/o5k2KAw2AhA2tnoUZmB6d9AW+UlD7CLx33mZI5yS1d9BLrc3LQHNGv8CgD+HNTyH5HRG90Z98jcLd1IYLOoADgpUWmkZlf+10oEOPvwNlVbR/8v80gyFZMaTyOBtsWy+YcmmxIGnBhtBSZHFt0JfLY/1gz9Cu0NwJUcPIIZ45gVV4WzcY6MfMsQUCRQPv+amonBmpI/dxgeyHOMk3qWcZlPOUuJrcHXyjuYBswtvojZ5Vf+X70N0YkNk/h6/6us0vz7ianVhSC8gQL6pAvA2jJtvaa0Rv13lQ2MI1QdErx5vevbs3Swv77ICZtWFHYpO1XqDwYHj+8+IDiqjj9tf4SLbjDw6JCB4xH+2Z2N+L64zNQzhuRfUET7yCoDi1VOULkjgjFnaQ3OldLkIAhoyJeQSv95CahYx/sT9c4iwTVny/iwNs1NjfUEJnx0U8pmFCOWAbpKT0atGntBaTnxkhSoDG0a24Q2fqos1Af/p4VKPKQKnt2ofEcC76+i2gPuCKQb9DiRNQayqzXaiiFsTG/2gcu2/LhPsXZUlynsy9YqL1VkeRC8KOGpydndSny/eetiinHuMk4DBKuMDpuT7xtyi1ofHJru1O0LkCWuHVVxPTTqJsQBuayjo43K4Mpr9wj0mzxn3eekcbd6DKJEDoGrnOgSkcKLPZkSV918Sr4GTS3r4AA5BAPaoV4Ltcfh9gnZAoDFJyFcc72B7s+bu51M7F4BepRoaIPMkZTaY+8c1UDNq7c84QoSLqqpckNr0iGi94ZW3CgIEpPyf1JZPR8+CPNoAyKXX+IqzlgWVsZFQTepBeeEBXErZRXYrUVW8zhJNMwTJEfoz12Kp7N5PwRjB2LLqJSybG61XSJBepbBn6L/ylwplCszMEZ+C8l/qDwzZ2bnPhEec4L/MZ28E3OMdOAjh21MHbGJEJT8053bFFGSeqCZF4LgUMP3Z3w1HCUgv1nlmzWcHzCsghxrDf6ydQZtMc/6NblzR398rRHNaSHxG938utGQnqv/4njmJeC3Y7CDC5zYw0+NBHQUVr/IBDcv4EWTh0MEtRIQKVSe4JF9xSUQqXAiFU9+H2U25M6442gEAiIU4d6Jg+e9uVjNcWSASRa7HViONBch9gxzdvmv59zextWuKqDsVP71Zkmy/aEa2TKQqSGnuG+JD+t1iI1JmmhqAXP81FycnXXRAcu/N6i6p8KhULR4AuiakN2Cem5OaNx78FTk+IYnMBlo0PFUsDAKpDHBpDjJqm7FPiUnN8IhKf1XbS2SlP/V0zKWOdLm9GN5k/7l1LGdxG+ocaPt18Gt3k2y39eGYxsK82Fqnsg2/dCbNYJqVDtdMavmEmQSQ1Vw5Jl64H7dj5GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 496,
+   "completion_tokens": 300,
+   "total_tokens": 796,
+   "cost": 0.007984,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007984,
+    "upstream_inference_prompt_cost": 0.001984,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.933
+}

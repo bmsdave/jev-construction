@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"House MVHR system\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Ventilation. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678406-zfzg3355cYOPO98gka1n",
+  "object": "chat.completion",
+  "created": 1790678406,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm recalling that installing MVHR in a dwelling, where it doesn't involve shared building systems, falls under Schedule 3 and can be handled by a competent person like BESCA or NAPIT.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm recalling that installing MVHR in a dwelling, where it doesn't involve shared building systems, falls under Schedule 3 and can be handled by a competent person like BESCA or NAPIT.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmwsKEAgSGAI4AUIIdGhpbmtpbmcSDITGkiNyA+Osj2g+2BoM4UVmLMn05fbEQVGoIjAMCswHLsNHmbemGhTODiAu8nOZ3L9W+MrEVvvw/K3to5Z2a3phe/1JJ2+9wnTucBsquAoFG0STWxdskN7S3YCKG2zrPMM4g0wR7ePVwJ39UN9kcuGmfxfZ0fuZQt+qrHfPr0CJ+90RllVALhIIfAGe5Hd2sYuFrfHJZFIHjSte4WY4TUm4LGWp1dc0mOG4lje6pNqWpTI+BgOKNuZW+ctIKrD2zjBj3ANqsfP1Pm/2yulOTr+ZRegWGcicgA1NLYAY0tRxbDJIZTN6L4IyG22uq/Q37qqO0sOtw+gf3HiShoTs8xKlIb/UrDK7spc+z7ixZ9xSMxec56LUxQTxnC9lQRXMsNPfm55ZY9p3z8jx/hUChjNIrbXfzQWjC8NYbUSnyiDrzS1L5gWb1HtMa+IiDMV1fY7fo3iSI49ALAJvLhvCETig7TwDQbqLXoqqHEwMARiTSMB/ijtQeLQR3BDd3iMLf85ll/h1e69VZXb8bPhos0LyFxHu4qd5g94GumxdXCZ5EjS8bke4JRSAVHKrsjHIYxQQS6EP3zIvfSz+k9fjOn7AacGGE2RgrHwiGiNDbXPlmLa5Jx1xnBxsvhkRUNbe/1/KQCgEVXOl2gfub3E7kVvhsuv2msBOXcQ38tffp6YP5wakqA9BqyDBuyNchGpM6ps2vY0xFzGaTIAi9R2/FRcBQdF7nzPFy52qag0c9WrhecRQxOCr3S2UJ0PsGX6e+0NluVYs8x8NQXrn0aVmRjxWIeSN2ezc22TVByu9namjjQveW90emcaGU1sJYqYp3VicFkKNk94rPjPzTJl7h6iL+inu0eTto9DnNpyWfSDhFlXWyfC1HnJuGjv+4z7kUTNCqkXPHd3sEkeYuAuXLZi9BYp1LTVh+EkzQeK5Y8NUlR0HQgegGF07gossYh1wk0GO12u3SDQMGR1Jesm/keTnViw8Z34KVZg816dMlgJ3HaTO0jiNG6HbK1b42iqvskKfGIRS3O3YkM/qgNbv5BhxIFMr4xVXnoavZx7/u25js8Ka5iDbb8VpVV+LnyGhb8JrgYP08gVd0cxxM1Hh9FkY4UtDSaJ+8NbUR82l9y0j17OAcqNY9ffxzy5DoD7x0CD2Fih9I4jOZ+kHhNCoKk3ki08i+tqfefpFHQkdG6JghJN8ea5PDJF/bHhSIyAGKtFKcGHTD1hMWkNUCwPGlJmVK0rlVd6Mry6R95MZPOeIGk8909346WSr1XiuhgEpkiXpD2YBmcsUaHqdW5/LIjwVZbIHzuS3Sq8pIt2UhWagOTFQUsWSatC1OcLnvd9gb4Rw0AOCmVjU5wEf06m/uzciftwhVBMcQ6bQt76DPMzwgEW016CQIZ0kCyth2uuu9xgqYoV+LDGc6xTUhbYO+vlNBYcSaQq8ZPtSdCShmtFANElQfrNUXDdue2b1cDdKAMYOfwJflPMyrDpVgJTrBGsiekbLotIh+gaI9bMM0XFSIjA+lcIQijrgmYkS1zOSfS/+hUlDolFWiO87KocXeXF6PqQ0TzP54ptKvWur48BjmkANdJk8/fGWhfXr1xvPoFYEJWVl63d3DScdAUNz5HOFymITY5mUC9YJ74iYCnEX/BLTMmszlkcfgv+0TvEM8XQsCO36seKpyupivc5+BJLX7ZG+1aISyOvrchcqspJaQgxEUZ+jU4zudDafRaSxN6xdOrUYpsq43H6OW5v8oAzuF9QI00IJ89rKl9MRJ5MWHbx4QTjFuDwMHhCICQSMhsZYXvzs1HxQxbSNfv8llTQRxIbDgSD9cSdx28kuZzZIxwIXYRSuP05LGhHDeCR8ZsR3PraOHjYDKa17r+pHC3Ht9xLXvXmfGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 501,
+   "completion_tokens": 300,
+   "total_tokens": 801,
+   "cost": 0.008004,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008004,
+    "upstream_inference_prompt_cost": 0.002004,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.4
+}

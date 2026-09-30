@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"32-50 mm wastes\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Drainage. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678307-Lz2YnvctKbrspcxlZgHw",
+  "object": "chat.completion",
+  "created": 1790678307,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to pin down whether waste pipes and sanitary installations fall under Schedule 3's building work exemptions or need to be checked against Schedule 4's drainage-related restrictions.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to pin down whether waste pipes and sanitary installations fall under Schedule 3's building work exemptions or need to be checked against Schedule 4's drainage-related restrictions.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSzQoKEAgSGAI4AUIIdGhpbmtpbmcSDCOyEhz43nmTb9aX+xoMIFM3m51tT1Buf8TXIjAUOnkZkRt8PvELRkLWt/GpfSRkPj3STOdkEvgTq1E+p+2Wzpi5LxNC189hdkYUPCcq6gm7Zp+VQiMkkBq6ffYiaOazHJ1UZfg0Z00NsssmGlhPfuh9x+WiFM+IQcOzuGQDr+eHXhg4ZjbZjN7QYwWgKSG77O1fuRTKkH4YPh+f8ohYoFQeewZc67ps7CD3EkISeBbYc6cW+fBcD+cXMQcFZCx/YnoF5c22CvQFPLhZLDmA7ePwfgI5eSA6Lv0v7H80yFfSkGQLMLP8zChHs+3W7R2i5axyNVpTYE4ud1Ewt88hiJOD5V3FmbqVhgAhuHMjCm54D3duFY9ieiVUR0vv5/jDFJhUM3l8121pUOk6npu+OBjzftiLYbN+OBL5lmis9rp31JCnVp6V/fwIcURvdNHaT7MYn5pDg8Lu0C+RC9abiZszLucRTDqOwdM/1wwyWyIz3NzmboRCm8PdvZFi8iVnT/V89MVDLfRM/orCeSGWO5e2lKHaDMohUO9aXDyn2pw+wzc1rHB5xTU/qs37audALkpGGb1f3Fi7ry47f+1maAElzhYPq0ntjnLNB0/VIgttqLC1dmXDUmGML74TU4gu66Nu8Em+UaVOEGB08msgftxfp7im4t1bfgxQIcxxiqfSLW/QkbchD0nNjM2/1mX250CGcXFeFYKYNV0XNC65Ei5B9nDqGP0qzg438Unmdn2ep5HQh+PynsI4aw9vPVg33ah/bHPmpuGKEKEoDQ1jWeiMN4frGCI1cIkOIjwudaQLpYAUrCD8690H7ZLZFoZt0oQ2dyE78ddKMueFfjurtwGu6Qq4jI8YZb4W25TK5rPpC+7FF4xAwFb03K0aFqylM1bQVlv10u9lE/sLBn0ypIT42kIrpKERFcyKpcvb5KTN/EJG+TIDKSZusc7x4nKlGVQ4lActmFHGovHA/VH8ZfIwYahkSj3zmrHwU0PAzFV/wwg4mDNqHHLXTokOwIApfD2JuFW+D/f4tNmSRCjsvyhEt0Zmqoc9EvKcRelyBIbcv4M3un4T+cm7eANiyIYPTfh6QFviqbWnl/lBx0yFIAo7PpZy4vskOpGBjGdjFlATdlgt2dciKPfuzls+OhYCeCmMKFcVQeL2NpIK2Di4mW3pE6+Yvny+BgSdvgJdm7k2/B2XQTPj9eDkWWOhHCrUKBhMj4Pbftwf2iKEjoIFT/14JRjIe7pfcKBYR5dQkiJl3KsB+9zvPWSuP4KHlaoZtSHpV+6CdbutfpSP6XoRG8gxad07NBMnksIVgx7pQGUu225ddBFT595sA8K1sKxHfOuvl2kbO/07ilRIh55OgyyWQxD3yTdNLgWwl4EZAXR9BrkyMwVrxEPdLjoqxkquT0iFR0bmHAgNc/gugpPvWlfKxxGSNaoqWG2xCnuk7u1kNhqIbt2WMcHBENwOe5zooeuM9fvpQlh0RTB2FTWQ20CEZGsXethZddsN8yVQs8GQxzvFNezcw9lDR1ZfgnwulGTW8agl7CFZrLAsKz1WqsHfC0tWM7UtreC37BDvZtpdVFkghSIWGEwz8FJE5MWfR3rYAS6tMHaZYUZRdXCroCdmD/auJecysVLxRzoraMCt9iZSARA7U4BOyodOlfUIzfxr49MB+AP2qtvPvZNNoui1w3clBOjE9jWMK0zQJj5lZLfWeRsuLiqOMf/cq/DoYmhjsOSRrTiagSNKK9QNUpoxehdxmT3ozB9PJHcz2rCQ2cyGXjWGQJ7jGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 503,
+   "completion_tokens": 300,
+   "total_tokens": 803,
+   "cost": 0.008012,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008012,
+    "upstream_inference_prompt_cost": 0.002012,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.635
+}

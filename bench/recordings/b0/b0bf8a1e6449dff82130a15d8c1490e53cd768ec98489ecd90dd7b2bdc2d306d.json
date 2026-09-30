@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Two-storey side extension over a shared lateral drain serving neighbouring houses\", \"project\": \"Detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 7\", \"document\": \"BR2010\", \"text\": \"The extension of a building by the addition at ground level of— (a) a conservatory, porch, covered yard or covered way; or (b) a carport open on at least two sides;\"}, {\"ref\": \"Sch 1 H4\", \"document\": \"BR2010\", \"text\": \"Building over sewers: H4.—(1) The erection or extension of a building or work involving the underpinning of a building shall be carried out in a way that is not detrimental to the building or building extension or to the continued maintenance of the drain, sewer or disposal main. (2) In this paragraph “disposal main” means any pipe, tunnel or conduit used for the conveyance of effluent to or from a sewage disposal works, which is not a public sewer. (3) In this paragraph and paragraph H5 “map of sewers” means any records kept by a sewerage undertaker under section 199 of the Water Industry Act 1991. | Requirement H4 applies only to work carried out—(a) over a drain, sewer or disposal main which is shown on any map of sewers; or(b) on any site or in such a manner as may result in interference with the use of, or obstruction of the access of any person to, any drain, sewer or disposal main which is shown on any map of sewers.\"}, {\"ref\": \"reg 9(3)\", \"document\": \"BR2010\", \"text\": \"(3) The requirements of Part P of Schedule 1 apply to— (a) any greenhouse used for domestic purposes ; (b) any small detached building falling within class 6 in Schedule 2; and (c) any extension of a building falling within class 7 in Schedule 2,which in any case receives its electricity from a source shared with or located inside a dwelling.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677640-s7Q790fvlMuexOjQyT8A",
+  "object": "chat.completion",
+  "created": 1790677640,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "H4 most likely applies, so a full plans application is required under reg 12(5).\n\n- **Not ex",
+     "refusal": null,
+     "reasoning": "This shared lateral drain, now transferred to the sewerage undertaker since 2011, raises the question of whether it counts as a public sewer under H4 — but many transferred sewers don't appear on official sewer maps, so it's unclear if H4's requirement is actually triggered. If it is shown on a map of sewers, Regulation 12(5) would mandate full plans rather than a building notice, though I'm weighing whether the \"shared lateral drain serving neighbouring houses\" description itself implies it's functionally a sewer regardless of map status.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This shared lateral drain, now transferred to the sewerage undertaker since 2011, raises the question of whether it counts as a public sewer under H4 — but many transferred sewers don't appear on official sewer maps, so it's unclear if H4's requirement is actually triggered. If it is shown on a map of sewers, Regulation 12(5) would mandate full plans rather than a building notice, though I'm weighing whether the \"shared lateral drain serving neighbouring houses\" description itself implies it's functionally a sewer regardless of map status.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+AkKEAgSGAI4AUIIdGhpbmtpbmcSDNfraLrMeWT/dAdSIxoMAumojkLxorz+z88ZIjBoM4HoaHxnkAm2bG6b6RNGJFXjMazYRpU5NQEqm4MNLoFgiOhOAjcdBLonJzXtitcqlQm8dlppQ7HghCyE37PIV42o2VDjhv4KT7j9f9GXpa+5MxHIEITwfNGrR/M9Qa20Zy61CWr225iA4XnmbPCDAyvlaL1088krYx1rNQj0PVoQmaWg8eeV2nZYVfrKOtSdYRwN+ap3NNVzEG+2BwlLRoI/xwUQjYxt7JLFd9xbZlexjj9m261h2x0BnVqlNwf38Auxaed4eT2AeLaj4iYWNBy08XLXFQXLIpMxdmUcYVBU6uPV0LgbjrfqzzDCcW5Oh0P/NS5hSHY5/gOdztouDsP0JTY9ZIYoltrKZtdlha4Wa1oHgCd2GnLrVRHmfmawkASUc46ZHIcmeMQ7KrZS5fZJ2QNJc99/YnTuMSJ2kxKcepguoidoMO49wwu+1i4EhvMKmlyzhXwTb5XRCALlhBstLsCTB5J6tzcleyzwEJ9sR1XYN0zJDZfdfo4rtRrcHBo6TSxxYr+0Na4Vka9kPzUIOF/8YzZgkyIMwzAVwRnRaQ7IL36JzihkEeViouFLoVod7UGb1w2tnB6qY8fzUzDaklDpD4WY3ov+DFLR+8wlJqYDLB6c+hnmzHjiKx9Pqtp4VGqgtfdg4ndOpv1ECuZbVK5M3LJgPPzQUUx9aTfgKsfaoygEOp71czs0owm9lz5JSmEU9mRmjn1DNupmVf/bnNQWFq5yJY2K6AFLBwm18jRtG8W7eDKCtzQyNNObWi1KZvzB/dSjFXdHFqllU3th3EMl/YZ1yRIS4zmBakbicU7EMY8ovj5C6jylZtSyTtbNHUs4dSCRqs80xVowDxP2PyPohrk4mKZr2OPtMM9MCecmcKMsmhST7Zj6tcMiOETKV8/6gH8DKxgEjkDLD3jX1Wmnn0ZWzFcXhahvdWzLP0vH9WtyEXHR6n0rZUtZ3y9tRw6vPOLXniMNVFKhGAM2seU3zODN/r6OS3bMMTQesPJLg9lD05F88xWSNUsJdpbxek4F1KSwQVonmiiCSbnUOguQuGERiSCOyW+S7/x3raAB6j465NC3/bqE1nMtqThQOECykbFQoXWa2/q2T5XnZTrUC8rGgF9GWrXcEVfg2eiE4lIs3rwlJjD7KwaGHYsdDklf57K3/+Wqdm0Jn+EzknAuPlT4iN+Re6PJLgW47nJrKPh0g0m+qM5ZgdzpT69o2g7rINClpWtQyiX2iKRHDGfLNYvbZf0BKYu++7JyrZPFXTCjRqZHDS1qEEKTcYIY9eZlII6/4lJ2danD9FRDktrUtOa3aBN3a7R4IumNtoabZ9WgYp0bV+CbXNSov2ZEeWxsDmfNSqPZSiXtjYYjpbR6cFlFUg7VsTzgdsh8EyA0+jU/W4QUk8SXeFaJPnxWVlqTVf3EVaXLLgbdi8UE+42m7RU5maAzMcD0yghb6OqtRV0HlrI2PzjMj5bF0ditJZIMYNzexaQqZpuRhtTx3VcGunju7Itl3Qxc/XWhjbM8zKOWMeZksfLjMO8jigUxeZtJaUkQUILxxg4FJG3CwMgh5zpQaYY3I6JK71p1X5XQ/aBoCEzzOtHmYCFNKqtskCynOY+Atlc73o4eAe77Sm5sNPUYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1047,
+   "completion_tokens": 300,
+   "total_tokens": 1347,
+   "cost": 0.010188,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010188,
+    "upstream_inference_prompt_cost": 0.004188,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 269,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.409
+}

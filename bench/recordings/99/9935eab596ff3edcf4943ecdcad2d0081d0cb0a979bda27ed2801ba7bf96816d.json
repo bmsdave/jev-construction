@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Structural opening between a shop and its rear store",
+   "project": "Shop in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "reg 5(j)",
+     "document": "BR2010",
+     "text": "For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (j) the building is used as a shop, where previously it was not ; or"
+    },
+    "c2": {
+     "ref": "para 0.16",
+     "document": "ADB1-2019",
+     "text": "0.16 Where there are multiple main uses that are not ancillary to one another (for example, shops with independent offices above), each use should be assigned to a purpose group in its own right. Where there is doubt as to which purpose group is appropriate, the more onerous guidance should be applied."
+    },
+    "c3": {
+     "ref": "reg 2(2)",
+     "document": "BR2010",
+     "text": "(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted."
+    },
+    "c4": {
+     "ref": "para 3.17",
+     "document": "ADF1-2021",
+     "text": "3.17 The requirement for adequate ventilation can be met if background ventilators are used as follows. a. If the additional room is connected to an existing habitable room which now has no windows opening to the outside, paragraphs 1.42 to 1.44 should be followed b. If the additional room is connected to an existing habitable room that still has windows opening to the outside, the following conditions apply. i. If the existing habitable room has a total background ventilator equivalent area of less than 5000mm2, paragraphs 1.42 to 1.44 should be followed. ii. If the existing habitable room has a total background ventilator equivalent area of at least 5000mm2, both of the following should be provided. · Background ventilators of at least 12,000mm2 equivalent area between the two rooms. · Background ventilators of at least 12,000mm2 equivalent area between the additional room and the outside."
+    },
+    "c5": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c6": {
+     "ref": "para 0.15",
+     "document": "ADB1-2019",
+     "text": "0.15 Where a building or compartment has more than one use, it is appropriate to assign each different use to its own purpose group in the following situations. a. If the ancillary use is a flat. b. If both of the following apply. i. The building or compartment has an area of more than 280m2. ii. The ancillary use relates to an area that is more than one-fifth of the total floor area of the building or compartment. c. In ‘shop and commercial’ (purpose group 4) buildings or compartments, if the ancillary use is storage and both of the following apply. i. The building or compartment has an area of more than 280m2. ii. The storage area comprises more than one-third of the total floor area of the building or compartment."
+    },
+    "c7": {
+     "ref": "para 0.16",
+     "document": "ADL1-2021",
+     "text": "0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows"
+    },
+    "c8": {
+     "ref": "Sch 1 N3",
+     "document": "BR2010",
+     "text": "Safe opening and closing of windows etc: N3. Windows, skylights and ventilators which can be opened by people in or about the building shall be so constructed or quipped that they may be opened, closed or adjusted safely. | Requirement N3 does not apply to dwellings."
+    },
+    "c9": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c10": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.06
+   }
+  },
+  "usage": {
+   "input_tokens": 2797,
+   "output_tokens": 175,
+   "cost": 0.000117474
+  },
+  "id": "gen-dec-1790676100-qFJ8LMCBJ54SX2LPLqXJ",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.271
+}

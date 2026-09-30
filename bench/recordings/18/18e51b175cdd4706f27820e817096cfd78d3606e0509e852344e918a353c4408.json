@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Garden path\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(f)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (f) in relation to an existing fixed building service, which is not a fixed internal or external lighting system— (i) replacing any part which is not a combustion appliance, (ii) adding an output device, or (iii) adding a control device,where testing and adjustment of the work is not possible or would not affect the use by the fixed building service of no more fuel and power than is reasonable in the circumstances;\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677635-pebSwj6QAHtNFNhQxqzr",
+  "object": "chat.completion",
+  "created": 1790677635,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.93, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.04, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "A garden path isn't building work under regulation 3 since it's not erection or extension of a building or a controlled service, and hard landscaping alone doesn't count. Part M wouldn't apply either unless it's part of a new dwelling, so this stays not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A garden path isn't building work under regulation 3 since it's not erection or extension of a building or a controlled service, and hard landscaping alone doesn't count. Part M wouldn't apply either unless it's part of a new dwelling, so this stays not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShQYKEAgSGAI4AUIIdGhpbmtpbmcSDFBZIuBddQtbd3bzzRoMxZ6ftkm5hhmz2OW0IjA3W5AcIhVcdJLmskJ07humUnSU8ImaOboY78vJ9hmYbDG7akPqzGXKKGQYQxF5QMgqogXbW7ZHaq1x/Llr97xJ5ey/4zrkR0kjmPaY8+Bqmk3nWnapOgVeV2DeOOkp+SqK0pD8mhfK/tPnzLF77ejUq9Llh+7I6OrOYyo0Vp/rrOk9NMqEwajr/4ZYKMDoYZMwOC/Un1i9ZFqBF1rXCrpTvvDuXiIcpscCypUT7pPTZ2Yc2seyYGDVqloFUMaz2NTVd2Wyu6u2+8smCS7JN07PaKlVa+Reax1Hvl+EYJAIPzv8UiG4F9dG1oecIdSke1FF2PnGE0SPOMAWgZPwmCtrhIbbco7QKD5vDsAKDOogT6bXarKynrOIDR0OgF7DdUrfmmo8Gv2MuuXi8KXo47ig9R1LXHun2oXv+vgEkdFdwMpsLlglFEauMektrlJG62lJXl0wRgAbELoBz9fqnvObBI1EHMO6Jn+I/Sr/NY/qBlrstIz3jIFnaoeO1SE6w6YM4uYqqwX51e5ximNJiLE/JBv4iOa5CiJorfK5L3OxG/DsZXPdCkEfgobhrAPjyCDSXVBPANI7FEk73Vaw7apLS6PfFjc09w+7UmZinrEIsU9qiOPe3I3i9Pkal6PLTfO+g60X068hbUsJgCoMIiu+XgmZpPpjq8LYafzqBc65ttGsYvdUWsAHv7ufr7dmtPg2U2SAOBPN8h9lynXm9/ciAQ3jnP3jUqw9Jx4lNRhE2RngQdVFtGcqBdbHbrrVJzy/H58grvva3zYd9+LhGf3ZchVqR3jNLcN3OwGF3d+6KPGCFGefw/YXFAjme/uLjJ1yeE0bFRh1rxAgy02aoMoYC2jjuRnVwrvQp9iyaAgjAKQZXnjtmjhqujvd3hVeEfWOO5TopgWOunH0PL/WcAlVWq/OryXW69Lyo6jRP0MRtTYVYztyVZDvK6wyFpzQ31Uj8kBJTxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1256,
+   "completion_tokens": 158,
+   "total_tokens": 1414,
+   "cost": 0.008184,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008184,
+    "upstream_inference_prompt_cost": 0.005024,
+    "upstream_inference_completions_cost": 0.00316
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 77,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 4.779
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Underpinning the front bay after subsidence\", \"project\": \"Terraced house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678654-kwRBx9EOjUFgLrSTXvcl",
+  "object": "chat.completion",
+  "created": 1790678654,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Underpinning is building work in its own right under reg 3(1)(f). It is not listed in Schedule 3, so no competent person scheme can self-certify it, and it is not minor Schedule 4 work.\n\nIt is a single-family dwelling, so the Fire Safety Order does not apply. Nothing indicates the",
+     "refusal": null,
+     "reasoning": "Underpinning falls under regulation 3(1)(f) as building work rather than Schedule 3, so that route doesn't apply here. It's a dwelling house too, so the Fire Safety Order is out of scope, and there's nothing indicating a private street or sewer issue.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Underpinning falls under regulation 3(1)(f) as building work rather than Schedule 3, so that route doesn't apply here. It's a dwelling house too, so the Fire Safety Order is out of scope, and there's nothing indicating a private street or sewer issue.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpQgKEAgSGAI4AUIIdGhpbmtpbmcSDGyr5xaA6cnIyDD44xoMhla8zQdRhNMTih8JIjDvrHZL6JAOVPkyVIactigcu+1VYL2yrlGzGsKMwyu+k9FwgLqCtta1/nTWIPwE0TQqwgfopKB6KWEHPrq3K0GvaRHfqJPeUHiNpb0Qx4bv/vOmFdu44DSP7TSY3dqIkeFrHAZXP7YI19udCDVouCBe2S/QJpwmnVBdu6V/AXqOVc+LzHmvoPk25NPK19ZQq3CvxKXkbluNSH7Nb1VKB6kxzsN+O9tgWWc1a3b8SexwvkUhcsMCHbTAhHrHkThTxMXCREPQx6EG8GtV5ckzqUHjCu7OLLYH33JA059Y5TePIT8/hfxRhSvIn7qU2d4PqrBREl3fMLwD7ucfnUBWvY+QpktV1c2Yfti9EPNxfdRWA4piJN50xEgR9cMI35jTudQHBJbnAFHHBQry+cO1GUVZ2Z+rvG79xWH/4bu9o4NJBwoti4qYZMm43ztPVlD1CckauKQIN/axOSFY8PPL1+Wq8OAjL0k2UujR+5SkSjY27wCOopeEajFzq9XWPpqi+56o9TsQlOHuiV4I9QAJ+eVQL93Fh7R8Y7PlWmnPTKNQLHMR6AVtSgevMBAXOpygIhHA3jPJyCMMY27W5HSCoozUNPtYx6gNG10ypY3nJIUNptwmWf+MQo5JpyAwfK/eieolJ446srfyWR3g0YF3NtL+nown/WG0nBMrd1q5NHJWC9lIXDxV768dCUGUeuVhAcYCdH3aZjs2C5L4Xh3vplCiM+HVWprX725oF9zodPC4GZLIbUrBAzY8g7lV/9b/+5BzFwSxGa4341H3+AxGFf+nc/47S8VPcSY9m68ZLBtPXppsGyKJWz6ZVCWrAwfeOnUjnTqEHN3nRqoN8wFvjcmqNv5VZf0APLtLR7OG+bNOwWmOX0IhOI0pZRuhC3mSq5hjQUF84evHQvVS1r94KLckXenlke4oa6z40XNG02apnvMeHWvbJtX9+KgV5/KiI3xO8O7KVWiA5HURkLzI567kGM+imfuJqPUAUVcbhV9Z+xR337aRxyM215ABtyzTs4/Sm+tXSwaXOndBcuI33OtACWWka73s+UjdL3OzmNI+ernZxZbBk74Z4WH3eQu/SmZ0tWTEIv2eOIkKu/rmRAq8WiFlSniWVd72MWF2p8RBhNI4qU5WJG6DjheaZYGpD5DETTXpdARNsp6YyAjY7cV4TGODsubqIgiV7FF+gx1V140dJGBofRb0Vt2sRS3EZ3G+vZ4yXtnDRItYcqLAg+8xgYege6tAH90vUtG/dX+O0JnU/UwanGqiUDtJWUCYLQPg1KMkOoue/esG3NYZFgjBAOzkX2HuwJ4sadur1VmdGF0qgsQlDuh86qXElZDF6pcpIIInQBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 464,
+   "completion_tokens": 300,
+   "total_tokens": 764,
+   "cost": 0.007856,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007856,
+    "upstream_inference_prompt_cost": 0.001856,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 199,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.462
+}

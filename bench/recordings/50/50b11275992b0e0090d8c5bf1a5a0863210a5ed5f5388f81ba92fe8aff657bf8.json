@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Fit a built-in oven to the existing cooker circuit (no new circuit)",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 2.8",
+     "document": "ADP2013",
+     "text": "2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P"
+    },
+    "c2": {
+     "ref": "para 2.6",
+     "document": "ADP2013",
+     "text": "2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work"
+    },
+    "c3": {
+     "ref": "reg 12(6A)",
+     "document": "BR2010",
+     "text": "(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location."
+    },
+    "c4": {
+     "ref": "Sch 4 para 2",
+     "document": "BR2010",
+     "text": "(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit."
+    },
+    "c5": {
+     "ref": "para 2.5",
+     "document": "ADP2013",
+     "text": "2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P"
+    },
+    "c6": {
+     "ref": "para 3.30",
+     "document": "ADF1-2021",
+     "text": "3.30 Where building work is carried out in a kitchen or bathroom, any existing fans (including cooker hoods, where they extract to the outside) should be retained or replaced. Appropriate checks should be made to determine whether any retained ventilation devices are working correctly."
+    },
+    "c7": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c8": {
+     "ref": "para 10.1",
+     "document": "ADL1-2021",
+     "text": "10.1 This section provides guidance for new elements in existing dwellings, including all the following types of work. a. Providing a new thermal element in an existing dwelling – follow paragraph 10.1. b. Providing a replacement thermal element in an existing dwelling – follow paragraph 10.2. c. Replacing windows, doors or rooflights (controlled fittings) in an existing dwelling – follow paragraphs 10.3 to 10.6. d. Extending an existing dwelling – follow paragraphs 10.7 to 10.11. e. Adding a conservatory or porch to an existing dwelling – follow paragraphs 10.12 and 10.13. NOTE: Guidance for renovating elements in existing dwellings is given in Section 11. New and replacement fabric elements"
+    },
+    "c9": {
+     "ref": "para 1.6",
+     "document": "ADP2013",
+     "text": "1.6 Regulation 4(3) states that when building work is complete, the building should be no more unsatisfactory in terms of complying with the applicable parts of Schedule 1 to the Building Regulations than before the building work was started. Therefore, when extending or altering an electrical installation, only the new work must meet current standards. There is no obligation to upgrade the existing installation unless either of the following applies. a. The new work adversely affects the safety of the existing installation. b. The state of the existing installation is such that the new work cannot be operated safely."
+    },
+    "c10": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.93
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.17
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.91
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.29
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.88
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.16
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 2845,
+   "output_tokens": 175,
+   "cost": 0.00011949
+  },
+  "id": "gen-dec-1790677141-gOt03jilh7uRBAdaoLZT",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.273
+}

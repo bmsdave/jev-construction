@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Hot 15 mm pipework",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: whole-house renovation including loft conversion and rear extension.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "reg 23",
+     "document": "BR2010",
+     "text": "(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible."
+    },
+    "c2": {
+     "ref": "para 11.6",
+     "document": "ADL1-2021",
+     "text": "11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat."
+    },
+    "c3": {
+     "ref": "para 11.3",
+     "document": "ADL1-2021",
+     "text": "11.3 If a thermal element is renovated and one of the following applies, then the whole of the thermal element should be improved to achieve at least the U-value given in Table 4.3, column (b). a. More than 50% of the surface of the individual thermal element is renovated (see paragraph 11.4). b. The work constitutes a major renovation. A major renovation is when more than 25% of the surface area of the external building envelope is renovated. NOTE: If paragraph 4.13 applies, Appendix C provides examples of renovation of an existing thermal element that are technically, functionally or economically feasible."
+    },
+    "c4": {
+     "ref": "para 10.13",
+     "document": "ADL1-2021",
+     "text": "10.13 If the conservatory or porch is not exempt from the energy efficiency requirements (see paragraph 0.14), all the following elements should meet the minimum standards of paragraphs 4.7 and 4.8 and Table 4.2. a. New thermal elements. b. Replacement thermal elements. c. New windows, roof windows, rooflights and doors. The limitations on area of windows, doors and rooflights in paragraph 10.7d do not apply. In addition, both of the following should apply. a. Any walls, doors and windows should be insulated and draught-proofed to at least the same extent as in the existing dwelling. b. Fixed building services and/or on-site electricity generation within the conservatory or porch should both: i. meet the standards in Sections 5 and 6 ii. have independent temperature and on/off controls. Building Regulations 2010 R23(1), L1(a) Regulation 23(1) and requirement L1(a): Renovating elements in existing dwellings and limiting heat gains and losses This section deals with the requirements of regulation 23(1) and Part L1(a) of Schedule 1 to the Building Regulations 2010. Regulation Requirements for the renovation or replacement of thermal elements 23. (1) \u0007Where the renovation of an individual thermal element— (a) \u0007constitutes a major renovation; or (b) \u0007amounts to the renovation of more than 50% of the element’s surface area; \u0007 the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is …"
+    },
+    "c5": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c6": {
+     "ref": "Sch 1 E1",
+     "document": "BR2010",
+     "text": "Protection against sound from other parts of the building and adjoining buildings: E1. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that they provide reasonable resistance to sound from other parts of the same building and from adjoining buildings."
+    },
+    "c7": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c8": {
+     "ref": "para 0.15",
+     "document": "ADL1-2021",
+     "text": "0.15 Where a dwelling is extended by adding a carport that is open on at least two sides, a covered yard, a covered walkway or a covered driveway, the work is exempt from the energy efficiency requirements if both of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. Live/work units"
+    },
+    "c9": {
+     "ref": "para 0.6",
+     "document": "ADL1-2021",
+     "text": "0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings"
+    },
+    "c10": {
+     "ref": "para 3.16",
+     "document": "ADF1-2021",
+     "text": "3.16 When windows are replaced as part of the work connected with a material change of use, Section 1 of this approved document should be followed in addition to paragraphs 3.14 and 3.15. Addition of a habitable room (not including a conservatory) to an existing dwelling"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.06
+   }
+  },
+  "usage": {
+   "input_tokens": 3133,
+   "output_tokens": 175,
+   "cost": 0.000131586
+  },
+  "id": "gen-dec-1790676002-iag7JQfCVquhQcyTAkvO",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.272
+}

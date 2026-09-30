@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Adding an en-suite shower room with a new underground drain connection\", \"project\": \"Detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 12\", \"document\": \"BR2010\", \"text\": \"12. Installation of a sanitary convenience, sink, washbasin, bidet, fixed bath, shower or bathroom in a dwelling, that does not involve work on shared or underground drainage. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited or NAPIT Registration Limited, ....\"}, {\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"Sch 4 para 1(j)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (j) replacing— (i) a sanitary convenience with one that uses no more water than the one it replaces, (ii) a washbasin, sink or bidet, (iii) a fixed bath, (iv) a shower, (v) a rainwater gutter, or (vi) a rainwater downpipe,where the work does not include any work to underground drainage, and includes no work to the hot or cold water system or above ground drainage, which may prejudice the health or safety of any person on completion of the work;\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677757-uLL4HsQXJoXZfUY9ZWlH",
+  "object": "chat.completion",
+  "created": 1790677757,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The shower room would normally fall under the Schedule 3 para 12 competent person route. However, that route only covers work that \"does not involve work on shared or underground drainage\", so the new underground drain connection takes this item outside it.\n\nSchedule 4 para 1(j) does not apply either. It covers only like-for-like replacement of fittings with no work to underground drainage, and this is a new addition that includes underground drainage.\n\nThat leaves ordinary building work, which needs a building notice or full plans under reg 12(2). Full plans would only be mandatory if something else applied:\n- The Fire",
+     "refusal": null,
+     "reasoning": "The new en-suite requires an underground drain connection, which Schedule 3 paragraph 12 excludes, so this can't go through building notice alone as self-certification—it needs building notice or full plans. Since it's a detached house with no indication of proximity to a public sewer, H4 doesn't seem to apply here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "The new en-suite requires an underground drain connection, which Schedule 3 paragraph 12 excludes, so this can't go through building notice alone as self-certification—it needs building notice or full plans. Since it's a detached house with no indication of proximity to a public sewer, H4 doesn't seem to apply here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5gYKEAgSGAI4AUIIdGhpbmtpbmcSDH7Gb7PWXjpxmMwaSxoMr8r0b8Tl/N/b0KCzIjB8SriGzB+w/vdmnPQpCr/F43f0+AeuTOwgATPqA4vw6YMqYVa5jkfMxK7GdxcPyoUqgwY0UY7R7OVouc+n4wZf4XJIKi7h34BjUe7qLBgrKZbwUn9zQWchxywdZLCTB/EpZIvLMX55DYExQUtTngQn0q/aCacN8QzE1MU5zYBT9Zfw5q/qpd8m6NCad/fsBS5/h9eHTFocdU4K6Fm3KzDVuyNsieREasAvKhuh9SmuT7ldlPaom6G5nZiZS+C7lZrxEMNsuwCgHhEHNFLMSFmFd6T92yBc3eY5MeAJ068+5veSr3v7GB3YbsAqT41+a2fqc6ZL1RzdeIT1lRMilIgYa6B1ETX+Qx2/rva7ibvtQ3gDKmoXcuotD4eKXciG3K4ZBhlR1SAFpAYnx1wX0x7SrzTDMsH7MLg2yg1RW9rq5n0PMV1kEYLWPT3uRiYg/mqUp3rGHyRwWb6tiiRWeV53w3Ybr/jvWdX2cb4qeB/mj4ekVerqCh4CDmZWM7gCYn5KE9HvR7FCiqLrfS/GoZq6QaMxe0crvZrLE9VdqksIxQQCYOx1yCfq+qFquAxMp5cWJ055059BMde06bqnEGAY/ADXd0VseZBJtr1JlbxHRh/4jjVPu6qXiXFgTkAmuPnW7UiTjPTTPnFIc13leNq//ky8B9dn7fy11sKDdVfefrlZIj7J0FT2hQ254KlUiwk/tT3/B8pk6UE9zhkawtkkd+rWnV3CU8UxKr19Hl+QtN9Vj/bQqdLl7DaD8L4KxZ5FXasCfLArf1ReLPEgnqpA0UDjvd4x7wmJGEqjyV4u9T+5zX4flIsp/XIRbNsSAqP0ST7eM5dxDghjRFK+V/kquf1omQf9FLXkFnCqgf9Z4Vd0atrehsT6hFyrIUcmQG90CYLh6JXxTBk6mQCtKP+H9CxN2OE4VwjvFJcmzkTshL6VUplsAhUQeBVa+lAV6HYuklUfl0Ha+vRp48gTANYa0k0ghQ/yWRm6O0OSnKfUQBP1hJpv8Fz4uEKWGYebOjacPTkPt291gelCt3htRUFI1gtO/I9LbwcIsQ+Ayyq2Ss/GKLmgwHScQl87UGjDSSaEZ1y2CXoYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1304,
+   "completion_tokens": 300,
+   "total_tokens": 1604,
+   "cost": 0.011216,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011216,
+    "upstream_inference_prompt_cost": 0.005216,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 115,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.129
+}

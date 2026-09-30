@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Electric towel rails\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678453-n7aLQFl0SXR9KGatlwyY",
+  "object": "chat.completion",
+  "created": 1790678453,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking about whether installing an electric towel rail counts as notifiable electrical work under Part P — since bathrooms are special locations, work there on existing circuits is notifiable, but a new addition connected via a fused spur outside the zoned area might not be, depending on the specifics.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about whether installing an electric towel rail counts as notifiable electrical work under Part P — since bathrooms are special locations, work there on existing circuits is notifiable, but a new addition connected via a fused spur outside the zoned area might not be, depending on the specifics.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0QsKEAgSGAI4AUIIdGhpbmtpbmcSDJNuwZAsn4bO1BQs6RoMb8npfdIZskdLZHTFIjDZiURzvAia4PiaTuO1oQm7rjre1VCcEzpoP7IwsgE3sVQojP6YGH7jpyo9Fc6C0lwq7gq6n0GD1QAfJdV2yqjasH5UUQNnnfzwmy98laVekXIBni2/ffL5j0+LApUewgRKqF9w/hNEf9TSFFvXbHkmRy7nGBSOiSIGvRs0eNFuV0vCIwul5LxhWicH8I1x+DnBbDrMbetjiwdNLOB8V6M5DHQiBpasV5i+ZL4nGBl4owVjhgrC+ua3rH4lQ8WBDbFRyZ7s8kbRnMy4imFTSSDAyrwzEjBIWHWBhO4OV0NfylY/OIsbPd1JW+fVTsGI2UZZKy3CbcHMoG+IYQsPpU6gh4cxCf3nGlvWFW2dY6thMMQVMQUuJ9zXB+aNT4LOMuZ3xq0O960bq6UzfpEllbiAGk5Mp3fXa+paRWhzws8M6RS5EW0cFCk1ihRSws9ywn2h95JSvhVYOQWCqmwVSfC4XqtLjFPZvjt1bL1StIK7hnsvUgFo+z1msOy89ofYtVUl2gd7feUzatcvwcQV/hQRB4RkwMu9d2aitjjBiXFwujKALIOB6HEqYy0qThYivgLhZ9u04Le49ccHx1WtAD1EoUMd/OzenuzkJX+0I55bL6GRiWu6OFmp6RmVc55sSs73Ziz3PU9TeI0bfzVQR/lfgnBm8FMESljlmrD8Y/ofIWAGMAVfC/DoxDv3OR1QLLDDZx9pibCrfYKdZVSIH+DteIVDaUPLG/TM5H0WDDyT3p0g9Q7AxJ2MT10ZAF2kFKrWQWaFij0E79N4KV2I6HlVFEUEGarY9U5A61odtsm1sEWglJ+0x64gRne2ZHRAdWPDeIsIQYg19ttUjC741LZZ24Kb+yIhhFgDHHrYQx/J9QZKBL5z9DPH4AFdqE6wwcp0/9P47nbdfeZltHf/+Lgs2kgiWDAQXJcijqYroOFH6bT8O2AgntGO7Gxrp94nCAKIlVLm0lc4xyVDISsWDOLY7IsrB1m5LWJTr7UuladIrMvXnqrLRg/KAkH2fbyyZtOigyJFEDrScxUIoNqcWPEb3RHDEgEYXvsSnXHL2sPEqUju24YZ94I1+SKKTF+IVFo9L1dKcbNWH9HSsAutVkXBHULeiFXGHnjieChr+WSGMy0epWLi8GAWao8WaRjEqYAwjp/AZ+PlbaWN0FIovR86g1GSr0lIdJb2Tm88Jt46kAPR10dkSSDKrY86MsS1bJfcnSRJAMhvC/4Xo8TUBaWIlaoOaIzG+tryPB937dkdIPEpc1buUba8WIaq7nufO4AZIyRGhTdEhz4er6AkjtkTuUnj1BXB+zO2xwgNHD44irYiDmhSdhrp0McRHdWR8pnAT4NhmruPS6jywt0bylfwUj1a6uVU7AKdhc/1O7IJAM1IYPH26/OfKK/ToeD5Qhz7ywRcfuQbLjzBs3zpxSwUxs4/ql7cstSHTX/mI5bxfU+pdgPXATOw5SEujo7crd221ZX3cgzZ1WQnOJ4hHfTP4a9k3Ozw6PyQV3Xn1tzugVro1KjiD8T3SZt2o41ASYhBT+MeGu84tbGZWB4li1Um4I/+k3ayfOIZ3KWGSnuxbznwLEcPpj/07O0L56g/ybNjt+sX/C3iXJ5vvNUYh2nGHONl4LNgTmWBEMMO2O7QKYMwhgZpaAmCcKwZhemTGCOiP9G5kLFpAFdiMv4qDhLFYT12MulRdvbBKq6uKGiucP7d9FRYVNHiX2zYPD15/l2EC1FFwDQY8Fdh1oaXZ7UDM80/8Minadk3FO+8wiJ1oJDfS7vHs14KXkOllN9TGOSYFr2saSrOhss9OZft3re7YNCCYEG3wKxVpL4/xdq9uA9QYelXb/OSioXdIEBEHL2OR/zS34xgTqTR+4FCWWUKVfE+Os1vsEzrl/jeuudaeepYMxx2eeTGBJ/NOOMZmWQZGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 504,
+   "completion_tokens": 300,
+   "total_tokens": 804,
+   "cost": 0.008016,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008016,
+    "upstream_inference_prompt_cost": 0.002016,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.468
+}

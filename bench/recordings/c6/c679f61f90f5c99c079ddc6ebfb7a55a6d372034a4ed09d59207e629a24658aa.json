@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"DHW recirculation pump\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678489-QiIn8tgGtX6L3gFSDsbp",
+  "object": "chat.completion",
+  "created": 1790678489,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether installing a DHW recirculation pump counts as building work, checking Schedule 4 exemptions around hot water and heating system replacements that don't involve a storage vessel.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether installing a DHW recirculation pump counts as building work, checking Schedule 4 exemptions around hot water and heating system replacements that don't involve a storage vessel.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS/woKEAgSGAI4AUIIdGhpbmtpbmcSDNWzG0CKumklNGm5URoMPSNfreCk90kauC14IjBt1gQTSM9PwsBArkSqQLb3rIy1IcX9NLvyCDRmZ+xrEzg2vIupeycwPzQwi3KUSLIqnApK8jPgt9DsAi3Jm7gFVpfQPszbcbOrEf3Ng99IduYfh+VNtAcf8jzSfsb0VuC8SxUnVkR3bkAbBj03N6wyqIjXR9CACirfRIemCUTBbwjx0REC1OKCC3rKB0nEIc0zHiByL9eQ2/ZG8Fhqs9MOwNL4zQxMc2jU3rwveq1je5zwdm4FDF2AmJMwFvXMg25XGXMRSttbjC6gEctb/B+uRqWDUvr5/NKzmhJQDNZpdj05kZl6bdlSXsFYx4QZUBO9tMhjpNt4t+pbCs2dvAFkGJseS56b+MSGVupF7UJUn9O06j8F+CupZxLItCqjGCNuQ6Iu+uNSEvwog7A+wQrQhrjU8DriV3JIkK4w7D6F/s2hed3fXrE5rKFAFpGedUxRe0WYgv9sihJiHxraCZZ7wijPGBoBbwQNt7VhH1/Bq0wYzM4l7KXdbxgjSe9qEXqVKXlrY1w8+/1ZCsBmI1O3P7Y0wX6GDcuhIbahnb+SS4yIz0o/9quJ+z2VJMzuDi0CDx1+/aBDFHdCh8Lwxb3/4DsYlA9mHOEK14nat8v0vsXRrqwcCZUOXK/Y/aSWyqf/cJd9Qx+mNjoRnk+8fpg3q4ZCWbYUaYn4DXT45TeepDW0SLtk9kpJOcwQmMeKxQC/y6US1ApdHSboBJMvbN5R+0ftLL4UKXqGyS7k7DcWdA6ywwOm4fzaprJ7nTLnfHLhcYZUBf/zLioDbxAtVGhrTsWW1HEkKOE0rogaEPI8+CxB+6g71lUxX71WOtiVDwEF6ySTGTbP4kiLsdgdtXE85Q/UvkVDns+odYG1aNRuAZltAd6QtdJkMiGVvU9wXuowWhSSAHiTPncWmUmBRwCTt9qppjdgpD1qovOxizdVHIrD2v/u3DLTH+NAKIrkQY1+e+G3/6rJegWxqnMR3/2sMibBd/bqo+my8uY6q5lCX+RvAEwvD3uhSJkvRUohelOduUd9YYbjkFCwlUAjFNDbygCdjQhDypkdDyMCBlxbjxqWFtr3CTm7A6tVhHHJvjnol01rsLwQb3TNX4hf4AGiEDY+Ia6rsomZ9cQly+eHtNfe9pa9h4uEYLo2RlMbZHVouDaN6ACrp/p33qk1a3bfB3s/M8VU6+aOBojKkFPAawJvvjC67tOUaaPRAeG7Gcf+D2VWsQXK9jL2gFMcDa/KJ2D4g+TmRGvgzuA32oBylo6OAY/nlQZnZU4K7FtixzUijFJivTry9LxiRFevo48pUCHnq7Fo6EqmQAdGR7HpsrSKeR6AvTi/lW0eHGmsy2hPJf2QDCfgQeoLDz/8knr618Ir4xjKL/q/wFQW0zdXTWH61mnH0/gazmGHg7UI8LBOjm0ZAakGIMDGh2iUlpuGbvr6fvuhApa2ZvhYw0lEtQGb1hod3OGps1V11+iuvIvQK2a5VBEi2XzWfRHMGmg5JIWED6d3ZqIoS9drtJePgFI8UUyac5XYKyhT3AvYXqqPuCaFrWFyDo0iGoO/n595ROTKeqhI3eWyP64d74UVlj455K+LLbyojBq9z2H9qCWjJzxs1CQNuSdD7gnRwicFcRgBHxecH4oSva2c4nqeU4+75grfETg2MC1zNpWT6uph9L2YrmL38X++dbv/rXDE29W1dYqo3wejHMjUZpiKeP+TZPoee9Fgx0QvMY1s+/gWknmuf9FOdOkFiO5Tlu+LtAzjLmXaZVRbBjZjs8nSyMHTBw72wAcB7TOcRdAk0I8T+0TlmJm6lrXXPVRuDh4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 489,
+   "completion_tokens": 300,
+   "total_tokens": 789,
+   "cost": 0.007956,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007956,
+    "upstream_inference_prompt_cost": 0.001956,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.419
+}

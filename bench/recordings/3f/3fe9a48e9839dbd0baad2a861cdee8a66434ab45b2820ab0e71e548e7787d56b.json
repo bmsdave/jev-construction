@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Remove non-loadbearing stud wall between lounge and entrance hall/stairs\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.14\", \"document\": \"ADP2013\", \"text\": \"3.14 If local authorities find that non-notifiable work is unsafe and non-compliant, they can take enforcement action. Building Regulations 2010 Appendix A Appendix A: Key terms The following are key terms used in this document: Building control body A local authority or private sector approved inspector Extra-low voltage* A voltage not exceeding 50V ac or 120V ripple-free dc, whether between conductors or to earth Building Regulations compliance certificate A certificate issued by an installer registered with an authorised competent person self-certification scheme, or by a certifier registered with an authorised third-party certification scheme stating that the work described in the certificate complies with regulations 4 and 7 of the Building Regulations 2010 (that is, the work complies with all applicable requirements in the Building Regulations) Low voltage* A voltage exceeding extra-low voltage but not exceeding 1000V ac or 1500V dc between conductors, or 600V ac or 900V dc between conductors and earth Electrical installation* Fixed electric cables or fixed electrical equipment located on the consumer’s side of the electricity supply meter Registered competent person A competent person registered with a Part P competent person self-certification scheme Registered third-party certifier A competent person registered with a Part P competent person third-party certification scheme NOTE: *Terms defined in regulation 2 of the Building Regulations 2010 Building Regulations …\"}, {\"ref\": \"Sch 1 B3\", \"document\": \"BR2010\", \"text\": \"Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952.\"}, {\"ref\": \"Sch 1 K1\", \"document\": \"BR2010\", \"text\": \"Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677996-AA4Awu2HuKTlN56ZCHpi",
+  "object": "chat.completion",
+  "created": 1790677996,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether removing that wall affects the escape route: if the house is only two storeys with floors under 4.5m, there's no protected stairway requirement so it likely isn't notifiable building work, but if it's three storeys with a protected stair, removing the wall would compromise B1 compliance and require notification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether removing that wall affects the escape route: if the house is only two storeys with floors under 4.5m, there's no protected stairway requirement so it likely isn't notifiable building work, but if it's three storeys with a protected stair, removing the wall would compromise B1 compliance and require notification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrAsKEAgSGAI4AUIIdGhpbmtpbmcSDLiL+eD4i6cP97fjUBoMpSppUGQ+9iKv7GL/IjCoGIXTQVCisJYxEe77fP81SOqNhYi5LxQ3AztZSxJRzsNAdQTgqVuDjB8nAn8rH8wqyQotMaR+a0+CUTYn7HFfvPDpcoEadscrktjyG4UOhPD5p2OHDYud4MeV2IaCUXMrMVi50QziJhHaqW80uP4Lc3ZeK8lPpLjizVAPtdT6Xc2ABTTVrCeyQi4dg6Ifj3tzM+T/LVdItNfH45LS8gkupubUoukPW6NRHEU9psJpttwiEpXybVhLW5NQtSBFzaWlwkl2ELs2mJL1A5pQTKUewPyFO1INUXn0bu5nSoLRf2Nd4I4LQ8awYXTYZOtdx1MaEFy3FrD0sexfNb3RbvmWEQLmfs/pF2D42h4GHTjyxwKRXWUp95R2LMze95mzOtmLVxdrPMyUKv96BdIKR+XiS3io/rKDPiWx2Pw4iiwamjq0mkPnD1RLUtJPxfFv0icsw5fux3h+iBmzR1yh+c7Mva/ojZDL9rLPhGicD+0zq3iHalaaUbq0817ePQWoYedacPCkngXHjB/NM7J+y5VzOcHFD4mOgitBbD6b4ccy4qSZFvQ4Xv60qMwQsBA52rHCaax7AodLD7xJGYBJBSOH8trRJ+pkj4M4TYruwux5C+msh6rJuavuzkw5W1ZKu1tgkiWTtTsk/G8aA1kc7/1kUISjPeJpJ5CRtYLBGOa0/nkmAQqg1lYWq5Mr0B3t89JqpP8saI7DSZsNhXSSPqEjTYsNOs2iwiD4p9POE5WJrAYhfDoBvQqBBxskvwzKANredNElweeqcwhbI6J5uvYhIELxPGWlgbW22HF0CE4ZmG44ZYOMCxxPqlEo2cj22CkJxR1nVIqnZx9kzN4pwyO/EumrsH/U2+hc8YyStk4Lh1zAXdcJNCywKIswTQIRH7b+85KZZvO6rcivjMZalWvJCfNO+87sEK7nB8I1Y3840CyiLiTrsqsryJn50EEHAU93G+hu+pUzS3XGCj1SIfZDwgAz3T4qSTNQGKzl55yVHrQkast78jrG/SarZLpyNLVo2XJXXu9CfK1fZQO9id/NVCyB6cJEUdlsndCsyTja/sk5Z8pphUu4dWKIThPfBdo3P8IjA8QwWgK9r8+pXPLchLJ93xUaLxWwVJ+mxOV7UaemCuzoz/T6ZTTeGep0osoBXldeIWq+luR1v8355dVsKU7lnj69SAn3LpgM4JH8qk8tRO4h5HxjRjvTP0+o0MHS/QU/lLOqEA1EImRfN6kcFeaytG00/X6oI8inGlQIcUfvQ6qiS0MTakSaH1L/hd6yED4E8qWxUy3EwlYxBtRFZiK/0zxS0jTKZPElvs4wBlUfiXDN87G3kbFq2QCZ2Fo/qoxpvxy0VP4KnQMofWR5ojXB+QqPTfdXbevBcVzK08KEfmSIjyw5Y2gtPjYvLB3QS7gqxIMzgtXIA71czp/11uywQkwyuWWRQ2CTRP0pUbQKW5WHJAE0bo6GQtdbFNQgjL+MbKmVijrpghKDHQw06QoTubhfDCEhIayRA2qQA15ny/BFoEgbf9QX/PzV9/tKjH+gx9/c33030TcUpxrKe6jPLdo0IhBtMjvM/fS+dqAyKL4jhe4SFwBZ0TTlVzmD0SOVoek2wVoDvkz8o/AmURhouDaRVOQbReGflwIIqH6JtK7CasvxcLzPYyBJ1j05iexigUFW9QwDZzkGK1zBjouSKok0twMqyzM4jnaeqXjZBx4y5ucO8UF3upvc4r5a5/xFL1SR7kgqLMAg6wNqdAxwNNHb4BIEwKp4qMdVLx/YAgLIN5yZd5614e8dQREuflbwM6oL7xzbJjgOcziUsmPduuw94GOPbt5mfVWwxWFsNqJZdW0nVTUMC0Dv5umFceq5y5sYldCv6xkYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1455,
+   "completion_tokens": 300,
+   "total_tokens": 1755,
+   "cost": 0.01182,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01182,
+    "upstream_inference_prompt_cost": 0.00582,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.622
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New mezzanine floor for storage in a warehouse\", \"project\": \"Warehouse in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 2(2)\", \"document\": \"BR2010\", \"text\": \"(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"Sch 4 para 1(l)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (l) providing a hot water storage system that has a storage vessel with a capacity not exceeding 15 litres, where any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6)(b);\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677654-pZC6vqZM2Lo5aDjSKFJ2",
+  "object": "chat.completion",
+  "created": 1790677654,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Full plans are required.** A new mezzanine floor in a warehouse is building work: it is a material alteration affecting structure (Part A) and fire safety (Part B), including means of escape and fire resistance. As a non-domestic workplace, the warehouse is covered by the Regulatory Reform (Fire Safety) Order 2005, so reg 12(3) rules out a building notice. The work is not listed in",
+     "refusal": null,
+     "reasoning": "A mezzanine floor in a warehouse counts as building work since it's a material alteration affecting structure and fire safety, and warehouses fall under the Fire Safety Order as non-domestic premises, so Reg 12(3) requires full plans. There's a possible argument that a simple storage mezzanine might not qualify, but generally it's treated as material alteration requiring full plans.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A mezzanine floor in a warehouse counts as building work since it's a material alteration affecting structure and fire safety, and warehouses fall under the Fire Safety Order as non-domestic premises, so Reg 12(3) requires full plans. There's a possible argument that a simple storage mezzanine might not qualify, but generally it's treated as material alteration requiring full plans.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSlwgKEAgSGAI4AUIIdGhpbmtpbmcSDF0BULMUJ1e1UgvbhRoM/XiE1cV0mltQ9JMuIjCjxUE3RZUoWwvMQAoOZd7EUHDSJrfKGUS/j/z+36M/wf3Gu8a408Ij5SnZEnxbNeIqtAfBT+UNfYIvIHA24TMR7/nGSzRwctx0VPB0ED4z5udHcovWV0/+wqHMbdWjWl8aHvGLlGHm0u5xLag3yKc0niRt0z4PAAarv6Bm6Ma+w5k7qMDbDno1CsFCiAAyHNkSq3KS90Hl8U5wMqH651gpFXxMdSpJvj21wucb8dCNicpUvwF27wuJhOg/qvD4bGGh9qTdEWEsr4dQKU4XOhy9foGKK2Dx9N4Nb/oNy0Mil36sMBjJihaOKyYRvAWaJ0KDBgWFd4xKXQXJgKZDtz1N3W5Ba+8qzd5SHOektA9acNdjgl/+zUgbOBp85hsWiu78Ov7EA/LdKIa8tvQYJcMsg+kTta4q5Obg+djptcHd7IcOb05G3LcExjDlLrIbKsGUhOwG9Olmpt/ZYmFyA7MaRHfFRfE0GdRd+DD+L5MA9hzMiSi30VfMvAUn3HwzMyYk01hXXFCfTT4rhCV84q3YSw7LtlLQg/fqbZTwNst0wc/R/9AeG7Gix1m6vREB98t1MYQbeZsyrf6VrVlBVTPBnaRXMRk1LnhAZUcH2umpx0tkO4DqBe5Xu1fWJWoehLuCitVD+YC4w6EeHhBRlm41uZTCPr676lHJcfZrGcPe/9iYuWnbSUKGnjuA8z7J2MefpykYNPRVwwpxJIiEMX8dji+Jx1d1Q4/I/ICW2qqVuN7+L7ykVH+YJd5jkoiDPJvupe2+cXB/8lzv+Ri0732qUHYfkSIALWuLd9eWL1cryhX6w2Z2ESZTUHDfSZqpyu3PPIYHL3eHutAoYdKAaNClJTnGcZrpfqNLl/V9gFoYcutpDrJqleFkbLLU/ZD221N2IqZJ8ObPzlTGQ6gg0erZse1vknpMm6I9LZP/7SshcgSvSIjCj6l2T514TiJR8URvh+BP2rZpkovs4LdR55v71X2cWTaqgsf+pn2qqmb9RrDncZi68kd/LIgQSMsGUYMy/V/NTcHP1k0JmkMlk95ltywGAiMitplPs1AVEb73wsL2AKdGDQSPzblZ3yNR1knvr54bRzIpP3pb4L++jB+CGoTji1E4m6AvLsX55jBV/hPidP9Kb2uNWlJcyHezEJKTMDBMzDu/Om7zIzuYYPIdVuuEeCuj96pE+xcoZK3VCmttqD71LD7UUu/Oe0hbq6SOpeBI+GLqE+avDL6OCYhdaScOwbgYLhaM5NdFuSPw5xPwJ0OQamYrQnCekfUjq1fVhEA7urhNVY4o8eIT1RHSivDDV9Usj5TYD00kIQvayt8x/huJVaMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 918,
+   "completion_tokens": 300,
+   "total_tokens": 1218,
+   "cost": 0.009672,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009672,
+    "upstream_inference_prompt_cost": 0.003672,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 167,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.966
+}

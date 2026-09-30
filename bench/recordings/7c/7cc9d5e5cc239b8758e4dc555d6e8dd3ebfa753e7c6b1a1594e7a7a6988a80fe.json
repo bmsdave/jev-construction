@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Riser floor-window fire stops\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Fire stopping. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678272-l4AlhePUL2KeRRllvgen",
+  "object": "chat.completion",
+  "created": 1790678272,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether fire stopping done alone in a dwelling counts as building work at all — the Fire Safety Order doesn't apply to houses, so it's unclear if this triggers notification, but since it's typically part of a loft conversion, it likely still falls under building work requiring a building notice.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether fire stopping done alone in a dwelling counts as building work at all — the Fire Safety Order doesn't apply to houses, so it's unclear if this triggers notification, but since it's typically part of a loft conversion, it likely still falls under building work requiring a building notice.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSoAsKEAgSGAI4AUIIdGhpbmtpbmcSDPHbD4TUtBO4zPmZLRoMlXiVmjKYSMjorq+yIjCiSujAGD+MCoo6J68cyJXscEC1BJFoLV4iZcIDiUKQ6nLPDh/X5hOjGRSSHdV/728qvQrXo1Y0x043kZbCV6vMU0Iz/rXxmzvJdY01zOWazzfhU0IXMvk7NWgTSZDvMyHZZ9u0BEbJ3g20DZCGexHl5vkx7KyGgduNtMDZbV/KBnA00lQV+Ti6yBqd0ssexMVoUTfvPeFqtA1bVSXXAXNHQd9wyQ4mqs65/zSehAdMn/XBkxFabgS6Eoz/IhhXaugMhIBPNWb79HDKiZpjsMlu9frxytxErukCfBncn9UPDQ81LveeUmkJgb3PEUflhazc+8/Tt/tNZTKCGmzkLViEjDXRfZmYLkYr2FOuTI7BcQnFc/O8Joa54SY9lshTzWxTswfXSosQ2Dx6vGBVbTr4vZlq+AhfTCZvQI0VklPDWXwRyblZ9Ss6/wt+5BMPmyqu6IYQ4KB0deaIddsLZ9j41dY0bV9OXsg9Lr3HnA/kE7gR9xB6UtvQF5QGCaMHNmPgY89JQWIJ7HUFPBk9420+Z51rlEc2WKIlmk9RLHzl1QhnsQAS48RzUtguii1WqEIJJbm2+MyCptTmelyuBz3l6u4zo+PtsuLWVlbF0NZVJUREejH+lArNIK3Tx6KtxhHx1eIOMso+hvGEseUT5dFwezvTn6vPvIMBk71JJ8luFOAi3FEaeN3bP1ElftUHzJs1wxiKk0NHK6x6di42995VnQQ0IITS83a8sdeuktaCElypA3s0uikZprKP8KzgWhEafHDzj6icoysDIP7JQNrTyOeuGCiHNE2heeF8lW4hkiTRrU2QpBWZKIBaNBi+oYh+1ZkG8tBM/sLw2Z5KqR4JLW8f5Z5NVyuaeIlYCoqlk1Fn7Yq8kh6zaDPglTltbD52EB0Q5tHSFFGSCNTnlMrpqWCkfrcZpMev0t9AeHFlE41t9hkksCUY4MloouMIyfvAJd5nrFucgq7tJBFMLIt9cBfNo8bmSKPN5qIrTf1R+7/6fApnNbvO/d6kr/ygAO21MMxWlJf2KU/0VILk2eHGe8lZUh+LFACxB4DQrssaBRB3WtZt2mvayrW/XXw8dzNrWxLwUYBz/1xuXfgIFd72zgvKYcqxULR8agyiVltf619nlo/HmthMzJ8vT9x8QaFMnqZ9M/pKGYbt1W3vWZiBjJbWap/Xe1xPMeMpj0eg+rXnK1dGX9jASukWQJIqe2+2j1lcuGAasq1JnEhdV53k3OfB7ONS5OgPhToFCOth38KKa6cU81QhIphO4DuHkJe5+vnpNFd5PSHbquGkChZGlo5is404py6GFv4Ipx8jEBiRUmAtybbxGm46eBbXir+DQou6tiAGTPg9qD26NofQ7GylHch0BIiX0sQoAP0bo78SFND7PrwBubsmq/YbAgc+gfdE0X1PZ9FmS75xZ83fPAqDydADldnQiiXm2QvFg1sWaLHGQBxRXdkoF7bJjCI7xbT8ZVMWFiGxA92WCDtl8KCMFSYQU2DQP1Y760wD5bgsecN3FPO7OHDc/iJvWPQV0Hxyik5hvGYyLzBYYjR0I71+0JxTR4eIV0Yh3PRXBcWeEQTV1YnZq8CDDv7oQJgzpEVo7v5Q3prGMDfytTcHCncxE4GAwseoqk5aE9xj12ZakMpAjphPWjTG/vAJE/WnqZCFvlGzBZLNONfaHB5UHK+t/DCeNiydAxGlLPmrj3uHBz3ivmLZx+BRGHqaG5uo9FPdsjs10moy8A51Kiw1lrs266cqjogRHlo0BCvEK7/mivDzhz10YdPKLrq/8LhEYsbxkc+NZ0d5gIDUGjLWELGugx1/9X0iuMUIxuVEyMNHMSLAY8LI5RTjWXZmEs4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 507,
+   "completion_tokens": 300,
+   "total_tokens": 807,
+   "cost": 0.008028,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008028,
+    "upstream_inference_prompt_cost": 0.002028,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.454
+}

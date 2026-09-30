@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Repair small area of roof covering (under 25% of roof, like-for-like)",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 10.5",
+     "document": "ADL1-2021",
+     "text": "10.5 If a window is enlarged or a new one is created, either of the following should be met. a. The area of windows, roof windows, rooflights and doors should not exceed 25% of the total floor area of the dwelling. b. If the area of windows, roof windows, rooflights and doors exceeds 25% of the total floor area of the dwelling, compensating measures should be taken to improve the energy efficiency of the dwelling. Building Regulations 2010 R23(2), L1(a)"
+    },
+    "c2": {
+     "ref": "para 3.13",
+     "document": "ADP2013",
+     "text": "3.13 Non-notifiable electrical installation work, like notifiable work, should be designed and installed, and inspected, tested and certificated in accordance with BS 7671."
+    },
+    "c3": {
+     "ref": "para 0.25",
+     "document": "ADL1-2021",
+     "text": "0.25 Roof(2)(3)(4) (2)(5) (7)(8) NOTES: 1. Area-weighted average values. 2. For dormer windows, ‘roof’ includes the roof parts of the windows and ‘wall’ includes the wall parts (cheeks). 3. If meeting such a standard would limit head room, a lesser standard may be appropriate. In such cases, both of the following should be achieved. a. The depth of the insulation plus any required air gap should be at least to the depth of the rafters. b. The insulant should be chosen to achieve the lowest practicable U-value. 4. If there are problems with the load-bearing capacity of the frame or height of the upstand, for a flat roof or roof with integral insulation, a lesser standard may be appropriate. 5. This applies only to a wall that is suitable for cavity insulation. Where this is not the case, it should be treated as ‘wall – internal or external insulation’. 6. If meeting such a standard would reduce the internal floor area of the room bounded by the wall by more than 5%, a lesser standard may be appropriate. 7. The U-value of the floor of an extension may be calculated using the exposed perimeter and floor area of the whole enlarged dwelling. 8. If meeting such a standard would create significant problems in relation to adjoining floor levels, a lesser standard may be appropriate. Building Regulations 2010 L1(a) Continuity of insulation"
+    },
+    "c4": {
+     "ref": "Sch 3 para 16",
+     "document": "BR2010",
+     "text": "16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited."
+    },
+    "c5": {
+     "ref": "para 10.7",
+     "document": "ADL1-2021",
+     "text": "10.7 When a dwelling is extended, elements should satisfy all of the following. a. New thermal elements should meet the standards in Table 4.2 and paragraph 4.7. b. Replacement thermal elements should meet the standards in Table 4.2 and paragraph 4.8. c. New windows, roof windows, rooflights and doors should meet the standards in Table 4.2. d. The total area of windows, roof windows, rooflights and doors in extensions should not exceed the sum of the following. i. 25% of the floor area of the extension. ii. The total area of any windows and doors which no longer exist or are no longer exposed due to the extension. e. Existing fabric elements that will become thermal elements should meet the limiting standards in Table 4.3 by following the guidance in paragraphs 11.2 to 11.4."
+    },
+    "c6": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c7": {
+     "ref": "para 0.16",
+     "document": "ADL1-2021",
+     "text": "0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows"
+    },
+    "c8": {
+     "ref": "para 11.7",
+     "document": "ADL1-2021",
+     "text": "11.7 If there is a material change of use and/or a change to energy status, elements should satisfy all of the following. a. Existing thermal elements should meet the limiting standards in Table 4.3, following the guidance in paragraphs 4.11 and 4.12. b. If both of the following apply to existing windows, roof windows, rooflights and doors (controlled fittings), they should be replaced to meet the limiting standards in Table 4.2. i. They separate a conditioned space from an unconditioned space or the external environment. ii. They have a U-value higher than either of the following. • For windows, roof windows and doors – 3.30W/(m2·K). • For rooflights – 3.80W/(m2·K), calculated by following paragraph 4.5. In addition, all of the following should be met. a. New or replaced thermal elements should meet the standards in Table 4.2, following the guidance in paragraphs 4.7 and 4.8. b. New or replaced windows, roof windows, rooflights and doors (controlled fittings) should meet the standards in Table 4.2. c. The area of openings in the newly created dwelling should not be more than 25% of the total floor area. In buildings that contain more than one dwelling a larger percentage area of openings may be achieved by following the guidance in paragraph 11.8. d. Any fixed building services including building automation and control systems and/or on-site electricity generation that are provided or extended should meet the standards in Sections 5 and 6."
+    },
+    "c9": {
+     "ref": "Sch 3 para 10",
+     "document": "BR2010",
+     "text": "10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ...."
+    },
+    "c10": {
+     "ref": "Sch 1 K2",
+     "document": "BR2010",
+     "text": "Protection from falling: K2. (a) Any stairs, ramps, floors and balconies and any roof to which people have access, and(b) any light well, basement area or similar sunken area connected to a building,shall be provided with barriers where it is necessary to protect people in or about the building from falling. | Requirement K2(a) applies only to stairs and ramps which form part of the building."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.81
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.14
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.06
+   }
+  },
+  "usage": {
+   "input_tokens": 3257,
+   "output_tokens": 175,
+   "cost": 0.000136794
+  },
+  "id": "gen-dec-1790677181-hi8ILixKFIFzUPuk3Z7y",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.32
+}

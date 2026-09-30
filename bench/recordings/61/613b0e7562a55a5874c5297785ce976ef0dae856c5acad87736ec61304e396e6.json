@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "400 L heat-pump cylinder",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: existing house.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c2": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c3": {
+     "ref": "Sch 1 E1",
+     "document": "BR2010",
+     "text": "Protection against sound from other parts of the building and adjoining buildings: E1. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that they provide reasonable resistance to sound from other parts of the same building and from adjoining buildings."
+    },
+    "c4": {
+     "ref": "para 0.18",
+     "document": "ADL1-2021",
+     "text": "0.18 When constructing a dwelling as part of a larger building that contains other types of accommodation, sometimes called a mixed-use development, refer to the two volumes of a. For guidance on each individual dwelling, use this approved document, Approved Document L, Volume 1: Dwellings. b. For guidance on the non-dwelling parts of the building, such as heated common areas and any commercial or retail space, use Approved Document L, Volume 2: Buildings other than dwellings. Selected key interactions with other parts of the Building Regulations"
+    },
+    "c5": {
+     "ref": "Sch 1 L1",
+     "document": "BR2010",
+     "text": "Conservation of fuel and power: L1. Reasonable provision shall be made for the conservation of fuel and power in buildings by—(a) limiting heat gains and losses—(i) through thermal elements and other parts of the building fabric; and(ii) from pipes, ducts and vessels used for space heating, space cooling and hot water services;(b) providing fixed building services which—(i) are energy efficient to a reasonable standard;(ii) have effective controls; and(iii) are commissioned by testing and adjusting as necessary to ensure they use no more fuel and power than is reasonable in the circumstances."
+    },
+    "c6": {
+     "ref": "para 0.22",
+     "document": "ADL1-2021",
+     "text": "0.22 This approved document, Approved Document L, Volume 1, provides guidance on reducing unwanted heat loss, by achieving optimum airtightness. When specifying the minimum amount of purpose-provided ventilation, consider the air infiltration of a dwelling; follow Approved Document F. Interaction with Part J"
+    },
+    "c7": {
+     "ref": "para 10.13",
+     "document": "ADL1-2021",
+     "text": "10.13 If the conservatory or porch is not exempt from the energy efficiency requirements (see paragraph 0.14), all the following elements should meet the minimum standards of paragraphs 4.7 and 4.8 and Table 4.2. a. New thermal elements. b. Replacement thermal elements. c. New windows, roof windows, rooflights and doors. The limitations on area of windows, doors and rooflights in paragraph 10.7d do not apply. In addition, both of the following should apply. a. Any walls, doors and windows should be insulated and draught-proofed to at least the same extent as in the existing dwelling. b. Fixed building services and/or on-site electricity generation within the conservatory or porch should both: i. meet the standards in Sections 5 and 6 ii. have independent temperature and on/off controls. Building Regulations 2010 R23(1), L1(a) Regulation 23(1) and requirement L1(a): Renovating elements in existing dwellings and limiting heat gains and losses This section deals with the requirements of regulation 23(1) and Part L1(a) of Schedule 1 to the Building Regulations 2010. Regulation Requirements for the renovation or replacement of thermal elements 23. (1) \u0007Where the renovation of an individual thermal element— (a) \u0007constitutes a major renovation; or (b) \u0007amounts to the renovation of more than 50% of the element’s surface area; \u0007 the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is …"
+    },
+    "c8": {
+     "ref": "Sch 1 O1",
+     "document": "BR2010",
+     "text": "Overheating Mitigation: O1.—(1) Reasonable provision must be made to—(a) limit unwanted solar gains in summer;(b) provide an adequate means to remove heat from the indoor environment.(2) In meeting the obligations in sub-paragraph (1)—(a) account must be taken of the safety of any occupant, and their reasonable enjoyment of the building; and(b) mechanical cooling may only be used where insufficient heat is capable of being removed from the indoor environment without it. | Requirement O1 applies only to the erection of the following buildings—(a) a dwelling;(b) an institution; or(c) any other building containing one or more rooms for residential purposes (other than a room in a hotel)."
+    },
+    "c9": {
+     "ref": "Sch 3 para 15",
+     "document": "BR2010",
+     "text": "15. Installation in a building of a system to produce electricity, heat or cooling—(a) by microgeneration; or(b) from renewable sources (as defined in Directive 2009/28/EC of the European Parliament and of the Council on the promotion of the use of energy from renewable sources). | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ...."
+    },
+    "c10": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.73
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.05
+   }
+  },
+  "usage": {
+   "input_tokens": 2955,
+   "output_tokens": 175,
+   "cost": 0.00012411
+  },
+  "id": "gen-dec-1790676033-xKHfL2RVS1Ew5h5V5NLZ",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.572
+}

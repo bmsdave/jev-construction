@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Adding an en-suite shower room with a new underground drain connection",
+   "project": "Detached house in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 2.6",
+     "document": "ADP2013",
+     "text": "2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work"
+    },
+    "c2": {
+     "ref": "para 2.5",
+     "document": "ADP2013",
+     "text": "2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P"
+    },
+    "c3": {
+     "ref": "reg 12(9)",
+     "document": "BR2010",
+     "text": "(9) In this regulation—“fronting” has the meaning given in section 203(3) of the Highways Act 1980; ... “private street” has the meaning given in section 203(2) of the Highways Act 1980... ; and “special location” means— within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends—vertically from the finished floor level to—a height of 2.25 metres; orthe position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; andhorizontally—where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; orwhere there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; ora room containing a swimming pool or sauna heater."
+    },
+    "c4": {
+     "ref": "para 3.1",
+     "document": "ADF1-2021",
+     "text": "3.1 When building work in an existing dwelling includes work on ventilation, for example: a. adding a habitable room b. adding a wet room c. replacing part of the ventilation system, including extract fans the work should meet the relevant standards in this approved document."
+    },
+    "c5": {
+     "ref": "Sch 3 para 12",
+     "document": "BR2010",
+     "text": "12. Installation of a sanitary convenience, sink, washbasin, bidet, fixed bath, shower or bathroom in a dwelling, that does not involve work on shared or underground drainage. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited or NAPIT Registration Limited, ...."
+    },
+    "c6": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c7": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c8": {
+     "ref": "Sch 4 para 1(j)",
+     "document": "BR2010",
+     "text": "Work consisting of— (j) replacing— (i) a sanitary convenience with one that uses no more water than the one it replaces, (ii) a washbasin, sink or bidet, (iii) a fixed bath, (iv) a shower, (v) a rainwater gutter, or (vi) a rainwater downpipe,where the work does not include any work to underground drainage, and includes no work to the hot or cold water system or above ground drainage, which may prejudice the health or safety of any person on completion of the work;"
+    },
+    "c9": {
+     "ref": "para 0.6",
+     "document": "ADL1-2021",
+     "text": "0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings"
+    },
+    "c10": {
+     "ref": "Sch 1 G5",
+     "document": "BR2010",
+     "text": "Bathrooms: G5. A bathroom must be provided containing a washbasin and either a fixed bath or a shower. | Requirement G5 applies only to dwellings and to buildings containing one or more rooms for residential purposes."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.43
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.55
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.31
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.7
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.16
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.47
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.08
+   }
+  },
+  "usage": {
+   "input_tokens": 3064,
+   "output_tokens": 175,
+   "cost": 0.000128688
+  },
+  "id": "gen-dec-1790676109-Hqu9t8TpsNIxtVshxBCV",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.289
+}

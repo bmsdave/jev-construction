@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New mezzanine floor for storage in a warehouse\", \"project\": \"Warehouse in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678552-gGwXc1OBbUDhJMPtEJbL",
+  "object": "chat.completion",
+  "created": 1790678552,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The mezzanine is building work, and because the Fire Safety Order applies to a warehouse, a full plans application is required.\n\n- **It is building work.** Adding a mezzanine is a material alteration. It affects structure (Part A) and fire safety, including means of escape and structural fire resistance (Part B). It does not fall within Schedule 4, and it is not a Schedule 3 self-certification item.\n- **Full plans is mandatory.** A warehouse is a workplace, so the Regulatory Reform (Fire Safety) Order 2005 applies to it.",
+     "refusal": null,
+     "reasoning": "A new mezzanine floor in a warehouse counts as a material alteration since the building is a workplace covered by the Fire Safety Order, so full plans are required under regulation 12(3) regardless of arguments that it's just for storage.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A new mezzanine floor in a warehouse counts as a material alteration since the building is a workplace covered by the Fire Safety Order, so full plans are required under regulation 12(3) regardless of arguments that it's just for storage.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8gYKEAgSGAI4AUIIdGhpbmtpbmcSDE4skMqyHqW1G6v58BoMeVVurCICHh70aiwVIjBcxfRjYzco3V9YC2W+6sq7m2FGzJgllr4ZkOcLreerzI+eaT18tzTTnj53AiMYr5gqjwbVIyeHov/5x0/04CMF7KJj6ZqhZ4pt5wKotp9nJFNlvyvQKEy7LQU7bJjYhoyWNtjnygkYEBz+N/p6QG/8OoK/2l6FK4W76KxRwpOZQg7KGPV9OU3zzqmKtSCWzuOGZTndWHB7Js0+RWTLNwrkLh+Ycxiij0xANz/pwaASpLQRCPkdgyG+BLxKBCl9EGKbNPl/4Y9dpDsPIp7VRpToFHstiEjk7Hj79eg0eenjXYnimST0CS8yUu/4gF91ntdTGY1uTg8f2pUKJpfPCLjPEdDagIBN2tzExZ7iRFGTcNcQTuJOn0BDPUKmxeUcofVPtCUGwLipX6AsmehX4ZCZyLfbWcFAo8I/Q+JY/ScuuhuG9uJ/a/2HW+i+YsgjubAtr7gtE34evxyq+id+EZ/HOuMYiPfhil036UqkUlzeGhSrGtmEU4gsnIpsru9cDsfUp0tis/4gPGjnnbRwLulfgEDwRbl2INTKT8er8LHC/JeZKUjdkO1mIw8Iu3pMyxsdt+/PI7yQqcRAJ4hBkAAozaLF2gQr/jLTnAr4DZGxHLOEmnptU8axHORDJNgettWUutkfz9jiFppjI92E7SfXgQ7l3mGVhU1AWOW6S6OQN+S+CB2lQIzxZNtYSFzc5kgVgq3teJQxlZLsU8XuyGHLtPZQExXwJ7QMFxPJGI968UG2y+gsjPHC5uPrXjVkJY1Qf/iCE0Dj2rmKNpGOPVULto0kqGdJXpPt/wtlYxpDMK4MXGPPjmy4yb0FoKdQKc67FIlDzuf8kpkJg61dFB1knpNEjpGiMIF4liKbXnO5IILdg3C19ARZx9aYrXqp1r3YJhxZCYylfGM9A+keD/x17hi5EX0nc9PuoS/ZDmCUqD1bBHAxNXzN5kKz7XWDW/Mi6+v5q3Aa5fSNXe1VRWhRjM5I0qL0omLWfnxVVB5xTuWIOS2paytKcqErf0+gyyujeYtEtaCwSmuX+PvO7ylwJybMo3a8gu4gNMszKlOKRVatXB7dwm2czJLjZQSD552t6Z0g63wMt7Q3xkb+XldWOzMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 467,
+   "completion_tokens": 300,
+   "total_tokens": 767,
+   "cost": 0.007868,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007868,
+    "upstream_inference_prompt_cost": 0.001868,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 117,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.615
+}

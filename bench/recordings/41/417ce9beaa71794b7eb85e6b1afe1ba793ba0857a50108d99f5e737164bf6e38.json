@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Insulate a suspended timber ground floor from below\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 3A\", \"document\": \"BR2010\", \"text\": \"(3A) Installation of thermal insulation to suspended timber floors where the work— (a) consists of the installation of such insulation only; and (b) the work is not carried out in order to comply with any requirements of these Regulations.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"reg 2(3)\", \"document\": \"BR2010\", \"text\": \"(3) In these Regulations “thermal element” means a wall, floor or roof (but does not include windows, doors, roof windows or roof-lights) which separates a thermally conditioned part of the building (“the conditioned space”) from— (a) the external environment (including the ground); or (b) in the case of floors and walls, another part of the building which is— (i) unconditioned; (ii) an extension falling within class 7 of Schedule 2; or (iii) where this paragraph applies, conditioned to a different temperature,and includes all parts of the element between the surface bounding the conditioned space and the external environment or other part of the building as the case may be.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677836-UAcSfUksjakkdCOnpN8e",
+  "object": "chat.completion",
+  "created": 1790677836,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.8, \"competent_person_scheme\": 0.04, \"building_notice_or_full_plans\": 0.14, \"full_plans_required\": 0.",
+     "refusal": null,
+     "reasoning": "I'm checking Schedule 4 paragraph 3A around thermal insulation for suspended timber floors—installing insulation from below only seems exempt from notification, though I need to distinguish that from ADF1's guidance on ventilation, and also consider whether this counts as \"renovation\" of a thermal element, which typically involves adding a new cladding or rendering layer rather than just insulating underneath.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking Schedule 4 paragraph 3A around thermal insulation for suspended timber floors—installing insulation from below only seems exempt from notification, though I need to distinguish that from ADF1's guidance on ventilation, and also consider whether this counts as \"renovation\" of a thermal element, which typically involves adding a new cladding or rendering layer rather than just insulating underneath.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6QkKEAgSGAI4AUIIdGhpbmtpbmcSDKQ5CJXKJHhMXaqVuRoMjxmqK4cPqAESnogxIjDsp9MEf/91bNJ27JhGVFZ5OXE2WkIIWDOuUudKKkBu7mf8DPdjo1iWzx5gO3qD+YoqhgmCHDj4EqxrIx1cR3J2X58UpVvXUczqscwTcPIfNTLyAVDdgdsUxOSS0lw6YL0rWTP2U62I2tAX7KfvgO/72K7+X7V6WDfHF3zUf3NZfjHD7vGaKZKZD5M4NyRvyXwQM7C4wUYsRirgtAcGutbgV9svK2ZXGzRtQMGf7BMdjOcWOFm3xf8sRvdf4AYi0Z2ekUKG7VPTR7qPEH5RcXoJOjUqMCvOnBKKykkYFakZksA9ldWHGpxyRtL5lxq8rDnaStaKUkkga6VoWGiRBQBGA0GvCCDx4owCNzlliZoaMOlKD20ygE7Ea5pyap8GLjsLTM9lHtC8ri/N9CwchYjAo4dkvF1RsZZ4p9/j1FWrHBsiPFikKN5EbwoyXevTRDWYvpwyFflerhY1kBV3cTJ8LPy5Q99LgeKU1CwIQ9Q8alsuetM31L10R7BHose5/QJi/8WU4snnXMMiNOqGhACIWLtLDe7lujSJL/TCLWgyBCJyBB5e/hunTbOJzKjHHRdCjamYb8+b63MJ9gcUsgKhURNp0AC9WDaXKZpaZl+fPge6NWh58PfIQ4Drmy5m4zm0Lixq/3eGkNfo7PR76X7YNgi09xzvcY4I73UcPq2EZDYpZhLVGb4OIz1vQW0a/1VUr8dxNzIo1mbdYezopD9A6TroX0MnK/Jz8ij5htCTBELI6TI3+sB807tP03VOXuSkl6hpiRIftmvZG3RRRm+LrWJbe/fXs29u9itxPZLy0TbcSgyyM9bAm7Cdf7RC6YVcHcBy0MIRNDXh/gpOv/Ozpx6vNas71VOMczStGsbETgJS/fEbxNKxiPEo/SWaJ8FR5u5LpynZzyfhVNATKPkdOmpDKKmTwRGedb34wtwWJN/8Jz+soPXrewcjR5lJQ7ovun73zAazLd5xXpwgh+y5zQfM/cTCL7WjlPE+fM18TKMKvvJxlv7Q0B/GKTTA3k6uBxOCXrKpwJfoPoqYIeQ2xpIYaRr9Xn4Cdk9W3VQ5kTS1sK64pABlj4DKlAMPVagHpziAYl5P88ri6ob/iWX4motaizqdfd9Ix0gwL0Td8Ykt2hKDOBh7KMRhZS5FVukA9mwHv/Fp22MBZvScS4PpRtadNv8DigrGu3wr2PzWL2gXAIlHGbOdrcW9lTEAEE/4CeZlCWBGbepE+fIX4NN7XQ4CsKgJs5pkZ7+PzFX9C8TNcmPJaWypOMg+tFmyz2Bv1yvYl7bnM1UwH6hRPXucyL4hGcFoWO5ruo2O41xD3G7yzNxhDw7CCIbGqp97uINUAAdGr6UihJvka6GdHBbmp7JFlnWizZJck4WvuKKap+dHO5OaB9zWx1E0sms+ZEBrGcvJy17CQiZQUOKGrQN1Csk5ouOBBsk/j/ttEB/jGL9pB+B3hZDpO7vsyL8jBDIyzraNWc4Unsc2EVIz2r9rkQFTr2rcZwBeBy3CH+sNlldN3Sn9WQCaWq2rgFoiQX7LFEf4IKtHXCyd2SqeZCxrtkZnGrGu5GF3YPX0XzFa79sbeO172B3FAJtqx8czAGNnDvZQJmxspP0YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1341,
+   "completion_tokens": 300,
+   "total_tokens": 1641,
+   "cost": 0.011364,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011364,
+    "upstream_inference_prompt_cost": 0.005364,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 224,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.919
+}

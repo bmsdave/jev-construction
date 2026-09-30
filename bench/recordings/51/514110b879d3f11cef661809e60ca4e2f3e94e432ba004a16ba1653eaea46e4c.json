@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Remove non-loadbearing stud wall between lounge and entrance hall/stairs",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 K1",
+     "document": "BR2010",
+     "text": "Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building."
+    },
+    "c2": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c3": {
+     "ref": "Sch 1 E3",
+     "document": "BR2010",
+     "text": "Reverberation in common internal parts of buildings containing flats or rooms for residential purposes: E3. The common internal parts of buildings which contain flats or rooms for residential purposes shall be designed and constructed in such a way as to prevent more reverberation around the common parts than is reasonable. | Requirement E3 only applies to corridors, stairwells, hallways and entrance halls which give access to the flat or room for residential purposes."
+    },
+    "c4": {
+     "ref": "Sch 1 M4",
+     "document": "BR2010",
+     "text": "Sanitary conveniences in dwellings: M4.—(1) Reasonable provision shall be made in the entrance storey for sanitary conveniences, or where the entrance storey contains no habitable rooms, reasonable provision for sanitary conveniences shall be made in either the entrance storey or principal storey.(2) In this paragraph “entrance storey” means the storey which contains the principal entrance and “principal storey” means the storey nearest to the entrance storey which contains a habitable room, or if there are two such storeys equally near, either such storey."
+    },
+    "c5": {
+     "ref": "Sch 1 B3",
+     "document": "BR2010",
+     "text": "Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952."
+    },
+    "c6": {
+     "ref": "para 0.17",
+     "document": "ADB1-2019",
+     "text": "0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …"
+    },
+    "c7": {
+     "ref": "Sch 1 K2",
+     "document": "BR2010",
+     "text": "Protection from falling: K2. (a) Any stairs, ramps, floors and balconies and any roof to which people have access, and(b) any light well, basement area or similar sunken area connected to a building,shall be provided with barriers where it is necessary to protect people in or about the building from falling. | Requirement K2(a) applies only to stairs and ramps which form part of the building."
+    },
+    "c8": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c9": {
+     "ref": "para 2.3",
+     "document": "ADA2013",
+     "text": "2.3 The following meanings apply to terms throughout this section: Buttressing wall A wall designed and constructed to afford lateral support to another wall perpendicular to it, support being provided from the base to the top of the wall. Cavity width The horizontal distance between the two leaves of a cavity wall. Compartment wall A wall constructed as a compartment wall to meet the requirements of regulation B3(2). Dead load The load due to the weight of all walls, permanent partitions, floors, roofs and finishes including services, and all other permanent construction. Imposed load The load assumed to be produced by the intended occupancy or use, including the weight of movable partitions, distributed, concentrated, impact, inertia and snow loads, but excluding wind loads. Structure"
+    },
+    "c10": {
+     "ref": "para 3.14",
+     "document": "ADP2013",
+     "text": "3.14 If local authorities find that non-notifiable work is unsafe and non-compliant, they can take enforcement action. Building Regulations 2010 Appendix A Appendix A: Key terms The following are key terms used in this document: Building control body A local authority or private sector approved inspector Extra-low voltage* A voltage not exceeding 50V ac or 120V ripple-free dc, whether between conductors or to earth Building Regulations compliance certificate A certificate issued by an installer registered with an authorised competent person self-certification scheme, or by a certifier registered with an authorised third-party certification scheme stating that the work described in the certificate complies with regulations 4 and 7 of the Building Regulations 2010 (that is, the work complies with all applicable requirements in the Building Regulations) Low voltage* A voltage exceeding extra-low voltage but not exceeding 1000V ac or 1500V dc between conductors, or 600V ac or 900V dc between conductors and earth Electrical installation* Fixed electric cables or fixed electrical equipment located on the consumer’s side of the electricity supply meter Registered competent person A competent person registered with a Part P competent person self-certification scheme Registered third-party certifier A competent person registered with a Part P competent person third-party certification scheme NOTE: *Terms defined in regulation 2 of the Building Regulations 2010 Building Regulations …"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.09
+   }
+  },
+  "usage": {
+   "input_tokens": 3264,
+   "output_tokens": 175,
+   "cost": 0.000137088
+  },
+  "id": "gen-dec-1790677197-9nQD2qKQIgu6RDkBfMhY",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.338
+}

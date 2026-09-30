@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Removing a loadbearing wall between the reception and a consulting room in a GP surgery",
+   "project": "GP surgery in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c2": {
+     "ref": "para 11.4",
+     "document": "ADL1-2021",
+     "text": "11.4 When assessing the percentage area that will be renovated of an individual thermal element, consider whether the element is being renovated from the outside or the inside, following Diagram 11.1 and Diagram 11.2, respectively. Building Regulations 2010 R6, R22, R23(1), L1(a) For example, if external render is being removed from the outer side of a wall, the area of the thermal element is the area of the elevation in which that wall sits. Area of the thermal element being renovated Total area of the thermal element Diagram 11.1 \u0007Renovation of a thermal element from the outside For example, if plaster is being removed from the inner side of a wall, the area of the thermal element is the area of external wall as viewed from inside the room. Area of the thermal element being renovated Total area of the thermal element Diagram 11.2 \u0007Renovation of a thermal element from the inside Building Regulations 2010 R6, R22, R23(1), L1(a) Material change of use and change to energy status"
+    },
+    "c3": {
+     "ref": "para 0.3",
+     "document": "ADF1-2021",
+     "text": "0.3 The guidance in Approved Document F, Volume 1 applies only to dwellings. For blocks of flats with shared communal rooms, Approved Document F, Volume 2: Buildings other than dwellings should be consulted. NOTE: Dwellings are self-contained units. Rooms for residential purposes and buildings that contain only rooms for residential purposes are not dwellings and are covered by Approved Document F, Volume 2: Buildings other than dwellings. Exemptions"
+    },
+    "c4": {
+     "ref": "para 0.14",
+     "document": "ADL1-2021",
+     "text": "0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See"
+    },
+    "c5": {
+     "ref": "para 3.17",
+     "document": "ADF1-2021",
+     "text": "3.17 The requirement for adequate ventilation can be met if background ventilators are used as follows. a. If the additional room is connected to an existing habitable room which now has no windows opening to the outside, paragraphs 1.42 to 1.44 should be followed b. If the additional room is connected to an existing habitable room that still has windows opening to the outside, the following conditions apply. i. If the existing habitable room has a total background ventilator equivalent area of less than 5000mm2, paragraphs 1.42 to 1.44 should be followed. ii. If the existing habitable room has a total background ventilator equivalent area of at least 5000mm2, both of the following should be provided. · Background ventilators of at least 12,000mm2 equivalent area between the two rooms. · Background ventilators of at least 12,000mm2 equivalent area between the additional room and the outside."
+    },
+    "c6": {
+     "ref": "para 2.3",
+     "document": "ADA2013",
+     "text": "2.3 The following meanings apply to terms throughout this section: Buttressing wall A wall designed and constructed to afford lateral support to another wall perpendicular to it, support being provided from the base to the top of the wall. Cavity width The horizontal distance between the two leaves of a cavity wall. Compartment wall A wall constructed as a compartment wall to meet the requirements of regulation B3(2). Dead load The load due to the weight of all walls, permanent partitions, floors, roofs and finishes including services, and all other permanent construction. Imposed load The load assumed to be produced by the intended occupancy or use, including the weight of movable partitions, distributed, concentrated, impact, inertia and snow loads, but excluding wind loads. Structure"
+    },
+    "c7": {
+     "ref": "para 0.3",
+     "document": "ADL1-2021",
+     "text": "0.3 The guidance in Approved Document L, Volume 1 applies to dwellings only. In a mixed-use building, Approved Document L, Volume 2: Buildings other than dwellings should be consulted for building work in parts of the building that are not dwellings. NOTE: Dwellings are self-contained units. Rooms for residential purposes and buildings that contain only rooms for residential purposes are not dwellings; Approved Document L, Volume 2: Buildings other than dwellings applies. Common areas in buildings that contain multiple dwellings"
+    },
+    "c8": {
+     "ref": "Sch 1 O1",
+     "document": "BR2010",
+     "text": "Overheating Mitigation: O1.—(1) Reasonable provision must be made to—(a) limit unwanted solar gains in summer;(b) provide an adequate means to remove heat from the indoor environment.(2) In meeting the obligations in sub-paragraph (1)—(a) account must be taken of the safety of any occupant, and their reasonable enjoyment of the building; and(b) mechanical cooling may only be used where insufficient heat is capable of being removed from the indoor environment without it. | Requirement O1 applies only to the erection of the following buildings—(a) a dwelling;(b) an institution; or(c) any other building containing one or more rooms for residential purposes (other than a room in a hotel)."
+    },
+    "c9": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c10": {
+     "ref": "para 3.9",
+     "document": "ADF1-2021",
+     "text": "3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.06
+   }
+  },
+  "usage": {
+   "input_tokens": 3242,
+   "output_tokens": 175,
+   "cost": 0.000136164
+  },
+  "id": "gen-dec-1790676092-lUJMXwG8Use8cCZ6HqLZ",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.352
+}

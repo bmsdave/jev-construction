@@ -1,0 +1,58 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Structural opening between a shop and its rear store",
+   "project": "Shop in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "reg 12(3)",
+     "document": "BR2010",
+     "text": "(3) A person intending to carry out building work in relation to a building to which the Regulatory Reform (Fire Safety) Order 2005 applies, or will apply after the completion of the building work, shall give an application for building control approval with full plans."
+    },
+    {
+     "ref": "Sch 1 A1",
+     "document": "BR2010",
+     "text": "Loading: A1.—(1) The building shall be constructed so that the combined dead, imposed and wind loads are sustained and transmitted by it to the ground—(a) safely; and(b) without causing such deflection or deformation of any part of the building, or such movement of the ground, as will impair the stability of any part of another building. (2) In assessing whether a building complies with sub-paragraph (1) regard shall be had to the imposed and wind loads to which it is likely to be subjected in the ordinary course of its use for the purpose for which it is intended."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "full_plans_required",
+    "probabilities": {
+     "building_notice_or_full_plans": 0.02,
+     "full_plans_required": 0.98,
+     "competent_person_scheme": 0,
+     "not_notifiable": 0
+    },
+    "confidence": 0.97
+   }
+  },
+  "usage": {
+   "input_tokens": 837,
+   "output_tokens": 63,
+   "cost": 3.5154e-05
+  },
+  "id": "gen-dec-1790676223-oNN96jHJI9NX528sQn5W",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.3
+}

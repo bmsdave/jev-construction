@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Replace bath, WC and basin like-for-like in same positions",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 4 para 1(j)",
+     "document": "BR2010",
+     "text": "Work consisting of— (j) replacing— (i) a sanitary convenience with one that uses no more water than the one it replaces, (ii) a washbasin, sink or bidet, (iii) a fixed bath, (iv) a shower, (v) a rainwater gutter, or (vi) a rainwater downpipe,where the work does not include any work to underground drainage, and includes no work to the hot or cold water system or above ground drainage, which may prejudice the health or safety of any person on completion of the work;"
+    },
+    {
+     "ref": "para 2.5",
+     "document": "ADP2013",
+     "text": "2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P"
+    },
+    {
+     "ref": "para 2.6",
+     "document": "ADP2013",
+     "text": "2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "not_notifiable",
+    "probabilities": {
+     "competent_person_scheme": 0.01,
+     "not_notifiable": 0.98,
+     "full_plans_required": 0,
+     "building_notice_or_full_plans": 0.01
+    },
+    "confidence": 0.98
+   }
+  },
+  "usage": {
+   "input_tokens": 1254,
+   "output_tokens": 63,
+   "cost": 5.2668e-05
+  },
+  "id": "gen-dec-1790677191-345mEUR1WtmeRPeYEo9U",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.284
+}

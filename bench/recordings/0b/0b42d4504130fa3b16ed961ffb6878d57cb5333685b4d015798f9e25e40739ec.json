@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a new radial circuit for kitchen sockets\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677844-wgHni1lu2rAei3zHYsUv",
+  "object": "chat.completion",
+  "created": 1790677844,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.9, \"building_notice_or_full_plans\": 0.07, \"not_notifiable\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "This new circuit falls under notifiable work per reg 12(6A), and since Schedule 3 covers electrical work carried out by a competent person under Part P, this should be classified as competent_person_scheme.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This new circuit falls under notifiable work per reg 12(6A), and since Schedule 3 covers electrical work carried out by a competent person under Part P, this should be classified as competent_person_scheme.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpwUKEAgSGAI4AUIIdGhpbmtpbmcSDNDNqnKyZb4tG92kIhoMjhy7Ok8Dge+D/1j2IjDops/FAI/QV7cVnRCSsd0b0T/k4HhthInWtBLalO/g4heeEXTne0GmCsaGzVG2FM8qxAQVdrUe0pHXwmCAQMFC8rITTn9hPwj+HdQYp6sqS/PmpHNiJaqzzt5zFgxDLSF1nBSBJD5kIIOUieifRxEnX+t2MJWMnUS5vPC2WifGuHnGX/dYq6kSWTvRLUnrmJfDVCdf7KAouev7dSeEFYn4Lb6S92JorIyRxIdD0U5Zdz6HSiVG1uB8iQik+Mgzdp0C3gGrVhcy7WNcT60jaUcrFIu8aRHOaixODFrzirjJ3iU6c/mJOGJs41pNvz2u4tHVRTigggsd5BR8Z9HEKxDwUhHP0yUzJ2z6Cbxk3cRiPiAz7SRxM1RnrXcnlPizmJPRIqA9XxJ5cpxxFHE0+unfQUKco3fSycUkKJjFrrhH0uiK8qsYluWHf2ZPfPPJhLbqI32btWYwnjutbQkZz5Q059wzE7a03LWgq14QAS6taG5kWGuGHbmP2X7McsnpjkylClYA5yIf1aGARVadMZnL55cvYvVJRUGaQ5Bhl4WTqtFrLP+sKDK2SICyo+NDWkjj38PoAMivEBs5lZ8YiU+03AINq4hIt6WXBtL9GT+4OLvr0rih0Nr/J6yTSlZY23y3wjCu6e/xW1q/dpXUwEYt6FdCSC7WeRZRkg37FcnGWbU+CIzCKOh01HlKXfnatQNLj+VEj+Dhl6mZAzInLrw9w2m0TtZkTRviy5FzugQ3TVlrWMDTX5PxnDbAchliv0b7lwkpw+JcRAGiAMo+p/3x4cCMjxINLKMb+uPoULhgJVak+OjN2aeaRAUF2H8DBsA06pte7VZJGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 948,
+   "completion_tokens": 136,
+   "total_tokens": 1084,
+   "cost": 0.006512,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006512,
+    "upstream_inference_prompt_cost": 0.003792,
+    "upstream_inference_completions_cost": 0.00272
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 53,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.121
+}

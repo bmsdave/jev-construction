@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Build a detached timber garden shed of 10 m2",
+   "project": "House garden in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c2": {
+     "ref": "Sch 1 P1",
+     "document": "BR2010",
+     "text": "Design and installation: P1. Reasonable provision shall be made in the design and installation of electrical installations in order to protect persons operating, maintaining or altering the installations from fire or injury. | The requirements of this Part apply only to electrical installations that are intended to operate at low or extra-low voltage and are—(a) in or attached to a dwelling; (b) in the common parts of a building serving one or more dwellings, but excluding power supplies to lifts;(c) in a building that receives its electricity from a source located within or shared with a dwelling; or(d) in a garden or in or on land associated with a building where the electricity is from a source located within or shared with a dwelling."
+    },
+    "c3": {
+     "ref": "para 2.4",
+     "document": "ADP2013",
+     "text": "2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work"
+    },
+    "c4": {
+     "ref": "para 1.6",
+     "document": "ADA2013",
+     "text": "1.6 Structural work of timber: Eurocode 5: Design of Timber Structures BS EN 1995-1-1:2004+A1:2008 Eurocode 5: Design of timber structures – Part 1.1: General – Common rules and rules for buildings; with UK National Annex to BS EN 1995-11:2004+A1:2008 BSI PD 6693-1:2012 Published Document – Recommendations for the design of timber structures to Eurocode 5: Design of timber structures Part 1: General – Common rules and rules for buildings BS 8103-3:2009 Structural design of low-rise buildings – Part 3: Code of practice for timber floors and roofs for housing"
+    },
+    "c5": {
+     "ref": "para 2.3",
+     "document": "ADP2013",
+     "text": "2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements."
+    },
+    "c6": {
+     "ref": "Sch 1 M2",
+     "document": "BR2010",
+     "text": "Access to extensions to buildings other than dwellings: M2. Suitable independent access shall be provided to the extension where reasonably practicable. | Requirement M2 does not apply where suitable access to the extension is provided through the building that is extended."
+    },
+    "c7": {
+     "ref": "Sch 1 B3",
+     "document": "BR2010",
+     "text": "Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952."
+    },
+    "c8": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c9": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c10": {
+     "ref": "Sch 4 para 3A",
+     "document": "BR2010",
+     "text": "(3A) Installation of thermal insulation to suspended timber floors where the work— (a) consists of the installation of such insulation only; and (b) the work is not carried out in order to comply with any requirements of these Regulations."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.36
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.32
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.4
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.57
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.06
+   }
+  },
+  "usage": {
+   "input_tokens": 2795,
+   "output_tokens": 175,
+   "cost": 0.00011739
+  },
+  "id": "gen-dec-1790676131-HFLByWhC8OJIM0Z4cT4g",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.417
+}

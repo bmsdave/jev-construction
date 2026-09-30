@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Single-storey rear extension of 20 m2 with a flat roof\", \"project\": \"Semi-detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678644-Z5N5DkDSQo3dPGZSvEDK",
+  "object": "chat.completion",
+  "created": 1790678644,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A 20 m² single-storey rear extension to a house is **building work** (erecting an extension) under regulation 3.\n\n- **Not exempt:** The Schedule 2 Class VII exemption covers only conservatories, porches, covered yards, covered ways and carports under 30 m². A flat-roofed extension is none of these, so it is controlled.\n- **No self-certification:** It is not Schedule 4 work, and no competent person scheme covers a whole",
+     "refusal": null,
+     "reasoning": "A 20m² single-storey rear extension isn't exempt since Class VII only covers conservatories/porches under 30m², so this counts as building work requiring a building notice or full plans application, regardless of the unclear sewer proximity or the irrelevant Fire Safety Order.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A 20m² single-storey rear extension isn't exempt since Class VII only covers conservatories/porches under 30m², so this counts as building work requiring a building notice or full plans application, regardless of the unclear sewer proximity or the irrelevant Fire Safety Order.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrQcKEAgSGAI4AUIIdGhpbmtpbmcSDCJ3A2o9ijns1dsCDhoMoCb2VGVMUjoL+BvWIjBbYtR3gvlEWhRChhgvM+BomO/BnMeaOf3tqNiatN7sSNDjaOxGjnumZDu4ehAObwgqygZJy6Ab9Yctmxz71myBvhNtmSmuFSt5aYvwfMuld/u6sgZqWnR2fOr0w+BI4X7o36/xBH+P+0Wr14PuYoSNIS4AkJRiomT+LIH3cp+Z1pMCr1/roOINAmrFQlYQ95UGEVH8p12S/tx9foqMj1MM5XUiRt2YJ5SdIqpAU6inrOqSVJGaVHZZdIvb8uKIGu3xlxYnFqzbHsNw8x7vI0SPsj0GsG+4wcTRmGVrXprPx8kOaQs5YzWhdvM3EaS/DoJMX4JHbhCuA8bqx+E2T6Ofu7BTEslphO2KzG84IA3v5nyDJ1pvcEcrqRDnL9bYn84jdK+fKnQOF7X1naYW9v/E5peizRCRKbnp7FNXnfqBNifuzYfMq3MQe2BAjABeYnlcaLNY0vSnG9LSOBOS2QCb7mwadHxuJPoAsjY7QRIm88e4pwdEBfQqkf0AGy8nZi6BmbCXMTjky55vXPao2UhlaIPFZoUFX7HIowTcAp5jiZFGLZj4lwJlaSRMxRtNsXirg4owbtU1KDkTOtybE6IbFt2I8/3Zp6O+QZz0L/+K3ie5HmN8IdJbKho4yD8Zym9g8nZVe95rqV9+OqtGo3yRlj2WRkiI5LMVxaCqMdTvhrFx5y27ESXmhoAqqxOnGnIaplxh4lvUOuZ9oHjzhPtaCg83L0tTN+/vxXoN/d3bUM6k6QaYnjCLpiRn3HsLM8Ta1Trxw1Qs6K4CiJcHXBfAh9q+5Wg5SZWtEzdMEXtCvBaQ+ApcBPuJWeFvmY3n4Rb5VCiCAg7HUTOlfJRqoBH2nXXMOaH3sNr0/UZKXtQWw3FoW+ILhwkqTU5tidWm2g57q3UFo3IFm2U2tdNqXNnu1AsnxAgbl0fLwJ7xWewPefbhoWRY2Fd2RslPM/iLlP24IALHw1X7P7ZI5JfVR1yBNfotTd50cd9ShfTNdQ3KFkfT8ojLVBHPIIxUDNLrDQKIcvaG39RICbtQ+nZDyArbIk7FY72m3AWgWJJqCpsuYdW+a8Sjeb7FpOF5y7a6EPRWkGYTEMwbTIGkcQ7+HJMpCXsg2tfyZBtbHq+EIyV+R8zYkzZlFLheJcO6E/hVwdO5IxVJKzFCpK8W2teeDUTTIMH9RGFpsdnVoneCcBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 474,
+   "completion_tokens": 300,
+   "total_tokens": 774,
+   "cost": 0.007896,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007896,
+    "upstream_inference_prompt_cost": 0.001896,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 153,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 22.966
+}

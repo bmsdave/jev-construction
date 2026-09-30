@@ -1,0 +1,52 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Replace the consumer unit in a house in England"
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Which route signs this work off under the Building Regulations?",
+    "criteria": {
+     "competent_person": "Self-certified by a registered competent person",
+     "not_notifiable": "No notification needed"
+    }
+   },
+   "notifiable": {
+    "type": "noul",
+    "instructions": "Is this work notifiable to building control?",
+    "criteria": {
+     "true": "Notifiable",
+     "false": "Not notifiable"
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person",
+    "probabilities": {
+     "not_notifiable": 0.04,
+     "competent_person": 0.96
+    },
+    "confidence": 0.93
+   },
+   "notifiable": {
+    "type": "noul",
+    "noul": 0.79
+   }
+  },
+  "usage": {
+   "input_tokens": 383,
+   "output_tokens": 59,
+   "cost": 1.6086e-05
+  },
+  "id": "gen-dec-1790675375-18avrhVSmoN0s3K6EeN1",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.483
+}

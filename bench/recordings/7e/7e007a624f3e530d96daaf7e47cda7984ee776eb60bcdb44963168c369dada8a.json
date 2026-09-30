@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front pitched roof strip and re-tile\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 16\", \"document\": \"BR2010\", \"text\": \"16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited.\"}, {\"ref\": \"Sch 4 para 1(m)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677271-Df97Y2UqsHvZagtJJZjq",
+  "object": "chat.completion",
+  "created": 1790677271,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Stripping and re-tiling the front pitched roof is replacement of a pitched roof covering. That is notifiable building work, because renovating a thermal element brings in Part L. Schedule 3 para 16 lists it as work that a registered competent person can self-certify: someone registered with NAPIT or the NFRC for roofing. So it falls under a competent person scheme; without a registered installer, a building notice would be needed instead.\n\nThe other routes are unlikely:\n- **Full plans:** nothing suggests the Fire Safety Order applies (it is a single",
+     "refusal": null,
+     "reasoning": "This is a standalone front pitched roof strip and re-tile job, which counts as building work since renovating over 25% of a thermal element triggers Part L requirements. Schedule 3 para 16 covers replacement roof coverings by registered installers, so this falls under the competent person scheme route rather than full plans or building notice.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a standalone front pitched roof strip and re-tile job, which counts as building work since renovating over 25% of a thermal element triggers Part L requirements. Schedule 3 para 16 covers replacement roof coverings by registered installers, so this falls under the competent person scheme route rather than full plans or building notice.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+QYKEAgSGAI4AUIIdGhpbmtpbmcSDDmaSb/z+XX30mBGQBoMkMKOHPtumfKm1aUMIjACDZfplwMonVbcMCZE162EPymoI52u+mWA9uAbHRSqhnRhMpcHJiLre+HbQPDsqf8qlgbT/2MM3VR/ERvzjsLWWvpwmVp2izlHW0rIdXfXJZt3Omz1j7XnGrS82fi8HYsh82zWew66YMvbfRSia795KuNQP+jQHstj/Wmz2ZCbApRDr1r7SyvIcb7yVaTfOkbTeU9l3JKiFyvmORsSPvEhbuV2vRtfOAswHxK47Vi19wyZj3vQBLE02g1X3dybnBSXBPiynaPUBcbFo1RrOuPITJQbjKeHUAL4cix0YJ4jSjpQ5xO2ElRcqR97YBzcSSwcfjp3CVMhx58GI7UrDgXxEu6niKKlTBXPvMLML1YM9oQEkMMHPkKN0MBOB7vn7ACse6ywXc/3NZtcVbXzQuY6APN062smT/Y01f97RT6tSSIE8Wiph+4EisMVpvw5qJsM84v43CLCYv1faT17Wc5pcvXA2fyrJdkQ2SVcEVBGWsjBALvZd8VGamGCpGo0uJ8bDfDhQcwvUjkxgL7KBTjaMBizl4n0zyeDsdzcLb27uthmTe89IGtvWBIsInfmj0LK81eqbKKejGOezTJdDS33QKLoB9PGNXG6iLFlhZzlMQnZz0cobZsNNttjEo0nAq+GgmYomZfMHi2yv393EBQ35TuCkW1Lu2NonacVm7oHRgX6uRB/V1daUJ1A7oSDFYf3d+E6+M0j05FE9Lz1lwStWR+YptFO0RoFGRnk9+me2Mg9IjKsmxjVzuHY0yX319ngU96OUSArvjzDGzkasDlaXrmF5evKDWs8fOju/BGjXwNR83+apPjkpy3mgifmliWSnUImfaqJYupfK2yRcAGlEbbTkzqjagUYjzh6zMPQ5Hm7i9uguQVyN3OEALf/GFLE94e/aHEbjfze2/6ie5BfmAUBf2uFySH8198lDARoUCcujU0AOWrP4FAPu6BE99nfZK8DfQ4oyzADLDmwDj4EHb/zhjzbjcIEXqen6YX17AL3SK2ODemLOxJ40Ep9HYUGnGDk1lcFZSN03eeJodNdUpN+9Ko48g7n+tdU7iI30U1ynaymRGufzwEzhzivEqulq5AfwxLbOuab19sPuYwUudaOrbPx6H0nGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1301,
+   "completion_tokens": 300,
+   "total_tokens": 1601,
+   "cost": 0.011204,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011204,
+    "upstream_inference_prompt_cost": 0.005204,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 121,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.207
+}

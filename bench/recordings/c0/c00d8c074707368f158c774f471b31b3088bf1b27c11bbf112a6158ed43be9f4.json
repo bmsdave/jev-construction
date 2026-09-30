@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Bearings, padstones, packers",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Structural steel. Part of: whole-house renovation including loft conversion and rear extension.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "para 3.9",
+     "document": "ADF1-2021",
+     "text": "3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …"
+    },
+    {
+     "ref": "para 11.6",
+     "document": "ADL1-2021",
+     "text": "11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat."
+    },
+    {
+     "ref": "para 10.13",
+     "document": "ADL1-2021",
+     "text": "10.13 If the conservatory or porch is not exempt from the energy efficiency requirements (see paragraph 0.14), all the following elements should meet the minimum standards of paragraphs 4.7 and 4.8 and Table 4.2. a. New thermal elements. b. Replacement thermal elements. c. New windows, roof windows, rooflights and doors. The limitations on area of windows, doors and rooflights in paragraph 10.7d do not apply. In addition, both of the following should apply. a. Any walls, doors and windows should be insulated and draught-proofed to at least the same extent as in the existing dwelling. b. Fixed building services and/or on-site electricity generation within the conservatory or porch should both: i. meet the standards in Sections 5 and 6 ii. have independent temperature and on/off controls. Building Regulations 2010 R23(1), L1(a) Regulation 23(1) and requirement L1(a): Renovating elements in existing dwellings and limiting heat gains and losses This section deals with the requirements of regulation 23(1) and Part L1(a) of Schedule 1 to the Building Regulations 2010. Regulation Requirements for the renovation or replacement of thermal elements 23. (1) \u0007Where the renovation of an individual thermal element— (a) \u0007constitutes a major renovation; or (b) \u0007amounts to the renovation of more than 50% of the element’s surface area; \u0007 the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is …"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "not_notifiable": 0.08,
+     "full_plans_required": 0.01,
+     "competent_person_scheme": 0.36,
+     "building_notice_or_full_plans": 0.55
+    },
+    "confidence": 0.41
+   }
+  },
+  "usage": {
+   "input_tokens": 1556,
+   "output_tokens": 65,
+   "cost": 6.5352e-05
+  },
+  "id": "gen-dec-1790675956-1mJOzRkueG54JH4nbAq6",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.301
+}

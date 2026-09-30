@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office entrance deck\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677630-AM4LCDMp9cUFWFskTalm",
+  "object": "chat.completion",
+  "created": 1790677630,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.88, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.08, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "This entrance deck under 15 m2 for a detached garden office with no sleeping accommodation falls under Schedule 2 Class VI paragraph 3 exemption. Since it's under 600mm high, it likely wouldn't be controlled anyway, so this is not_notifiable unless the deck turns out to be raised unusually high.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This entrance deck under 15 m2 for a detached garden office with no sleeping accommodation falls under Schedule 2 Class VI paragraph 3 exemption. Since it's under 600mm high, it likely wouldn't be controlled anyway, so this is not_notifiable unless the deck turns out to be raised unusually high.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSzgYKEAgSGAI4AUIIdGhpbmtpbmcSDH/i8WdTJ8loM0QbJRoMzFDsey8Zd6NMTC81IjCnuK2Ky/Nf5wKAFzCnpbap3tTFboZ+BVwP6kBFA01Fa4p3vupo3dauRpoMcd3GKqYq6wWuiwWbIH152uv35n6DaqHkC92mGQzs8t9bIFkj2hTN5rnhILDZV5RRLZvVlpsjiOnjwNSBlQzFLsGVQH0niLdPdJzZmWCfXWoc6ZjWtVRJdKZaFukpIiz9TBBS+ctZquosRiAGJPdeNwGFVFexAkj8iBE54i1K/g/yYN+6c9iRq+QHmCn07xymd2h+q7b2LlAeGW6WVhs2oLPLv70CZtserrNTa4IIPhBW3jtTQSZWQ6Mpl/SOiQKdadCp2jdtt6VtwLHS3nosVY1G5awoAp85Rq5y4+oFXsaPlQrkVfwJvTTIIDBW5WcyBxFnuwHBR438FeKRoPtHsZPV4hZwhoYxT5kHHM8e5OWYkE3m65sxOoNINJ7Ctsc7yXtzSU5uSTTMTXxlhfizliafKuoD8H/45QWlGsnTZwGvtDnWxRXM8624NsEZiEC/gGU6bDyysP8EY7SpOcFROxmML2qdGdbharltENcUP5f0z12uxAsBfCAcP0NQ18PLxJdyEgtC1CDxSGnVy/nX7HSIuwGmf9FKHHRgKnCL0QBYfPYTU7ByO3e4O6TtTQXr3hQHMBnbr5iFSg8foNtjgOqAAXvbsDsXMXkUoGBvgdMp5HkXY2PDGaLpDYC+YP8czKrGr00V0W2j1qHsU7xoJ5wgd2tASGFe1icHhaSDAzh5/49Tsk+cVc3MkOZBBGvoip3fiD+lcEZL0GGzDQyalXMCh2QUXY19CayUZfu6qIRswXnL3nRfXsE7iX5glNpqR79b6vT6Ehhm+7D/Q7HUoC5x0WCE43gM4j4GGnjO21O98SukOjdOappitJdtXkXXlXgfU6+07ofzZffSZSMdHCE7r53pb0Rpx6QNRBNeU7E008j4bttQTnQAoi1nFMnFZv40OCZlq2krhXV92S1uqblXYDGHChCJSifkjaU98fQQAX5nZF3ad0b31sG4qcPXM8C9vHDadt6zwrwu6gDnyYUFcgRcoR1NKr2O3otNbozGQYwYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 981,
+   "completion_tokens": 194,
+   "total_tokens": 1175,
+   "cost": 0.007804,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007804,
+    "upstream_inference_prompt_cost": 0.003924,
+    "upstream_inference_completions_cost": 0.00388
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 113,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.041
+}

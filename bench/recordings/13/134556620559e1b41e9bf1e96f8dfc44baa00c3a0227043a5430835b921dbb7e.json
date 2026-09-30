@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"400 L heat-pump cylinder\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 15\", \"document\": \"BR2010\", \"text\": \"15. Installation in a building of a system to produce electricity, heat or cooling—(a) by microgeneration; or(b) from renewable sources (as defined in Directive 2009/28/EC of the European Parliament and of the Council on the promotion of the use of energy from renewable sources). | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"Sch 1 L1\", \"document\": \"BR2010\", \"text\": \"Conservation of fuel and power: L1. Reasonable provision shall be made for the conservation of fuel and power in buildings by—(a) limiting heat gains and losses—(i) through thermal elements and other parts of the building fabric; and(ii) from pipes, ducts and vessels used for space heating, space cooling and hot water services;(b) providing fixed building services which—(i) are energy efficient to a reasonable standard;(ii) have effective controls; and(iii) are commissioned by testing and adjusting as necessary to ensure they use no more fuel and power than is reasonable in the circumstances.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677524-5OKCVioLwnE0lyLCs3KD",
+  "object": "chat.completion",
+  "created": 1790677524,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking about whether installing this 400L unvented hot water storage cylinder falls under Building Regulations Schedule 3 controls, since vessels over 15L capacity typically require notification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about whether installing this 400L unvented hot water storage cylinder falls under Building Regulations Schedule 3 controls, since vessels over 15L capacity typically require notification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSuQoKEAgSGAI4AUIIdGhpbmtpbmcSDJduruohUBmFemj1YhoMHFZPYn7HQV/wkvUxIjDg6S3tbh/d+EfEoF2Ea/S0U8wd3ii3AAvgq0tdqyc6bK0VKDsyQjiVROQbeWNlIp8q1gmWfOdXGTkz2dW1fD6hPOdz8q9VPISCbvc9qaGuTwlbR3Fk2vS4uYHcJwvxWJHiHaN0aBCBzIe9EeeVZMSGGOIH3TVR8MdwAyCPtrRxtpTz6Bgkkl6Tv/QQTrQw2UtmmCACQDz8E5Xmo7MI4IJoQltGK5aSZDoNkCAQUDdM+Vy6fuQievXsShzHPZth6qMNaBNClLOC/z/kZiUTh1kTNO8yPZp/nN6y5gVwucSTO+j8zTkkl1/czeb17SvwAynIn6tN8WfeU/Y3JsWBlh8zKay75h5axlIWLtNSopTpblNlFKzBAdF5/+SNjIr0pXk3BzdtdTqwGwSMJk3mF6+0rJFmy0Lr2z8HGBSr/mOy2nmtDXHnASYm9y7SO1D/ePYGyWZ3NJYuY6WI0UOYvvgpDO3FMn/qWoMmsPnRuQl9fCE4c2Q2MTC182B+993b8HAWkWNr7+txa8c301hi6AZTFi78+h89g9W6k0DH7H900voFPcaU3TTuRj/NGs+M+7+Kxicu9YLoqyakKQ+f4AcKkGo1N70SCq5bU7JYec/eI8y8/VDji7YcoGbHT4OMVpjSRkAhnSVXeUsH+r7W93uHsAO4BnXzm56oyObrIKde6PcjkRNKDPqVvkF82V2tO0TYLCCL5OyR3bjwnTxwhTRfhkmDBdeo1ylk0fM8QuuWgnJ0E3VAOrGpk4i0MkEgzysMlE4gQR/pqa6q9GwA/yS5cizn/t7rnYt4sAXjXPMV9f24UXooPGLGOSVH/OUhMZHHHbo09jXTF3GELqVRkalR7+4MgrWK9F2we0KaMC2k03ZBxfAy5+3eftjy726IvDoJ1/MV8S4EUCOcAhyChZJIISH3mMaR5e8cYSCT53apsXfa6Rzrv+sC1hTnGM8pnqczyfrPUBOFL2pnAjqnf5wg+pCH724DgVKnzNFlk/4pP1Xvsod1gfpwFcYT8dMD5N2jnB39mU/GLWfEOf1iuQoVCcqlYMouZwDtnRGFeum4MtYyRkl66hV+BS9Hw0GrGXIF8dD77b4h71HiA534J7vkDaboyPJaMkAmKsrfQuRHEOPpqRNjlwsdS6p/W7bRyGK9IPZq2BPFVsNzig5fVJvoYamqG0vijma06euAjCgZuxPpkG0H2KQ30vzSFY5QxFcDaAcdHRL3oKFoy7oSxME2lAPcChv0Ob+2C5GcTFPqJeDdRtSIqwHlR8c8h4tb8PhJSHzupNV2OaYH0BynUr+IHlLQVMnpjwdbpIt+bKxQf3GHplJr3dYNDgp/Pw5Gi8kPbKz/SHvKNLhzuXXEP/ipHznn5frK56XQzMM9VY8AHJ6jYddds3yU5BLABjhPdnWbz5sUhGh359HM28HTlveNYntJO/rsBGF+y5jIdVRVOopxlfGIdB4QkRF6BclsLt9+fd231qWxf4Qtljd2WqDLvNTMmJUNBMRDj+Fyu8mLBoFP4ksJvrBHQumvx7wa0aHIXYi2ZO39hJlCzEqyitwaTFQMI7+fnYzy9PBzFuIiyjlcGBFKI/hgzuJdTINs3dKTWPckIGC4zF3lCN4RpoaCOMS/b1Z0aIDwxrVfTxBoa/osILcbsahELb3UKYtxiQtPo1nsKitn6HHl/bmzR4EG7iBSuLIJUOjcgpSefLX86ZtxcQL9z6BoAxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1225,
+   "completion_tokens": 300,
+   "total_tokens": 1525,
+   "cost": 0.0109,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0109,
+    "upstream_inference_prompt_cost": 0.0049,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.949
+}

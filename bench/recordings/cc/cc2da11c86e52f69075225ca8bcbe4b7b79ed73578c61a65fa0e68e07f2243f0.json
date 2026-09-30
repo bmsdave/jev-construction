@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install an unvented hot water cylinder\", \"project\": \"Flat in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 4\", \"document\": \"BR2010\", \"text\": \"4. Installation of a heating or hot water system, or its associated controls. | A person, or an employee of a person, who is a member of a class of persons approved in accordance with regulation 3 of the Gas Safety (Installation and Use) Regulations 1998, or a person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 4 para 1(l)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (l) providing a hot water storage system that has a storage vessel with a capacity not exceeding 15 litres, where any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6)(b);\"}, {\"ref\": \"Sch 1 G3\", \"document\": \"BR2010\", \"text\": \"Hot water supply and systems: G3.—(1) There must be a suitable installation for the provision of heated wholesome water or heated softened water to—(a) any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(b) any washbasin, bidet, fixed bath and shower in a bathroom; and(c) any sink provided in any area where food is prepared. (2) A hot water system, including any cistern or other vessel that supplies water to or receives expansion water from a hot water system, must be designed, constructed and installed so as to resist the effects of temperature and pressure that may occur either in normal use or in the event of such malfunctions as may reasonably be anticipated, and must be adequately supported.(3) A hot water system that has a hot water storage vessel must incorporate precautions to—(a) prevent the temperature of the water stored in the vessel at any time exceeding 100°C;(b) ensure that any discharge from safety devices is safely conveyed to where it is visible but will not cause a danger to persons in or about the building.(4) The hot water supply to any fixed bath must be so designed and installed as to incorporate measures to ensure that the temperature of the water than can be delivered to that bath does not exceed 48°C. | Requirement G3(3) does not apply to a system which heats or stores water for the purposes only of an industrial process.Requirement G3(4) applies only when a dwelling is—(a) erected; or (b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b).\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677817-2fBde23Zggtss7THT8wE",
+  "object": "chat.completion",
+  "created": 1790677817,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through whether this cylinder installation counts as controlled building work under Schedule 3, and separately whether the Fire Safety Order's full plans requirement under reg 12(3) applies here — since FSO typically governs common parts of a block of flats rather than work confined within an individual dwelling.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether this cylinder installation counts as controlled building work under Schedule 3, and separately whether the Fire Safety Order's full plans requirement under reg 12(3) applies here — since FSO typically governs common parts of a block of flats rather than work confined within an individual dwelling.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSswsKEAgSGAI4AUIIdGhpbmtpbmcSDCHLyn1uQPVUxcjWyRoMuK7U1tOZ3rX3HEXqIjBVVk8JGgRg/2Zq2lYgJF7mZCibuvwFq4GmNZE3P0C0QDNNaDz3Mgn/FWn6ZSgK+vYq0ApOfJiMdxfKmew2oojOT+izq9m0dRn6abFJfI0duaq1qJRY1/bEKuJVvnSR62qVIaw24CoGSuGgkvCvlnZ05QuOY+OXr8Ra/qbBKYdptEFwc0e8zpG7YmPUgDjqTg5N1YipE/vxPQGYif0CnA/WXDkUJUrYss7gYL8ejdT3PAAY2wy7jYeKvb1PC9MpBdvtnQFcuyZmDNPd12A6JldxyD1OnCmTSDqhz3KcdqO9Ls72vNYq1lmjVyLSRW7KUtOv5hEuAlXgmmKEqQigqQySWmeHW54pIRfgN0o3LwsUN7U/L48UZgCFHJSC2WXVY6JWc41gdlg+clwodASqYhf/xtcx8/Dw07R0JYfAoYz8pxqKGEjzE62VZJkkBM5pPxsZe6782tdOBueBRtdOMYYV56IXcWixeKfTSmIoaVh4ZTX7cehtTZP/DegpRx2xms3gV+D1x5z9e7RM/fr9jiJ/jtA+1ph4j6hIAeQvqEmZxjgqW1HBmSvbqETWt+IYfszgfQ5087XNrQBq+09YAbVxknGF6XCqUQommIB0ZC88sjbxwbIe50k+DeuObrjfNay+UjlfEhx/4uFx+pmqxX4Nj3GuiIEKnR/A5Wi6kDa/oZFTcjdO4k/s9tA12iTsGL2EWjZw8a79TmiNKWKuNCAXuGGktguVceMTlWTbEkOhKhAYi45BEsfowSWqOa5XRYWhm//kIQtmrNofJpBPXQUOIrzB0PtmoJynS3yviAWXJuolVMXgRmtVN0K2YhnaXB7J7V211GCp7ZVjGDi8Pn81ETeBAWeLWDRNY+AEvszRxktqJTE9ozQGdfzNxlLtG5dFJ08P0QaDEcBw3Vv9LuRJHG8BtZZ8xNT+MxIZCJQUukrOjaBEiud2x/Gy8D1Em7Lce3KZg34Oq2AK4wc4VU3AYeyKA+RWQ9D51jOpF8glp6gckzcfpPo1qrA4hFbp9vVqXKfLMXWgtzoTqoftBqJYy1EZRYv5DzwNTI6adOzPZALDTzlyqshxhhdYgWDZtSr6+Jz6z89SOd8/I+NfRIjGSGIl16sfBqa2v4KV23RLWqYVc+wgil5mcPx0F6ZkskHZk3TZM3sVSE5/uy70ZpE8c3tYpIF0NnftRZo6Hrg/g4HgY22yA+Q1ylC8ZO9RyxazLj492ALx7BCyPtFjzgk01AU9uobLacHVtT1+/RgXFBKzbMj4ITSP6xWWjd2NuLSE6gtxH1UlEOev9zvMAT0bPVpoYlOWxyARTPxzNBkzeN14KelRuLnZJ4T9VP38yp0pnm/OqlC821pZWf0elQEdCvJ2Qzp8UXy+fwtVM1WAW6VXUXepAacYgdEOCATUebxOw4RUa8s5Jen/2Amq0qeh7moNdbmkUFfAmYJUoEKskwDzvO3crMG0dXjBMLVKFWCHKjITp9LTq7N0zw2YARI4Rla6XubRN2FVj161faiHLrFNzeBt6g26MHAL5vopuS10L7IVDW4IDkCDt+BkQZDG/xwr+TZ+dHG+MXx+a9vi1RgyYT39K7/8g3wf7OcYfq4XbPhbr95N3/CL/gOR1FpUjfA0PQgC1ItMOQKeeNqaaVuSGH6I//DzLh0D22iVQ64spjxiMNUn4LR1pNayz6WgH8merhTGMS0G11d/TvzhMOcj4ubRYaGQhT6qODDY7Z8CA2xB69W+TdOkNZWJot+f8o1hgU5/EpvDOdNzazqpeCgegnYft3/RkhrPzNok5rHddeS5LsyEEUp8CO8giq1izXn62kOPhT6GHDE3wZkof7gvtvRX88jhns4qn+2iJZBfFDexjuKhSk9L2c/u0l1AIAo0GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1368,
+   "completion_tokens": 300,
+   "total_tokens": 1668,
+   "cost": 0.011472,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011472,
+    "upstream_inference_prompt_cost": 0.005472,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.735
+}

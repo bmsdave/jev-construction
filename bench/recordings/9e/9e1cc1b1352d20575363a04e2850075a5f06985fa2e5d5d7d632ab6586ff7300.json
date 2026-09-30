@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Inspection chamber\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Drainage. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 10.7\", \"document\": \"ADL1-2021\", \"text\": \"10.7 When a dwelling is extended, elements should satisfy all of the following. a. New thermal elements should meet the standards in Table 4.2 and paragraph 4.7. b. Replacement thermal elements should meet the standards in Table 4.2 and paragraph 4.8. c. New windows, roof windows, rooflights and doors should meet the standards in Table 4.2. d. The total area of windows, roof windows, rooflights and doors in extensions should not exceed the sum of the following. i. 25% of the floor area of the extension. ii. The total area of any windows and doors which no longer exist or are no longer exposed due to the extension. e. Existing fabric elements that will become thermal elements should meet the limiting standards in Table 4.3 by following the guidance in paragraphs 11.2 to 11.4.\"}, {\"ref\": \"para 0.6\", \"document\": \"ADL1-2021\", \"text\": \"0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677257-eRnjyRhT2whbR9lz4jRE",
+  "object": "chat.completion",
+  "created": 1790677257,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking about whether an inspection chamber for extension drainage falls under building regulations control, and whether Schedule 3's competent person exemptions cover drainage work specifically -- I don't believe there's an equivalent self-certification scheme for below-ground drainage in England.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about whether an inspection chamber for extension drainage falls under building regulations control, and whether Schedule 3's competent person exemptions cover drainage work specifically -- I don't believe there's an equivalent self-certification scheme for below-ground drainage in England.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6woKEAgSGAI4AUIIdGhpbmtpbmcSDEhL5QFv0VeAijeDoRoMTJfM4/3GEtBuhzShIjAy8SJ6g5+wZSQpDNmF4LPuETNIz6AGEaSqQt2HJvRVBIh5gRWD1wL10J5hX6l/Yr0qiAolPHAhPK0QWUBH+mnSfYSUnlhFzQyjl4+xSmR8Ka0/nmMgYgP2b7Hryj7K/ocbc2mDGAmYbYmE7gIUHnFogsO5C0Xcnx5W8ERtnqbZk/esTamUvoMxHJ8OOuZ7Ta+s3qxtI6hhP2FMsDt5aE6EPNcjFQp/zn8akxWCm4PiUL0c4scdbR4c4REHIf4G3EmsGfwiIfrDArmuKbNWC/iUAtQKeNk6NPqAPnwsAOFd9cBbMeeH1sU25Bx8pHW8AYHgMX2zcSR6pY96e2pPIHzlcXLkjvWn1xtC1FZi28qgpklOpf7D4aQRlSr25RpawPZ2GkQBYU2sUdJfK5WEf2QGNGkHVq/OXSMjgbtmAC+iMY2tVUhwOEA+zs22oX/ehDKMbIJUrvpLA/ODd1wE9+KTJHqorCe2igxC3SrSqloaG40/9Wq/02DfZR7bISMyERu1yPow1PX+CFSZC7x4OXwwdyERU4BWRMWmH7YZobjsf7vPFcPpOFZp0nMG35VkiUNkYq7C0NYztoToRa5u3Wl9bcDgZt50qyC4kqDkuiFcNinDwSz3KMDaV+Sg+MTsqRxJj2tp4GPrGDNtiWBK9fg1+5q3oRRHEWFlcBLc6fs4UePC+TIlO8j2ds695F4WOh8V3m/zqx5jWCo2qfOUPa++f/rG/elB1Fp9paS+forI3OGnL9lU6FRVzt3Gib/Me/t4yWhqSr8u1h8Cs/19ilATyHenF56yN3vciGwboCDxiA8NwIMiXJ3uNBWncYeEC2yD2nY2A5y8NRC/ReWysaoLw3b/BowVmizeCAjhu0EgnNZJ+K4aG37QK/vzp7800zEmBisnmKvV9lXLbFUJ0zjIMB48sbTZnu+/rMqo0H02b48RkJNqi8V8NZe4HxQrd3hDdM1gUMgctaC9HR3RJt/K0e9AurRqvD1+KbA4ILlf6zoEntS6QX23VV+KYu5Ri+OgcUjVIBucxnMaurF5Jamma7O1+RqJa6NEH/dtkQAsF0ePWa1QA61Xm63HiFcJSBDhxroZg2AoEIsCXUstJ7oEkpsDad+KRA3ohnt+n7SVgHhHJGoKI/nCHjXUocO+ZaG67oehW+88AVeRu2opiGp82pQ0FwP6EkgemIHe02dxgh+LVe+EChOF8U5J7mQwva9rLlBACkXQyL8kcodwHST9Z70dKLNzmLVOCdU0y0zs6eES/uBMSYTlTegF43evRwkkplNA47vssBrZuR2nIe7KaLQDMZeeV4hJz0o+lkQM8qsH+vFU/Uu8psc3zARSf/QKgXwUMBmxabdcsQVqBzGI6ROcrPdlE9Bn87OeqwX+J0M1EP6kp7zxwGMaAluqVqqUH5OBQsJGuU3voCx+7Um2iOLb1VxzO15t1Om3riJe2wppVZHpVuiQ42LFV/zDk8/k77St6+INZxwK2ofPMEacjOeOEek6cY6JotEQauzuO5IHdiZGh9ZYaQ9Po5gNe2sBxCbUpbWZis/k63aAcrk/tbLNFAU8CWFFIMGC9K9kDRy/pLE7ekI7VhzNuP2R2LHI+Zmm2Ne+uW6C7reFMohYs5MmM9gcpuX6wwPCtOznLji7kxtrfTtdy7vbRom1KuF7jhEjq8k1NKhfVeTZEoQGtbjJsJuxVqwEinPBWvUjQZHvdH6xb0gkTbDEbI5h3RKQt1XNkjxSm7OuSkdgkOJg5Jp3ZzcXP2YbnH1Cun/S7y0G+yISPdm4vzR1GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1251,
+   "completion_tokens": 300,
+   "total_tokens": 1551,
+   "cost": 0.011004,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011004,
+    "upstream_inference_prompt_cost": 0.005004,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.766
+}

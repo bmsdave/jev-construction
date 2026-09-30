@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Convert loft into habitable bedroom with new stair\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"Sch 1 K1\", \"document\": \"BR2010\", \"text\": \"Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677999-FSYqAEuhEbfGuJm8UzeR",
+  "object": "chat.completion",
+  "created": 1790677999,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.88, \"full_plans_required\": 0.06, \"competent_person_scheme\": 0.04, \"not_notifiable\": 0.02}}",
+     "refusal": null,
+     "reasoning": "This loft conversion involves structural work, escape route fire safety, and sound insulation requirements — it doesn't fall under Schedule 3 exemptions, and since it's a private dwelling the fire safety order doesn't apply either. With no sewer or private street considerations at play, this points toward needing a building notice or full plans application.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This loft conversion involves structural work, escape route fire safety, and sound insulation requirements — it doesn't fall under Schedule 3 exemptions, and since it's a private dwelling the fire safety order doesn't apply either. With no sewer or private street considerations at play, this points toward needing a building notice or full plans application.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSiAYKEAgSGAI4AUIIdGhpbmtpbmcSDI7xpm34WrQSnIKADhoMsgB1T1DSVR6aOmeWIjDTN0BHSMnyNFZArDcrEmHqBOYrqeFaeTm+XR8ntXNscXWt7ncAZZWMGHB+VcJ0MyQqpQXEvDITuopMbL9hq6t3ozmJjhmff+ciZ8qM7TwVGD4O6oFRUzwI/3Okns2ItvfXETHikJ8Qq5odIMnYkkW8uk0uG6mQn4C7jlbBYYQRYR9FaY2cxzOQ/ldl9KDx8VKD0/3xO7ZS44QkNuqG8FXOged+iRlgy5pAYxU5VWLbd3QWTAtTeWBX+wjQWmMMArJKV/2t1iKXJboOdETQb20KPqBiMlPN3rP+JjltdlrBJHk5KyoV+B2eiipnpNLFccsp1ZX5PeWROujEl/Dy8ZRhwoKqCu2N5VBVSeVubwhqafsnNfcExcCLBf6SqHLG1VhImWnr1n5qn7Lq+gXIq/QcpZ4Rm5DLshtSkeMfquLxmtcgghrENnoKO2r4OEBtuNOLmDGte8aJEkZHJZehpNgmm8NTW/v+n98rmqrIfPwGSkAeK8mAKWrdgs/lxbziEiVekVNW5LF8vaGUXyvFMW1CondQMISVyS1TI+2ysJcG0/1JC+X8oDOD20l5owxpEldDky6bPBK2v3LOnhlSMkZ5LdRlnhOxc5eTwdcuIQb/CEPIImd96MIHMsA5LMhsAE/UEPTexGWoPw9xOZamthSPBTb3K8SFgQENq+V0MEmwu822mn7COTZvvf0+bLwxAU1xbKdeK4hPD+1EKbmZ2Igd/+/eWGAtoLH6B9Hz7rkG3FtYU8RU+jiNYEiEJdSZUuAoBAIDql83ZflD4JUELxSiAv+Ac/6sTBUQV+HV5TawW35flhxnx2EV3XUmb+HCt7XUzHAlyIG8bZBxtZ/9DZbXyTyQ6yDceo7CQfnHEunoClbmdfrMxSKOrexJ32kBiIybzU0UeORjwm5L6BsGmY3nbreZrD1rfLNCjQOU/buLy2mVsoaeHJYHv5+BScKoUBJfdPdBidlhOhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1317,
+   "completion_tokens": 175,
+   "total_tokens": 1492,
+   "cost": 0.008768,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008768,
+    "upstream_inference_prompt_cost": 0.005268,
+    "upstream_inference_completions_cost": 0.0035
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 89,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.338
+}

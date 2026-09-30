@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Fitted joinery\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Joinery. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678349-J9dzywgGIASfeEQ3ONLQ",
+  "object": "chat.completion",
+  "created": 1790678349,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.88, \"competent_person_scheme\": 0.",
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether fitted joinery like kitchen units or wardrobes falls under Schedule 4's exemptions for building work not requiring notice, since fixed furniture installation might be classed differently from structural building work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether fitted joinery like kitchen units or wardrobes falls under Schedule 4's exemptions for building work not requiring notice, since fixed furniture installation might be classed differently from structural building work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSwAkKEAgSGAI4AUIIdGhpbmtpbmcSDFbClQ7YY8jMsb6J0xoM6r8dnlOqWZnvgR6aIjBaFXZMOFl1/2UmpgVBpFakNnVFu1dRLhwX9mxND0aPtCGd6P9toc16NLZoJhFYn1wq3QiCcmdFbTvclKlEmxGIrWm5AupJP3a4tIKKYkcrdbVnTZbLt3udi2RsBS74Rck1ZEpzxLWFOoxsuDuIDPycO8itM0UCwXEOO+deO5z64ZXi9cJJjsmsMxeg1TVlKJHabskOeZUOlrxi86c3THMOQ3ct73PtcVwPgJd0+QjQI0gUOxDFKTJoA6mVEe6RqNOAO+673vsDmgTfU018EdoaxIsU91wMJJTJMZTkoQBqXd1FwY4BGG1lYOFI9oARvgLFNmOJe3m2dJMvxra8OWpEzJWSikwudoExw+R78dRuz+VOund7VNt38W1UAU3AvY7OkaUsIU9PyEAf3C6BygTykj6xDADPBhA8GH4JhA4Jc1dwU4EyYdDeEtYgg6E/jrYhCYXcADsT/27t6RccL/0+vv/NHe9VZE1grqQMPJEQxOiqoNHSzIV5C5QfgkpYkfKwHJXsZBfBJO9IzRRBFsEwaxc+Eiu7IFYICOtk9aFKEziQnITQt1sXywEU3z1LRzN4sIb9jxbRy6lWaLAHvlzZQVCUecCOjvK7az5ttfAxLyaPw3R3V2AP26JuoFyiYUxVR4CWb/LxFkm1y9apAuDRPIFvev9FBgg6KWso+cCbUbJtIR115YNLe6G7vO71VkaezwezDQojwa4zSmzWHHSu6E6FZsfMZnUpXEFjtvF2x2+op5iX8ndKNQygPlC+ZZpVXd5GLBYH/d4WOlWBRugFuXGrZDKM6hQRke4EEg/P67snfW+bbvpvkAE5cD4Qlk+SZgN5QyActU7cs2M0BOF67I/bhm6MPJOW/1h/aTBFHDmPZN1Cb8rJdDTL8X73GAYrpfi/CMgfgiSuS4usw6KdmJK51a9J4l3RlK9jXjXj4DI49u8usWxWndUoHXLbZaAt5HJM2rRsgUwUZM1UD12spuoF+eQt9VYD8rtVeG4eUiaxWnX3aXznkWiPFKFZqtRc3fy5197zT1iik8C7tc7aIekhy7JRj8GzZnGx5FuiYHbtcdOfXtZa9fL35qB/6OAxTknW96Hp8rFaFFoipxm3hI/VBoefIVdLIPPJBeJlwqkEAPrVDmBWYuc8vXqxCKFWDLnycJ/0OA77AgXSbTZQgvs4Pkf6CQd3asBtWCSclqDEQFYOyehXDuXfAnWbOOayHZl6GuEVNVYXWFTXKAvFo3As5CzRMsOH1C6H2LC5KYrtkTw9HalO9SMIee37WsWvLg25jczIl7AnmDV+Gg2XFVyVfnUXAX7R3x7CcdPNKtNdl/nS2eh62kMCwF2Ny0AzRI6nF9i2WwUq7b6LI/soFrIFCtICdtNBBAEK/nngihl1bjNDp+0LpuZxi1h1zcPi9EebH1COBYzg9BTRCLt3l6O4TKhqd+4aYAjqzGcBUzJmUusbqfCUBmb4c63qM7faG8ENrZg+f0IOVxq3vm9A4DXYoo74fyzAHawFTGazz3hHFpBAo/igBnhoZVHgNwsGPRFPTy0EbsHgoE5m4DmyGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 501,
+   "completion_tokens": 300,
+   "total_tokens": 801,
+   "cost": 0.008004,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008004,
+    "upstream_inference_prompt_cost": 0.002004,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 255,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.225
+}

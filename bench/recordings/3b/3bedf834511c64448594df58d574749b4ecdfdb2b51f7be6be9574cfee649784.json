@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Two-storey side extension over a shared lateral drain serving neighbouring houses\", \"project\": \"Detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678538-ZfjRbC5uamcJnI53hdAU",
+  "object": "chat.completion",
+  "created": 1790678538,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A lateral drain serving more than one property has been a public sewer since the 2011 private sewers transfer. Building over it engages Requirement H4",
+     "refusal": null,
+     "reasoning": "I'm considering that lateral drains shared between neighbouring houses became public sewers after the 2011 transfer, which means building over or within 3m of them triggers Building Regulations H4, even if they don't appear on the official sewer map.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering that lateral drains shared between neighbouring houses became public sewers after the 2011 transfer, which means building over or within 3m of them triggers Building Regulations H4, even if they don't appear on the official sewer map.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6QkKEAgSGAI4AUIIdGhpbmtpbmcSDEaNRPg6IbEsCmIzBxoMpaWo8YC7HXeA/J8yIjCVvLkbcBdAnEMbDt+rYIubbZ0ft7jPB9dAUMTjIgvkMi3ImUvDMLMysgIN9eK3oiAqhgnuSVlmlNNfPXvpIZr96E+WIcR+d2MNJMZZA7ncblPPEHleEWzJF8S4YcYaOtGdmTXfxuxqEPvlQ4F7iyTsdGmqe54q5r/9T5XNv9SlmHMXm0VoOINVYh64I2KJkMpNeA5ipphI0ZSiHj9F/TFiJ2sNvHcmvzWclOI5KtewjhszdAuAAEC7bLsqeUDgf/pjud3VP6RUybjwELaLNYQmQfSkeGwgNzadjeK08/dHeXC6dMRAYbSZs68G3l6S7iTkWXZUNJetyV5EuIbh5PXfSJ/Z1dOEDk63CGwNTYBCcRYtGl/7VcqNtFwJIG5fA6H1orED1t3Or2RnmAIOB+D1KNPeGaTyiPuBxNaTMumL3eVpVgZu4jaBOT1sqKUTfuHa7seEqxmj0nYhWiLn7n/tsmwxCkLKr7mVqnmloeyNf6xMa/9v3Yu9TpTa2BZ0c/exUYtYBh4w1gae9PYCMBiySrTqnQ64/gRYVmEAYcbgMNlPj+Jkn0BTxdki2Ae2jz44sIqJk6mhhLuA3sCMYj5JHpko4njCXZZpvRwfp+jG5lktaAHPmWiq486y2BP6+m+4D2RoJIWJ/2LLQWSdIyoilXfptr24i/mzZteoGicPfCTl/gQOt/YkcBapY8SlbFJfCABevMU6Xe+LcgqQ5d9UCMLkhOH7NwT3roPoObVvCooGQfNOf7fvXKKlK/Y3TJQjjuBq1NSmnM/xCo5WUwmIgPXWPt8J2fglIR8Nv72i7B7vo05AVzaTHSzi4W7b/7rFQ9J4wDAJk1ha7hYXPvLmA897n/AlKAKHIuKGKLfUjxY/W89lqlFQRHCNA9KznSov8uyag3hRF96O5FoRjzhw0eV2LOtqoDsbFU/LUi6W0Ls+GR23SGS4NcBEV8i4LT/EMtfqaArJtHhA7avSUIbrmLNPtE/33Uciw08T0y/kJRZz8PbdnK8LDTMPQDuSW34u2kJWofwXvmjKY5zEPQYzyFtiH5WrdPway90FNcDsZLtJY48aFv3TqCBZbguJXSNbFr7Ik9oATMgEF4IC5ATNxcz8uBIHgY3EvvTZTGcGAa5BmHlTeQolZ8NSoDoFeuQiFGONy9UnkZwQcXLpNtVr+ljidlB8Q0qmISlwrYpo8sbVu+PI/awriE/2yj7fMfXQayVwvspfuIqLbOTcr4VfnrJVSBnE6KtTrU7J0PZ369SAKvlalpsnXH1f3u9HkOITRxwHokNr0lr78nxLm2A2bqHpDjhNHHnOdat+3S9ZXL1+UyBWkogq2JSv9I2Az4tlOJj+La7k1cT0dkVT4DJT9QIw7BvKuCvPuMMv8rKX26g1YgQuCf54KKijc43KACRyZjiGE2nhQR349cybbS1dy/Ufpq0BkwVOyKEiZcVu/wrV0y8zLlF1YcCihQ6DgP7BeN99yYdUUBrSLdMfp3OHXXG1pGBfMLQD03i1vFyFZCxpnjwSK5Up5jmNabNp8y+GOXXNKkpbZNNoD/OpogZM935Yip3zy+tXQV+mhLa971o5SMHwRgt/UGXtPfREzeFFvoJ47qEwP0wYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 475,
+   "completion_tokens": 300,
+   "total_tokens": 775,
+   "cost": 0.0079,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0079,
+    "upstream_inference_prompt_cost": 0.0019,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 255,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.148
+}

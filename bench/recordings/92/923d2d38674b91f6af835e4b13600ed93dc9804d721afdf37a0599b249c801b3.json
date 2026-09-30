@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Removing a loadbearing wall between the reception and a consulting room in a GP surgery\", \"project\": \"GP surgery in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 11.4\", \"document\": \"ADL1-2021\", \"text\": \"11.4 When assessing the percentage area that will be renovated of an individual thermal element, consider whether the element is being renovated from the outside or the inside, following Diagram 11.1 and Diagram 11.2, respectively. Building Regulations 2010 R6, R22, R23(1), L1(a) For example, if external render is being removed from the outer side of a wall, the area of the thermal element is the area of the elevation in which that wall sits. Area of the thermal element being renovated Total area of the thermal element Diagram 11.1 \\u0007Renovation of a thermal element from the outside For example, if plaster is being removed from the inner side of a wall, the area of the thermal element is the area of external wall as viewed from inside the room. Area of the thermal element being renovated Total area of the thermal element Diagram 11.2 \\u0007Renovation of a thermal element from the inside Building Regulations 2010 R6, R22, R23(1), L1(a) Material change of use and change to energy status\"}, {\"ref\": \"para 0.3\", \"document\": \"ADL1-2021\", \"text\": \"0.3 The guidance in Approved Document L, Volume 1 applies to dwellings only. In a mixed-use building, Approved Document L, Volume 2: Buildings other than dwellings should be consulted for building work in parts of the building that are not dwellings. NOTE: Dwellings are self-contained units. Rooms for residential purposes and buildings that contain only rooms for residential purposes are not dwellings; Approved Document L, Volume 2: Buildings other than dwellings applies. Common areas in buildings that contain multiple dwellings\"}, {\"ref\": \"Sch 1 O1\", \"document\": \"BR2010\", \"text\": \"Overheating Mitigation: O1.—(1) Reasonable provision must be made to—(a) limit unwanted solar gains in summer;(b) provide an adequate means to remove heat from the indoor environment.(2) In meeting the obligations in sub-paragraph (1)—(a) account must be taken of the safety of any occupant, and their reasonable enjoyment of the building; and(b) mechanical cooling may only be used where insufficient heat is capable of being removed from the indoor environment without it. | Requirement O1 applies only to the erection of the following buildings—(a) a dwelling;(b) an institution; or(c) any other building containing one or more rooms for residential purposes (other than a room in a hotel).\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677703-RtEd89viuWSOhPDurVOE",
+  "object": "chat.completion",
+  "created": 1790677703,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Amazon Bedrock",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Removing a loadbearing wall in a GP surgery needs a **full plans application**.\n\n- **It is building work.** Taking out a loadbearing wall is a material alteration because it affects compliance with Part A (structure). It is not listed in Schedule 3 or Schedule 4.\n- **The Fire Safety Order applies.** A GP surgery is a non-domestic workplace, so the Regulatory",
+     "refusal": null,
+     "reasoning": "Removing a load-bearing wall counts as building work needing Part A structural compliance, and since it's a GP surgery — a non-domestic workplace under the Fire Safety Order — Building Regulations Reg 12(3) forces this into the full plans route rather than a building notice, since building notices aren't permitted where the FSO applies.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Removing a load-bearing wall counts as building work needing Part A structural compliance, and since it's a GP surgery — a non-domestic workplace under the Fire Safety Order — Building Regulations Reg 12(3) forces this into the full plans route rather than a building notice, since building notices aren't permitted where the FSO applies.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStAcKEggSEAEYAjgBQgh0aGlua2luZxIM3ROXrk/9wVub8s2mGgw9ddT8F+oarbnir98iMLFVEoPklQ9Tk5oszPosxrSF9GwAq7EJPAiz2FudPKCFZdi5msBEVkJB4qjjqioT6yrPBrScymQYfFDNOmsjcE0181hLTPeAXkSRrXIUCSjqziFIU8eREyhObteQCLajEDmWZOsbXHuWB0vau2lBIOlVC78oUorZtZ4tdL7LgLKv3PRTj2XKtVwXOzNwKaAmYT/cjhq9AyO5UBpy9x6eqyXGpmOOEo8+48w54hpfWJZ6Ih1ywRk8qXVjEuNPGcwSZRhzEVdJI/9EISeN4Xc9rxXJ3g5Ob49A1gwFcbE9oBW2tA/mJ8QyrACRRDE1TX8oEBpdJ3EvFhJ/a9Q802YGFahnjQ2F2Y5hCUq83dkxsZ5q9qnHoGYLUp/tXKnyJh4C6/NUJCGCh5zyqkUgMrmJVhpO+evkBTXPDS4n+Bue+bDrKqsTQlhPoL4myWhPGSAZ4y0M7yjBrMNYoIf97+t20KxxHrmBC7pgjNwuYwIqTJXMU4CzCq4t80NNRGZOQJstrLPpwtvWoXgd4iDwjj2lebDuxrpe/kT2sYEyy9/gA0S5cn5UnlI8DxgYPORD5/ESZ9Nuw9pvPSDFWH6AizKpCX7Hu7cvO7HwfCGiV/UNKiUKphgqRKowft+yW/AmpJFnUFc832i4FUejQX11YQ8nFfxIkD9yXadomuAqjpHlU43xLoKwC/+/qL8Hq5MG2YV+AoE4KdPFhPdO7zZ7jSYmgpkkV6Gkju63bjpdtXJSEs+zqgnDPLwtIZ65pgebJGRJC4GLtaAkAqrZ+VE5dJjOdEC3SY8LJGReyWNyHNzN+6cOGhIHxt2TNCkpIYeq4/Syo0G4h1++OJGieIZLeFHKcbYs7zgNL3qfO7bqvR7NWPNj8hwELsm0vm/krqxbvEi2U0HyKvRocO2d0M5GP4X3TLZWnlfXaTu6/Z8zkufJmfFSlyJsAtxghsLoUAlH3az4soqzI8Xv6MibbD9dfjJszi3v7YONLp85ddguUg/Ae6hJ80bHXxKEZikwm9OvMqnkK5EHD15LiI4NIWDMvaG8Ttvf3agTDlc+IallMeBb/awZ+14jS1MIG6hpQ5Cdb/of3t84oLNyOygTvd4Wh/CtVxTBigxsLZc2zOb67/9j37wt1MTY58eYLKgLFP28e6Sk6m2Uw60GcS6G/MxahH5ogND3ihcOvd20a3HVLPDie9qOVKAYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1313,
+   "completion_tokens": 300,
+   "total_tokens": 1613,
+   "cost": 0.011252,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011252,
+    "upstream_inference_prompt_cost": 0.005252,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 168,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 18.131
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New chimney and hearth for a wood burner\", \"project\": \"Cottage in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678656-s7UJTBrwgTfYFMozX2CO",
+  "object": "chat.completion",
+  "created": 1790678656,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Wood burner installation falls under Schedule 3 HETAS competent persons, covering the appliance itself up to 50kW, but the new chimney construction and hearth work also intersects with Part J building regulations, so I need to check whether HETAS registration covers the associated structural work or whether separate building control sign-off is needed.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Wood burner installation falls under Schedule 3 HETAS competent persons, covering the appliance itself up to 50kW, but the new chimney construction and hearth work also intersects with Part J building regulations, so I need to check whether HETAS registration covers the associated structural work or whether separate building control sign-off is needed.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShQsKEAgSGAI4AUIIdGhpbmtpbmcSDNS+pxXnphEkSmNUVBoMtST/DgdXQ/EtDZNvIjAMdYrb8UvsOwQ0llvg6+iuZR60atyMYLx9GWbrNbDxSjr6/jWofzh2wq/tO2AGVnsqogpTepRj2BCzx4awEcrJXXYV07mqn4jjw2TAOw7C3HkEQsWVVRMbn/5/2fCG6WXCc/Yjc/zt1NcayJ8+3KBvWlxnZcQNR9z+drZ2r04zqoKLiXmgq3L0ce2SVtcVj0K0k7jMhRrnHpMt9GjMvIpsodweQ1jlKKQZw7rEzy2xXewyBJbpXUI+ZUBIiT0AIuOJRZas2d2hlrzrRdbmUH81+xLO7wyeQtVMjBXqsH41FVRCPrahoLgA6G5V2paLID8nDr37IHB512tCDfsW8yagZT1E4PWmbrq9YfGTBR0YcSF8+4LjbJ2rG8ZxXIhtqixAJjzFTbAl+FpKxbf0tkrB4+dw/8Y1kRaq7ftbmKi3DjfSjvRIpC0JSLxU+eWYpQWSkA9tohUvV4TmVGix2GjAeseVzyrZZpqd5qKZJPjRV476U0N/PSGMcHM388YUatrIC04gqSXAYSMN6gPsiy9b1FIrPnzbY1iR+TYU61zP7hP38aa/q+xM8p76OhbuptDME1kMJW+anHAheCqpKwXMb7iayxFzI4EmiPNRO8a7bGIdqHi3QQ2qZJCogpftJdnnRu6fqDifgWY2KIKtiSvpndjRSUJVqqH4wCv6lb9aua1Fw/6uRJWhTfPRlowke9s2idMdC8nYPB04ZFCm305kulHkWG+kmX+yidumJ93WI8K15Bv5yi0kWeZc0ftAyoMwGP+NCjoAoqaEBoeLYFg91wgcRAUczAGpQsnIitOxMiqOgep4XKOHpcQl+fzmYvbPEFRcXCwXTaZZL05Iz1KLR+/R4uSkvyXnpdLFduO0gt8TwPpmmsD3lApZCV03ZQaX1/n2WPYsCevv/hPxDC4lY2tt9gRO2FG2cZAnqBD7NduA6OjJWQF8U2NR3xp6rHsgIU8gyBSPzsk5cDkON9TTYCItsMKyffc0IwCz7A5UnCFYeFEp/cyNiZ3uXWtSBxvpQZQFrvRV2FT92SBaZ+DFPN5cFLZpCBzM1R3Zo/b6WPpqNp6cqDV2tiFZCEpdCNp4zj1zOftaBEuz54wNSfvKuhYyK8m68/W2d5+bfMBtJnWgwIfV/KoSd0WwiOPx3/iHkbagJxYqN+OJd4oqzaB/vDG6+3XjdEEhUiE3GQcCrHtueOxIKMn81yHeQR0gcvundgsH7wSdi9tEIxWIRPjflQ54+F89T1P9jv75lfpcyyeMYKDaEElgrZFvxuMiQVI00A8pLSYoTq0WN4DwFkaMjqX8VOT/vimy3WAekaMhCD+Yk23CY3/v+vJ+HECMlHXSfq33gr2MPqy1c4tzi2cTP4hBL+FlPSanGEN6/HPfMqduqOfEYSAeD+ODKZk0b9J2VRXoMZO9MDOsfmiF989rLbwt5PuLB54Y0be9f1RBbITFHPPR82B0B4G6IQSmPO2vOYlUAK9BkTdT4Q6dlJgXK91LmVohKTrabg5//8rbpHPvjo95C25/egVyecTYLd00kRKIXhCABC3obviMuezSqqk7LQJE4T9MO7fTNEmfsyt+fCwtauK6ecU9QXlJi+/lyGomB1R+ZfoEkAuOunDWPmcNd3/0je+pgTh3ExyHW/36jZJgxbOhk1aZRyq2ijeFvYozdYxITYu01EHde6+vsA8CjEhuqL3nGy/C5q3u+u9NiGDFyDZc2Sxy3lyds51KIEuTW1tDqH1ByyLNh/DYdoDZvZRCfGaIxIQsLpkpMvBVF535RpZweWoQ0JhLArobAGUtFfX7UxuF+gDn445ehW5SvMAYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 463,
+   "completion_tokens": 300,
+   "total_tokens": 763,
+   "cost": 0.007852,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007852,
+    "upstream_inference_prompt_cost": 0.001852,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.45
+}

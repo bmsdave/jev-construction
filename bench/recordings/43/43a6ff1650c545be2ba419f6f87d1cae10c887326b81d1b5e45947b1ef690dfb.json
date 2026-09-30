@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Bolts and anchors\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Structural steel. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678191-fDtJKO3Q48vQwp5ie8Yv",
+  "object": "chat.completion",
+  "created": 1790678191,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.72, \"not_notifiable\": 0.18, \"full_plans_required\": 0.06, \"competent_person_scheme\": 0.04}}",
+     "refusal": null,
+     "reasoning": "Structural steel bolts and anchors for the loft conversion and extension count as structural alteration affecting Part A, not covered under Schedule 3 or 4, and since it's a dwelling the Fire Safety Order doesn't apply — so this falls under building notice or full plans, unless it's minor fixing work that isn't notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Structural steel bolts and anchors for the loft conversion and extension count as structural alteration affecting Part A, not covered under Schedule 3 or 4, and since it's a dwelling the Fire Safety Order doesn't apply — so this falls under building notice or full plans, unless it's minor fixing work that isn't notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStgcKEAgSGAI4AUIIdGhpbmtpbmcSDAqhZnwpgZsvbrTWqRoMuzewfOxgQt0dKrQgIjALJ15ImmtplzMkdE+PDoBzVmLbnRAHhBl5PmA5FELc6zkoEn4+O6jewfbzLmYUes8q0wY6TzM9JJIljzVddZX27XsPmf16kwAMBfLmBZ7RbLgl1ZLj/WeSy1HR81RsTwcFVvvA9rcwL42BbVwdFvbpTBhvJetrJdYBo1csFbC5LYi+DtIvCuconNVkqPUj7j/iiTcy7yu3ReyiYzITWjUncA6iyZgT4dtd8e7PSBib01kK+WDTKLGLP2hrrgdT1DPbE98EV7I8QfW2S1kAnmCFDWcCdGzs4Kg4a91ehujUO5ud+wI+/5cW+gU7stBhsTLsherRJyH0+BaPa0UhO8oatPix+FmkS4KE9+QF2YnljczMkopY1KjTymzI/PE/8sOef+SRM+n3myRZjXDnQgYk1rSfIvZrs/3DF4jp+ItQWXUkV4u7oz9IXlJWPWC7TJllRIOni+Ct9hXSv7jcFXzEWvM1Ep3rQ5gTU8xUig6z8EPgSSPnlCP3YcDuSFt7RAQS+K89eTHJRdbml292CXruvz97vWf0C6I8oB+V8diLdgK0nNtTIfha89i/2isPS0TwnU4PmD0IZKeBkGGEtYd8T8o/SdIDWXw10HFJ7igYRI+31oAzpyQ/EmBxNAjnNY0P1bhFmP/raEd5f5ktyDceBwFoJtszHAP+JUPXnTi2EwwyG0jjpcEKx4iKrGnhkLcYK4Gc8BvwbX8FNMqIquUvFLWql4vJEOpJGpw78yulo4tU1RkgCKpc8lXFonC2lZyN0REvzUg8RGVgt0tBMuvZrLv0sSr1khMsf/5TJyO8Qdkbx1s6iW80bjb9gNSbabtD8Ypaa77y/lZki6Hd75KLKqmGco5Hovhh4KFXjhFTjojL7VdkOPolNZnW+3SNWjCk5Lai+lsXr5I4Zg0AX1fCA7XWNfHzcBuH4Dei4jvJzzVB6E79POAERV4pgNgQ1EyB25ssG3vrsCqAsP+uUALnZq823nPQDak2W/rMeUkeVoPLCRaMo3fQvaIZbK/1+cpKOdQGmNe1dXMOenwc+41SMY7dBDqrtWGqskaLFRIo8J8tlUADkqkIY7Ldr2stLsEOzxlypZdXg6RpesO8k4hc83QImKRg2lwQUFLFiwpJWXcvPQaHMnnLmZb/Toq4N4+4kC7m7iVI7vizTiNE4D4sbufoPPRVnGy7+d0kvj/Bbe9nXXGBCBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 503,
+   "completion_tokens": 225,
+   "total_tokens": 728,
+   "cost": 0.006512,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006512,
+    "upstream_inference_prompt_cost": 0.002012,
+    "upstream_inference_completions_cost": 0.0045
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 139,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.702
+}

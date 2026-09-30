@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Leak detection and auto shut-off\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Water treatment. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678474-kDRHlxNbxPdVAj87Roka",
+  "object": "chat.completion",
+  "created": 1790678474,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.85, \"competent_person_scheme\": 0.1, \"building_notice_or_full_plans\": 0.04, \"full_",
+     "refusal": null,
+     "reasoning": "I'm considering whether fitting a leak detection device and auto shut-off valve counts as building work under Part G, or whether it's really a water fittings matter under the Water Supply (Water Fittings) Regulations 1999 rather than Building Regs, leaning toward this being not_notifiable — though I should also check if any electrical work involved would change that.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether fitting a leak detection device and auto shut-off valve counts as building work under Part G, or whether it's really a water fittings matter under the Water Supply (Water Fittings) Regulations 1999 rather than Building Regs, leaning toward this being not_notifiable — though I should also check if any electrical work involved would change that.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxAkKEAgSGAI4AUIIdGhpbmtpbmcSDIZwYQAdhPgfAHr6cBoMdYGvnR8A8WpS6xDIIjBOBbgZcbQTzHWytBmeLGlvSSNvZ7XdEV4wccGUolAziVUzQ23uPLCdoaN6TnKhxxEq4QjV7oeNKmsjw9wcu0mpiKYQz5nxzAe1AmHHobtdyrQAp3gWTMj74HZ5yuy2pkAeLwsnZNq4NkdnS2lTy8JyTgkEaVBNZbHbKrk3eMw8LA3e/Hdta2COcRlXR6db5dQU64f2UL7oUpkhE5KFK9fvHnD1mTAgdx5KBJwCo5Rlndv+I26Lgr2ePJvNdK9XimdanCroWTyj0zUhVvWUkWR+gIi+T0xMKieJJ15O56L//bLdKoIctPm7AlGbTLe0EGDIdhFO136k38i5DoLCrn60d3uv1YVbBnDT3Vv+ff6BvfEl8wpevDzXhGjgPywneaBQZtwBHHEfUslmOLHj8rymLw7r7733iyHYHpavKzDInljjNHIwCndq9Kk9gQO/ubTfXLrEg+ma2APCg1/WzRI/aVyh9XTtHxEr8/d4+PqXQ65lo/4BaTfCc0PxQthxCVTP5f+DCsYuWDUSkWFsXjHAVz7VxPkvjqThrGgXM3MWWkr5+aDORX8VR4wWvsLP+2RDyHr1VvqWU/wIyB2Q5DNJz8HanJabAz6U2tl1WRYK+GF4eFuDowrVKJ84RPG3yH3gCn0TGpe8X/dZMlLh/zP50JleGPRTBOoERfUKYloeeoW6yKs+BzhdNrxLogkA/WaiSiApiovt+IayXoBY866NfIYOUjS7B2DP9PMiMGiuTB7dkNAxZUaEbyD+PrCOmktmavsrDzL19J7oSy01aEnOVLYJviBOSPMQMg94sDAtB5gNWnQ3rEdsw7Sl0D+yx8DK0VnTtpAVTYwPtXFxcE8FvgBgxELafjuMC4zD5mwMfYUIkdvegCoM34f0+tY7y8oPI5OLlrxLMCMKeOUAyLS55DUsS0DlCl8mtszXYASOAugsxV8u8/Pij2MOJO4G6HIo7YM2GgURvreUjD1oT/nqnDHB1mGPnGF0GMzR4gBs2yrh7SyUlD7WlBHYPL0pSqymPVOgaJCLorwj7EhgAFdrxc1uJlB/vRtNlu0DX7Z2XEamt4V5sWv/cLw0r2YeE3Ycmc2zBKbZ5AKLc/PcRR8D5rotCQhkeang9H7MtaozDNWlUfo1qQkJiLKfwuApHYCRWXESq7cS2ynWZxSNvCAh/whjIUWy02BWKF/78n+vo2i40f3lgt3hGaCE8cLgcrdZPEQc/BjxNsOim+K8+l3ZubJO+dbO+5kX3AFYK8XOpCzXWKpjG42XuVfgfv++z+VA36PG0Ck98b23pL9CaHc/z7aw/1fqWO0am56aH+JX+s2oOMwabllEC8SN34rBvZUss5nHxbv8Luafbv2hIuc0HopDB8I3jHogRztjzvHQvGrO9cqxMQLfZ+ktvh7rZbBu+irD4i3hBSXYu1BosLXLhLtmxzi2nvd14ykQOUoHi4L2k5RpJSxAoIqZCX7pYwatVUO79MLXDpYZ8GaptezDaTpzgpBPyKThrqjWVgSs/kNmfeO3lPOx4L7FeJt5ma5tPRqYvs2GiYuWTJK7utTd2jSj7BgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 492,
+   "completion_tokens": 300,
+   "total_tokens": 792,
+   "cost": 0.007968,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007968,
+    "upstream_inference_prompt_cost": 0.001968,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 232,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.058
+}

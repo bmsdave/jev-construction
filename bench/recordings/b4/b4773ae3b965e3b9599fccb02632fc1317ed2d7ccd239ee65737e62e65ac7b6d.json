@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Inject cavity wall insulation into existing masonry cavity walls\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 17\", \"document\": \"BR2010\", \"text\": \"17. Insertion of insulating material into the cavity walls of an existing building. | A person registered in respect of that type of work by Blue Flame Certification Limited, CERTASS Limited, The Insulation Assurance Authority Limited ... under the Cavity Wall Insulation Self Certification Scheme, by Certsure LLP or NAPIT Registration Limited, ....\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677953-k2I6XSPZYT3PSyKUbV7U",
+  "object": "chat.completion",
+  "created": 1790677953,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.9, \"building_notice_or_full_plans\": 0.06, \"not_notifiable\": 0.02, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Cavity wall insulation counts as building work under Schedule 3 para 17, so it falls under the competent person scheme route. This is a house, so no Fire Safety Order applies, and since it's not erecting a building, private street and H4 rules don't come into play.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Cavity wall insulation counts as building work under Schedule 3 para 17, so it falls under the competent person scheme route. This is a house, so no Fire Safety Order applies, and since it's not erecting a building, private street and H4 rules don't come into play.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStwcKEAgSGAI4AUIIdGhpbmtpbmcSDAkR3PsqKluCsKgDmRoMPynGg+RXvLUofzdfIjA+tHZ7foSOMb0Ttff07sF/NCzQuAghv8EBOWkdtW6xrwh/i0+B9HVPWAjzSbeR4Ocq1AaXBG884pGRoAUkqcrtzCnmsIbaMXTStY+Nx4H++4URATmILNhT6qpYMTbL9pGoTFfudz0F2UTiGhsBDYlqfMOj+8KCnOZ5lIJLKBRB5z6BaDIkRU/Sh6152mAveQEG3DcLShd3hKyoIiCAa+umDcsd7tTqU9vciIU4i4AdBYNzSLJddgN40tVSb+W2LLIUUs1RANQaHs5bqK3Gui6f1bjntu44EBMo91MLA+LY4jTSfz0tW77kT/cxItZRr4mYiuQvDoy8mHpsN4fiy44xrciqk27z6YQrA8ixfqUqfH9S6dt3lMFYRqJ6Kw98I+NqK25D8zMY3saiXEkY/T4AH3i2e3h9MvVtJEXGWZwAl7sTLpVfJOsTXJTtGrUmkHtHFFFafLQkMVektdzxrGw+/NQTsmuztsXuoqdR/g/9HbKA1/ByIIXW82HZyDN9zXxKnQSZZGgpE2BwGHx7WdPCsQp91Gv1nmXwnFcEaz9Y5TBeros+HFWl+4tf03ESthBX+Y6HiPhSzRNPA8/FJGoTe7FKW9BB0IuMru+lp1qJpHipOO3kAqmBXXLHyFhdeTGgSWLHE74HonZK9PQ15geedkKzL9GPDFYwnbvyi/Ti/QneXenl37aX06jHPqpunLKtbwYs0us49qRTlIb2NaKBE813EymzK20zSK4WyY4oM4Gsyxj4NbZW8dhynettjC+a0lNtipqAzVR05SFJMIkt43PUwJac/CJEmC5ByRL/cN8eGT95hT60cGkJ3tjBfo4bOz55JX94lyRnJjZYBAzLM/wB6p/GYRAVgUL5d1IvXzqksX4XCgrI1N85rzw3T0BYBrEGcTf3aaKpVxL7pXGZolXilfC+grc10nEcFLB6b7CMp8ZA/D3RX73Y7u4Tw/Qy0oGqqYevuW2DEw8n6c3tjn/7ehk3wKZD/eexKV1fbri5eQESwp98pI4+y0lT1Fim9/Ctmi3msECS4qYu9+8wysQiqA13Rn6Ylb1T2qzaQ5Gmj1cJDgUR6vAuIKcKUR1UN0SBiFKi9A7ANtOaKzHqBl0KE/qqA5Gd08dGvuXfPNx9BtX8j8Ai882ExW4UVrFaurU31FssSu67HZ78fpF690sTHpnozIGiDW1zlgosHbm9Sj7WtCcYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1364,
+   "completion_tokens": 233,
+   "total_tokens": 1597,
+   "cost": 0.010116,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010116,
+    "upstream_inference_prompt_cost": 0.005456,
+    "upstream_inference_completions_cost": 0.00466
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 150,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.868
+}

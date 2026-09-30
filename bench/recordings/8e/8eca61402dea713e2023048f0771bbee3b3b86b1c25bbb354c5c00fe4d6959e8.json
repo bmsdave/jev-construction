@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New chimney and hearth for a wood burner",
+   "project": "Cottage in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 J5",
+     "document": "BR2010",
+     "text": "Provision of information: J5. Where a hearth, fireplace, flue or chimney is provided or extended, a durable notice containing information on the performance capabilities of the hearth, fireplace, flue or chimney shall be affixed in a suitable place in the building for the purpose of enabling combustion appliances to be safely installed."
+    },
+    "c2": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c3": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c4": {
+     "ref": "Sch 3 para 1",
+     "document": "BR2010",
+     "text": "1. Installation of a heat-producing gas appliance. This paragraph does not apply to the provision of a masonry chimney. | A person, or an employee of a person, who is a member of a class of persons approved in accordance with regulation 3 of the Gas Safety (Installation and Use) Regulations 1998."
+    },
+    "c5": {
+     "ref": "para 0.17",
+     "document": "ADF1-2021",
+     "text": "0.17 Ventilation fans might cause combustion gases to spill from open-flued appliances. These combustion gases might fill the room instead of going up the flue or chimney, even if the combustion appliance and fan are in separate rooms."
+    },
+    "c6": {
+     "ref": "Sch 1 J4",
+     "document": "BR2010",
+     "text": "Protection of building: J4. Combustion appliances and flue-pipes shall be so installed, and fireplaces and chimneys shall be so constructed and installed, as to reduce to a reasonable level the risk of people suffering burns or the building catching fire in consequence of their use. | Requirement J4 applies only to fixed combustion appliances (including incinerators)."
+    },
+    "c7": {
+     "ref": "Sch 3 para 3",
+     "document": "BR2010",
+     "text": "3. Installation of a solid fuel-burning combustion appliance other than a biomass appliance. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ...."
+    },
+    "c8": {
+     "ref": "Sch 3 para 2",
+     "document": "BR2010",
+     "text": "2. Installation of—(a) an oil-fired combustion appliance; or(b) oil storage tanks and the pipes connecting them to combustion appliances. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, ... or NAPIT Registration Limited, Oil Firing Technical Association Limited, ...."
+    },
+    "c9": {
+     "ref": "para 1.4",
+     "document": "ADP2013",
+     "text": "1.4 Wall-mounted socket-outlets, switches and consumer units in new dwellings should be easy to reach, in accordance with Part M of the Building Regulations (Access to and use of buildings). NOTE: Approved Document M recommends that in new dwellings only, switches and socketoutlets for lighting and other equipment should be between 450mm and 1200mm from finished floor level. Approved Document M does not recommend a height for new consumer units. However, one way of complying with Part M in new dwellings is to mount consumer units so that the switches are between 1350mm and 1450mm above floor level. At this height, the consumer unit is out of reach of young children yet accessible to other people when standing or sitting. New dwellings formed by a change of use"
+    },
+    "c10": {
+     "ref": "para 1.6",
+     "document": "ADP2013",
+     "text": "1.6 Regulation 4(3) states that when building work is complete, the building should be no more unsatisfactory in terms of complying with the applicable parts of Schedule 1 to the Building Regulations than before the building work was started. Therefore, when extending or altering an electrical installation, only the new work must meet current standards. There is no obligation to upgrade the existing installation unless either of the following applies. a. The new work adversely affects the safety of the existing installation. b. The state of the existing installation is such that the new work cannot be operated safely."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.16
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.56
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 2439,
+   "output_tokens": 175,
+   "cost": 0.000102438
+  },
+  "id": "gen-dec-1790676108-sqablHNNY705J1T6lHPc",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.315
+}

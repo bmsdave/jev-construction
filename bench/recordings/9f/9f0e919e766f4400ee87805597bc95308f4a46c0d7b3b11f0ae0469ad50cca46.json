@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Loft conversion to create extra guest rooms in a small hotel\", \"project\": \"Hotel in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678592-lBf2VZOotwObNfVdTGFz",
+  "object": "chat.completion",
+  "created": 1790678592,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Full plans are required. A loft conversion that creates new guest rooms is building work: it is a material alteration affecting structure, means of escape and fire safety. It is not the kind of minor work listed in Schedules 3 or 4, so it cannot be self-certified or treated as exempt.\n\nA hotel is premises to which the Regulatory Reform (Fire Safety) Order 2005 applies. Under reg 12(3), building work in such a building cannot go ahead on a building notice, so a full plans application must be deposited with building control.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"not_notifiable\": 0.01, \"competent",
+     "refusal": null,
+     "reasoning": "This loft conversion involves structural and fire safety alterations, and since a hotel falls under the Fire Safety Order as relevant premises, full plans under regulation 12(3) would be required for this building work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This loft conversion involves structural and fire safety alterations, and since a hotel falls under the Fire Safety Order as relevant premises, full plans under regulation 12(3) would be required for this building work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSsAYKEAgSGAI4AUIIdGhpbmtpbmcSDM5OlfyBusSacMhDdBoMz3W19WWqvOay9ExMIjAViYGvMv5PRvomT341JScjOWZbrj5MaPyXc0mmDXcFln1fWlvU76yXmNOJpAMvQCUqzQWXtE5pDUPPwZGfWzJKWrXsml76hGoIHUTWTchUPAbjse4mY6Btl3TXw8VSn2kNiuVLFVL2hVHmVX9zKUSWWCNNr2eYo6luOxVLQShe5RCEkV6+0fJqb3k1vYMc0zZsaW0OOEpZStBZyLkRpIZ6zPGkuXpxsRGRBCt1PVv/PuVRR4km49iKwXkOk+hndi20DKv7Srx7vIMLNCLppMDjSPAmPU+iN6JdxYnZpT0JRCGjM9BpoB3gb/vMg1lI8XlU3VN6KzKlrtlcUimyeoBHYth29AbRzso4Ao4XxoUce4pdgjCsBkH3M6aqrLEZMWtanfKVx7JvlFi6KgDUzcWhbvQGzewRn+Sl8xnPjZlnuidKWe/pmxKxKq/Vq7i0/CM+ougSYuFge6O8fCo31e0vFCFc5Ni43HQpmAAsh5NIMATgO9GlhExDdtzxMA+mLOWVicOsxo8xZYYQ+c2HJXaRLkVQhfq11BeCG1lxGomk/3tCYC9NZqobO6dBInkG5VVM2fhkZyA7cI4VhoiE953NRx+Bisfwg2THxarOu84Ed8bFF/YPHG5FLRQ+ae9NH+W1wXZqzFsgPvneF45GVSxMIlDgBt0+LuqWJGU+uDXJO2irSfznYSTddUowEgpSX54NYbk6FhAuERir4Z+2JBr+Mc9TeBdKAEknCg5u1i3rcM7+6PaQP3AVlz1mcJM9ES5oQCgKvYNZODNkmCGdaggN3Mf3c6dhok0nfSL7FULKVs+EquxYu3zYEEy41L9n2n6XiEq3yFNPOdy6HTwu8xgy1WP0NRtpyWja9iCSMpv67wJhA5w35WGy/gRW4KRl6mRmcObadDJn/ZTmVpA5Bi6g+L588LqJah2USVsg7p/3nGPftjf5P4DmnDEHVMvqZY0swDElAH9PFrxf1VAU11TL1PVAacNclF3kcqIrNi7SaFigj/08QqzAgUUWXyk7TmIYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 470,
+   "completion_tokens": 300,
+   "total_tokens": 770,
+   "cost": 0.00788,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00788,
+    "upstream_inference_prompt_cost": 0.00188,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 94,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.225
+}

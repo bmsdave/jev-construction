@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New fire doors and partitions in the common stairwell of a block of flats",
+   "project": "Block of flats in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c2": {
+     "ref": "Sch 1 E3",
+     "document": "BR2010",
+     "text": "Reverberation in common internal parts of buildings containing flats or rooms for residential purposes: E3. The common internal parts of buildings which contain flats or rooms for residential purposes shall be designed and constructed in such a way as to prevent more reverberation around the common parts than is reasonable. | Requirement E3 only applies to corridors, stairwells, hallways and entrance halls which give access to the flat or room for residential purposes."
+    },
+    "c3": {
+     "ref": "para 0.1",
+     "document": "ADB1-2019",
+     "text": "0.1 This approved document has been published in two volumes. Volume 1 deals solely with dwellings, including blocks of flats, while Volume 2 deals with all other types of building covered by the Building Regulations. Arrangement of sections"
+    },
+    "c4": {
+     "ref": "para 11.2",
+     "document": "ADL1-2021",
+     "text": "11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation."
+    },
+    "c5": {
+     "ref": "para 0.3",
+     "document": "ADF1-2021",
+     "text": "0.3 The guidance in Approved Document F, Volume 1 applies only to dwellings. For blocks of flats with shared communal rooms, Approved Document F, Volume 2: Buildings other than dwellings should be consulted. NOTE: Dwellings are self-contained units. Rooms for residential purposes and buildings that contain only rooms for residential purposes are not dwellings and are covered by Approved Document F, Volume 2: Buildings other than dwellings. Exemptions"
+    },
+    "c6": {
+     "ref": "para 0.11",
+     "document": "ADB1-2019",
+     "text": "0.11 While many of the provisions in this approved document for means of escape from flats are applicable to sheltered housing, the nature of the occupancy may necessitate some additional fire protection measures. The extent of such measures will depend on the form of the development. For example, a group of specially adapted bungalows or two storey flats, with few communal facilities, will not need to be treated differently from other single storey or two storey dwellinghouses or flats. Fire safety engineering"
+    },
+    "c7": {
+     "ref": "para 2.3",
+     "document": "ADP2013",
+     "text": "2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements."
+    },
+    "c8": {
+     "ref": "Sch 1 B2",
+     "document": "BR2010",
+     "text": "Internal fire spread (linings): B2.—(1) To inhibit the spread of fire within the building, the internal linings shall—(a) adequately resist the spread of flame over their surfaces; and(b) have, if ignited, either a rate of heat release or a rate of fire growth, which is reasonable in the circumstances. (2) In this paragraph “internal linings” means the materials or products used in lining any partition, wall, ceiling or other internal structure."
+    },
+    "c9": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c10": {
+     "ref": "para 0.4",
+     "document": "ADL1-2021",
+     "text": "0.4 For the common areas of buildings that contain more than one dwelling, the following guidance applies. a. If the common areas are heated, the guidance in Approved Document L, Volume 2: Buildings other than dwellings should be followed. b. If the common areas are unheated, individual fabric elements should meet the minimum standards set out in Section 4. New dwellings"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.04
+   }
+  },
+  "usage": {
+   "input_tokens": 2651,
+   "output_tokens": 175,
+   "cost": 0.000111342
+  },
+  "id": "gen-dec-1790677220-nXagzAHvQ8SEcXkyMGDU",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.281
+}

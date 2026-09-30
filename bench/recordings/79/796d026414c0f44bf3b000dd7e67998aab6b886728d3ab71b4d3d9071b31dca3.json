@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Network, cameras, HA, NVR equipment\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678420-4i9Ewv96DmB7Btbfwpoa",
+  "object": "chat.completion",
+  "created": 1790678420,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.87, \"competent_person_scheme\": 0.1, \"building_notice_or_full_plans\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "This is low voltage data cabling (network, cameras, home automation, NVR), not building work under Part P, which only covers 230V electrical installations, new circuits, consumer unit replacements, or special locations. So this likely counts as not_notifiable, though if a new circuit is added for the rack, there's a small chance it could be notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is low voltage data cabling (network, cameras, home automation, NVR), not building work under Part P, which only covers 230V electrical installations, new circuits, consumer unit replacements, or special locations. So this likely counts as not_notifiable, though if a new circuit is added for the rack, there's a small chance it could be notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkggKEAgSGAI4AUIIdGhpbmtpbmcSDPDUiiZ6Xddje0v22BoMzV+fvoiuU/kRvkZ/IjBpYeFeIntIbvBxeaF6aQDEdIcjaE7zpad4dPHz/UYghPGDEj88mp5dWJMHGj1U4/Uqrwc+mebZ/YcJMQn6usu5jN97hU8gDFIcIj6Yu8LCAL9GT+tRnWNSCUWA2qSnAC18kcykYCJZDIS6o23cXPIv+UpeADwXwVp7aiwID+GKS2ZSO4L4YIeYiSTeoElmi7/gRRwKsV6qawonDXObpJc8OpuioT43llulIHmndMquMbB2MXctO7dxRVGcH35Kcxmjmfz4a1vxjp2HY3C8+cGvXX0tw5ZiEsG/dX3J3qDfus/d7yfzcgjLTYPJkb62BvsAoPs2DPPoxqBXNVw7jGo4YdKKYKwhkr5wjjMGoD1YbnYhJGy/jFiWPOk3I+XkHKreIIw93l6kFzVhT0WlU743RqvR9qtII48RF8xfm2vRy0Y/dCp6Le1VOeB7EDGNWl4IIlL1ZPIg0fQMv/2+WvSP6mEm0DmxQh1CNGvf/Ai2Jxy9V0iWI92JGn/yFhHg7t3bB+fmwG1bLtc5w6a8PjQS2QSkbH17vuX7Z1DH8QEu598ZdSUzGwz+EIeNyjIX3YIaVAY6UIMnE1NT2oCqJ+XoSg+LOjfd58LTXrG7LcuoRcVyuvSoO1a6K2NeAfkMxpLhhnw4OaKL50jKF0Tvm5UWqGsXypjvJVsQQ5WpGEQXQiOE6dUzWzTLwTEOj3NnQlfNcLBKlhjw7JafVVA8zg9DDqENzRH1YoFsMd/MdaZO9a+yxNqLNkwCrmbtN0on7OTf5cDry9Io1+IiZw2LA/uxVwuMAp7HTGIwZjuLvZq56M30N7KwcjrDKgJC9GJfm++g3YZLbFkFw90PtOnFt5Ux9jen0FAKmDQaqBKJDQQWAtR6t85GTFwH/C8mlJXtQ/SosZh7xaq1uxnpNztDGbd0DvC4+S8fJsT0NxJP29IeBEPcdjc1yPO4d514VgcixeXRDkroVIcoFBbPf7MXEwUzlBRDQtAHkFLFTUj5lQXPOCBDB73PU++Ej8WlIPSplgB9hsLvOL65C92EL0/3l43dJNafWHIaTBgYORnT0EPR1qaAuVjoKDIIsaqQponhElVgugn+vuaNcj481223undpJvIykH00YEn7Mn/sM+/bSug8+9daTTtFS0WpuaAz3LSAHLViBXyu2lWgeOb1YW2ueeBRa7TS1L91qwK84a/7AX6QpmCzFlfvpy8Zxwu7H6lno4Yv7wKw07wyJIx76iGeumhN+Ho/zKr1ALeGuMbBPkI4t/B+7JOgzTT8wDM4VcyuCv74GXKX0UwGifFwG6/dHkUpumkYls3gjKTiahP2EqtIGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 512,
+   "completion_tokens": 253,
+   "total_tokens": 765,
+   "cost": 0.007108,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007108,
+    "upstream_inference_prompt_cost": 0.002048,
+    "upstream_inference_completions_cost": 0.00506
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 172,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.085
+}

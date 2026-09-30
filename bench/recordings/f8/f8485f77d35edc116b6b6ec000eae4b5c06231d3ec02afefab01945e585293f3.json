@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"WCs\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Sanitaryware. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678374-L2Foxnz9QR5mUc97cMIM",
+  "object": "chat.completion",
+  "created": 1790678374,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether installing a WC counts as exempt work under Schedule 3, checking whether it involves sanitary conveniences and drainage connections that would trigger building control requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether installing a WC counts as exempt work under Schedule 3, checking whether it involves sanitary conveniences and drainage connections that would trigger building control requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxwoKEAgSGAI4AUIIdGhpbmtpbmcSDOwdJ8lnSergxRtI3xoMbAUTVY4wTptdDMg4IjCgEaKf039DsFfRtwxikIFHxJHOO7TuUhpTV969mRwNy5mCuIT5MbAWb7NpVnaui8Aq5Amj794tF3+35FXwgl2+NtoGv+dkS0s3/S0AtRHV4Kzu5TWlrNWx4AIObTKbv6nTbJIlEEPlIGe5xYYuWI8raiELBz/XrF2pgxKOl5M40NSy4ncvUlmWYEWZf99w5Z0U+cgPrJ7AAb1kL9HKUP4o/JFou6m9d6r7ijuqFX0qVDtSWAX3+AUewkveS+OfoW1ScSEJ3Wsx61jUi5xsyJS1jcOBPkYngN+jI2/4IQ+xDR/heVlR9Dr1dy7u4PVBsaxG6smDjF0VDUtSiLU9Qihq/PTnlShSVjShwct03/xZnho6InsxglURLHzRLbQyom3E/tnGAw6jkO/+2+f/wvo6FKcqxf7ydAbtxia9IR0GD6k5GVBVVKpmQfEu2C9PKrjq+nFvL4M6Lxhc3+vKg7LCw23pgA7XotmwrILVK0JeHSHmzAQPAeE2rBUYZYPqjG5eiuSJKRv8dwdu1cBotEZeMH+jktchmqzLseg/dOVAKuVdLQ1AZjQcgbmEBht++CYrWALvpcIu6o7JBDcTGeNYkou0tfiWhpTIutmZtHzKkT1TBCJy1hwO94AppjStRrDQ4UQ6vGkPShtZfDnbm0AzZ0wP3K18Bs3zDby3XGrMNwVwfoFxib9qmr8gUJ0LBxruPM9fxvc/l/tovwQMIOkLGXO4lrTfAOJRhv0V6NJKLfYqVSpsfkjnJHalLSTy48rcUYDScGBzpkvR5j5V2OJlQosfbylQKLl6x+QEg/X/O62C+v9DVaGOrJjadzG6/Bnjpgjd5S1yAllhgHWWHcoufACb8nP1frX12jEfRBsiVKt1bLt73liEYjy9U9u5Zl8LlA49xl0JhRzLWqYr4QAw5rX0tuxpghxKL9dDjedyKwlGGFOOCKDqjcRUq1MMLKd6cYzgJ34MSCBovaO1SEtrslE1FcjzCX3SVmPQSPD/JzQDjuIZ83ztzeO9eCvkiCSNVI0rhiWH/F544olhGiGOW05yfKYGKd+vE21u9hrcKXwDVb1eSl4V/1I8LchR7ne3LwL+2eZpLd/wZb6labVblZQHtmfZQGwa6WSz5JD3g+ux0RuiceOO1VBA2B/TvLfu8UsHJjlyvxJHdLChDRzV6VzJRU+87K4T+8j0pMdzfTYaKriCmIltanvYXj9JJ/jHwLYWpqheZpR6gHpB+F+T6Vpn+yIE8jzgQFeDqE8e7DTTyGrw3lnYFHsxUyLcfDQSk1zK3rXL0poNO0f2V8oYlbu3Tz0ORR3uPXG3zVz8Lb0xUo8LmB2MbnPJXGQFcjHT77ytwhJlhkEd2cGeQ6T73JkhdnvCifrQjqTujIJFf0bEUK6fvl7AGuNS7HquLkPRFV4S1gDOZuFlbn31+lYJ38FbwDizZqMbBJOvCjTmD/BtC/Khz4T2EP1TLsHww68/Bp2POYNpp+ejAoZrd89K+jnYJLTL4uSFTvMBOyP53S7qZjFnM/MenyHNXvWHhnVc3hx8H5+liuzHN1RnDBlpLtbetgLhw3S5lN8Rvi6lScHkpF9v2ZDq32QpIkZ0sux1yWN3yChvSl6niP/xwKcmIHvTWozGAUTuzOzgx32RSpDONkSgiNPmW29LtEda/49Sm/aWJYahs4cEtoKX5bJxbxIK7obMj+exM/g0n064B3FmBS9oGsmP8/XeZfKQe6WMpSKDmi5yGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 500,
+   "completion_tokens": 300,
+   "total_tokens": 800,
+   "cost": 0.008,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008,
+    "upstream_inference_prompt_cost": 0.002,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.947
+}

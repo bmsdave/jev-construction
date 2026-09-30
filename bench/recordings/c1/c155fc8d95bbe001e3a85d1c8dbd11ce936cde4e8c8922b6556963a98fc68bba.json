@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a wood-burning stove into an existing chimney\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 3\", \"document\": \"BR2010\", \"text\": \"3. Installation of a solid fuel-burning combustion appliance other than a biomass appliance. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 1 J4\", \"document\": \"BR2010\", \"text\": \"Protection of building: J4. Combustion appliances and flue-pipes shall be so installed, and fireplaces and chimneys shall be so constructed and installed, as to reduce to a reasonable level the risk of people suffering burns or the building catching fire in consequence of their use. | Requirement J4 applies only to fixed combustion appliances (including incinerators).\"}, {\"ref\": \"Sch 1 J5\", \"document\": \"BR2010\", \"text\": \"Provision of information: J5. Where a hearth, fireplace, flue or chimney is provided or extended, a durable notice containing information on the performance capabilities of the hearth, fireplace, flue or chimney shall be affixed in a suitable place in the building for the purpose of enabling combustion appliances to be safely installed.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677922-qIWI39Tu49YY8Drz6aCA",
+  "object": "chat.completion",
+  "created": 1790677922,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether wood-burning stoves count as biomass appliances under Schedule 3, and whether there's a separate paragraph specifically addressing biomass appliance installation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether wood-burning stoves count as biomass appliances under Schedule 3, and whether there's a separate paragraph specifically addressing biomass appliance installation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS4goKEAgSGAI4AUIIdGhpbmtpbmcSDFIv2jTVZrzFp0w5phoMuMX/+ju4bU9v+Mq9IjAPJgaLFpigH4MUzpQ6vYhD+VPMbWf88lNJWpwKtNwyuPkOoDsRvaeeFQbAk9T1Itoq/wkTZAUXmC7FNQU48Cik7ywY1Zqes2XYtm9wfns2S/HnDsFl/f7+dVrxcnbCjCvq1QJnZl60mqitwh8YlpMy2SUzTQrV9YP78D49WyyJiUt1pIwJIjEN0PTeC5otVwmkvhqmI73EsLoiudrdNUvbMpe9p6UeyONFnhQ+sYN+3MzLGjpYb3cLQu3XSZCj9CERTXSS1Mh2P9NdQStxDNv4tnpHNFhNlccQzgx12quOu+r+IOKoDtRTxI4bkZLY40BiwwaDkx4xBZdw88Vv/SGBARaCT6ctqH8neCL1wu7RscQUw4+n9Am5V6h+cPnV9FeoQETxgYxdUFXrAIwetkt7SUwdZIOi64gPKOKN5QQCNOQ3YI0iNhojhle3kc+D8uHIVSNyR0/HtdyEcetKQR5qeXKqsw7VMkDkn11vXk2AQBoUM4FDHYuGh3w+/oMWAsZ+4N1RbtMRVoNO30mBM4Rm0vi9SPTuQ/yq6wkvRnDGVJRDaWI6RIfShqabHAxM2VmGv9Ktbammv9pUu8wwaCkOzhLZvtg17JVlZrUr/CQGylrQOKeL0NSKZhU5owgazomksCpRvahlIxCx7EwdACn6I4fJv7Im+jLnebwCZ5sPv1G3YM5CnBjRcAGZYcntuXoj+TRDICkwfsHVWG0WedQw5LY9eOu2BqT/3f48r9UXaMb8eika9Ad1gjFEgw5uQjtkPjEHSzddFEfcO1lWAGG1Sa/R1r7t6n714JXA7g+V/SvJpzHK97mKli98Mc5iGxUv18N8gfYh5GDzwE7k7Lxg+i1LPDZfCUMYg05hYAOaBswSHnrQMI4D33HnSsZ6VFPxacktKnP+VSe0ye5LPM9gg2hY4dpmei8it4cSAxIylpP8QRn/m7ugxp3yvFTiLRD1zugoIMw9/eUx9PCxA8DXFJRB7wNBuWuIdPFvRwELDOP/mOdvCulVo6ieDpdFUGhseVuGv+Z9Rv4e/U8KZEm10ZF5u2l4bFQx0jg0DGMUZ2v3hI4kvF8waR+myUbsgTmTm7tAD/AoKMY/zcFUYl2MFaRl63wn/FR6wFquOoiOu4b+E314Hz8oV+wMAd248WOFIehrz+DHs3VvJLvD15OKVmFr6x+7jxzikVxj74HcQJsWxzf1HAJHWYPaOkWAL6SsLnhhul+ASkJJKJk4ShsHLlDBzejiqHr6hXagEBGPeFo9j7q89CPRVuqTxgvRiUZ3hoCgkvIwdG/eiGHgJiAU9Vr5GIvB378qDMYuQxfwpaL2jWvOkkSJKxZR/5B7k2pAdVXJTPrR7T9FEtKWhp+BpGDqHF5cyVAP9B5JfQ6yX90m+jUD8u/WNPHisYe/nJfZj0bcuC/y+6EkAO/qzTa1G/P0V2BsT00UO2CTSv+OsyTPkzqjayFPOkilUGdg1UJXgZHPwN/Rt4kTfOdINqa7asYmTarZdUtFUBoO8PoX4Mn2cym0PhLOuJbaYE87WjxgMOuXY2DOT4HdUOu3bDiJu7urmrLsSGQqfbyRnF+TNcp14zA7Q9k9bFbraUuTSGp+oYsAEMpVw1qtFtVr6MzEdEy5d3ilgX94cE2RI6eBEA5/Lt/aa+sxe/WS+VnPvyfvdBrKpjhU4gtHFzrQ3EK4Q759du5qQQqzW/FxDiRnNXsJZWSZcrOwawtpFE9dnxB3an8sJ5zgpny+/0T4tTYg7WCQ6wdlHilq52uFjGpdimQwGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 940,
+   "completion_tokens": 300,
+   "total_tokens": 1240,
+   "cost": 0.00976,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00976,
+    "upstream_inference_prompt_cost": 0.00376,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.316
+}

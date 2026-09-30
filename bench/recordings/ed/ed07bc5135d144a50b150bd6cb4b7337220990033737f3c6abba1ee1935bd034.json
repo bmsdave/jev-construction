@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a first-floor office above a shop into a flat\", \"project\": \"Mixed-use building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 0.17\", \"document\": \"ADL1-2021\", \"text\": \"0.17 The commercial part of a building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and the living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments\"}, {\"ref\": \"reg 5(j)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (j) the building is used as a shop, where previously it was not ; or\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677663-lsBPsRSgeAC4NLGW5M4K",
+  "object": "chat.completion",
+  "created": 1790677663,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Converting the office to a flat counts as a material change of use rather than building work under Schedule 3, so I need to check whether full plans are required under reg 12(3) since the Fire Safety Order applies to the shop below, making the whole building one the FSO covers even after the flat conversion.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Converting the office to a flat counts as a material change of use rather than building work under Schedule 3, so I need to check whether full plans are required under reg 12(3) since the Fire Safety Order applies to the shop below, making the whole building one the FSO covers even after the flat conversion.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1091,
+   "completion_tokens": 300,
+   "total_tokens": 1391,
+   "cost": 0.010364,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010364,
+    "upstream_inference_prompt_cost": 0.004364,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.57
+}

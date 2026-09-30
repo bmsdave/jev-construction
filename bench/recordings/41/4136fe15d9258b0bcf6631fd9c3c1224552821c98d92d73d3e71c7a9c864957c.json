@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rooftop plant room added to a block of flats\", \"project\": \"Block of flats in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 2.3\", \"document\": \"ADP2013\", \"text\": \"2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements.\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677716-80aSfdYRE7LeIi1w9Rem",
+  "object": "chat.completion",
+  "created": 1790677716,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.82, \"building_notice_or_full_plans\": 0.14, \"competent_person_scheme\": 0.02, \"not_notifiable\": 0.02}}",
+     "refusal": null,
+     "reasoning": "A rooftop plant room on a block of flats counts as building work extending the structure, and since the Fire Safety Order covers common parts of blocks of flats, this triggers full plans under reg 12(3).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A rooftop plant room on a block of flats counts as building work extending the structure, and since the Fire Safety Order covers common parts of blocks of flats, this triggers full plans under reg 12(3).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1wYKEAgSGAI4AUIIdGhpbmtpbmcSDLBa4oUoi1NrI3W4shoMW8C5/xqkt28ruDEKIjD/sUxqa2VNw0a4Z7B+bq31QF0t3v+yzvjmoS9twBXDPAad9L2NXmITd/oMtAy7w6kq9AXL8+jw4OGjAa/281i3B/DO4T520EcYoO7f7kAaf81DQZ1bhfegzK4gbdxDEKxHvtF1U4VSO9c98fWa+DRxzNsnDAgV+v4kftilU5apS0gM7KEzZyCdUMwG5BbejVz6SlHeHKvuUW8H6GbffoQn9GRaietJhkfpkzmYk6tW0PipU1rLwBa7U1tYly9xcDXYeSBoCQwO4Y5To4kgRgIVJUwDtDCrhRFNuiwCTaCEPMvP18tmEU3dxRYYijtnEe51fIsSiqu8uufYQgHWyJ2DYgoHKhuaEWD+uvtWaq1MYQtiy0e97tYC9L/4va7W7JMpdQmB/qTYFwYm6PLiq+aWWSgaGrvq7ZqY793UrUUssO6SSnK09OQdEk/NqBGy1grY50Y2ZWFUesUWwvwV5TOIdDtgTaCm0CkBrC9+Jjnka53kDdWvri52CaawVDB33HxxAaMlo9G397sNMJ5y/WAHTVKWgTTp2/RAi6JA3INaJu8q0Yd9ssVqcHmzLIeh1H+6Uq69+Vfj4Z93ibwHjglVG1z7gl2FN2dNJTY8/W9QWMyQajyxkypnOVMqc+ad4QIjVKBY0mMJjydWZo9pELW94FWKmbzvYEGbjx0KMSOea48EFregqMNrX/Y4YQUjzF86vZ/zBLrYwfUws8zSclEUJvIYQDv5U3Z33BVhrcrNTUVyJvJBD0euKIt/fslRcsjT72hwOJmcG+XlFGeLTQjx8ufBceUpdGSKf9vFDmx67n9c+JOFt1q/IRA+YeBRu55GUgfBt7PF+X5pGBPbnYjxYVQ7MyHaWKewErePIf4B5AFVYWnadGF3LFs+kfvHx1ZqQktEfCAWP4WNM+A1Way5e+qOY9oWDGq+BLHnNcLJwdE3Bw/1JpxiC8q6NuMSOGWcXDpiNZh3cSu8oNxQRn+5u29BGtgJNPrmeswYtsVQW+5+9OCzRnSHhkxytNfBwba4nA3gfRYFgIl0+8BPkBkCzIi3An/xBnoCQ1S3lbirP0Qjy4pSQngYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1185,
+   "completion_tokens": 189,
+   "total_tokens": 1374,
+   "cost": 0.00852,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00852,
+    "upstream_inference_prompt_cost": 0.00474,
+    "upstream_inference_completions_cost": 0.00378
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 108,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.559
+}

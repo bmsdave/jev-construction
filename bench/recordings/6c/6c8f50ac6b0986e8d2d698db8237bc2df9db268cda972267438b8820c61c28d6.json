@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Foundation excavation and disposal",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Groundworks. Part of: new single-storey rear extension.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 2 Part 6 para 1",
+     "document": "BR2010",
+     "text": "(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material."
+    },
+    {
+     "ref": "Sch 1 H4",
+     "document": "BR2010",
+     "text": "Building over sewers: H4.—(1) The erection or extension of a building or work involving the underpinning of a building shall be carried out in a way that is not detrimental to the building or building extension or to the continued maintenance of the drain, sewer or disposal main. (2) In this paragraph “disposal main” means any pipe, tunnel or conduit used for the conveyance of effluent to or from a sewage disposal works, which is not a public sewer. (3) In this paragraph and paragraph H5 “map of sewers” means any records kept by a sewerage undertaker under section 199 of the Water Industry Act 1991. | Requirement H4 applies only to work carried out—(a) over a drain, sewer or disposal main which is shown on any map of sewers; or(b) on any site or in such a manner as may result in interference with the use of, or obstruction of the access of any person to, any drain, sewer or disposal main which is shown on any map of sewers."
+    },
+    {
+     "ref": "Sch 2 Part 6 para 2",
+     "document": "BR2010",
+     "text": "(2) A detached building designed and intended to shelter people from the effects of nuclear, chemical or conventional weapons, and not used for any other purpose, if— (a) its floor area does not exceed 30m2; and (b) the excavation for the building is no closer to any exposed part of another building or structure than a distance equal to the depth of the excavation plus one metre."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "not_notifiable": 0.13,
+     "competent_person_scheme": 0.14,
+     "building_notice_or_full_plans": 0.63,
+     "full_plans_required": 0.1
+    },
+    "confidence": 0.5
+   }
+  },
+  "usage": {
+   "input_tokens": 1095,
+   "output_tokens": 65,
+   "cost": 4.599e-05
+  },
+  "id": "gen-dec-1790675930-IvPQrzta2kWW8YwZ5eNR",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.344
+}

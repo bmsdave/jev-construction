@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a wood-burning stove into an existing lined chimney\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 3\", \"document\": \"BR2010\", \"text\": \"3. Installation of a solid fuel-burning combustion appliance other than a biomass appliance. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 1 J4\", \"document\": \"BR2010\", \"text\": \"Protection of building: J4. Combustion appliances and flue-pipes shall be so installed, and fireplaces and chimneys shall be so constructed and installed, as to reduce to a reasonable level the risk of people suffering burns or the building catching fire in consequence of their use. | Requirement J4 applies only to fixed combustion appliances (including incinerators).\"}, {\"ref\": \"Sch 1 J5\", \"document\": \"BR2010\", \"text\": \"Provision of information: J5. Where a hearth, fireplace, flue or chimney is provided or extended, a durable notice containing information on the performance capabilities of the hearth, fireplace, flue or chimney shall be affixed in a suitable place in the building for the purpose of enabling combustion appliances to be safely installed.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677800-mESSE2UwAqqWjeOZwAnv",
+  "object": "chat.completion",
+  "created": 1790677800,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether a wood-burning stove counts as a \"biomass appliance\" under Schedule 3, since that item is phrased as \"solid fuel-burning combustion appliance other than a biomass appliance\" — meaning biomass units may fall under a separate listed category with different competent-person schemes like HETAS.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether a wood-burning stove counts as a \"biomass appliance\" under Schedule 3, since that item is phrased as \"solid fuel-burning combustion appliance other than a biomass appliance\" — meaning biomass units may fall under a separate listed category with different competent-person schemes like HETAS.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSvwoKEAgSGAI4AUIIdGhpbmtpbmcSDHEd190dzsKrvK06tBoMwmNhG2YgXtjCH8daIjDuOhdKVAWihZ2HSy70M5pvuDReiVji9XynaiBGGuM1y3xvXd6/FoX8BUdBXRrLxTQq3AnlpqONeu41NZIDjUjdMHvFCSmAWN5uMFTgPqsfFTkVEIg5kfOo512HsRRtUBSn2oqx2PStQc867u5CrGgceWM+9Hqzm2Cko/yCVS5svdyRnBZrkfBqUMJpo373es7uZZntlZVI9O3YVMBxBqI2II5NEeL0WBl0BnU5Gqydk1cjysM//dTlCkze0rXzQeaN44/aDnGslbOLk4TRoNJ2sk7z84fwmn3m74fxSILvaHmWhJtvpZpCQHvmOszw0u4a/axZEFwNYWrdXCm/Vs/8EXozEKJ80JhXPK4EzvVm1QWuicP5sY4E4o2FCekZ/C3nAtCRhL7DiC7l75EjvsstYep3gBC0R9rIO+45ezjyiN6CvO6bGIeevttL5PwG+anZvJVX5Mtu2lD4AgX5JbU+SPkNEPyknu1qRnuriH7yeWlfLs+OVl+H5RTwz4cJW5qqJRWFQfBUUYbDYo7zuOhDUvwu9B3UXnOpb1Po4I9RpMtwbsl5Wr1+kM0CuLDkXf30Qz5kgk++cz5ZB0etQ3s+4QWtAXIGGjuaBkl93gh20++GDIuiNbDQTr391dOml3ESQqNsVxL5GIzvrNMoLusSjNT16UN9vnwc9n5bIjEIHJ5knMRaEYDa6FjAFO0U3dlp48+4sFMWgi7waXDvjUtVBnuMxnv/WA30j2vxL2qBPTgRSt3lrox7PrIlIIbUftk6bPRQaEFPhzZDeLwkzR7Pi9X7M4iEfCDTUE5I1RUdo/Mr/f1HIA0Jgg0l4FiALsY161YoykUasRcZzO13+eKvrgjGm11jwQLRC83dIpKzneEBjeciDmo79Ci2wXYeCGFsmcV5xNJInH4EoLChuGm8R5cRvqPTOpmk+DL0moU+XIvGX9fPXBaTuHiPnTBqxd79VICLLQ6gFtlW2fJKqvQvqHOmZ7Qt6MIjmvrRIVKZRnKnf0yLhTpzZ3Sst3RSp65A7qrO50S2uo9RcianPh0nKb/2r6kN6Zqh3+LPHCQ+1SmK6hdIVEsn5Oa0hoifSXLn6ZsyCN6q2JT539qdNwy9y2mKwVO+gSbuLa3AI531RBRNBOwLoYMI3mHAyOASFsG1Gt22kspFcl1aWNcupTee496lG6yc+RakhWLo1NNFA+p96zh9EY4FLZx137Y2OUkCvRskSLUelNfMX5yfiDmxXLlbztVv+3QEtQ0/sIGliN7S8rpwmTNjguAmWyZbpBF2ISv2Dh2FDx/Di3NaVMtu3MmdAwsyHIz3fi3w0pmHWZQ31zglb2OXiH0JhZdEwSzWumwc9BNaEHjy/MfcZ4XNtsGIYr2KFmcN5E4KK9IECLpJkCfjvlfuGHkOv9Y6yFQ9Ng6kiTHMe2+wW/BV0U6DVkRPAIvWKRAG8sywhEMHlzfiZL8gt/l1VAlh0W42wirAEyWpzERT2qI8Dh9gsYHDRZO/xMQXtk52kPH8R9vlptXK9h/q6d3O9o0WtYE14v25SbNKXaRgIJ826D3HHTiKHDR8+0Ue91Q3rqlVqjiHqJXrA5NybEjVmNYW5qLbHN6qLsPHZSwMNs5jpZrDTNOcUZZRXKJ02LZpvXQdzkOnc1fTPbtEv3tCALfXcadLkpRsz9mJS0dvXqrdmRS2IK5QkS2opIgkw+wybyk6eERBOlkAOskUfNGMqpjpNv2VhBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 942,
+   "completion_tokens": 300,
+   "total_tokens": 1242,
+   "cost": 0.009768,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009768,
+    "upstream_inference_prompt_cost": 0.003768,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 16.571
+}

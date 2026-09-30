@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cavity wall tie replacement across the front elevation\", \"project\": \"Terraced house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"Sch 3 para 17\", \"document\": \"BR2010\", \"text\": \"17. Insertion of insulating material into the cavity walls of an existing building. | A person registered in respect of that type of work by Blue Flame Certification Limited, CERTASS Limited, The Insulation Assurance Authority Limited ... under the Cavity Wall Insulation Self Certification Scheme, by Certsure LLP or NAPIT Registration Limited, ....\"}, {\"ref\": \"para 11.4\", \"document\": \"ADL1-2021\", \"text\": \"11.4 When assessing the percentage area that will be renovated of an individual thermal element, consider whether the element is being renovated from the outside or the inside, following Diagram 11.1 and Diagram 11.2, respectively. Building Regulations 2010 R6, R22, R23(1), L1(a) For example, if external render is being removed from the outer side of a wall, the area of the thermal element is the area of the elevation in which that wall sits. Area of the thermal element being renovated Total area of the thermal element Diagram 11.1 \\u0007Renovation of a thermal element from the outside For example, if plaster is being removed from the inner side of a wall, the area of the thermal element is the area of external wall as viewed from inside the room. Area of the thermal element being renovated Total area of the thermal element Diagram 11.2 \\u0007Renovation of a thermal element from the inside Building Regulations 2010 R6, R22, R23(1), L1(a) Material change of use and change to energy status\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677769-N5RzAiJzNtNF0AOzDvTi",
+  "object": "chat.completion",
+  "created": 1790677769,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether cavity wall tie replacement counts as building work requiring approval, since it affects structural elements under Part A, but guidance seems mixed on whether it's treated as a repair exempt from regulations or something needing sign-off.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether cavity wall tie replacement counts as building work requiring approval, since it affects structural elements under Part A, but guidance seems mixed on whether it's treated as a repair exempt from regulations or something needing sign-off.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSgAsKEAgSGAI4AUIIdGhpbmtpbmcSDLtYhG2nBfTaa4uI3hoMcqqo0EuEYXyBLArjIjBZY6ejwFYEnvMbRzk2PD8Wk1P2rG+Jny+FW8JvqyzqAE5Q/LEfv4LwH7riNPg8OOAqnQrIab0C9Kg4n/y7SzEkaZfwVKBIOHRCP9Hmy8Tc2fCwFBd0nrdEvm92JdoixIqJjZx1x+piPly2mNhystjlmp/shJvws7nJcz5KiTvETWpM7iHTtKo0ADSdUujeaQ/2glRRBTAIyaq3sOB3vQGpF2gtefhpFp8CvFq8iiH5/5S3OCsRnzAedUjzNhxf7zKioE7CXWSnrvPsoGnhYwbpXN3NXXOYOtp9adJnRSlHcaGrk1RCe+BI36q75PAuhV9yJbr76oeahbAKPUFGphkKxy8VTL07hoV1MeRF1Wvl4nDheHer2q+f/DF6C8bZBlsFr/xbo58/yF1WS2UZJ8y0/3VobJoohq7FP+HPyMXaXZ4dKnxkRuOWuOccoA8bNIlo5tvOXdnrLdRjonC9ZgBgN7WLoOqN025NtKXpHhy+GAPI99w2gtLOHj+W/EsYJvoff6r8lSI5WYHfH4L/Dq6Lw5zOQGVEIzCPRZ7EYro+2Ks3/ciiDB2O66Sc2r7vRTQtzMjy7zZoHfb37LE0nOlQyerm+H7fKlThe1mN1MOmzMIzJBL5tR2Y2K65dV2+ZlFWWQHrDDX41aabHR4eCsGq4k+d2MreX9rWrG/Ks2S7WZfDWumA6GnzboVKNFXC2Y4lLCP8VIME05e4LqmtVG08uf1empC2su4/BDW0Vz8h9r9Z/KgDuSKJrFFnyFuKW51PYJW/ODg0KwbSbPj16438Yhe3bjqA5M2ZyjMPt0Ta9JeG6hwKopVrQRwwwdLRzGhsJ6nX+y2FWSTR/k2LMbp16i0U1V/pd2x3bZE206QaOn6NyTTovov+Az/Ib7kiNZr0yEjUd4NW781Fx7G91MIDOEHCZgqfcitQvwd7BEGyuJ8D5m/kTNUx1LH3fhyQHvzCvIKSrhMHjRMXzk+w/jyrwOZKS46A+Igbt4IYkjTdw3gCqYf0kSc0clgruRN2oi1JHJxCxRcUtY7M+HfI+BTwq3TjSh0zdSLqlQ6wxZB4ofxTattkWtVY4dFkTkP48FimqVWBjJpc+jqqAh1TyGDUZsMmeY0sJYcsMNLerRC6ECUODP2qtOsCVy/p57516ymZdC0hnuYqbVTyrF8WOeBELl9AHKKJJTA/iE9QLs9RgwWNOGo0HhDo1ZUM8rCsNR5BH2vTxXtGBe1bh/vV61aX/vuOvzZR17vNO5VakAowv6ko82NXg2izEfatJsHGN9wlOyHhJ3dr2MJzyNnLAKkBoAA0synue1mKQRjv9BLOu49MCXcluqgswvkFbajNMg/87VIJY+pYo9iqqMpNN1xxJb2VtBBTCwYYMOshVJ8lGJP48pbBCJ9Co0uvKtasPtpUXLv/I/o//Ppor4xM1RN9yHJ54d9IL9rxJVFUAci5zrcDzjPchMw7XbHdXoDlHjPexo+UsvZYSX63BWK0apJW6eDo2bUDR9S1EdJLAFAZbHxY3OA7746q4TA1WNeKMnmmiWZNL+2cKuNvpnxVKAnPz0A/DQgn/cVRYbRO/9sJVdWkI1E0xjlNyZXbur5w5PzGsuzIq9TXx0o6I2g8OBRkJiUJ3D7Q7v+5Y2oRip4rZBGtxKFtUDiL+Cbph3wIWwcF3TaJruxalDQahM0CLxQkkPqgwPcRiq/nRkKv2tZb2GTj/bJnz5h5Exz6vJo8QB9rEomsj5N+kUHdugMgdgcSJRd9FDJBkqRR0j2fYmd4OXB1i3XQVoU5FOj8C1Sm1E/3q6pbR0DghD2p//Il7y+RGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1518,
+   "completion_tokens": 300,
+   "total_tokens": 1818,
+   "cost": 0.012072,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012072,
+    "upstream_inference_prompt_cost": 0.006072,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.311
+}

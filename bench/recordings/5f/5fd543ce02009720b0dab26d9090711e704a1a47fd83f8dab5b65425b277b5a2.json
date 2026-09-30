@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Additional sockets for multi-wall brief (gap)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677575-YYGyCKZdX747lm0nacBr",
+  "object": "chat.completion",
+  "created": 1790677575,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Adding sockets to an existing circuit in a dwelling, away from a bathroom or shower room, is minor electrical work under Schedule 4, so no notice is needed. Part P applies because the installation is in a",
+     "refusal": null,
+     "reasoning": "Adding sockets to an existing circuit outside special locations falls under Schedule 4 minor works, so it's non-notifiable as long as it's not a new circuit, consumer unit swap, or bathroom/shower zone work. The tricky part is whether this renovation involves new circuits rather than just extending existing ones, which would change the notifiability.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Adding sockets to an existing circuit outside special locations falls under Schedule 4 minor works, so it's non-notifiable as long as it's not a new circuit, consumer unit swap, or bathroom/shower zone work. The tricky part is whether this renovation involves new circuits rather than just extending existing ones, which would change the notifiability.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5AkKEAgSGAI4AUIIdGhpbmtpbmcSDBhJ6rBp+ns6tA2UzxoMnrJw3nFFIgLhkI9rIjDrcPMU3HzaDnJKVzm7XN1tf7GGSJ3dyy00OscBhsZWn2NCkAU0/fcQpRqjum0DUX4qgQntF7evxT3P91YtvQo7LwgMSnUcf9RfBcKsdN4zsBCLORtJQWvg7oO6bCu+Ez0Tn1EoqdGX2aRWFxdHi8Z6iC23UGeXKk1/LCOYf3AFbq/SOqZo8434WSkN14YLLsL8BWfvdYsz01DkZOksuyHwmhQ3wMNykMuR1MYflmxyou/8zZ+yPsd3RrEdjwD6mTXRUibnhZgEJ4CquzdONYNjHgwtqV7cr8UKJU0Kfu0acyHc4W3vFbBPe+s792iqEfCJcCu7hysIah91bm7IBmH68LsEexv3VSRWXLcxCPinh7FGL2mpNjIHAs7dZghkxMzL7yFaGQELoJ1RjdpAoAtsYED4a6Ner2MznHtGRo1cbgwaoFH0dAgVVy61QERstLcd0wI9tV3uNF1JmXckHzV57RdTP4khJE2/eJgMPs6t0u0coMu/1P/+fOLEgl4+dffw6Itp+zca7BAAYqDoT6/6/WAPrD3JEFLtY3qAzquSjKuOWN7qtFovRZxelOzQlZfoI91zn1GtFTBQ3QNQLLser2Awy99TNYGC0GzPVEl/Oj1Z9hvO5Yn/YG6ypOW/4jD2lb0+pvZnF6GymsRAbynLFFbQ9E3Vi813eTCq334abN67Cv/DLvT7MB1Qh/XXmETsR6ptCxu5IKwDm9GGZzH3O6n5fzdQ2ymM+u3ZJNTug+eknppP7wyxgB0TQzrlv8OkyTGbmONOXYxZE9QG+vJ7DrcHPcqBaRwbsNQ++egnWU5Kz9gl7PoIymnIWhxiX5/SWck4ci5Wsuw3m7O3l2x8gxXrX+1YpBKFyhjY18w/QZ4hwNZbhGhswQQEEwNfAqYjRwCN/X4WgRMwWlKN8IYJdGeLq6IDV2cf5uoagiGbt2dqR/URpY6fZsbOe9FXkhFhQ9f968Ap41WCw1Hc1BkRVxTkPgvXrpmk834hEfuWstx9y6xltXBD5p5lUbY1KhIyqtAVqre/dBy+cFizi8NvC5wX7mWJNXhTQbONYIfoerTgibmY5dtYOEdASNXNk7EaLuhqx+KUdvuKpqjNd6pcJMaTX4HTjGRpvKzybBiow5PU3u1pRlUxNooWjfAlScoaGkUc6s6ZlfTvwAbdPodHRsOZQO7NloDhYDUvaAnINzEkNTstSYQ+OPdwiRUzKScBsk8pBRQ7JwKL6O+lGecrIxU4Wu58KAZtp59WAQJT2roBQFEPE0qYtP+M085bwVQNJR0zsLbJZsxSysfEQ3hvy257dXZDnNouujUzWqyL4w10sLvsO9qluZh60jhT2ifMGsrePEu+VeZrgXul4pzHLXGHiaA0k+bq7QT2lgnqptM1G0ppjbFRsMlKiYzkkU+DKkUaosdXOUGpQLbfJ86tC/MistHtK0a4d+fka9vBqzh4GHf4+RHDlLGh5QP7Mpt4M8Xd51L01ulUtPkXOT/nME0UAneg8ZhXi17zWkHr7LYqSIEMeAPD4WV5Inw5ksWOIi7w8ko/DzonQ5Vm6crT/PMYaCb9N+R4+62OtnZfUVPVeY/+9i7OK+t0GTgFugjz6kTSGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1515,
+   "completion_tokens": 300,
+   "total_tokens": 1815,
+   "cost": 0.01206,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01206,
+    "upstream_inference_prompt_cost": 0.00606,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 233,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.991
+}

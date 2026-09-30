@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Replace rainwater gutters and downpipes",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 4 para 1(j)",
+     "document": "BR2010",
+     "text": "Work consisting of— (j) replacing— (i) a sanitary convenience with one that uses no more water than the one it replaces, (ii) a washbasin, sink or bidet, (iii) a fixed bath, (iv) a shower, (v) a rainwater gutter, or (vi) a rainwater downpipe,where the work does not include any work to underground drainage, and includes no work to the hot or cold water system or above ground drainage, which may prejudice the health or safety of any person on completion of the work;"
+    },
+    {
+     "ref": "Sch 1 H3",
+     "document": "BR2010",
+     "text": "Rainwater drainage: H3.—(1) Adequate provision shall be made for rainwater to be carried from the roof of the building.(2) Paved areas around the building shall be so constructed as to be adequately drained.(3) Rainwater from a system provided pursuant to sub-paragraphs (1) or (2) shall discharge to one of the following, listed in order of priority—(a) an adequate soakaway or some other adequate infiltration system; or, where that is not reasonably practicable,(b) a watercourse; or, where that is not reasonably practicable,(c) a sewer. | Requirement H3(2) applies only to paved areas—(a) which provide access to the building pursuant to requirement M1 (access and use), or M1 (access to and use of buildings other than dwellings), requirement M2 (access to extensions to buildings other than dwellings) , or requirement M4(1), (2) or (3) (access to and use of dwellings);(b) which provide access to or from a place of storage pursuant to requirement H6(2) (solid waste storage); or (c) in any passage giving access to the building, where this is intended to be used in common by the occupiers of one or more other buildingsRequirement H3(3) does not apply to the gathering of rainwater for reuse"
+    },
+    {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "not_notifiable",
+    "probabilities": {
+     "competent_person_scheme": 0.08,
+     "full_plans_required": 0,
+     "not_notifiable": 0.9,
+     "building_notice_or_full_plans": 0.02
+    },
+    "confidence": 0.87
+   }
+  },
+  "usage": {
+   "input_tokens": 1180,
+   "output_tokens": 63,
+   "cost": 4.956e-05
+  },
+  "id": "gen-dec-1790677190-xvgILHI2mit4KJvA3lvE",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.31
+}

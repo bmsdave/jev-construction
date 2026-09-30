@@ -1,0 +1,58 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Loft stair",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Joinery. Part of: loft conversion with rear dormer.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 1 K1",
+     "document": "BR2010",
+     "text": "Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building."
+    },
+    {
+     "ref": "Sch 1 B1",
+     "document": "BR2010",
+     "text": "Means of warning and escape: B1. The building shall be designed and constructed so that there are appropriate provisions for the early warning of fire, and appropriate means of escape in case of fire from the building to a place of safety outside the building capable of being safely and effectively used at all material times. | Requirement B1 does not apply to any prison provided under section 33 of the Prison Act 1952 (power to provide prisons etc)."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "full_plans_required": 0.06,
+     "competent_person_scheme": 0.41,
+     "not_notifiable": 0.03,
+     "building_notice_or_full_plans": 0.5
+    },
+    "confidence": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 826,
+   "output_tokens": 65,
+   "cost": 3.4692e-05
+  },
+  "id": "gen-dec-1790676175-a2Go581bDNJoP421Sy2l",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.264
+}

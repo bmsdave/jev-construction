@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Adding a single-storey classroom extension to a primary school\", \"project\": \"School in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"reg 2(2)\", \"document\": \"BR2010\", \"text\": \"(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted.\"}, {\"ref\": \"para 0.17\", \"document\": \"ADB1-2019\", \"text\": \"0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677688-UCbeGtReakbSPiK6xrL0",
+  "object": "chat.completion",
+  "created": 1790677688,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "An extension to a primary school needs a **full plans application** under reg 12(3), because the Fire Safety Order applies to the building.\n\n- **Not exempt:** the Schedule 2 Part 6 exemption covers only small *detached* buildings. An extension is attached, so it does not qualify.\n- **Section 4(1)(a) does not help:** reg 2(2) treats a school as a \"public building\" unless section 4(1)(a) of the Act exempts it. My understanding is that this schools",
+     "refusal": null,
+     "reasoning": "A school extension is a non-domestic building, so the Fire Safety Order applies and reg 12(3) requires full plans. It doesn't qualify for exemption as a detached building, and the old exemption for buildings approved by the Secretary of State for Education no longer applies in practice—so full plans are required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A school extension is a non-domestic building, so the Fire Safety Order applies and reg 12(3) requires full plans. It doesn't qualify for exemption as a detached building, and the old exemption for buildings approved by the Secretary of State for Education no longer applies in practice—so full plans are required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSuwcKEAgSGAI4AUIIdGhpbmtpbmcSDBa7VJznpWOMxrS7choM2IbsjifJYl+R3VmyIjB06YtevXtodNUgWyV5obnvI/MIEmZK1lJKGBeaL/utwirvnTYZTtQyHhi7aOg0l/sq2AZa6pjAAaQk6E8Whrvyb4+rT+x+FhSYbYztRP4C972OeUsUHHaBMidyxT7BsGqfp7ugFeIzoLiH34rvyF0AkEw+hfkyzBZ/6+My+kD3KwgDrq07/NNmgVn2PIFYZBYWo3O8ERMD81aX5GbtxJmN+N3fyUAIYq2VagQbnK/CCD3ndsx5xc98qjpWzfRhBypPAbxivnCUVTeSXNwMdWOE0OpfIiJ+bQYYFI9QlTbo2dUAh1LJ/kzAo3MH/XT5ur8rhElk5LPaHAlshEEIKMcAjFneH7kNXuox5MJFUCKLidKxwIcvr/U+KhBd3nqOVgI7niRcw1yG7ZBmRq3oo9ch1p12DR/WVuEmGhtPEB48GzGrMsod6Pa3GNlcML8Wdr3vyY7BJgPUPwfGpy3Qkx1DY/uA+Mwm9/VWMfqToPQdHDk+fcuaGcAHq9Blk8Xsr5rURcN5zjA9hlMU+d7dpmyDw/H9Ba4wfJpDm1ShzJCYYpSTSriUpGZ0piUNRIRlUBThLWPrYN6v040/JHVMuTNswuJxRfuXVK7NeQho6ojuoWX4qYEJx4oSnt2Sw1ZeC8XCxJNAOS0hK/zHuc/NdEvmg5jDc6hmHu0ppJfl8RBVVGhQgROCi3DaoTgXACU4jP9efhSyFXfwg9olYrF6MP6wlvVLXxAocUkkggEBzbSlAucRbYN++AVZIEp5229PrVMo9nvXVJB+1lnWGu4NCPQpMt7qqTvqqcyRw1E3kKq2JTMH1cQlJpCj8K9tArbpYv45klFamJahnLAWKdavywGyuR5pHRwKXw7pbTNtQCWTAljzqlPm44Z6MGT2bCXTBfr6oJov1pXKiuMRmpkjGFN5sUtCARHpeUZ8BPV3KVtQLetMEgbqSOXqiRT9qtDOSwFT3ga7FIn42PvdsTfXdcinBPVsVn/oA+kEo6KPtAzTSYj+flwePtWyUeL+UXJcmNYyKlP6CFzPBf/r3Xj51hvMMqZmWeoOo+jUy0u5owhKMyoDtJURdendKvoAdWiUpS4QX7a+puo+KE27dDuCTWx8tFmmlRCZoZsbWLwZZiarbUwMFm386Z0R/Hz9aOMEXYJdvudT2vp3BaZ65lvaQ9CnWy0LSiYnErGP8cuqt3bi2oLhZNr8r1Ge1EqVGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1318,
+   "completion_tokens": 300,
+   "total_tokens": 1618,
+   "cost": 0.011272,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011272,
+    "upstream_inference_prompt_cost": 0.005272,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 142,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.413
+}

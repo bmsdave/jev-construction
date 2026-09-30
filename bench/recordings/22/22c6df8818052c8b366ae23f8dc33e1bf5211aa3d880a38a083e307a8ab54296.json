@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Freestanding bath\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Sanitaryware. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678381-qprfPrbEeU5NP7UBBoOj",
+  "object": "chat.completion",
+  "created": 1790678381,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm checking whether replacing a freestanding bath falls under Schedule 4 exemptions for building regulations, specifically around sanitary appliance replacements that don't affect drainage or use excess water.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether replacing a freestanding bath falls under Schedule 4 exemptions for building regulations, specifically around sanitary appliance replacements that don't affect drainage or use excess water.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSjQsKEAgSGAI4AUIIdGhpbmtpbmcSDLyiyR0DqXUWusYbjRoM/23Zal3kRpMbggEgIjAksL+6KsOVQtByKTZNnj2nPjkJ2oOMrZuL9ZyzpC0ffN9Sw5ZoNt2XFz6jC3f5hxcqqgrah9dtbGtuMMANM/t2XhH07PZNF0xTl6sljEhZECIt/rV6K2c5Mo82SzBk6HUHLHjQSIVVMrmkI2prMhyGjpL2xTtOsr0brq07hmLBO5pMFpYKhbrk4c+f3K1ES+XtSRqWH+5V95D7WkzlZRAYLCnFz9LWD29mt5W3vNYscEzxrsgqhL/JFexnWrXdwvveHpazCBeC5v/Dice0n6CkNDtm+hxFhNFBX/bZuyIkZDfZ/m3QOO738fS63Dzo1zsii6EpCAII1TBdbO1ZPkv1+E++1pfqd4Ru4RYppFrJ5eEum2nCdfT83gBlhTzfJZC++Eir3BgJlBMYJyRoy8qJGys31G4oaDCDMQKmDe2ev3gFlIHnvcBAiGlooFjtFJeEBIu9M2OjSm3Kz0Qizpb528O/t8G3VugHBGLJm2UqM1bi4KbTM+cBK967R3jMFUvbvTJAdhHqqlPePudILI9/kCdEOvqWCwvMNHeQXzOFI87far7THKEVjGO9JdT3is1WMpQqjFd4fI8IjP5UQhkZYmdqw1kGMdoHrGhRdqZREnuCBRojYheuvqU2hOhFVt4cMwNxUtvT74ii6+DwfKOEPGQOwz+mnLogg6b06WXyAbVXNjO4WYpqrMnRqeiyWrgtINV83a314G3Su/ESCZArbXg0iPNKKwwGc0l4+1FqSK6t3w0ZeND5XQ6vwBFDE++NKtq1QjrBoWPVT7ze0WoOB2UvRt/6zKY6kWSTjK4BQKn67Nknxo2dT6kmx//4U2d90lpufKfeXX/kiWHYXfpPtT8kCSE7VERhP78vgCmloyXAtOzktCcVZmj7EerR2FXKiDIENcD+p3gCNvFpEcr7wFn7r/uCOnLEjGh/b88If7INpG4Itg5Ot2jeBofGL/ijf8x5xIY4j+d1EArvm+2+RFdtggd6yg5tTNXkQc7cVQ2gGFxWHl1TvOwbqwnJoGYZagjDFcdhU8rvbO28MFi98B0FF924PBOLyWUBN8swV90kxG5Sb/7JJNgdcziBBSnVri0crlp/nKhSIfCFewdaXLYE2tZLVqc0XIDDvvdyjCEtcRJ9KGKKm5yr2hJb8T0/UGChBtuCY4VzhiiZ6NZxJRNK7np+OlKlOkF/MFR5E/7oStSJkNEpN08eno5lkwptk4sMIIJg7YmMm7kMGJuxX8UNQuDU0HYyPxK61pAE2VSZ9iNwLxMb/j4HMEjLdDjnrmA/YZJ6y+Qgum5nM0uHlUTeS7R54oYwNYGiNBi0X1Gyr+yvg2qU3diSjRbEEhyG1UOmgY5T59DOX6KHCJz/4hUrYO6JswT/XwAu21/P4PAuymW/tbJZ9tjxoXb97E2h2LaHtNUUFys7VCZCgKR05lukTqg2KpiWXt9aqkCjG//bvxiB05MoJGpHrTADe6EPqNERNA6amujjtKIDKUt58mzDnmtx/AVhZctly3aeGy5ASGtR6ua896R4w0iu3vuL66MICc2gVfPoHq78ikYSByPiunUk1q4DFY+iebLvJyUBMoqiCztbaRF4o8YaLyagHEO1x2ps7B4I2Q58eCGAgWW+AgJixm1WFFWW7QLcY2NJguSfdZ9TUnZjkMX/5B0RXSydQCVXkdI2cLyZNdMq6BgjUbtPNXmqia8SeSqwvnXtWws/h+5wmVEJj65tgTQCge8ZfjvQaZFCEb++kXmM9LaRnlCFyX0Xileug5AIiFJrtQ3f1SQM8RpdsYBhpfHbWDJKFec4JM/ucytPH3pgoZrgzagSVLKvF+Aj+hgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 489,
+   "completion_tokens": 300,
+   "total_tokens": 789,
+   "cost": 0.007956,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007956,
+    "upstream_inference_prompt_cost": 0.001956,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.106
+}

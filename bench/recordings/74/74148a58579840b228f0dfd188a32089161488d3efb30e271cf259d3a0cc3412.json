@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New detached building close to a drain shown on the sewer map",
+   "project": "Residential plot in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 H4",
+     "document": "BR2010",
+     "text": "Building over sewers: H4.—(1) The erection or extension of a building or work involving the underpinning of a building shall be carried out in a way that is not detrimental to the building or building extension or to the continued maintenance of the drain, sewer or disposal main. (2) In this paragraph “disposal main” means any pipe, tunnel or conduit used for the conveyance of effluent to or from a sewage disposal works, which is not a public sewer. (3) In this paragraph and paragraph H5 “map of sewers” means any records kept by a sewerage undertaker under section 199 of the Water Industry Act 1991. | Requirement H4 applies only to work carried out—(a) over a drain, sewer or disposal main which is shown on any map of sewers; or(b) on any site or in such a manner as may result in interference with the use of, or obstruction of the access of any person to, any drain, sewer or disposal main which is shown on any map of sewers."
+    },
+    "c2": {
+     "ref": "Sch 1 H5",
+     "document": "BR2010",
+     "text": "Separate systems of drainage: H5. Any system for discharging water to a sewer which is provided pursuant to paragraph H3 shall be separate from that provided for the conveyance of foul water from the building. | Requirement H5 applies only to a system provided in connection with the erection or extension of a building where it is reasonably practicable for the system to discharge directly or indirectly to a sewer for the separate conveyance of surface water which is—(a) shown on a map of sewers; or(b) under construction either by the sewerage undertaker or by some other person (where the sewer is the subject of an agreement to make a declaration of vesting pursuant to section 104 of the Water Industry Act 1991)."
+    },
+    "c3": {
+     "ref": "Sch 2 Part 5 para 1",
+     "document": "BR2010",
+     "text": "(1) A building on a site, being a building which is intended to be used only in connection with the disposal of buildings or building plots on that site."
+    },
+    "c4": {
+     "ref": "Sch 1 H3",
+     "document": "BR2010",
+     "text": "Rainwater drainage: H3.—(1) Adequate provision shall be made for rainwater to be carried from the roof of the building.(2) Paved areas around the building shall be so constructed as to be adequately drained.(3) Rainwater from a system provided pursuant to sub-paragraphs (1) or (2) shall discharge to one of the following, listed in order of priority—(a) an adequate soakaway or some other adequate infiltration system; or, where that is not reasonably practicable,(b) a watercourse; or, where that is not reasonably practicable,(c) a sewer. | Requirement H3(2) applies only to paved areas—(a) which provide access to the building pursuant to requirement M1 (access and use), or M1 (access to and use of buildings other than dwellings), requirement M2 (access to extensions to buildings other than dwellings) , or requirement M4(1), (2) or (3) (access to and use of dwellings);(b) which provide access to or from a place of storage pursuant to requirement H6(2) (solid waste storage); or (c) in any passage giving access to the building, where this is intended to be used in common by the occupiers of one or more other buildingsRequirement H3(3) does not apply to the gathering of rainwater for reuse"
+    },
+    "c5": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c6": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c7": {
+     "ref": "para 0.2",
+     "document": "ADB1-2019",
+     "text": "0.2 Requirements B1–B5 of Schedule 1 to the Building Regulations are dealt with separately in one or more sections. Each requirement is shown at the start of the relevant sections."
+    },
+    "c8": {
+     "ref": "Sch 1 H1",
+     "document": "BR2010",
+     "text": "Foul water drainage: H1.—(1) An adequate system of drainage shall be provided to carry foul water from appliances within the building to one of the following, listed in order of priority—(a) a public sewer; or where that is not reasonably practicable,(b) a private sewer communicating with a public sewer; or where that is not reasonably practicable,(c) either a septic tank which has an appropriate form of secondary treatment or another wastewater treatment system; or, where that is not reasonably practicable,(d) a cesspool. (2) In this Part “foul water” means waste water which comprises or includes—(a) waste from a sanitary convenience, bidet or appliance used for washing receptacles for foul waste; or(b) water which has been used for food preparation, cooking or washing. | Requirement H1 does not apply to the diversion of water which has been used for personal washing or for the washing of clothes, linen or other articles to collection systems for reuse."
+    },
+    "c9": {
+     "ref": "Sch 2 Part 6 para 3",
+     "document": "BR2010",
+     "text": "(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation."
+    },
+    "c10": {
+     "ref": "Sch 1 E3",
+     "document": "BR2010",
+     "text": "Reverberation in common internal parts of buildings containing flats or rooms for residential purposes: E3. The common internal parts of buildings which contain flats or rooms for residential purposes shall be designed and constructed in such a way as to prevent more reverberation around the common parts than is reasonable. | Requirement E3 only applies to corridors, stairwells, hallways and entrance halls which give access to the flat or room for residential purposes."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.14
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.14
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.71
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.03
+   }
+  },
+  "usage": {
+   "input_tokens": 2798,
+   "output_tokens": 175,
+   "cost": 0.000117516
+  },
+  "id": "gen-dec-1790677238-3ZaPTbgtx2OnOEncqfBj",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.305
+}

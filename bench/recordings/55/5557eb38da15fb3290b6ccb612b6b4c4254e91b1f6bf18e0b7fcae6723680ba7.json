@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cold 28 mm pipework\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678312-0KecuYKzl78I92aF3hvg",
+  "object": "chat.completion",
+  "created": 1790678312,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm checking whether installing cold water pipework counts as \"building work\" — this hinges on whether cold water supply is a \"controlled service or fitting\" under Regulation 2, which ties to Part G1's requirement for wholesome water to certain fittings.\n\nI'm also considering whether Schedule 3 (exemptions) covers installation of a plumbing or cold water system, and whether a Competent Person Scheme applies here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether installing cold water pipework counts as \"building work\" — this hinges on whether cold water supply is a \"controlled service or fitting\" under Regulation 2, which ties to Part G1's requirement for wholesome water to certain fittings.\n\nI'm also considering whether Schedule 3 (exemptions) covers installation of a plumbing or cold water system, and whether a Competent Person Scheme applies here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmQsKEAgSGAI4AUIIdGhpbmtpbmcSDDVap2/2PWhIT2ne+BoMxfwI55gnRgZMXW9aIjDk4xohB13kAQBjfj+Z+OVKEvzzq2gtpsO7MroLYcYjmd9JQjPTrEvA+/+VOr3F8ooqtgqmXNerX8MoKLE+8L4uCRb+ytb0vvGijfe7DnvTfwgkiJpDOxWThcW3dOQ0SE2HuHAgpTDTz/KRWHW/EFcAXYdpoVgJqQnRVwG09nhe2vKC5hMacl07Y/cMrHh3WzFEJ0jLQyJJnjt+FZH+s0PPYbhBpLpkj8fnAHcSBmk64L/J/03d/9bOjXikiDnRczIjm1M6yRyNV/JmyQ+CF0g5GMIqcsUoiXfEoGFC66BiCESrrWChP+JVE9vGIp6JHm7upR8UW9fggJgijc+Wis/3qnT9IyeeV5sZywDjyN9ZiVrpVTOtiUzy6AuVN9q0MbFIPsTe0RpiQlRHfNx98E5fDTvBjPedEgi1YWaPbCwBTpewmlGIiOGV+qDdWeiZxa/Jb8ZFovvk14hZ6YzHzmGrGBrya1X8rj0MX1CzFfly91EGfN2cUXTja63qGe1jvPlGikDSORDXT6o6x8brQLPghec1oh8VeEnREiiVmVTYIYGCndGqdlOgMxCtFSG14IxBUZPw1NikgCwdsE92GnU90g/pOCYdo2GyxSw3CTCsWMu54IC2db7Rnj7oWqL0XapFonelei0YF9gzmmJqqu0BJKtuXt5H54hYer33pyVa4D81D4P4VMwIjJnGoN2op+ATCp2xOixWYi1UCEtfOheYZPTpAIyaGg866UekdTzhCUM+IyzketLtACpksj7pEsvMMTINY1CrUrdyu+XXlWsVsKbpRX4UWRVSQ98iNdFFul8CoIl0yAWzdzytVK3dB6X2MM9BvBAzKdpIfqU8YxB2Mwcezn18qsaUYVQTSOd62KK2VCBoN0GJQ426ShNkcVxXsUo3y0cU5fk6ZWSqhDngdCKcqCE7zkgUVwZfLc2DauLM+qpg3g7LEaMBmRw2/n+qckEdRORgV9pu2GknzbJl5Vq8bmhN9lmIiUYMU0727bKz8odZV3CdnBbjthbMqhwk1kg3IcZ+zcpxX/FIs2MjwSPfYLKIIJ1AEBLhEJtU0azikuLJp/2Yj/LdIqN3gVCLj1auycY6j/6soAVcZWX7WKSqWaS+lSVjqoFMNnTqZjfwSLlNtZlyESkxmufXB5Ck1UXar6Y4blkeLPEawN1RN1sNuh9Auj4t3joAW07qMSD/NURO/4WqlNMPm4jGJzoF6A/KKglGKO0stAoLLOmEr4WAjdd3wIpMkJqeFstmTO3ep6T5X0+T3zRppsv+x4jIk2wOVYRI60elM9ewLKpXn10PKlphMmTugq1c53yxtal7VEBg/diBEIW6pF5CZJiQGx/utqCXIX8NZZt2AcmvzWFcPqTbqM7bckcbWU++cOXFgHsIp6LRSm1P0FrkeVqfYLVYX4OaTxVXpCd0v518XUbOEYkUaebh2D42MHIaw9mGbBxC/XPm3Sw2Ud17b4VLY+r12xrDI2p9DfsjYVYMrZguOtXudEqjs1L02CyNVynOaKh107cQVYey2/g15gcAu/TwNiuQG9Dr3sdRSsUWnZXjt3grBSZxX1fxXj8QbaKVjPT+WiDJPOuqBBhDaN353w0pvQ7+izwj8qRuu+qN69ND4XcXZ1cBNBhtDfaVe+sC+Zh6lY5i6itfj5AwpCE9bznv+Abdf1X+jey7XHN1VIo66C8gIvT1Le1H+q2nFrt6Sso/GyPtkAN8y3iVQP1+srbmPK6HmHnqF2+EiBYPd6r4qqp1Qqc7vJTz19WCksmCYssFCNyzZRlUBSbYOliMStDu3JCJ6oIqHnk2ivjruV95X33a/YETa0zxYgQONCiZf2F1BPxBYRgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 506,
+   "completion_tokens": 300,
+   "total_tokens": 806,
+   "cost": 0.008024,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008024,
+    "upstream_inference_prompt_cost": 0.002024,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.022
+}

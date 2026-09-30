@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"P38 service enclosures (casings, risers, ribs)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Service enclosures. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678238-rTdE3ERwRwVa2T91ejG8",
+  "object": "chat.completion",
+  "created": 1790678238,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Boxing in pipes and cables in a house, done as a standalone job, is **not notifiable**. Under reg 3 it is not \"building work\": it is not an extension or erection, and it is normally not a material alteration. A material alteration",
+     "refusal": null,
+     "reasoning": "I'm considering whether boxing in pipes or casings counts as building work — it's generally not, since it doesn't amount to erection, extension, or material alteration affecting structure or compliance like fire resistance, and it's not something specifically listed under Schedule 4's non-notifiable categories either.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether boxing in pipes or casings counts as building work — it's generally not, since it doesn't amount to erection, extension, or material alteration affecting structure or compliance like fire resistance, and it's not something specifically listed under Schedule 4's non-notifiable categories either.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSwAkKEAgSGAI4AUIIdGhpbmtpbmcSDN0eDaBbhRfTqmEyHhoMh4MFphpwNf2IYE7jIjAvnYgExgJJCX2kZQQuFYkxZ/xe7A4bfBOtqtt4k2I5Qin5toUlAVZtbR3kBebqho4q3QjP7L4ZPWT1PeqbSgEEMpFwQEJYKryHHSHNLW1+mPL8PgV6HRv1DyZh0PfeNv4ZwwUB2SpEfADvVOYkKKkjSDaPvjCiOkHLdgPqJyVT9aWDzD1ti1Sv9e2XUHtmwVnlZbUXOxG6tkiwJTwcaT/ZF75p648QyN4W7aPSVyCwHEENIEwb+h4Bm2qCuKpSwqfezkHd/bVrBFsOy0wkVXZxOKo2qyXLg5iCZWxyfoM858Ho3HTRgIauOYkUYtyn/oskR2AnEegzYv5g97CMJcIjSNReIzRUtBKz61dmnQIWQVddU2RfiDKV6zYl8zWLOJLKjis4V3VBy/jdMpwFwnSwWL2x51jfH16m6mrWAmvqG9u2R6hBS8q5BAJ25rdA7u5emApBJdVl5Q8KxFFjodNVm2plhwEypJgHT6n909RMj8AjGHPKSMTVyCC5NpV830kV6Q6C1cagO0H/TpsorFK/X7Pd4qIEzp3gmdtLNxwxxAc5FFklDTnB3XovEpqwYgrGu98LXLt6BUHw/YQ6rLQilpDTXPPe6oRZGrNw6DhKziMFFfrYsMBbh9QqCstMFmGqzZJbOJaKVbEgggc2yuA7PCICQq46OA00UpoqDl6Zxmh7pxjOsY7XBgCywBRj+BjHHqqr/m/YQaYoqmzuku4kdB8SWUIl7SRSdMolcRDoHj6pbs3Gnye1YBpmzNspXoIzY+G4FglVrdXlkjRlsBsTp6kV7/d76hi2yX2qCDHZtWfJOKdHmqPIH0PC+qw0btjTv4GYDNzlDnCJj7vX+ybZbXiFDJqeRM6q3xThEvvPOX8E/CZbwqQ7vYAsEglPnXtqg+1gNn2aMForYaUwq43rdEuoA6yqZ8meQeHjMXjK0GCrb32Qg4OD7uiAcnX07VT1ySSf/tK8mF7ES1scQvjaznWXTHDLU0sAp0kwu3m/pfnwEJa0JDMH9YJaW16bPa7tNlQdnwmlzQE5WUrIvrusTSM6gmN9jZRlT70PZsgy6/T9IR1xA5gzoD2BHAw5Iz3glv6ympI5Jp2mAS4xTpyfdFnh5MRreY3DLEnjX4Nh9mPWuuCqvDJ7C+c0xqukwdE4AhSt4H15WE3W5AmWmhrL/w6x9vn2aXV5CZt2ksysR8LWd29lm2fwRRCvbK75KteQkHb2f7Sim0Q4+V1l+/mjV2X6oRQrXuizZD9SV8Y87DJbFGqJGuTV5SOEE2ByXiYVibLEbVWlDwV/gEvNYOB1u0gInrNbYW0Rh68mz5xnB7OOanHv1wPOW/RjEaYvijlzFuovvaX53EqWZ6kO5HhsO6aqXMfWOHzUlqGSf8yqipC0MNaTEZ975ZmNdt6Kb5NGmrlvHPT0urbFees0bzhPwiiQE4XiXvIohdSJqC20bvMXc3reEO+ydV6s9WXm2gVPWpjgwANwqK0Snd7MM+pvsEv0vtRM2IjrLpxin3Q9PipD0ZUHxMyMfyS3F6OA/1fEcEQb9xTx4/TfZOv902yxGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 515,
+   "completion_tokens": 300,
+   "total_tokens": 815,
+   "cost": 0.00806,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00806,
+    "upstream_inference_prompt_cost": 0.00206,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 227,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.284
+}

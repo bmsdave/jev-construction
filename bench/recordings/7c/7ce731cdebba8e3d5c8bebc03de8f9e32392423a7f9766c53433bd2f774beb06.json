@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Underpinning the rear wall next to a public sewer manhole\", \"project\": \"Terraced house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678540-rOd9kS7XcOZibG2mTYZi",
+  "object": "chat.completion",
+  "created": 1790678540,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Underpinning is building work, and Requirement H4 covers underpinning over or within 3 m of a sewer. A rear wall \"next to\" a public sewer manhole is almost certainly within that distance, so reg 12(5) means a full plans application is required. The small remaining",
+     "refusal": null,
+     "reasoning": "I'm checking whether H4 covers underpinning near sewers — it applies to erection, extension, or underpinning of a building within 3m of a public sewer, which would trigger full plans under regulation 12(5).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether H4 covers underpinning near sewers — it applies to erection, extension, or underpinning of a building within 3m of a public sewer, which would trigger full plans under regulation 12(5).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSnQkKEAgSGAI4AUIIdGhpbmtpbmcSDH4wULYV8VeRqMuNBRoMHJ6AnN/Vn4JqtGWCIjA6pa5fhjCf6y5hWfDcCN9SYxF1bAThTZHIdAhQKBm3uCHsmR65h9/ED6gyXoB1eY8qugjTkkAhHi20NjviIebvpNc+FySyO22FKRYt81qj9ayLYn/lYTmubgNEj0uc2+wkyJDQfPuJ3rx5FqEpPCZPJQY0UePqF+kKqQw4oxBVxn/sTbfE46gOZe1Sg1r5hRd/4+srgyKgdIomHKrBnQavC09HY4DtdQYc54t3BWSFdWvtYKEDmkRY91JDQmUR5rUz94ZoYJL491ZVr0IYC1w4oz17w7Zt/LYzRlB1BPbwLvi7lUbMTWB/MkryHaQEY7XJo28H2HdvNtIsPqg42pOsukNbBWuJIU6lY5F1kTDKRZVnIlvy8scrWxFsGpmdFh72VTmK3svllXl5WzwMutAYm+s/4H6rJBbacuuHCsy6ZX4xdX85bwqT8eyQ3iabGpIXVRD/U47dJE+z1EOyWk86ouVn/LG2G5RQ5a5e/d/r/stIki8bZC9yJ2Dc4IblIgXOXETuaYcT0rsdcAehboR3M82/SqcZ6yL3p5enpsRewlISa/KTJKOn94mIYPQN5DL7zaMoYYysP9R1Y+i+vn2YjROAkWKtSkDIiWh98gPtxkgojcx1mfJRBEpfIGStggjax5SrE7AP8S9FpLmU+vbQ9JlwKyeh6n1KAWWWKyqiVvOFwy4ZDJGIBM6Lfisud6cyEGqCoLyNw8qhMh2+3Ll9rhA5Bzedfg54AZedqeaCQNjejv6ZSjxbvInC854LyQbTh7Tmt//M9BSqTv26D/es1hQ0QgTOZWoImRO5xcIhMxAQGswKET+NiyLr7NUv7eYof5ygIZiWECeilGyb3lXEeaeyS9cJk7ju5Fnu/4wn8UOTN8C0I2pAdoY6hZmWLUjWVugmw+Khj+y2j9FDuCbgjT1WWxSXeTCKoL0taJf9ZtrxMjl5hUrspoDII5rrFdTM4BVsAIshvMOrrAWR7iBUgx1idSbzLtmO2bMZ/bzwjPCwsKc6+ZisX1ZgMtNlRPmQvjvi/X2fnw1VYRnzUMhc38Zp0lgtf0Vz3+OHhkj2a0NEOYLUppkZ6RjVQuu9wlSITl3Yy9HU3KdgiOGkRzGPM6fcQmLbI53bRPyDH/pC2y+aEQuGFK34nfVkQfTT42rvnQP+XJUXngwwYIGkrMKf1VKjZVcM3s6DWXHHJWMVj1KGA0Ns5Rkg5W2R4GFe+nXZaNplspim2zNmUA4IE+j1Isn+m+86Q/08ra6tham0l9tIEV+c7YDH7rlhDCdwZ+tKWzUfi9nS4WRhuuE4V33TLCTl2tZSWgF1HiA05fu/4M6oxEg95WOXi2Fz0y3Kis2m84Ibda8pQwfPZT9g4R5hazwfsRnZ7BHsxgwYutWMIK/xPTszsAVYvqfLhGX3WwIEFHY7rTjxa6MwaEe0oSwwXK8vW+GqzGX/vFMHTa2JIUW4IaKMPPRZq7DzeMEd0u9RaM862dXbzZAL5p8zDxIqbR010lnR5xzY4OHiIxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 470,
+   "completion_tokens": 300,
+   "total_tokens": 770,
+   "cost": 0.00788,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00788,
+    "upstream_inference_prompt_cost": 0.00188,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 214,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.783
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a house into a six-bedroom house in multiple occupation\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678557-sfj7rvyFW5DAugD0nBdl",
+  "object": "chat.completion",
+  "created": 1790678557,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through Regulation 5's list of material change of use categories, checking whether converting a house into an HMO fits under one of the specified changes—like a building containing a room for residential purposes where it didn't before.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through Regulation 5's list of material change of use categories, checking whether converting a house into an HMO fits under one of the specified changes—like a building containing a room for residential purposes where it didn't before.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8goKEAgSGAI4AUIIdGhpbmtpbmcSDPItYyvMLnE0k0QjBhoM222HeGGkvTWxCnJYIjARfVnHDgH5uvvQr+6TgesHOBNekuJ4MQDxfjfp6iAdFVqlSjrO/movD4zVD9kIB/Mqjwrsp7NS9qaYSvQoT/wX6xtfAr+4Hacop8S/xj5GrOJvPc/cl68w6toJSOmbscju39I5s0d+AFEgUuSiBh3quzE4u0sc/G1W+6wbnuHcfRA5MJC2Vmc3IxaBXnKUWr5Z4SgIJQ1RuwAc4Ci/HURG9yfKvPDETB5zyc+4W6XNcGMXzWwN6UxSXnvULkWf5vRc83e5P8sry+8uZ5WUX9Lo+svFmkFlslC0O08Obd4d+dp5NojGiTIZS1LdRwChMFrgDzeCIn+3/WNvJm1BMJvSbonjWCRxWSBT2zCiDjR5kZM7PEw+5MvKS/CASnPTwnczza41upobuPPfGzeic4s/DaqM++C9mnwFXwiyCl7NhVJtdq2+S4tpcC+37joTeJoDGzl2/BA2zo6j/Wa4BqDE+UhUXW5vWMaKmwXIgECLKw31hgjDSfFQ1HcpD95cSxCIHAzpQSBwme0dJA0GaKECgfcyqYYHZWH4r6TfxEvxQnZO1qRBzCXCrKDcGUMJ/ONJgRUbFUmlfLaht4SiFcVdEGGrtf7YmUlLqHQExLVZg/+WB5iC8J04cndIe+lsecTjMVSg7QF7JwlbuBzMIcmHRVVsmBuKkhHmBeIGZ1l7k7rvt40rVf7cESGbLRPeaY/R7FHwDY1w7lw/o715tYutOmHpUNUzkGx/yotkAzCDuK2lGqZ/4YYWmsApIwlN4k9Dt5xJ9hLSygqP8bJw6w1t9WwDk+zRqSHSEOrsrSiRllW/HxAXeuTexS9pt3PWolcjkBXSOr+13EGZAdPg7pm/hqo/fbItKLipemeHDX11qpdZ6Tgl4o1QagTofZfabVRobTq47pJYinOXR8+ZDq3iWZm5pAxBmp1dosMCboLMfMOdikQ/MsbTFoLBE6wiWtcgt+/3RsWPIFoy72qFkf3CtSRifGa+okTbKkR9qRxIHBixLH63iAhafvLxKSO/UIfo7opvjDg8YiAYz6w60ArscpTlYMC6nYpXhC/X3Cf4hDw2ZoA2b+UeeeAsMmZSHB8Xo1mh+11YarGR03Lr0L3LhBad31WLY4E8UWtPDaW3ngSnMkHc7wdBFixNo2p5HDCW1PZ4V1yAsAasNvG7r+5zt8G6qA9F3vI8+9BHMXd9U5QTy9P1JFyDTVYcQKu3Z0GLtg+uG7Jnq6JAalaWglVCaF/whi8FfBrT97psxErk0sd/Xh/QouVdRbuEES13EtRzHPdEwenzvGHa8C17KmTXfroI/I4gyBrYdlCjAKxs1zJ6VGLjLHmyM8VcUjFu6HqciFyMHQkVlGXIBKlLVvE+NdEgSmeIdNpoH+x0Uzl34Srhf2juz/vKNlKB3k9VtvGgM+EAQJkqrD/Ggs4yWD+AnGqoVsPnVo6rPzy6Qp+QfBoUyZdxSEPtQcLn5Z0sVUWC6FEhHLZh10BEA4siYY493DBriHI9WtjDz+CzAGXXMnGoG/XKk7fooM0pC64+PkfvlM2n7bEAcUa8iHSyUQJg9SVJj9hztswRZW5TKZEziTcNodIng4SnrcGk2F+OUsdBeceuPNypGzu9wL4X4UDAPl+4gI2aoKO8pkSDdU4KN/1IXDeWnMWPy7z6qWMtZsciI3YomjsAE+3b8vXvMFfetlbbgr8LkXtccRRH6r+yEU1iiF0tsokI7HPNvrAyHISzwi45sSWS2ZvsIL4xr8z9WkwlwdQWDLkcfavgDk8XdXG8U5+7LuKP4yCtdOmvu4AWahgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 467,
+   "completion_tokens": 300,
+   "total_tokens": 767,
+   "cost": 0.007868,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007868,
+    "upstream_inference_prompt_cost": 0.001868,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 299,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.703
+}

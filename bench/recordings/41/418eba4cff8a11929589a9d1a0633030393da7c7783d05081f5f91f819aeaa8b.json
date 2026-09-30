@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Repair small area of roof covering (under 25% of roof, like-for-like)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 16\", \"document\": \"BR2010\", \"text\": \"16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited.\"}, {\"ref\": \"para 0.16\", \"document\": \"ADL1-2021\", \"text\": \"0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows\"}, {\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677951-oWXsvJOABo6N0BXTKeXh",
+  "object": "chat.completion",
+  "created": 1790677951,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.85, \"competent_person_scheme\": 0.1, \"building_notice_or_full_plans\": 0.04, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "A small like-for-like repair to under 25% of the roof covering wouldn't trigger the renovation threshold, since that requires renovating more than 50% of the element's surface area to count as building work. Since the replacement uses similar weight materials and stays under that threshold, it counts as ordinary repair rather than notifiable building work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A small like-for-like repair to under 25% of the roof covering wouldn't trigger the renovation threshold, since that requires renovating more than 50% of the element's surface area to count as building work. Since the replacement uses similar weight materials and stays under that threshold, it counts as ordinary repair rather than notifiable building work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSowkKEAgSGAI4AUIIdGhpbmtpbmcSDCcd1srh3BS0U+wWBBoMREedpFSEsxhn/KrIIjACVi5YHWR9hoKzLL1eN8qz/1wskZQkToei1KnoM3vHzCG9RtOoXHcFD2bX5hAqdmIqwAhFQcvO8U8RoIXxDrOXdXv5Un+ppKMj1Yf3xCtev/afH0zdiGmYxTyPJaKqt3C/BbkDlPhmM2jm/2vpDibtx3dXYcf5Bb2uod1oQzkcQCIk4LvkteAFKqlMaTwCPUrbiJWrJEiIiV+g5JWHGtP1IInGyaJvGYtBQnxeVk2lfHHwd4mDVIKUXfHyvQ864olf/GG8FbqqIyhZ15Y06j7cXhY/y7cUjALUkzQodNP1Wrl8dMHrDphoVaHyAc5CPXFKFw+nN4vxJI93YeXGO/iDV9UZnQ+N2xq7rsamliRozr3dPCwvogVZ68LpGMwJOU5XPrAmvU2idQPDkC+BxjRCShq74YsKW4nEhv8L5KtFNfNvZY86rzCDyh7nNPWyrEtjSgDqrjkmt8BDjBVte2y1cQh4AvWWjUt2zAvrmW8dbalTq48FMSWCS3URDWgaz1/dAG1U6K2kEfzy28k/Sp+Cb+yAh1sj6/ucrNyEJR2sCcOAy3+B6lkOGEfH2OvyQZDpJp49vzbZL56ZOyy8GiOnX2/QILySk0qfQDKaXOCotuQbPEizTpA6Y4f0PUNkMvyQwa5zjLhl2zNf0Q/hVt9Tez32VvkVxd4Cz6qAJcRSWcg648ZvSSdLH008GVxCXZWnKZWjBq8ldiC41YH5PlX+xVE9kLHE2rdgV41rmR9ta8Of0tkUCHPRPCaA4TSy1B+B0MG7h38WMsY1O4oB8kgLe0MhW4awxALBJ72kvu8/Pjz0cOsccJSH+htd+PFh8OO2upo/mtAj2WnB7CvJuZcvc/zsp6GiRu6RdthC/rHvxPMUU+0xqaAOtzKpHbX+bme31hgdGDJkgY7rN2wJ5rqBQv1yujMfOX+W1BKRdZkqxEAr5N4QY33yr9R0uZcHfPBw2024i8t2Kl9ReJ4+g3Xptz7Hl+xhMczvx87JHPXGI/7KTX0M4j/xM9If4hWkk1Ax7MLc5n3RGpx18BzXMdJiPBjlvbIp4ssoxSb23ztiD7KIKiI0Kvp3RCqTsFfFvJXEHr/A8eHazHLFWL8OZRPQvjM+FnnzpNhqXgpuUgmdjUCjUgUjOoy4eHhqWBPeCZ98doXp5Jygiu9crV/Zaal1VT+RCcyfkMrkkj2lhjpMyVB4CNoIhsAzBtx4ntwdONx5Z7cfZgh/4dFAsKo8YMbLV7OJOfNaYvVdZVZ/er/9pUlCAZr6XPkM/2p47+b14ezlYqBzwpJX7+InweYkS6KRYgjwR6kEQ63AutA8N/Akq09yRYypLXi4wLmWUKO79C4TZlhTKs8Ax48v+THr15Qy69/BLAMO8NAjODpr3B6n+o3EwBUktsWEj7bO1co39pqZvTGgvUYTxBsmrxS+HwP3oGlquM7HiqmQpxt1b58W8Tq0xDl9foyYOaLYq1agQFcMAFfyhA5tOc+SbGtqBIjIvR2wTct/T3Zas7XqkRXsWhMLmxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1168,
+   "completion_tokens": 296,
+   "total_tokens": 1464,
+   "cost": 0.010592,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010592,
+    "upstream_inference_prompt_cost": 0.004672,
+    "upstream_inference_completions_cost": 0.00592
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 215,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.725
+}

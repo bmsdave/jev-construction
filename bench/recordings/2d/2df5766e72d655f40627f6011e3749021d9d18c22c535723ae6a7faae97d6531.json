@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Basement conversion with lowered floor and lightwell\", \"project\": \"Terraced house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678656-JO6gCT9LnZkJT8Et3dbn",
+  "object": "chat.completion",
+  "created": 1790678656,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Lowering a basement floor and forming a lightwell is structural building work. It typically involves underpinning, new foundations and retaining structures, plus changes to means of escape, ventilation and waterproofing.\n\n- **Not exempt:** it is building work under reg 3, not Schedule 4 work, and a house is not an exempt building.\n- **No self-certification:** Schedule 3 does not list it, so a competent person scheme cannot cover it.\n- **Full plans not mandatory:** the",
+     "refusal": null,
+     "reasoning": "This is a basement conversion with a lowered floor, likely needing underpinning, plus a lightwell — that's structural building work rather than a change of use, so Schedule 3 exemptions don't apply. Since it's a single terraced dwelling, the Fire Safety Order is irrelevant, and while proximity to a sewer could trigger H4, nothing confirms that here; the underpinning also raises party wall considerations. This points toward requiring building notice or full plans submission.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a basement conversion with a lowered floor, likely needing underpinning, plus a lightwell — that's structural building work rather than a change of use, so Schedule 3 exemptions don't apply. Since it's a single terraced dwelling, the Fire Safety Order is irrelevant, and while proximity to a sewer could trigger H4, nothing confirms that here; the underpinning also raises party wall considerations. This points toward requiring building notice or full plans submission.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStgcKEAgSGAI4AUIIdGhpbmtpbmcSDA5D1fgqI+PF0VjmKRoMcLuodyfCeGnLw0wnIjDX97yfR8ECQxlZWvsHbQZldFTyV2N8drt1tpqwwS6KPQrqcdl8EWhJ8MwadG1hzk8q0waEnYrVlRjvMih/Qg3GxDXan1sIO3zjCu/yNkD2Eltah+6X7VRrH3QZYjel2esgZvF3+/q0WF4KbObcbgVjwBE7Kn8eFSvFBxOuwaIHAKeNnRdyWscVvWKpZwYzGWScODfGJ0nx+yM9v0MPdcv0zUmlEGvkanLv92gmOKeV3edjiV0QEar5q6mNrSDo4aGupSCQn/b6rdMQ2T+1ZlzS9rZBqsHg0BOwQXi4CqTOoIiuUXnRaKZgSmN2triW49zDCDqB7xj24fbS5SUIP8WDDWSZG4uCOTtnye1+yXx/LqCyP/rwYrW1+kqEgtXYjMD86Y0yTzh6RY+rJ0ZAT1eEVZHkUAJRFjAbVPGtgZgzsh/yR9X5ltqkRnHJ8qlKSPBDu7Rh0E0/z+k7DlrmwwYrXkDHfcCCcKqNJP+ou4Gmp57fP7xsyOt5oimYAm8lbE2xEIR+nUuKEScTuSt4CXWLq7GY5NvScWH2Nl/A5vXqdE8felPd3AaPHv7/W/NDQUB7NF1TBwpr46tebxOwFYzmTRFnYL5Ju7lY9C+K2+NFZCGlYp0YKlZSjNH8x2Q61n862ztS18kZDJvXzxd5k7gWlhU7T66xSxgRqX/904M3bfE6HfnEBH8qMHzvytdpLZGfSMLN3NYfnEGOUfVHtfa80t1ZAGfsXZDQIf79WczlfYjVcxMHwsZ4nabqtWXij2Amc0FYnmVOT4mjfvdA8ITIeUD5PeKodo7w01ajuSD433Pzgwc2cTzgPTsIASbOofxB7Wxyv9HvmZRKf0QJswJqxNxp49H+WlaJkFPlTkhU7SbSPkjJ3C4aot+R3KUBFF0etuDfg64KSHvDaEisur5Pu9QlLkxdeBwFAuapj8KdXDR6Sh5KUYXTlgXvjkgYJN3p/D+MXdwTrR47GYJf662nGs86A7AOpA765UaERhDhTEEgTYl2rNXK18R7M/49KDWQ+eyu7ZJiKYZDZc8Z+1aQu0Py3P44h0dEFz8UprhqtF7j9BlRpXRF7iuhF9LvMlXcm9yjbTuNARjlbulAQl8YA54+At1pbU7yeLNYm2iMW/piQ0GH8CnAzXq9rT8BY1wPL6qUiLNjgfCNk8NnnqS567BhVb+MsN7OlbUnDSiVnqH01gbB7BgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 467,
+   "completion_tokens": 300,
+   "total_tokens": 767,
+   "cost": 0.007868,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007868,
+    "upstream_inference_prompt_cost": 0.001868,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 142,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.908
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cable 4/4 mm2\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678340-Jsr26VRJOJntSwa5SkIz",
+  "object": "chat.completion",
+  "created": 1790678340,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.75, \"not_notifiable\": 0.17, \"building_notice_or_full_plans\": 0.06, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "A 4mm² cable in a dwelling suggests a new circuit installation, like for a cooker or shower, which would be notifiable under Part P. This points toward needing a competent person scheme rather than treating it as a simple like-for-like replacement.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A 4mm² cable in a dwelling suggests a new circuit installation, like for a cooker or shower, which would be notifiable under Part P. This points toward needing a competent person scheme rather than treating it as a simple like-for-like replacement.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSjAcKEAgSGAI4AUIIdGhpbmtpbmcSDI93FrE/AJA5SB7TAhoMOEAo5j0VtySRrL13IjCaoAQ9vuJvyGWNXZGxK446Bi4+tHi6CXARUI+DqYUAdNQe4GHrN++1NWET02MsmUkqqQYwUtUKhga0u6ZBUS6tWkuDfHgzC7we/mnCcW5e7dB54fp2kPCzcLwiqZJR8GUG9+6aZ6Fwi2gJDuex7FF82WeQ38zUnko37KTGCdqvRgC4uyAqVwgnuGMFbC2FP8xQys6Vm9h54h0TnHg1H9fs3+Gx2yv9BEmstuneKWNLLhIqipjxZ48GnQcexjamtgkswRdLSxFqlB0g+3Oip/DrMAi/Yczh248JqnoF9gest9ImOUJsoCy13WogFUsQ/aq4M3pTg74pWpszb/p9lU7YFj+qK594TSBTKG9y+UbPn8FALwy3qVkx/EeuMaDckb53wv4X2x+PSpDISTineLp5QClDxrBvDjMBD2UqPhclSkHXIH6NgoVxGes1A5Aa89DQu0vmj4eacE3Ymhbi57XMrLYtu3NyQSr7pS8DcOvbhWgZ7YNqWz6caUgDNKjL4skOl9keUZlv47aDeS1SAHv4ravpwBXb3jKXMejeeJdgbLNK7TnaTxeeAuOTidpGhFpaiS13Ub+Vyg/Bmal3G4thHEUT/uVT1PXIC5X6xDTeYcIp/0zAKAtGwIstbX6Yfmq/qLyyjC3SmKb8imecAjH2hFuKpgY7IVBQ80USJKV0WFD+p2jMpbyCSVXYyykyXJIklXFsnIhDRLU0wq30gq/76Q6OIrYY439NWitBkyZQpdoxNURhuoxmHJyL2Gi3iGo8Y9QG9d5XN3qGWx1cFmvTA1DyCv0gKweFNbLn4QtXDF/SLFAGL2CDnWRCDupRNsZcKRlrKZw0XFKSavY/Swp5I7FDkzh47OZ5YHvOLW3QHfrBdQdK+KLLEpGnS08h+3ql1Ku6xZnU6k1z0Dm4lHgKU/vHzgTAlfk9giEvBoBNJPY5hyBsLb6Pvp4RCHJlU//iKFfP5wDopLD9I9lL0Y6zGIeYA5+sMd0td+frGoTNF+e4/ZCZEqmNUSHItvdlzAh0mI8tTv5VidzvDSYBM7unfKs0aniIAyZpoXiiD75atOlwgS1CiuxQDnDhQ3xVMRsL5b9tkAvl6SnQ4MwWEf6CMBLeLhfb9pkeYELYsL+YYgWOXg52ueMfvCLquBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 505,
+   "completion_tokens": 228,
+   "total_tokens": 733,
+   "cost": 0.00658,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00658,
+    "upstream_inference_prompt_cost": 0.00202,
+    "upstream_inference_completions_cost": 0.00456
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 145,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.325
+}

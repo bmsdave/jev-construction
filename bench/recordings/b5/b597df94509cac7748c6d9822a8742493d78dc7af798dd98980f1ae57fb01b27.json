@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New accessible toilet and ramp inside a community hall",
+   "project": "Community hall in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 E3",
+     "document": "BR2010",
+     "text": "Reverberation in common internal parts of buildings containing flats or rooms for residential purposes: E3. The common internal parts of buildings which contain flats or rooms for residential purposes shall be designed and constructed in such a way as to prevent more reverberation around the common parts than is reasonable. | Requirement E3 only applies to corridors, stairwells, hallways and entrance halls which give access to the flat or room for residential purposes."
+    },
+    "c2": {
+     "ref": "reg 2(2)",
+     "document": "BR2010",
+     "text": "(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted."
+    },
+    "c3": {
+     "ref": "Sch 1 K1",
+     "document": "BR2010",
+     "text": "Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building."
+    },
+    "c4": {
+     "ref": "para 1.4",
+     "document": "ADP2013",
+     "text": "1.4 Wall-mounted socket-outlets, switches and consumer units in new dwellings should be easy to reach, in accordance with Part M of the Building Regulations (Access to and use of buildings). NOTE: Approved Document M recommends that in new dwellings only, switches and socketoutlets for lighting and other equipment should be between 450mm and 1200mm from finished floor level. Approved Document M does not recommend a height for new consumer units. However, one way of complying with Part M in new dwellings is to mount consumer units so that the switches are between 1350mm and 1450mm above floor level. At this height, the consumer unit is out of reach of young children yet accessible to other people when standing or sitting. New dwellings formed by a change of use"
+    },
+    "c5": {
+     "ref": "Sch 1 K2",
+     "document": "BR2010",
+     "text": "Protection from falling: K2. (a) Any stairs, ramps, floors and balconies and any roof to which people have access, and(b) any light well, basement area or similar sunken area connected to a building,shall be provided with barriers where it is necessary to protect people in or about the building from falling. | Requirement K2(a) applies only to stairs and ramps which form part of the building."
+    },
+    "c6": {
+     "ref": "reg 9(2)",
+     "document": "BR2010",
+     "text": "(2) The requirements of paragraphs G1 and G3(2) and (3) of Schedule 1 apply— (a) to any greenhouse which receives a cold or hot water supply from a source shared with or located inside a dwelling; and (b) to— (i) any small detached building falling within class 6 in Schedule 2; and (ii) any extension of a building falling within class 7 in Schedule 2,which in either case receives a cold or hot water supply from a source shared with or located inside any building other than a building or extension of a kind described in Schedule 2."
+    },
+    "c7": {
+     "ref": "para 11.4",
+     "document": "ADL1-2021",
+     "text": "11.4 When assessing the percentage area that will be renovated of an individual thermal element, consider whether the element is being renovated from the outside or the inside, following Diagram 11.1 and Diagram 11.2, respectively. Building Regulations 2010 R6, R22, R23(1), L1(a) For example, if external render is being removed from the outer side of a wall, the area of the thermal element is the area of the elevation in which that wall sits. Area of the thermal element being renovated Total area of the thermal element Diagram 11.1 \u0007Renovation of a thermal element from the outside For example, if plaster is being removed from the inner side of a wall, the area of the thermal element is the area of external wall as viewed from inside the room. Area of the thermal element being renovated Total area of the thermal element Diagram 11.2 \u0007Renovation of a thermal element from the inside Building Regulations 2010 R6, R22, R23(1), L1(a) Material change of use and change to energy status"
+    },
+    "c8": {
+     "ref": "Sch 1 N4",
+     "document": "BR2010",
+     "text": "Safe access for cleaning windows etc: N4. Provision shall be made for any windows, skylights, or ay transparent or translucent walls, ceilings or roofs to be safely accessible for cleaning. | Requirement N4 does not apply to—(a) dwellings; or(b) any transparent or translucent elements whose surfaces are not intended to be cleaned."
+    },
+    "c9": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c10": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.15
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.02
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.05
+   }
+  },
+  "usage": {
+   "input_tokens": 2668,
+   "output_tokens": 175,
+   "cost": 0.000112056
+  },
+  "id": "gen-dec-1790676091-tkAPCay5BvWTuDoZsIm6",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.304
+}

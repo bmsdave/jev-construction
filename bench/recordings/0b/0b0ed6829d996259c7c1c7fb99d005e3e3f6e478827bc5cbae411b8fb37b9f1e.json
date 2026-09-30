@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Below-ground drainage alterations (allowance)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Drainage. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(j)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (j) replacing— (i) a sanitary convenience with one that uses no more water than the one it replaces, (ii) a washbasin, sink or bidet, (iii) a fixed bath, (iv) a shower, (v) a rainwater gutter, or (vi) a rainwater downpipe,where the work does not include any work to underground drainage, and includes no work to the hot or cold water system or above ground drainage, which may prejudice the health or safety of any person on completion of the work;\"}, {\"ref\": \"Sch 3 para 12\", \"document\": \"BR2010\", \"text\": \"12. Installation of a sanitary convenience, sink, washbasin, bidet, fixed bath, shower or bathroom in a dwelling, that does not involve work on shared or underground drainage. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited or NAPIT Registration Limited, ....\"}, {\"ref\": \"Sch 1 H1\", \"document\": \"BR2010\", \"text\": \"Foul water drainage: H1.—(1) An adequate system of drainage shall be provided to carry foul water from appliances within the building to one of the following, listed in order of priority—(a) a public sewer; or where that is not reasonably practicable,(b) a private sewer communicating with a public sewer; or where that is not reasonably practicable,(c) either a septic tank which has an appropriate form of secondary treatment or another wastewater treatment system; or, where that is not reasonably practicable,(d) a cesspool. (2) In this Part “foul water” means waste water which comprises or includes—(a) waste from a sanitary convenience, bidet or appliance used for washing receptacles for foul waste; or(b) water which has been used for food preparation, cooking or washing. | Requirement H1 does not apply to the diversion of water which has been used for personal washing or for the washing of clothes, linen or other articles to collection systems for reuse.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677250-QNxugaQ66wxQ40tqUP86",
+  "object": "chat.completion",
+  "created": 1790677250,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Below-ground drainage alterations are notifiable building work",
+     "refusal": null,
+     "reasoning": "Terraced houses typically share drainage runs that transferred to public sewer ownership in 2011, so working near a sewer triggers H4's full plans requirement. Underground drainage alterations count as building work under H1 and aren't covered by the Schedule 3 exemptions since paragraph 12 specifically excludes underground drainage, meaning a building notice or full plans application is needed unless H4's building-over-sewer provisions apply within that 3m threshold.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Terraced houses typically share drainage runs that transferred to public sewer ownership in 2011, so working near a sewer triggers H4's full plans requirement. Underground drainage alterations count as building work under H1 and aren't covered by the Schedule 3 exemptions since paragraph 12 specifically excludes underground drainage, meaning a building notice or full plans application is needed unless H4's building-over-sewer provisions apply within that 3m threshold.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9QoKEAgSGAI4AUIIdGhpbmtpbmcSDI3M8cUKwXqtbXVMqhoM90DhPLsocPZuvXnIIjABgDLCc2qDmyAS6A1HFSHdUhIoh7fE0joY02RSZ+JSN7Tqd7bIWlBz441mvU1i8H0qkgoc80bAK4bqu6O+rfOKZ6aqJaOc8mjpVIVpFNmRTWvWmItgJMDJy4XUPTaJFVI0PHISDbEXNNtgbJFRMEdDKXgyoPpU48ZTBP3ETtF0YPLpVHenRd7Mnb+a3FVuJjPS6xM0IqpBAhvpJzuS7kkv+gtFNaVkj1obkZZGxPsVisUnIi9h7ZSj8Qblvt6rrUeXnbzpJaCw7AfhWu/QtaCbOjCVONKEHxuQV6HwCKhhTTVlj4t9Xa/9NFVbH28v6+3XWmId/VVw+rYqemkabcqC07Dz/3wfaBLuUtKD/z0De4tAdsJY+LRLI5/QzfzjO0vqx/5o6VsLgD3TzoNef5KzwSiMl+KHExaF4dE2upjNoMjnLXRREZ8R+pKNTFWaahxV7usBsWO3qfbO03wZUKhp8asdxQd4FIHNnGQAnIoBggyiEvT97r6CPewLkd0+I2a68VevjHAGgbnKDPAJcC6wGqVeXRn7MwGI5PY3PNvGrIdpP4CRgWP6JnJ12VOC1d8f7k6M7ZdSvyYUqyfGLbFFHY48S34MWDFlR+xM9WpXrIO3QIH5tymaqrBiNft0vz/dz+1vmWAHnXzkNK+iDkBLFzbENF4nokUjoWVUvxoSVV1PQqZJ7G0RmPhuBRCzo9J7Fim9DQo6ARCj11r6TYC9CRijgvH9xarnbrW7Qy+tstEGPk7eOVEl+9Kkx9zGjzJeHtQ88dNMbySwkFW2Hz+xAAog1ZqAsNMeUe6/aUrOuwjIPKCWqi79FG/g5y0RbEPUKlwmZLQSB3FdBIc14e9kxJJvohvei7f5xfYfA2abvjLG0i0AdpfOezJAa2dgF5IYlOVfQfK5hjRwUSC6aQq1GBwaR2uxRsEA80GEL4omqBBtwY+8dhDI/zJ/nO1dEIjn3Yox6SiRzkdDTD7lkaI0cW9wr6/ItKfRvlvYNVagepd02gDtl9qe6mnBRkzMDWOXOEydD7y1uHdlxj4xz+zzAap6qgU8N2WXT6mhU+2W2ThlNcKJKJpsZ+hTYoakJvMbRociZ0OUXtMRUUhZYiY2PdZ0QJfWWSnqGNo18RK9EsemzKNhMw+a8NxszyvG9h2sdlF7/NJrEhPOgcxDLTPGOne3pIF6F1oUZdJ6Ft/H3MSDhNtCqIJTN0ZUpjAiSy5hmZG9NzFKWiya020SMeNbsnJks1LGCBrDc09BnlYQkRLFjDmL0crci7Qcq2fa3e8KN7Juw3kx/OT5/eihu62haiQQZ71kgnn0+wMqmDqVfwbVwxuNvWhDKpZkoSu3rGnwl8YMlY0WrSXtwc/8STc+ntxr+dxHazrRXCpKeWySw/bWCQkd21aONbrWQ1oApK1x4qxuTeEhOZOasXudnRlsPv+Y8MSpJlV7HO+f1BtdXfP0fU0TcXhVdRjciqSh2/hcsjKra5kKZBlShH+mSQu4aIsP+4RnZmsiDz+ax5v3f3DERObDcftK5WeT+4qWnFs0Ei0uMjZ1l2gp+8t+YCpv0RB4sRna/tD87jmqlIjGBnceMIrKZFvdB2ahlspTZiEkpthT9xART+Ynu85JEPaecEwB8ABy/5mAsGoIZKQbGtjVjbpcv/35t99FBlJTYrfr5nhHRhocSxnVP51BzExil7+euMBF/aooaSo8iG3Cz4o4HT2gDUwE748At5NJrzRquQq+m/rCAF5JwFqIRUNHLoV+L6TMcpdB9ysdDr2BNNJSsSYxVwlFMWs96LtSc2Ol3utgtBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1223,
+   "completion_tokens": 300,
+   "total_tokens": 1523,
+   "cost": 0.010892,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010892,
+    "upstream_inference_prompt_cost": 0.004892,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 282,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.015
+}

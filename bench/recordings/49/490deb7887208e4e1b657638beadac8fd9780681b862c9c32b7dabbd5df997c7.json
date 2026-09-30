@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Dormer fascia, soffit, trims\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678232-ypjkrEmDFU1cf6RSBkUV",
+  "object": "chat.completion",
+  "created": 1790678232,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.72, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.22, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "I'm thinking through whether replacing fascia, soffit, and trim on a dormer counts as notifiable building work when done in isolation—generally this is considered maintenance rather than material alteration, so it likely wouldn't require a building notice on its own, even on a terraced house where boundary fire-spread rules might otherwise apply.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through whether replacing fascia, soffit, and trim on a dormer counts as notifiable building work when done in isolation—generally this is considered maintenance rather than material alteration, so it likely wouldn't require a building notice on its own, even on a terraced house where boundary fire-spread rules might otherwise apply.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6AgKEAgSGAI4AUIIdGhpbmtpbmcSDIseY4v/lTiX6XCm7xoM906DyiZ8R9fU2M+wIjAGi6MuJlyf8ByZeE6w6rwx/S+XxoSlZcEFcvlufktBklMS7c0FyFbasiROo+e0TWsqhQgfuxQb7KeMqlLqlGJp8RZSeAKII6zj/RUNXG+KU0UAZYfT5aZQOJyGo5eI/+LdJ3nNjWl4pp7ng6dAp1WhOi1/VXDS8xX3fDI5jTHKZc54T5AwJCMrIHOHGqCzDa9PUTVq6hJUWBDXKGf3UtDnCUA+8TPGeGnCs97e7k/nDJ9rIEHgQ5xpqfiwgwue+ehaa7Ow+zz3vVJEYcGMop2KHRTEA4YcDOy4X0AArD8vzWMu6UVGxxB6oulxVirtaTeKdNqXOR0pLQLzpWDRYcD6Sv47HjImuxkN3dPIlcsGHD2+hoPSNUWmyWm6CGjXL/OZq/JQuB4oRaq9nZ3a+1zkET4twCapnhRToxtuGvwO6nob5snIChChOpECK5cIX75sKdEvgSV+4a/aESQ0TDwRzmR7ZkFhN9/k3JtNNsPPaiNspeO7p/Bpw+gVmGrpE05hQPg1zJovMicuSNlKI8RJPpGFZ1hMTYciocT719MMZ2DMmziRIySpJddoRsdxqyr0ZdSn1pXd+bTYdItdJTfjFR6OQzIA0y8YZUN22iiKVK4lqW4ckZ9uJ45JxS3b4mSWctVLrJTqjrE3NSYPonPfRoixjWc51yuI5P4yiNFOba/bPmHs5bVTm0aUjxBCGhfnZ76IvtTzfZ72JfnQJVwiir/hd3vzqTlTH+5hz69AwZ8gPaH4dSigmhe8ZkEUKVjX7uq3744RtKO6BnT8Sg5ZcDb+i+8BAstMoDtJzv2MKc3AZrfA63oij9SsslxgYgYuEtv26+Q77fqAZJeB0jOwSZrtYgWiKLo05pEuXcb+2dkvXTPNtJPvpQSlaKvlJyIlR7MNk02kUvqtsZ30zq/WkndDFlCv52xRDUVccMyOHVLOa24PjUSHNHP2ircI4hP0uXb3ki0rSMSrU82aeSIY3miBQxTrJLXX1uIRU4FxjyvWPU1JOI7baLCZUpHoft3j2vHyMpsc7G0h/7eRFGTARXNGavTI06MV6dRxHnTtjk8dd+VrrWqtCwdEKvJ6mxADMuBMbqOqsQwNTtm8dCdgb/8E2bDIXM8ixLnYyq3oKwEdL6ZMRkAD0x7Hy5ZrLmiSTrnug4CBwnP5A1G8UOUoBx+yWvSfyPPuHoRdxTOyViiilHrlaUmgnFT0xdE9vrS8LXLz83oRQBRGAi/CPtpHd3H0JW9vUThgMgW0EHD8UDCjNspYiW6CEeUHJxScJMbU298bNTcEBRrjBJnazOzLffmyX3xXl3DElPZ25yPedd24/NHiJBCXNqzR0IHfkDUHY0zETdhIfLM6GSaZCw9PLAYYxVdwv2UU9lPULmQS6SXUAInOoZLA2wQY6kCaYtKlm9cpvevk5ywd0jA5sK8+RhuABWUCtxwYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 501,
+   "completion_tokens": 272,
+   "total_tokens": 773,
+   "cost": 0.007444,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007444,
+    "upstream_inference_prompt_cost": 0.002004,
+    "upstream_inference_completions_cost": 0.00544
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 191,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.235
+}

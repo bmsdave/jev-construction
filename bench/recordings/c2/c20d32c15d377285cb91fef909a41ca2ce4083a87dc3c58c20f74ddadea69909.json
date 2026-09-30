@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Restaurant kitchen fit-out with a new extract duct through the roof\", \"project\": \"Restaurant in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678583-OMyunnYuFArYfwJMtr1z",
+  "object": "chat.completion",
+  "created": 1790678583,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Since the restaurant is a non-domestic building, I'm checking whether installing a mechanical ventilation or extract system counts as \"building work\" under Schedule 3, since that exemption could mean building regs approval isn't separately required through the standard route.\n\nBut the extract duct passing through the roof raises separate concerns around fire compartmentation and structural integrity, so I need to consider whether that penetration counts as a material alteration triggering its own compliance requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since the restaurant is a non-domestic building, I'm checking whether installing a mechanical ventilation or extract system counts as \"building work\" under Schedule 3, since that exemption could mean building regs approval isn't separately required through the standard route.\n\nBut the extract duct passing through the roof raises separate concerns around fire compartmentation and structural integrity, so I need to consider whether that penetration counts as a material alteration triggering its own compliance requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSqQsKEAgSGAI4AUIIdGhpbmtpbmcSDNXoYlqrxLp/bNSj4xoMFvHWECEPoFXwMHsWIjDHn6AUdPBZvBy9BxBmZV/mNu/9DqePyIItR+FkAQ4FbVV78emf88k+cPjrYZ+3NokqxgohQJAQHZTpEdm6R/mI3xegREGvQcZNzCArKi0MUMmC6bDOByIxdBJV2FulTVGwD3Q3DDEV5fvNOOEjZdRLGpUI5VguLr/uCwxtNkYHYl//LNrbq5M8AIZRmx9QqiArdQMc5jC0AbgnaUuZIzrJheVPob8p9SQH//2Upbt+quWEYkeIYGrSfo0grcbE1ZDwJZiBGazOPC63CgpIGjgWVfBcSN1tTrwdrrNL6RbJoLetzIFxxhtaUjsnAu/OikOMbEL6lA67bzHBOLpxPxKd5ymgg9TBpnxwYRtYK/uBenKXSmCDZTIwFOWCc2yS4UBPnle32x+UCCG3EsL5P7YQI4hAP5ARJcbx3rvzUKVCV2hjduD6Eh47h5PCmCJytNtSHqR/UxJV5SyItb/FtBMQB/1fMfsLU6NNT1EKF3pW7hYLxFfemJzEjIeXmf9qh3bfp5cLyJ4jO61ky4cZZuOyZLogKUkkmpSuOzowcjOBEORFnTo+ujR6u8ahSGgjIDn+YQ8aANF4PbVYUiUkz98XKVEyqlLgJuZJE9F54K9xGpjjNusnRoDY3N9G6C5DV5RvY7yaNBjtbhuz8OoQOmK1I2EgXZRkCFcRe0XGjHTMev2IaJWG3yqoacCDPhS3e7dCbT0ti6WSJS9bXTjarMweKYCvrmuhqnPXL6v6hJ5EmRwW8uEXmepozX9iJdF7dMflm0hwdmVwvsCH2wz5BqrN69gmFwd1eYNyWI1Gxn65cex8vCdk0yxx1H3k/e/h43oodynkafc6SfCSWahJHfaauUEDX42S5cqO3CqNR+szYPqcU0LyIM8DjKhM0QSjmoxG4vGlIGeNaxYdzjmV30e28NMBOerfE2kGmIMz6h0TFnaMZ9AItrBNXJ807fUwPrE41uOt6DNR72hko04vYCZZLTib36Jx/d/od2xuyZTM+O2ArX5WhNdVCEJTlKAxGkIEoi649sANfg6sEKkfR2DL2erMEstxlUpLXXaUOa9q8Qbpc4d7tuwLEn+N/03wjsdlVQGhK1WxIHfUKryZnse2y6M/qVkxFpyHOVD9/sHkvPIQbKnYnEEQtamN1KBOkUHw+GhrbmeUJFeRP8o0+Ywe/ZWcrktoo2v0iaPJBKH4MbSLLzGhZY2/oKF3J1r46uSHCRW0He1HzdVL1r235YKldgjVgV0HjBjuCpIrv5u5idMU4JnLYmE4zxJRJ7CJnxANAjMMmW1EuS1F/LjHEQxjbs2mQxpEtpAWaxNqNEZfEFj7VSATQmOry7xE2khmfonYKz3t3LuPx4QLOS54w+i9bIYEOc0i4GkOz6XVMQrkuMCDd8Aui9HvFPgPsde0Na1IwXVFGHoUdzD08PpkTK0wUwE6PBctVGkgBW6As2CRmy50pug86Sb2UShgfrxq4hsWzzv5mgmZeEQ8RvRTFLX6rmA1VAd50kwweP0EdTZa8/+BONhAopxj5Ahb2QvPkj0FpN5mP7apUvhktM3uNH/FhqyoroDTHrfOp8jh3QviBZ7Pcct5Ds2BlWGtQ081PTLYtSODfzGs3mfbqJ0RlI4BWObRik90vKZtJtmno1/0563XhepNaaoYyPtarJMWeSqsI6kPF/gAMTlGgts1YhPAe7PBpgyG5SiIu4Us3CLUyJ05g/0PPyO2o3X9rqti0EtWIxQmVqSSD7YsDTvNLPoC1FewW59yHyXZ9UPVVQecGh2HieYVEAGNOmBdrYw1CuSNFLiYFfH4IeodfjmBsP937+nFEpgML7T2zLQlLwmMoQSqk8WpMaY1glUqLwsX7B2jZIJO57jqAEUYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 474,
+   "completion_tokens": 300,
+   "total_tokens": 774,
+   "cost": 0.007896,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007896,
+    "upstream_inference_prompt_cost": 0.001896,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 24.903
+}

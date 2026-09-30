@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Lighting relays\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678438-LZwbZX0u8UApDXTun6Rn",
+  "object": "chat.completion",
+  "created": 1790678438,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether installing a lighting relay counts as notifiable work under Part P, checking against Schedule 4's list of exempted electrical work like bonding upgrades and enclosure replacements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether installing a lighting relay counts as notifiable work under Part P, checking against Schedule 4's list of exempted electrical work like bonding upgrades and enclosure replacements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6goKEAgSGAI4AUIIdGhpbmtpbmcSDBwm1snjdXKWtzrL7hoMP6Fs7EyzDVOfae/rIjDN2jmeFuFbHBJn0kgWnEJZEiie6WTOM8eGDM6V0kjBTqyQs2M+vOnp8uO6kitseUoqhwp8wbgfvcnsd01Un9U6T6vlgftFxtoV4/Lh/kjFDFxRkxQxpd1nBZNxE8At6xO9MYQtvBTBb+B1lHRasmJgoDa8vQQ1brZ9rIiLfTEa40KlvvZ7FkfKUc7LgfAnkh7HD62DKg1tQaGyah/vqSGt8vtkaY3GvRLcrqzjppaU+sJsHNRmLYUbEJHMe4mGyJQ9fauElYqImUS7dNoD85+c6RUi0L7iRjizhh5fVWJYE8CjjlFEG4Ysri4TAFoMIK9pNNkBrtqWxx4avTFJL51h2y+zHDzhIs1c8qEWVi5akPfq6wBEHP9lhUkrxUwF7iY3G1wYMHVbsiLUzjb5qsJJ0aSBd6EJGO7Llcz4TjUwtoTiIL1YeFe4OSTcTEEpEH2/zgSS5Xt1j2/htcbD5U4YszKo28u9ISNyaJoRITTLGHae/44UHp1u8Df8BGprpVufu3s2WrTeu3nSo//tvMVlNDlRoTSClLlv3ffQLby/sqnyjGxCv5RnSnFj/laMoRu16eqWrmqnkMYyhwxkO1nHx/M2IcREbVe2FLyXURlxDOe6Vz44S+iJP0gJAcdPbR0IXCQduKd05Wi145/XT8gKbc0fXt/L4qs5QUHRGTiCbT9MkP7kELG7EjEVkIXVYZkWbwZy62AhTviQXBaqQfgvSnS8+kTDhVNk0R/ibEr7DPIDJEL07wS3/uTp6rNc0YKJqqLKnoO+7sCMNH12lnwhWSWEOIDCaYYAaMheVHJRe4gcmFB8xOJzA0RnPdsuQSHKRgbH8/rBtCOh9xmqRgBkhjkHxhYsLImY5WWyS2sYRb6/uXd/NJwiclH6tX6X/2JA+E/V+QxYCKc5yYVtea9h7wS6PAmZ7RxwEpOvx/LZbv0TllOokju+Wg+ykfrIyctKpFGkpKbfHVDYL3fMrn+3NF/RMJX9ZU6+URKLxMiqRbovvMFEQ6NcDkpBWOVapR7WAnxCPJGsOjsWVKXmOU+2DgEyVGUcrqpRZGEYTnMH5r8YhxICEJ9azQNWbmYl3mvl+8A/2mCGkZqn+j2NSFspvPbpdPn7saxjjP32diJd0syUIDN4pmmEOmNMEekrXmhuH2cLF3D/kqcbOPhInj7y0a4+1DR6NCY/Vlk2fN6OyQiyWHFe5TWw9TulQ/nKmy1J9GCbRS9vAkT0TBE27lBjV0/TmHlgO1BMU166Zvm61EuBgXEz0HjLmZT+wXGEzDmCpFkndndNH9hCl1Q/TCkL3COmNcCSYES1KnXgEXkVzUfsvlvHqMcBkl5z0I01kTCNq9u1Qf9kvsO8HKJmsyn4ijDXoXH6aC2/N/8imUYsNmllYogVWQlcI+6a3NqOD5+j0ifhfZkLbVRi+JobJNCR6hAsJ49YE7a4cYbHZ9wtge/TToar8I9ScZlAZzpMD+dwMMIwddAinwdynjQS1g/U27oJMYKIh33PCQXX4brAMRGUQOZPg8zZAaIEmrUkaMA+NjIm+E64F4rdR0ylPSUAK2P5pId6eBToYya5F+GhPvN4PcPYJIvx8x3QNVFQv8mBPOYA3CVzL2FSQOY+XVWkuBSddppmCWFNG4g5Lxq14lJwWuClJiQiApuJjud9Oi28d0bdeja1ap34tsJ/Uygu0ZsTwjYjJEhRpbSBjkHL7LZRIGb4TNGYTvCKnrDJvyfwye0OncMtuJ4DW7NUfc2S0TvhbqEIvW0/0VicHIMoWfYj1ifYUb9zE0EYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 500,
+   "completion_tokens": 300,
+   "total_tokens": 800,
+   "cost": 0.008,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008,
+    "upstream_inference_prompt_cost": 0.002,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.496
+}

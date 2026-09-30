@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Restaurant kitchen fit-out with a new extract duct through the roof",
+   "project": "Restaurant in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "para 0.15",
+     "document": "ADF1-2021",
+     "text": "0.15 The requirements of Part B apply if, for example, ducts pass through any of the following. a. A fire resisting structure. b. A fire compartment. c. A protected stairway. Building Regulations 2010"
+    },
+    {
+     "ref": "para 11.2",
+     "document": "ADL1-2021",
+     "text": "11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation."
+    },
+    {
+     "ref": "para 3.30",
+     "document": "ADF1-2021",
+     "text": "3.30 Where building work is carried out in a kitchen or bathroom, any existing fans (including cooker hoods, where they extract to the outside) should be retained or replaced. Appropriate checks should be made to determine whether any retained ventilation devices are working correctly."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "building_notice_or_full_plans": 0.64,
+     "full_plans_required": 0.02,
+     "competent_person_scheme": 0.32,
+     "not_notifiable": 0.02
+    },
+    "confidence": 0.52
+   }
+  },
+  "usage": {
+   "input_tokens": 917,
+   "output_tokens": 65,
+   "cost": 3.8514e-05
+  },
+  "id": "gen-dec-1790676085-2qWBVgigb7vrxoMke5PA",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.349
+}

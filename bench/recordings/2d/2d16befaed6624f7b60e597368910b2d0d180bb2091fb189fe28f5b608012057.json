@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Outdoor lights (front, path, seating)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"Sch 1 P1\", \"document\": \"BR2010\", \"text\": \"Design and installation: P1. Reasonable provision shall be made in the design and installation of electrical installations in order to protect persons operating, maintaining or altering the installations from fire or injury. | The requirements of this Part apply only to electrical installations that are intended to operate at low or extra-low voltage and are—(a) in or attached to a dwelling; (b) in the common parts of a building serving one or more dwellings, but excluding power supplies to lifts;(c) in a building that receives its electricity from a source located within or shared with a dwelling; or(d) in a garden or in or on land associated with a building where the electricity is from a source located within or shared with a dwelling.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677623-FLvxmyTtIpTPRIA7mGV0",
+  "object": "chat.completion",
+  "created": 1790677623,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.62, \"not_notifiable\": 0.33,",
+     "refusal": null,
+     "reasoning": "I'm thinking through whether this garden lighting installation counts as notifiable electrical work under Part P — since it likely involves a new circuit, this would trigger notification requirements, meaning the work needs to be done by a registered competent person or reported to building control.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through whether this garden lighting installation counts as notifiable electrical work under Part P — since it likely involves a new circuit, this would trigger notification requirements, meaning the work needs to be done by a registered competent person or reported to building control.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5QkKEAgSGAI4AUIIdGhpbmtpbmcSDAKj6NNr33e/Eu/wphoMcXnLHIrCOojtmquaIjD1FEKCBMI8paIuRAgRa84nktbZFliH0gOZhA5rO9vxhraoJxnREbttv7trru6XnvcqggmKtKFxkzkx5u/vy/cFuXphSqDpEC7j2/ANASbbB4k+MfQOdbz40Kzbynml3/NjCRjXBPkZWq7dNluEfK8LQya5djXUhtvK++mLSsoT2YXJMMPygpVi69MiknCWiKcEiod9LGZPTDgWbYzq132vSqI75NmXuSomkPhKLETT6iTLiykwvwM7Meh0IHG0ZWTTH+x+jzIK4Vgc3uG9J2nnJ2SivQEqg5vdLfCdGd8uob7hHqLsGxG495ijrHm+/SrH9B/HiaBM0Z74DI2dQFYH6XztG/U+npGC34u1sC7D67KJYTNproPOUxt3tBPqUVaxbjtfmkZ1aY02FoQe1Pg+Xve2dXX6enfb708hsHKKbHd3WApBBNxA3Xdpqr4Q/AxvO+GMZ1xoi14KnJOY1NIGERljRJvoS2DwC+xzNxxB9F1fLrgD4MDl/a892PlnvAaWyjuftrziJKneb0sP7668vEWNCWdmlEyPAhAIgdbY2VS8nyxyH16JZYVSaSyO1AqBVKVJFpn5VrZL65F9gVBJxs8cVFayPc6fHJ2a3HfIPJ21HhY21LuEykgOWN6zaY+LkbV0hLtWOhxKjLFgB6WAu7xlVleQI/cKj4kDw7tNI34IyK/9ggvAv+6vJ8Lnvg3oxfzY+17DTFOYveqCFQynVHPtVPtF2YbclvJEs3LrCRjf1NyjtXNHnQs+i3R3ti/LDnWRU3tUk63OJlY01do/kEc/heHtV4tnN5WHZYL8mF61ZO02QRgHI2AfgMeenNYZ4OQL4E1+io0cGUuEkJtqSRmbtecIw2yvCJTbePAPQaDWRwm9a9nB4FOB8Xu6VOZEib77SNmNzWVWz1yY0K2MMpDgE/rfFqi6SmSLDuHP8PFhvOfSyBgNOXKJnRu5zYYGLsCLgBh5RidT+Yu8ih4QldGLz9PpHN82BylXv13KzGYnmOGrHoYNGiOyll2zb6xv8tFCLqPa/tT6kV/Gz3Otr7/fW9CzhEN0Fu45MuAQG72B1idMQL0LKTud+p+DRX1MNbVKBbO+/qFI5yt/iOLmO58sgEoBGCRoyE1HxnfjJtDAwtoZPPlT3iUpEaeZiXkk5K3TqzB09PxJmITBsYr9P2ngCvO326Hr+BSrqX7yPfy7GhqOJ/LM2gvxLIFonkDkxM0ymAKMXxsCJ4N8PFhirdAKYW1wsueAlvD8cZ4EnyMFN7bjlWU4ohj6pAqDQG4eQ9TtzceA1xLdrXg0fXivfXVXG52euc13VrkLqtd1uUWoWvOU+xAxJV+YWc2BxILtBYkpXseiToBcbOTVoxbMaPZDuJZn0F/GYjdstaxfvtVOGvwG+ACXTuoiT2jZC2X1M0NetqfzmZp901NS5iQr52ZJnmu7/2nkOq8W4+q5aPlX7N99nv1RTHvjQsn7J6Z2e83LkedWV8Yy0YdlI7PjiUan2hT7AhbhM/DDdZFzGUQq1RCWQhcOkWfOA1tmkGOEMJinuWw+bhyRrmi8oWiLXCJcQ83MSJ61LaGE5KWzIvWp+HVl0gJMaAltt6Vv/MH+AjuqGhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1347,
+   "completion_tokens": 300,
+   "total_tokens": 1647,
+   "cost": 0.011388,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011388,
+    "upstream_inference_prompt_cost": 0.005388,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 251,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.505
+}

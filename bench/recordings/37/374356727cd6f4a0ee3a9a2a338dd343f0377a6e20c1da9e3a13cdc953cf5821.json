@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office fibre link\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678483-gq8xy1dSGYbyLEFnt1T1",
+  "object": "chat.completion",
+  "created": 1790678483,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.93, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.03, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Data cabling to the garden office isn't building work, and since the detached structure is under 15m2 with no sleeping accommodation, it falls under the Class VI exemption in Schedule 2. This isn't notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Data cabling to the garden office isn't building work, and since the detached structure is under 15m2 with no sleeping accommodation, it falls under the Class VI exemption in Schedule 2. This isn't notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSsgYKEAgSGAI4AUIIdGhpbmtpbmcSDDjrO0UAHJdkiMW35hoMNNACidSpACBHFCiUIjBURxqk7JG9PJjfVlqMm8EmHWwLWvc2lagkpZq8J4tHL9hRpF5RBxTHTjY/qvCoYpsqzwXWYWzewauVstdUQIR+dt8SYslBLtMQWlSx5UV5o3R4X79GGgzOWh33hUGB6Qk0J3cImvtm/QTo0W3hEf2gqsDyfVZsvW4a5zC3VZjK6pml8rrdp425+MorKGcp5V2/tkCegxB2R/SORIz83zldnrp+L9S/a9hU+RK0iWaTEKW4YF6/meSXWGtEIT9gis6QtVn5W+qKYSYra6sVjkOv9A7ivdNTw0PzgO2ojucjAIY6LmLchvq9OfW7wChQiEgXHUosKc2x8iB6dU+XUYfPmheVjSb1GdZHhxCm4+pYB1XoL3DFmzkT+BiNGhKYzXZX/ynD+AATwVdUl4QW1ETKVuMcQEe9VXTVnNJcumEcpP7SWzbqmtf8URCVVMqpzaxFAWFotEncPu4gUD0ayq8HCwmT6v6yz9SSaXFVPtTUlV/UJuEkHjjt+ZtIf1cyQKec0z1FuiXSk4DnKdaUf69l4Ww70g2gVthg8bE3r1Iz0QEqycorMNimTJH3SbRhEJBCckmhL902gHXToQUwl1mho6yTctPJDEYZRtgCAZOX8b6rX2VjFuGX4GXBGyqHqMQOc8g1MM6F5VIQ4WLUBXEkZmScG/m2cOtr+JZbOTAIU9tXR+hhYOyLIA/XbGDYxrHVoktYnOyrNPobdPk2orCpfo6Nb8VOS5pLfEMqdNudYY8zofXIMFsKjNCmvuSEgNdbVGgmrhDnW7ZWjXKkxFgmETk22bNfImV0OuQFxT+v6aK5x9WEjdcLzq7fzEja6SF/3RxL3SE5bnBVVj7fhchjLPgADHFhKAEmpKkbgTcyJ8Q0gFOwpEwUc+7fTDEFxMaAlgc1Y1B0zCEciSNFT4M39WuoOiJHUbWbiTzmceJrW+rIKLc++Mdrz80dNCySmHeQZ79f0ghdF9CaV+y2PlIJATYhC7oAvBINbQM9vHc2rcO63NXEQrCvDHZGVTAOF0MXyBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 510,
+   "completion_tokens": 182,
+   "total_tokens": 692,
+   "cost": 0.00568,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00568,
+    "upstream_inference_prompt_cost": 0.00204,
+    "upstream_inference_completions_cost": 0.00364
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 101,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.527
+}

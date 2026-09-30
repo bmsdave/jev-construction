@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Wet-room tanking\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Wet rooms. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678381-PCmXlKkzZRwhy7jxv4Ar",
+  "object": "chat.completion",
+  "created": 1790678381,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Not notifiable.** Wet-room tanking on its own is the application of a waterproofing membrane to walls and floors. That is not \"building work\" under regulation 3:\n\n- It is not a new building or an extension.\n- It is not the provision or extension of a controlled service or fitting.\n- It does not make a material alteration that affects compliance with structural, fire or access requirements.\n\nSo no building notice or full plans application is needed. It is not Schedule 3 competent person work either.\n\nThere is some uncertainty because wet roo",
+     "refusal": null,
+     "reasoning": "Waterproofing membrane alone isn't structural work, so tanking by itself wouldn't count as building work. If the wet room adds a new floor drain, that touches Part H drainage rules, but tanking on its own stays not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Waterproofing membrane alone isn't structural work, so tanking by itself wouldn't count as building work. If the wet room adds a new floor drain, that touches Part H drainage rules, but tanking on its own stays not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSvQcKEAgSGAI4AUIIdGhpbmtpbmcSDPiJ54XG3SVt90B45xoMyqTM5Vc99ihmpDM/IjCymSzeOXIYy5PoYyr/L8I1X+XXXoKWp8Kv6hal17qiXlRYZwTfNw2w5+I3gePeCF4q2gYQN1PhfOIs+rlNBfz5A4TM+V7neqf+NXD6p8HHNOCHCbuX+N8BUUPPt7kQBCIDwMHiC+sI+sDOyPSTAA1eAAx/1UmIhWND3HAxHZg3xhBikkUHPui03NkHB55Dis4wuFXJK2y8fKYdDe72Zs8/BFNg+VNIiJzbaAH2X9l01a1CJRP/GczBVQyxm2Kh5/2UPAD6js+hTa4vfDBmGGrP07CvRkJ82yjuIZTEci1RWmEWs2uQ4W50bdUwzuZpblpFaRBn2dhWM4SvzyHlyb7dWkPR/Dz9omk10M7ur69TW4/8dyi4ZVwR29cVZ+FjYMLKVFq+HVbZbLg3YYMswAsLX1QNU3z5NpTy4zrHNdcIMJxyyxPrgbKA1brMQ8IQgNhgq7m9/XWNUZ2HLlhgtJnmvbgi2ZCqd138l7UXc/bjwiYWDCKIl6nmFX2z5PFnjTAwkNKHNgSKTsrO3QGOi5mOJKUO1PsylNEdM4JCNd6y0o5BnDc0v1NgO4GTASycqnIFtb/WYuOkIoPnF5ujH/ADLGkapdR63pUFQSRX+UxPYa4fJKcbojPF1qHwRNnzrjUY234LN5FtMWBwi0LEN9OW8F8WJ+ZlzHB5ElI2SD+2WfQunTgouGkyCGDYc72mcK7eIsccJxVdNLK2Q65Rc7aAk7NlneHqqdln9i6w3zkN0f9JO+bpqFcNNLb4BPtUXHSOHv3jc/ydEgBt60g5vfeEYERfGjBqakEKQH0s5Y+6VWiYgjBoXYK7TRr7iwilgJb8HrTJ4UO2bIszOouXO7sCDFS45lKmFazrISzGoJeGTLGLsSPsyZ2xfm9JiMxrikq2NydbFr/9NC1ye0xj4Iqo/M/NEAX2xETdksCnrjkLJ5QcRIt4zQYbE2Xs8LLl+Aw8fpH5XE95CUE6nDmncehaWz87DwVs2wS7RsBl5hdH53vf5e2nhpwcFegvfoTP42m8QVTcP5WTG8GCADLOsbD1nQH/xE1oghiBKbwNd/23xf5kpEzs5sO3KOg0C9B4hkMoTQbr6RX4IlqXkADQRmLpF8EJCkYaYMN1VK9cip55iVJ1u6sNjGHWE5+bMDsh17k9VWq/O004IgzFyG+W8ZLodLwkjdoqNoMNRcNiOh4RdCJqbtkvwvDDPhA3pgIYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 504,
+   "completion_tokens": 300,
+   "total_tokens": 804,
+   "cost": 0.008016,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008016,
+    "upstream_inference_prompt_cost": 0.002016,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 137,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.565
+}

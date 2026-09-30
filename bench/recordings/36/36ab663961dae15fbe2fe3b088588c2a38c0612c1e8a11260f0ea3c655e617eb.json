@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Apply external wall insulation with render to the side and rear walls\", \"project\": \"Semi-detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 19\", \"document\": \"BR2010\", \"text\": \"19. Installation of insulating material to the external walls of a building, not including insulation of demountable-clad buildings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited, ....\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"Sch 3 para 20\", \"document\": \"BR2010\", \"text\": \"20. Installation of insulating material to the external and internal walls of a building (“hybrid insulation”), not including insulation of demountable-clad buildings, and not including the installation of flexible thermal linings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677809-yeo33vKZtnW9qbXtILc5",
+  "object": "chat.completion",
+  "created": 1790677809,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.85, \"building_notice_or_full_plans\": 0.1, \"not_notifiable\": 0.03, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "This is external wall insulation on a semi-detached house, which counts as a thermal element renovation under building regs 23. Since it's a dwelling and not covered by the fire safety order, this falls under the competent person scheme per Sch 3 para 19.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is external wall insulation on a semi-detached house, which counts as a thermal element renovation under building regs 23. Since it's a dwelling and not covered by the fire safety order, this falls under the competent person scheme per Sch 3 para 19.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxgYKEAgSGAI4AUIIdGhpbmtpbmcSDLI+1axvKiBWrOGmyRoMQjrYDgMEznoJiK1kIjCds27EcWjVqKYSJxZxIgpMC7HJCczNWSsk6v1QQmAub+A31qJvSpamW/BgRyUPBewq4wU4RWUkLpifgpPLWP5O+iitk/EqCb3RqcsIAhzGPc6ejt8uFmmHKmFlfEymZ6iUYfG/LKcIGrRQOGYh+OH9a8o9tEbqUlCO2aeJT9mxTVM+Z0DsOQT5Rm1w8n9qISt0w7Yw1POjIX52QC82MmlAy5VlNgWZhZ+aWEk1MA01Bg0IyqyAJTYqknXoT0JxEll3DdUJ+gW2pPiDR6L6hMk1F6Jd5yQrXTcLOelP1Kf2u2/NEC6NfnFpRnj/+nxdsO6wr98Iz59d/rhUSNqJIrH1FYGxYK8SHuWKbZawDZ3Mzycsr6Hspz4DW/R6iONI7r56D0dxwEnAvyZMziDsvx19q3T10I+OorFB434SwY5B2aHJ64mjMjXTYewU0Iud7816PYdue53j1lfFHURtQQZRiud6LEV8O6DODqlX39ckTsJRHdHz/B/MZEwENIJLDrrSPU0dDZ5HyiD0natjnJCNneh6vux3Oz0n2xNQ4NpnKyIyS1AF+w7kUm1HNYJTUzn52XJG7hryOAlJZ8c0WkGc8dZNnodJSHiEpz0EIlEUD+dFebUldg8wQ0+lKKIkxpu2YJzkhdwVrixupeg8SxJ9AyROkbkijT7pS+NB+cIQzp0teup+tvGGVTFJlUAukH/PGtRqRvr2xWyD97OlQuVB5gCG6U0xDRhmB+BG1ft3NjC8vqAb3FDT52xDobHXweXK+o4pD+KUHuzTPjQR42oo0ruesxaoNKn6LMEh8s9tFECpGAifcU3WFWwXRQR28/QRMdsJOUivwtEtcPCVy5kmhHZtb+umSsYiQR/CEZDNg0Ll3cfwujH8tG5zYJjU+PeppJ+krDPq86noTEEzUjhRARwq+o2c1pTyRRMwNaUUWZnRH4/PCP0Wn+WblCjh4/hIDVrmNIFVFsHdcbdOa/m+DvUGsqcQt5HL847COOEGC5wlf2tbSPYzI7cr9LdHJizswAQ/FJhQJhobY8pL6Wrnj/Sp/9WBGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1311,
+   "completion_tokens": 178,
+   "total_tokens": 1489,
+   "cost": 0.008804,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008804,
+    "upstream_inference_prompt_cost": 0.005244,
+    "upstream_inference_completions_cost": 0.00356
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 95,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.401
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Garden path\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678532-tbbzWs72m387FdDtAGhD",
+  "object": "chat.completion",
+  "created": 1790678532,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "A garden path at an existing dwelling is not \"building work\" under regulation 3. It is not the erection or extension of a building, and it is not a controlled service or fitting. It also does not make a material alteration affecting Parts A, B or M. So no Building Regulations notice is needed. There is a small chance it could be treated differently, for example if the work affects drainage or access to a new dwelling.\n\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.93, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.04, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "A garden path at a house isn't building work generally, and there's no controlled fitting or Part M requirement involved for an existing dwelling's path. It doesn't fall under regulation 3, and even considering drainage under Part H, laying a path just isn't building work — so it's not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A garden path at a house isn't building work generally, and there's no controlled fitting or Part M requirement involved for an existing dwelling's path. It doesn't fall under regulation 3, and even considering drainage under Part H, laying a path just isn't building work — so it's not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSnQYKEAgSGAI4AUIIdGhpbmtpbmcSDP5iG9F4eCjB7xokohoMdsXxwv1BRkHw/nyHIjCuRv36Y8Iq+Pn//pXHxDre4JxVb24xcRLUpmmFG8dUuTQFH+bAUlLCrUo84N2A10MqugUNuIn0iZ3GCe2Xmv5pDtbtwNEu2HsChirLWg/ZQD2q4e3ZyEF267oJrsUAFlKITZ0YtG2YQ/aIoea6DaskMh9mRJr89/NLtoJW75rvQIzNmNzPczDT0xSyzkPLZ0xc/fBrSqRNqzAy5mKaK1p3dehvZtMy2UwmT6CNXz/a9CpHAasZuj2yUB9SnpGTh+PhZmXK7lgfcTgxHm4wenixyNfeWsFW1WXoeAWZp1C956u+W0TaKQm0ApGyCk66jkrytAVkNGTSABLuH1cFY4p6sxE+PkbDb00BICXmeiSXP5ZiUkh55mR5Sl47HnN7xxRtezhGSzH28bdbYXj8Egx3jt2MU/IGNXteKQrOjU4bs/5V7L2Xu+is+skfMhe2Kqxa7sfLzKDUQJHLJtuRtcltKHEzuNXp2ortnHHF2cNwOe3mZ8irIlTubZq5ypms9UlPDmf9AM6Yyv8B9rXrlWujpfUHbd7jp3ACzuL7lR8j1AYA9Ke+Fs/yHK5w4J5jdcJ7Tb102Q6qfqQ0HZE/L3DGNsGTWDh3jDlyMf+LtMQjmCIz713VSw8pFyJc4I9yhwL6BYCRD7wW2zkwTOp289BZC/mfxAHXuArHm84l8zjuaCFGZlFgL7LqqO47UzLE4VXv8bkodZS5kMWJkSYs9Vlvw39+KsTsf+fqaAyRlfo8EBZq2M6NUC69oTstUqNTZIhSTFkIBG8C8O3czDiOm9gamPtp+L73QzRONuF/c0ZCdc29MqRH/+G8pcguvkB48eAiZakM1OOdlp0d2HXJBFRPaj4f/jZR0vsG6EZbh+vzepH8pzV1qjODAGZOuc3K9JV78NOzG8zLKtnJFY3op+mPlee5YUhdEPuGNevYDPNO1kre06qfJfVio+uRBfTZiOxmqDMIg5IjCf+umi4SPM6sEzhEGBntVSfxph46ARgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 486,
+   "completion_tokens": 288,
+   "total_tokens": 774,
+   "cost": 0.007704,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007704,
+    "upstream_inference_prompt_cost": 0.001944,
+    "upstream_inference_completions_cost": 0.00576
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 84,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.226
+}

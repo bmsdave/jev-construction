@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Leak detection and auto shut-off",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Water treatment. Part of: existing house.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 1 G1",
+     "document": "BR2010",
+     "text": "Cold water supply: G1.—(1) There must be a suitable installation for the provision of—(a) wholesome water to any place where drinking water is drawn off;(b) wholesome water or softened wholesome water to any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(c) wholesome water or softened wholesome water to any washbasin, bidet, fixed bath and shower in a bathroom;(d) wholesome water to any sink provided in any area where food is prepared. (2) There must be a suitable installation for the provision of water of suitable quality to any sanitary convenience fitted with a flushing device."
+    },
+    {
+     "ref": "Sch 1 H1",
+     "document": "BR2010",
+     "text": "Foul water drainage: H1.—(1) An adequate system of drainage shall be provided to carry foul water from appliances within the building to one of the following, listed in order of priority—(a) a public sewer; or where that is not reasonably practicable,(b) a private sewer communicating with a public sewer; or where that is not reasonably practicable,(c) either a septic tank which has an appropriate form of secondary treatment or another wastewater treatment system; or, where that is not reasonably practicable,(d) a cesspool. (2) In this Part “foul water” means waste water which comprises or includes—(a) waste from a sanitary convenience, bidet or appliance used for washing receptacles for foul waste; or(b) water which has been used for food preparation, cooking or washing. | Requirement H1 does not apply to the diversion of water which has been used for personal washing or for the washing of clothes, linen or other articles to collection systems for reuse."
+    },
+    {
+     "ref": "Sch 1 H2",
+     "document": "BR2010",
+     "text": "Wastewater treatment systems and cesspools: H2.—(1) Any septic tank and its form of secondary treatment, other wastewater treatment system or cesspool, shall be so sited and constructed that—(a) it is not prejudicial to the health of any person;(b) it will not contaminate any watercourse, underground water or water supply;(c) there are adequate means of access for emptying and maintenance; and(d) where relevant, it will function to a sufficient standard for the protection of health in the event of a power failure (2) Any septic tank or holding tank which is part of a wastewater treatment system or cesspool shall be—(a) of adequate capacity;(b) so constructed that it is impermeable to liquids; and(c) adequately ventilated.(3) Where a foul water drainage system from a building discharges to a septic tank, wastewater treatment system or cesspool, a durable notice shall be affixed in a suitable place in the building containing information on any continuing maintenance required to avoid risks to health."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person_scheme",
+    "probabilities": {
+     "full_plans_required": 0,
+     "not_notifiable": 0.28,
+     "competent_person_scheme": 0.5,
+     "building_notice_or_full_plans": 0.22
+    },
+    "confidence": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 1280,
+   "output_tokens": 64,
+   "cost": 5.376e-05
+  },
+  "id": "gen-dec-1790676051-0fh3SRUj785Dm3kPtcwB",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.327
+}

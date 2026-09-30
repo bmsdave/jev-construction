@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Penetration seals at deck/ceiling service openings\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Fire stopping. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678246-Mw1hgbDCb3chfd9IsZXN",
+  "object": "chat.completion",
+  "created": 1790678246,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.6, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.33, \"full_plans_required\": 0.04}}",
+     "refusal": null,
+     "reasoning": "Fitting fire stopping penetration seals on its own in an existing dwelling doesn't seem to fall under erection, extension, or material alteration — if anything it improves compliance with Part B rather than reducing it. Since Schedule 4 doesn't list this work and it isn't part of a wider project like a loft conversion, standalone fire stopping likely wouldn't count as building work under reg 3.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Fitting fire stopping penetration seals on its own in an existing dwelling doesn't seem to fall under erection, extension, or material alteration — if anything it improves compliance with Part B rather than reducing it. Since Schedule 4 doesn't list this work and it isn't part of a wider project like a loft conversion, standalone fire stopping likely wouldn't count as building work under reg 3.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpAkKEAgSGAI4AUIIdGhpbmtpbmcSDDXO+bypTst3r8bAzhoM1qh2+2VJag9FhISQIjD37tfbTRBAOoPJYvcK+nsqOz6N3P517W4mjpCiplr1ii3+sOcZvj4bgLm+C+8a+q4qwQhZWojyOkk3kV7ecAutY9STgl25f1QPIvEP13I1njDiYNU55/7zIVkXvlJPSud6xgnmpQz2ht+Cm8f3TNYuPQfxRbIKXNkyu05wGuoIPVPEPf+Crb7xcuT2Ws+sLnQlGPLAQJ/5miXAg6iyi+Jnix5eonMIM5V6gV/T9rhFngk9NBjtwtgYNz04GUP0q1171RUEGqF1R4UZsI2PqHS1DWfu3u1G6WiXYuaLzXaeDKDKBXUZj+aH3PaVMSyJRZHygskHp6n8A3SIkGiJftxeHPah2gmTjYiUo0kl0EdJNmHtCffT5s87Ks9cRVc9uNotdC4FnPkjmRCg/R+Rkv30swLHioWgG05L40g+ZVYokw91VUTR0aznbJpwTDyOIRr0v92jBdYxLBpxbHWRTlgEmDfVmCGgCj/Zl+OCKjzZzXUNXTC/HwoOw9TYtehmicnAVIecRrqjENyP1t3/0fMyrkA4qhFGyed4JpKI4Zlmt/oxcovd2C25Wi/zo9dB1ineNHUbbwaUIm7d5IIEI0gOlBko/8PPHqnw82279wBOK6Jf98zKY5qbqv78Ay4odKzlTtFfrdLcV7KDee2W8x6lMMQctru3liGGipX8X94/UNTWVtysqucWfg39/RL/LfMcGXEjXzA0ZGPebRl8hQ3XJqC7z4NlXNlbJ2VYZIBnXPiXMn4a+pGo2wzHJOFXhT1qsvARRIor/sqqr5rrwoHzxxy0L6tBoe1O5fAhgPQePucWw1Imm+Fq52fPYbIFkRK0SJGmb3UTFLgKzpfdqnRQQqQAK8WRTAMc8nK+vaPRoVmTd6zIO76dwL9/y3tKF+hg+Cm9hXGMlhdF0o3g0tlD9taK+A4u3c1RF7NrzU4XGb34wNty10Il4TEIIXBPb3JXkQEauBuUtlswJV7Le18nzyBMzB6aBvwfKoHYF44YZYaT+pqD5cIO8xJs7sbz7amnETYJzPCYJRlG0qffX+HjkI0J8y21Tg/LgSueRRwxdoyu0Jc6FpQdSxr8Bw9l1DgP7eTO/tqUwoZunaGMu1LQVBhXWWt3+SaXwtMWj4TcHSVY4H3s09a9mBoQ4sSWQnPrc/GFEJV3FAi0RSyIZ33gEw4rgEcXOTMVmfUnw12Abmux/Yu4BWkGoXrGOHOqYDLdsTrV8s1igziRiFzonXP9rw0TbKvudCi8kNzk5bAf/JTa5JFwRcJJoOKjcCN68lPSJVRHjaaCNyPgQlAiggQnlB+oG9feOs1exOEIoj51zuCQ5/Y7Yy6TxJPbjuIjkKrMM/HBO0t+9K7fWYMNApAeP6fpsoVAuNRCjCrpYTBcNZMuCfn+srbcPsm36myhagDfTntqE7uq+g/+p8VsK4PiolBCabst2PQXpRC02Y2jn1pCCqqwoQC2NyzhwOrRPJ9XIMcbYGka2lxb/gM4xu983NhiYjxvcAwUZfTsp6iVak16pEUYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 513,
+   "completion_tokens": 298,
+   "total_tokens": 811,
+   "cost": 0.008012,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008012,
+    "upstream_inference_prompt_cost": 0.002052,
+    "upstream_inference_completions_cost": 0.00596
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 217,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.269
+}

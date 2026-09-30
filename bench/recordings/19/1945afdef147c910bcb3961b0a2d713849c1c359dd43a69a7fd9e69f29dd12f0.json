@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace a kitchen sink with a new one in the same position\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(j)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (j) replacing— (i) a sanitary convenience with one that uses no more water than the one it replaces, (ii) a washbasin, sink or bidet, (iii) a fixed bath, (iv) a shower, (v) a rainwater gutter, or (vi) a rainwater downpipe,where the work does not include any work to underground drainage, and includes no work to the hot or cold water system or above ground drainage, which may prejudice the health or safety of any person on completion of the work;\"}, {\"ref\": \"Sch 1 G6\", \"document\": \"BR2010\", \"text\": \"Kitchens and food preparation areas: G6. A suitable sink must be provided in any area where food is prepared.\"}, {\"ref\": \"para 3.29\", \"document\": \"ADF1-2021\", \"text\": \"3.29 For a new wet room, ventilation location should follow paragraphs 1.9 to 1.31, performance testing should follow paragraph 1.32 and controls should follow paragraphs 1.33 to 1.37. Building Regulations 2010 F1(1) Refurbishing a kitchen or bathroom in an existing dwelling NOTE: If a combustion appliance is installed in a kitchen or bathroom where building work is carried out, Part J of the Building Regulations must be considered.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677824-BbrlUUtwKjmHZeGgvj72",
+  "object": "chat.completion",
+  "created": 1790677824,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing a sink with a new one is listed in Schedule 4 para 1(j)(ii), so no notice is needed, provided there is no work to underground drainage and no water-system or drainage work that could prejudice health or safety. Keeping the sink in the same position makes those conditions very likely to be met.\n\n```json\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.93, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.03, \"full_plans_required\": 0.01}}\n```",
+     "refusal": null,
+     "reasoning": "Sink replacement falls under Schedule 4 para 1(j)(ii), which is non-notifiable as long as it's in the same position and doesn't involve work on underground drainage.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Sink replacement falls under Schedule 4 para 1(j)(ii), which is non-notifiable as long as it's in the same position and doesn't involve work on underground drainage.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSqQUKEAgSGAI4AUIIdGhpbmtpbmcSDKjIWnNWbVutvKmxUhoMx62cPXQZPjgpVIr+IjAdfA0ciT3gzsXGwN/lvrBtw9EpT+lQWBv6Nn4/xiaCEoOBsc7r90jeu1yjRK0BuCwqxgT1Sf8stWMXnEhVfBdYte0snd2iRzFL0ym7Ta4Dls5YmdEeixs7Hh32pAUrBM94uyK1KxPFN2a9z1P39URpb3M7AffyfjYjskBW7bg7rNGExB/cBaaxV42kUG4gIWa1Bo3NcJBH6vAcHFiV/233M0NeiSTsy3sEbEPDoAPSV4NsPiCXZssek4xQy9CPlB63xzXGr+IXRPyxibKMX7jS33luGKqVSq/x6WqNOHLBkz469MEcxV4IrcZi/9ifAKGtyK7v9pV237IqDiarhI7crv8L1C3HI+3MVNU+efecclAWYPs6lMXqMOFcq1u/D+jIuqaP+fGId5hZ7GRY6zRRIqpmIW2g0FMH9qtVt29pWN/8YfAASC/R4L5B9LJ/8hgYmcnfnwYWKzMR+U9HUv3EtI88F5y8tVgjoR1TLrl8wQrXMWiTUssaEpRxCCEX7Kp3z81cMtBYU96+1YOraa/b0WPQfCoVQZTJdtWpUpqFim44YG1eCBogNAMEIIDGClkYrpmvbIfc6IXMiIx6iAWTbLC12HHD1TWA2ur8YCn5nUic6e3I/4yMQ+gvy8iB4r3f3aHV1E3D97JD0LiYs/DW89FlWUsGRxJR0heaOhBpWWxczhAD1BHMIwgY70jpKsAkrBNwA19mwnMP9j1GWWu56PvzOl4SbkWUf0dSy2Wt6c+Oznrj6cish1GV6ysJk4Et2DDyV1/HZDqY8JIAd/+s2MJbVke4oQHWX9C6TYpuaIYqoM3SU3gxO3E1YZAm0y26YopZQOwmy48YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 927,
+   "completion_tokens": 242,
+   "total_tokens": 1169,
+   "cost": 0.008548,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008548,
+    "upstream_inference_prompt_cost": 0.003708,
+    "upstream_inference_completions_cost": 0.00484
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 58,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.599
+}

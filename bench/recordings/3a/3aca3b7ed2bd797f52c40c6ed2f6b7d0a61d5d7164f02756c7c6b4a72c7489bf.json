@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Soil and 110 waste (low-noise)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Drainage. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678290-oGlz0xoZv0fN4FoYrVkn",
+  "object": "chat.completion",
+  "created": 1790678290,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether installing a new soil stack or drainage pipework counts as notifiable building work under Part H, and whether it falls under an exemption in Schedule 3 for minor plumbing work versus new drainage installations.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether installing a new soil stack or drainage pipework counts as notifiable building work under Part H, and whether it falls under an exemption in Schedule 3 for minor plumbing work versus new drainage installations.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSwAoKEAgSGAI4AUIIdGhpbmtpbmcSDLX8JFErUpIiXj/lzxoM0lCFzWKvRUYWkUSmIjAuh5097zYPSEHi5nJBTllTSLAom1pcmh+qaLYZICrf85E4FcwFgn3eZug8ukYc3Xcq3QkZTPBySCBg18vCQ0HG+X6xpjskwvhflldH2+AxBY+sP0Os4B88BuRDVJmklEOajk4NY7WCMZxwFPEOKU1t44ZBWxNI2svqq3h4hhpsXIKZj4UxfiLh9LWteOk70Si1R26W6xYNYwMhb7uT6NoX3Qk8cyxSwdmf1qw7HA4rrb+29u5Ak739fg1vky+GgCpNTtfVYP5r3l2dg2YHAATwc4Qxe2ZZplD8PhWynNBWj9p8tMnoy4KU9SvD0qHAQ4NxAMUCgUkyucwFuIV8ITdLtThrAamtHVJ2Hfxw/GJiImYFmMKi3SduJsbr5H/omOx0519iryNVgU55RE66ROMBzhmiVGKby9wo96es9G6VbSH6ePMz6ifqgsOffjA8zD7xQYI+5aNy6cDoy5JhWN9guaaPbGgfNerLrQLwmF6ZN+SAIJjXbOYj31TWXwD6+35JNn5G9sicYswluQ0yyoVBYRPX80OipQMYc9FlkzDg8YzddEToRC3IQ3duIXhvoT9coxnh+E9g7x5KY8LfS6daGt31pEzzbDEOHaumwMf4RxwmxqzqCEKGSJy4vZLHkS03ZAkxSc/cfnWXlqBr2Vz7yUJTT5NXeIrwsrNmLZgz0tJcJUInAXAEleH28yDZfvDuFjs3zoet35dU2RzS04lg0vk2lVYDDcLo6GPQitXgNqrnlgm26JzdWUG1Ikdnk9YMfkuzP0xJNgyd3xFJkCRFTyCOgNX3JbuCq6El60pEZjL4E1VoTNZEzprxj/O4jhXDFfOL+jKxKLLTnIOHKJDxWTvz5WDfE9GD7xH8EC7MbM69Ws6F053d2OF1LQGwT7t2pW0oB438pXMvw02UsAdGUe2O5yF9+/t/sBDvg5Hzr+UM/cxMeSHrG4v/b8z2YB8RNxv/nLlr+UU5ptpDNEV4yDQ+HXfDyIOhPGYqS9SieaFpdJL2DkJl9S53QxK7Dw1DebX5uIfLa/RAY5urrhpRAEHy/o5Exp8h5ek2ikWIoDH88FR+ioC4rHc0CE8HiT+6w8y02NJ5IbmX/iUsPVlxLk6XQdMluYgXKTVBP+g9ttUbt7eT+hlb2RksfrqLKZFOmZUyebDWVO61PY9JR2FXbmTDuu6n7HzVAMI1v1EGNrFqmNinAbRqNs4wZMGqcWDmHfvxVwBC87mamyjB9ek/tAIc1Sfrz5UYOphrY40EZDI0xgGaZSM/0VelnUxDgYjXpcM8rPPN81ky18hpTxzCeYqEukeRGR4FBBvmRRVO9LEhg2hHlCgzX/Zcyf41tA4bt/B6Rb4FR/drTes+YDIfqCFqgytdRhRZExnRSguVRM0sL3sIzl2bERrTkBWsFEcnnv/e7H03bfPS4+NvO6hqXFlaV4640PZQOmATce+tlHiRBr8H2Ju6ziqoiOSuIBVkuHCytM7ec5k5JqlFXttdWdtot8E/v9s7enfrcCo9zbwQcr+MDa3EwL2jFeOiEA6woboJcXdeKMCiJcmsN4fkkWREHm3VH4nE7d7F+EMOo3J1Vq3Ka3nDVqq0fH7aqZ3E0tDp35mnR418QksHG0FwVBqgpXbLFA5u5zi+V/H5V+tiZM9eA52RzPthID116DPhlV7KFqoXX1+3mp4POX1kV4uG9k1eFY6fI9gI43pUlnvoT5ExqCnimny3gdgCQWwYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 509,
+   "completion_tokens": 300,
+   "total_tokens": 809,
+   "cost": 0.008036,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008036,
+    "upstream_inference_prompt_cost": 0.002036,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.56
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"House MVHR system\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Ventilation. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 11.3\", \"document\": \"ADL1-2021\", \"text\": \"11.3 If a thermal element is renovated and one of the following applies, then the whole of the thermal element should be improved to achieve at least the U-value given in Table 4.3, column (b). a. More than 50% of the surface of the individual thermal element is renovated (see paragraph 11.4). b. The work constitutes a major renovation. A major renovation is when more than 25% of the surface area of the external building envelope is renovated. NOTE: If paragraph 4.13 applies, Appendix C provides examples of renovation of an existing thermal element that are technically, functionally or economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677504-HctaevGfNLUCYizPMEG4",
+  "object": "chat.completion",
+  "created": 1790677504,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm checking whether MVHR installation falls under Schedule 3's competent person scheme provisions, since ventilation installers like BESCA or NAPIT can self-certify this work under Building Regulations without needing separate local authority approval.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether MVHR installation falls under Schedule 3's competent person scheme provisions, since ventilation installers like BESCA or NAPIT can self-certify this work under Building Regulations without needing separate local authority approval.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7AoKEAgSGAI4AUIIdGhpbmtpbmcSDLEnbqKC0jF+cL3gphoM4EaMuD0Q8GrZJcShIjAC1K37m8zUAcEFKMiRkGjJwHxYhhgEXyE1atubmACoMhy7i60shzDr+klUZh1lYsIqiQpdYFtsQEBEjgVaI1KqFtH+I11k7ZydagJQXzX/EHWWf8FJE7iJyRMd4+CIL4cgLo8mcMRDsCyxC53YcYZki/SSt0AZMfxdsamLfoO12qir1AaI0ZHliONnJKmNTegI8Bu7uurYNRwoO3JTrrQ67B078tw3V7xkY8bb4N8fjVsX8/ABf96RwyfiqZ66yZUrr56XnlXuFxDBL+2W0MPIdz0jcSdvptXU/8nEOCObj3oUuoEJ78HwpEZY77Bxii0Q7xLx+R2kq4y7xuL7gb5lfNZWVbbQLV31hDsofovm5dTJxnNlK1uKro8B36BEqglaQDacZ39gE3B6GspYGoG9UDk11WR1J/qzTFRLO+lQMUPPRPZbT21MVqayIpXidaTK5Z64Vk+poBCE7fpnv7zWrRGXFozPMfcMi9ZOHjXgz/kYpRufzhICD6Tshe3qJt34tv4XZ6Z1A2zJAmel4NjLdPGjWn5gojn6ZC82TaaU5O8TzRiTvBcE/zGOot8XNEqUSSUCA0zIr5CHpMsjoe2rKUVhuwanq6rTL5HlaGYzorQNiX75osoek5I1WK46lE3hcmOCfffcqcC1Drv70y9XN4zZ1tGVzDPM1H3O2WONoP8pbW522grLEsQdHbTtTVgO6MXVGwTeAMZJjKnV00Lumh/FX1CzPw0/FhaKErO/1oUqUopit7oIOPsZrcLxawJZ72q4csrYkHjqoFMiDbrkVvCyU0HR2cE0tHEJCxOi+VlV+n2cMz9zLTiDohtbe0hiwjtKidKdz9sCu3BC83wzxfQao9bMfEU60f9wfWxkamvN2wBqLzD1rBBt3QqvTp4MyBz4Rpm4wIAnJ368JzrXQWKt3VHRxs/HDiOooQWEjya05HmK20ubk67Ay9rRlsCvFQ7KOQyDvRxTPga+CWQrfH0wpx+FpBZoWCwKLXRLFIYjkdTWUA9c4d6zVuOrL9W93zLiNtD0a/cK4VPkB0j4mqQfJZEwQIwhzrLQZcbZ4uulwkYEA3l5Mk6ZzZ8LkStv89E4Cd/d93XcX62Pn/2oY/Lyh+0JmXKBZ8zb6pdp3tXaff52XTIteaETTCSNw2lBch0OT9pSguEHTfc3TBb2YdQmv9ziyan8uMuk5JiAfA/utpSeHG/ST/m+CFrJruY2oAidGFTh0dHa8vEMIIhSLU6Rc+PJrxPpnDBa82ewif7V4Zk/VhiN3AQnC+SVefnAIomYZLlU+2GVann7uEB6qt3Zc86LXq30iZ1qRnLNop0xHHadxL5mm9DeBUHTVII2TkfcGTXSXQedWLtheaCK2vsZ1DrGeu3ZqMsdBH+ZburiEnrn73XS8dUTC29UgH4EmLB7buQModCNK8zUuAk4KaCBQQA/Xt/kJl2KlTEVEp6Toj1o+9DwRUN4GukkIevpSgAndo/E6v30cNbNgtFawFKd8t/MisFLBv8z+QHJ35etSH7lytxmZBmYcLGCE8hHG4M32JeijfD+2dB9mQuxEXMFmIIaC7Cg4kykVe0pjXhFTrt7e4l7oySLz1XspZWETx6kvsQWctZiqm9D2668i39fxntyManFP6vJhhHrDpF02i6wrOWRJ+FtcZBCsVm+YxhpXXt2jLao1S7WbYYWIZF4glLpuk2I/7jJYjdaLku1Aij9ozro3HRT2J5EqzbAWwPcgDBq4xBax5Tnq56JlFUbkwxVFN6QLilA20B13gqFajUvps5v9uSrBhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1220,
+   "completion_tokens": 300,
+   "total_tokens": 1520,
+   "cost": 0.01088,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01088,
+    "upstream_inference_prompt_cost": 0.00488,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 24.851
+}

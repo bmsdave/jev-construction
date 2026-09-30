@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Internal alterations inside a single flat not affecting common parts\", \"project\": \"Flat in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(f)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (f) in relation to an existing fixed building service, which is not a fixed internal or external lighting system— (i) replacing any part which is not a combustion appliance, (ii) adding an output device, or (iii) adding a control device,where testing and adjustment of the work is not possible or would not affect the use by the fixed building service of no more fuel and power than is reasonable in the circumstances;\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678108-kMQIqMCRyLRNkaJqGFMk",
+  "object": "chat.completion",
+  "created": 1790678108,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether internal, non-structural alterations to a single flat count as building work affecting common parts, and whether regulation 12(3)'s fire safety consultation requirement even applies here—that provision concerns buildings covered by the Fire Safety Order, so I need to check if it extends to individual dwelling work like this.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether internal, non-structural alterations to a single flat count as building work affecting common parts, and whether regulation 12(3)'s fire safety consultation requirement even applies here—that provision concerns buildings covered by the Fire Safety Order, so I need to check if it extends to individual dwelling work like this.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1104,
+   "completion_tokens": 300,
+   "total_tokens": 1404,
+   "cost": 0.010416,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010416,
+    "upstream_inference_prompt_cost": 0.004416,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.823
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New office building\", \"project\": \"Office building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 1 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Any building (other than a building containing a dwelling or a building used for office or canteen accommodation) erected on a site in respect of which a licence under the Nuclear Installations Act 1965 is for the time being in force.\"}, {\"ref\": \"Sch 2 Part 5 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A building, other than a building containing a dwelling or used as an office or showroom, erected for use on the site of and in connection with a mine or quarry.\"}, {\"ref\": \"para 0.12\", \"document\": \"ADF1-2021\", \"text\": \"0.12 The commercial part of the building can be reverted to domestic use if all of the following apply. a. There is direct access between the commercial space and the living accommodation. b. The commercial space and living accommodation are within the same thermal envelope. c. The living accommodation comprises a substantial proportion of the total area of the unit. What constitutes a ‘substantial proportion’ should be assessed on a case-by-case basis by the building control body. NOTE: A large non-domestic building that contains a small flat for a manager is not treated as a dwelling. A dwelling that contains a room used as an office or utility space is still treated as a dwelling. Mixed-use developments\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678021-5tbm7yf8ShU0YIncKVcq",
+  "object": "chat.completion",
+  "created": 1790678021,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A new office building needs a **full plans application**.\n\n- **It is building work.** Erecting a building counts as building work, and it is not covered by Schedule 3 or Schedule 4.\n- **No exemption applies.** The Schedule 2 exemptions for buildings on nuclear-licensed sites (Part 1 para 2) and on mine or quarry sites (Part 5 para 3) both expressly exclude office buildings.\n- **The Fire Safety Order will apply.** An office is non-domestic premises, so the Regulatory Reform (Fire Safety) Order 2005 will apply once it is in use. Under reg 12(3), a building notice cannot then be used",
+     "refusal": null,
+     "reasoning": "This new office building constitutes building work, and since offices are workplaces covered by the Fire Safety Order, regulation 12(3) requires full plans to be submitted since the FSO applies to the premises once complete.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This new office building constitutes building work, and since offices are workplaces covered by the Fire Safety Order, regulation 12(3) requires full plans to be submitted since the FSO applies to the premises once complete.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpwYKEAgSGAI4AUIIdGhpbmtpbmcSDKOzj2MNEF9b4psGwBoM/vK5jBx91ob8LL28IjBz2wg7s7B3rASxkpVsphx2Jf9tG74M4p4qpFI5RL/n5iSMMYEnbmZJ+evtf7smCpEqxAUZi++8DWKsJBc9DsM9E4dxrg0eoZcR7arToTYZEMH5zSthNnQJTQLvrnb2zn9WdJN7psGq4x+FmcQhWETk1mO2D0aqKDuTw/VO1L3bEkA9oLWtWRknwD1livF97z9yam3WpPkJmf4zWTQfZZaOKpqxgGrvdjwSGYhNRVxaa+oysSGlhIvpZHlG2vblbqi59KEAIZjryTR4KQlQnAe6yaVqSQ7SZknZ2CfGq6a/zLBoCF/C9gOSCcO0+zFoRH/irPeuI5//enH8xbYcA+2xTqRzuot4XEZxTSPHlNkf9pEIA4APxUdi6xi0RyC0fgqE2+cQTp+XtJR1ESuVg29B0khe3CVtnSZsETdsqqQM1PsfP813eQGXjzSDo9plvJiEX3ZMtIXDzC5ej51lV821NKAFeNw7APYFduvTix2lKLrfW+32Y8G8CniT00fDiffYGcE7IQ23xWS+x5Yw6JbhSPKbxw2vBNOnSQmQtdkqXkbzMYImVvaXnc+Y4LvRLBd9u7YRFfWzj8QsCsXP9MpLeyQw8ZGPfnsYQIMoF3E/0DrsCDv1B+yeW0jSl98MSzHObO4GD+Ys9ohTDvosaBgjXOjdh9ZFGyaPhi8QxpbkK4PlIjzo8cSWBVZApNj9mT/YkXtsaUNiOvAXaOaZ1gAQYoxarts6MvoPJJznvbba5eyTOZUConWIqZjvCz/fs5H0gKEtiI9e/pxpIhsT+KzcbCESrI2z8tqR4r8EkzvVYn5rmaY8AjQSJGje6jYAnMrVvF7KxXVB95ASNLs4wqZkrvYF2FRmvoc8ptyKEah9UbbwsFAeHmo/3B6ROVo/sE4FoqJLwwI3rboC0BYayyPvW43JfH2/NUZcTZvf3GZ7JVnmjIcfz3L7W84Purj9ttvMSdCsuqsc8FydTClK05eV3oee7C9w7fGk/kDuMVX9gc/b6XAM0m4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 890,
+   "completion_tokens": 300,
+   "total_tokens": 1190,
+   "cost": 0.00956,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00956,
+    "upstream_inference_prompt_cost": 0.00356,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 83,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.585
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install roof-mounted solar PV panels\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"Sch 3 para 16\", \"document\": \"BR2010\", \"text\": \"16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677934-T7CLzVy9obedw3KfG1c4",
+  "object": "chat.completion",
+  "created": 1790677934,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent",
+     "refusal": null,
+     "reasoning": "I'm considering whether solar PV installation on a house falls under Building Regulations Part P or Schedule 3 exemptions, since electrical work for microgeneration systems is often covered by competent person schemes like MCS or NICEIC.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether solar PV installation on a house falls under Building Regulations Part P or Schedule 3 exemptions, since electrical work for microgeneration systems is often covered by competent person schemes like MCS or NICEIC.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmgoKEAgSGAI4AUIIdGhpbmtpbmcSDKbxF5L/zk8shYE2ABoMqxAzCRXmxLlI6uYhIjCCOC4Bs/wzs9Ahi0iWDWVNHYgvJJ/yMASE8I0xaf4YEvQlkpeivfKYBRX6tqFLoMMqtwlimmvFgcspcM+nnJx//QFEB6WUc26i45QeSw7wtJR7/2mXN86tbjIOwy7RhT0AUnOICOgMcFCNJJNlwpXruS5Z29KBOBOfoH5lyY3Nq8u+TGkwckPb8S5ooj2Ys7B5VPPr7f5ezu+lXKiC6HD7jFHiVA8bFvv518LDIpjKvB0uxmjnIZXtQEhvb76IwGGYDKGcjmTA8n83Llr1bCPKjXAuaqdCx3dndAO7viToQw1iZIrxhJtwOPp4yKOX4Sl1+V2dcWBDFmgty+VtR0imfopCmi9wg9fTmTr14uiwoeZapWqybwazh3/ouWXIqCZgjMPDdws1Ap25lYR+g6rx57GGtqY+a4QBkvXiOBTeAlB1M3+gis5pXGpeXEKmA5KxG9ZkM77fzxhDM1r1JFerjoyvgTMINu0DNtLmCKAOSxDFobh3NfmMowQJAMvjr0q0zgCA3BHcIq3Yo8dog0mJ0PpG0qmdcHWCp7y2RfCmcrfLvMKd2/6+HeY/YvVdYXGrhWnMDOZuEnEuqx0BV7Nrlvdtyfc4nWVxRT2yz1paJJiZ3WEtNMv73CGTGp6qbVUxfvGlVJD8yP/hl0OSmdES4Lq5qDrZTtmTrvBG/nUM4JZTxby2Zi5joL2ZJWAQauaTkteKrGc6xkXnyqQXggaWZabDBtGlkFFznwW9Kor1CT6Bth40qMcqFFfsCYIgfoHWU7g6uvd5dKICxm/l1ugO/Phj0rQI59uAHfRDxLg7YswVpo///3AH93eAgVHBEp65KbjDNurjlytWzfp/C+SQTUOG5EI/hIzwRUD3UF1CdXy3SZjK/x6TlYTZjF/gFVBUDzFJJlnil2UL4fscTwdpqyT9suykbnEn+bSbj9w1d7w/9S4Le/uLOSVQiE+0IfBi72Kzs3vMwQWHH3O+iQE6M56zK72HZFIQeMjaniqPZQM+u0U9hKwaouiJ7lQTVQaqDndMPWKhZJUXsRvMpo/F0lXmKiYAJxz6haUlagzY0lDFHMbZ9k6AIxo6qufSDs/Fie8d36i4G2VY43VEZVFg3HE3ly0TTuTqiUFt6i9loOLaP6b5jczMYc6iimOS1rBjI98LiiMr3y133ToG66S7pw8FN8wG1H+C62cgVucQo8emD1GV09oTZkzZvIkHhzuzG5J5Mm1IfyIH+mytx7a3G58NkF0b7MzyhWdup0WW4YHUSFP9fOeFhUbrPgnwTwOcumOw0WZ6HBSICPiTlWC/ptlxD0CZCA2+K/bD94+02Q/J4dz57o8mrUfa0jRJDIMQCGsdCJqEA3v4PkEqChL8hbZDQlhSG/Ppfpo4zSLFDogbFAj9rFRYDKYae8/TlZELISKnw/O5+/5gAFaRObtAfMDFhJvkP70A7y4rhIPBld88/WfPqfxf5MhWclilfnw8FdNaHhMfrOaGwHMvK4kRMQa+akOv92woCJp0J9DnFv9aFcATWZEzzeHuQgnz0xvhctmVcv/5ZrXbKyqhLoXONmtGkLxD+wP9kZBBJMliA0i4qYOOoBpw3Zzdz+0hgAriHESibO0N4O3dNOmjR/A99Gsb+zEbdGpbOaBKa2xxL33dDPH4bLtwimXAH4CQfmVtCC6t/+qMNFBxGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1417,
+   "completion_tokens": 300,
+   "total_tokens": 1717,
+   "cost": 0.011668,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011668,
+    "upstream_inference_prompt_cost": 0.005668,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 276,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.298
+}

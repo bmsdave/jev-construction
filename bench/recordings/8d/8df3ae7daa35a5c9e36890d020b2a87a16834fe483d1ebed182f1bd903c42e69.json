@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New gym changing rooms with showers in a leisure centre\", \"project\": \"Leisure centre in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}, {\"ref\": \"reg 12(9)\", \"document\": \"BR2010\", \"text\": \"(9) In this regulation—“fronting” has the meaning given in section 203(3) of the Highways Act 1980; ... “private street” has the meaning given in section 203(2) of the Highways Act 1980... ; and “special location” means— within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends—vertically from the finished floor level to—a height of 2.25 metres; orthe position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; andhorizontally—where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; orwhere there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; ora room containing a swimming pool or sauna heater.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677727-7STd3Uikb6PNFtwcaKb6",
+  "object": "chat.completion",
+  "created": 1790677727,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "```json\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_pl",
+     "refusal": null,
+     "reasoning": "Since this is a leisure centre rather than a dwelling, this counts as non-domestic building work under the Fire Safety Order, requiring full plans submission under reg 12(3) — Part P is a red herring since it only covers dwellings. I'm checking whether Schedule 3 competent person schemes for sanitary installations apply here too.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this is a leisure centre rather than a dwelling, this counts as non-domestic building work under the Fire Safety Order, requiring full plans submission under reg 12(3) — Part P is a red herring since it only covers dwellings. I'm checking whether Schedule 3 competent person schemes for sanitary installations apply here too.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1woKEAgSGAI4AUIIdGhpbmtpbmcSDLBhzr9kHZn8uR7PPxoMqbP0dgYfG6tutky5IjA0Zm45SqVx4RJHmCpW8UqpOS4BnEJ6Odfs1oQ9ki4ieM8+wGZAcHyylMm2W7DUa9wq9Amr/n2DoUlnN46lZufrGJh29Baasz1c+mFpSt+7T2VADbyQvnkqPe9epq9pm+3D06KK5BtJ0JinINiB3VpMKEA3WrhlpksrHbD92ZIpQO+81TnUG5I0mhocIMpdkNqZoUSt2Qf+hjA3lsge8q79nsXdyitRl7x3W6KXwuf+cWMXCUZLwsJgFinHXYTFVbLbiunxdI5Gfh5vwVGolE8agv8UBYhPTjnDqrNP5LvqLlz+SprL+bFun/widlr9NBaKWEtuxCFwnobxjd9sN23VK3OG7Pd4GiayrthsN0LBS1YhNkVXT08gg1WGO+W0DNFqWapIysv327GwMDmPXo+FZaKf2C/5UbosF5O4TdOCS9EZNBqM/auusYasjgw8bSrs+byJfsGYwP70RmzLHGM2we+ltmhYl/uUHuLGrPExuDkHh9MBa5nPwr8qt25zEiL4+sRaNS2lgYZnWWcswRFycqMxCcdbVf/sjo7CLBQrBY5gNO1iICKpUwa0zN6T3aDdFeRQvBoD6xxv5mzRuSbs5DOZjgkrhI9biTH277MfqMWvlEqZNESeBoSz1cNB9D0MtMf4DCdyXL0XIlqh6S0DRrI7qzWk++XqbDVnP9mbbFrKImcMkB7Fs5MbGnCad2OLBHZ/bmQTMujSq0dqzRPCBL+uAJHOvMCvxLQ699p3UwhPOUnj3J3I48TsVQbE7URBOR1uiPxHUs+l5tbpxlIwsqc+67gIAQfKUeQGWkBQeeJtC6YJYRjimd3kvwnLpAKOBRI3wfkMCDb0q8TEsnZBFAq1wgk/NXZQ56Ve7nM6Vy02z5r4L8ItIBM2/0nEs2UjzcXzxBxfJa1GiiDZPhEEXBEVjVE+gJfjymRqvsKEwKQkQpcb3/x3erer6noEYxVwdZceIVAVrCAVnpKAgZ5ye/HRmY+kXu9mu4pQ6agr+HgUF+4q6Pe0fPXVeGLCcgzi8cBFgmtz4+hsPtR0hvY1qIe1gImm9nCrScrmnMvfVMvmoPsmYIum3S+Gxnm/84tL/jboJIU8ngWaq8F0idXIytmMkSuEaZI5KYcPGVdaD2za+PIcYZj6KlxrbEsTMdGzJZv8/ZBDtHUp4KWU5dyvJVgqfYy+CuRg7yYX91C0J2zyx4HNS09MsDNs/rXx0WmbZkfxjBPcvZN+hz2iq3/ryy9lbja9IboR6EOnUKNEc4Rc/5HDdCGmM/bA4CzSTuZVOY3rLsTcmoYeL612HQ0bmYnpuE+Fdf/9fknQP9L/bGI4/OPDDYx8aAjJZJaYyQOjc6KsEP1KY6/PPEvME5xVn/GnXaNSfm/wg3yPzKUKaBr0qfr58S9xAY830qi7NVnS1VuckIvahbMhFbXItxRSNMZRdMdeYComUlJ0nLKsXsGXHzQ8Gxgc6QFl0oLrAG6LcS8rNiEVDP+5nPlZOKzKNb3uEN7iZmQO3z/nlAJMFvvOC2YTn2DB3R0JFotD3RgCOw7W5jkl6Glnb2Uk94Cc5q0lXoZKaMfYTD8N0RDhJXrKOSjCbr2y48A4jCt763o4l8iykdJKOVfgDuHrfl2tt0NKS/wND9xLPXxlmusj1ar15gGYB0cF5NpUokVTQYGl4G1ojFnUedZLFyXZ/9/LLMbRc8mDl+g0Vi2G8JQXF4wzm3sjArW/B5sYAiGjRqqpsK846BKa7aFTxKwkpnz0F+0lrg9jVBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1470,
+   "completion_tokens": 300,
+   "total_tokens": 1770,
+   "cost": 0.01188,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01188,
+    "upstream_inference_prompt_cost": 0.00588,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 274,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.699
+}

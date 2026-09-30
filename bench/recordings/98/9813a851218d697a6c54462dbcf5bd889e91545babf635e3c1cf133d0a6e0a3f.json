@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front pitched roof window\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Windows & doors. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678206-prfdrvmC7yLw0EOWRtHQ",
+  "object": "chat.completion",
+  "created": 1790678206,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice",
+     "refusal": null,
+     "reasoning": "I'm considering whether installing a new rooflight in a pitched roof qualifies under the competent person self-certification scheme like FENSA — that covers window/rooflight replacement, but cutting new rafters for an opening as part of a loft conversion is a structural alteration that would need building notice or full plans, not just a standalone installation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether installing a new rooflight in a pitched roof qualifies under the competent person self-certification scheme like FENSA — that covers window/rooflight replacement, but cutting new rafters for an opening as part of a loft conversion is a structural alteration that would need building notice or full plans, not just a standalone installation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSjwsKEAgSGAI4AUIIdGhpbmtpbmcSDKBeTDdMoxq6XXS4EhoM5BD4mqNWZgL9f/f/IjCQrVagi1OmEJ51QLqGpSCk8n26RLSTAWS16NyS0yo0HiGRNJr0UwKwgdyOtbPo5PwqrArclrtWERlzui4DLM+Rk56p/RluCBcRhyf3hi87Ns+k/sOfvg7BW4Q19UKn/r2x2n35Q8anAFJIs6Ikvzvm/leaKXdF7yoZGhDnRoPqLB5bagsHaIPIwiYO0NntoVf6NjG7mKJJKtlZqRrTXG2ukBS75Gmuf5kJ5BUoYqO2ThYqoN+a7PwLihVJGvajexPR3KP+3322qXvDX9DwdZ0fbkNiNr55f4rI+F1bWYV+bF9XD7TEGYBklkzFwCFyYREua0xuHr64EsaDDLAQe3wYO/BIBqXROSLbwW5/yt7XVGe+WIgsmOesPc7KBmtGyrhKVrxyk1CYJe73DezYujV8OHCvva3Jzpj3VxbbKuvUMWGq25AdFzGfrFiGi0/9CtuCRn6oAmJYOEdb7zXVs9BUeD6j0OIYbmwobkBFz6CVwpgzL6LXK+pSHqtET1wxZ7QRDvxr36pYsgZgjhPtCD7vN+IWSAIYDKjPnXWi3Jz0BvmyngU/qOe9mClhWu3KHZs6P7NkyyJdl4ikqdMgmCBD2K8atiBRexW7lpWkykDfJ+y5Lry/LFLKjnh+ek1/drsG5RkLA+JrUliOqB8ugDJ0sB6qKIgX9mkrhQSVFLxtCgpKQGp3yJU+JQADv8US54TD4AwHhjmclKx6f+aTBkB1ZqNfcVb9RXUKsr3A/96Y6dr3EQiR1fWtrRAUoIYcblhZ2xWrYxzelTJZLmUjVFZ1hOVD5Q6ilsSdyOGoJA5B3MoME6w5IKHjiBn3fteEkhHU6nX+J7EXkYx3jlerXFRdyg4KqCesIW9bm/SIWfNKqIXeCMNH+4TPHB4eBHWpdzzWdhg+dVuzsIe7zxnlsRn/t79L9o/Ez2ypEOokFXrQ2rMJEoHchRSDXmUMptM+9briyCcH6UX8FzhAbu4HveKMPIsDzlxIj0MAQAhh8QfSrATin4nCVK9yeBEc20TbKx0NWA56KbLkHzsVCTrfwtxUjXZu0uqQvjkNuww6IPHN2CLPQJ2A3gOWpTOe/hOc4YBsqhaOYG1sa2BjG+NFNbng+tJN0hpFQqGwoeVrSdiSLiB4TJc03HQrxLGq4LZKyhXISK1plKnOOlkNw9ATrxGjvVHptOW2IXuJEJZK/k3vXRNcly/X0BU0cetmVpYDD/JSkN8WMLtGnqAy6+8UgJkj4Af1Ed36JafyYWILJhB9F8NmrUfeMAhWmaWcs7DIfRZPLMrcE3w0luJbk+dQQrtFTyQY1jel3J+2hNS7BufBKrpcJru1J2lhvHcgU13aluCSAZaWjeyO5RbI9Tgo29grhPmF4BRlS/lhnAO3udXdc0h9WN21s+FCHpQ2ekOEWin73RhbTqhBYrmxvvoZf+ADk7fhv3wflq1ouuV4/vudMYVREjgfAZec3trGkK2VxweN3IrdGIHUqRDVhqruw5hZ4v39KURtsrnAgz5U+aODS/5ExupirNk9KxHAxfFe8t2wLJO2cJp3cil2U2jocD+3C2KLUpdYA94B00vEfEx9GZUqr264Zg8esU5Lp2/JA4LICdS/dXh6fL6lVnW0UnFArqqKjxzDGPWzSBsZJXMXW8pwTl4ueKYuqA/5P6lVvOjAgnKOiKM63rcBFq11isSwQyb108qykT0DZgSU2FL/7O6AlQX8sCTU+TYsZax29NJULYrFthE5N8KNauaXr0GRdk3kHgtZ++R6ALkXG8k5noJGMSz/bGloq5CBgowbAGUq/tCRAdm/eMnr4IwyX3OjvzyF0pzy2ZPg8cENLkhXGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 497,
+   "completion_tokens": 300,
+   "total_tokens": 797,
+   "cost": 0.007988,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007988,
+    "upstream_inference_prompt_cost": 0.001988,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 291,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.649
+}

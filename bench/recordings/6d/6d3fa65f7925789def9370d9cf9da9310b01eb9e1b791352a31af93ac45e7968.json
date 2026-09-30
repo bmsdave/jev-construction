@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace an oil storage tank and its supply pipe\", \"project\": \"Rural house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 2\", \"document\": \"BR2010\", \"text\": \"2. Installation of—(a) an oil-fired combustion appliance; or(b) oil storage tanks and the pipes connecting them to combustion appliances. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, ... or NAPIT Registration Limited, Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 1 J7\", \"document\": \"BR2010\", \"text\": \"Protection against pollution: J7. Oil storage tanks and the pipes connecting them to combustion appliances shall—(a) be so constructed and protected as to reduce to a reasonable level the risk of the oil escaping and causing pollution; and (b) have affixed in a prominent position a durable notice containing information on how to respond to an oil escape so as to reduce to a reasonable level the risk of pollution. | Requirement J7 applies only to fixed oil storage tanks with capacities of 3,500 litres or less, and connecting pipes, which are—(a) located outside the building; and (b) serve fixed combustion appliances (including incinerators) in a building used wholly or mainly as a private dwelling, but does not apply to buried systems.\"}, {\"ref\": \"Sch 1 J6\", \"document\": \"BR2010\", \"text\": \"Protection of liquid fuel storage systems: J6. Liquid fuel storage systems and the pipes connecting them to combustion appliances shall be so constructed and separated from buildings and the boundary of the premises as to reduce to a reasonable level the risk of the fuel igniting in the event of fire in adjacent buildings or premises. | Requirement J6 applies only to—(a) fixed oil storage tanks with capacities greater than 90 litres and connecting pipes; and (b) fixed liquefied petroleum gas storage installations with capacities greater than 150 litres and connecting pipes,which are located outside the building and which serve fixed combustion appliances (including incinerators) in the building.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677800-WdTWWsJtqG9etXvsJXxh",
+  "object": "chat.completion",
+  "created": 1790677800,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Label: competent person scheme.** Replacing a fixed external oil tank and its supply pipe is building work, because it newly provides a fitting that Part J controls. J6 applies to tanks over 90 litres. J7 also applies to tanks up to 3,500 litres serving a dwelling, unless the system is buried.\n\nThe work falls within Sch 3 para 2(b), \"installation of oil storage t",
+     "refusal": null,
+     "reasoning": "Replacing an oil storage tank falls under Schedule 3 as an installation of a controlled fitting, and Approved Document J confirms this is notifiable work that can be self-certified through OFTEC, so it belongs under the competent person scheme route.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing an oil storage tank falls under Schedule 3 as an installation of a controlled fitting, and Approved Document J confirms this is notifiable work that can be self-certified through OFTEC, so it belongs under the competent person scheme route.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5gcKEAgSGAI4AUIIdGhpbmtpbmcSDFxVWHB79RNVf9nKERoModZUZ5aGZwNny+SmIjDRr4kalVuFO3j3VQfaplds4BGZWdBxYXZHxWFxaqjIAyVX4WPt+SsOxBD34/mtNAgqgwcOYnSo2ezra5hIHDUaENbjngimBqbYwZdrYacQQhbbOND7KQOu6X24hG6oVprzgO//6ySeGFe2KdRc3IrPlxb5UVRm8Yto7yYBNzkekdUljBeOItlmfG/dGydBY4L1ijwXQjAFI2th/TvdT38D3WW9oWmNb9OMbq0GNBW5LLjFQvltjzwzRQhsbiDL8jRLznn4Ek2wne7KFVcifZg/GW68IzyFlWJrbOHwcmbeuE4brFUgS3+xckjlxR/Ao5YLa8djfIbe82zbVWGKEl8OeCc7kK0wa3u73e7EkxW3fW/iE1J+AmWutx25WZQyMKugL8cqfNn75dH5hViIWfl5uuGg3MZr+z6L81gZT326lwPj0ul4S+aXKRcyoxXulVXfRz6WXjX318LsD2y3zdNIZ6PWrQ7sF5lOgCrBoVQyMAl2B78HwVZjepytxKPIMbF0zrihpWq4XszvoU7CsubXLD9ighnDbckSXcg+wIW0516bGpnSoy0DobyFEfVMnzi85hlHcENpfFQkuaQf2BX9Ckt5orpuMV2E7aPmMxuzC2L8SqzEdurzEFlh5Ui8jz3t3/5zAr+ofQNnqzqeOba0ybnVOvNyJZOYWzNK5Me49RuzUa+JZGoV9iKuR8fImPMlQUUV+YsLDLyQfh/vFe8DiMFLPNgcCI2f1zq3WC/D1+9oNfZiIaCAjRemd/HJkPsUdY0+3RvOM3ACBL5K0wzcvEFQ+K/kJokknBrmrbhSiUZji2gJhFaI3nXA7x0dbwK1asVzi/wytxg83JZV9kAUVb7xlSZyzLQTKGyZP8nVqRPSkDfJTiyHFsolNoM1ifaPUHao7an/iWi5ykk2jPfOX7Pl3gZriduhR2tuSh9zFFKYj4sxEXv7/un7kimtF+UDMqCz4SSqx+xSIV9rI28sX+6ACVv/6E5jLvSbYex3ckwBZBHErPUxe1T1cJQXGNRao2d3vpIZxrlb673gk+nZhlp4l0oiZ9w+4kKGswLP9kKn3g1qpa/t1bw2IiwJ9SUKP1qQ64c4S0pK7DZ8sE6bIT/R7MdNToXK9RILcHg934xt19DTnyHER1PXOpItGapdzn1MbrrqiK8I7NQmqgsLQztfbI6DKmzjmOCHfeoHdHwDThEdxeU8zRuJEnJwwo/6WlpTfHU3Qyt07BMoUQgqt5utZV4BmpFwR6+jK1tn+yFuCDu4EBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1217,
+   "completion_tokens": 300,
+   "total_tokens": 1517,
+   "cost": 0.010868,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010868,
+    "upstream_inference_prompt_cost": 0.004868,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 169,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 14.324
+}

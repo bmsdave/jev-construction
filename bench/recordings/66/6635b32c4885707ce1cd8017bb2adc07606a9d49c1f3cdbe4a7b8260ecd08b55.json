@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Structural timber C24 (joists, trimmers)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Carpentry. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678154-TTCHFbfy4Ssdv3kab3ro",
+  "object": "chat.completion",
+  "created": 1790678154,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.82, \"not_notifiable\": 0.1, \"full_plans_required\": 0.05, \"competent_person_scheme\": 0.03}}",
+     "refusal": null,
+     "reasoning": "Since this involves structural timber joists or trimmers in a dwelling, that's a material alteration affecting structural safety, not covered under Schedule 3, and the dwelling isn't subject to FSO — so it likely needs building notice or full plans. Though if trimmers just indicate openings for a like-for-like repair, there's a chance it could fall under not_notifiable instead.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this involves structural timber joists or trimmers in a dwelling, that's a material alteration affecting structural safety, not covered under Schedule 3, and the dwelling isn't subject to FSO — so it likely needs building notice or full plans. Though if trimmers just indicate openings for a like-for-like repair, there's a chance it could fall under not_notifiable instead.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9QYKEAgSGAI4AUIIdGhpbmtpbmcSDKhBO6tJL2vL1ygQsRoMyI+QszwtRwJOOOYgIjBMwL9LiEinTIbi+Y3Aad3qmBJcFLfcU3B2yD8BYKc9Aq/n2FuJU/4WAhtZENG0u78qkgY8iw9EZkc3nJKidpr076PLFrZhlb0wwU4P2FJv/kKCGIkOdCSRi5PY4yEWLS8PW0cUSGX4p2M8PfAGfK4G7PIQuvrkC4APWH3rBeW/TEvKsmsRjanIa51iAYl1vFUrLenImltzyp4czNAqVsd/rTaztDliAMefjlBkdDhRpN/KWPNI/6SIrLJujw7cwC9IXLbJ/DaeigXcYS1l/vBNjR0MnpdR6CV83IkTEC+sEJPwIv6r7AMinmdnhr0treDxSJN28DnsoQQNPFmdXz9E7yzj92lyrGNanMNKezk+fXq390aPHonS2oKljLW+fQZUp5XPVAxOQ7OCqMIpf1Q/iZz8NB/SzcIDFPEOjfZi0BeM8MUvs3ej5N9TneIBuks9/riYNz+UuPAPl7pVFR5wBSg6jWTC293jvwgo0E6QqmzY7IJxUNvhplvB0LjAdjCWen8KkNv6k320z9f0USstOyecylrrST6Yjvzm2mfOieo4Z4ZXyQ/PiF6r58xNJDXAsHvrHFFuyXebQ6la334WOSCWtGdBvFc4gymuMjp0w5fmzKxWOIN6HGbftKYTIclQbBROfdK5U0itHIsQtwIXIYeqcmCo8XQsjtluQVNi49oPiQHXgTEWjAcwQTh0NvqWxkplk/+zYRAeu8OU3bNSlyNFcefnzl/548+I5XvX/f6dSac3qbjpKrDc5RkJsAL8P0W/3i3U2lMJVV0LLTJVMGztT8lX2VLn5tRCfUHQ5fkAbtq4hLbzQMxkMeHl+7uIh4ityzjXopIoSHAWxdJSGByNtJFV69R4x5yGWp2MGn+wYNGD5YCv6MlyGOnQfa5op0OWRbbEGzBAypu3fWNJRgPjCxIU+yoSrwi+RUJ6bnlsz1STGLYDZQ5BjqL3d5Mbrd7QwJg7wiLG5T7cWQtnai9YBHhu65QJf28PDmj5vsVM2E5JKIwZ63X6A9Oyl2QCuKDq2Szh/SmyKmpZHVqRuaE/Xs1/3ufWXKeLjOQxXGdoADDMUlq0dzz6l/HPk0pjdu0ejAAFVlZZxPUKabORIphp+KcYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 512,
+   "completion_tokens": 210,
+   "total_tokens": 722,
+   "cost": 0.006248,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006248,
+    "upstream_inference_prompt_cost": 0.002048,
+    "upstream_inference_completions_cost": 0.0042
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 124,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.963
+}

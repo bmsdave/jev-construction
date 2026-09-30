@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Foundation concrete (strips, pads, deepening, HP pad)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Groundworks. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 0.6\", \"document\": \"ADL1-2021\", \"text\": \"0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677250-0eU2ACeH2Zre4YfR186s",
+  "object": "chat.completion",
+  "created": 1790677250,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.75, \"full_plans_required\": 0.17, \"not_notifiable\": 0.05, \"competent_person_scheme\": 0.03}}",
+     "refusal": null,
+     "reasoning": "This is foundation work for a rear extension - regular building work, not covered by Schedule 3 exemptions, and it's a dwelling rather than something under the Fire Safety Order. I don't know if there's a private sewer nearby, but terraced houses often share rear sewers, so building over provisions (H4) could apply. It's unclear whether this would go through as a building notice or full plans submission, though full plans seems moderately likely.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is foundation work for a rear extension - regular building work, not covered by Schedule 3 exemptions, and it's a dwelling rather than something under the Fire Safety Order. I don't know if there's a private sewer nearby, but terraced houses often share rear sewers, so building over provisions (H4) could apply. It's unclear whether this would go through as a building notice or full plans submission, though full plans seems moderately likely.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSzgYKEAgSGAI4AUIIdGhpbmtpbmcSDH1CJ29Qgp3tL5Ry9RoMv523etkLBE8Xp+nwIjD0mpedwzbWjhQ+CcPl7XmmsEJHYp/kNYpTBjJaTSXNgJaJiMWwBpjA0Yu9/OfzO1wq6wWIHzdnPldY1UyuTPeI8amVymPM+l5vTfoPlvX8BdTozBsUOsaPEgDBSzFpG69T8KAxQV62EDjgMfjjXxagD00GOPADrpJxWbJgIeo+P9NJHHS3QXjFf77QtVeUbVn9BmE4YDlNXGWjErOZYJhXjvt+rcY8Xkog8JxOHFQm+2pSc37JDh47IrOz30NN6tvBVMqXAF02VqUdYdOa7ElCnE5EeUtKivKqPuMMo711sZQNpdCgT9sNmIozLQ9XhTjJBEbaKBJmrW3sFxh8+DikJR99IvzUW4U3LciOT+ALWchuoVGYJpkFQ0A1zysBHqXfErbzHEPfTRJT/yCUnGAZgX7oPTdfKU2CXo4sW+imWyAGdn0Sr6WHIDGTQOT7wtsjY8/2hI/dnlg6dpOqG06KW0hZQFO5/esGR+jfQquztaB0ZxFCuyjZMzIVH8wajVLFmqKNOKmLRrcfILah0zHBM/7kQkRjcvuE0ph6Kk6xgSd8GvIPYKFoAVux+J441QZ3dbT532i1TzKxex9MOTrV68EXv9hiOTiiv+GPXo4Sv122UIxX4PUXwKbMqQBg/0Od3LxUMhPeZk3MXlqJ7J3NePHC7I3FlB84lGuLBHAo2hDDHFSr8uF7Cwj1FGg3hzJhknWRz41infg0juTncleXSOSgtWJOk8xZMrl0I4RaKJ7TATRP+Uwat0k4TeqsO5c2oQlexMxDofM8TjCCyKjPEUYsStHLpcyb+YRJxTym8YvBdr36Vt0o8utnQyDzo04OuROVALmSVrKXAsU2+4hxQN7Ep+Mo94ZFF8/g1Ocs6GXiPyO1lU90IsKmGaMMEQZHyTXGqE8IgaVklr0LCOHyEoG4iD93rsjogW9nfIq6sKnp0SQRkOpgCO7/E9vWLzWqPHVupjF270Z4VSehBbZs5KZ4wtY8AFFE3ZLviPIIXfgb7BRhy1fikrtUTsU484mS7BWbfali94qCXfFAcDbkXvRXW3Xpum/r//4ZKUkYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1272,
+   "completion_tokens": 192,
+   "total_tokens": 1464,
+   "cost": 0.008928,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008928,
+    "upstream_inference_prompt_cost": 0.005088,
+    "upstream_inference_completions_cost": 0.00384
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 106,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.893
+}

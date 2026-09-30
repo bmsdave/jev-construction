@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Add fixed garden lighting fed from an existing circuit\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"Sch 4 para 4\", \"document\": \"BR2010\", \"text\": \"(4) For the purposes of this Schedule—“kitchen” means a room or part of a room which contains a sink and food preparation facilities;“self-contained” in relation to a fixed building service means consisting of a single appliance and any associated controls which is neither connected to, nor forms part of, any other fixed building service;“special installation” means an electric floor or ceiling heating system, an outdoor lighting or electric power installation, an electricity generator, or an extra-low voltage lighting system which is not a pre-assembled lighting set bearing the CE marking referred to in regulation 39 of the Electrical Equipment (Safety) Regulations 2016;“special location” means a location within the limits of the relevant zones specified for a bath, a shower, a swimming or paddling pool or a hot air sauna in the Wiring Regulations, seventeenth edition, published by the Institution of Electrical Engineers and the British Standards Institution as BS 7671: 2008.\"}, {\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677878-k9FYGAjmTlhWzF20cNxu",
+  "object": "chat.completion",
+  "created": 1790677878,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.8, \"not_notifiable\": 0.12, \"building_notice_or_full_plans\": 0.07, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Since outdoor lighting counts as a special installation, the para 2 exemption in Schedule 4 doesn't apply here, and adding to an existing circuit outside a special location means reg 12(6A) doesn't exempt it from a building notice either. That makes this notifiable work falling under Schedule 3, so it needs to go through a competent person scheme.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since outdoor lighting counts as a special installation, the para 2 exemption in Schedule 4 doesn't apply here, and adding to an existing circuit outside a special location means reg 12(6A) doesn't exempt it from a building notice either. That makes this notifiable work falling under Schedule 3, so it needs to go through a competent person scheme.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSgQgKEAgSGAI4AUIIdGhpbmtpbmcSDBeLGDlnE30CDWtDnRoM7I/W09YSFmkrDMGMIjBepNxRm7L3G+DhfekS3bMHJ0oieZCCoF4qdgENR4YQDkVdNzBocfoh5WDDdZ6YYQwqngeJl3XvFRuppPeThqxgbzSOV60kcyf9nha1lqwhGJIyxxooW2MqP6A24G3b8SRSaubkuOgJCuGzFE8T2lkk3xvreP/OehffAyJ84LWf5JKbOZkVd3pkgmxV6jEG4+ruXT/jZooFu0Lau8pNYmIKLGquIwpq2ZCo/BPFVNjezEvav8XXSLr2yvZM8M5w5WORKwpHs/A7NEclGhTW8zsQo+roznzL124vMT2bo/tyVWvsTwFOe0dbu+tpkwiTAphtJYn/Z9G4i9/OHcq8vR4A+sEzFhcBv9+Q9/rhh/EJX2Q0J2fLP+5Ay850klUXT1y0YqQHgdJd2WynaV1Werw8u2s+fOGHlDgwQ5OF7iFBOCZ6xPJO7G7nkHZmDSxH2qAqDtO/a4ffnFwPaBL7ntOgTbEuhW17TCrHmQGNyC2Gwl22ovD8VaDimDegAHG3G3q2WYHGpUr4JCXUHlQ8iwFsbM2VqqVIQucHxQj+gLWZhGFsIxzvUN5LTQkiYWdq0T3ahM+JtHwrOfR/p3tQxW3TwZCNx2ygUHmBnwVcMDyCbpdFfPz6TCgEHUtPP+97GIoWUgKCoAFDKPp60ads4fW/Y5Keu5GtEXC12CmVM2HGOx4NuI9YJz1+sWkqJUOrykO7Xcp3F2TQ5TmWrZNY6bfILZjlnAaMxAwCJh/4/BoZzHv9vjgHWs//CgWFXsJxRv6FV5K4xJ3uZLmkBs5r3GTbPm15+iHICGCNgtQWzi6uE5vrHiBnfteZzHeCcBgRyEMdayV4nW7xKR3igd0XvxXHJ1SXqAb3wwp8xUUOYLbH+tE0LSG1GksYChxyWz93qV68dvVo8llXdSvP6CwAOn6WpwJxelcxzZBloqCjOYJQioxMgacl97ElKqicyzxc7QPURUFMxdN91BnaW1p4GAWkpEI+EUAcaG343tWlEn2Ek+3omA/3AbEAQnXduCshDqHHiRrbHQLCmgTud5CO3sXjvui2FxNHna7JfR2AVcwKoBsytLi0Y2IhTrA2dFrX9crRAhhHKYwm7BG4+//BbXOPgDnzBJYeZMDwxjZx8O8eUyKcn+8H30bUEEfIFQ5VrQJ9M8fskmGtpoEOKVoL2QdpN5HpPVSk6xUTaLdPx++jaDpbkObLH5SJ6T020uDOrSvWHmb9v1knFIQaRv3cqWHQ/L8xRvZSlt4rmztzc9KhkixO1/FxwGQyC1EfcOXCLbV5V+yqEV7TNHL6dlk2T4gkCxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1085,
+   "completion_tokens": 266,
+   "total_tokens": 1351,
+   "cost": 0.00966,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00966,
+    "upstream_inference_prompt_cost": 0.00434,
+    "upstream_inference_completions_cost": 0.00532
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 183,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.608
+}

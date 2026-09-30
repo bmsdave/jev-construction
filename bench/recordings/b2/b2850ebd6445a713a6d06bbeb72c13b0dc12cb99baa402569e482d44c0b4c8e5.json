@@ -1,0 +1,58 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Install a point-of-use water heater of 15 litres or less on an existing circuit",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 4 para 1(l)",
+     "document": "BR2010",
+     "text": "Work consisting of— (l) providing a hot water storage system that has a storage vessel with a capacity not exceeding 15 litres, where any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6)(b);"
+    },
+    {
+     "ref": "Sch 1 G3",
+     "document": "BR2010",
+     "text": "Hot water supply and systems: G3.—(1) There must be a suitable installation for the provision of heated wholesome water or heated softened water to—(a) any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(b) any washbasin, bidet, fixed bath and shower in a bathroom; and(c) any sink provided in any area where food is prepared. (2) A hot water system, including any cistern or other vessel that supplies water to or receives expansion water from a hot water system, must be designed, constructed and installed so as to resist the effects of temperature and pressure that may occur either in normal use or in the event of such malfunctions as may reasonably be anticipated, and must be adequately supported.(3) A hot water system that has a hot water storage vessel must incorporate precautions to—(a) prevent the temperature of the water stored in the vessel at any time exceeding 100°C;(b) ensure that any discharge from safety devices is safely conveyed to where it is visible but will not cause a danger to persons in or about the building.(4) The hot water supply to any fixed bath must be so designed and installed as to incorporate measures to ensure that the temperature of the water than can be delivered to that bath does not exceed 48°C. | Requirement G3(3) does not apply to a system which heats or stores water for the purposes only of an industrial process.Requirement G3(4) applies only when a dwelling is—(a) erected; or (b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b)."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "not_notifiable",
+    "probabilities": {
+     "full_plans_required": 0,
+     "competent_person_scheme": 0.09,
+     "not_notifiable": 0.89,
+     "building_notice_or_full_plans": 0.02
+    },
+    "confidence": 0.85
+   }
+  },
+  "usage": {
+   "input_tokens": 1080,
+   "output_tokens": 63,
+   "cost": 4.536e-05
+  },
+  "id": "gen-dec-1790677161-AEW3cy6Po5aky4mvwXPu",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.269
+}

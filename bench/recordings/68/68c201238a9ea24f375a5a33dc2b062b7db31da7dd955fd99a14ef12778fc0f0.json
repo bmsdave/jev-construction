@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Ventilated sleeper walls\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Masonry. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678129-jYENaY9SxtURTgCVzETZ",
+  "object": "chat.completion",
+  "created": 1790678129,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.6,",
+     "refusal": null,
+     "reasoning": "I'm considering whether rebuilding sleeper walls under a suspended timber floor counts as building work, since they're structural elements bearing floor loads — this likely triggers Part A structural requirements, and possibly Part C moisture resistance if it constitutes renewal of a thermal element.\n\nBuilding control would probably want a building notice or full plans submission for this, though there's a reasonable chance it could be classed as repair and thus not notifiable, so I'll lean toward building_notice_or_full_plans with moderate uncertainty.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether rebuilding sleeper walls under a suspended timber floor counts as building work, since they're structural elements bearing floor loads — this likely triggers Part A structural requirements, and possibly Part C moisture resistance if it constitutes renewal of a thermal element.\n\nBuilding control would probably want a building notice or full plans submission for this, though there's a reasonable chance it could be classed as repair and thus not notifiable, so I'll lean toward building_notice_or_full_plans with moderate uncertainty.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSugoKEAgSGAI4AUIIdGhpbmtpbmcSDHQnSgH80/spMz9ASBoMQE/SN9C28mvug7wXIjBTWOvlJEBysmvqGzyEP/Mb1/1d7tzdvAz5i+UHTyWKdCP7UeFrB7vFlZodT1wuRB8q1wlwZOl5Rb1Khl8VQJbKPAHhXP0q9C2iH+LBykFSU4hqwhrqjUbU5EaPsjUEdt8cY3vxTjQuxnVQx4McPtxl8kRBUKutBGFsS+ZJdJTOkStyz3pf6yIfbpt9wNfXCtFwe68QpDs6Rm4EjpCObC2AMZpe/oQL0f63WwPbwRMQ6MIDJi/BVG12IecKu/bJNV6lXjMFSSmVkDKa9/dichPPxf2aDOAocfY5c+PusPgykbyuJDfC0QUcTEMg+dajs4f/uUodrxef5VtmBcnj2aDTB54/luQIgeJGwERYDmBnHGYWlJlr/OIoXN/jyyhtk6n1UyhD+jEr7g4YxH3QPr0nbsi56YglttHr0J1PcMB/cNs6vdnK7m8dwlCsr++XAxIrdfEKNkndmdKBSDdK+KNI2GJA/qhlJSn21qnAxIVid+P0K2vD7IuHuHP4GumroMSXWuxpH1C7R0WqZ7J61MQj53rZNyeLSi++eB/I8W2AteHImxldfN8ad0/7y6swLC7GAK19fcpRyAopzsb8cCcR6R65mVgFdFBSDfzvhy7KSz4GbQXrZT9cDuqinV+aXj35dU6jdt0vL7e1XkA7aY3b7Una93DjMyRCpbHeirStF8OZKfIEu+ISu/rHQwE86gcPe5i8coZ+2Sdj5I1ltCO1eTCF/KfIPuUkB+wxi3Z0ZDK15+iAt9FLRI6/bGRsNF/cNwZGd602CiTTpVrCA8Hvsc71czmjTHsMUAlfZeY1wt5BoRt2Hi78pzNMmNZN/njO42x63QP0H0qW08xpySckJ641AGIbl48asGwLu8huTFAaDuw5/YWi96AXPj+VXHtiMPe8U2ipq+wnjjWrdAt7bDTH8yXGW1Gv1X90USc1oskru7kcWL2kGTmdpkpLi1nDSCEcN/uM+H/BtT8u5ESy3TalwguBsAhivt17quqveMCvB/nXE2GM85icXIIJdRPfK/t2aSospP4WwyrCRenFSWe7r7c0lZ8YC0Fecu3/lRRCLGXFf42EbGdtXBWXEO5rYqLgDZmFEVIAJWDS4KSqLYjLm4OTZ4A6b/OR21taMgV0P0YT6owiq+3oigBQkRVlC5EZ+tFEuXf6P2YZVQDm0cmO8ut1sltp7rD2rPiEXbuX3Tgs1cUYCQLqgcurnEq4NxchEhMGXBqIYUWbtdIrGHdNs8D2cjX37Hu4nlcGVSahNVBPlI8GgonxBpiPUItd+NaPPNPeFoSv7kiGys36HbTc57Dh+NHXHXWI7Osl9Qmi63ISDzGF6wOg6eDzRHEqiGc5RuUPeERw3ldU4X63+005Uwa4Nn/kemrrgPdMNTsVSuxXrMG+yHHyWPiE5q86/7fq4sZGZpnKk3Hh1pL2r7hloo7x8XoD4VKLYqRDgY/V5+wdhmIUdMt6T35LGEZ8pAjdYCMtRrjMzlvrWYplHFaKpCHyUJ/Eq24Mh5/yoll8vCeWQpGLyt6+PGKqjAdkS5BzjGw2JPrA4ib/IfChktRz2fnhAm00apNTLXf3ZPKUVUbcECi9EqUF1NlEcU1NjRv+mdHh13CKTYga1vibpwHPtDQx5mVuCvr0U3rTtiTOUAiZpgO5/wWsoIk05q0ZMtKdFLl6t14M8JFRczAEKTNbVCCPVr1mSqudFW8pGUs4/Bzp1nv1RyIYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 490,
+   "completion_tokens": 300,
+   "total_tokens": 790,
+   "cost": 0.00796,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00796,
+    "upstream_inference_prompt_cost": 0.00196,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 258,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.962
+}

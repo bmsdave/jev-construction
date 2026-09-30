@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Add extra socket outlets to the existing kitchen ring circuit\", \"project\": \"Flat in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}, {\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677872-WdPZoVLhFrVYjZkwezRH",
+  "object": "chat.completion",
+  "created": 1790677872,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm checking whether adding sockets to an existing kitchen circuit counts as notifiable work. Since kitchens stopped being special locations under the 2013 amendments, this falls outside the special location/installation criteria in Schedule 4 para 2, so it likely isn't notifiable under Part P.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether adding sockets to an existing kitchen circuit counts as notifiable work. Since kitchens stopped being special locations under the 2013 amendments, this falls outside the special location/installation criteria in Schedule 4 para 2, so it likely isn't notifiable under Part P.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxAoKEAgSGAI4AUIIdGhpbmtpbmcSDNsOaSSSJELh+ovyyBoMkg2ytJUyCGe1d/SdIjB4E3euCo1ddCWMeWRCAPtEqGZGWH4CHd+Fj3b6qcWFiZguSY/rXuEKziTY5LDitQQq4Qll0KkjWO5YLx8uu8Lnd11C4p9ENSqvQGlD61LF0ovgq57NVt9qJ3J78GdPAa6xeOLV2klQrypZkmFtTgCbksDI1nLbIryCplWUP1C3vnG0LIWSuLJjDewQsSNCQNEdquzLPP3ff9QhekcKa3s96cdgd76Yw8hfTiDTHuFiljVd3Wc7S1UkAlC3VLRLpgFRloVFNfioRwujDPnTtZBKVp3qqJM/vcziKKeuJvCDE4hdBG5amGSoXoWL/+XdYxb8NjjoPzxOLZ7r1DveGWJWUtOxDbBHlP6WFeTy5lfWBpjH5HX83fPoSIjLCOy+BQjj2ZhyPcx/a9Z2ve1ocsIx8MN1kac+Nqh9yHW7W0cVth18j9tQ0TbCNWQB913ytDpEZogZh/kOUfmjFxvk24VMUKBLsq5eCO39Hqn5l1u1wBD8Ed/+kBJaQJbROcUrJCEDCCdn0sOPeiDPxqUQy6eBLCAJAjI3QXG8WMbCwB3Ekiiq2l1PLC41irHtaSwbkdP/aEtm/ucklexM/5xOf7oT2+hJu/LSndOjrm8DjmT/DBBvOuxorlmZCTdORfC4ghbRQmIIjuim0YF+dNzklNcj+09zBi0d68VTYDYBWH5bYNIw7GaQ3oX6z0wHg7iEFcQakLT3jjJz2eTagMIS+jRK5LnC6LglKDlE9J/s7f6VSQ57xAvOPvHQBNZaaWETAH+9qv06eQFq/2uKVEn0uQf1/h0PGuWnEu/l+xNRfxpmRme0O0DjQStQnNLW6u0PmAhcFmlzRniM9EYYUuCHfQjC9YEpPfrW8GY6GN90RAiViWKvZOflPdJ18KJVa+ylznr46UaJf52qwo0/nbq7mrHn2ET6IrQ//QQY60AnsUxH9dmJnjYS30oHkE2jgP3bDyyUTM7F1O1DXEgQxD+swwQa4T2j+sCg5lokY5VDvyfjW/tN8jL0LDVzN664EQFasMdSbp0T05+fW858WljRXbvPh+IFvtBqWVXWg7WAPYnrTUUUm3SotjMuR+QcVRxlOl4unoejsnJ2hfa4JhSa9ExmdrTOqToDn6MNFj6dkq41sywlniGOo9HMsz+Wk21cHDVBQsyFcQlagtw8z11X4KwJ4Wd491kKB0XB7nlsqlzzL4LINoACYXTDKXhcxc1ro+y8WMzmL1SLKGxRZz/EcTQWEgZJFThDqJLgdN9mXunOhmae8RHA3Nzz9HZoKDtzDgD0gQsIL5D8hBuatDT2lb+uQS0kA4lQ7SQiDK2bEK4szahcQmqIghET8Qy4ngsWtZENjBsadYaQJC1BUHi8MZgMGakKMXmuxp8XSBqANcQuh+NVQm6Ztr1E+8jRSQWAsrEHOWCxx4kDonz96EBdTirgQFIRmp4fts4U9Ut7Qgl2CB78d4is4CCqi1dGibCKsxZ49zd7sqwS4iWYYDZRekRrs5tHXJu0wAgnv5oHWldHh0/KZzWg2bZC13cw0ez/eKPydce7k4UXinKeKAmJjke+Fiz6shQBnAb9KLzNnYNhDoAav/h/AzpHHOo/6H/kaxTPP6uC879XE3RR7igmCgg7RuJL4eOwKud3bd+4R+laMCKzeX72E5N2Y5GZX3dHe8SwVNKteEThiUqV289JRWxJrtJH8vvkxRnX5VD5GhndxVKrAN/JFRkiATCSY2jxCcKqt0v4GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 973,
+   "completion_tokens": 300,
+   "total_tokens": 1273,
+   "cost": 0.009892,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009892,
+    "upstream_inference_prompt_cost": 0.003892,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.6
+}

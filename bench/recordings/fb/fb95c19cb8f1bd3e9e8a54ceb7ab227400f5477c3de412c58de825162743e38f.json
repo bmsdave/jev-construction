@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Party wall linings\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678239-7yWXJu0xBMdQZrFRGMT9",
+  "object": "chat.completion",
+  "created": 1790678239,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable",
+     "refusal": null,
+     "reasoning": "Drylining a party wall in a terraced house doesn't seem to trigger building work requirements since party walls typically aren't thermal elements and Part E applies to material change of use rather than renovations to existing party walls. Adding lining isn't a controlled fitting or material alteration affecting fire/structural compliance, so this leans toward not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Drylining a party wall in a terraced house doesn't seem to trigger building work requirements since party walls typically aren't thermal elements and Part E applies to material change of use rather than renovations to existing party walls. Adding lining isn't a controlled fitting or material alteration affecting fire/structural compliance, so this leans toward not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9woKEAgSGAI4AUIIdGhpbmtpbmcSDFylrjCn1zg40Pkh5BoMiO/OyFkA2aFy1ikbIjDv5tTFrjJ3SNfh8c3sDa9qh2KhAYzskgZnzng8ipBpNyb1SRfSAxxoqWMAdZHQ/OwqlArcajHZudhQxYwI/+KpfEGQWk/dz/m6lE8QGPTmdaEeOV9Ki/0AO+CVU+4zAdPYtboaPfPV71W98mpazHFxyGrtDgwbVjTevza7hWg3HUPnZUIiPbgwJQrmS/AR7ruqg+Jog3ImHKFX1vNJP/s3gXvMfDMETwZPz2r5zHZJbw7EX336TUx1/ui9V2Me2NOvyEwSNTv9AOw+ITVLMsfce64H5C+cR9P/v1yRQl9kt8muATXFeUXEozmtKur7QztJmIFMSQgb9BGVPdErvI5F3/zDQonV71Ak4D+GXNdwEHK9ItSRVUoaQbNqLAsiqxffse9wMs/LMGRyyXqxYnHmaQfp2ovgrx1IAw4arss6EBKAyoN1vl6Pll1nKuXy2KMY0x/y41Q0e/BvWRFz/nL7E4I0qZxSFOcHJU2M7ydaq6+C7WCyJ1dFnizTXxrjdy4X0UjHa3MT9byPjVThsC/eMly2nw+8oKiN+qAG7yhkyN6BkNLwQDxgx3n028oS4vjRh6NOtF9as65ik2dljSt7rt4XsMDbUveGleBFge6uq1CJyXFHF4MjBrlnEyamiOUyEbps28F8d7YCH/nNEyOy3A65zaIcSsp3+VFtHV5UCfq6ZqACHphNZPDGZm6e+/b4zFkQjzYTBjHUIgqWPQ4ujFqpWOdyYnrRnu2lH5lCB4Znp4mL9EUuL+trxx00o8DSBNwjqrRTo5UMEHQIBYCHmHDHG4ePhd188UC1EJAhLVnZokj5YTIfUgIYR8ZdYonZVni/m4PJIIJU1OfIaGjrw8fNbGUuJyHNcn8HwuJv678bkkHoAZx52qptq27ubQISlZyW/sXCy32vHyvMf4h1rAFv/FaTL+HMgmNIVLZt2SmoZaY+Y0s3TSjQMUjjZEjiCz7oqHyjh6BpLUv6V+8BN1LWUcYxertFZ8WHyFyRVjxFXnZIeSzzAue1JPRNmKdaVobBJIUvqFZZ0OIk09dL/JrgFcns/3/JMORSJZriXcSpn3+5teB0HtGIRY0P1BBfpNOrVfEpQ7RZluBGFqZju3OHV9/OCFbzYlGCrS5ny6paY5DqlgPGVEThS1mX9T9zSBn7jhuRHjEtSAgoLmW1Ea+7FYuqKD2I44Bp3B93jo43ntQHIJ9GdDjanEzNwyU4zx+lZIae/MyT9q1CavTV+iWSnG58pVOjCKmbdW9rvktsI2Y/DJABeGvbTn+DC814VjTD3VQYqsYOaLTdd8szpcOx/6z+L9WO+pmCLlHpQKkGxTGM4q0UzCo/A0wzrFEPtaRFIEaaJOqxOxQSBSNZsUNBCtDsp/AXJmgOtl+yqH+se/yBmvlmhFvnQE0UT7GXNmiS/qykEFXPNwu/BHuKBo4jO6ptDgagULeh3auPswmjZWVYptWbu0K/er5t2Bx08TCi9Ls8nIOWvOllidSU9zLLHkHX/ZO6nons81225PQb2pjdfURdpeJZL/Xxq09AQsgrMhK2CIY5nnZZK+eyPoCEDTTQJDmFmUL8l7bkn4DDAbajvPwka3B5b6N57AmEiwnoHDlQXC0d2bPfoXCOjeuSXgzkmVqGUQvOByvsmdMwI9g0NDb9VyJfdaoOPjdIVCwwskJ/ML5aJ7KNEVSiw42bF4u6xDAApLD9/2unif6+aVffm4H/C+fMER35qcb5JsoBJrX97oh5a7PN1FQWDrljfGWbqtiGFGaWoouPn6J+Ir2pbw1KrDKL2KjMptRsX4cX2Ke6GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 504,
+   "completion_tokens": 300,
+   "total_tokens": 804,
+   "cost": 0.008016,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008016,
+    "upstream_inference_prompt_cost": 0.002016,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 274,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.024
+}

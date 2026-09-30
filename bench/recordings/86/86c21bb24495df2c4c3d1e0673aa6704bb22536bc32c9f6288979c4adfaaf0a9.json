@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Change of use of a house to a shop\", \"project\": \"Former house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 5(j)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (j) the building is used as a shop, where previously it was not ; or\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"reg 5(a)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (a) the building is used as a dwelling, where previously it was not;\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678062-5Mf5YiWmZAHXCCtIbbfi",
+  "object": "chat.completion",
+  "created": 1790678062,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Converting the house to a shop counts as a material change of use under reg 5(j), so a notice is required. Since the shop becomes a non-domestic workplace, the Fire Safety Order 2005 applies to the building, which triggers reg 12(3)'s requirement for full plans on building work related to that building.\n\nLooking closer, reg 12(1) actually covers three categories: carrying out building work, replacing/renovating a thermal element, or making a material change of use — and reg 12(2) requires giving a building notice or...\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Converting the house to a shop counts as a material change of use under reg 5(j), so a notice is required. Since the shop becomes a non-domestic workplace, the Fire Safety Order 2005 applies to the building, which triggers reg 12(3)'s requirement for full plans on building work related to that building.\n\nLooking closer, reg 12(1) actually covers three categories: carrying out building work, replacing/renovating a thermal element, or making a material change of use — and reg 12(2) requires giving a building notice or...\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 941,
+   "completion_tokens": 300,
+   "total_tokens": 1241,
+   "cost": 0.009764,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009764,
+    "upstream_inference_prompt_cost": 0.003764,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.718
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a house into two self-contained flats with a shared entrance hall\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"reg 5(c)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (c) the building is used as an hotel or a boarding house, where previously it was not;\"}, {\"ref\": \"para 0.17\", \"document\": \"ADB1-2019\", \"text\": \"0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677661-aW9VEXHwaZuADCEUV81N",
+  "object": "chat.completion",
+  "created": 1790677661,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Converting a house into two self-contained flats with a shared entrance hall needs a **full plans application**.\n\n- **Material change of use:** Dividing a dwellinghouse into flats is a material change of use under reg 5(g), where a building contains a flat and previously did not. So it is building work that must be notified. The reg 5(c) clause quoted (hotel or boarding house) does not apply here.\n- **Fire Safety Order applies:** The Regulatory Reform (Fire",
+     "refusal": null,
+     "reasoning": "Converting the house to flats counts as a material change of use, and since the shared entrance hall is a common part of a building with multiple domestic premises, the Fire Safety Order and building control regulations kick in, meaning full plans are required rather than a building notice.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Converting the house to flats counts as a material change of use, and since the shared entrance hall is a common part of a building with multiple domestic premises, the Fire Safety Order and building control regulations kick in, meaning full plans are required rather than a building notice.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8QcKEAgSGAI4AUIIdGhpbmtpbmcSDBPXM4WNuKQ87KTiWxoM7/aqnQWE2AKEj/uwIjArxgwqmrBcVCL0uC0aKOto6vR2bk4O2yFjDVnKHvBDtDqbbVnPVBLp6DYWpwSAlqcqjgepA9CzrRwPyHPn9fZpdd5F5t5dWYbsYKB+TP6bN/lKdlDTShZbh5GzyRU6jZiGh6RGLsjHyvLJtaV46nZ0fzA62PwOcBc8YVXVMwHbKu8IvuVEQe2TTCtset+fEuU73fwb531I/DfHIhuXR2YJWbxihiIeZye3oETxVV18FhEOSHN9Bdukwo0qP3pd1rdLQOSjT3fDtm5SMo2Ujv7ceSr1dWkwhnqbyClSRBqTHFGZdEmTVkjjyePuYlAaoNRUkUPUY3NL9Usmv9O5Ia9qB/wXvPmMRAOLSV1av0KcZnr+ztQbDlOHgIKnRJa3UMbEMPQAQwwheIUl0NO1mY05780bUpo6xOXhvhLwwpUFw9g7ZMKQx0NMwKqFRX8GyuNCMA5psljzS2HR2t74hIU1Oj8HwyIpV7TVezdd/oL0G2b8Q8yfZ1NEUg3KFJXEWcZDEb01xLUlmU6RZAA8/JWf+P45PmSIOvnmyCmKk/OQgdJjGwVB6UjhtDg6y504LmxNo6bGJ3lTx862La33pShycmxGux949+oJf7lolCJCLTeBWdnwvBnMTfE5dqwRR+J7td2t9dTM1qs1elU8mDBNJQRUuc/Rt9apQztBogyZqCRBjCudaeSY2+OjXFNV/YswN951kCdOcf5pknACPkKD9V+57tH5Iir+C4S4giwnlv1KKeUF3U3sWmUFmJQWFud5w69VBLyv0Vngsrppt+8JzxIXa3DG53OmOgDKOvWlgkyu9nhwfVL0/n5quhpLguHOmNcosGyqrEmRvQFdba0uCKnAReiriAPDfbXIfzTYtLNVAuSj/3IoiEQsLSVyXReysQR++mfB0Ca1mRcdzzi/ctwcIqopYtpEWZGT2bYc7/L5gjQEzowU5Wrje3ZjRYnu4AXs+RpJbK9U+fbr4IE5jRPTOx1KNC1xtnAzKzLw4jBEyeS+Z6eLTH7AX519KJvK7ah4ixszFowvlWTV/znsMnlmGWZM29HGrHxINwhYY47xMYmHkIEqwwkcMzzd43Ckq+DTCRYYw+zZ4skGlkXSxVoVU5XuezzwBOKwyzJV1GZD9Ok8FmTdpD32Xhoei/GBoYe0I6f2n2qf9HTsmzrijzUdraZBY9dCEdUGyd4u5QjoMcUPv/fVn7Qh6bLYbS3aAhlKfHMPlf1cBFsUrdxbiGa9uNzAIMc+Y51kXmR8Wf+uvAM+KFG3pPsHDAlz/ZqKGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1383,
+   "completion_tokens": 300,
+   "total_tokens": 1683,
+   "cost": 0.011532,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011532,
+    "upstream_inference_prompt_cost": 0.005532,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 147,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.905
+}

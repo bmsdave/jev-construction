@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office timber-frame walls\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Garden office. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678503-7uA074Ae0MubMkFDFJfD",
+  "object": "chat.completion",
+  "created": 1790678503,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "This is **not notifiable**. The garden office is a detached single-storey building with a floor area under 15 m² and no sleeping accommodation. That makes it an exempt building under Schedule 2, Class VI of the Building Regulations 2010 (via regulation 9). Building its timber-frame walls therefore needs no building notice or full plans application.\n\nA small residual chance of another route is left in case the building sits close to a boundary or is over a sewer.\n\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.88, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.08, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "A detached single-storey garden office under 15 m2 with no sleeping accommodation qualifies as exempt under Schedule 2 Class VI, so it isn't notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A detached single-storey garden office under 15 m2 with no sleeping accommodation qualifies as exempt under Schedule 2 Class VI, so it isn't notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0wUKEAgSGAI4AUIIdGhpbmtpbmcSDF3b75HPP5yoTpcP0xoMJ/l0J0uFnzyjEHBoIjCvFVrGerr91S/KlK7gEiogZCDK+cFF8tWd5H4WmOGKAyZNaRdbM0FglV/5q5x54/kq8ASs6EzToOm6dklArhR3XIPHFd/fksvYd+FEhe8oXnk7IU4VySbY2wK2T1kDzLe2dkjKUI5G7UCcJmPol6ZSBzlVFzwJoH3ycgFlC262s2CxsFsf5FZt5B/79LBIbHvY/mG2+l6FMrhLxaJPK0/SFyvDdiV6+0l8v33/YJEbJkHBZxqpIpv7/Q8nOoKixLokgO5t9mBpW6O/ZlWf4oTpSmGKYWT1Cz4iXsO1Cisz0mIqz2vpIavYt/vo+gJd1yWjR9vfoFzgKMv40BOzcIPkW29ZxlZ5A8ZoyS0CthJku/dASxKfGt/oEcpdOubIkzrMskN+nRPVzt9GRcgD25BEH6V12SIDoVEFS0ss8dl3SktKx8wuhyXYU6mjoPg51QbAi1951IX7awFQOnuT7Shp3G00x+otTp44sJeHU3HqlajLxcShQbu/KiMZVSn4BtaXz80tFAbHyPJ9mmRcIfy1psKUrGQQX9ZOBQGvaYC3XzTaFRsiDUslRcFd8W72z23xSGlTb8ftKH1bDJMxkF/D2mBewvikaqB2ToPC+v6tk3B/0uxlU9RC/f3GlVC0/dcDZRwjzrbaOclcC6BkVb7aDshITHZlFqRDg80mFb0dbc7FSFDW/4FCRgIX+7nKNetg7QkVjznE4oMpEHtLdE//cFy2enUoF3+L6CnktRO+D+bD5aFl6u8ZCPJMedK7lQQWNaQtxBKNZChaiIQoQUcTRWzKxLwVWnTV4KlF5DtsJxotzrRRD2Zfv2XluSvuYf6Ku/B4N8YbPUEY0J3wVutaQwDUBaTHaRolDivT0s/a0/gQELxvuoXhAIDW0E64aGsZiRAYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 511,
+   "completion_tokens": 300,
+   "total_tokens": 811,
+   "cost": 0.008044,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008044,
+    "upstream_inference_prompt_cost": 0.002044,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 75,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.266
+}

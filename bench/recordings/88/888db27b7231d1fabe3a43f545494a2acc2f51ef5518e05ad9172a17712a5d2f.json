@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Dividing an open-plan office into meeting rooms with new partitions affecting escape routes",
+   "project": "Office building in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 4 para 1(g)",
+     "document": "BR2010",
+     "text": "Work consisting of— (g) providing a self-contained fixed building service, which is not a fixed internal or external lighting system, where— (i) it is not a combustion appliance (other than a fixed flueless gas cooker), (ii) any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6A), (iii) testing and adjustment is not possible or would not affect its energy efficiency, and (iv) in the case of a mechanical ventilation appliance, the appliance is not installed in a room containing an open-flued combustion appliance whose combustion products are discharged through a natural draught flue;"
+    },
+    {
+     "ref": "para 0.10",
+     "document": "ADF1-2021",
+     "text": "0.10 Minor works must comply with the relevant requirements of the Building Regulations, but the building control body does not need to be notified. For mechanical ventilation and air-conditioning systems, minor works include any of the following. a. Replacing parts. b. Adding an output or control device if testing and adjusting the system would not affect its energy efficiency or would not be possible. c. Providing a self-contained mechanical ventilation or air-conditioning appliance when all the following apply. i. Any electrical work is exempt from a requirement to give advance notice to a building control body. ii. Testing and adjusting the system would not affect its energy efficiency or would not be possible. iii. The appliance is not installed in a room that contains an open-flued combustion appliance. Live/work units"
+    },
+    {
+     "ref": "para 0.16",
+     "document": "ADB1-2019",
+     "text": "0.16 Where there are multiple main uses that are not ancillary to one another (for example, shops with independent offices above), each use should be assigned to a purpose group in its own right. Where there is doubt as to which purpose group is appropriate, the more onerous guidance should be applied."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "full_plans_required": 0.12,
+     "building_notice_or_full_plans": 0.83,
+     "not_notifiable": 0.03,
+     "competent_person_scheme": 0.02
+    },
+    "confidence": 0.78
+   }
+  },
+  "usage": {
+   "input_tokens": 1074,
+   "output_tokens": 65,
+   "cost": 4.5108e-05
+  },
+  "id": "gen-dec-1790676095-cizv4VRMOFlhrozcYtHU",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.234
+}

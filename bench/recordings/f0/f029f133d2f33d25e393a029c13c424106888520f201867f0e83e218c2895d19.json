@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Downpipes and rain pipes\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678222-hw4wI4GZajhGumzo2GNA",
+  "object": "chat.completion",
+  "created": 1790678222,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking through whether replacing downpipes and rainwater goods counts as notifiable building work. Like-for-like replacement of rainwater pipes is generally treated as repair rather than building work requiring notification, since it doesn't amount to a material alteration under the regulations.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through whether replacing downpipes and rainwater goods counts as notifiable building work. Like-for-like replacement of rainwater pipes is generally treated as repair rather than building work requiring notification, since it doesn't amount to a material alteration under the regulations.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6goKEAgSGAI4AUIIdGhpbmtpbmcSDCNttAcfo9Jb9gvSVxoM6XvZAYuvvT79/gUGIjAuW04vo6gQ8HiOnhFh1jCKbNqMw5F6uLT0U/aElrGD7vXUD4gSgsl+YOndDl6g7OAqhwpa3DjWE5xEWA2qN4e1dri9slK0gUTEERdnihTQG9zusUyROrP8jefotlaIyVd81E9AO1FBy3XZ4sapo2005zxwAohaemI65rZWvLcfzg8e30B7mb2ZrMzAw9wXGiBooMRha/cuGfYmmpJkbd9zkIvee3D0gYbSd4quT7yMMBw6Xw+ytq2Z+/0WRMjRW+5zR9YgWZh6QXA0yd2suHjSwrMvDBJDU9wHlC7WRFqbaGqChxjdFkukbnMDJqsT1XFT5fygzKB4wWY4IMRNxj+1Q3oGzX/FlbAWNVLVucIls61A/XXS8oUrpcKRiMwMC3nAteVl9GNo2OpIZJzOorY03AdKgPIq2LGkaL1mKjAaXX20eoyzfmEL9T7q+3kJd4AQf9j3DX6Yk66ezGqt6HWUmSbppAZiJZObcik0RjTUymMOC+67rEaaKliWu/4UUqaSt36mHIqj+pUOQxns/xIbRvXqi5BsXwsO/qop8RCzs4hUEQklij9lU7B4LWJ9ZIT3Hsyih3OFFwFTfdiMKjhgucwn4P7yRe2WEF6ZuINE27yX6NHpZbioC1gQGEb+h6oInOOsS699i2v/GlV+zkvZovagVJfPlUUlTy+Z+VqTuovF+l8IirKjmPA2BuzbIJWjGdLNSQRQdjVHqwNO+ZuWUR/xFdN9v64oIsIg0GUySYrBIFnA38DTLh4ORcoh1t3Ya4m+Zc5HnwAyNjUDcYwaSaHBcwYVcm4Jh2I2sscqWyu933aQyaI6hEmt1iU0Eu5fFau/Ck10K/KUHKr4K7rnjd9kA97YUC5TA3faA+3laEVwv58qAoFIVI6LnUXl6O6QE4b4JU50DAeDx/sZ+oOCpKAcpBTkHtiItj4xfwU4aYCbYepyFaRUCs7J3ll/Jegb7rBtH0+ds+/4XWAbEg4rIwZubduU0ehX9eZL5ZCm/0VOtL39Skij+2dl6KItge4tPa6WdgMMGtk9EicxE4ZnoxPN2JNx5tNgMjO+mWC2T66AJCMCxYyI2aJb/gIuGwSDm7nbjcD+iqYOa39vljFr0TLmWW6KwNXPisf0V9EHJoROZs0xNQzzMvNSLEIq8wM9+JHaoDQXQVfdhE4boHyg3uoRVvc2QVgwE2JqzhlfZXp8PCD3cPCiyss51Hdui3+6nIq2b6QSn6Ccl3VPD5Kr6b7m7fMmWySQ5fELoJM5ITgM20CRDuk7HISeWdemyI945VAsHgOpbZCZO11YCFRrwz6ZIORjR7o85IsGwaZCWLbQFJkrHyW320EYe4lkAEdFPtf9xk9/XIaTDRY39A4kpDkkXPiisor2U4PcwNmD3Gz0VmjnZTl+8GBb48QrHqHqL+lFP2m19R6FkHu7cW4NbBp96TsgXUsfFzMHV700eGuBguY3hBy9Y1hoIMdhsNVrAbchLR9ROP1CkIdl9Gn+HUQ9WSdZgf5zsvc2hBlc/SVoYZdJhGt7OITHw9YeszXYRBNObYu+j/8iT9QueVysaHusfjkITrYDDskv1ucs34Cri2Sy3jeKJFcByb7E/WWlIvVkgRVdjnwm4ZtryDm0SuTX9UZm3GfuP8lNK7vbfpNjLKLcEOAXstL6g0If3QeDmOCgm0gFy004o7lcndJ2NsL2xlT72gtX6nmIEyX5lrAVkIbJKNFF3I0ERjFW4p3kJPePeGB8NgjCvNgL7IKYeohqpHyfrOqeFQUpYrDlN6Nm59nqH5nF5D4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 505,
+   "completion_tokens": 300,
+   "total_tokens": 805,
+   "cost": 0.00802,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00802,
+    "upstream_inference_prompt_cost": 0.00202,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 16.551
+}

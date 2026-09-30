@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rear roof outside dormer, make good\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(m)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 0.16\", \"document\": \"ADL1-2021\", \"text\": \"0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677334-DV3OJS2uWLCViVNhA2yX",
+  "object": "chat.completion",
+  "created": 1790677334,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The work is most likely not notifiable, though a competent person route is a real possibility.\n\n- **Most likely: not notifiable.** On its own, making good the rear roof slope around the dormer is a localised repair to the existing roof covering. It is not an erection, extension or material alteration, so under reg ",
+     "refusal": null,
+     "reasoning": "Making good the roof covering around a dormer is likely just a minor repair rather than building work, since it's a small localized fix rather than renewing a substantial part of the roof. But I should consider whether this crosses the threshold into thermal element renovation if it covers more than 25% of the roof area, which would trigger different requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Making good the roof covering around a dormer is likely just a minor repair rather than building work, since it's a small localized fix rather than renewing a substantial part of the roof. But I should consider whether this crosses the threshold into thermal element renovation if it covers more than 25% of the roof area, which would trigger different requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSnwkKEAgSGAI4AUIIdGhpbmtpbmcSDG+jm00Gv5MRUX63vxoM5K4EAj6Su12s0jRAIjCJH1g0tAW7LWGubr9oa/T8J0VO5t2rwadOlKSqXFeFGn9vUed4mms3f0ZaBs1HJmkqvAiWzBOvfozQvaJfH5lcG44/8zGXS/SzUsKnFqBmFbm1EozZX8eKQ30wOsrMZaPFpbKIihi+/Np73QR1oDZnNIjkeUSQdFwRqvku9lX8RXEHY8zCentUledkzfyS10ABCHr0oIMLf8jivmGbacBEnH1XxeExhHp+B6LJ+l35nS7glqvvAIIm9ZS5FPJOlIthE366drTV72hPLIv2+HwZbO44qW729wLkLvK/UFsTVx33WIMqpgJYPVgZuEaq84KLbWBmudlmI9XGloSmGzcIRLbfTWcuFNfejX1eVOA28DU4mzdG4E6EAt9nCxf9ACuXI+psT5591vIkpaxyvcEKp4wvm0zv/Ml2v1WQuHA1RSp1ZIqFh/1EqeAjPc8CWjuWNhbc5XZFFEt6+Nf08SrnPaSuAUFvEAjzAIhZSTzbVXy3NhSgHUYYbISNXkw3esgQoYXSmUAlYfZ5q5B+QCzIr4d877GlJFEjrIfV3urO6B+xTcIiavzDC9VONAkJjG+me8Cpnri52fRTEtsTwV/wm9xlLzdTW+3uXA4qke1ye7dE2NGSZOFLhHm8SDoGt29ro59pGEBxUIxoPEVhhjb95VfNiYrmG7x6cHFpWBfahYXcyf7lfFCChZHqZ6teS9LLnUMz0e1RAJQHFW+ePCLhLJU5aOjglnhITZBNSkPWRRL/gmzfdprAiHtVLe1YBtNDzyxnZTxGVe0/ZFenB9QrVc5ptoi5iRPb23i25SmE4Tuge/jTcPQUix05qmotOV3Sq3X1TaMOB7KJHKoutnYhlqyTu8QN73XpbLv22GJr802jrR4LNxiXooC+CjeQW/vYwuqi8R+et0uumKJUxRi6i6+cLSsiCM6mqydp4HJlrtvIkexmAjqk0iHf08QYlOQdmIJuJlEtGIWCgErlZIGPMmk/8VNijnuE6N9TXRNTMHKcQJW6djdXsX5zQV2BfPcALhFJDzctM+KBKRbnK0jPwQ8KEv61Jcy8softoLhafIVWJWl34wRW35uqsy04E1D2JWMd3TVDS/1Mkv7gM9c6jYVDrz3fnaHTlxGD8n07dpo20seoLQ4KiVaaRLLJAnyKBsCLs1D2WdguHiV4vhmKeP1IlpY68uWlsDtyhUCvZCEu2E0BW9vZno0L/ZtqyqwQN7GMg7JmN6hkLWzkuMykssm52aI9RPQ4sFASPSaDTQwd+OkWPuiOWUKPznvk+K1dMHCsU1dyyRRUTH+GCjm+ZpQ8mp1BCkNdV2jh8920lFzzk/YUqROFXWJBwUVzYepWJbEOlN52701QOJO1VLFUtUcmMiDcvLcS4fVJLMyWat1yEm1CkVYo8TjTnRPbYL/jATJ2b4Y3Nur9jUbXqMBUkDbKxXvWf5LPu5vBnnCTyLDQ/8F0PpQvux6LzTjt+5Ge9ao4mAwtVgWcPH5zVyH+tLcbVFfInlJTrraghajaGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1533,
+   "completion_tokens": 300,
+   "total_tokens": 1833,
+   "cost": 0.012132,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012132,
+    "upstream_inference_prompt_cost": 0.006132,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 207,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.245
+}

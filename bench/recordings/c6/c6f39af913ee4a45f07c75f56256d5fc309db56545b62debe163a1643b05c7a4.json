@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Insulate under suspended timber ground floor (insulation only, no floor replacement)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 3A\", \"document\": \"BR2010\", \"text\": \"(3A) Installation of thermal insulation to suspended timber floors where the work— (a) consists of the installation of such insulation only; and (b) the work is not carried out in order to comply with any requirements of these Regulations.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"reg 2(3)\", \"document\": \"BR2010\", \"text\": \"(3) In these Regulations “thermal element” means a wall, floor or roof (but does not include windows, doors, roof windows or roof-lights) which separates a thermally conditioned part of the building (“the conditioned space”) from— (a) the external environment (including the ground); or (b) in the case of floors and walls, another part of the building which is— (i) unconditioned; (ii) an extension falling within class 7 of Schedule 2; or (iii) where this paragraph applies, conditioned to a different temperature,and includes all parts of the element between the surface bounding the conditioned space and the external environment or other part of the building as the case may be.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677965-siSA9ukEzoixFHmLif4v",
+  "object": "chat.completion",
+  "created": 1790677965,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Insulating under a suspended timber ground floor, on its own and with no floor replacement, is **not notifiable**.\n\n- **Schedule 4 exemption:** Schedule 4 para 3A lists \"installation of thermal insulation to suspended timber floors\" as work that needs no notice, provided two conditions are met:\n  - (a) it is insulation only; and\n  - (b) it is",
+     "refusal": null,
+     "reasoning": "Installing thermal insulation to suspended timber floors falls under Schedule 4 exempted work, so it doesn't require notification under reg 12(6A) — even though it's insulation-only rather than a full thermal element renovation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Installing thermal insulation to suspended timber floors falls under Schedule 4 exempted work, so it doesn't require notification under reg 12(6A) — even though it's insulation-only rather than a full thermal element renovation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSiAgKEAgSGAI4AUIIdGhpbmtpbmcSDFO+PNjGN3IFIs73gxoM/v6Sn4nSdrLM99XuIjAMmHhoP5TSN4aGsAi/5NbrMYTpCbzeE6OMnlrbzH1JJC+TZKXljYe7MP+97MaGJbwqpQdcIVwiwY1DabOf29hzv48L+cQB+takfdHL2CFZmcddo3Fi6NeIpfKDGVwPEpGLIPjkvLXVdB0AWma298GSHakv5Ourk0tTxcMtLElDCfENZ+n7hLOH/oNmiD3swyvqsKcvA0TX5k46ZlgGHxUmCN6s/lMffw3LyH4aL3SNBA8CuputvAqpLk0xN080zamJOMXKp8DhpkblJGzJizYiLUWBBNoZLkJYsD/bTA0KuuqvsOzgntLq8TBpVLl80efgf8U3A3RIB1uA7gBnMrF959T7H7JCx4tncj/n+M0fUq7gJWlSv7UnkNhEPHHShbFNOGDK66vkh/OZeUwVE/Xa0TAXBP8lhKA73icMmFUSMHE80giALeX1oADAs3qnlkKQTArLEgcY+ssa3QoSeGPo+X+BK+GRNwnRse19Jhrqe+KmXsBSBbK9KE/6iltrCZ8hTTL8jCmvdbG136HbWIVqibKgBg9G0fYmHVksq9juVRPhKsUYwH/7LS8g59unPUHVzW9W6uquCiQGmTsE+rRsp/B0r54/5mLXrJAF9VlX8crlnc4ctSUiuxQPMU36F7rcr6+CHaauocMRuZPmVtBXDr06Z9h6LtWmspnMQ3Xb9ViocLsAu1ZR4Sy0mB0BU6pvDZA7LSw9ZsF8XUn0Diq1uwkh48LjfdC9oEjano6edrRx5WfWOuOfKmVJ70hL+t2Owbq5cZtX2yTDNIaJhmO552EKNVKbBsmeT4uvDu2K7MNJ+NC1JEaSl9IogJp1D7VXouG/feGVOGk92ur867z/b2zrEat01nTesWRKN+3RMjVRQpUO7NiC08tWXhQI62yRT0tmVVJ5HXKocsWJLHT7COHEhzirEb/Gp2AawQllwlXPJM4+PEzd3q9cbAnyn9UrEtLLAm+6yGuib1Y81S/SS8S6H0jPfLEPqAhuCah1BGiErhqXoh4/NrS43XdWn438RgD4f0umbEHsPGd3D2+FNhGh5kfTSE5rMCBp+chgVjElOoCvZToTBmYs0vKGLJ4CQq0XBwnN1hYF59kAjNHhH4TgUYJOJ3PZh+7x4O4XVANQ+0kSKSnPH9vKz4k6ZDj7GVOAjOqZIHR8GwJUO/q64KGO8gsU2P5GomeIF55V8kDoF5zIzwPlsC5ykaBq67r/82Od5YXiaEi9MtLnVSRQiqSwYLuy3gy7N3cDl/iPNS+SsPa50aef0vaCv6gCFdpWcgtx3HXLtqhmo/uIfhPzJMUFlyBwB6wYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1352,
+   "completion_tokens": 300,
+   "total_tokens": 1652,
+   "cost": 0.011408,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011408,
+    "upstream_inference_prompt_cost": 0.005408,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 176,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.413
+}

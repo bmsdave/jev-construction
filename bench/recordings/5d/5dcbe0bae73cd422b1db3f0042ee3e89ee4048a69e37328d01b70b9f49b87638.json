@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Replacement windows in an office fitted by a FENSA-registered installer",
+   "project": "Office building in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 3 para 10",
+     "document": "BR2010",
+     "text": "10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ...."
+    },
+    "c2": {
+     "ref": "Sch 3 para 11",
+     "document": "BR2010",
+     "text": "11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ...."
+    },
+    "c3": {
+     "ref": "Sch 2 Part 5 para 3",
+     "document": "BR2010",
+     "text": "(3) A building, other than a building containing a dwelling or used as an office or showroom, erected for use on the site of and in connection with a mine or quarry."
+    },
+    "c4": {
+     "ref": "para 10.3",
+     "document": "ADL1-2021",
+     "text": "10.3 For new and replacement windows, roof windows, rooflights and doors (controlled fittings), if the entire unit of that fitting is provided, all the following apply. a. Units should be draught-proofed. b. Units should meet the minimum standards given in Table 4.2. c. Insulated cavity closers should be installed where appropriate."
+    },
+    "c5": {
+     "ref": "para 3.8",
+     "document": "ADP2013",
+     "text": "3.8 If an installer is not a registered competent person and has not appointed a registered third-party certifier, then before work begins the installer must notify a building control body."
+    },
+    "c6": {
+     "ref": "Sch 2 Part 1 para 2",
+     "document": "BR2010",
+     "text": "(2) Any building (other than a building containing a dwelling or a building used for office or canteen accommodation) erected on a site in respect of which a licence under the Nuclear Installations Act 1965 is for the time being in force."
+    },
+    "c7": {
+     "ref": "para 0.11",
+     "document": "ADF1-2021",
+     "text": "0.11 A unit that contains both living accommodation and space for commercial purposes (e.g. for a workshop or office) should be treated as a dwelling if the commercial part can be reverted to domestic use. Building Regulations 2010"
+    },
+    "c8": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c9": {
+     "ref": "para 10.6",
+     "document": "ADL1-2021",
+     "text": "10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling"
+    },
+    "c10": {
+     "ref": "para 0.16",
+     "document": "ADB1-2019",
+     "text": "0.16 Where there are multiple main uses that are not ancillary to one another (for example, shops with independent offices above), each use should be assigned to a purpose group in its own right. Where there is doubt as to which purpose group is appropriate, the more onerous guidance should be applied."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.29
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.92
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.73
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.19
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.2
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.21
+   }
+  },
+  "usage": {
+   "input_tokens": 2245,
+   "output_tokens": 175,
+   "cost": 9.429e-05
+  },
+  "id": "gen-dec-1790677247-OE8qNy88zdwOcxBWbM7s",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.284
+}

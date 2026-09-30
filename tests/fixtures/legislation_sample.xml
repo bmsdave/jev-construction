@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Legislation xmlns="http://www.legislation.gov.uk/namespaces/legislation" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata">
+ <ukm:Metadata><ukm:Title>ignored metadata</ukm:Title></ukm:Metadata>
+ <Secondary><Body>
+  <P1group RestrictExtent="E">
+   <Title>Giving of a building notice</Title>
+   <P1 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12"><Pnumber>12</Pnumber>
+    <P2 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12/6A"><Pnumber>6A</Pnumber>
+     <P2para><Text>A person intending to carry out building work<CommentaryRef Ref="c1"/> is required to give a building notice where the work consists of—</Text>
+      <P3 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12/6A/a"><Pnumber>a</Pnumber><P3para><Text>the installation of a new circuit;</Text></P3para></P3>
+     </P2para>
+    </P2>
+    <P2 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12/5"><Pnumber>5</Pnumber><P2para><Text>. . . . . . . .</Text></P2para></P2>
+    <P2 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12/1"><Pnumber>1</Pnumber><P2para><Text>This regulation applies to building work.</Text></P2para></P2>
+    <P2 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12/2"><Pnumber>2</Pnumber><P2para><Text>Give a building notice.</Text></P2para></P2>
+    <P2 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12/3"><Pnumber>3</Pnumber><P2para><Text>Full plans where the Fire Safety Order applies.</Text></P2para></P2>
+   </P1>
+  </P1group>
+  <P1group RestrictExtent="W">
+   <P1 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12"><Pnumber>12</Pnumber>
+    <P2 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/regulation/12/6A"><Pnumber>6A</Pnumber><P2para><Text>Welsh version must be skipped.</Text></P2para></P2>
+   </P1>
+  </P1group>
+ </Body>
+ <Schedules><Schedule IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/3" RestrictExtent="E+W"><ScheduleBody>
+  <P1 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/4/paragraph/2"><Pnumber>2</Pnumber>
+   <P1para><Text>Work which consists of adding socket outlets to an existing ring circuit.</Text></P1para>
+  </P1>
+  <P1 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/4/paragraph/3"><Pnumber>3</Pnumber>
+   <P1para><Text>Work on—</Text>
+    <P3 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/4/paragraph/3/a"><Pnumber>a</Pnumber><P3para><Text>telephone wiring;</Text></P3para></P3>
+    <P3 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/4/paragraph/3/b"><Pnumber>b</Pnumber><P3para><Text>equipment associated with that wiring.</Text></P3para></P3>
+   </P1para>
+  </P1>
+  <P1 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/2/part/6/paragraph/1"><Pnumber>1</Pnumber>
+   <P1para><Text>A detached single storey building with a floor area not exceeding 15m2 containing no sleeping accommodation.</Text></P1para>
+  </P1>
+  <Part IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/2/part/7"><Number>CLASS 7</Number>
+   <P1group IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/2/part/7/paragraph/wrapper2n1"><Title>Extensions</Title>
+    <P IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/2/part/7/paragraph/wrapper2n2"><Text>The extension of a building by the addition at ground level of—</Text>
+     <P3 IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/2/paragraph/wrapper2/a"><Pnumber>a</Pnumber><P3para><Text>a conservatory or porch,</Text></P3para></P3>
+    </P>
+   </P1group>
+  </Part>
+  <Tabular><table xmlns="http://www.w3.org/1999/xhtml"><tbody>
+   <tr><th>Column 1 Type of Work</th><th>Column 2 Person carrying out work</th></tr>
+   <tr><td><Para xmlns="http://www.legislation.gov.uk/namespaces/legislation"><Text>10. Installation, as a replacement, of a window in an existing dwelling.</Text></Para></td>
+       <td><Para xmlns="http://www.legislation.gov.uk/namespaces/legislation"><Text>A person registered by Fensa Limited.</Text></Para></td></tr>
+  </tbody></table></Tabular>
+ </ScheduleBody></Schedule>
+ <Schedule IdURI="http://www.legislation.gov.uk/id/uksi/2010/2214/schedule/1"><ScheduleBody><Tabular><table xmlns="http://www.w3.org/1999/xhtml"><tbody>
+   <tr><th>Requirement</th><th>Limits on application</th></tr>
+   <tr><td><Para xmlns="http://www.legislation.gov.uk/namespaces/legislation"><Text>Loading</Text></Para></td></tr>
+   <tr><td><Para xmlns="http://www.legislation.gov.uk/namespaces/legislation"><Text>A1.—(1) The building shall be constructed so that loads are sustained safely.</Text></Para></td><td></td></tr>
+ </tbody></table></Tabular></ScheduleBody></Schedule></Schedules>
+ <Commentaries><Commentary id="c1"><Para><Text>Words substituted by S.I. 2023/1234</Text></Para></Commentary></Commentaries>
+ </Secondary>
+</Legislation>

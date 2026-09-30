@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Remove loadbearing internal wall and install steel beam on padstones",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c2": {
+     "ref": "para 3.9",
+     "document": "ADF1-2021",
+     "text": "3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …"
+    },
+    "c3": {
+     "ref": "Sch 1 B3",
+     "document": "BR2010",
+     "text": "Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952."
+    },
+    "c4": {
+     "ref": "para 0.55",
+     "document": "ADL1-2021",
+     "text": "0.55 Wall – internal or external insulation(2)(6)"
+    },
+    "c5": {
+     "ref": "Sch 1 B2",
+     "document": "BR2010",
+     "text": "Internal fire spread (linings): B2.—(1) To inhibit the spread of fire within the building, the internal linings shall—(a) adequately resist the spread of flame over their surfaces; and(b) have, if ignited, either a rate of heat release or a rate of fire growth, which is reasonable in the circumstances. (2) In this paragraph “internal linings” means the materials or products used in lining any partition, wall, ceiling or other internal structure."
+    },
+    "c6": {
+     "ref": "para 1.5",
+     "document": "ADA2013",
+     "text": "1.5 concrete: Eurocode 4: Design of Composite Steel and Concrete Structures BS EN 1994-1-1:2004 Eurocode 4: Design of composite steel and concrete structures – Part 1.1: General rules and rules for buildings; with UK National Annex to BS EN 1994-1-1:2004"
+    },
+    "c7": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c8": {
+     "ref": "para 1.4",
+     "document": "ADA2013",
+     "text": "1.4 Structural work of steel: Eurocode 3: Design of Steel Structures BS EN 1993-1-1:2005 Eurocode 3: Design of steel structures – Part 1.1: General rules and rules for buildings; with UK National Annex to BS EN 1993-1-1:2005 BS EN 1991-1-3:2003 Eurocode 1: Actions on structures – Part 1.3: General actions – Snow loads; with UK National Annex to BS EN 1991-13:2003 BS EN 1993-1-3:2006 Eurocode 3: Design of steel structures – Part 1.3: General rules – Supplementary rules for cold-formed members and sheeting; with UK National Annex to BS EN 1993-1-3:2006 BS EN 1991-1-4:2005+A1:2010 Eurocode 1: Actions on structures – Part 1.4: General actions – Wind actions; with UK National Annex to BS EN 1991-1-4:2005+A1:2010 BS EN 1993-1-4:2006 Eurocode 3: Design of steel structures – Part 1.4: General rules – Supplementary rules for stainless steels; with UK National Annex to BS EN 1993-1-4:2006 BSI PD 6688-1-4:2009 Published Document – Background information to the National Annex to BS EN 1991-1-4 and additional guidance BS EN 1993-1-5:2006 Eurocode 3: Design of steel structures – Part 1.5: Plated structural elements; with UK National Annex to BS EN 1993-1-5:2006 BS EN 1991-1-5:2003 Eurocode 1: Actions on structures – Part 1.5: General actions – Thermal actions; with UK National Annex to BS EN 19911-5:2003 BS EN 1991-1-6:2005 Eurocode 1: Actions on structures – Part 1.6: General actions – Actions during execution; with UK National Annex to BS EN 1996-1-6:2005 BS EN 1991-1-7:2006 Eurocode …"
+    },
+    "c9": {
+     "ref": "Sch 3 para 18",
+     "document": "BR2010",
+     "text": "18. Installation of insulating material to the internal walls of a building, not including the installation of flexible thermal linings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited, ...."
+    },
+    "c10": {
+     "ref": "para 0.25",
+     "document": "ADL1-2021",
+     "text": "0.25 Roof(2)(3)(4) (2)(5) (7)(8) NOTES: 1. Area-weighted average values. 2. For dormer windows, ‘roof’ includes the roof parts of the windows and ‘wall’ includes the wall parts (cheeks). 3. If meeting such a standard would limit head room, a lesser standard may be appropriate. In such cases, both of the following should be achieved. a. The depth of the insulation plus any required air gap should be at least to the depth of the rafters. b. The insulant should be chosen to achieve the lowest practicable U-value. 4. If there are problems with the load-bearing capacity of the frame or height of the upstand, for a flat roof or roof with integral insulation, a lesser standard may be appropriate. 5. This applies only to a wall that is suitable for cavity insulation. Where this is not the case, it should be treated as ‘wall – internal or external insulation’. 6. If meeting such a standard would reduce the internal floor area of the room bounded by the wall by more than 5%, a lesser standard may be appropriate. 7. The U-value of the floor of an extension may be calculated using the exposed perimeter and floor area of the whole enlarged dwelling. 8. If meeting such a standard would create significant problems in relation to adjoining floor levels, a lesser standard may be appropriate. Building Regulations 2010 L1(a) Continuity of insulation"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.04
+   }
+  },
+  "usage": {
+   "input_tokens": 3593,
+   "output_tokens": 175,
+   "cost": 0.000150906
+  },
+  "id": "gen-dec-1790677195-aU9BMUoChN0YyvA2ZIQf",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.469
+}

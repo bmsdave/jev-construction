@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office entrance deck\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678532-M5PpWOwgoRiFRv5X2luc",
+  "object": "chat.completion",
+  "created": 1790678532,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "A detached single-storey garden office under 15 m² with no sleeping accommodation is an exempt building under Schedule 2, Class VI (regulation 9). An entrance deck forming part of it is covered by the same exemption. Decking on its own would not normally count as building work anyway, so **no notice is needed**.\n\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.07, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "A garden office under 15 m2 with no sleeping accommodation falls under Schedule 2 Class VI exemption, and since the deck is part of that same structure and decking generally isn't building work anyway, this counts as not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A garden office under 15 m2 with no sleeping accommodation falls under Schedule 2 Class VI exemption, and since the deck is part of that same structure and decking generally isn't building work anyway, this counts as not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmgYKEAgSGAI4AUIIdGhpbmtpbmcSDPvmy1cgu6rthxH2uRoMLPH58La4dTkJICvjIjBZ7sAoaTmwt6QFnf0wtIoMTYPVF7G2Jbu44PN3xP/6Rv8N/dSZpBpqCDjrlfkSUkoqtwUqjxFiNTAAMnGueIvIz+jr9e7bTJJhY2sjFkMX+XmL0/bJ1r3BWXaVbuTw4+JqbxS36LWXHJ1KtcO5UIlLIpZQIuhig4Wfek8Cdoyfx2l6iA0fq0DebkILIrTLM1f4k4Ej7tXouAuipXuKCG+OqORaxY2y0iKXHR0rn46nVNftmLLWeCHuz1YZhd3vAKCP1x5vb1YYoWLatBpR1rCdH0wv5/Hboy9LT5xX6E8hMePJuDLdz/kgffE4z5xh5DveOmED/UWeB/FWA5VOb6c+t0yd6otChWzSpEHWZlaZQtl7hsx0PdCpHBRa7QrPlmpcTZK7i25sTXAaCXqV0MhHsfe9L4IKTTR/Ovuol4joEPIfHOG4nDwiKW9Z2re3li+bhLVyN9YtSuIsQguVTp/A5Q8m6+w+sV5nm5Q3pY3jwin4iW7yife/OqRRSUQz9U5UHCXmOiQWrORwCKfKcIPa7OgxG0LZAOtbPuqeuG7nZE/crzmuvWLG7vLPY91bBd3t4x33i4O+6njGMkK1ABWTdo9KgGHGLRKkZ5vOEb7BMVDjhnHYik7PvRM2m57UXhdj/FuWd6HOHgGsQ1D+SAtFZ2ozb9Zilk/A9vLiIgvsYYCWcswFFd7pxe8QfkdoWRDJwh3Y5CSWDL36sCKDqvZ1e809fYLkkuz42fFmo2ZYxY0Wxak5+qA5BPxRJtPnVNC34MaInLBx1T3zDxMGdvD8WouK4LzZdy5csAc8JnsqzzARTfsrsp5zS1H5dNZ6glxHEWEg3hcxRzJd7T75Dgn+2JQ2b2R24MNFJfzaXPD4Vj2M0Dk29CAuYMNlUEMytCdHmLFFszqhBuC4u4Rttx3Ar5k6+H0tE9MGbKraMG322W3hOD8E/NzeOuf92p/s4cHDmGyPZNBnEXfplCLyMk4PHEsuEYNhXZ9/gRgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 507,
+   "completion_tokens": 277,
+   "total_tokens": 784,
+   "cost": 0.007568,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007568,
+    "upstream_inference_prompt_cost": 0.002028,
+    "upstream_inference_completions_cost": 0.00554
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 95,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.855
+}

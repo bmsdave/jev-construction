@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace an existing ceiling light fitting like-for-like\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677880-cM1dLxTbCkmeFUgcnN4n",
+  "object": "chat.completion",
+  "created": 1790677880,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing an existing ceiling light like-for-like is not notifiable.\n\n- **Regulation 12(6A)** makes electrical work notifiable only if it is one of three things:\n  - installing a new circuit;\n  - replacing a consumer unit;\n  - adding to or altering an existing circuit in a \"special location\" (the zone round a bath or shower, or a room with a pool or sauna heater).\n- **Like-for-like replacement** is none of these. The circuit is unchanged, so it is",
+     "refusal": null,
+     "reasoning": "Swapping a light fitting on a like-for-like basis is generally treated as accessory replacement, which is non-notifiable under Part P. Even if it's in a special location like a bathroom, a straight replacement likely doesn't count as the kind of addition or alteration that Reg 12(6A)(c) targets, so I'm leaning toward not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Swapping a light fitting on a like-for-like basis is generally treated as accessory replacement, which is non-notifiable under Part P. Even if it's in a special location like a bathroom, a straight replacement likely doesn't count as the kind of addition or alteration that Reg 12(6A)(c) targets, so I'm leaning toward not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSwQcKEAgSGAI4AUIIdGhpbmtpbmcSDKBQMrOVG/M0iSuVRhoMHSD+mkCjedo3eATDIjAt+YMkxBMWPOi96j8up5g6XLMUYRuDzHX44CR+ac12/rM0H7T3QPiOnKGpvbvLrfkq3gZfoerCw0fEJj8oEuf03TdXx/tde4TB1v/Ke32NYT+R3CU+4zLQhu2Lz96uwrPZQywLxuJE5y/E1S83R680hJCfQCEKrK7z/UI151UBoZLJr+kXR7V56PwF9lPmgnmApf9JccDp1mBmZgSzJWB0sk9VdGZElCKlgkLK23NxK3HXF2gU6Tx1n6cp7qTKBNfktSZNXnc5JPQGYHcO+kB2G2BHaz4qAA/hUHG+aXfa1UwFur5HkGnskqHTqi3xe8DvhnNPH+i/PkZtTgkFu5yZHJif9K470s8PEMkAdrq6koG20JzZZydQRX5SRWCJlmRSdsr9DfeSTVLcwOyNFJTs1YNeKrxlCI9Ws8psQdfOXDyn9Qn2buMUwc7qZoeyj0zm1kHfpsMgYdyxmW6vwFIKJlKlT67+4BUbUHjj9ja+6lD7p5U7mDwGT0RLpM49oC4DfyoKaWmaEV6SPDXDRcN8Wy0KAmsBSk0+1JQ53JG6RUnLJ4YPrP0ukBVOV3h8szTmnTrx8VTdaZ2KpO0a79/Xz1Sbo58aFU0YnElWQZ7Hp/WeJsyYtbnp4Da1AzCQ0w5nWjEz4zVR/A+wApbGb6toxsC1NkCSaF5+20fP0YNsPeEk4n/szlp6DTRVnxo0wvh6jCcpC+6Ux9KOWmp78COM3U2dr4/p1HvdVj+FrOWSqD2A3fqwZ5sFtdLq0BCeVe/kAJFmc8mev+iIIj568gKTBA1SHfOH4xbSg29kB/cG5ybAAvLzqgp6H6hQEhc1eoxFYHiOEog52jgmxTTEnwXmvojujZIT8LmgvDGZsNR6XItk5pOG1pX/9Alo0h1JJ2kXy+wX8JUnH6GE8D1ITe+1TcAgkWMmklJMrSEcfdVrHhO5VhAOBHzfZv1fJ6wNpmVzLyc9BWJ3MVcswa7N6v/Z24ovQLGTrUHeMXMrwFRDFJuwZNKxaApVOdHsTYi+FtBqxIg8dxrzn8DNL/TvFNQsJ+OMw33kpuKJeqra59fmWnKd9ZrSD8K30liaH1Vxk/kC0Po8iEVgaIDOnsnDrOXWNX0+Sd16TVsiEy9iPKUdKI9BV/lgaqiLMckV3T0EIUeEETUFDbVRRfL1ij8VFCv8sdANb75aX7GZc67dwS7YYwia+xnAHb6qjqecUQX+L9+FGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1315,
+   "completion_tokens": 300,
+   "total_tokens": 1615,
+   "cost": 0.01126,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01126,
+    "upstream_inference_prompt_cost": 0.00526,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 141,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.986
+}

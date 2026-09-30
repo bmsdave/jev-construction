@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Add a glazed conservatory of 18 m2 separated from the house by external doors\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 0.14\", \"document\": \"ADL1-2021\", \"text\": \"0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See\"}, {\"ref\": \"Sch 4 para 1(h)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (h) replacing an external door (where the door together with its frame has not more than 50% of its internal face area glazed);\"}, {\"ref\": \"para 10.6\", \"document\": \"ADL1-2021\", \"text\": \"10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677822-7OTHVxkZg9APSMoRChjc",
+  "object": "chat.completion",
+  "created": 1790677822,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "An 18 m² conservatory is **not notifiable**, as long as it meets the Schedule 2 exemption conditions.\n\n- **Exemption:** Regulation 9 and Schedule 2, Class VII, exempt a ground-level conservatory extension to a building if its floor area does not exceed 30 m².\n- **Separation:** The house wall, door and window that separate it from the dwelling must be kept, or repl",
+     "refusal": null,
+     "reasoning": "A conservatory under 30 m² at ground level, separated by external doors, qualifies as exempt under Schedule 2 Class VII, assuming the glazing meets Part K standards. This makes the extension not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A conservatory under 30 m² at ground level, separated by external doors, qualifies as exempt under Schedule 2 Class VII, assuming the glazing meets Part K standards. This makes the extension not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9AcKEAgSGAI4AUIIdGhpbmtpbmcSDLIttwZLfXYSVjQBHBoMQuWcsu7tlUsFgjksIjDUstEsdRqKPanhEaxHfaRYoAQl216QnYzQuVNOyEMVwas6PN2OX4dTxs3um6yukCkqkQeRIS+AYSTHpL9TwPhDKT7/lKzEvUNZj2clDPFZau8j02lrZr6OJd3404SVcGegTBaJYwMDpW2F/KzL8rchIVThEfmuvqkNjnTAuheeLjYrTy3ap+cHZAf3OnsEMGSFs2tfuZEhSdDpK9G+MCR4HWBJCRgLC5IXaCrO2wVzht39Wrrgm9ZG1D03duc2HxYRe552naO2GlWhkrSjXA2UlM6/uhPzM9ZTbSLXS9v29of5RPu/bxG+xzIKY7I+WZYr1uvzOzVvy1phC+K4tBpQCLa6s9QSHgF+XH1EZxxh9zxcHVsWOARpTwKZcjeJF6An/BY1iBXSz3Cyoi+bYTfdXxJXZgmmTUeTGWRvMDaD2/IJwvPaz7wwtPejQiWCCvSx//powcWOg7CUnw5xqaX2XkfvRkrqQSaEt9e8gBXkgFzEi4qTmRJQcxB8YzBv8hlm1R7Zfg3J+8WaamgP21yLi+TMb2sgXCf9VfeIpTU1HUzEtTJYtDM286yxMoTVR/4SJyWPtjZvWicD8141RhvcjevfMOGehI4+3bTm+OKWi0if8MrtBGNN4u8dlzUqOcANDDd9m7H5v89hH+YUzF5GtJNmLY+1+q3fYVVfGaV1RaTXhPS2Uq2AUqsLOvqI22Ytusir+T3AmPrFsGkin3+rtOhjP4dfllvX3gjYmMAAqrqq+hPk9DsLCWmwf4Qx6BjBVD0gfS6jNBu1zXNvHWhOc06VoyozfjKoouSrlkqKFQJA0kEaGtEa/pWF6EdOHTz6VTMofPlj9TijsyD4nSlH/PjsM23SBNvWaU0svoRkRZ+vIlpLeoO3ukKEfffrHOijlr6aWFL9Tr9CrErXlbNWH+GSk+7qVWShvKWlhb1yBlDTrZIBwgx+W21Gc0KVJ2SRcAg1Bik996ncTRKXaTNDd03X5WJ13Yxx8xFPNIp8IlweLzZEd8ItWhb0glheadHxfGYhmLBx6NKEBZbXN0JQ/Ux6Uj0yB3EEx+HhHxh4C6lzvNOgCEr+7gr6+jEi8elggNzvq/Xkjbq7ZGj+Pgk58dSzm0MjouhrfKYsa4pPV6qy1BF3Q6BlOpy7czWSSdA1+qrGF636i0TBahqcK3oiPrw1/7ZNvZE6MvoDX/4K13glahMMpDQwezS004KL6TQOohN6EyLuDj9QfY9wVJUwgnHZZmbIN3ecvosOPdwiibOMDU1LWAEU84pERPgNOgwpPaEJGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 926,
+   "completion_tokens": 300,
+   "total_tokens": 1226,
+   "cost": 0.009704,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009704,
+    "upstream_inference_prompt_cost": 0.003704,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 166,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.982
+}

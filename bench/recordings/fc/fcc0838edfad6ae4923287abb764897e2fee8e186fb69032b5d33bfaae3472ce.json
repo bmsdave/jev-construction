@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Strip-out existing house (103 m2 GIFA)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Demolition & enabling. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678122-fpYJgRZzTmv7Z2p4SUnH",
+  "object": "chat.completion",
+  "created": 1790678122,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Stripping out an existing house on its own is not \"building work\" under regulation 3, so no Building Regulations notice is needed. Removing finishes, fittings and non-structural linings does not erect, extend or materially alter the building. It also does not provide or extend a controlled service or fitting.\n\n- **Minority risk:** the strip-out could touch structure or fire safety, for example removing loadbearing elements or party wall linings. That would make it a material alteration, needing a building notice or full plans.\n- **Separate regime:** any demolition notice under section 80 of the Building Act 1984 is a different process, not a Building Regulations notification.\n\n{\"",
+     "refusal": null,
+     "reasoning": "A strip-out just removes finishes and fittings, which isn't building work under reg 3 since demolition only counts if it's a material structural alteration. Strip-out itself isn't notifiable, though separate demolition notices under Building Act s80 could apply — so this falls under not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A strip-out just removes finishes and fittings, which isn't building work under reg 3 since demolition only counts if it's a material structural alteration. Strip-out itself isn't notifiable, though separate demolition notices under Building Act s80 could apply — so this falls under not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxAYKEAgSGAI4AUIIdGhpbmtpbmcSDPU+1EMBn9acdYCB8BoMMPvDCNV6Bf403XBhIjACSoZRObeultGG2EN+UJ8NSC0sOnKCY4/wNaaAZ/1WpNvFqdlrbjHM10j7wC21HSUq4QVDKO8KC+7aINsw51qSlfmjJOltwdtmDLmbIjcwY3uzKON7dKV0xXmvjYf+aN6ziWzkj+M+Gj1LeNY6xWPXC87YFi2LIsUNbC50Ys+InXB+cUBBv22OGmoOAoD6uKogFFQ2jhdHQn/7sP90EBAEKhejwj9jl7+MPsmVgDe+33mqbPkLGThsAeC/fEwVpEIejWuYnulnC9Km4rIv7uX3RRc5FCFVcqvjWIxp3tNapHvkuqWSFF1iEodX6I/092qFZ4JxNs6XYh7FhsmiJBYveG5nxwCt31fE+t9Lb/MLL7YKCjt9Yf0bNCVXsxJBtGGCENgCBoUGHOhCPo2fUmMKOhN4XhepMNxrRA5KrspJGbfYkEZjDq6za8OTKky0eeLFdZtvawkTQHqu2JI53GQVmGhjuGSgEUZLWpmc8CsebrlzW4qrgEJqPlk4JL+GRXUZYPprX12hXhvKIsMDar/pcVX7yDxIl7/E8Tf3GC68xGRfSOWlUkrTHNmNYIGiClj1nfxkw/56U99XvdJ74WKegbcamjNG6DTmH93ZFzZ8NIKQM6B6bGTZYbQESCWlOhd6YbaqSay20yC1paDDRhlZFM28Ct4cinzznlKZEInAq/R1ZZkrGqYqO1IXIceu5P/MMf51EJn85q9eMIcr13YDaby97emuX81uEh2spdDErOHLqyrWXFYE6X2U3M/WEODvmKIzk550xfRDEpB5XKLWps1pLYaXNW1+kEKhhA2Q0oc2Ra5Fou6Q7hsU3PDMobcOdIBb6anuA3lPpUGoH9zbqzxFSkL+3lkVe6liPwmyQ57Bf3xXmkVM/Ct7v90x6/+JRbmeFHXcUqTMgxjP/KBatQglo/0r+4Lv1/R5Zm2T4h4aHDkgrE2LWUP+lvVUmiHjHTVcQLrAN6/sn12G2iiLIMitMovWn3ZiWk7L08HS6Kes7fDXAGdTwFAtR/rpDolkDJkpjJJ+1A+xxxl4Vmlvar1rhRgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 502,
+   "completion_tokens": 300,
+   "total_tokens": 802,
+   "cost": 0.008008,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008008,
+    "upstream_inference_prompt_cost": 0.002008,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 95,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.657
+}

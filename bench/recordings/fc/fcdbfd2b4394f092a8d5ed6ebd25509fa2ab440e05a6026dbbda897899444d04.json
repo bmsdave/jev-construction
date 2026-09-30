@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting the ground-floor shop and upper flat of a building into three flats\", \"project\": \"Mixed-use building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678615-z5XCgf2BZQF55EQ3lKCx",
+  "object": "chat.completion",
+  "created": 1790678615,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The conversion is a material change of use, since it creates new dwellings, so it is building work and a notice is needed. It is not in Schedule 3 or Schedule 4.\n\nA building containing three flats will almost certainly have shared common parts, such",
+     "refusal": null,
+     "reasoning": "For creating flats, I need to consider whether a building notice suffices or full plans are required — since the Fire Safety Order applies to common parts of blocks of flats, full plans submission is required rather than a building notice.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "For creating flats, I need to consider whether a building notice suffices or full plans are required — since the Fire Safety Order applies to common parts of blocks of flats, full plans submission is required rather than a building notice.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7wkKEAgSGAI4AUIIdGhpbmtpbmcSDNVCjT2KQyd+MM2CkBoMi9dZYMXD7duijMmQIjAZXtkEMEHKj6hX07j+ZjC8CmGBNX9033lrQx4YFN6Eomv2Y0idqEobDRo3sllcov0qjAmgxfdPhOIgglfVznYIhfxNqhgtzg+TW+C5ypun/YSoeYvoLxNVDWMdkNokIofI0/eEf/+/gpPGtSk2D1/KhD4yZJe1TwfvSXDvkTmuf3Q4L5luIr+grFTtasdLHxRb6CmwZ2CYSIuSixI+P8HfFDRL/cKkXia3fEmTKyI7UxoAOGqIfGRvMjCCS7MR/fy6FtgmKFYePzgtz19RAsx+nEVgWubRopEzAPBUGtItHoEg+IKKnOEEdVS+X0yFFUoDBEMDNiw0DnExMDdGzZPPkQ28Sk505mqhhEAqTvURR1pgcckXbNcEnygAlQvehxrjDJ3EVBRYqH2wkyYkpJE32SYD2BeM/mutWEXEC7DaDmz7aE1sAZq2IruAaBaJCjSW12hiqhYthjx2stjaFJj4ye0gwGYKH2+ZgsTGXz4YxiT2FwLsQgf6YzknQZ9WHhS2p7T03iuhOQzloA/OxYya0O1AkdKvpIVPjjYOXSaLSwdbEdwgPqv2ns6xlxlPD7DKH8sT2NXBk2Hz0TBq9nj4yGgN/bpkEqzGxNbzySVQqFJHTGHokb7/Uqw3XFa0F6sUQy5XRvWdbUfxIKzmD/DJ0mBvZq+z6lta/0fWAZE//zRi9QUoBcSjikqMmWjFJ3hKui6MzNbpymC2gZWcEeYA+HXOavySu+vITTHSCWQteto6QZflVXDqQtTRO4/XiN7iNDEI8NtctMNuqU4L62CNJmta3/sJt2sEx0WtNNlJlSYoz8JYqQGgaNtNJElZ0x441cmx5g7VrwwMvpYHjrlxs4P906FGFohoCepxct9256uozcek2BYQL8r/IguWYmExL8w1t9MqWMHOuOZAnFQd8J0A8Wh7Hg3MB1Nhq78l7NLpaStY+u7a3VxskSVz8nbxgOOcNGie7lM/dhehwHgobgxeC4UfzmEYHOHC7G1wGYlLQDyet2WJIl2+Ub9S2lWL8zVoFLVHlc9tNuSrc5oXj/fnMQZlxHfe2SFMaYjmwy6GzD/F/mPfT6O4GK3QN5tVBDc7tLlpQM1Np4ZVQKj1tLaoKSAMHeUSsYfovELJqyII8IyGuJW5lVI6qfMP+tU5l4CYVylUyzbTi4b7bPDz2OiN6q+caUT0FzBDVopwfA/gvVxlaWToAKUouEoxqBp7+TkGdoEg997hTIt9C9uwEzyraCpl8jEpuqBr778Vz4hYBwHmSiqR+qxF0zkI1LXYwEfr28kO4aAZlwveELUC3Wz5Xkig+Ax0NtRRuNGlz1lDiy7D6DUmSJf/tGETkZ1I3aKuH1r7F8t076xC9n7VlmZSmE0OjKlQwTIJlJR8k+/7hJNcQ+PfO6yRrcWlu9a4DK3te5JzNyj7F9kysOrUqivJQyPBjWlHlqxwB1XECQ8BC0cQ98Na/iX8pT1mllrKpdNZpiiIcV2gNb7HhviUuK3DZ4RmNIqOhKQ6tfM+nGOdOQrYHKE5Eii5ML+itQmD697iA5AK0XW6Yz0kCBisImgBTEkNeMQi2ddNH4OqsLvnj9Sy0wMI3salOOn4QRwnVfBzZOTR3exuai1X0FQYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 475,
+   "completion_tokens": 300,
+   "total_tokens": 775,
+   "cost": 0.0079,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0079,
+    "upstream_inference_prompt_cost": 0.0019,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 225,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.889
+}

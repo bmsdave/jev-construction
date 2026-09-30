@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Replacing a flat roof structure including new joists",
+   "project": "Terraced house in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 11.2",
+     "document": "ADL1-2021",
+     "text": "11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation."
+    },
+    "c2": {
+     "ref": "para 0.16",
+     "document": "ADL1-2021",
+     "text": "0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows"
+    },
+    "c3": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c4": {
+     "ref": "para 11.7",
+     "document": "ADL1-2021",
+     "text": "11.7 If there is a material change of use and/or a change to energy status, elements should satisfy all of the following. a. Existing thermal elements should meet the limiting standards in Table 4.3, following the guidance in paragraphs 4.11 and 4.12. b. If both of the following apply to existing windows, roof windows, rooflights and doors (controlled fittings), they should be replaced to meet the limiting standards in Table 4.2. i. They separate a conditioned space from an unconditioned space or the external environment. ii. They have a U-value higher than either of the following. • For windows, roof windows and doors – 3.30W/(m2·K). • For rooflights – 3.80W/(m2·K), calculated by following paragraph 4.5. In addition, all of the following should be met. a. New or replaced thermal elements should meet the standards in Table 4.2, following the guidance in paragraphs 4.7 and 4.8. b. New or replaced windows, roof windows, rooflights and doors (controlled fittings) should meet the standards in Table 4.2. c. The area of openings in the newly created dwelling should not be more than 25% of the total floor area. In buildings that contain more than one dwelling a larger percentage area of openings may be achieved by following the guidance in paragraph 11.8. d. Any fixed building services including building automation and control systems and/or on-site electricity generation that are provided or extended should meet the standards in Sections 5 and 6."
+    },
+    "c5": {
+     "ref": "para 10.6",
+     "document": "ADL1-2021",
+     "text": "10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling"
+    },
+    "c6": {
+     "ref": "Sch 1 E1",
+     "document": "BR2010",
+     "text": "Protection against sound from other parts of the building and adjoining buildings: E1. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that they provide reasonable resistance to sound from other parts of the same building and from adjoining buildings."
+    },
+    "c7": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c8": {
+     "ref": "para 10.1",
+     "document": "ADL1-2021",
+     "text": "10.1 This section provides guidance for new elements in existing dwellings, including all the following types of work. a. Providing a new thermal element in an existing dwelling – follow paragraph 10.1. b. Providing a replacement thermal element in an existing dwelling – follow paragraph 10.2. c. Replacing windows, doors or rooflights (controlled fittings) in an existing dwelling – follow paragraphs 10.3 to 10.6. d. Extending an existing dwelling – follow paragraphs 10.7 to 10.11. e. Adding a conservatory or porch to an existing dwelling – follow paragraphs 10.12 and 10.13. NOTE: Guidance for renovating elements in existing dwellings is given in Section 11. New and replacement fabric elements"
+    },
+    "c9": {
+     "ref": "para 3.9",
+     "document": "ADF1-2021",
+     "text": "3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …"
+    },
+    "c10": {
+     "ref": "para 2.3",
+     "document": "ADA2013",
+     "text": "2.3 The following meanings apply to terms throughout this section: Buttressing wall A wall designed and constructed to afford lateral support to another wall perpendicular to it, support being provided from the base to the top of the wall. Cavity width The horizontal distance between the two leaves of a cavity wall. Compartment wall A wall constructed as a compartment wall to meet the requirements of regulation B3(2). Dead load The load due to the weight of all walls, permanent partitions, floors, roofs and finishes including services, and all other permanent construction. Imposed load The load assumed to be produced by the intended occupancy or use, including the weight of movable partitions, distributed, concentrated, impact, inertia and snow loads, but excluding wind loads. Structure"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.16
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.45
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.06
+   }
+  },
+  "usage": {
+   "input_tokens": 3364,
+   "output_tokens": 175,
+   "cost": 0.000141288
+  },
+  "id": "gen-dec-1790676113-aoYw58CgTfo6zh0w8C0S",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.247
+}

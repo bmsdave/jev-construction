@@ -1,0 +1,25 @@
+{
+  "note": "Crown copyright, Open Government Licence v3.0. Fetched into sources/ (gitignored) by build_index.py --fetch.",
+  "legislation": [
+    {"doc": "BR2010", "title": "The Building Regulations 2010 (SI 2010/2214), England", "parts": [
+      "regulation/2", "regulation/3", "regulation/4", "regulation/5", "regulation/9", "regulation/12", "regulation/23",
+      "schedule/1", "schedule/2", "schedule/3", "schedule/4"]}
+  ],
+  "approved_documents": [
+    {"doc": "ADA2013", "title": "Approved Document A: Structure, 2004 edition incorporating 2010 and 2013 amendments",
+     "file": "ad_a", "sections": ["1", "2"],
+     "url": "https://assets.publishing.service.gov.uk/media/5a80437640f0b623026927b2/BR_PDF_AD_A_2013.pdf"},
+    {"doc": "ADB1-2019", "title": "Approved Document B: Fire safety, Volume 1 Dwellings, 2019 edition with amendments (2026 print)",
+     "file": "ad_b1", "sections": ["0"],
+     "url": "https://assets.publishing.service.gov.uk/media/6aa3bb335f6e942efe37f150/AD_B1_2026.pdf"},
+    {"doc": "ADF1-2021", "title": "Approved Document F: Ventilation, Volume 1 Dwellings, 2021 edition",
+     "file": "ad_f1", "sections": ["0", "3"],
+     "url": "https://assets.publishing.service.gov.uk/media/61deba42d3bf7f054fcc243d/ADF1.pdf"},
+    {"doc": "ADL1-2021", "title": "Approved Document L: Conservation of fuel and power, Volume 1 Dwellings, 2021 edition incorporating 2023 amendments",
+     "file": "ad_l1", "sections": ["0", "10", "11", "12"],
+     "url": "https://assets.publishing.service.gov.uk/media/662a2e3e55e1582b6ca7e592/Approved_Document_L__Conservation_of_fuel_and_power__Volume_1_Dwellings__2021_edition_incorporating_2023_amendments.pdf"},
+    {"doc": "ADP2013", "title": "Approved Document P: Electrical safety - dwellings, 2013 edition",
+     "file": "ad_p", "sections": ["0", "1", "2", "3"],
+     "url": "https://assets.publishing.service.gov.uk/media/5a802da7ed915d74e622ceed/BR_PDF_AD_P_2013.pdf"}
+  ]
+}

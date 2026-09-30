@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New detached building close to a drain shown on the sewer map\", \"project\": \"Residential plot in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 1 H4\", \"document\": \"BR2010\", \"text\": \"Building over sewers: H4.—(1) The erection or extension of a building or work involving the underpinning of a building shall be carried out in a way that is not detrimental to the building or building extension or to the continued maintenance of the drain, sewer or disposal main. (2) In this paragraph “disposal main” means any pipe, tunnel or conduit used for the conveyance of effluent to or from a sewage disposal works, which is not a public sewer. (3) In this paragraph and paragraph H5 “map of sewers” means any records kept by a sewerage undertaker under section 199 of the Water Industry Act 1991. | Requirement H4 applies only to work carried out—(a) over a drain, sewer or disposal main which is shown on any map of sewers; or(b) on any site or in such a manner as may result in interference with the use of, or obstruction of the access of any person to, any drain, sewer or disposal main which is shown on any map of sewers.\"}, {\"ref\": \"Sch 2 Part 5 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A building on a site, being a building which is intended to be used only in connection with the disposal of buildings or building plots on that site.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678078-9ysY6SPKVBWrnqyi8XVe",
+  "object": "chat.completion",
+  "created": 1790678078,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.72, \"not_notifiable\": 0.15, \"building_notice_or_full_plans\": 0.1, \"competent_person_scheme\": 0.03}}",
+     "refusal": null,
+     "reasoning": "A new detached building near a drain without a stated floor area is ambiguous, but since it's a proximity-to-drain scenario, H4 likely governs — meaning full plans would be required rather than the small-building exemption under Sch 2 Part 6 para 3, especially if the building's location could interfere with drain access.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A new detached building near a drain without a stated floor area is ambiguous, but since it's a proximity-to-drain scenario, H4 likely governs — meaning full plans would be required rather than the small-building exemption under Sch 2 Part 6 para 3, especially if the building's location could interfere with drain access.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSyggKEAgSGAI4AUIIdGhpbmtpbmcSDLHhDda48HxjlcXC0RoM8WvkCsLHWh9kR+a9IjB7LapmhR0VxWSa3t7kbAC/Ix8GDFS+zrVRgq08QqqzUX3pEdhOYVFbASVIhsFuj4kq5wcMH+hRmrw5Fy3bXdrtLn2TuMOaRq9WvCePXuQq5m4dk1Nn5LdPrQB9xqLtCjFVm3+NkPng0tnDf2LDlah9r9JEvsWkb+cXn+TMRrPBYIvP0XCTiWbpmNxC+CC3bOsobza6eMrM3FCvRgT0r2LEwvMGUBS+zkJlIoV523s2YpeuFSF7zjM6JN4IycxNoWvRRP8+KGAdeazoWVwa4HbmAryBXYqOu5w4VE7Aavirff+26XmkRH0+sV9SDOojNeG3fAF2horQv4NcGYWx+DdgyfxmK2qmnTv2VybPVrKux5f6pVKbU0SPZAhiMKAGgvY7lFXeXEHm6uLOfvFQOB+jqKTI4vEp82G7iWlPSzFukccRdf4JkZc8QU75T/GR5tYeUcp+Ed15oX4Q4IRmWM+HZjPUGelohJqII6CzH/CqOjXXhhcvhYXsTi3yaL8lZsdz6FlK9BL+Kj2NtKxRCVnLn6kL0LgCSpZyqtJUVy4jxMuld+jnZkqtw1hXWAQaC8AROk2agxAo0Oohy5ElRDdcdL1BWnNNzcyYO/jp4Zp6BuNJgsbRYdyM8wvuHsVZF4pZ+Oa/U7ugv9Nt0WviMuPbbVfYEUwb3xUsrHMHWTEA/15h6xeGLDjmUp6I4vGQvTXLOMaehdPyRF+xqW3eLItvLZYwLXkiLPS7pL196dtgAx7DR/Wa4cAgpM8P+RPRtfnZa04kX2Um2g3waTmf8NY2dtV88AMsv/YjBvfCHsy6qUyCEtuSLR4va/lNmxc5Db8gFFEY0OSDyskdSqOBJ4AW5tj/ZEANlFlne0PuMFNr0bpQpRF8O+pOW23Z1C4eXiD3gZXDhkOM0A+cXLZH/UgBH4dijrwvHfhZtlH4WdxRpV7EhG1jyWfb7gE/Mh5n8qbX15zlEfuA4Kbdv1ZtJX5BxQlCE1m7xNW91qtEOXo6Jm4x/cM3nOG/vZVkCVpp68W8Q1SANobcgY3csgeERyVf+EGuS661uXeSY0HPOH0NUYoUycCPWoExfTpug/NgNcbDfgSrCSnq0boFxZ9wBwFxh6QWr8hoCrOXN9UbttCuLnzt8dMU6BFi8FKOItiDLbZdYIFTlamDb4IeuduI7AFG1Ltl12hzAi2it1SF9OkOSxdLK6/Tc7x2BU6DRUEcdljuswrkx46tXj2P0Mjwt0rxtpkMPJaVDwZafX0AdFZOdJ0glVDe4Q++tPqT7X7we55BP1EcXuZTDsnXqDrvp8Iofdfj6evG06np1gwULJjGxDMGTTzWkUQN1r3fXWENo3EHyFZhEVKvwKgrpZmcOhZVc3AfuWJCH/BjVXGx5EXaGFVqQ/7RhQVQsocYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 958,
+   "completion_tokens": 283,
+   "total_tokens": 1241,
+   "cost": 0.009492,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009492,
+    "upstream_inference_prompt_cost": 0.003832,
+    "upstream_inference_completions_cost": 0.00566
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 202,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.506
+}

@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New mezzanine floor for storage in a warehouse",
+   "project": "Warehouse in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "reg 2(2)",
+     "document": "BR2010",
+     "text": "(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted."
+    },
+    "c2": {
+     "ref": "para 0.15",
+     "document": "ADB1-2019",
+     "text": "0.15 Where a building or compartment has more than one use, it is appropriate to assign each different use to its own purpose group in the following situations. a. If the ancillary use is a flat. b. If both of the following apply. i. The building or compartment has an area of more than 280m2. ii. The ancillary use relates to an area that is more than one-fifth of the total floor area of the building or compartment. c. In ‘shop and commercial’ (purpose group 4) buildings or compartments, if the ancillary use is storage and both of the following apply. i. The building or compartment has an area of more than 280m2. ii. The storage area comprises more than one-third of the total floor area of the building or compartment."
+    },
+    "c3": {
+     "ref": "para 1.4",
+     "document": "ADP2013",
+     "text": "1.4 Wall-mounted socket-outlets, switches and consumer units in new dwellings should be easy to reach, in accordance with Part M of the Building Regulations (Access to and use of buildings). NOTE: Approved Document M recommends that in new dwellings only, switches and socketoutlets for lighting and other equipment should be between 450mm and 1200mm from finished floor level. Approved Document M does not recommend a height for new consumer units. However, one way of complying with Part M in new dwellings is to mount consumer units so that the switches are between 1350mm and 1450mm above floor level. At this height, the consumer unit is out of reach of young children yet accessible to other people when standing or sitting. New dwellings formed by a change of use"
+    },
+    "c4": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c5": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c6": {
+     "ref": "Sch 1 H6",
+     "document": "BR2010",
+     "text": "Solid waste storages: H6.—(1) Adequate provision shall be made for storage of solid waste. (2) Adequate means of access shall be provided—(a) for people in the building to the place of storage; and (b) from the place of storage to a collection point (where one has been specified by the waste collection authority under section 46 (household waste) or section 47 (commercial waste) of the Environmental Protection Act 1990) or to a street (where no collection point has been specified)."
+    },
+    "c7": {
+     "ref": "para 10.5",
+     "document": "ADL1-2021",
+     "text": "10.5 If a window is enlarged or a new one is created, either of the following should be met. a. The area of windows, roof windows, rooflights and doors should not exceed 25% of the total floor area of the dwelling. b. If the area of windows, roof windows, rooflights and doors exceeds 25% of the total floor area of the dwelling, compensating measures should be taken to improve the energy efficiency of the dwelling. Building Regulations 2010 R23(2), L1(a)"
+    },
+    "c8": {
+     "ref": "Sch 1 J6",
+     "document": "BR2010",
+     "text": "Protection of liquid fuel storage systems: J6. Liquid fuel storage systems and the pipes connecting them to combustion appliances shall be so constructed and separated from buildings and the boundary of the premises as to reduce to a reasonable level the risk of the fuel igniting in the event of fire in adjacent buildings or premises. | Requirement J6 applies only to—(a) fixed oil storage tanks with capacities greater than 90 litres and connecting pipes; and (b) fixed liquefied petroleum gas storage installations with capacities greater than 150 litres and connecting pipes,which are located outside the building and which serve fixed combustion appliances (including incinerators) in the building."
+    },
+    "c9": {
+     "ref": "Sch 4 para 1(l)",
+     "document": "BR2010",
+     "text": "Work consisting of— (l) providing a hot water storage system that has a storage vessel with a capacity not exceeding 15 litres, where any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6)(b);"
+    },
+    "c10": {
+     "ref": "para 10.7",
+     "document": "ADL1-2021",
+     "text": "10.7 When a dwelling is extended, elements should satisfy all of the following. a. New thermal elements should meet the standards in Table 4.2 and paragraph 4.7. b. Replacement thermal elements should meet the standards in Table 4.2 and paragraph 4.8. c. New windows, roof windows, rooflights and doors should meet the standards in Table 4.2. d. The total area of windows, roof windows, rooflights and doors in extensions should not exceed the sum of the following. i. 25% of the floor area of the extension. ii. The total area of any windows and doors which no longer exist or are no longer exposed due to the extension. e. Existing fabric elements that will become thermal elements should meet the limiting standards in Table 4.3 by following the guidance in paragraphs 11.2 to 11.4."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.04
+   }
+  },
+  "usage": {
+   "input_tokens": 2810,
+   "output_tokens": 175,
+   "cost": 0.00011802
+  },
+  "id": "gen-dec-1790676078-AGt0Hz3U3Bdz4ad8lCq5",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.263
+}

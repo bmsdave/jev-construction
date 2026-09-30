@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front door and sidelights\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Windows & doors. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678184-7Pc5nZgg5CS5P3JDFDTg",
+  "object": "chat.completion",
+  "created": 1790678184,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering that replacing the front door with sidelights counts as a controlled fitting under Building Regulations, falling under Schedule 3 for FENSA-type competent person schemes since it's a replacement door/window in an existing dwelling subject to Part L compliance.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering that replacing the front door with sidelights counts as a controlled fitting under Building Regulations, falling under Schedule 3 for FENSA-type competent person schemes since it's a replacement door/window in an existing dwelling subject to Part L compliance.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSgAsKEAgSGAI4AUIIdGhpbmtpbmcSDBPAXoqXKTukfw7SWBoM2gkl9fS1R47DiCAAIjA9F989Y3G4IW+E43sNesAUo4+Lbw48BKS9wf/1jT3Rg/IG0KZLOT5gnYunw+ophaEqnQq4ru+0JoGF5pw5qooxGf2n6QYuxWSusb7y2VqpIQlNXiKBVeorluf7shLWSJi+MqwznYKojcuxCyuqML5SPYqLEP9IpXCwnii1/Eh7BEObx0cZyHaTHki7ltauSU79IP/IAyvXf3LJmB1cQzBEjs9+ynpSbAFtluYD4fuL3goLu7EsO3/jxKtpZi7vrVZP5OfquJf7HDzjyQ01lPB9/WGQnPQtQOyZVBWfkMbuG4Yuj9EiuR3grBJMHrIA5v9E0kbmy8CAkJjtoSFnwRwhqyK2cBSMYJZ8xP984MHx8BBsApcIOayPiS72e8SjgPlBFfH2T0vsCHSQrfCbeIBrNr+s9sBOqF6lWmj7B1BD6GgHNj/3vgGMTxT98cizgHvLokzjNAj0iSXhwLoQH4SxOHQAbP/hF+0ljiK90as/wnldkzUsJioJyl2OHMfGGDXBBBJp+5/ITpYUdAOygC8TveqQrDYYfdV6ikTNvZThogcImwTMH8rNDtR77X/gaW5gst6NgE7U8NzRBTazP3DUjcHeeg/OYOBBB++s7HbHBLKRKBdGM6Giz6n8Rp+NeFCxQFif1yJ4RwXzay7ffZK72XQEhviSekmhRWQ0dCRxTKQGt8L31YpuEKrNpq0lO+3mRv9purA493ZyKmAzmvwtmpmRCIvYsHk8Ig4AOSnAjHUruWoLeI86LaV+98ntYauP0uavjsNDrsHe2bRpuMjjXOA2MAtuvkr5Uud14M/YfktPbSC8q76TOu/+z/0fQc96JQ9cjhfJrenjtkQf6bT25yk0wb5pjPBoBtFEZ6UwEbyOR4M4W/57bG+7KZ+hneYkW6ZVymt5BVd5hGMvTng6/Q6mDQegINMyGlm4uu0asnNeKIGi9fmg0Uo0FY8ao/JT4jvBiqJ24+y62zQDTMIliaMfgm6J5QX9bYZ+gTMaQZU6GmGwk6oulsjnLqdjA0mSTmML0E24zdc31p4wrJklkh0EuZtrwtHa5o6K45pJ7MGJsV+2h5LC+C88sKvGHrRHjVz2nxqz9erkr/zmy4ND54nROPi0IhNUisCx0IBTAb6LDbPzAGEkAB9MEpZNpJAtHvNQuebwrjhd5ItSJ9StAtCxYiS/SRYaXo4tE7GogkoZ5TaZJhkjGuenKtm+ztGcZmwDZ5j3QVJLyp0nuir0ROENJqyObGMcftSdlJ3WELgjXzwQof/pFQoygy8uFBdCM/Jx7Z0XxP5q6w03+DgSxHQRYHi1/BVnpxVjOOm2JcrVDM8dgG8qxdPZMOCkVBKLAR6GhBgGy3Hm+EFBf+xtJ4gRh8gpHk1++1667TE0f7xag2BH+ryoY4A+fr1kz0Ju9uqxJTBNMuW/rpepZ4Xd+Dk2uNgxzK8XyhUO8NSFB0/SG36MLk3s2df+r3u1cLmrQN02ZoNUOWEYzrU1Te7KFYVVzIG1MP+ZOhsEHQ5R5hbD+HGodSsHIeeEqmUuu+t/ZpmCrJP7YW/w3+v+iXR69hO3nTIHX9dUbtwQJ2Zj5ZLFGFep0IJFYXGfeETy2Vfjb+MW6UE+sq9PuwY/gLPCaxVNKySVYpehj9iVHJIgtw+iuQaP+2Jc/9mK2Qg6eFFmou4SwGXG9xTXgU4RY2sPfO3jOQmiw5MaMCosTnNX2h4OfCRHJWHR/py8o5sbzL3A64u795/yAGcP/qXsBenufW0uYqN3QbAl0E+Gbsj/ppWJFuM4e3BFx3oI7/XzodK28075KiCnmcpwB7Gi/85fGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 489,
+   "completion_tokens": 300,
+   "total_tokens": 789,
+   "cost": 0.007956,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007956,
+    "upstream_inference_prompt_cost": 0.001956,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.632
+}

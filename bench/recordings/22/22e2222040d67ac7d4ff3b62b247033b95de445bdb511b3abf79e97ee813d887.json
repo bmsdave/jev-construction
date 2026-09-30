@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Alterations to a hotel\", \"project\": \"Hotel in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.7\", \"document\": \"ADP2013\", \"text\": \"2.7 Regulation 12(6A) sets out electrical installation work that is notifiable. All other electrical installation work is not notifiable – namely additions and alterations to existing installations outside special locations, and replacements, repairs and maintenance anywhere.\"}, {\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678045-3y8GcLJEiPZhvnLKhwHy",
+  "object": "chat.completion",
+  "created": 1790678045,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Under reg 12(3) a hotel alteration needs a full plans application. That is my reading of the brief, which only says \"alterations to a hotel\" and assumes the work is a material alteration.\n\n- **It is building work.** A material alteration counts as building work under reg 3.\n- **The Fire Safety Order applies.** The Regulatory Reform (F",
+     "refusal": null,
+     "reasoning": "Since a hotel counts as a non-domestic building under the Fire Safety Order, alterations here trigger full plans under Reg 12(3). Part P only covers dwellings and shared-supply buildings, so hotel electrical work falls outside its scope—though I need to check whether other regulations still apply to the electrical installation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since a hotel counts as a non-domestic building under the Fire Safety Order, alterations here trigger full plans under Reg 12(3). Part P only covers dwellings and shared-supply buildings, so hotel electrical work falls outside its scope—though I need to check whether other regulations still apply to the electrical installation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1ggKEAgSGAI4AUIIdGhpbmtpbmcSDKplUn/8+yyJb4DFNBoMitKWG/N9GrO+Z9qKIjCTT5crRDDwdpIN8IQV+Go2Nt2HFIAocRK1IhdeLvo9W1QG/JTzTgVncJLHU6WK1j4q8wfWfgLSbuFQ2T9NNAbiZW2PlO0hbAjkL/7IT0T4ZJ/C0668HmPFnAJFf8GcxkAEMzOyhvAVU8AG2xWOPNRYPhWMPvt/YmkeqqrNmr2UTyyl/5A2gzAdLEs2EiKu20+69NAeWzlYkhEPnt34D2nsGPPP/99bDPPJdK6yt6OPs/m3wdI8dFfjVz674eamZFprBhS+NzOZ57DUmg1977OpSkmbKsxc7kMCMzPNEh42J0y9cchpUKBiRj1FyAzavWOUObhbFbXMVzuqLrNKf9+1d5WAFhAdVVzNgxdg0nLce3w9nikrEokqBL9yM/lm3mv+SdEX2wSJgUcpCzwjB3LGbAUh6TbwkY2I4LH6H0hRA+fv7iEqUcfoybRn4LabyymMknpDAdLg7CP/EOF2ugl+5vsnk9+iVwkOP+7GGJ0m6FZ5Z7PNtzU3JmBC3g2NcwChPNtLKd3MDlofZKSAWiiY2JQ30HPsda4uBFAlWtbLcg9LrJQVSaY4ojgoMd9xamuq7NrqpNCF40sziiG8rZ8eZzNYsM/E/+2H+yQsvJcNeDd00nqx53hm/Tz1rJauJPCj+nSCmazhlEXQPnBHarPDnekGexj+aZ8Ykl77KTy3JOdASatzllR5tgMk1m3Bnn3ydzV6pOtheh338IknnkkQYfbVBTN8wQLEiK7pZEjrznGYP7C9YrviUisQD4UXC9po3fH5H6vKDJwAMxHZFs/0HynPOkfzoR/n3UQUQfKO6E8hnVIDY7IYWESEqHoYuRErDg1VkLalsagSYl78Wx67t3Pf7qn3WrolgRhTY8B3NgMKBt7XoulTtxz+y9WW396Pw8nrsvLD5RCtqI7goR/sl+ugz0u2iUuJmg5bg7g7vBdd7mFSUXq/l9eQZ7/WAyV5Ji1KbmLkSXD1b8RfzaOsUrVsb6VMMwODYBo0tT5WP8Q9CV6BUNyBp3oaA0EkXVgtAig7jJBkfkkDOOFmkxXSDUUCHWW1NK3c2eRyUy1IG5sz+caTVJ6kPHIBCiYUPmccCq4DADHYRmqWTfZTNoSSdE4QH0GlZZY8puKlqyu+e5PJWm5+DGpb5XtQ9ycPeeSCmhCRJlhroIWJ9SSeByYkw5jgJ8HzjpFCp2Z41uGhtz/35y9UGhUK/cig6fJeM5Y3LOikou9KkI8IPSbW8DQ0BFh0oQW3rSjio05IjZffVpOAhf2pmymxLuSgwO1KPvp4tDbJgWD4V6owqp9F7Qw/GJReAU0bPS46GdMBVuOrO/Hitm5m8yX2123RO4d2Gy8rbwDwx+5N6Y9pW8SGBdSFD7+bUaNdFJjxtHWfgoQs8LZHu/y2DBsYjnQxytWsWvuFpDQYF+4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 943,
+   "completion_tokens": 300,
+   "total_tokens": 1243,
+   "cost": 0.009772,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009772,
+    "upstream_inference_prompt_cost": 0.003772,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 187,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 24.09
+}

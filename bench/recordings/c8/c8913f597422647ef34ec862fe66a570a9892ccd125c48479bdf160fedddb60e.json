@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front permeable surface\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678507-3dYEyDEvfsBuT1yg57M2",
+  "object": "chat.completion",
+  "created": 1790678507,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.93, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.04, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "A front driveway using permeable paving isn't covered under Building Regulations - it's more of a planning permission consideration if non-permeable surfacing exceeds 5m², so this isn't notifiable work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A front driveway using permeable paving isn't covered under Building Regulations - it's more of a planning permission consideration if non-permeable surfacing exceeds 5m², so this isn't notifiable work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxgUKEAgSGAI4AUIIdGhpbmtpbmcSDOiDYW9d8785FhqSfxoML2Idya0I3dK3c/u1IjBsfcWeULLaa+OkmckFtIJrxDgfiQh+tEG1IoXHD/87KmGpDcmGNlEtKz76oMofx9Iq4wSmpZrJLkv/mOFPeP/pxqakMvZzm17sWFlkiidS3hNYXhE963V3Y74OlK58ZY9mP+fc+Z4K5g0TCo0x1aLL1znwFCf6sklJlInEiObZ7jI2Wp0c5ikgDZsKH2ZtFPwo4rIoBaUNUc+54rVWLA/WXqqzhLYxYGudrA2A7kODCQn2e8u3dhXunVUQ1aa5MVQpdtFUuSEnF7LbjxOUDaEZhuUq2zB6C4axh/T6tr1CrqRjKql/+U506FFo8nGAstRF9+79CiTwOEjZet5ynuZ2QnPkMqnONfH0x/5U5WArp+H09KhEArYB6i8GdOYJ3nF2MOhAMMjClSopfE4vGz7TN8rxHET1uMAkxErsujPV06QEtT3M4uL351n2za/IkOdY+Y12uiXEWgEe9bJWasy56uBmNeOyT3xaGdlTALeG60cpYFwGbzY9B9W+8hh+N6/CjRAs0Q+Z3kqaEdN/gRM6QaByW05ROQYxwYMufjDbiV5KXFHtmrb/t5IWgnUgwQqHuEwf8IrgsxiIjPLtBe3WSkSXCS/3Z46fXYUr5fByH+EBhZVHObQe23HssOvHzgjNwVnIHXDQgLKLTdwQls0ecJqfX+Bmbu8nkeGCJJUHBlWumg+8nvTDaQG3+CV6O1q4/LNstJXXJywVZOgp/mutxy//bQJzweUnLRhLu/y791J6Sag38kWjdo0WMdlaV+4n9DTLXRpGy+/6JR0vnfNncBIMG10VxlJf1HWntfZ7oQFnJkGRmNN2bEh65HX4CWQfGdswzGtl+gWxBAMA8d9754xub9RkmvD3cj3dfdKxUoIbFKrmChgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 489,
+   "completion_tokens": 138,
+   "total_tokens": 627,
+   "cost": 0.004716,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.004716,
+    "upstream_inference_prompt_cost": 0.001956,
+    "upstream_inference_completions_cost": 0.00276
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 57,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.15
+}

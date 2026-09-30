@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front door and sidelights\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Windows & doors. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"para 10.6\", \"document\": \"ADL1-2021\", \"text\": \"10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling\"}, {\"ref\": \"Sch 3 para 11\", \"document\": \"BR2010\", \"text\": \"11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677273-QLVl3A0vW5Rq2d52PoqZ",
+  "object": "chat.completion",
+  "created": 1790677273,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing a whole front door and sidelights in an existing dwelling falls under Schedule 3 paragraph 10. That makes it notifiable, and a FENSA or CERTASS installer (or similar) can self-certify it. The remaining probability covers two alternative readings. If only the door leaf or glazing is replaced within the existing frame, ADL1 paragraph 10.6 says it is not a controlled fitting, so it is not notifiable. If it involves a new or enlarged opening, it needs a building notice or full plans.\n\n{\"label\": \"competent",
+     "refusal": null,
+     "reasoning": "I'm considering whether replacing a front door and sidelights counts as a full replacement or just a door leaf swap — if it's a whole unit replacement it falls under the competent person scheme, but if it's just the leaf in an existing frame it wouldn't be a controlled fitting at all.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether replacing a front door and sidelights counts as a full replacement or just a door leaf swap — if it's a whole unit replacement it falls under the competent person scheme, but if it's just the leaf in an existing frame it wouldn't be a controlled fitting at all.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShAcKEAgSGAI4AUIIdGhpbmtpbmcSDDjKLAivZzJW7/0UVRoMSuMDH3LO9NcHGMXPIjCmLb9R8UDusMMrqC88VeYm0HDMjTAbZddRqDO7bKeshDmdpxihwcIivVDVyYsMzpAqoQY/clwQfbhD9NOe8DV01secVuGvYmxC3dszl+9DU1rneFmMHyfb0rXxtxXoY8AKU9cQvPcW7NM+ey++fLlMptdtjwPXGQAU0/ZUyubduR+GD6zMmTVROml4rPiS6HzvVV1RRMk4lDS0h0hxjh03gd+BWmhR1vgMWtP+y/ejBnwLqtAHFWs9qXwgqrzgo7NnO8ed5ikogCvLQvJckxZg8xbr/c9QWnH5aqXkinp7ThBJQrqzDf7EVOLpm3S+tCw9kp1gipYLsYvNYN7VleViw3NOJqk0RmhC3SNKIg1dT7Lw2IW8TIrdau08gn/W4631WxWaLQPJtjjHrMPwrCYRkiog3PNXt/MvFQKR8r3gmEp2mOzXOPVdFcICclZMn2jgiqCHskH5rlv2hFSu70MP77AKMX4cmPGldOmKm4BXF+a/c8Ub8VcbywLuYa2iHyMsNzz4xB3zwvti/tGtI7k+hZQw0phtQxMqQJNoE+exXekGRM0NeYlBt2GQg+zB+C8dzz4PQV4xFvuEryt3AaorVD3+4yuWl3w9aLrN8Nxasc1vPCoDXLRhbXTfyhhhJ7Gj7ZHTp46fZWEM0Lylk2/63TDJrkqXHrBoPL3GL1+mjFaJJprvkxWWmPLHMFgs2aOiuVD5xsn7nFb9dt1PE0Uf6gz9qCkh3Jw98TqlG7Q/42BaVupmpdz8+680rjvFbiVHDLlDB+ly8JcRukx8fjtXYwI2HbX/oMOw9wimF5WM//lYI4H7GgUUOMqRib2xC9KCiBSLxcjrKtYiKcLfz/M2rr3Ydd8SuMK32DnbMCZk00kdSGQJ/eYSZ1jhQRGh+NxjVT40esS9T7XPCUfoKmUalHUh7qDFg76pqR1pTf5x11dDrqOBSy6J+JhTdlMWI0HrkiPiH12qDn9wnUYhERGt3qMABsGgyw+QeW0W6HW/rABNzNmmJYxPUEC6BqrA/NPA+IuxuglP/hteki21wGauSknj+PvJhqLdM61cB+rFUW3Fk34C0Ia00yryOKACNSCfuE+vXOI+V4VlyJNPJzTM5EAL2ZzVGabAbT0e2/9MGJfyQNYYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1009,
+   "completion_tokens": 300,
+   "total_tokens": 1309,
+   "cost": 0.010036,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010036,
+    "upstream_inference_prompt_cost": 0.004036,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 120,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.841
+}

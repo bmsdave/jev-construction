@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front pitched roof strip and re-tile\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678183-Y5ptO0ya6a3QdTQDsmt4",
+  "object": "chat.completion",
+  "created": 1790678183,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.8, \"building_notice_or_full_plans\": 0.12, \"not_notifiable\": 0.06, \"full_plans_required",
+     "refusal": null,
+     "reasoning": "Re-roofing over 25% of the roof area triggers thermal upgrade requirements under reg 23, but the roof covering replacement itself falls under Schedule 3, meaning it can be self-certified via a competent person scheme like NFRC CompetentRoofer rather than needing building control sign-off, provided it's done as a standalone job.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Re-roofing over 25% of the roof area triggers thermal upgrade requirements under reg 23, but the roof covering replacement itself falls under Schedule 3, meaning it can be self-certified via a competent person scheme like NFRC CompetentRoofer rather than needing building control sign-off, provided it's done as a standalone job.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSigkKEAgSGAI4AUIIdGhpbmtpbmcSDOIdwJKgCqUfAW6ixxoM7w5gbBrFfybNrzNQIjCTzFhBXRlDlIHxBqwgzEE8+vqGvrUTCUuBVe1JlNUXwF0xemgOApfTP0HfC3gqK0Mqpwim89Pl8ECvwP9fzC81hkN4HPwn/w0ICSb3crHrX8dKV5klsZgVFHFVj8khz+qccyrjZMGxnQGxqI/ltEFTe60UsUPNbX/LDA7e1+YAocGEeO8X0TqBMGbQM9P3bU/KQ8L+pNP2II+6XJ4nxB5X5szpV3RTovyhVWCiUKVpbW4x7TLkVEl/mUIJQMlSAzXfFVHFeuGDkMShElAO4VuE0vRk63bADVQiYcbo89z00QyfFig86j3pg7qDI6vfTqDmGvJN7bkYuW/18VhYl666TkxaebRaNvV9IDFV7ZpZ7TK0wHPkg3jaAsbqCqHc37K2FT5N6Ao7Cv/rDaX6aIZw6uFezwQB5M2yBIOOQZGrlbFCyZm8QdVW/2MhpvzifTyZ+dl7vDKWatFWdTgiv5xHOjEotmWrmjelPIn+6T8Y3F3DEgVyx0GqtC94VyPISR8Hvo5RIVxVB7j8mT84Fnta5b0QiN5rM0UGb8sdoCSbCtsysgP4KhOSLS4yHY5oaGdvig4+DwmpBxzfwDQ/gxnYH31yNkLeJISRAy6XH4Wf9WHbfjGFm3fKhmzZJGlmF0kZL6Q77TX1NRFKn4jhe5HK5PmRSq0MVQf677Azy39sRmY3dwZQv6OWjJBkfHXjeeUhMCjapJTtW5KP5wMrrxBe2erPll8k7ARiueSIp/GEP4Rq/ODVNypW2IajJoG7UKMnawUEuzwSuRpEjwg653EeQkrFS/TNklfv6aWWkNdZxg8wnHi5UoBuA+mEM8VmGXIIWn8h1KGDhVvQ2RymZU2HK6Son4WzCU8I+R73cLsB3tWLx5dRt18QRAkLZiVns6IFDMa7GQqCrylMdDH+kaS8v4zr6QwgYLRDeJJ+L68xKFUXLFoRtU1/RqNGav2aOy5m4ZhM5coS1D987LgCu8Pl6duLp8XcOb0LRjDif4kv2phiLPVGCIyLMoCGI+4lv0ipWV5uSLTuHQbrid/LXJlBkDgvKWb5Jyj86pMBZI9VEWKm+ncD28voZ8Fl2dQV5HKCyr70DW5MqUc7rTsjjEHevvbv6GLur2SpWBTOtjR2oTX0Wf5qEPQH+pCX/MKjHLz1hi/4VEOJFVYjnCR9kVNC1LpeyAAIww2OyFkUI4lDInI4uB9XNIts0XeGEOpokNIUoNu/8R9jXNRDIJwnx9/f/Bzi/4V11ihA397yr27vmGNtKpbbNFUds6FBVE8BJiIw8T2Zur9TILuSlTo0XlpetP1r4YOnFb/+indPPP99qS1NDkQnsM6dLoF9uuvNDo3mWYozBxICE7r8F48VphgzyfxB+hFla3kqKXUfndFbsg6zfQDmJoSHEiE85LLA/mS0Z3bvvwU0v+VStNZpyUpubgDqa+E1L61pUcFnEHHGcE1TtlDB4Piown946dFXMoz0pE/yXhhD2IEuGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 501,
+   "completion_tokens": 300,
+   "total_tokens": 801,
+   "cost": 0.008004,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008004,
+    "upstream_inference_prompt_cost": 0.002004,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 226,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.297
+}

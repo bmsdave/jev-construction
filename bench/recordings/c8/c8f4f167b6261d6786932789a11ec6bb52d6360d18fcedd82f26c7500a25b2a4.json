@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Extension to a factory\", \"project\": \"Factory in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 9(1)\", \"document\": \"BR2010\", \"text\": \"(1) Subject to paragraphs (2) , (3) and (4) and regulation 21(1), these Regulations do not apply to— (a) the erection of any building or extension of a kind described in Schedule 2; or (b) the carrying out of any work to or in connection with such a building or extension, if after the carrying out of that work it is still a building or extension of a kind described in that Schedule.\"}, {\"ref\": \"para 0.14\", \"document\": \"ADL1-2021\", \"text\": \"0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See\"}, {\"ref\": \"para 0.15\", \"document\": \"ADL1-2021\", \"text\": \"0.15 Where a dwelling is extended by adding a carport that is open on at least two sides, a covered yard, a covered walkway or a covered driveway, the work is exempt from the energy efficiency requirements if both of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. Live/work units\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678043-JsLpkJkCjNKH7daalzm8",
+  "object": "chat.completion",
+  "created": 1790678043,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "An extension to a factory needs a **full plans application**.\n\n- **Fire Safety Order applies.** A factory is a non-domestic workplace, so the Regulatory Reform (Fire Safety) Order 2005 covers it. Under reg 12(3), erecting or extending such a building needs full plans, and a building notice is not allowed.\n- **Not exempt.** An extension to an ordinary factory does not fit any Schedule 2 class, so reg 9 does not take it out of the Regulations.\n- **Not self-certifiable.** It",
+     "refusal": null,
+     "reasoning": "Since this is a factory extension, it's a workplace subject to the Fire Safety Order, so regulation 12(3) requires full plans for building work. It doesn't fall under the Schedule 2 exemptions like small detached buildings, so full plans are required here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this is a factory extension, it's a workplace subject to the Fire Safety Order, so regulation 12(3) requires full plans for building work. It doesn't fall under the Schedule 2 exemptions like small detached buildings, so full plans are required here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+wYKEAgSGAI4AUIIdGhpbmtpbmcSDJ9eP0gGfuLTEfkXWBoMXe5+aUY1Q1256FtQIjDK+pOfU/NvAbv++fcqmwZI1OUUMpJaV9qFugfDcojzuGL8xljlFaWykdvV6D78+y4qmAbx5+JXwp8kmYaRKBBwJESdzCk2JDC61JK3eyYBIU1i3sjwB/twiEbYOla00gl9UnHPV5moF01Nevpx1q88hhRee+T7DIXJ61cpprucLXW5HiCTfqDY/QeefeEpnVBJbjPBoaAuuGq/OSqg4dRCth7osNbj3b106e3WkV5Ug8hp8bADwD8jb/vEQobiPoGzSxNgRMtMpiTw4LitYrfg/SlHFssW8KNwqxfRLbTr2pEFFz7P8i+PVbdfG2CKo7c8dLB/PH7csXaq2sjYVy3JrM23/DNE2UfjvFEqqVbcZSKeWysCpiyB1gz7onahY5MuXImPo+RvCTflzB3CGz6AJeoTYE01/XpjAIece8WbRAAgIR4yStPxwX5Br5KgNRcGmocLfo/m7RziOACY+KBKzbdviEYyN9+GReUvZ1j4zRjCUDiDGuTFbm0KIcXAVfSgmOYwEy6AsFn1fWuyDZJ2sU2P/cZD90wht95EMqkAPqNgMed+cammQsl3U/P/PwYPLrxJFx4vCkSUb/wEAkwuTVVp9JNBfVzbUqlKw4DZQgpW52bbPnuqNDy1aifCXwmAjejuVKFjGDHnDtKHt7pVhxpel3mSX6Actb/ObuYrrSahMj6JjWZcE+bntuDZ23crPjT/JN4b7kvXJK108EIGpq5jjSXBKUij2WeHMER5GVutyN3zEHbmJo2X9imGQyQHfu17BqGnj4uHhDjN/JO8sdtc0g/nIxElinZ6Z3sm2aHWTeA4bqjleRBzntGBRRWSX35F/Ckubz3jAmK87a3lleXfLlYEZfHWyQjkB8yRhvMn3A1zoMALLuouVjI9aKjIwcelLzFODc3Ol9MNj4ARKqaonwPQcHGgOHgmrnJPgwGa4b8hAYrccdJJP47Usb9WuSOtR7bNZDdEVyshrTdkRCGJ5rYBfiTVBWopyvMJcYizR6Rg+SdOBIam0Q+Qt1f4RoKqdX2i7ZuSkyZzZgnxB9XCDSnTRSvGJKEeGzkL6rZeHAN/5eIAsA5l3vDFT2kfkvH2Vr7bhEHG9nYDo9VUo2L4gtpdzaoSZ3oYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 995,
+   "completion_tokens": 300,
+   "total_tokens": 1295,
+   "cost": 0.00998,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00998,
+    "upstream_inference_prompt_cost": 0.00398,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 124,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 22.172
+}

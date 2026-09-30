@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a barn into offices\", \"project\": \"Agricultural building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.3\", \"document\": \"ADP2013\", \"text\": \"2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements.\"}, {\"ref\": \"para 0.11\", \"document\": \"ADF1-2021\", \"text\": \"0.11 A unit that contains both living accommodation and space for commercial purposes (e.g. for a workshop or office) should be treated as a dwelling if the commercial part can be reverted to domestic use. Building Regulations 2010\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677695-F9dO6gODQUofQBrz8Me2",
+  "object": "chat.completion",
+  "created": 1790677695,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.8, \"building_notice_or_full_plans\": 0.12, \"not_notifiable\": 0.05, \"competent_person_scheme\": 0.03}}",
+     "refusal": null,
+     "reasoning": "Converting the barn to offices triggers reg 5(g) since the building loses its Schedule 2 exemption, making it a material change of use requiring building work. Since offices are workplaces subject to the Fire Safety Order, full plans would be required under reg 12(3).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Converting the barn to offices triggers reg 5(g) since the building loses its Schedule 2 exemption, making it a material change of use requiring building work. Since offices are workplaces subject to the Fire Safety Order, full plans would be required under reg 12(3).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShAkKEAgSGAI4AUIIdGhpbmtpbmcSDJ+ATPVin3d9oKarfhoM0iUjDCILhnb1wtx4IjBG+T39F5qFMmkFiekld5eTzlammyRhhEKxNvB5jGR58qefBeXB+ZvEfWX+MyCm+eAqoQiNPcKsi13IUKBQVfQNOwoOmbbXsjzxHbS8ARUVolWtCQEnonXfXmZyX8F7TL4FGlzvpuo1DFSUNlc1dC91u8pNMIFpBPXZFHwm3OS4vjkk8eJwy6pxhOYew706bnUr7HB+aWKZaOIAPIzH8ic9ZHjumJTKJlN61LY3z5PdMCHoUfD8DWrG0vx4g2R6lCXRex6kGhJ1NbxHAYoypkC4abAnoVwTej/vfAxUj9WDbAC7Jf9xjQNKcc2bRRd1RTwqXD3+vdlzrzwiG+FzIKnAc7VxSC91roxF0XU+s5Z/J371ZZU4W8ez+YGfl+TpQHOy+X1db8qHX/t/SL2iLUqh1vRNVCxde+ctp40QXzZlR1ZmWkCzVsm3E+087JCjLTsB2wiqdQciNNpL/LwYgMvBZxrWpbuF9ohKyXXnu6cj6xtbf+q+t1HL9q2enwh1IdQM0xHyBMMIyPiccOYLK8qvRpSB5O5i8CrwUfPqjIdUBETpPFW3Pau6QuseTkBt67+2ea6cB8OzPG+047TImGgon4bwsNX7PygvQxPWMueARX6nlyfhUHvXElG6ekzT8akBwFbyfMCX94wVywCFvsxmUwEPNCuu19rWFwHgubPP7IJiTkSr9U13aFAhs1VHI5rxHSVkOVe3norBWi87PabL4Srn6q30atxM0mg9+fcSm92gx/Z9StT3r6Tquzvz/JD2k5MYbeN0mxyib1UF36mreQCz35bb/vc11YJg135rACPhjUP8OjJSS1rCOcTxof35kuflAknER0PZCmpcaxubec6oLFBZgNPT2kNmK3b/vo8fGFR+jS2njYeZYoziHU8vgWZn3GAvcFcQi5Zk77bMxTg9kjNtNTGKotEkMSncFJD7uYsfwTEsdCsT7fl87l0qMGpRdhkoX1kUgScD/Ucu0ITd0D8Eqaig4X7uwce2fy5Nf9y/h8/AF7bnbl0SlbWQfy30Zxfgb6rghyxe5YJKU5d1tFUCL4mbrtt9SFOvR+PZcjaGleGdMRRAPJu3hz+uKZRZ0XJ9cShBZAvpQahCZC0E6MZYKkD4H9/nIpNQj5b6fhue1rbF3JiNBQhG/5voFnsKL6uv/2Eb25xclYIgxhUix+Y8+xV4aIh5S6J+uS1w6jMJRpZdja1EP8AmJjJxiQ5U2bwa17T17yj6Jpus1MMpJat7kHlF2w27jAJkEs16O3ePSlcQsuakct2PswzPAA+5DZEFlJ65f5ewmJMz970Ejb6rx8OaptcqDu83sBoA19oCWH8UHcCS67hXLylmkCbyZv9G1WbvcE3AKtaT3cCdg3mjACquSPVWRajgBGDipdZP5BgGCOy3hi2p7RV5sAhsjFcRjj1JOsSQdMlFysVL6qQJznqoVePn3q0idVSbzAQAuZz8p9Uece5h3qyfUXkoGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1088,
+   "completion_tokens": 284,
+   "total_tokens": 1372,
+   "cost": 0.010032,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010032,
+    "upstream_inference_prompt_cost": 0.004352,
+    "upstream_inference_completions_cost": 0.00568
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 203,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.333
+}

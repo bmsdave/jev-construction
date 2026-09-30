@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Access panels\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Service enclosures. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678255-k257rYLI1woUMpjCrYF5",
+  "object": "chat.completion",
+  "created": 1790678255,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.7, \"competent_person_scheme\": 0.04, \"building_notice_or_full_plans\": 0.23, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "I'm thinking about whether installing access panels in service enclosures counts as building work on its own—it's not erection or extension, but if it affects fire separation like a protected escape route in a loft conversion, it could count as material alteration. Still, done alone in a terraced house context, it seems like a minor, likely non-notifiable item.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about whether installing access panels in service enclosures counts as building work on its own—it's not erection or extension, but if it affects fire separation like a protected escape route in a loft conversion, it could count as material alteration. Still, done alone in a terraced house context, it seems like a minor, likely non-notifiable item.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSuwkKEAgSGAI4AUIIdGhpbmtpbmcSDF7aFZMAFid+NHwrahoMt4C5G/ajAaVCZJSnIjBGB7KLydjn4JPPzIDsMoxVmOKVK/kGWNnlqmCmX1WCkgconDtWs/ULFRSzJsG8sxIq2AiaibTJB5dV8K3cetvgicCc4KsIARa6oAzSDGOY7/f9/DcxX77IGc90R8twDXESEzXHWe8vObWQn1oNBLVjcv/bPkj7KSgUkcAuwAGt2MCmqGMo/BvhqYhHWW7LZwUGmEil5VB0gIW/LVWleGiGSeD9KBFkqfUUi87ca8cXhxd+opy5MXSx5DXcOPDoiBIde09pQawtckaa1PAiYDj8uHpuosftrYVxe4d7UWrELpYHbVFXilGo4bPrNxeoGpIPUwj4bjgE8HaZr0XTCaV5tG+Wu4/ovVwchRPV8V7ra3gY/tdWK4dtI5tlYG8DR+2cC+PEHiujNO0NZk5UjgMoQ9crtDXsl2z6heXT2zFOq1Uf6XubdmwnBG7ZuA8omsH9ZyBKZ15+4pcA0Ir3TRtMga6OFvEc15MYuUV6FNZB2+czV1Y7nbQS7dZb0DS9D7Zsa23FQYG+gsVQBQ7ke/Qbu9Rh7nPOgUsvvpMYUAyuMwH9EGT2ZYQtiw7Q722TmLf1UHrrsxRbhnl6rHLRI2XbxDdKdYJJjRiOrQvvfPomZ3xMO9VbGltmjIEbKBOgztHBlbFG9Jdss0wm6zsrE7NzQagiSj+J6zUMvYL7r1z5fmx67s5uxNh9VQDuW/fMBNud+3bBEGJzIwWmdzTKTcIiITKFG8MObh8IKdxc0vjbp91saZA/4DDurtFUtfgjY5IlKXldK7ffV20YPT9EuRXQoHTr0DM1j5hLjBIDwzOsOuKjRm+DlfBL2zG7nvxoMhLJjCHYgUWAuBgGagwpzvLZ8tHYiqIzoGZGVplK1PC2Dta3knSXHtBsHhLAhU7sBnSfYE2W6DxfMpj7wosLArwv5Qp3M3md8d4wauN4Z0aHxJL4xGlWoSO/0myjkBGIJi6da5laIu6NfggSB/YmaFa6J5DYGzX5CS1aygY9qkvrR5xvUn6yq7cjI5mP1RUdgA0RtL/Zum20CfW53NZkNQMsZCsChCkwG8Z15fsXTf9fIaolXwYL2+4gVA1ZVoxR6ct4jat/UYkb/DQEL9Susp82TInuEMaGVfv4ggHA9Z7B6tbbVKwEtDtYD9BWT+zSwX+h03YS0Ef4BUO602s4yx4n3JdZg4RXi/2FcmrgXbqvp4kzSCEMQ4J9KUUHb3BkzecIza5kUGoIyotgW3x4DqNT+0LqjcUk8k5nl9NqVMfptBIWruYdyDkEFi/cNPYYfnDqYqEDHiw+epUwEmFnAT40F7Fti8Bl4RCEdM2xNCpFBPz8bz8HI4KuZgV1SWxbAxrm+jMsH1+Ljd1Q3KcGJA92I4Z7wwuJpZRXT/m8IF6w7GrcgJL8seJvzErQYijt4pv0W1Su4SYT8FqfCsTQW83rffLFh5+BmXLkTc6wLOzFQeRgortWmKpM2Wn86Pbz+HiT0OvFPB7mMfg3JSFL9tvnIdZjmwozgfOZJ6pq+s6hKbi1+18KnTAxENP5U6a1QaswOyUvW336+vx/qxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 500,
+   "completion_tokens": 280,
+   "total_tokens": 780,
+   "cost": 0.0076,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0076,
+    "upstream_inference_prompt_cost": 0.002,
+    "upstream_inference_completions_cost": 0.0056
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 199,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.705
+}

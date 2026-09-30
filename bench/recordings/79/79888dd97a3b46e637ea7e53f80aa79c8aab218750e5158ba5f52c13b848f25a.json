@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New fire doors and partitions in the common stairwell of a block of flats\", \"project\": \"Block of flats in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.3\", \"document\": \"ADP2013\", \"text\": \"2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements.\"}, {\"ref\": \"Sch 1 B2\", \"document\": \"BR2010\", \"text\": \"Internal fire spread (linings): B2.—(1) To inhibit the spread of fire within the building, the internal linings shall—(a) adequately resist the spread of flame over their surfaces; and(b) have, if ignited, either a rate of heat release or a rate of fire growth, which is reasonable in the circumstances. (2) In this paragraph “internal linings” means the materials or products used in lining any partition, wall, ceiling or other internal structure.\"}, {\"ref\": \"para 0.1\", \"document\": \"ADB1-2019\", \"text\": \"0.1 This approved document has been published in two volumes. Volume 1 deals solely with dwellings, including blocks of flats, while Volume 2 deals with all other types of building covered by the Building Regulations. Arrangement of sections\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678054-z31bQJbxSagI4gN4Nmk4",
+  "object": "chat.completion",
+  "created": 1790678054,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.85, \"building_notice_or_full_plans\": 0.1, \"competent_person_scheme\": 0.03, \"not_notifiable\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Common parts of blocks of flats fall under the Fire Safety Order, so full plans under regulation 12(3) are needed here too. Installing new fire doors and partitions in the shared stairwell counts as building work affecting B1/B3, which also triggers the full plans requirement.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Common parts of blocks of flats fall under the Fire Safety Order, so full plans under regulation 12(3) are needed here too. Installing new fire doors and partitions in the shared stairwell counts as building work affecting B1/B3, which also triggers the full plans requirement.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQYKEAgSGAI4AUIIdGhpbmtpbmcSDH1YX6DSJpBSrbg3CRoMhRUyzWCQ1UvFvEp3IjCp2maA2H3cL38Wp43ODfwaHzLKoAYcP1Sxns82C/aeIdjWdffrDNV1TwPj6dwpku4qrgWVTRMWVpDVGW/S7PQUidhUSmH8U01pcn4y9U5pZxh+sopWb0rYXwug4s25fw/vwKiqh58SRJWFA4+Jn/3tu9X8nYvpuLFbUkUh5796k4XHw2UzkyjcrSXJ7e65i6KJTz54zt54d9zeIrFlecDB3mPIqErJSK5KF9jWCKINr076YE/8G03g9QjIUG5BL2lY5BV1yA+YY8MoGbspheooXdGoSEHlzHlR4d4QermIKH47Mi9UFXJBugvMMK0BuIbMuk4lNuiXjmIP8/ch7+BgYAYKrjze38Ck1YxFFObZnH5bHZJnPgpng0R4VaRByoSC1qG4c0ud4DwL5uoNmAkmKhk6O36O/3XHPR9mDMQ3rqwVmtFGZz+Y4Pownb3dcrsGgsrIgaoX2ef5CQJU3LpOdbBEA2sMIw6/HwNCpTxXRZ4T2RQ/t6+Ewnu9EkwgKonZYWES3cSonF+gs50AKlTXSrp1l1t6Dl+LQubbVcMeo5vuX2w+HKhoSx0Bp7NqPCoIFyZdnywjynZajC13nkay4WixOBZ0xM6imTHjHoow+wuECFv7SNi+z8jyXXRj+Jzg/w7441DXMwOG/liPOuo+kA9bsDic8N/vJEnfJU9AfdnbgSfXwMcJpQ64vXjRzBxDHK6Qt0C6ITqnLfiH41bK99HWsTfkiolfBtp33aoI8Q33elBAE7pS5KbJJkRJBucYLuATfVRAnhd+a1TZr/cZBI5Gcq3S1d6I6RWSUJef7ibhIMp5vzXW4cnnmhWh8JHMyGbxe/cU/CH+XQT/0XY4jlygdjZkX6YNSryEBtcuWLyqQHewRz8oRiqLWIuc76B4cd3QDFlIARHVtknlxXIvUoo5rtw1OslSRbmttUdCfFj1ItnTO/HIEv5bqZLHMgALHencUfIqPzA4swvRL/YB9RgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1009,
+   "completion_tokens": 162,
+   "total_tokens": 1171,
+   "cost": 0.007276,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007276,
+    "upstream_inference_prompt_cost": 0.004036,
+    "upstream_inference_completions_cost": 0.00324
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 81,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.618
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Change of use of a pub to a house in multiple occupation with structural alterations\", \"project\": \"Pub in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 5(a)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (a) the building is used as a dwelling, where previously it was not;\"}, {\"ref\": \"reg 3\", \"document\": \"BR2010\", \"text\": \"(3) (1) In these Regulations “building work” means— (a) the erection or extension of a building; (b) the provision or extension of a controlled service or fitting in or in connection with a building; (c) the material alteration of a building, or a controlled service or fitting, as mentioned in paragraph (2); (d) work required by regulation 6 (requirements relating to material change of use); (e) the insertion of insulating material into the cavity wall of a building; (f) work involving the underpinning of a building; (g) work required by regulation 22 (requirements relating to a change of energy status); (h) work required by regulation 23 (requirements relating to thermal elements); (i) work required by regulation 28 (consequential improvements to energy performance). (2) An alteration is material for the purposes of these Regulations if the work, or any part of it, would at any stage result— (a) in a building or controlled service or fitting not complying with a relevant requirement where previously it did; or (b) in a building or controlled service or fitting which before the work commenced did not comply with a relevant requirement, being more unsatisfactory in relation to such a requirement. (3) In paragraph (2) “relevant requirement” means any of the following applicable requirements of Schedule 1, namely—Part A (structure)paragraph B1 (means of warning and escape)paragraph B3 (internal fire spread—structure)paragraph B4 (external fire spread)paragraph B5 (access and facilities for the fire service)Part M (access to and use of buildings). Part T (Toilet Accommodation)\"}, {\"ref\": \"reg 5(c)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (c) the building is used as an hotel or a boarding house, where previously it was not;\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677698-AaT5lCPO98BJEv06xP7T",
+  "object": "chat.completion",
+  "created": 1790677698,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.8, \"building_notice_or_full_plans\": 0.17, \"competent_person_scheme\": 0.02, \"not_notifiable\": 0.01}}",
+     "refusal": null,
+     "reasoning": "I'm thinking through whether the Fire Safety Order applies here since this is a change of use to an HMO, since the common parts of HMOs fall under that Order, which would trigger the full plans requirement under Reg 12(3) for a building intended for a designated use.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through whether the Fire Safety Order applies here since this is a change of use to an HMO, since the common parts of HMOs fall under that Order, which would trigger the full plans requirement under Reg 12(3) for a building intended for a designated use.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSwwgKEAgSGAI4AUIIdGhpbmtpbmcSDLmAXdU/DEhvllxukBoMfEsHTKw8cN3A1T0qIjCCP5cNDH3NJPMNdW/Gq6Z7q/BXC7IGNfsRWeHl07+R89cU887qc7eMEjUvr3WI8toq4AdSO84lZN6ZD58U7RSvhTNMWinUiKRx8VwdMXjY+jc4ZDaZNuFEuw16wLukI17BVlNEvS+ITCaINLDj99giIWE8Mwle5xp+jLMOS8hJCyxrM8FovvxM8RaTzGLTMx7YyrluwO2D8yrfXEmqkjhp0muXNBKN/o9YJbOBu3bpZpoZkdPSYNOLgOGEvAlYwUaqklVZxXMTtWvWTid58jPhzRj9N6i5pFPV/Ykk1M1ugZ0kVOSR+bfKVmWHk6NQTdUiMedY9DuzhVc2fW4DURHf9v1YZws62mePzZ2XV9feJtXXbs6W4ygLxokX/3tVFnHif35oIF9yaP6NEBHM6y0Ap4LY5dryjXSEFZQAj7qu1WGd/R1zXODZlLS0Hw8dUzw3fSvaKw/gH9pVXOKjC3HcXT24H+QMHB0Tm/GTZYaQfWeDcdjseru6bWJZ9qHfnHNIjl8iPj+jEWJZJ6UY8vWwhD5HWWfq2XCejY0v5XHByRBycUnhCL0kVwTRwidI9v3dqAIk0IDnyE6dC/hFoCPrgse9lOBp0xnH+Lm9peSv3fodg+hOMfFnXDouzh7rAe4PLc0cYkWD3hc72ngpbSINM/jehCzge9lxci5k9VrPHS/6B2QITBu5N7uZ5l5jr8dRIcwcyxGOq5vJuIJ9qP4CqkAjkSSXlW9SLj/E/cJZjOceXRg1WPTHeMfqqTfQcnqBRfc6fm9mOiDd4Vyrh0JHzSk5mmCo4SoIDfCjZXB1qnea/eLwDH8JFjDFPn0cYEa1iHv3QU0d7C5CyXf2cQ9E2ioB8GlXI2JzuQmKD4xxaQ4c4Mq7P90ER8Rk/kgWt31B5h12d4lUCd/bD7TERohJLV/3tzkbEe7LXvGP8DTqSUKQCxpTiT/98xdN/urqvjAEaYCcHpEEA6Tx870xKGAKLN7lNwtJGHxgo+Ndo0MehOTUTuYQvfw3keNTWlUF4JlkXhl6hCe9/NFKMctW1BTk9AmnWuHDznf71AuCDpkDDsC2tHdeMk/oVUQOMJeKrJW1S1cwBF2fMTFeLEkE4LKJCXdHVfuYS89jOssrnO7uhT2jWx/G7uhKwoXmgXxU3I5FYGe+enbpXvof+UNrW3GIl+EWKoC/Td2VYQZ+9sdMY2n1uYg6KtgLPq1IwVtilrwvl07Z2O8+oLNou9KrZ3aJci0fuaqxRCPyKU2RVdDDv5nTPhbwz/wDZUiW6PbWEhrv7PkLyRwgl4SVue0RDomMC8KX3ZF+CMxfo7o2adO/caQNOVEuTWRCxzGB0YZQMQdO5vaCHbqA2NigMtejJITj+jAXs2CA2FY7K9w5w5oS+KhwjxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1216,
+   "completion_tokens": 276,
+   "total_tokens": 1492,
+   "cost": 0.010384,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010384,
+    "upstream_inference_prompt_cost": 0.004864,
+    "upstream_inference_completions_cost": 0.00552
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 195,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.55
+}

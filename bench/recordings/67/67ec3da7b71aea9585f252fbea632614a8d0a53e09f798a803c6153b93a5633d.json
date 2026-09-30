@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Install an unvented hot water cylinder",
+   "project": "Flat in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 1 G3",
+     "document": "BR2010",
+     "text": "Hot water supply and systems: G3.—(1) There must be a suitable installation for the provision of heated wholesome water or heated softened water to—(a) any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(b) any washbasin, bidet, fixed bath and shower in a bathroom; and(c) any sink provided in any area where food is prepared. (2) A hot water system, including any cistern or other vessel that supplies water to or receives expansion water from a hot water system, must be designed, constructed and installed so as to resist the effects of temperature and pressure that may occur either in normal use or in the event of such malfunctions as may reasonably be anticipated, and must be adequately supported.(3) A hot water system that has a hot water storage vessel must incorporate precautions to—(a) prevent the temperature of the water stored in the vessel at any time exceeding 100°C;(b) ensure that any discharge from safety devices is safely conveyed to where it is visible but will not cause a danger to persons in or about the building.(4) The hot water supply to any fixed bath must be so designed and installed as to incorporate measures to ensure that the temperature of the water than can be delivered to that bath does not exceed 48°C. | Requirement G3(3) does not apply to a system which heats or stores water for the purposes only of an industrial process.Requirement G3(4) applies only when a dwelling is—(a) erected; or (b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b)."
+    },
+    "c2": {
+     "ref": "reg 9(2)",
+     "document": "BR2010",
+     "text": "(2) The requirements of paragraphs G1 and G3(2) and (3) of Schedule 1 apply— (a) to any greenhouse which receives a cold or hot water supply from a source shared with or located inside a dwelling; and (b) to— (i) any small detached building falling within class 6 in Schedule 2; and (ii) any extension of a building falling within class 7 in Schedule 2,which in either case receives a cold or hot water supply from a source shared with or located inside any building other than a building or extension of a kind described in Schedule 2."
+    },
+    "c3": {
+     "ref": "Sch 4 para 1(j)",
+     "document": "BR2010",
+     "text": "Work consisting of— (j) replacing— (i) a sanitary convenience with one that uses no more water than the one it replaces, (ii) a washbasin, sink or bidet, (iii) a fixed bath, (iv) a shower, (v) a rainwater gutter, or (vi) a rainwater downpipe,where the work does not include any work to underground drainage, and includes no work to the hot or cold water system or above ground drainage, which may prejudice the health or safety of any person on completion of the work;"
+    },
+    "c4": {
+     "ref": "Sch 4 para 1(l)",
+     "document": "BR2010",
+     "text": "Work consisting of— (l) providing a hot water storage system that has a storage vessel with a capacity not exceeding 15 litres, where any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6)(b);"
+    },
+    "c5": {
+     "ref": "Sch 3 para 4",
+     "document": "BR2010",
+     "text": "4. Installation of a heating or hot water system, or its associated controls. | A person, or an employee of a person, who is a member of a class of persons approved in accordance with regulation 3 of the Gas Safety (Installation and Use) Regulations 1998, or a person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ...."
+    },
+    "c6": {
+     "ref": "Sch 1 L1",
+     "document": "BR2010",
+     "text": "Conservation of fuel and power: L1. Reasonable provision shall be made for the conservation of fuel and power in buildings by—(a) limiting heat gains and losses—(i) through thermal elements and other parts of the building fabric; and(ii) from pipes, ducts and vessels used for space heating, space cooling and hot water services;(b) providing fixed building services which—(i) are energy efficient to a reasonable standard;(ii) have effective controls; and(iii) are commissioned by testing and adjusting as necessary to ensure they use no more fuel and power than is reasonable in the circumstances."
+    },
+    "c7": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c8": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c9": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c10": {
+     "ref": "Sch 1 G1",
+     "document": "BR2010",
+     "text": "Cold water supply: G1.—(1) There must be a suitable installation for the provision of—(a) wholesome water to any place where drinking water is drawn off;(b) wholesome water or softened wholesome water to any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(c) wholesome water or softened wholesome water to any washbasin, bidet, fixed bath and shower in a bathroom;(d) wholesome water to any sink provided in any area where food is prepared. (2) There must be a suitable installation for the provision of water of suitable quality to any sanitary convenience fitted with a flushing device."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.16
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.52
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.81
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.06
+   }
+  },
+  "usage": {
+   "input_tokens": 2864,
+   "output_tokens": 175,
+   "cost": 0.000120288
+  },
+  "id": "gen-dec-1790676130-y5Z5oQgKD2FuYO7zwwEz",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.316
+}

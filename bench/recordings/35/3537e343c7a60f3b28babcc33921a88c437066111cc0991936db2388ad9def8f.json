@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Data outlets/terminations\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678472-nv1hdNgruqloInzQjNOY",
+  "object": "chat.completion",
+  "created": 1790678472,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person_scheme\": 0.06, \"building_notice_or_full_plans\": 0.03, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Data cabling and other extra-low voltage wiring generally falls outside Part P's notification requirements, since Schedule 4 concerns electrical installation work rather than ELV data communication wiring.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Data cabling and other extra-low voltage wiring generally falls outside Part P's notification requirements, since Schedule 4 concerns electrical installation work rather than ELV data communication wiring.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxwgKEAgSGAI4AUIIdGhpbmtpbmcSDF/cCqRQKHi5hBnw7BoM8sBgihO4IyfhN7mNIjDBwLJQFrpP9NXYj2vNxBRHVPYfOrm2/f6LOiNA0lsj36+EKEqmfBwRdN8Fvc21MnMq5AefRt9vwKACMnrrT4SBE97+xIxfbDuVqKIyhBAn0sPUAYdSx6DZa4vmumDhwCNBuVJkdetX65/KmMNOpdJBXmQM+6KIqEAWsfAvzAC63UvTVWu9Weif1d47YnJBBlBJJpD1ey8r2x3nyoslWlBpQQNU5OQDGDowqXK2WZ2h/+cIYEhmWuezhAOeYUCmNUc1UlG8IJK3xktMOLm1cub6eiTrWwFADHLeZ+rjQ8UzDWTXbMhZEDrxNdJWjaMkBBtH1lNiANUuFglUWGHMtR8A3k4Ps/5Mw2WpYuumKAeCGd8TmWSqdaTvR0es7Drrn/+bk9el3yLGE3HHvE/yX8izYxCjfGJ6LRbf8htpabHXEAf8cBWodeIXjVrSxuhpBELu/MZY2qWizJ5T3BGnCnibSgrn4tPgMZxUtSQABdKDS1vnMAWJ9jP9HDRcCF1w8n8gOTldolTpXj2+1k5z305QvmWDcWUuhHaJExFmrhTvCtYMUULMrdbejCgiRhKNfhdSCqYxEBDe7V/FD2tPAox8eiXeGvZVf8Xqtgk3GsXza1zafCM4NhVQCWmv4xvAxwcdXacLVQuUkdV2l0kizMhKP4DFcd2D1MlhwygRvdrhJrMhSu4twZY/lrsRDWJEoMSW7LgZ8SV2jPpFAjlQa+dQV+Qes9tzpVcgq4KKI7OcJe8tG+jBrWCYCUnBNUe253f3rKXyGCHQ+KzwIost8GtMsSQUAh98TBYn4py9i9/iNkWg5whWGYyLvDJccSLyJod42d7fXQJmoreHo6toP+t/++1e9B56WrbPWONO9cmZW3kukRZfekNJgcuDiGhi7l/BJa0u76PucKQn9CxOGJSuSW/tP1qNEJGOw8J+DxIESQQaNSU1vT+7HfzAVw2FVs+k/j6JD0RVaNnLmoTxsajkr4keUlP6eoZktRyWkxb17Sn2+L51D3UkMSYJsIy8757+5X8J5vMbXTuyb8/2jvSdFRaG+YEabhFw0O2aIE7i+cLTGGdwra2Fc9TJrZxvBARHw4frZL5BCkicP9gSm7HQsV/fFca+fPDQR5nKJa4EqQHzPcxnFghxCqXRJ9W4Hsu5vJhpbAxT1eFbXnYcrnOeHLNVlp6Wq6PDD4dYxEwr2sK9HnJfGSyKLVRp7mthxnD554Vuh35CRmrNn6C2ZUOJvxS8uOgnFwbr4BtoaBX6D3m67CxJje4xmyutlR7UbuofgF2oqgwlPPLQHHH+gSP0Oc2C2JSctg2rhtHjB8PmuS8ID1BHSqfLUUViwJt4ZZOJOlymJEtuY2Y8osPMycKVkwZ701CjRkY2tCDg0U6oq/Llt9bZJFcYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 505,
+   "completion_tokens": 265,
+   "total_tokens": 770,
+   "cost": 0.00732,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00732,
+    "upstream_inference_prompt_cost": 0.00202,
+    "upstream_inference_completions_cost": 0.0053
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 184,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.654
+}

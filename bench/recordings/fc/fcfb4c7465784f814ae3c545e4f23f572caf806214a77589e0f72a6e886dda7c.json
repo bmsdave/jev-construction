@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Ventilated sleeper walls\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Masonry. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"Sch 1 B3\", \"document\": \"BR2010\", \"text\": \"Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952.\"}, {\"ref\": \"para 3.6\", \"document\": \"ADF1-2021\", \"text\": \"3.6 Many existing dwellings are ventilated through infiltration rather than purposeful ventilation. Energy efficiency measures carried out on existing dwellings might reduce infiltration and cause the dwelling to become under-ventilated. Building work should not reduce the ventilation provision of the dwelling unless it can be demonstrated that the ventilation provision after the work is carried out meets the minimum standards of requirement F1(1).\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677250-BSEfvoTmYMK3Qp9s5UZM",
+  "object": "chat.completion",
+  "created": 1790677250,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.68, \"not_notifiable\": 0.24, \"competent_person_scheme\": 0.04, \"full_plans_required\": 0.04}}",
+     "refusal": null,
+     "reasoning": "Rebuilding sleeper walls in a suspended timber ground floor counts as structural building work under Part A, not something falling under Schedule 3 exemptions, and since this is a dwelling the fire safety order doesn't apply either. Even though someone might argue it's just like-for-like repair and not notifiable, I'd still classify this as requiring a building notice or full plans application.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Rebuilding sleeper walls in a suspended timber ground floor counts as structural building work under Part A, not something falling under Schedule 3 exemptions, and since this is a dwelling the fire safety order doesn't apply either. Even though someone might argue it's just like-for-like repair and not notifiable, I'd still classify this as requiring a building notice or full plans application.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3QgKEAgSGAI4AUIIdGhpbmtpbmcSDMM/1KiaPsaIVP3FVRoMb+OYhEwK7SaQYJNmIjBA0cqwgshdZGhzdzMSLmPIOJAWRv4/BXDw3QVDBumbtpRw2bcNBDjgy6AWQjYJI98q+gen/p5HhptAU2AWnVfwnBhgLoOMRMcI9hGK1miyWKaHvqQkfTcjudvp8EztJvT8xegf14Gs7/N9MSjMyn/3XfFOvn29zltNdR5k3Jdu3sMNiaRLFQ5Wvb8yN4HcAJgdD9bP4yp3Kp2ItBvc4iTIQIIu4qNp7QI+oDZBG4RYQ1X7dTF6OCHGzslq0Bd7JLhNUoNmRCZ9+KZwF2Q+2yP16ls1Hs2aGeEaCeUAlGYJo2CdLOB4SqdMKhaNRS7vX7PFAe2YI93XS9ybqX8+rBhs49EoOlc7rgxTEX/5W2owr/pzky2v6mIDw3FG6ewhBZV5fFCJNZJE43Lyjsu6s9HGKbxBgyO6bZ6b566vHALDcmohtFr3H9TRtu36EGIl9v53YIPa0dRy1+VwSBZ0roEP9yTFAWB+bBYgEih07O66XBpVERpAKfycktNZB5PRlLqGatgJIb46POo5SAn7Cu3leZSRWyklwvggx5TZDxCTaBmkKzXNU0vrEYknTx+iJAu9++0PS6gR1pOFD8+oVezNqKQeqwq2t/xJTCkNyCOQ6DpNbHY+fiD7i6Wnn9MKodm2HPz9Di+ZFBuTmfZp9IyXk9sohXlmBBK5ox0hA5v7TF8eFVJPM2dRxtrUFUNmQsx08NZICQVOEUTaR6WkwasFI9xgEq3V1fbC4fEtV/fmEesuvgWz4iEPsaKWHN0zbHebFVGy95S7qzHv9rar+AJFrxVrVbaM1CcWOfiKvXcQ6lZbLjIEM+rSUwJ8YmsMe2ubH8diw5OojpKylcYhLdMEezbd7PC/7C0fBOso7ILd3ASn5ghrX5dCHQXsokqDtrpnO4vxceYXskdUxS0EEjjW39AZKi41cn0fvO7hKGp7wEOIozso4eVUtspdwoTl0/Zp6wLL3Q+yq/ulU3njgICIbJty1kYrfDZB4SHWGflZk+/rojExz1jnYJytwpjXDPSVyO5GuzaN15/Tok5Yl+VHDTjSDN2GT04z55Y5BT/LmnwH/FSdYhaQTjdbhOJh56iBY3YHIPVihluQvOUNAogsWCGagH64s5b0EZXwTrFRZsr40+bij7IQwbwrWpI0i2RSUykYFTBkwzHax2Ao0DtL6SVlA94TkhC3O4pbd1PCD67pLN6gCtA5MhKWLS7kP7Oq4OrRs7k4EDz3k3TzDvdnqUyw0Uykd7OQm8exQ7InxlttOskGxEZp3DkoEVcklVZxNbbHjeTaVCBOnfJX27z1WJ3N7x0E+5JBaAsZ2m3HbHBCK3AwcKjAt2mupc2rS+g5FJPT0imeQ8Rjp0FgeN8b9kw6YUlrPs//2EWmMxmsKpq2KSXAYC615cXP6LA9q1ywYGT3ks6MzjWBI+6SGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1335,
+   "completion_tokens": 293,
+   "total_tokens": 1628,
+   "cost": 0.0112,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0112,
+    "upstream_inference_prompt_cost": 0.00534,
+    "upstream_inference_completions_cost": 0.00586
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 207,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.735
+}

@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Replacement ground stair",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Joinery. Part of: existing house.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 1 K1",
+     "document": "BR2010",
+     "text": "Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building."
+    },
+    {
+     "ref": "Sch 1 K2",
+     "document": "BR2010",
+     "text": "Protection from falling: K2. (a) Any stairs, ramps, floors and balconies and any roof to which people have access, and(b) any light well, basement area or similar sunken area connected to a building,shall be provided with barriers where it is necessary to protect people in or about the building from falling. | Requirement K2(a) applies only to stairs and ramps which form part of the building."
+    },
+    {
+     "ref": "reg 23",
+     "document": "BR2010",
+     "text": "(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person_scheme",
+    "probabilities": {
+     "full_plans_required": 0,
+     "building_notice_or_full_plans": 0.42,
+     "competent_person_scheme": 0.5,
+     "not_notifiable": 0.08
+    },
+    "confidence": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 1047,
+   "output_tokens": 64,
+   "cost": 4.3974e-05
+  },
+  "id": "gen-dec-1790675953-M4eGuIDif1oyOzYkY0A7",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.249
+}

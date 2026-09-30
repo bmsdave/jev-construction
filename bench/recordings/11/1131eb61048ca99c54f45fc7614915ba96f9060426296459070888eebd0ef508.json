@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Two new houses built along a private street\", \"project\": \"Building plot in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(4)\", \"document\": \"BR2010\", \"text\": \"(4) A person intending to carry out building work which includes the erection of a building fronting onto a private street shall give an application for building control approval with full plans.\"}, {\"ref\": \"reg 12(9)\", \"document\": \"BR2010\", \"text\": \"(9) In this regulation—“fronting” has the meaning given in section 203(3) of the Highways Act 1980; ... “private street” has the meaning given in section 203(2) of the Highways Act 1980... ; and “special location” means— within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends—vertically from the finished floor level to—a height of 2.25 metres; orthe position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; andhorizontally—where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; orwhere there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; ora room containing a swimming pool or sauna heater.\"}, {\"ref\": \"Sch 2 Part 5 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A building on a site, being a building which is intended to be used only in connection with the disposal of buildings or building plots on that site.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677722-o3eXVLWrb1Vem17O5FIQ",
+  "object": "chat.completion",
+  "created": 1790677722,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.92, \"building_notice_or_full_plans\": 0.06, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.01}}",
+     "refusal": null,
+     "reasoning": "New houses fronting onto a private street would require full plans since that fits squarely within \"along a private street\" — I'm fairly confident here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "New houses fronting onto a private street would require full plans since that fits squarely within \"along a private street\" — I'm fairly confident here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSoAUKEAgSGAI4AUIIdGhpbmtpbmcSDPA1dX81MkrwYnE2UxoMp/U3WMnsgM6Hm+JZIjBU4jpU7mKqb2BscSyE8Ep4IQ4ragsIPXCHb9SO6f15dThVb6WeR4UT/lwUMk4tFEUqvQRmTT5ZsD1/eZpDjZGsfjFhlK4ZB2jW5KTrCO8JWEI2uYhve8eZQjsZJ1xYje/PD/R10kX0nJPM6//L66unxmy9J+gyMSu0DH9ygL/l6xPDYDSJirYddCsArDAVJAQAblN0KKtFHHPLjRNBRWPV2+wUOJnQBseHjSz7j///itWRauS2yaNYJY2+98+5CZXbT66u0jBXxcdkOPMqZD5P7FImrk74q49AKlGoqOLj8WG5k7pnKABa7SDVz2XTOgSjQrVshNrVbV7jzwxPSjG5lexxhlYvdkZnp5P9AIgfuWJfTCCz/pNKY9gwN67S3XrifRvwicvaVY6IhSzgprsLaa6RpTnwZzEbmBlxOfRThSuE6OYUkT9NyAK2SJDeXhdMnmpbl7OashACYKsdkfEXZPKcaExetxGZQ6nRxI0N7dPpTOB264lz3w/qa7FOqbQsbk8euDiQZG8SvXFnhBS7afsDInEo8aI6oAcN0jkPFopkPOQD9aIfYxTyLcIYoaJ61DIY564XXrefv2xZtQovYy6nDizouaBQR9/EyKuAHwFgwuhvlIg+3B2cC2ne8POOlyH8hFeP62HFGzRD+g94XfxcHKAkVRFbWmF4RTU/aJ+5wVM+UqGQWKh+6Z0OeKDFhZjwTmiHjJ/uxwJxZAYrDDfxDxd6yJLdUchjKGP47SWXTR1ApWrdce0M9RFibOXWVXPXUdyt8n+ijuUHMJGOY65Sb3JVhbbmsECScoCJvbSvgzlGkIROITLsAJtT71oYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 940,
+   "completion_tokens": 120,
+   "total_tokens": 1060,
+   "cost": 0.00616,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00616,
+    "upstream_inference_prompt_cost": 0.00376,
+    "upstream_inference_completions_cost": 0.0024
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 39,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 4.543
+}

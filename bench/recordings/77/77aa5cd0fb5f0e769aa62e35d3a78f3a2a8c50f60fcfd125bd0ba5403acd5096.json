@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Front permeable surface",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: garden and external works of the house.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 11.3",
+     "document": "ADL1-2021",
+     "text": "11.3 If a thermal element is renovated and one of the following applies, then the whole of the thermal element should be improved to achieve at least the U-value given in Table 4.3, column (b). a. More than 50% of the surface of the individual thermal element is renovated (see paragraph 11.4). b. The work constitutes a major renovation. A major renovation is when more than 25% of the surface area of the external building envelope is renovated. NOTE: If paragraph 4.13 applies, Appendix C provides examples of renovation of an existing thermal element that are technically, functionally or economically feasible."
+    },
+    "c2": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c3": {
+     "ref": "para 11.2",
+     "document": "ADL1-2021",
+     "text": "11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation."
+    },
+    "c4": {
+     "ref": "Sch 1 E1",
+     "document": "BR2010",
+     "text": "Protection against sound from other parts of the building and adjoining buildings: E1. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that they provide reasonable resistance to sound from other parts of the same building and from adjoining buildings."
+    },
+    "c5": {
+     "ref": "reg 23",
+     "document": "BR2010",
+     "text": "(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible."
+    },
+    "c6": {
+     "ref": "reg 2(3)",
+     "document": "BR2010",
+     "text": "(3) In these Regulations “thermal element” means a wall, floor or roof (but does not include windows, doors, roof windows or roof-lights) which separates a thermally conditioned part of the building (“the conditioned space”) from— (a) the external environment (including the ground); or (b) in the case of floors and walls, another part of the building which is— (i) unconditioned; (ii) an extension falling within class 7 of Schedule 2; or (iii) where this paragraph applies, conditioned to a different temperature,and includes all parts of the element between the surface bounding the conditioned space and the external environment or other part of the building as the case may be."
+    },
+    "c7": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c8": {
+     "ref": "reg 2(6)",
+     "document": "BR2010",
+     "text": "(6) In these Regulations— (a) any reference to an “external wall” of a building includes a reference to— (i) anything located within any space forming part of the wall; (ii) any decoration or other finish applied to any external (but not internal) surface forming part of the wall; (iii) any windows and doors in the wall; and (iv) any part of a roof pitched at an angle of more than 70 degrees to the horizontal if that part of the roof adjoins a space within the building to which persons have access, but not access only for the purpose of carrying out repairs or maintenance; ... (b) “relevant metal composite material” means any panel or sheet, having a thickness of no more than 10mm, which is comprised of a number of layers— (i) two or more of which are made of metal, alloy or metal compound; and (ii) one or more of which is substantial and is made of a material having a gross calorific value of more than 35 MJ/kg when tested in accordance with BS EN ISO 1716:2018 entitled “Reaction to fire tests for products – Determination of the gross heat of combustion (calorific value)” (ISBN 978 0 580 93554 1) published by the British Standards Institution on 31st July 2018;and for these purposes a substantial layer is one which is at least 1mm thick or has a mass per unit area of at least 1kg per m²; (c) “specified attachment” means— (i) a balcony attached to an external wall; (ii) a solar shading device (excluding a solar shading device attached to the wall at a height of no more than 4.5 metres above ground level); or (iii) a solar panel attached to an external wall; and (d) “solar shading device” means a device attached to the external surface of an external wall for reducing heat gain within a building by shading or deflecting sunlight. (b) “reaction to fire classification” means BS EN 13501-1:2018 entitled “Fire classification of construction products and building elements. Classification using data from reaction to fire tests.” published by the British Standards Institution in 2019; (c) “relevant metal composite material” means any panel or sheet, having a thickness of no more than 10mm, which is comprised of a number of layers— (i) two or more of which are made of metal, alloy or metal compound; and (ii) one or more of which is substantial and is made of a material having a gross calorific value of more than 35 MJ/kg when tested in accordance with BS EN ISO 1716:2018 entitled “Reaction to fire tests for products – Determination of the gross heat of combustion (calorific value)” published by the British Standards Institution in 2018;and for these purposes a substantial layer is one which is at least 1mm thick or has a mass per unit area of at least 1kg per m²; (d) “specified attachment” means— (i) a balcony attached to an external wall; (ii) a solar shading device (excluding a solar shading device attached to the wall at a height of no more than 4.5 metres above ground level); or (iii) a solar panel attached to an external wall; and (e) “solar shading device” means a device attached to the external surface of an external wall for reducing heat gain within a building by shading or deflecting sunlight."
+    },
+    "c9": {
+     "ref": "Sch 4 para 1(h)",
+     "document": "BR2010",
+     "text": "Work consisting of— (h) replacing an external door (where the door together with its frame has not more than 50% of its internal face area glazed);"
+    },
+    "c10": {
+     "ref": "para 11.4",
+     "document": "ADL1-2021",
+     "text": "11.4 When assessing the percentage area that will be renovated of an individual thermal element, consider whether the element is being renovated from the outside or the inside, following Diagram 11.1 and Diagram 11.2, respectively. Building Regulations 2010 R6, R22, R23(1), L1(a) For example, if external render is being removed from the outer side of a wall, the area of the thermal element is the area of the elevation in which that wall sits. Area of the thermal element being renovated Total area of the thermal element Diagram 11.1 \u0007Renovation of a thermal element from the outside For example, if plaster is being removed from the inner side of a wall, the area of the thermal element is the area of external wall as viewed from inside the room. Area of the thermal element being renovated Total area of the thermal element Diagram 11.2 \u0007Renovation of a thermal element from the inside Building Regulations 2010 R6, R22, R23(1), L1(a) Material change of use and change to energy status"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.12
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.35
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.12
+   }
+  },
+  "usage": {
+   "input_tokens": 3594,
+   "output_tokens": 175,
+   "cost": 0.000150948
+  },
+  "id": "gen-dec-1790676063-ISd7r0klAKl6ufM7F5AZ",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.284
+}

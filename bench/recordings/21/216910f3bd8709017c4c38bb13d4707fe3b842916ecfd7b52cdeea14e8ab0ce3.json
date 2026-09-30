@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Extension to a warehouse loading bay\", \"project\": \"Warehouse in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678607-gDt8kBahZtanU3LjvLlf",
+  "object": "chat.completion",
+  "created": 1790678607,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Full plans are most likely required. Extending a warehouse loading b",
+     "refusal": null,
+     "reasoning": "This warehouse extension is building work on a workplace, so the Fire Safety Order pulls in full plans under reg 12(3). I'm checking whether Schedule 2 Class VII exemptions for small extensions like conservatories, porches, or covered yards under 30m2 could apply, but since it's a workplace warehouse rather than a detached exempt structure, full plans still seem required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This warehouse extension is building work on a workplace, so the Fire Safety Order pulls in full plans under reg 12(3). I'm checking whether Schedule 2 Class VII exemptions for small extensions like conservatories, porches, or covered yards under 30m2 could apply, but since it's a workplace warehouse rather than a detached exempt structure, full plans still seem required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1AoKEAgSGAI4AUIIdGhpbmtpbmcSDNiJiz0zNhi7vnkMiRoMHwA7pYNNyGWMBTkpIjBB6v/pVJvqm7KwmEAI4Hk6M29xtN/0of15TSdS0ElSwVx9QHNbqO4RD5xamlWPzbMq8Qk6Ni7nQq0VyXVotlodhgiF+XCJCGstwdCn8FUsnII5MWlrh9Iiadm7hXW+KUM+OHV5MgVlc8T5S0UCitHsJRaCmmRA5UA609Z+/3taFGINynCY51JhC7XbwiwTHo4LwpvREXz3+LV85/3RO6WONA1c7lIpysjFEGqadTO+cPL9llsxTyd4OFZyO1jAH41bOwtwwj0vBnbu4O9wboAQFF17+WGjfuIIEpuDADnhGxW8rKhc4TwB8O3P1Xhp1pINVJsl0sr+RKtApJwtNaA2tNwYHxLzqK3kmvRdsh/viWX72/YcT0Srhqt6MI6sWzzicr5M3xJlNAF3p2A5m1pT99MKXt/tTisOPCT/6+kS6HCkzrnDX+mQEmig2NZK87exnjt66RpDkvD/l19YPJgO44YMPTuqQZbUcgBcBXtd3nMpfDRlEdKrYzicrng5KIIvtFccE8SEY9lBflHjincSt5YZcgxIuMTxTE0FwylOghgpnv5i6wUCAZpo8p03GYRXhl24wJP9mmRmGRNwnrxz5G0SCpZmC6RsIJdT7F9BzfwbIRZgy8gzLUqPlyfloRqp6GIJ7BxBN8I83LIoxbA+0GZJm9B0kf1QwMoYyOrrqqQM8edH7RtOK1DtwsfoOm2ixTdKiQDatZ8RRZ8uFWtYApqaweTiLMW2foP6WqrJMWiD9uInKOjNOZr4e3ZooiQF8ZRC4XgOSMFhAB9OgNW77vhsnZLeztBU+7AE1ejZGvyX4O/CmSP18gt+WBbWHt+DyE3VPBQ7p7UkuMsVTF0SRwvxWs3vAti9jYS4ieAw47wHMhUB7hqBwNbl3LETs0IamRBgS6aVkaLZTGdiXJfWjnICnNUj4ZwvN+XWw3A6R7X6DriQOoQtQN7UamZXeh64cIFHvlqTGFmX5xxqEB5Wa4h+1UhxIhMePiNpZ8eDV4GT1cyncEsham7pGXCMa2xRgP+UXwKOyC9To6K99upXuqxPe46wOxJp/0V9hjpkX+IfPPMsDgr2Pv1kPW9HRGH3wj/GUHeyqSuOErPy2GUOdO4nkTK0JozsIZ3UNRxKczKve0JMytzwKiv21tjbyDJWZYh1dmPUQT4ZaaHNt9aKzlWy44pj/MZEwrOTcwJC4YjNp35qV4dmqDAW2NHOEa5WaZ+CbW72kygH0+IPMnXLurSskkGN5ZwzWy78QEyabile3bykGUX+6jjJcpqMqWZTGlR7qrpch+T8Lqc8SLPtq+nDSppdgQKLYuT0Qvp/MgQR/HL14gUO/jBHcYt0E37x8DCksloqRomff36CaDbFJUN80zMknN4S0v6NuquaxoOZtpuua7d+wF/jSCIzjAgwD826Pu7kTE9CGMnAcOwm0qukQc9cgtKD/4VNN2Bln8fqWxfa5pvjwA13Luqqu3g7Wpk6zQkxIhNSGHllMwiMQzTaBISP7oqSh20qTwFr51G5JD0Jwfo54SszF/XW2W3pZLvvSYgDZ7OePCWIrBky63SozH9Sx228odSiO2qQ7nneRgPQbz7GJFVFlZkeeXhGLHRo/n1j1dLH4dlPyw6bZ0QBnIQcSsBMMsADZOo+ryyR2b/R93etdWAd1nKDPDViHKbdaWwNETnswnOyhjdiKP6f0ZaJ8AkpjVyWRhJNcImHZ/RJtO6sCqoYYMUyB4eMPq8I20ENZNgm2xnozoCW0EwoXRgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 463,
+   "completion_tokens": 300,
+   "total_tokens": 763,
+   "cost": 0.007852,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007852,
+    "upstream_inference_prompt_cost": 0.001852,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 279,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.605
+}

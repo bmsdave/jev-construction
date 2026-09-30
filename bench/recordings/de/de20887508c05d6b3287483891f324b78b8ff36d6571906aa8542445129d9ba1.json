@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office distribution board\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677572-3G5omNzGfkN210L15kpg",
+  "object": "chat.completion",
+  "created": 1790677572,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether the garden office falls under the size-based exemption in Schedule 2, but noting that Part P electrical safety rules can still apply to work in exempt outbuildings even when the structural building regs don't.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether the garden office falls under the size-based exemption in Schedule 2, but noting that Part P electrical safety rules can still apply to work in exempt outbuildings even when the structural building regs don't.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+QoKEAgSGAI4AUIIdGhpbmtpbmcSDF27/tvF3E9QWWDYwhoMZGm1s+CjKt3uXIr1IjAK6h4TdC/tuQdhyvlw3inftD3j4Bk3ZtyqlGLWE5a1f2IxW4vanTf9JUJtysuVpA4qlgqjBYCkW9wS08Dg26wyxS36EBo748K5P8yWSo6yMEz+V4lpXZOgu7oSuYSN3IGXM+0T9eLe0m0peCGl9cQwZPW6uNIcN0qeubrpfk78RT66OPIxDWjcDQpbwaH7AwoctI1a7Gvw6/mxcXh/tKA2JynvlHqBrNPcPwgR8aU/huJvyF2+mj1ORNFvtqvcJFuEPxkwQu4OcICZQU6LVJRfNW40JEl0cPe9iANJ78UM25jL5bewbliib75p6PbH6t1WJQqgdd2TsvAmXjPMQYXKfpasaVj7oP50pb8QicW91b3/17MLp22he7nxOtiGy2AGQSrMNCsMTiy8bv882U5qyWqikeQkTexeoDUXAFuV9EJfiOvqVGxu9dp1v1EfQujs5Yka4caqGsSxqgkvAeJ0SMqO+SRFpc+Ph+FfnghfnkVMYuUGlwRyxNQF4Dv7QCp5Gp/KBfk90VyhM4Q8l3yUQmvhRJ/zRcA0MKXX51KSgcNUvZzluuOh515aUmaUGgRUvMhCTkIU0Bo9gstKR1KCW0RifAUS1tv7wdOUfOHWJq54cbUy3VhcX/aG1kzJpmI3lB93MBUmGfuL9yFSktDGA+8krWqakPQmWcHm4/DyRTwLktuR21K4kLHr14jx+Hz6m69kD87y5pugyL1V8syDOpRrl1ttVH2bLn4wXtbvZ8b7slEPkt7LWjSwldQ9Seao5BubLsBgZ/6Hjg7606tcvFYWQoMcUvuWMKljSCkQ/UK0maiJYNue9A9rQJi5fuiCfdCiD8H+z7rjHnMc+uAlrGP2JNSABEUt7rSrA2dq7IDfx1pEuF1f4GJ28ajvheEkcmqvT8hGLVzfJSn7ZARvWv0OktxhBLbevFIdIhO0kO0rzlPDncmF198YgHgF8dw/c6ayFb7mITfs/E21F1MCGf1W4HWPGbQ5Whs0xx5zLfyrZMm3CW6kHd8GVS9s5AEPEiVV3xujK6O/RwA012oAQR4zDsvHfG96EBdckJExAQHJZhIMyItnP5peWi1hhsgelhmjafuffEePR70MA0DIXayOuQ32oU+dcDO1bia7Hw3pxD+vVI0t0QsoJGnFN604HmaBWfQqQgl5xy3VRHSGYEuRFfO5e3Yw/3U1Gypj3ymFaJqappdxJS3IOM1qD+czPb2Q0bKYOyn4rcqj9qwT5MCpXRvLuilGFjnz4TtJZgIVrggA15XY4XbqhoNqLHdtHCxWE5HE+AQJLhgzpbOQg3hq9YPSzyc9b4fEe5ESIq2e3l7WjLfCOW6qaRieyK8CevwLjqC20uG7XCrOU0DX06xCicNE8sM1C5X1FGp/GQPIQLQjABsQ/RYchSl8og8Iyy3XaI0NNxGf/PrAdVq3bmWVvk3uqxRpCPwwFk3GSZPCGuMz9yFYnBWTT6ew2MunIxbLLp3GRh1H66kuloeb7K4zPbPAKNsuGqfNKuLmLS5yc4hbKIkDs1keh0BtAwaZJVqFMX5borwTduBMweqDI3KfqTDl7V2YZ05GfKV8FgZU71gpfRusv7ant9tQw7eNvj9mJKt/h+chFaoyAlkaNyEPoITEe4q1gu/3gba3U7LFkEIcYPB7uOu4Fzbn6RUQU6yQXkjuLd6/8MqDFI6w/MwWz+4F/6TJV/TYcW1eUFLYCSXSbT7yuUUSG/+eKPUvsXZfa1tsb1g/NLscuNeqhRWPCv6d28xmdMMNSWDZSShbsq37Ww/fuhnkyalpP5WcY+cxZpkmYq4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 982,
+   "completion_tokens": 300,
+   "total_tokens": 1282,
+   "cost": 0.009928,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009928,
+    "upstream_inference_prompt_cost": 0.003928,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.06
+}

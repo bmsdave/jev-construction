@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a church hall into a nursery\", \"project\": \"Church hall in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678640-XTGuDYpt3GkcTaG1dIGv",
+  "object": "chat.completion",
+  "created": 1790678640,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether converting a church hall into a nursery counts as a material change of use under regulation 5, checking if a nursery falls under the definition of \"institution\" as an establishment for care of persons, particularly whether it applies to children under five.\n\nSince day nurseries don't involve sleeping on the premises, that definition doesn't fit — so I'm now looking at whether \"public building\" applies instead, since that category includes schools and educational establishments, and considering whether a church hall's use for worship also brings it within that public building classification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether converting a church hall into a nursery counts as a material change of use under regulation 5, checking if a nursery falls under the definition of \"institution\" as an establishment for care of persons, particularly whether it applies to children under five.\n\nSince day nurseries don't involve sleeping on the premises, that definition doesn't fit — so I'm now looking at whether \"public building\" applies instead, since that category includes schools and educational establishments, and considering whether a church hall's use for worship also brings it within that public building classification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 461,
+   "completion_tokens": 300,
+   "total_tokens": 761,
+   "cost": 0.007844,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007844,
+    "upstream_inference_prompt_cost": 0.001844,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 26.269
+}

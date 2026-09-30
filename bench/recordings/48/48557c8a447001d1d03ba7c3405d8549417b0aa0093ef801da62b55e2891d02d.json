@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Work to a converted building containing flats with shared common areas\", \"project\": \"Building containing flats in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 5(b)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (b) the building contains a flat, where previously it did not;\"}, {\"ref\": \"para 11.5\", \"document\": \"ADL1-2021\", \"text\": \"11.5 A material change of use, in relation to dwellings, is when a building satisfies any of the following: a. is used as a dwelling, where previously it was not b. contains a flat, where previously it did not c. contains a greater or lesser number of dwellings than it did, having previously contained at least one dwelling.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678055-8YLs3tg13JsN4gzJqYiW",
+  "object": "chat.completion",
+  "created": 1790678055,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.72, \"building_notice_or_full_plans\": 0.14, \"competent_person_scheme\": 0.1, \"not_notifiable\": 0.04}}\n\n",
+     "refusal": null,
+     "reasoning": "This is a converted building with flats sharing common areas, so the common parts fall under the Fire Safety Order. That means regulation 12(3) kicks in, requiring full plans since this counts as building work relating to a building the RRO applies to.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a converted building with flats sharing common areas, so the common parts fall under the Fire Safety Order. That means regulation 12(3) kicks in, requiring full plans since this counts as building work relating to a building the RRO applies to.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5gkKEAgSGAI4AUIIdGhpbmtpbmcSDFyTAsqTPURrzxHnPBoMilL/4IZAvfsO89iYIjBv9g8gIGqtyUEaLwJFOrqqhLf4pPGHgk0mTJLRbg/djDo2CZ8+NZMYmw4C2M2zOC0qgwkf/ZStsrhQIWpvVVNS6hI1ym451wipTRrdvwxvzvknuBRtCv2NwviM09NydOOwOq7qkQSC/uuK191c3wgu515ogKLGoVsd6aq7eMOWaitH3uO43ioCNRZ4KgkRNA0YX7MExB9zhNitnqaubqQQY6IJolnF1i2Qnr7LnD+dVvECie4vOlZYC6PIbqP6PXtAGqb3CbpaIEcDWfNkLEhBzi8JX6Y8EjEiXqIlqhmZE5ZSAYhC0UiaiOMntSQjbV+xGZ+YgJBMDooieifLiQHD6vRnMpyQv9QpbHdzZfd3Ccb8lY3WvzhTets3xjzjEY+38xJ2M7oS9wUW5fI3uZ/92iEmWg9eSlskgWPboQ/NqPSGGMTg96lMN8FUFSmDsUNwhFf7/MDiSeBya/t4FxrNVaKucXN5XU5hOoaajI4BVt6eAdq3U3go7ddCt/qEW56UWS3SGbGEvr9PO0o5Q3Q/omQjEqiX4s5UzqZpnkaH/slvXdbMrDYpa1vthE54n/6rRHPlQMk9Vg8EyNCil9ad/6pBsGfEwPHcalB8KCT432/KN5wN1poQI4BQ4ex7J8jOKghBbhGDr1fHGlkow8UR5oMsHIuPjPj/329fmGyUZh537rs/1atoWvLAqCQ4r4GUIvNcxoNSo9futfOJN5zy6HGFk710j3TwvAV7EmGJfckQ2SHO3RmBOJjBOPii0qgjP3mWc23t/78xF3hpiFwYk5dcYQtbCZGqh12/9cctw5Z7mrpYHB2IGB7rInRav06jw27ToR5hcpT9qE0smPTk11dshX6irsFheqImRieF4SG20G1Fi6Uza+lXalENm9+NhenOyy9wjon7O7HMNyi5kGnaAXYgtmo0L3idTnHNY/XKuqYPN0sNSRilb+WZsBOHvghFZcTs4GiwPCe9PDKdxxbKY483XZZ82pItrXDJhhv9375zII/hhlrJMobcDZ6GQ7ZKLrMYw+cGNhG52g4xlk/86aZ+C1yAFOHFHq7/6MH77y4hBj/730Bj/8015gsduMmOAXIJIDCgnj/g4geXbEnze37rkIUJeiOme8qJfToC2+MLYbod8LZzy+jIcMv46lHb9HQRh7b/qnAzAFUA/RJ7bvwttuB4fskl302Tpqq9y8AigZuDNzLdjzH1i7FmwdZdqVf1tYtpN9blkp1lYtDhYqoerE0ZtGIXAt2HsFHipNZ9V0JoglEefN86X8yIKdPv3ZZituH9UINyNUl/j0fqeXZfWumD/ahN2duZ/x9hGBGhBykn68dPlUjhv+g/1gKTnqB1Qd1hSqf90lNa/oQ3/BGj2U8xkMi+qj30fcG7v4cS8iaVhm6e4LQAF6xJ/dNH1g1dXLKp2tt1OVM7IW+XAUwLU7H7N1fQUk+VqhD4rs0lw/8NEdSy7QMyYWp5YQeeoARRaj8SCSk79ZT2HsOYZETX//2ZYQ5uOLdEd8CAaQJI72wBhrU/2h4vsZe3aS0ut1C+KbUoLpw01xSwATO+FZ5XX30g/+FNpRNCJhHUNoWy2hUu+eUAkyUBKytzzZF+rYwYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 971,
+   "completion_tokens": 300,
+   "total_tokens": 1271,
+   "cost": 0.009884,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009884,
+    "upstream_inference_prompt_cost": 0.003884,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 220,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.892
+}

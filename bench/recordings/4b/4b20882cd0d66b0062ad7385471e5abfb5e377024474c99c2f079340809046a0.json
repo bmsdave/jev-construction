@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Wall and floor tiling (wet rooms)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Wet rooms. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678364-Ev1iUJV3f4LqDF1PIFau",
+  "object": "chat.completion",
+  "created": 1790678364,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.85, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.1, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Wall and floor tiling on its own is a finish, not building work under Schedule 3, so it's not notifiable — even for wet rooms with tanking, the tiling itself doesn't trigger notification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Wall and floor tiling on its own is a finish, not building work under Schedule 3, so it's not notifiable — even for wet rooms with tanking, the tiling itself doesn't trigger notification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7AUKEAgSGAI4AUIIdGhpbmtpbmcSDHgK9SkMSeKwV4jrSRoMyBZoZ0aKt5aASioGIjCUDuAFB5Yb0QI+8zB0RezG6z0BltPDPA6P3vslnp7pLOHUEdng1LDNjXXzkcevJGwqiQXztyageqIKTBsShXz3OQ108nkWbIsu6X2E+o2oWgQd9jGYX4DSKnSw2RUSp7bbb+2/ew6WrSoRPfCgEIfGg3YG7fqsZHIRWYz5FYQMKC3yyENlBLgCbEcfYxvakep/FHgDAiowKxyuS63587qY7Brq/SC1IklNrBrd1iu4AMhRzQjdpGE9ZUYQP+ZXgLzAYA6AjkLgrZbTITUkO2CvPeZP+vHS45KKXyfAZsxwUYOAU9i71U5UNAJ/iEK8uNsarRAYi3gKi4Yksz2dh3joG0Q52ikGRoeUSafku+hRU68mgp9qH56KIg/JdStC+7vK8nYNBEBAYYSd7btBDMoPX7wPemG63KnAr3BAlQYuS0ESv2jkB+zAwdCqtUxyNNRnY+TOSFx3P7ZWJ9fgxRpdfpHdYsReL36iefbtS1AnOxNmQMUOCjxhkY9tehea3l9rDUIHPe/uBdbt+wzK067J6w279w1+2sst8hbP6L9KeSVCdrIMZAubJRecqiFddlSJiANO6AZWYD8UnuoXZPMcxPsbG4Er2n8Bs7ndt6Pj/Bes8e+4b6G2qCEp8st5lFLKG9Zg5n/qXO7lzmW+WbdEsU7+E4Q2lNzhEh9x/B6kH2rz2HchBDhdJTZpnxMq0WrW0Ai7l0++WDxC78raY67Ip8MJ0QAiBKpSvObwnFPuFy8fkc9ZyrzGe5nUKgsUFhsRD+tP1W5XWP5a+ZWs0e8SaX3t0is52HUBg9B6bqOJ5WGzl+tkDa4JwY/muoa2kl5+7oSUTTJqQJrH2rgQVGJafAHga1xS9N9uJJWNh5bK2goKmsgWkZyO3Wx5DEyyGchBIVgA5phAZDKSLCk7b3idju/O6Dr6MPkn1AQ1GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 512,
+   "completion_tokens": 155,
+   "total_tokens": 667,
+   "cost": 0.005148,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.005148,
+    "upstream_inference_prompt_cost": 0.002048,
+    "upstream_inference_completions_cost": 0.0031
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 74,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.942
+}

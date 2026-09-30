@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cable 2.5/1.5 mm2\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678341-qofTojUg3A3WJt82lrJX",
+  "object": "chat.completion",
+  "created": 1790678341,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.62, \"not_notifiable\": 0.3, \"building_notice_or_full_plans\": 0.06, \"full_plans_required\": 0.",
+     "refusal": null,
+     "reasoning": "The 2.5/1.5mm2 cable sizing points toward ring final and lighting circuits, which suggests new circuit installation rather than just extending an existing one. In a whole-house renovation context this is likely a rewire, meaning it would fall under notifiable work requiring Part P notification, though if it's genuinely just adding cable to an existing circuit it could be non-notifiable under Schedule 4 -- the situation is somewhat ambiguous but rewiring during renovation leans toward new circuits.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "The 2.5/1.5mm2 cable sizing points toward ring final and lighting circuits, which suggests new circuit installation rather than just extending an existing one. In a whole-house renovation context this is likely a rewire, meaning it would fall under notifiable work requiring Part P notification, though if it's genuinely just adding cable to an existing circuit it could be non-notifiable under Schedule 4 -- the situation is somewhat ambiguous but rewiring during renovation leans toward new circuits.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5wgKEAgSGAI4AUIIdGhpbmtpbmcSDI3cmgHbkjZud9MFfxoMeOW2JFW4DMAqYRoOIjCljw0/nzHoi3PJjgOuhaJU3cSne+o5X8lHx1XJwy5TmPqHv5MOKme4IEIfl35qThYqhAiR+TdMkv4M9tqZfhlAovjbZ3lDBeUUoEAzqNB4D9Nx+S6bOND3R3JydDmOAGaQuERBxnsgvJJ/oG586CVVxDq7ag3vxZfEwzoSqeTNgpv0/2uSmzFzumOGJhu9vsYtXs2BdNVmntAgznWNAWEoq76jc7unlvKYSp8J8/zy+kt4UGSSmB6P65QkNKd8OcycIpAdXQJ4BN6CU977ZMQTTjcb0PPscbIGVOl9CVTCHKyqpBKoB2g9CB6xlB00PiFzqHR67J+RTHQCf5tV/itKXI1rkOf9TQdfN2Yd37eMratcXVCrgF9zKsYXxTwJ93UDMx5Tmwv87lW1JisRd3H/V5spju4TvJ0XSVhGJYPWOBPnKjZvVIUC/+5EdxzfwCTKGa43aueZXtZnqGFI79hbGX7WLocPvbxdR3iPYJcWju2xoEhHcmbGOUGDoQ9sMm00lRWGDap5Pj9v2IzbibROf3bpq5tbmH/CM59NGR1epLgZ3jIeLakoekEskYZy4eJfaiwbPpT/++tJNQkPX+mkX1ZQp66mLPuSf3dclvt6NJIbeA2BSLeVV/70NJ9ZudItEVLVBAey6v9DmRr9r5GWoWkZ7so8RiMUhSQfV/Dbzcy86xU900unm9JGLvwRqXztifUziZX1xasD9BO70KexIMXfQsLYldRuxqRasNnql7dHBJZ/5pv+8/oB/zxPbsSVmuDXh/nhFsEyraCoBo/hDDFAo6Jr7MWtOFe53rXYFKi9w2AI3oE522K40tQ1BvcsnK3OuezFYjk4BOPVcuXv/fPpb//OTxxjJvK3T7FeSfXIEhrQ3Hak/8JD+GJkfTdqkKWW6CpEw9ZDe92oWruMo7aiqu4P76+757iFUYA1pptLOqcBYLIB8LGzgHHoLWmh6MfcXIXIDCbwudCIF3ByKo+5glynt4EED6XX/Ek5EvFdmr/gg8eTgFZmG7kPD/pERHG5DIsUe39x1OR0Gr3CFIrQ1beqzhN5wHYzceMYOObLpSm1EkIbVlFn+cESzj+e5JqBT3VbD+Unbhk7ZR0tQud5qFtVg6GbLLVISzADrPxvl5lazZ4XPJqzUIe4KHeeHDcxkjQtlPufFumiQCKvlBOF7AXlcDM/MJSnxZhGhqCOiJld3jPEvwKiG2LSU+1ExSRcwHw9/eaTPxNkfNGjJDvBqnAMl9k2unfutQ1Ozk5fll6L6N2JPIdpYEyclSJRcnA/kh1nQV+Jgr++rurBw80k9EI26VtUDwlPKlmKcnZ0txXedMlY6oAqiqIuzDfiKaFhKK+JwYQPCV1pXJMgsZSqa/LtQYi4mu+jDzdJPsjO0/Gi0gBcneg2qAh9VW9xtLudYNIvC3At9k34r2qGo3zCBtRB+xgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 509,
+   "completion_tokens": 300,
+   "total_tokens": 809,
+   "cost": 0.008036,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008036,
+    "upstream_inference_prompt_cost": 0.002036,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 222,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 11.855
+}

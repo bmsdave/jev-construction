@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Alterations to a bed and breakfast guesthouse\", \"project\": \"Guesthouse in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.7\", \"document\": \"ADP2013\", \"text\": \"2.7 Regulation 12(6A) sets out electrical installation work that is notifiable. All other electrical installation work is not notifiable – namely additions and alterations to existing installations outside special locations, and replacements, repairs and maintenance anywhere.\"}, {\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678047-tusSMW9iGkCDqWE5WwDL",
+  "object": "chat.completion",
+  "created": 1790678047,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Full plans required.** The guesthouse is a building to which the Regulatory Reform (Fire Safety) Order 2005 applies, because it provides sleeping accommodation to paying",
+     "refusal": null,
+     "reasoning": "This guesthouse counts as relevant premises under the Fire Safety Order, so alterations would trigger full plans under reg 12(3). The Part P clauses feel like distractors since that applies to dwellings, though the guesthouse might share supply with the owner's dwelling.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This guesthouse counts as relevant premises under the Fire Safety Order, so alterations would trigger full plans under reg 12(3). The Part P clauses feel like distractors since that applies to dwellings, though the guesthouse might share supply with the owner's dwelling.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9QkKEAgSGAI4AUIIdGhpbmtpbmcSDNtIBiabm6w9JquLyhoMRYOMEkwqy3HqSFzwIjC88i+XzMzw+ieFCGhCvlMrskaoIcOf8b1t4jPne5F44V3qGW+rsAbHnA31rzAEr5Iqkglrk4JREwfV00ZXoydLMILhrohpJWt8ZVfhyC85IlXkkaqH52bs2qiQuZyY69ClPQOOba5FRKTZy0DJ9RyP9sgg48uMHXvoHknpYOnqemS89p883sMQhtY1nKGQaRweOX+MBUYhvvvgu3e663VI57UmNU1UTr32JPLNG66joYRRKTknfEZjeKWWcywfaZHXW/fQsz6Lh0dmKmQyxacCPYoVmroHH3TEUjBCmkfPnziIyYr65f7du2dDtixad+J6ZlcjcukKAtfl8PPtKvP5YypVxsw+ixu+CleesTK3ipKdoCbtqNKHAS5A/n2etzT6Er9pUHBEpPdS7elvwBwh1C3wxOvMdyDm97tZvoX5ENkpAC/ztiVYlzOOo3Zu+IjJkvSRI/RASNZSJ5I0NlDznSNqmrFpw4hU0bLBV0/MfTP5BHALIdLleM6I9PFFwm58nLXJyFYh7FH5F0IduBf67bcg5rLLI5fwyJOdz0QgnW5R9lJUtgZ2RDkmFo+5xvgsgyNifHnSsIylQEApOWrJ3ABSgzLaNebkS4f84Nn+jgGIfc+OpaFJVVPFy1SJzTIExcvJCQ3uwmSSi5bN3p+07Yydln0apdcpPdkCZJuao6DwkoYXP9DxtGCHJBUl7HRKB3U0aXFymbmOn1kwwf5bgLbNWeMDgM4BUHyOun8Jo0yZgYONEPE3DbDpyDJyH27KO7VhI/z4CkZveuypw2UjwfpjE2y4potwuiHEDe6h0h5Sa8x5gtv3U45IxasMcuWAkmxPjqZbaXk/8LQw9Yd3VJ56SBKlHuc4URcJIz1KzUF+uPrI+U4b8eO9AOKVfLkTwJtmSGT/wAzYn+2VE95IfXqT5ts7anzTAsjtfbto3gLEt0bKIxXxqedXGzUQeuY2MibE0K+pHvYTl3biETkzSEgYoKtyhiAzcgFHEJFmGSvPdvArSotrMRSXgWlqGaWiBUcQax0Q90aLcabrpP25AYI00KAMi3izChUwXUZ0MUTve19a2TGMnoZa5OUvGZnxlIYJ+ogKPjbfRDtcS0dCBOF74wOnGb30sM41SPIN4Kj8YNiv1RD9CwesU4p63AZFnOXBtIe+KZpYPN3H/Az1DbRAbN3t/mMUlFUGMc732SljVrdyUDTQtrbeT5F8I6qJ9Ta2QaT2B8CyKnmZ1NorRpbmqpqxBo6o1HHsx8jqhDNiGUM5gfQn7tU7xOpGK4LLGHkI6vGgihkhLrWGrzJ61cHfZd1gRNUX9b7m8b9bdir38eI/5UCXqCUKnkHkyuvjxLjcvbyJLX6X4dYTZ9nJz28NzAtxcrqVhHRX4s0fVBoKt2vo67n9511kwrqs1jeroH2inukO+H/C9ek6bYTKVKn8Pg3M8+RIDqKhYd0qeZYSrTn4XZbh0WuEKrsRJjGlKvRwpip3l8/2KGiwRwg/6hmckrrqIVKWsjXaBR4IEpNHShgl+C5nIHCuj3FMQ12JD0g5U00I+5O0RkkifvhQ8oVMsbSaSVPNfvOQmpSMU1ddXwiVgdmVE6HIErCSDvpyXKDUEUVVpy5epx6gOP/aWBnuUvsYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 954,
+   "completion_tokens": 300,
+   "total_tokens": 1254,
+   "cost": 0.009816,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009816,
+    "upstream_inference_prompt_cost": 0.003816,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 240,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.914
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Adding a single-storey classroom extension to a primary school\", \"project\": \"School in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678588-Y1USBR1bpf4G9qskMoa8",
+  "object": "chat.completion",
+  "created": 1790678588,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "Adding a classroom extension is building work under reg 3. It is not a Schedule 3 self-certification item and not exempt under Schedule 2. A school is a non-domestic building to which the Regulatory Reform (Fire Safety) Order 2005 applies. Under reg 12(3), a building notice cannot be used, so a full plans application is required.\n\n```json\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.93, \"building_notice_or_full_plans\": 0.05, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.01}}\n```",
+     "refusal": null,
+     "reasoning": "Since the school is a non-domestic building, the Fire Safety Order will apply to it once complete, and Reg 12(3) blocks using a building notice in that case—so full plans are required instead.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since the school is a non-domestic building, the Fire Safety Order will apply to it once complete, and Reg 12(3) blocks using a building notice in that case—so full plans are required instead.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSugYKEAgSGAI4AUIIdGhpbmtpbmcSDM+XmfRv2TgAk6ElSBoM+zw/HSDJYAQmlPHqIjBDPxneUa3brj6ogPRVKN4q6eGxGtAypMz/oVRpUQjSVUrSi7g0uyORTDhzpPUM1QMq1wUhCZ0M228GcL3dkAeVnPeFXtlynyjYR8Ubuq+SR/LBtQy2y8uF3tTcYSi/uYjgSA+U7G2YZDFJDJGXR0y+QTKzjnBLw3gZuBW+2kQnofMCaQMYAr0iV1BnYxMUmDMrVQD1UmKutAaWwOEBBoDzvu1GALFyeumXhIPLs9wR6NwLAoF6UO7r81qbCuxjZ+hD0zhOSbA458hCR6+fSyv/e0qZmB3ZKm/czZo25rJttbkRdnl3Gtlk0tCSEBGsLdL2EIBMS1DueTjKGKzDeLZy6Vc9n+PK2/K2Sr3faRdFN1Uz4rKSnHSIHEt0xZGnvIC35FrSUdlXQ313ZuwfCYzZi7wnAhdy66852YjwAf7UcO6JhFybJqswc2KuBS2tkXIQhD6zYCP0udEGC25NmKzIMGguo5lcGGpvlKlwPBgyWToUz832OnV9J6EFaP8iDL9ZX54KKuhAh2XYLo7Xo+ozqVQek5VfJEC0YMf9l53I3lFJ4+HzD7IgGZwImDZLIkS/4MwUJG9We1VrNFNU0im7Ev/5TbM6NBy7wgqvNv+1SX+qVsE9L+Bb+hzrs6jKx3ZCMvpkAg5qRwEDD+9GliJNeC+wOn5lQBYW3jru/JR8qsT7SOPmIB0yWBmc8iRc137wvZfwvJkL0Cw903lUtLOh1ovLsF5G8H7DiidmXustF+CV7Ds6lcXa0JIMGyE/nWhyv89daA3IAAuc1uIxIrUmBiUvoNbsWmGtc4iWIYAuEtw+y5EOadvNukJ20Elu+pnkV6yho0j9JVhERlY0DlQ8flUvlGgVBHpq6mVrIjtmxSDvzSIBaZnZo2FvB0fMgoXcUIzptznReKYtkeuHA/qxbgqsUw53oh+53K3JOKtqYZ2LMxlfteEzNOndLhK44qMlIDhLDg6Kdd9ohwJBiQDY2zovhZIBEi41fVSj9Q2uCE7E0kwpjGJGJu0tQmM84M6k64/Zll900o+9GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 464,
+   "completion_tokens": 296,
+   "total_tokens": 760,
+   "cost": 0.007776,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007776,
+    "upstream_inference_prompt_cost": 0.001856,
+    "upstream_inference_completions_cost": 0.00592
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 96,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.954
+}

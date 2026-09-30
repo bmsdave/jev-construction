@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Extension to a factory",
+   "project": "Factory in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c2": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c3": {
+     "ref": "Sch 1 M2",
+     "document": "BR2010",
+     "text": "Access to extensions to buildings other than dwellings: M2. Suitable independent access shall be provided to the extension where reasonably practicable. | Requirement M2 does not apply where suitable access to the extension is provided through the building that is extended."
+    },
+    "c4": {
+     "ref": "para 10.10",
+     "document": "ADL1-2021",
+     "text": "10.10 As an alternative approach to paragraphs 10.7 or 10.9, the Standard Assessment Procedure may be used to show that the dwelling primary energy rate, the dwelling emission rate and the dwelling fabric energy efficiency rate for the dwelling and proposed extension do not exceed those for the dwelling plus a notional extension. The notional extension should be the same size and shape as the proposed extension and comply with paragraph 10.7. The openings in the notional extension should conform with paragraph 10.7d, with the door area set as equal to the door area of the proposed extension and the remainder of the openings being classified as windows. NOTE: Where the performance of elements of the existing dwelling is unknown, data in the Standard Assessment Procedure Appendix S should be used to estimate the performance. Building Regulations 2010 R23(2), L1(a)"
+    },
+    "c5": {
+     "ref": "reg 9(1)",
+     "document": "BR2010",
+     "text": "(1) Subject to paragraphs (2) , (3) and (4) and regulation 21(1), these Regulations do not apply to— (a) the erection of any building or extension of a kind described in Schedule 2; or (b) the carrying out of any work to or in connection with such a building or extension, if after the carrying out of that work it is still a building or extension of a kind described in that Schedule."
+    },
+    "c6": {
+     "ref": "Sch 1 M3",
+     "document": "BR2010",
+     "text": "Sanitary conveniences in extensions to buildings other than dwellings: M3. If sanitary conveniences are provided in any building that is to be extended, reasonable provision shall be made within the extension for sanitary conveniences | Requirement M3 does not apply where there is reasonable provision for sanitary conveniences elsewhere in the building, such that people occupied in, or otherwise having occasion to enter the extension, can gain access to and use those sanitary conveniences."
+    },
+    "c7": {
+     "ref": "para 0.7",
+     "document": "ADF1-2021",
+     "text": "0.7 New extensions to historic and traditional dwellings should comply with all ventilation standards in this approved document unless there is a need to match the external appearance or character of the extension to that of the host building."
+    },
+    "c8": {
+     "ref": "para 0.11",
+     "document": "ADL1-2021",
+     "text": "0.11 New extensions to historic and traditional dwellings should comply fully with the energy efficiency standards in this approved document unless there is a need to match the external appearance or character of the extension to that of the host building. The work should comply with standards in this approved document to the extent that it is reasonably practicable."
+    },
+    "c9": {
+     "ref": "para 0.14",
+     "document": "ADL1-2021",
+     "text": "0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See"
+    },
+    "c10": {
+     "ref": "para 0.15",
+     "document": "ADL1-2021",
+     "text": "0.15 Where a dwelling is extended by adding a carport that is open on at least two sides, a covered yard, a covered walkway or a covered driveway, the work is exempt from the energy efficiency requirements if both of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. Live/work units"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.54
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.2
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.17
+   }
+  },
+  "usage": {
+   "input_tokens": 2467,
+   "output_tokens": 175,
+   "cost": 0.000103614
+  },
+  "id": "gen-dec-1790677215-dW2fzABJUgCHPnvDITh2",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.311
+}

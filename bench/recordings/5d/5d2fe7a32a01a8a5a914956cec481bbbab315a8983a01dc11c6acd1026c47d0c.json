@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cedar fence (allowance)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(h)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (h) replacing an external door (where the door together with its frame has not more than 50% of its internal face area glazed);\"}, {\"ref\": \"Sch 4 para 1(f)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (f) in relation to an existing fixed building service, which is not a fixed internal or external lighting system— (i) replacing any part which is not a combustion appliance, (ii) adding an output device, or (iii) adding a control device,where testing and adjustment of the work is not possible or would not affect the use by the fixed building service of no more fuel and power than is reasonable in the circumstances;\"}, {\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677599-zQ1T33zkIeHBQgKwMSGe",
+  "object": "chat.completion",
+  "created": 1790677599,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "A garden fence is not a \"building\", so erecting one is not \"building work\" under reg 3. No Building Regulations notice is needed. Planning rules on fence height may still apply, but that is a separate regime.\n\n```json\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.96, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.02, \"full_plans_required\": 0.01}}\n```",
+     "refusal": null,
+     "reasoning": "A cedar fence isn't a building, so it doesn't fall under building work in reg 3 — this would be not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A cedar fence isn't a building, so it doesn't fall under building work in reg 3 — this would be not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+gQKEAgSGAI4AUIIdGhpbmtpbmcSDPwzrsEayc05bgnHcxoMuGbrtW6MkMH3883EIjDE+sBSWkx7hrrtjcI4LgI7X7JL0B3vQwGmMiQyuHeufiS5wWe9SeUeMXklBTAXZtcqlwSpT8H0N+5khg6k2jTxl9A7iSO8BiPT7XDO8Dej/2+YfQXy8DnQskdiPW7SzbY+zZ7JxuWcqbfyy/Z62GJxCLmNIaxAzF2IPy3Y+bKYennoo7UW2cQPLS6Wnm/gCn2j2E2n5iWcmi6dt9A5jseAPCJ2WxsExzBcFX3jEivOSjSsJ5CJPr+I8Z0eePE5kNmgU70cvXOui/ii6VjF3/1d9I4LhqxxfHtvSJKzcE/itwrbIF6WeLPsT5QUCSFzKR0NrqjwyemEl9WWxEXKVtigKPiDqq8/mbwySKJFL04vVQ7EGU57UkJ1UF9ku7Oj7RcBZyCE42L1Lwz8Pz1IVLM49QelL/UySM4BPQxKTgV7qbHDQn8wM0q4cgUaosknyNcbMN8LrI26lP43x4MBhCZz0jAi5cBINqOqQlM0LwS+zhGfWkGcRrAFQZoKUsLIx1sPcV+gBE+MFxDQlgm80hwte68U1pkJluB5BY/dOKKCuRSI86PVLYDiEX0Hb1xzbYLgWhxTlrNxz62au05GOSiuCNYiS9XW4e0VGNQuQVH61dCrnna13TEwz6fRY2LEbARB7OGI/U8/D1KCnNEIBaygjU4kI1tp/kIY6WtyKXFo7yPwmny6DNXRSN4zFzPKOe9xf7KfPVRi6wwGijrs7j7oLV/n8zwIFCl2XHXTNnY5IO522SAxIiJNegt279pUp+rcLCoKy/TYg2UCGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1071,
+   "completion_tokens": 187,
+   "total_tokens": 1258,
+   "cost": 0.008024,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008024,
+    "upstream_inference_prompt_cost": 0.004284,
+    "upstream_inference_completions_cost": 0.00374
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 36,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 4.556
+}

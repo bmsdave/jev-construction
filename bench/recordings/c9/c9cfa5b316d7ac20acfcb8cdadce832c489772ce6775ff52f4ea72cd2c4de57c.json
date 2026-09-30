@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Extension warm flat roof (opaque)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"reg 2(3)\", \"document\": \"BR2010\", \"text\": \"(3) In these Regulations “thermal element” means a wall, floor or roof (but does not include windows, doors, roof windows or roof-lights) which separates a thermally conditioned part of the building (“the conditioned space”) from— (a) the external environment (including the ground); or (b) in the case of floors and walls, another part of the building which is— (i) unconditioned; (ii) an extension falling within class 7 of Schedule 2; or (iii) where this paragraph applies, conditioned to a different temperature,and includes all parts of the element between the surface bounding the conditioned space and the external environment or other part of the building as the case may be.\"}, {\"ref\": \"para 10.7\", \"document\": \"ADL1-2021\", \"text\": \"10.7 When a dwelling is extended, elements should satisfy all of the following. a. New thermal elements should meet the standards in Table 4.2 and paragraph 4.7. b. Replacement thermal elements should meet the standards in Table 4.2 and paragraph 4.8. c. New windows, roof windows, rooflights and doors should meet the standards in Table 4.2. d. The total area of windows, roof windows, rooflights and doors in extensions should not exceed the sum of the following. i. 25% of the floor area of the extension. ii. The total area of any windows and doors which no longer exist or are no longer exposed due to the extension. e. Existing fabric elements that will become thermal elements should meet the limiting standards in Table 4.3 by following the guidance in paragraphs 11.2 to 11.4.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677280-gMnJZDyl4p8aenvL0knu",
+  "object": "chat.completion",
+  "created": 1790677280,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "This work needs a **building notice or a full plans application** (reg 12(2)).\n\n- **It is building work.** The warm flat roof is a new thermal element forming part of a new single-storey rear extension to a dwelling. Erecting an extension is building work under reg",
+     "refusal": null,
+     "reasoning": "This is a warm flat roof on a single-storey rear extension, which counts as new building work rather than a roof covering replacement, so it isn't covered by Schedule 3 self-certification — it needs a building notice or full plans submission, assuming it's not over a sewer or on a private street.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a warm flat roof on a single-storey rear extension, which counts as new building work rather than a roof covering replacement, so it isn't covered by Schedule 3 self-certification — it needs a building notice or full plans submission, assuming it's not over a sewer or on a private street.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrgkKEAgSGAI4AUIIdGhpbmtpbmcSDEcqOBtAr8c4qu9ejRoM2MMSR445oKOgzmstIjDC8P0MJywKEUXTsKbEp+dIcEjsEOrujx0oLNqFXFdhq2vvR2jVOj7Lsn5KK6nY01IqywiEWrOGIz3LTBC+QAVyQcgs5+b1n2uXlNLj3OYVOj+nQslEGxMPp9uSJDam3kvNNP792bQLyOqGIXmR4iZllxnDSwWDqB8yf+tbm0LeBpWsF4IN5N9oMF7EEw1u870iZubl0VrtMdCey4zmrlHKwHbssgWyBp4EaDcxTQmneAGCayaicW3R5NZBfDeSrzXHxLPhfZYFrUo0JnGG6u1Ph3RrdIycWEbVcpgu5twUfylELIZajhkSQGxhyjtCAXPyUks8bb4m7EuKQbhScED0SWiOpOMVMr1mpqCKnQV7fGVIpkSHe91hI0PXDjDikCjQ92N2nZKL/hqHxLyWfPTSA9JXZReTTn4TN4twE2NR2yguqfUc1oxdH97xphdH3C+DOC3YGhAAnhKztoXuAgApOqh5IlYWZn+9laHdZmtd17Idt6dCo9t186TkWmtM+Wwx3YG/QF0J7bnYoMlEwJFLBkxrjjf90ggQbwPpZDauhABK0iGwMkCrNs3oY5Fb6RfUFlNTqzRI5VcZDUGZedFGacd/blwbGookNaM9MnkDuxe23h2gNuWCR4JoWjzFyO5/3FuHwBgpcyadvuet0YRe+1tBTBTFieSr0oq+JLMPHZcWxE4FB1aETtkzN4Aj8DykFtBkaYcXIWK3TNaoASZQv+OpxGJc/t/L/FKNu1a3pb4eCM0Jn5sfVThCy4yn3jUFObrLKDTMTDl22Vw8Bb2Llm0+aLDZ90lExxy6iCyZ4bvGWma2isGE1/CLvH1nkaNPIpU+AsDHvu794EKvCAJgGyb4IJ6TLEVvoHMwmSQZksRs8USvRV8i71D/vIj5eD4pz1KkuM89o2Z/sr+pNeKHMHNNnBrUcGZyhvLnC+4F4CNYBJOTHIcNf7U81Qq3PfpIQKAuxIL4A1jf8zn/eIzzHZgrDJH13JlZgJocA20i0dqfyw48L/3/yzqpoSOnm4OjqLAG+ibPA/Ld5m0Sa4RIH0UH3pFDCmZxzY4cNf+E3KrKUqIzZYM5qam3jQz+q4UXnanbjZFzzFtt/B/fCsUQOzZR6o0QRNjzZiEetKp1MT/oOoA/G1B7qOvTY8vd1NfJbEpZBDqYjk9f0VT0mxp9wEXBSfFvMYuinDFAg07LFSD6H/llLPwAZgUZqLywk3HGflBgeorrwcmP+OkbfVDwln597YXXJFDZAGvkz9RPvimpo6SWQhwYfj+M/cctX+ypIBtV/OEuhcwQb67Q9gHB6k5WY0qNtANzr7uLM2M84DMRPdh9gzae7tYbd5WPwK37OHpfkAgyAaEI2uT9dcGSX8eMm5nTVLUNUhFaRgWg1QQms69YMiJMNMz4mEljA6+vqKbYi827hmTNPSuhjrBlXo0itLUJpBzfVRiHAInfYgD5G3T3JBBWWN7C4GDI3hs17Z1LPDgR/j9Y2y3p5azhwFm6qXu+pC+lxmguwRqx/aZmuH1YWaNwa2xIKkwqGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1234,
+   "completion_tokens": 300,
+   "total_tokens": 1534,
+   "cost": 0.010936,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010936,
+    "upstream_inference_prompt_cost": 0.004936,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 218,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.934
+}

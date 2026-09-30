@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Drinking-water filter\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Water treatment. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 1 G1\", \"document\": \"BR2010\", \"text\": \"Cold water supply: G1.—(1) There must be a suitable installation for the provision of—(a) wholesome water to any place where drinking water is drawn off;(b) wholesome water or softened wholesome water to any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(c) wholesome water or softened wholesome water to any washbasin, bidet, fixed bath and shower in a bathroom;(d) wholesome water to any sink provided in any area where food is prepared. (2) There must be a suitable installation for the provision of water of suitable quality to any sanitary convenience fitted with a flushing device.\"}, {\"ref\": \"reg 9(2)\", \"document\": \"BR2010\", \"text\": \"(2) The requirements of paragraphs G1 and G3(2) and (3) of Schedule 1 apply— (a) to any greenhouse which receives a cold or hot water supply from a source shared with or located inside a dwelling; and (b) to— (i) any small detached building falling within class 6 in Schedule 2; and (ii) any extension of a building falling within class 7 in Schedule 2,which in either case receives a cold or hot water supply from a source shared with or located inside any building other than a building or extension of a kind described in Schedule 2.\"}, {\"ref\": \"Sch 1 G3\", \"document\": \"BR2010\", \"text\": \"Hot water supply and systems: G3.—(1) There must be a suitable installation for the provision of heated wholesome water or heated softened water to—(a) any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(b) any washbasin, bidet, fixed bath and shower in a bathroom; and(c) any sink provided in any area where food is prepared. (2) A hot water system, including any cistern or other vessel that supplies water to or receives expansion water from a hot water system, must be designed, constructed and installed so as to resist the effects of temperature and pressure that may occur either in normal use or in the event of such malfunctions as may reasonably be anticipated, and must be adequately supported.(3) A hot water system that has a hot water storage vessel must incorporate precautions to—(a) prevent the temperature of the water stored in the vessel at any time exceeding 100°C;(b) ensure that any discharge from safety devices is safely conveyed to where it is visible but will not cause a danger to persons in or about the building.(4) The hot water supply to any fixed bath must be so designed and installed as to incorporate measures to ensure that the temperature of the water than can be delivered to that bath does not exceed 48°C. | Requirement G3(3) does not apply to a system which heats or stores water for the purposes only of an industrial process.Requirement G3(4) applies only when a dwelling is—(a) erected; or (b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b).\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677580-uNuYITUdDOaS75yypCU7",
+  "object": "chat.completion",
+  "created": 1790677580,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether installing a standalone drinking-water filter counts as building work under the regulations, and whether it falls under Schedule 4's exemptions for work on a cold water supply system.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether installing a standalone drinking-water filter counts as building work under the regulations, and whether it falls under Schedule 4's exemptions for work on a cold water supply system.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0goKEAgSGAI4AUIIdGhpbmtpbmcSDPKRsI0cvnG71aXiRhoMYyw0qq/+tmyMfWihIjC55nXDVhWa6MBUFo/dcIG4MTxWtyO0G+M9QuGGHz76BeHXU3MdiLgkcqANOBHkjcAq7wmAxBIho8SK+VoTyWZTK48f1Mf36SYCqTbPK2aE/1GXmQKSSkk6RkS4PD+8X14LdP2Z4opaPv/cJEW01GIzsSH0SKNLWPPjdmCoIEd4IhUnlV9NTLVi+G6kV4U/Gg+LdUJLy/0wkO72cqMXjhaYIyzU16lB2eKWQpJeY5TzaoQNcIv5Zqo4zACF0CFVnjhLG6dW00HGT/4VZSJ95JK4Me9aMRNaocz5Ooa2pxT77jyW1vM0Dwff3FVouBaFClTtbhCxYCOFppaT0QhvaafyD4fE2UkTYJCYSZmZ2fBidbKK6Op6xq4aQeUmaw3TnmnKlTxGZ4CEz2ld2s/ibqO2rfPEJEKYccMyiI49MYmPBtal4xM2OWSZO+SCtwZKrYhqLR5n+kOahCNpDmXXURZD917RbzWM8r8KcK6hrEArqcdKlhbGwJHIHSGw5gfgNzmA3xo0Yn6ky59rA+BR4CtHxLPN/6Qm/AP8hA+vZinNBKSk4k4z+LQVOVN53oDd34kI2/dOQvBOdyGP8JVjlh1cDNuGCk2W69LNWTyGtf+6/o4Qset+lkkAS4BEPMCJL4WYvodPqE5/ecy3M6HQZNxLww1pjXMvHt3+GcsgeLKx2RrjfSCiB7kEHWaZK1+5zIYN/ILlslNqMtDReAYLCYnQCEQ1nH/ZXszUzdfOaDIorkC3O/SYj5dEf16Lrer9hw2hUDGQ01VF6EWAbz+VCpqss3lPEhsrUd6JGdI3B2RigkL/jlyowKP2N39I/z1IIcj3+TQtMvSNqoww87vvrxlUgw+lsB4PDvHB+dpoegqSkJuWGLddCCcXssYbDP73rpgjmLjZuKXKxx9M6jFK+EVbiydDG1ggCE0owZ4kFOIqPwegr9uz3ZovrkSqfQ6DirH5ltoq96jdevV3fKHvNXZgXvbr3xxmA/dparo2o/nZb9+DR6pP+TA6pL3umBx6KReTUosjlUQX7hCWjnp3ubFM6Jj6tTP+lkjJd3O6aEqLCD9l0FF/R+1cUqBWWV/yq3KTPeNMgv0L5zpmMMWrWGQr+SZzlfFRtKXhXvQqrs/Vh43ubistE3cVFGbsNMVtgtGDfMEJazJ+F3ZH1hszXUQAWPJaJGzM9hLmulDp5rltmg5/cmTf6RysedJkSf67cglvBXxP4mwlB8G+tIQOkfFIVA8nHJOU5ZEeA49H9GlbSoiYimlLhp1lchX2wJrBUMa1CI+eyM1D2nRs2E8BtkWPhHxJI6Ebe3drpdnq/w8xwbSurgY+KU3N6z2+uQck7juBQR7SFe7mEMdl6K5+vdQGB2w69ENnaoEtcJ0iEfUPt/G4ge/VBAOa+CKacFlYfmxbPS4ZerwbJbUNu5GyyRcVG+4WnGlUpm9sXW88/0776DALpWnM/9abWGeS67WSMWN1JEcGc/Fb9FgzahpP/TiBncQetycqoddGaQmosYtjGsCZa3hoPVemBAP77srf7vE5cHHyP29KGGkUrPIxi6IMhE0ZOwgQrsVMfzkyasSU9vn8rSSh3ldMFfcQGtvVbUOwzrMLn3DGGKeh2aA6z0TWMB0RX2XYeWVtTRQ1/1bVEHH7JAw1dHZUs4czHmMenr379WcLFhHz7iJtOBTpZfdeTCrvThtTImbhhWeNOvsAorak2o1ZW8TzqfrpcnX4PsGqsE/F+C030f0RuLGamSPaqIgYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1477,
+   "completion_tokens": 300,
+   "total_tokens": 1777,
+   "cost": 0.011908,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011908,
+    "upstream_inference_prompt_cost": 0.005908,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.36
+}

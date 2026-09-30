@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Converting the ground-floor shop and upper flat of a building into three flats",
+   "project": "Mixed-use building in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "reg 5(b)",
+     "document": "BR2010",
+     "text": "For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (b) the building contains a flat, where previously it did not;"
+    },
+    {
+     "ref": "para 11.5",
+     "document": "ADL1-2021",
+     "text": "11.5 A material change of use, in relation to dwellings, is when a building satisfies any of the following: a. is used as a dwelling, where previously it was not b. contains a flat, where previously it did not c. contains a greater or lesser number of dwellings than it did, having previously contained at least one dwelling."
+    },
+    {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "full_plans_required": 0.05,
+     "building_notice_or_full_plans": 0.85,
+     "not_notifiable": 0.01,
+     "competent_person_scheme": 0.09
+    },
+    "confidence": 0.8
+   }
+  },
+  "usage": {
+   "input_tokens": 983,
+   "output_tokens": 65,
+   "cost": 4.1286e-05
+  },
+  "id": "gen-dec-1790676097-9hjTEMlTvDDYdPIiu0B9",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.315
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New accessible toilet and ramp inside a community hall\", \"project\": \"Community hall in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 2(2)\", \"document\": \"BR2010\", \"text\": \"(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted.\"}, {\"ref\": \"Sch 1 K1\", \"document\": \"BR2010\", \"text\": \"Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677701-XijMpS4HjVJEW1psDJNW",
+  "object": "chat.completion",
+  "created": 1790677701,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A community hall is non-domestic premises used by the public, so the **Regulatory Reform (Fire Safety) Order 2005 applies to it**. That makes **full plans required** under reg 12(3).\n\n- **It is building work.** Putting in a new internal ramp and a new accessible WC changes the building in ways covered by Parts K (ramps), M (access) and G/H (sanitation and drainage). That makes it a material alteration plus new sanitary provision, not a minor exempt job.\n",
+     "refusal": null,
+     "reasoning": "A community hall counts as non-domestic premises under the Fire Safety Order, and adding a ramp plus an accessible toilet counts as building work under material alteration and drainage provisions. Since the Order applies to this workplace-type building, full plans under regulation 12(3) would be required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A community hall counts as non-domestic premises under the Fire Safety Order, and adding a ramp plus an accessible toilet counts as building work under material alteration and drainage provisions. Since the Order applies to this workplace-type building, full plans under regulation 12(3) would be required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSqgcKEAgSGAI4AUIIdGhpbmtpbmcSDBvw09ECRzA4bctO+BoMvNmbQ0l2sOt4/OpIIjDJhCRXEG+yPZHGG5mf6x1f6duFeHUF4T+IIGag0epU+bQsGbJZrUuvdLhIwgtXVocqxwYMIqAHynWxdSnTTnWlZuYSzm7oxxBsvCFJnTcXd9thwdk2oKGH63rqW8Pqv+9HkWwm6CPr8Ij9AB8s3PuLqhv0G2rA4GHndDkJ6F3LI0p+c7+NodE1DrtLnN1jFjlopBQedoy72yzMGy+MoDB4u1kLB7dBgiRFhChdA1fgSaoRwITbVEa3XArTFeFh46h65dElWs4UKnEG9ah1DwfkRfF8+KTEI6T+fMAdNa7KH2yNCRoyDsyktaqDI0xH65xziGpDxijFhkv9XxqQD9x1Q4V6ggzNLmT/bESk85McEgb7egZUtJ17x4fMov74PyHLMKT++U+jEg0zSshdW2Pt79aRxbLCCLoRJKZzfhz8rMNHdUxIgC5FT5UMwtnLGkRnSpExcUVySbfhGdL2Hpvf6LvRuuuVFVgYr3AnL73TtHCDHW0q4vYASallsfxSpoJvTzO47UCRWHwhoHZUzXtbFepVc0RBvXXqvTV3u18Zml9Nnixs51mFoTcD5JelhERVTsJxHEBcszfJKu/hvJy79xfLJwZwU8ZfyyWTgG52CFmBppeX+e5/Fix4kar8LZT/JsgYat21H+LX9cL/ENN83hFe7JKq7SAwEEYUVDRDbX/wtNsV9Yljx1Z9BhLUExlUFnRVJ5ptztw9MO8D/VKyaNVSLjfV9wf6ivgpExJs2cCKwRp45a5SJ0bj1lWrWziHvuaO5Dj01wVi7yCc72V4f+TiYrR86ZcLp3nVN3plIwhCJ6VeQ9ISOSYbIYwCTQa61/x0S5BAqnmL8BDRn3q+XZENrextsHbIxvM/p9wh51vGMFbow8cdmhcdCDEGfwczh6Mggu+SeJ7YRtZV5RdmUjRDcbYj32CGasSSTo9kAAbr97GTn6rVyRG1vMbG/QJNccxdLJDmqAOnV40U7g4CdmHJIZJKri2gWB+spv2eYJzf4lPoiEsujZ0TnBVYnW1FDwe5HEfbhObs6KXx+7nyC6O/esw0wtKBvW1JBk+i5+AfFucrWPvLIs03PrExumMS1N8wR4nFtiEj5Os6sWRa6bbtS7V8olbnnb+hT91HoTTiDQgu8yeX/pVZjcjKCocobRsVQzcJTCT47f1JCCwYf9EqIioJsteKCxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 900,
+   "completion_tokens": 300,
+   "total_tokens": 1200,
+   "cost": 0.0096,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0096,
+    "upstream_inference_prompt_cost": 0.0036,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 141,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.144
+}

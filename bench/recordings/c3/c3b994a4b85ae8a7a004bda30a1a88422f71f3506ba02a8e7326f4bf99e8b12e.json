@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install an unvented hot water cylinder (over 15 litres)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 4\", \"document\": \"BR2010\", \"text\": \"4. Installation of a heating or hot water system, or its associated controls. | A person, or an employee of a person, who is a member of a class of persons approved in accordance with regulation 3 of the Gas Safety (Installation and Use) Regulations 1998, or a person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 4 para 1(l)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (l) providing a hot water storage system that has a storage vessel with a capacity not exceeding 15 litres, where any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6)(b);\"}, {\"ref\": \"Sch 1 G3\", \"document\": \"BR2010\", \"text\": \"Hot water supply and systems: G3.—(1) There must be a suitable installation for the provision of heated wholesome water or heated softened water to—(a) any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(b) any washbasin, bidet, fixed bath and shower in a bathroom; and(c) any sink provided in any area where food is prepared. (2) A hot water system, including any cistern or other vessel that supplies water to or receives expansion water from a hot water system, must be designed, constructed and installed so as to resist the effects of temperature and pressure that may occur either in normal use or in the event of such malfunctions as may reasonably be anticipated, and must be adequately supported.(3) A hot water system that has a hot water storage vessel must incorporate precautions to—(a) prevent the temperature of the water stored in the vessel at any time exceeding 100°C;(b) ensure that any discharge from safety devices is safely conveyed to where it is visible but will not cause a danger to persons in or about the building.(4) The hot water supply to any fixed bath must be so designed and installed as to incorporate measures to ensure that the temperature of the water than can be delivered to that bath does not exceed 48°C. | Requirement G3(3) does not apply to a system which heats or stores water for the purposes only of an industrial process.Requirement G3(4) applies only when a dwelling is—(a) erected; or (b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b).\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677898-B86LHF7LH2NMYHFOv7xJ",
+  "object": "chat.completion",
+  "created": 1790677898,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.88, \"building_notice_or_full_plans\": 0.08, \"not_notifiable\": 0.03, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "An unvented hot water cylinder over 15 litres in a house falls under notifiable work per Sch 3 para 4, and this is typically handled through a competent person scheme like APHC or NAPIT rather than building control notification. Since it's a single dwelling, the FSO doesn't apply, and sewer connections aren't relevant here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "An unvented hot water cylinder over 15 litres in a house falls under notifiable work per Sch 3 para 4, and this is typically handled through a competent person scheme like APHC or NAPIT rather than building control notification. Since it's a single dwelling, the FSO doesn't apply, and sewer connections aren't relevant here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSyQYKEAgSGAI4AUIIdGhpbmtpbmcSDIn+3RmQiOfAhPuaWRoMhnWfDJ2m8npFdw7lIjDtT6PQCYdgH5zGoy05RftCsxhxPc1cWKSwXyEqBHihlnZJbgaPdptabT5jZeO5b8Mq5gUErE3mJ0tTtN/93xSocct0/CTX3l9nTA/zshtvGH/eXEWuf8DDVJ0MdR3v+BmxtTDEYw8M0dbBgislFXNadCvi+rHiUIPGVN9kLG4erw7Bz2hCbRYgazxzckoTWRKCyXtDno0iATUVirZ2RRHviRB34Rdnqv+7UuxoezsyzwxYUbQjaWmt1t6xri68O4RotAWyVaf1SADqDMGPhRH8R6SEfVwuS6xCv6XPqmkaPZPpSOWbfUJcIVvMTCkdlzQtedNYkTq8KHE6PC3lXYusbjJaKb8v5aIe9lQ+wLtjyrVBY5bc9jK9xr3qUMHdbqJQP0RLyi1dbXVdGITSYDBhmuxLC2vAXPb9GYSIR60+bqhkZWHJylSveY94gSCXPFVAbQ/AouV3mGoBAU2zoJ1r2CKACU+/u9UwjeREF9bAjmmIDPX3Cx/fayfZFABf1fKX/RNRN1N9BKTegWAyu2JsKEA5W1VlAbP8Ajp+m8REdjC7IdpwS0BztlGht89jieybYz0SCN0TOJ/SiDbo6xaRSQFJTfuyO1L4oyLeQtP8I0ogzjlEBUgdYYHzSPFWD2aKi+yDDXKYqKdysPcjuGiuPjEGHHM/ITiYfjgpuKQOwbWtnT3zdDaRIUdoRDBay0f2duRloq7YtxoquzqGE30BZx8Pthf9PMR3m7z7exS/FbwB8M5CBsg2M7BYGZXJbqtKlqt37S0KeJuBWcfpMH9y0U0N7BTua7fECPQ2QpxW4o4pmpbMZglfPZUSgxpC4xp9ttMMJCFYyDi3lhaxYcV+bErPN74q6/kZs8OBO4s5RlhaC6RjMR4O8z+VVK2ATbQgzIck/B+C7bXH7fw4sNh/gkXd47fhayCqOwQe1qPihpCTGvybm6vifCK6Vxy/jYmCafI327QWi2a/eFOBMIPX20+A56wPuKjNuC0640K6t9b/6PNc6vgVitn9cDQyMNQkvqmNnOrRJelPS+8NjEfcWqg1e+s9pCEgGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1374,
+   "completion_tokens": 203,
+   "total_tokens": 1577,
+   "cost": 0.009556,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009556,
+    "upstream_inference_prompt_cost": 0.005496,
+    "upstream_inference_completions_cost": 0.00406
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 120,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.394
+}

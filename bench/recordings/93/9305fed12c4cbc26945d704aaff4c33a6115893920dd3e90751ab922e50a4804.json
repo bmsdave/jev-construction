@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Heat-pump primary trench\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Groundworks. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678137-Ps0uVLVSt0zgRTwEJyBY",
+  "object": "chat.completion",
+  "created": 1790678137,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The trench on its own is most likely **not notifiable**.\n\n- **Not building work on its own:** digging a trench in the garden of a dwelling is not \"building work\" under regulation ",
+     "refusal": null,
+     "reasoning": "I'm thinking about the heat-pump trench for ground source pipes — installing the heat pump itself counts as a controlled service under Part L but can be self-certified through a competent person scheme, while the trench excavation itself and the ground loop pipework don't seem to fall under building work or Schedule 4 at all.\n\nSo on its own, the trench isn't notifiable — I'd classify it as not_notifiable, though the heat pump installation might use a CPS route.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about the heat-pump trench for ground source pipes — installing the heat pump itself counts as a controlled service under Part L but can be self-certified through a competent person scheme, while the trench excavation itself and the ground loop pipework don't seem to fall under building work or Schedule 4 at all.\n\nSo on its own, the trench isn't notifiable — I'd classify it as not_notifiable, though the heat pump installation might use a CPS route.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7gkKEAgSGAI4AUIIdGhpbmtpbmcSDCUxVyjPY2p5BznnaxoMmTuSXEuuegihVrBmIjDEappCvhdN0eKX46zBC7b0/OHKOhCZCZaFwhcLxGqH1mslEeFExm4AAxWaf5e/VPUqiwn6a5HdoM6LYRKYm6J91ncHwyNjF+f9Yu+6ve5Uf/ovjX2Il4oIkN719PvpqTnR84yCVApwrjDdCqC7mfW7RVNmCDxvBKf82ze/OySU5xRthjNCUnJ+gnVQ9nm7zQ0J8kq4xZNZpbCfQaASWsg4H8k33iZJ9JhK2uwVEDMW4Ta0lgx7ebmwMDyoteUgzGfaZxwD7qAyQFicR/DCk34tFc4eYpxXsAByqTi09PhlBn1oG2iTLH5VfOAJQ29kP+GQzcKwRzuTugivLTGy+ifz8lU80L/rsD9LUYTvSQtvm8S4qmTsae03a+GWgFtVCF2vodB9pp6Q5AQZkWzupbT64aFr9ss5ea+MZhYCvHSfkbaE28k4O2ACTZR2LhvTkNJpxXemwfMCL9Ck9ivD70LynFjImHMc96yduAOFslkPMIM+G22d067rQZ3BeZVQqKhWumqJbkfP6j4P+/8aVwLtQDXl1LQuULMWrLiV2tvZCEfKtht1I7gYjek/q7cw8aUcQKzAwmVbxFTOQ4PnB6s9bjNIe0cerb9W2PA1loD1HI9b/2hRh1+9uBttR1vHLsUYxXWT/mWXfae513A8WhA1yBFqWyn8+PwVL56lQ6SsWwcAX3V78yIjYgUOkpiPpIfjYbQmD5uEUX4Q1FRZRWLYw4i80mnVg4WuiL4XZ1/g/4hBXNqAZPZYY5ciNGpedoGMin4w48o2Enh2V5FrtEhcwBN3ydME16JSgig7m0H8Ks9WS5VT4f5Sf6Y1m/F1WV5OQHYi2B/JhnU+EeeMO0Bosp4zkj9UkDjcqpGAoMT1XllS/s/RTtIX9ro4shGWuI5vbpXEWZ5SH5yDx/xiCMCWjH7267X/lt9auHff7Ne5oTQ++dLInROAIwcN6pK3lCDiPwbzPsppllgIq7tRBOrlhjmlIEGpb92/uQSOXtKaMqJPGjkDCVq3lECGBgWvkyqcBqi/UVl31tO7wH1ADN1jOr9jaiJzac2uJNzDD+DhPjCB2u1Ig4KD/KzeZwYdNDfQJrvD4fXgzsuINb5P8EMaTr24mutXzuB/CXLvKPktDj8xHMHtvxJEZM8MetgCYJb90eLpOOQbRK5R/KhOuhcbydquWPzI4CeDF7+XAE4s+qHtxDKFlVsM47VcuIqMrS7dtY+Zv7yx3S911vtjTwQE5B9eYqaQ4MglEnAi7yZAe2mkJw/XrCrwHMlLm+1TUUaJFOniogoCspS3olnep0OYQW1E1Z5T8ZlxRMNghpDGgmGbBDtorBjFrpSs2HiiOmSagnJWTGh0WfHBnnn6o/EA3/QfDX7JTxVFWasgl3vdySU0sZuAf9IKe01wh3boNUyMWOaQXWN484bEB0SsaKV3CnOjQ7mOjB+MYy/umTAfeKhUjXE03TnkDJ/Xcsbp3QZyIfJ3YU9lq44Un8uugO7F3xo9U8/kjzPL7mNO26YqxAIbKgHKkwJQqQXLwo3eKiIeX1BnCk6LDdN6dSnSxRtjzSg2Jf/1nlsYutfoh2FKjBjtBy0Fx9Cd+qsJ7ifPuIuCuF68J9Thr/4P1RJiFhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 495,
+   "completion_tokens": 300,
+   "total_tokens": 795,
+   "cost": 0.00798,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00798,
+    "upstream_inference_prompt_cost": 0.00198,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 244,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 11.661
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Kitchen sink\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Sanitaryware. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678381-mvL18rRSdZfRCzHRGth2",
+  "object": "chat.completion",
+  "created": 1790678381,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether replacing a sink or sanitary fixture falls under permitted development without planning permission, thinking through the Building Regulations Schedule provisions about installations not involving drainage work.\n\nBut this new kitchen sink is part of a rear extension build, not a standalone replacement, so it's a new installation that would need a plumbing competent person under Schedule 3, and likely involves connecting to new drainage runs.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether replacing a sink or sanitary fixture falls under permitted development without planning permission, thinking through the Building Regulations Schedule provisions about installations not involving drainage work.\n\nBut this new kitchen sink is part of a rear extension build, not a standalone replacement, so it's a new installation that would need a plumbing competent person under Schedule 3, and likely involves connecting to new drainage runs.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3woKEAgSGAI4AUIIdGhpbmtpbmcSDP82lMFfm87UcKNSxBoM8pn/Gb69Gn8k47i7IjCvyt4HEJm4hqeVUd8otlR/yuON+mYHMX5S1xoSILHeJnGmka3jPLytrPz8s4O09WAq/AmfiMbbeC0+S+3IysE1/NX02fyolOaUD6d9pnjoEwkP6kpcYugyc3vBpejD4QNJKytieyGpF8+PlLm8km30c8/0OPaRLB/w3Eqr5kom/GZmpX1NCxmCZbfqt32i6hC1lrfIbdj/IM0PFSo2s9ihW+nXTim5RBY+eC8pcw5hWJLwfdXcnvPmHU7gI3TE02absK1TIMufINq2Vjt3fnHNcPbqYyz6YR9q7q7DbigmI1DPYlrqH5iUUKTYkCEKsJD1xkZ01nGAT13acCdULQUdwYje8YEMwTu2mNOVjdUBsSX/OjqCU6eJaHbE0ch/Q0UYD2KierGKWx/5ctlglRwWUyuFD5MxWmuwTUQnsXjfomp/rOUDq8yqpp9CsHPZm9gaJkkNfmpXfDCB6HgVrLGZrNLQDLZstVQyQSCIm4z/retM6fb6nTHpF0K6hkMLOWXhRSETLKL0WWA6+jI9XgTNKbKNbgvjW8N8EyBv/MprMB+aim2Xs/6ERXYuCK4EY9/S+40bSf2wDikuSyumt9uJljuNAqmfJyA9HkyJkT69O1EeayUrzD65KeU+5JWXIgmcc8vkeCPyrhlbpHB1wyVIoLY3JihxDq2y0O2LND6qg3OXiCa6koBBlnJl0jb54a0lhYZckyUWHxkaPSTUvZ02QvhB9bHFqP7QIYT95QdSDi3DstxBOISUnxEFq0+Aw64eA5REHOyKBSwQA9aqMo87G3tvZrNsqFx+NGsa/QSXMZzhiqPkNRbpm/cGeGfABGunP5uPRPlNz6ub4OEbsWO9vR9xM7rMKyRDmHD3bGZYFwWrs/VMJtCLSAwUCaKBxZTWVGdN/y4Dbuzvwkwv4HJ/YsYq9FWkpsUboSyUv5mjgOUK8kwZKnzcVPJ21sOmncPnaGhIMrpTNlzHmyqPjPLv4gEJ1Gk2HqsBcKKHDfHtqbbEi6bl9i0BMxlH2mxDtco+LqjzLmrYy00fMGgI2vYbRYeYWqZKLPEDoC9p7WSLvgBwRNB4STCCU2hQxuRO5Nq3ilsb0bxmMHEkVlz8xv6tDTwUbSkG4NUyMKwCxBZwrcYfTiyaocXuTgsDeq82cViiiCFzNOoaeEerkFH+z+MUkukXkna/7TVKAhYDSEsWN0ATLNTOqzW8Q9F3GuUDkKYLong6LYN3SZgrvqA2n4G+wVhsl2qKchP+GoM1CEDTlxpWBYphYnz5uMuVFOvecGctss6+8/jTTbfu1YPFxsPnA1qsGwZqt5oxoJeC9kisb9XbGvOl2EGyAXiXDCwU/8Gypr92JfC1l1RRCgb150dV6mDzPRXa8vKfUpH0sgWN3S8aLRtbkH+vpvmAuxEe887tHJUsMyVlFd5q0QN6QgBkyYH1RvBgTi6BFVGNKe5xwc3q00BHt5nOg5gtIIHRB7N4o9MvxvxBbppDZx9f2N0UffHVWQlJYFl8fdZBJSAu/5Xvp1HhRrqn7BTZ9hpDaBn2//OHwoO47Edy4P6MGOivgE1VygDvuJpLeWbEgy7kYCXZzzPWH9n/5AJo3k772ERkOAR6cRdOFuf6XUd7FRA6obQRl6ut2OV996JxWFTU/bYpOgt1LIxTBuOdHwgqHA9MggEurS9VFQTdkde9KH/yNiwu2ZprfueygOQwsTjiXbxfA/xg2cRjJYRye3iTxAGb+Zbm6V2Cm/U8Yo2G5SW1DP4DfWzMljru9LJJcSVQGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 495,
+   "completion_tokens": 300,
+   "total_tokens": 795,
+   "cost": 0.00798,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00798,
+    "upstream_inference_prompt_cost": 0.00198,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.533
+}

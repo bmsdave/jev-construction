@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New internal stair between two floors of a café\", \"project\": \"Café in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(i)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (i) in existing buildings other than dwellings, providing fixed internal lighting where no more than 100m2 of the floor area of the building is to be served by the lighting;\"}, {\"ref\": \"Sch 1 K1\", \"document\": \"BR2010\", \"text\": \"Stairs, ladders and ramps: K1. Stairs, ladders and ramps shall be so designed, constructed and installed as to be safe for people moving between different levels in or about the building. | Requirement K1 applies only to stairs, ladders and ramps which form part of the building.\"}, {\"ref\": \"Sch 1 K2\", \"document\": \"BR2010\", \"text\": \"Protection from falling: K2. (a) Any stairs, ramps, floors and balconies and any roof to which people have access, and(b) any light well, basement area or similar sunken area connected to a building,shall be provided with barriers where it is necessary to protect people in or about the building from falling. | Requirement K2(a) applies only to stairs and ramps which form part of the building.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677694-UhmCgvJaoIG7OthJXfBt",
+  "object": "chat.completion",
+  "created": 1790677694,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.88, \"building_notice_or_full_plans\": 0.09, \"competent_person_sche",
+     "refusal": null,
+     "reasoning": "Since this café counts as a workplace under the Fire Safety Order, installing a new internal stair is a material alteration affecting escape routes and structure, which triggers the full plans requirement under Regulation 12(3).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this café counts as a workplace under the Fire Safety Order, installing a new internal stair is a material alteration affecting escape routes and structure, which triggers the full plans requirement under Regulation 12(3).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStQoKEAgSGAI4AUIIdGhpbmtpbmcSDBO0uWKrrF8iPljdzhoM2ZNsrvMTpJ7G7f0ZIjBxVeNK833hG82KIpe4goW+hBX2I1YGOzEFFGuNZBhie8gsF/h0z7w1gisgn1+4zMIq0gl1fribwvvPwM3I57voKWQu3mH7l3Dmtc41nGYt4I4ywLEXs4efqt1H+Y5SFAX3GxNA5UN0FWLx2FyGd2WVI6DDE5DpcYD+PNqT3d1CWIFuUuNtKPZ1bXZ1e8w1HtRcsijKSasO7WTqPzP5Wpd8WaCaRGO456iSwPyF7Fjn3xqAUPRJ3eNrxWwBi0mrbqlWAxNySMNfHPLqwB+ddbfCDH6grFNM+Jcx8G3IfeJYcGoef9SsLQxtTeWSqWHwHq8Mo6h2lHhzJDnGrpBJCalNYY/B+Rw6fncIJGwWE8n/jLkBAAnDx1e4F2dtFGxAPPsI+YuGxXZCWaKk6bZ5CdN/7F7d5xqYV7TLL97brC9rQZPIS1RFrwXn8IGjGe9WNvyaoZYbF2mOWEL/vjTHCjQ85CFWaxpDlOz5kqe10SsQGgMZV9B7GjeI7VkdWT3ZQypLbzmU2SRsOzERC3OAurVDGwMRIlIO3bCmkTRXr4r3yBgk0mEZAAuF/8BsDzd0NgDCLdWPeW+IayXtaP8c7XUzKgg7r35WPEyXjDWYyRnk3N6rbN8gk2m2HNRVV7Ieo94khJ8vCV5kGPdSybzH3ND1eLfVTuERXU2HzN3UuFEfxAxxDZ+NlIYAkOMMQTfSu3DS5vi9j3c49TJZ3NkkhPNim+1FLQQT4TCqfuCruvKxEEiNz44JaEnRjer5nKvttVXu2FqK8OclThuZLoJofrRoRKdwHlTtJrvXrPdldonsA7LYoEcToPut0JS0f+5Q1hy1vDqEx0vvdAGQuj623ff6K6QITqJdLQh/RC/3iVjwCD2b7yJ7n1/Yktl1hq/Znm9UigDRGgJzXbXva8/A7QaA4nBOBesdb9fJWUgZuuvy066c/yltJxqjZ7uvAeMkPuF9vTQhAMcyY+WY5vn2bfAHfu5sFqrvpjd35SuEUclcKkMCgLNNQySFW2X18d4ibSa1zHE9Z9c0u+wFjGfDpwoqT6dQWE2b16fR6ZeXatFO+j2/eNBscnwc9KW9tUv00saQMZOZsem250i5j5/eZzBJcc+lU3Ubl5SNIjmGsLDKFZkIb8VXhSfCX+dS998Q0rASTBnMxy9ZRRmSHz+nmmoKsp3PvKvGPt9vl8vku/9BB9phRMuUN1IcbflBLKipNXaUOW3koPWKtybYBqrcrp8NqjVcKRqqQCx2veAkwOH7pfRNsOCkkv+po82T0Dp9TPeCs/zE70HiNWQ3N/JubBitjNraLYj0JMp0wWtVJ+rdgciwgYTdPPEEquYsz/G66cnCag56p4iZOWdVCVEg28BX+KJwhECql/1c8vTq0/9K2wQHlHf2UDWHZQmlpEF0rp7q86VkCudHnVmHh4aB4eUPCBGlYQkwhOcGuO13byK8UtzhifJzyxRaW0uLX60+vmfN/RlLSIGYQKBgfHCftDu6wulu5BWNqnZMJHSdk+jTFsGbBG7RlUQRzC4U4HY2IM2d6o/QQocOjGNcBnNK3sDc6NcLUVZ1tiersRDin2YoqF5Omq+vUn4GdbQO8OocYiFZCtoQ9BJg44zEXREDCQ3V6trYjURLqRYLQpJaUPHUZe5oRrfqUr8CNzsIzuawheq0TwP/OYXmKngJcWcfHxwhE2xkk6+ngMFxpitbzuh/i7LA8P9BGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 830,
+   "completion_tokens": 300,
+   "total_tokens": 1130,
+   "cost": 0.00932,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00932,
+    "upstream_inference_prompt_cost": 0.00332,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 242,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.669
+}

@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Work to a workplace or premises where the Fire Safety Order applies",
+   "project": "Commercial premises in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "reg 12(3)",
+     "document": "BR2010",
+     "text": "(3) A person intending to carry out building work in relation to a building to which the Regulatory Reform (Fire Safety) Order 2005 applies, or will apply after the completion of the building work, shall give an application for building control approval with full plans."
+    },
+    "c2": {
+     "ref": "Sch 1 J6",
+     "document": "BR2010",
+     "text": "Protection of liquid fuel storage systems: J6. Liquid fuel storage systems and the pipes connecting them to combustion appliances shall be so constructed and separated from buildings and the boundary of the premises as to reduce to a reasonable level the risk of the fuel igniting in the event of fire in adjacent buildings or premises. | Requirement J6 applies only to—(a) fixed oil storage tanks with capacities greater than 90 litres and connecting pipes; and (b) fixed liquefied petroleum gas storage installations with capacities greater than 150 litres and connecting pipes,which are located outside the building and which serve fixed combustion appliances (including incinerators) in the building."
+    },
+    "c3": {
+     "ref": "para 0.5",
+     "document": "ADB1-2019",
+     "text": "0.5 Guidance on matters that refer to more than one section of this document can be found in the following appendices. Appendix A: Key terms Appendix B: Performance of materials, products and structures Appendix C: Fire doorsets Appendix D: Methods of measurement Appendix E: Sprinklers Appendix F: Standards referred to Appendix G: Documents referred to Management of premises"
+    },
+    "c4": {
+     "ref": "para 0.9",
+     "document": "ADB1-2019",
+     "text": "0.9 The fire safety requirements of the Building Regulations will probably be satisfied by following the relevant guidance in this approved document. However, approved documents provide guidance for some common building situations, and there may be alternative methods of complying with the Building Regulation requirements. If alternative methods are adopted, the overall level of safety should not be lower than the approved document provides. It is the responsibility of those undertaking the work to demonstrate compliance. If other standards or guidance documents are adopted, the relevant fire safety recommendations in those publications should be followed in their entirety. However, in some circumstances it may be necessary to use one publication to supplement another. Care must be taken when using supplementary guidance to ensure that an integrated approach is used in any one building. Guidance documents intended specifically for assessing fire safety in existing buildings often include less onerous provisions than those for new buildings and are therefore unlikely to be appropriate for building work that is controlled by the Building Regulations. Buildings for industrial and commercial activities that present a special fire hazard, e.g. those that sell fuels, may require additional fire precautions to those in this approved document. Buildings of special architectural or historic interest"
+    },
+    "c5": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    },
+    "c6": {
+     "ref": "para 0.6",
+     "document": "ADB1-2019",
+     "text": "0.6 The Building Regulations do not impose any requirements on the management of a building, but do assume that it will be properly managed. This includes, for example, keeping protected escape routes virtually ‘fire sterile’. Appropriate fire safety design considers the way in which a building will be managed. Any reliance on an unrealistic or unsustainable management regime cannot be considered to have met the requirements of the regulations. Once the building is in use, the management regime should be maintained and a suitable risk assessment undertaken for any variation in that regime. Failure to take proper management responsibility may result in the prosecution of an employer, building owner or occupier under legislation such as the Regulatory Reform (Fire Safety) Order 2005. Property protection"
+    },
+    "c7": {
+     "ref": "para 0.12",
+     "document": "ADB1-2019",
+     "text": "0.12 Fire safety engineering might provide an alternative approach to fire safety. Fire safety engineering may be the only practical way to achieve a satisfactory standard of fire safety in some complex buildings and in buildings that contain different uses. Fire safety engineering may also be suitable for solving a specific problem with a design that otherwise follows the provisions in this document."
+    },
+    "c8": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c9": {
+     "ref": "para 0.10",
+     "document": "ADB1-2019",
+     "text": "0.10 Where Part B applies to existing buildings, particularly buildings of special architectural or historic interest for which the guidance in this document might prove too restrictive, some variation of the provisions in this document may be appropriate. In such cases, it is appropriate to assess the hazard and risk in the particular case and consider a range of fire safety features in that context. Sheltered housing"
+    },
+    "c10": {
+     "ref": "para 0.2",
+     "document": "ADP2013",
+     "text": "0.2 Other parts of the Building Regulations contain requirements that affect electrical installations. Examples include, but are not limited to, the following: a. Part A (Structure): depth of chases in walls, and size of holes and notches in floor and roof joists b. Part B (Fire safety): fire safety of certain electrical installations; provision of fire alarm and fire detection systems; fire resistance of service penetrations through floors, walls and ceilings c. Part C (Site preparation and resistance to contaminants and moisture): resistance of service penetrations to rainwater and contaminants such as radon d. Part E (Resistance to the passage of sound): soundproofing of service penetrations e. Part F (Ventilation): dwelling ventilation rates f. Part L (Conservation of fuel and power): energy efficient lighting g. Part M (Access to and use of buildings): height of socket-outlets and switches. Building Regulations 2010 Design and installation Requirement P1: Design and installation This approved document deals with the following requirement from Part P of Schedule 1 to the Building Regulations 2010. Requirements Requirement Limits on application Design and installation P1. Reasonable provision shall be made in the design and installation of electrical installations in order to protect persons operating, maintaining or altering the installations from fire or injury. . The requirements of this part apply only to electrical installations that are intended to operate at low …"
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.85
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.07
+   }
+  },
+  "usage": {
+   "input_tokens": 2896,
+   "output_tokens": 175,
+   "cost": 0.000121632
+  },
+  "id": "gen-dec-1790677227-Rx6JLbslu9avtQbVHZQ5",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.264
+}

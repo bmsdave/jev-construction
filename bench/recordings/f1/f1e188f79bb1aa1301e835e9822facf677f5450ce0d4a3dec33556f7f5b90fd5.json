@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Fit a built-in oven to the existing cooker circuit (no new circuit)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677865-A6gk2A8jiRh2b0PcxeRH",
+  "object": "chat.completion",
+  "created": 1790677865,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Fitting a built-in oven to the existing cooker circuit comes within the scope of Part P. It is not notifiable, for these reasons:\n\n- **Regulation 12(6A):** Part P work only needs a building notice or a full plans application if it involves a new circuit, a replacement consumer unit, or an addition or alteration to circuits in a special location.\n- **Approved Document P, paragraph 2.8(a):** installing a built-in cooker is not notifiable unless a new cooker circuit is needed.\n- **Special locations:** a kitchen is not one; these are only bath or shower zones and rooms with a swimming pool or sauna heater.\n\nThe work must",
+     "refusal": null,
+     "reasoning": "A built-in oven wired onto an existing cooker circuit counts as electrical work under Part P, but it isn't notifiable since kitchens aren't special locations under 12(6A). So this falls under not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A built-in oven wired onto an existing cooker circuit counts as electrical work under Part P, but it isn't notifiable since kitchens aren't special locations under 12(6A). So this falls under not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQYKEAgSGAI4AUIIdGhpbmtpbmcSDKxHYxH945Wd5V+HDhoMu8xrVKQwu8QZ3YcvIjA6rH2V9ZjmByQ8m6Suswra+z/4uCGfP+QNL2tGHAWBbHGVXIIh1/lbtiipQ24EX+cqrgV+K//S+SWnzhKxRZ+t9vlI6f7y4SiEoKtnJRTNK0w6Ikf/JBWe6T+TClc7E1ctC4iiFTWRFe8J8+uz/cbKAvDY50I8DYAZoW2/7QoX8HWtt0sHwSTMcyAffEjG1oK4LXfvDSiEM5PoO3aicxhqOuDWQ5nMTK5rI4n1+M8q+wvqENvIccD51busBpknfPVxw72xg5/IL1BmmrlcICtbDl19fTn0oYgEGuyL15J2EeffdfkdGM9ssJV7pjth1kFmtIQfsPr++2TH5UGusmvLsXWZkpAOrf/iNaT62F3PyRko/ylrB470brJ4FpUvd7KL9/CTBPctqlLz8to83eIgmEOGCQIRbZvoXpU66ILBV4ikjZ4h6ozNNLCHWjTS6kQzMuGcR2w+gmCIzq58R2cjz/pjqZvlBt3iYglF7D1SvOKXTAl2YHo/uTJI2idQr+NQg2Insz1wdBe8PbmRWsBY1hVVIEGRQIvNuOPbbgDqYIGU888Z4ACTOWfdjYR2Ty0fZTP88jsjnxOWcEnv2asP8l6w6XtYuVo8Hx07BZrGAy/Fz3Bqu2LpYuT57E9jPnYgfRQAt1kyNAX/gMnNH83FUxfBodhFNbl7ucvbk1er7PN1bCaEcNP1vvmaV4bJ174/iibNZufwKVtFqKUybhXa+t3uVvguk3Zv56zresnNUdCS0cJs1BJmo8fE40Y87zwPvbha8UDfRlu8XDn1ylNrYHWheUG3KcxZncyfVg+NF2suPcQcgzLS+dW/YC5AKypjXI4Gn8TrveNmN/CZXBXjv+xwtqAcwlRkyA15QIuh0GnuYBZEIrWgo8DrB6F8bDjtG39Q1E85vMqncHMvnxDaYt0LoAObS2S3+jnB0fTETHFuI6yiPpIm3wdf3d2QS2XBZ51xnBLAWupxeKQS5QZ7nBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1275,
+   "completion_tokens": 300,
+   "total_tokens": 1575,
+   "cost": 0.0111,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0111,
+    "upstream_inference_prompt_cost": 0.0051,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 86,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.158
+}

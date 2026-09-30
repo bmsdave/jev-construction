@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office panel heater\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677584-zPGqx9ibp9tDKWqr5S1z",
+  "object": "chat.completion",
+  "created": 1790677584,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through whether a small garden office under 15m² without sleeping accommodation is exempt from Building Regulations under Schedule 2 Class VI, and checking how Regulation 9's exemption provisions interact with Part P electrical safety requirements for outbuildings.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether a small garden office under 15m² without sleeping accommodation is exempt from Building Regulations under Schedule 2 Class VI, and checking how Regulation 9's exemption provisions interact with Part P electrical safety requirements for outbuildings.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSzQoKEAgSGAI4AUIIdGhpbmtpbmcSDLMJtahySaKrnCXJpxoM6mPIiCuUBHpL/VbhIjBH3MQYJuaHN3TGysPdUXWhe0jehYqtbhpK57rZyb4+P9DJ8OhvB2i4G7+mX2952bwq6glMLYTfRDeB1mjFNE28+5XJBf+mlisxx6jCav59iB4Z2eWYXRxvX++Am4KNWAJ9HRqigfWCHAw5947OrqK+VsUSzxOoa6WCAUkMfgablk6yOw0PCPlBa6GgvEdICG54AyxNoIDEdiT41jLpROc1BUYUbA4JntqL1hWdU++f0pC8biEsQBYjFeSyxuuLJVHfniQkbLpsbL/XvAwpxaPK0CNAJ3lmQN9s3ynYxw4nLo7oo0N4buOyXMw94MZGRJHtNjj3Kl18E205Had6lzOFKZMjlElGUcFDR+of8rmbe38o+5wtuLjTgj3HtKF2rUOjcCbn+cmaH2eaMywIisofsULLUmPuL3WxoWVL4uj2CEtG37MyY+Frck4U7+jm8RBatrKOG67mL5Da9pRR8j25YbTfep1ObWhi5CNX+/OvyMfbYmtcD0U29OcODkuiydB5HlnGM7JCS433Ncp3ZtZtBk6Ia7fNG1V2A9KCN3cTeKbyuVh7/6ZXLPH+b+/2v3KfMbUJMyz6WvG6bExhkSRFn9oe0uBmsLD2VQ5smt82/fXDqajVdPa07QJ3kQQTFXey5azIuX1QkIWEvq4XSWc6bgept+hRiWQMIK+yM9cB/Ogf5e1j83UQCZj4mPLbxLdcHsdnGHqmeVjZFeXNsNVyRdUjhJw1Pe0J3FG6FH5CYO5U7yJZNnTh2a72fWSu7EyJhsYE0fkRkk0f2CbovF/z6dkwqqOgmeey9mC09tyQOmcPzoV+uxJcFW4oiz6Xm+/ac8//3MuFOUTCdtHFmC8tDyNz7WcGCyG8lDG/QUcZ+ZMtNFFRDZo+GRAWURKzlUJcTsiMtsy1N9GBVMmkxH7vptdzdwCES2vqUofjNAWDIsUxCkPKMieuGmj/M96YpgxBar5sTpjiveAO/Itx+B4mWYeg9WR5JHJfUNhpiq792j6aqTlZWNmXOWLtzfSYCuKhDqy6cwgSSAisfJNSbXpp7alHvjrWKRPtfsb1WX8G4BKpbB9WlVDk0+/UZfkVzjDQjzqwHmgUfx5PS189QZIwy/4CVPHLxX6Zc2y3piAISresFMFasf9DWv8GyiW+IKl2zocrDVo1kBh0QEwQH2DT/eORgKZDfSnEIcEWK6szwZqciJx8AlL4o4bZ7RQUzhRzhgb58OJw/oVeto2j+u0VnGlBt4J6TND+8TFs8PZiPW57orA333gThaBFcGmDwvGBe81x15UbdOz/YaQq3KMbIP4uBk36CcGC9TyDSEH0HC8v1pIT/Q4TTUXOhj2SFjx8lEyqblfJHY3bth0gJCkPojC4xmPWW+9Fh29Guj9lLa5KkruAieCTLay1myKvlPe/Fi7O6SQPIboPQhrVV0zQ6VL+YMejDtDLP/zmeOhCVh41WDg2f4eUuD9G0q7T5u1c65KYZub+6GoKnQ5/5AUAbCkGi+iaT9qvzunyrf/l7DIH64IdetgYnDEknyX0w4xCtxpjbiKmYNUEKJF5qeqgBDuVyeQUtHiD2iySnlaYQATa8EOqoeBJiXHoHXU6ll7TQgnyNi3bB6N898mQ0zKBu+Bl6xIrfTSoEwpUgRRMVjO8I3Degpvn1AVkNWQHqr9bp9Jg6o9lp4tGh5HsTqSb9DoeZ4dokPa5ZFxCJxmmPEoYzrjMuakCkK46bAuBjSgEwQd13hzfcO1k24NnGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 985,
+   "completion_tokens": 300,
+   "total_tokens": 1285,
+   "cost": 0.00994,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00994,
+    "upstream_inference_prompt_cost": 0.00394,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.043
+}

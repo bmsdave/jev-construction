@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"UFH wired thermostats\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678290-x3P3bSTwHXZiooMXijZu",
+  "object": "chat.completion",
+  "created": 1790678290,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking through whether wiring thermostats for underfloor heating counts as notifiable electrical work — since it's typically an addition to an existing circuit outside a special location, it likely falls under Schedule 4 as non-notifiable, unless the heating is installed in a bathroom or similar special location.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through whether wiring thermostats for underfloor heating counts as notifiable electrical work — since it's typically an addition to an existing circuit outside a special location, it likely falls under Schedule 4 as non-notifiable, unless the heating is installed in a bathroom or similar special location.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSqQsKEAgSGAI4AUIIdGhpbmtpbmcSDGEhDM+gnQnwaVKztRoMc0eom+V1AJCity3gIjCupCm74RX1XlkoAE4dDLmZnJhePVKjFoT66KKtbRHPVvDGc3L8Z9RpLJiYcBb/pHwqxgpQUZGdgGus8QoDTIsXdqQVeRlFHH02LuEmeJsRK755G0RyWBezfSKFuvEv7qHL2MLmVVMGcvNAOn8Cty5C6LohiA3b0Nr27sXm5ncwErzCPYYHAYmuvj6rr4PUzdSsDblhMcYv0B5sjlX57OOt4DoPOamz7yQ0EQEsvT3mGRjB8L098JOo+LqBH3CjQ0LVRhKE2j9PlqgnAGPbeagJ6t0wLC9oO590XKKTtYP019peolCBgYyOBwfhRRtF3QfgzUP08FAjhpwEJtqIV2r/+pa0kY40oKq/TLUfm3/TkEynuAuYmRv1YyS/c1Ki6wbRhkRWbx044JJJknOgrhcKBdJAxUVHJy+HP1npr9Q65p7M0xwPK9QHJSmQXKufmeXxgdEhpgTdRfnXonMli4jcy/lmZAEAdOuhdg0jKPiQem+i8Wi3d1879HmwR3iXI+7Ycrtsflkwr9+TsPLAmoO9sAzI7pNVPhELFXVN8Yh5pMhpB05iHRZFZFElqNkScrcINUC01bGOG/Io+ekJC6SrT5riwyQ8SMOXydxlEUFMd3Z/ETk0dDZt3ld4I7AyY/yEO3rNAwVwQVVwqxT/ijoUd3OXoikBUUBCaPkEoV7mmQj1TGeIOgYcvUr+cXIhhFiKx9lGbTCDFmmWdGG6H1KeAWKil5Izk4AI4yk+lH6NL4Sv6N/SQ4PELKC+i0ErbokkXLzvy2ycAOA1dLITsryDpuMwETq6Ju6Cgxu1ZdhVJWdjQF0jvSsuG9Hj6+FCCJ9QEmadpkxw/Hb4ca73O3sW9xM2QSVJsl1P9FxyQxadHlzQR46nsPxiIhNUTKcD4rPzpkkfd/DerJ+dOitZumQG8UHzG79qtdpkOtToqiBTyhDc5c610dndmErY44c5gDN3GQS9QY2OqTVqBVBPqziM8S1HlmMPZuQunZSXs3ELoMjvwfm/xfbHmXov0I9vNu9Ze8d1ppmFQxG9vzXWLsWgfV9NxSU4ivfBOqq6XR8bquL/FZ5RWgzHEdIfN5vUOSp1GxCGX06jr/+ktT5er3YQj37hiZkjXpZYCahtmrMP9JHpp6PzZJU7K9/iiEewZLQTSwyjUboKEaWdZ9IBQnZ2VgYRLs5o5xMKJGEKYFLqK8QurP8mU081Ps237H+uaovmYzgdUe1/v3hHw9VrM3bpHDKwQ/sNplnshhTzEmNolSIrBREOBTTxZwT9FymP+KI39CNzgD9N1tft/jHcC7geo1/GzZTftrYtehsOHx4/0KONCuNu56tRCHTEe0WDuVK9dH83y9rBl+XS/M6bQc42OuCvcWc62ciYx9YGf1Pzw/kE2iZ7EPmFyt+Z6d80w59/G2b5PE2CqwMEl7K9dh8QHU1SHGd49IflOAWu63QJG1Y1t0Y4CKmvex3VXyXHZXF5pDydq2ESn2DkFFiW6zUDvpag2BJWOeiiaJawi73YwuyuY2itdEKwIVUEKEx1bxq2Zb6USaf2D7QqsGq7OoKS0ZCy66u2t/lYa+GGiZU76nfg/pw66ntTLkSuJQbvEJ6HL6T+vVx2aFT/0GsDoACETEy+rES8Y1X0MzJmYxDbANrK0YtEDx0BlOm+kYi8h+B35nWFOfbSljRTxZ2a6e1zM5m1HKhImlTLUWGePepjcZ1tMKwENrIc/TjQC7Rjk8OPqf6AawwqJ6WfEJpKg0zMSu3+OaeBsb28SP+5YB1KAOcQju3Uw9rQevb2uv7HPwejKEerCtC1aa+oFT4LhzbGH1pXH6pvh9J1W+cWjrNYbyuETrvz83Wh+3HmfeHx/k/mS2R/NVxH73sYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 506,
+   "completion_tokens": 300,
+   "total_tokens": 806,
+   "cost": 0.008024,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008024,
+    "upstream_inference_prompt_cost": 0.002024,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.29
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Loft conversion with a rear dormer and a new stair\", \"project\": \"Semi-detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677740-AdqptLofM5e7JQ8lbg3A",
+  "object": "chat.completion",
+  "created": 1790677740,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.9, \"full_plans_required\": 0.05, \"competent_person_scheme\": 0.03, \"not_notifiable\": 0.02}}",
+     "refusal": null,
+     "reasoning": "A loft conversion in a semi-detached house is a structural, material alteration involving fire escape considerations, so it falls outside Schedule 3 exemptions. Since the Fire Safety Order doesn't apply to a single dwelling and there's no indication of private street or sewer issues, this points toward requiring either a building notice or full plans submission.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A loft conversion in a semi-detached house is a structural, material alteration involving fire escape considerations, so it falls outside Schedule 3 exemptions. Since the Fire Safety Order doesn't apply to a single dwelling and there's no indication of private street or sewer issues, this points toward requiring either a building notice or full plans submission.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0AYKEAgSGAI4AUIIdGhpbmtpbmcSDJ2nbG99IAR20V03ZBoM1rl/WJyoIuLpz5haIjBJOwIudsygk66yxkhKM03ML7DCdul6btj53amANnZsJg/QV5pwNd7lTD+T4EIyNcsq7QVWPCQCWsE7WkjsYjezJkvdUqeCwoyoVopNSgBnFuiBZcnTGb6EL8FWm5lCkrCgayOConUz0uzBe0yRpR64DAyfpH0rpv3seRHuIuZcn4KxlRN2VtfBWEuO/3CbZ/UID7gHwMjm1rStypDTczCrp4cz3eoSPX/VDj4LeCM6zuee/dQnHefuN8KFzVM+ykXW3YO0WvIfS0sCdEzM3rdSBS41JWxVEyFxQjTeIEtg5xtrCBWACSJf4a7BUwaTTCjQNzanAuV3Yl0CI9TZlgp5Mm/1yiX0tBH+1YrGSWQbJ5sWb6vpCFf3NMLqqjefohZvv8bWuzYbgQTORcev7Ca5PutNRfNL8mV9httn9mQtefEwCusbLIHEScxoMmcN+fct4xuHoRZclZRKMKAKxKl685e8d/JjgrnNkbLUksA2bBmAS+g5xR2LrL6iZfGHpi+10siRNeaTOrInmBI9udrEHPSu5xM+Uu34arm6PDz0SQCn1Gxk9QjhmKGz8zE8jDVq5sZgQ2+jJhIrAWLv2BoN7DC7RgfOISSr9Xx0m4Cr4wgYPHwANnEpdvvFOrT1GEfqbNhb1JGLH+ezK3zwh5i35cSwPa/gndGMn0/y7yTqSTukTaICWHc1Sm7m3S+BKQhsHHAGt2VaVAxGG7HvGzNIC1Tep2bsxngfStwQ7MYu9DhYgUGvJUwOnuauQjqXBLD6g5PCu2A+gzwN8TX5KL2Y34JIuD9Q5QK1p5T7xl5mxb+rvL6W61Bvjt95S6pV3d0G2nS/MZE98xuykGlkk/XG+FgwwlvXSDVUPULHqDtDCwRjyZwY+GxXJg8O8SOYRhQJt4HcPwP9CFpr+v7xrt9h+96pkyjyhcbn/377RiwNuKW/JJ/pRG25JVGyalvJszhqJrpBKljlwkGb8s8v2OCNRP1PQ6mNfwaoVB3W1zN6hv/sls7Qib89J0LXaXAVxgE2OI1hazS3LnWwLnVnjxro1I3zpMqlb1C6YRiUdF2n/xgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1613,
+   "completion_tokens": 196,
+   "total_tokens": 1809,
+   "cost": 0.010372,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010372,
+    "upstream_inference_prompt_cost": 0.006452,
+    "upstream_inference_completions_cost": 0.00392
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 110,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.393
+}

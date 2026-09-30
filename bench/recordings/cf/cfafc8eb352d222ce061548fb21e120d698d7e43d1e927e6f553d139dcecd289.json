@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Connect an electric gate motor to an existing isolator switch\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"Sch 1 K6\", \"document\": \"BR2010\", \"text\": \"Protection against impact from trapping by doors: K6.—(1) Provision shall be made to prevent any door or gate—(a) which slides or opens upwards, from falling onto any person; and(b) which is powered, from trapping any person.(2) Provision shall be made for powered doors and gates to be opened in the event of a power failure.(3) Provision shall be made to ensure a clear view of the space on either side of a swing door or gate. | Requirement K5(4) does not apply to—(a) dwellings, or(b) any door or gate which is part of a lift.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677869-9bj6pLTzUwPgtvj9rtUB",
+  "object": "chat.completion",
+  "created": 1790677869,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Connecting an electric gate motor to an existing isolator switch is **not notifiable**.\n\n- **In scope of Part P:** The gate is fixed electrical equipment serving a house, so Part P applies (ADP para 2.2 and 2.8).\n- **Not notifiable:** ADP para 2.8(b) says connecting an electric gate or garage door to an existing isolator switch is not notifiable. It only becomes notifiable if a new circuit is run from the consumer unit to the isolator.\n- **Schedule 4 work:** The job involves no",
+     "refusal": null,
+     "reasoning": "Connecting an electric gate to an existing isolator counts as electrical installation work, but it falls under Schedule 4 minor/non-notifiable electrical work rather than notifiable building work, so this classifies as not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Connecting an electric gate to an existing isolator counts as electrical installation work, but it falls under Schedule 4 minor/non-notifiable electrical work rather than notifiable building work, so this classifies as not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9gYKEAgSGAI4AUIIdGhpbmtpbmcSDJ1XP/65rM+C/X/BeRoMuY8vPz3zLb/le1quIjCA0J7HzJXl3HDMIkSC6TmTMZyrctuVwhmhuMyVAXwHwxU8eTVwmLMwOLvev4kE3PkqkwYJtF0fOu7iWUL++2tq1YZsTVyyDyBIbFWUP6MqdzWmwb7VsLKgIcamyr/k6YqfAiTrkpX/udt31q790oqSO6iSDj0n4hWA1bQ+sku9M25ELijUG1cEKREbahj4RgK3YRNAe1cel2Dy0Dmdj1yqjvV3RQXstymggJBgNvRDJMu0zJ4gIKeRitgHfaqc1xmaFYyiv0mwbQU77lFk9ekBVlXKSsyITTnh0fdO/PTJwQitp7veLpqeiYDveS3GOJsnJkJ1KcAodj4aCPsqKw8neINqRxohMuMriUy0n1Vzxy4lYkDzTBpGnDUDm6YtDF/PAqFrHWqhBz0FKsx5kZEdxJ3qLIhCBq2t3VeYX7GEj2Kao95ut2946/ofH4f81YTkokA1+CHodej29QjO+X7hEz2edjtwXH6UY6mHzE3g9eYc+KpSGTTabJkiNAFyXP63eXmhOfi1yju4S07nxnlHxAdFPj3jSHapaEAAL0XC9FrNLc0ZmOHYM8p8SF271L2Ug+Y1Y/x6lR8kusCdVUNuEu78pciLnGMoUBadyiXp+FWAcAm9OBBtIuFkvsqz+VTQyJQnA9kU3T2aXYA2YpdjOrP80sEF0isZY+GmWlpEIxMQ3GPjjpjmMXFI7eFr+Grk9hgIcJAH10zLhah/Zc914di+azQj3Z2U/N/ZrPM12pGyVqv6a/vfgDGnBEaAvD7EctNdhO/U8uIv21F20rGDJAidCnZ0zRlXq8xJHqpxLexKNCEgDd6Sti/HDUJPCAAmmIBsaNuEAM9rIeZAtQrLBgHLIPnzjcEvjTMz9cANkdRbrc8k7IFBd8APK7GW/p5dyDDY4gK2XtOl1N5PxHsctScXGaISJRejmxIDf0Mre/LICueTNZdeUCSTx4fDom12r9QWqD3dgs8rDWpDGysUIgiibXyGNUaWWK4NGsSfKDnnkQMy1V7HZbUUceYLx/H+bbmux0I6GcoLkcmbS2zN1kaUvHbLT6nbqnwtpy6DHfgm0npODEkjDh9mPbKs5I2zgzMejd2JemhRArRaO/PYK+bo40AeGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1157,
+   "completion_tokens": 300,
+   "total_tokens": 1457,
+   "cost": 0.010628,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010628,
+    "upstream_inference_prompt_cost": 0.004628,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 120,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.06
+}

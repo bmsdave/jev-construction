@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install new rooflight in existing pitched roof (cut rafters, trimmers)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"Sch 3 para 16\", \"document\": \"BR2010\", \"text\": \"16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited.\"}, {\"ref\": \"para 10.6\", \"document\": \"ADL1-2021\", \"text\": \"10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677944-UT7JNjb377lFUXv1z46j",
+  "object": "chat.completion",
+  "created": 1790677944,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Cutting rafters and adding trimmers is a material alteration affecting structure (Part A), so it counts as building work. The competent-person scheme in Sch 3 para 10 covers only *replacement* windows and rooflights. Para 16 covers only replacement roof coverings. A new rooflight fits neither, so the default route applies: a building notice or a full plans application. A full plans application is not mandatory, because this is a house that the Fire Safety Order does not cover and nothing indicates private street or H4 issues.\n\n{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"not_notifiable\": 0.03, \"",
+     "refusal": null,
+     "reasoning": "A new rooflight cutting into existing rafters counts as a structural alteration to the roof, not a like-for-like replacement, so the Schedule 3 para 10 exemption doesn't apply here. This means it needs a building notice or full plans application—there's no fire safety order angle since it's a house, and other exemptions like H4 or private street rules don't come into play.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A new rooflight cutting into existing rafters counts as a structural alteration to the roof, not a like-for-like replacement, so the Schedule 3 para 10 exemption doesn't apply here. This means it needs a building notice or full plans application—there's no fire safety order angle since it's a house, and other exemptions like H4 or private street rules don't come into play.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSnQYKEAgSGAI4AUIIdGhpbmtpbmcSDDBTzeFhRgR+ZGmQKxoM/vKmoDiK6+2j6IA+IjD/N4Xq0ZMNhDw3E0LXf+j9ppnnaESQHxMGy04LDQM9v5cNhyUn0NCZ8ElwvNWqTuYqugVhj0u6vZdPSSXNXRZA///aG7UbkgSIU15G4KDhLjiXnJ+Q2UOxi0BDOZuQJsPQ78Vjd/64spIcg1zFXAAgOby548l/WeYOWYxdAV5ivfbsOi4anZiWzt7qgisc19tWafe1g+GBgv2tYfcYckvypNJzzmUggMNdqq7rw99mpRXhl1N924/zpOcRZa/6ZVjCu5MSvAAplA4odMNoIWyn/5HouS4IaR2fP4QObLT2ivmhUOTzaRvfLjzlkv2b7x+Jtvtt1OLY1mBMLgIxJUYStntXwWISS+NidLwptgqPnN2UjsJOLFeHnMRpvbS1UeMLx502SRBHiuQ3J4nFYzosq+xlRgQvbZ6U6X2sKbcR7UevhW5tE/0keF2GHYfQWFU/W+mXsXsREl92M4VyrP/xHXrbfGPgaDT8os8bKrdtbuvI0vr2NSfk9Uw55nXzhSToPeNJCsDMKSr6KvN1V04ilA5fqv1EywPacVkrUB5BLrKkQG4K1Vo3FzNUwporLbE7DsFqyeldB6gff37sAvAsJQooxHN5fw59BgC9MpqMIqnqwP4yNWKqNv8sxpDkmhPXei/Xnqx3XasA0RnK44K1wq8p/R4mcCsrF3ZobqngwvO4QrpZS296g0B5u10GaBNgnPMND8eD7TBWtWxHk2mhYZ1+tlZAx97ph+e6oGdj7aHB21mXLB0sg1VZIVcAUWFUMh1wZwUKhuoUa8CQxUhCa+kdC1aacMvb1uZKX6rZGN7ZtvQrA5CV5KdnfZv7iLSHgcNxiMdS9uAWyKTVO/jmAHZowGvUQN3noaNuNqZhMTfZCGg2MTNJc3FAqjwelqicsFw71m1oC8OlZFVT6dDXxd4DnZHdYI621IWigxjP0ZOE3udWcO+B20XT2n0VT2938248qmuYrkUWMz1Dnl3MkxcBnKraStoXoujMSBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 924,
+   "completion_tokens": 300,
+   "total_tokens": 1224,
+   "cost": 0.009696,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009696,
+    "upstream_inference_prompt_cost": 0.003696,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 95,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.303
+}

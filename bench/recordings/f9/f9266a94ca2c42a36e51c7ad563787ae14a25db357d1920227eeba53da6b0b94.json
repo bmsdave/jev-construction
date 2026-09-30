@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"DW/WM connections\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678405-Eear0J14d8U477Ydjf4z",
+  "object": "chat.completion",
+  "created": 1790678405,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall the exact wording of Schedule 4 of the Building Regulations 2010 regarding exempt work, particularly whether installing a dishwasher or washing machine connection to an existing water supply falls under an exempt category.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall the exact wording of Schedule 4 of the Building Regulations 2010 regarding exempt work, particularly whether installing a dishwasher or washing machine connection to an existing water supply falls under an exempt category.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS2goKEAgSGAI4AUIIdGhpbmtpbmcSDMNL2Ri5hbj85LyvVxoML/f5RftYdy8iIRfLIjDesqk+r1QRp7LgIMfspnUq627NQqLSO1psPySD9XgzQqpNNla2ZWYxtLSFryYOKoQq9wnbFXQr1OSwaNoPZufWkZNvIksVhBowd9cfscNtn+8fe5SaIRqC75KGE/LVE6E4r4HvxBTPeJYP/PGvGLQlvuPxIT2pHWlk0gkXE+60x+H0z/CA4eKGqaN+l747XSuY27MH0EbfZ0d88MU+zq/oQFljM2Od0jX7Z4Uc09sLidYLy6kqISK/PTII/f9qUWr6iM3BceKAljGrWDZfzj4BE9vIFeI4WFByxzYUnt2c0grmXPI0oxHZQUyNcS4RKiEEcBvM2WQGGM6deHbS09qMZaf6KHh78ndt3osK0Ryqe0HwuDpaaogkWDUhAixHBvPCA4mhE/vI819G+5W4XUHrrlMXHu0VOe3Fjf4lGxWlSoy4m4uzcnD21Te8NSvc9JxGp8JUbxuOVAb11OeV8FvkOkSlY8WcjzwOlcnsGjluk6Z5YGwkv1LQDMLL3qU5SO81VW2N7D7lTkQW/gax9GXDLzYcEPosBhcK+/jyevS4ngob9++jijqSTJq8Ny+7yZ74VX4jH3slRdiEbWUr9VcLipWv1EfzKkCaymG00vSa8Rk27lS66IqSlLCef6+3XqEit6kmdkaK8zVdBaOPhS1T0cyBetyNtFXpP6/wLYGrxozF3JXe+GMMXk54mLPOSf6OzvRqebw7ixAGzLGuvbYsdYNIoZw+/Yd1HJc+R4LleMELd+RPDGXz+XEtTdHUrTNdZIvw9b2JUESiAWQZEtbLPaHl83wykuatBO9SE7QQSn+5q5npG5NFZRCoWFO9NCjfPqbGeE4VVVGasygH0Xq7faIlj7H/j2zyBOKozSBU6hXkWy2jBR9K2fpeoSt6C1mXnztq0jHgoMVP7bfnCPreWtCWyDHxYDT6xzKIh2Pxp+0AteBeozf1SB7HIcDr0IXV/H2COkOb2YgIcKrU6mtlEGBWz00hLbr/S/Wa8vclzt87AYHAWcgueMhMmiExcuU7sLS+JY6tDdJ8wbrxkx7bEQuhmWyHmxKbT48RD5+bEh559c0d4jIn+AEgBFozl9V6U2bC0hsD6fqFys3l2Nmglv3S2+cr/SYSSwwZzqE8PhLu93ZAcTfO5hbAi4b5vZAwtdJdFqzkI0ppp1CY3aiUA5jCXU9DxohjG76l4ApmnhfULkd/1u7Txb27Uqael9hPgHxPxZa/TlPJ0xQFFBNt8nKEUEtbvWoiz69ToN1DvelCXpvOvXdNIAwioxHjg/bxWX7PKDWJQuHJqrAVdZp5M02matSuFAKvkvSjCY+ZQTQj4tiba8O011kx8/HqDRbrubPNyb9CNzac2t56/rFWueDZQsRH5lb7RdpAH4MCt8X+TE7Tm1ZuBQ9paPQ70lPLPVZIrKPrkE+MiXa98AxIdtwBX+JCH2LpC0ID90xW5CUox8SezlP5EjzYlmtVanha+iM2fWkKkLi4Esu4T30ncxY7DcJvGo67MSn0QJen6kCo64X62wv7JCF7zLFb+D3VfkhRKC5HqDlcoMaqwO3KWbz02voY8EJNt/mD064AAykI/O+dV/8L3ppjcSD5U3KWiwqn+HdPBvSFA6QsgJJC97+mbU5Dih+uULKPzJ3x7rlv/MWCEFgsJ/tSkDcu7Q4hsdo9xFiPQdG7q/u+dFJYCSZw1rsHuUM2ZkytPfxwXKADtwE9407DbIJFpWW9sedLdm5HwSpEYB6IeoSOKmub44znwbga/Sa5bBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 502,
+   "completion_tokens": 300,
+   "total_tokens": 802,
+   "cost": 0.008008,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008008,
+    "upstream_inference_prompt_cost": 0.002008,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 25.147
+}

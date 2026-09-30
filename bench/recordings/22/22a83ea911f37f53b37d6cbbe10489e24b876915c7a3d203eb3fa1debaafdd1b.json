@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New partitions in an office floor forming a new escape corridor",
+   "project": "Office building in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 1.4",
+     "document": "ADP2013",
+     "text": "1.4 Wall-mounted socket-outlets, switches and consumer units in new dwellings should be easy to reach, in accordance with Part M of the Building Regulations (Access to and use of buildings). NOTE: Approved Document M recommends that in new dwellings only, switches and socketoutlets for lighting and other equipment should be between 450mm and 1200mm from finished floor level. Approved Document M does not recommend a height for new consumer units. However, one way of complying with Part M in new dwellings is to mount consumer units so that the switches are between 1350mm and 1450mm above floor level. At this height, the consumer unit is out of reach of young children yet accessible to other people when standing or sitting. New dwellings formed by a change of use"
+    },
+    "c2": {
+     "ref": "Sch 2 Part 5 para 3",
+     "document": "BR2010",
+     "text": "(3) A building, other than a building containing a dwelling or used as an office or showroom, erected for use on the site of and in connection with a mine or quarry."
+    },
+    "c3": {
+     "ref": "Sch 2 Part 1 para 2",
+     "document": "BR2010",
+     "text": "(2) Any building (other than a building containing a dwelling or a building used for office or canteen accommodation) erected on a site in respect of which a licence under the Nuclear Installations Act 1965 is for the time being in force."
+    },
+    "c4": {
+     "ref": "para 0.11",
+     "document": "ADF1-2021",
+     "text": "0.11 A unit that contains both living accommodation and space for commercial purposes (e.g. for a workshop or office) should be treated as a dwelling if the commercial part can be reverted to domestic use. Building Regulations 2010"
+    },
+    "c5": {
+     "ref": "para 0.17",
+     "document": "ADB1-2019",
+     "text": "0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …"
+    },
+    "c6": {
+     "ref": "para 0.16",
+     "document": "ADB1-2019",
+     "text": "0.16 Where there are multiple main uses that are not ancillary to one another (for example, shops with independent offices above), each use should be assigned to a purpose group in its own right. Where there is doubt as to which purpose group is appropriate, the more onerous guidance should be applied."
+    },
+    "c7": {
+     "ref": "Sch 1 G2",
+     "document": "BR2010",
+     "text": "Water efficiency Water efficiency of new dwellings: G2. Reasonable provision must be made by the installation of fittings and fixed appliances that use water efficiently for the prevention of undue consumption of water. | Requirement G2 applies only when a dwelling is— (a) erected; or(b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b)."
+    },
+    "c8": {
+     "ref": "para 10.5",
+     "document": "ADL1-2021",
+     "text": "10.5 If a window is enlarged or a new one is created, either of the following should be met. a. The area of windows, roof windows, rooflights and doors should not exceed 25% of the total floor area of the dwelling. b. If the area of windows, roof windows, rooflights and doors exceeds 25% of the total floor area of the dwelling, compensating measures should be taken to improve the energy efficiency of the dwelling. Building Regulations 2010 R23(2), L1(a)"
+    },
+    "c9": {
+     "ref": "para 2.3",
+     "document": "ADA2013",
+     "text": "2.3 The following meanings apply to terms throughout this section: Buttressing wall A wall designed and constructed to afford lateral support to another wall perpendicular to it, support being provided from the base to the top of the wall. Cavity width The horizontal distance between the two leaves of a cavity wall. Compartment wall A wall constructed as a compartment wall to meet the requirements of regulation B3(2). Dead load The load due to the weight of all walls, permanent partitions, floors, roofs and finishes including services, and all other permanent construction. Imposed load The load assumed to be produced by the intended occupancy or use, including the weight of movable partitions, distributed, concentrated, impact, inertia and snow loads, but excluding wind loads. Structure"
+    },
+    "c10": {
+     "ref": "para 1.6",
+     "document": "ADP2013",
+     "text": "1.6 Regulation 4(3) states that when building work is complete, the building should be no more unsatisfactory in terms of complying with the applicable parts of Schedule 1 to the Building Regulations than before the building work was started. Therefore, when extending or altering an electrical installation, only the new work must meet current standards. There is no obligation to upgrade the existing installation unless either of the following applies. a. The new work adversely affects the safety of the existing installation. b. The state of the existing installation is such that the new work cannot be operated safely."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.08
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.08
+   }
+  },
+  "usage": {
+   "input_tokens": 2794,
+   "output_tokens": 175,
+   "cost": 0.000117348
+  },
+  "id": "gen-dec-1790676076-HTlsEnQC414KN7zfQSp7",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.237
+}

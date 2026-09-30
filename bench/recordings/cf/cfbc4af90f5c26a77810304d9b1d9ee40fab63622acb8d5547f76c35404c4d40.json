@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Build 20 m2 garden room with bedroom for guests\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 0.13\", \"document\": \"ADL1-2021\", \"text\": \"0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches\"}, {\"ref\": \"Sch 1 E2\", \"document\": \"BR2010\", \"text\": \"Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678011-QFWKgPujbdlfEO9Uk3Fn",
+  "object": "chat.completion",
+  "created": 1790678011,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A 20 m² detached garden room would normally be exempt under Schedule 2, Class VI, which covers small detached buildings up to 30 m² in the curtilage of a house. **That exemption does not apply here because the building includes sleeping accommodation (a guest bedroom).**\n\nBuilding a new outbuilding with a bedroom is building work that Schedules 3 ",
+     "refusal": null,
+     "reasoning": "This 20m2 garden room has a bedroom, so it counts as sleeping accommodation and loses permitted development exemption under Class VI, which requires no sleeping space. That means it needs building regulations approval via a building notice or full plans, so I should check proximity to sewers next.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This 20m2 garden room has a bedroom, so it counts as sleeping accommodation and loses permitted development exemption under Class VI, which requires no sleeping space. That means it needs building regulations approval via a building notice or full plans, so I should check proximity to sewers next.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSiAgKEAgSGAI4AUIIdGhpbmtpbmcSDL8zrJKQ6mIr9jP7FRoMDttRKUPKnQi/LK+OIjB7cmi6lmqnLsAYom5LRxSlNX6x9Fq08IVvbYg6fSyfUkZodJm+u+Am+xuyK7PmzyAqpQf9iilZ9DtIM7Hcpi35rrdm7ZUQ2jrLffoJnUyBUsMqThy00lenNJyoAfojQuQPDfF6tQn8SWXQ4zOvqQ2PQd4zRNYa3LsXOrrD5Aqks26WWDN/L269QjU5FgPg7rIz5AL9J9GuhQS++ctgQdaSN2yFy1/nWwLdX7VXQYvFOOJIIOhVA16bw9arL2fiK8tDeXbxajwp8Kz9Z8T2PFcUKAjKotFBGX7AJYLOoxcctLroo5Nw2bPiKIX9s6fKg7Ceb77YWJuxIwx0wwJ+U841XvaTZ8Eg4UiHDje8yzuOB+0qr/o/VDc/wYp8gQBLO3vGNMK8Wt8jS8S0DSjxAMdgE+Kwi78MP9/yPjwtXrzQIsakTa29MgVUxN2j7DMarfIMIRe89z3jKGjr5BkUDT+hB4Kbw0XD+nKHEDk1q6dZOu4Paxy5GhEkHn3LEUFVA66j1Sdwidmb1nN7PaWmS0QrhIac6tNd4TBX1lJFDDZ7lHJjcD2S0ElIu5wspQQAzmylhVwhwXg8Pjzz3tFapK53nqYv9Yn5ZFyz5MP1u/ucLaIeyyMYSpKCdoqpWvteXBx/mUE/jJkrunkKB1Glr42sEplRwzHx50iVgJNTbrMvNBe5p9p3TJl0SC1N3aJrQRcy2JmUKJSs3tX1k/Txgfbh839lU/mc/H8pJPptZE7bCXTw+HsBE/TNb50XznTbf2u5alDNKtZc/xs9XmZcJ0cU/XhYL0/akIxEmmoBdguNOZPyWB12cmMM4M+jO1ebo47vBiS4YZIFl1adwRqcK4wkhBUUJCoEa5GlctQlDT9T4cz8jWVRQFSdAaA7lccN2iyD00dlhj5nBU4y17b0RVqi6A62PCO7P0kGtDv+RCAnVKS5T76y25vOT0+OevTGLjXM5nvieFn3rBVCJ0r06Gncam+N5PIK3L69pw8bkX9t3od+ulMQYZxrOpE4Rg/hU2iopv/51DdJUxfcI3I3DUf/iQtX3RQuw7HKedWeYfrrhHSkBaBKxZBOAMBb0HyfOx1ZhZK9BNF8/yTVpYqHW01ezE9USkvZVyAjzw8ttKHkqV6POEI7nZ+/WxYX/pndq3V/SW/sbGwiw74YY8QGOORjpvQGqneDCgDeNND3snJCx1Y7iLFFSm9/u7uduGc5RGPkVhKjCURb+1gGdd54t4IvL1iwQ6Th9UA58cgb9hjIzM3g1+jzlJDICGWQBg4YHA0VimiE4Drph8CmHA6FEX35ChZP7XUwehIYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1071,
+   "completion_tokens": 300,
+   "total_tokens": 1371,
+   "cost": 0.010284,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010284,
+    "upstream_inference_prompt_cost": 0.004284,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 183,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.201
+}

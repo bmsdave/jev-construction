@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front permeable surface\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(h)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (h) replacing an external door (where the door together with its frame has not more than 50% of its internal face area glazed);\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"para 11.3\", \"document\": \"ADL1-2021\", \"text\": \"11.3 If a thermal element is renovated and one of the following applies, then the whole of the thermal element should be improved to achieve at least the U-value given in Table 4.3, column (b). a. More than 50% of the surface of the individual thermal element is renovated (see paragraph 11.4). b. The work constitutes a major renovation. A major renovation is when more than 25% of the surface area of the external building envelope is renovated. NOTE: If paragraph 4.13 applies, Appendix C provides examples of renovation of an existing thermal element that are technically, functionally or economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677601-ritg7CQriIxCpyoJi2xE",
+  "object": "chat.completion",
+  "created": 1790677601,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.88, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.08, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "A permeable front garden surface is a planning matter rather than building work under the Building Regs, and since it's not a building or involving drainage connections, this isn't notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A permeable front garden surface is a planning matter rather than building work under the Building Regs, and since it's not a building or involving drainage connections, this isn't notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkwYKEAgSGAI4AUIIdGhpbmtpbmcSDKgdjxqHCB2FOtXdnhoM+gYfCd4/lCnMdyACIjDgZZvdGeOoJOFQ739sEtqM/MVhOqijBw7R/SoeaGUn7qZJbKDHme2JqjEOCAeFNaIqsAVwJxWEvU5Dch+su4/TIjHQEF3GmK6MDzbnQxkwdkIbVResXPqYSoR1CC+RR4R0CAsRuClEU1ZKdhkyUcMxD5OQ06y7GDPE+P3mJTK2vbwbPxsjAPKOpWiqmqsQOeRnCs5hzvSTS/WPqu8phV1wfndZJ0UkRT5QTP2zaWtqEJU2ZksEWh0LS2te1+H4PaPMPQcOx6rRUAvAXRIq491bxzkRw7kNx5rA+4UX8kCm9FB9p5KMi6MBUF7EQc5EbjBmHpha9amIUHsD01ZUn+B7X7/cm90QnvejbOoir2TQVxErPfLqFDihjxL4GadfEGOVyLqUlJJiLtYWz5bAMFaU8C6mQHlYEb2l/3h8fm2N9T8UXwFoRH1YoojsWBM9x9Rng28A98euwKw3pSTxOXSSSk5YIfeYmL9BsM/u7By+lJsTl0V6Xn14w/UAM7XAAXJ4TH6yO5h6EsEmZpGl40PyKt+w9aLr0Wrnzc3Rua0Ao4aA637Fl3obwY2PFhbDXveXKWf3w3CrelvalqI+6HNxHEeU5njlYxN96S/zLbAu/jVFXnN6QUIYuR8RJl0LP8oVHYwrcbYbEp6EL1OWwpXOW/5z1YTW6y0oqsy/CKEx64YBzpwQ9EiWa47bLAVINWGp8S7q8sebcIoX+Qya8Lbb8we4iMebW1Zmi3H2KsaQz/JvzKOj9JZd0AreoiA4f8x5PjdZ274TBU+Am/+Y5qP+jve7gODM52YfcxbgcXh4REOrZbbZRgMjMnEES1ofwGg9Q4lKYfJ/iqDlmrScQWoFtvMh9OawFnBv3/E7wJLkbZKMPc5Ibyb/nl4imHo6+4rLA1Lpz21Fm0/EosYrWwBXyZXbN77TBKw/eb+UNcqQrSIXynUyi/oGBC+ojdIzLq9bAA50Mea9tNboAPeZsResfwYJGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 990,
+   "completion_tokens": 162,
+   "total_tokens": 1152,
+   "cost": 0.0072,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0072,
+    "upstream_inference_prompt_cost": 0.00396,
+    "upstream_inference_completions_cost": 0.00324
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 81,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.17
+}

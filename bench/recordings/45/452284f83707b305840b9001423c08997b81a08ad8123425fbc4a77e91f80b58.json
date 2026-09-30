@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Data outlets/terminations\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677567-XjumG6Hxzv9Rx7NM39ZH",
+  "object": "chat.completion",
+  "created": 1790677567,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person",
+     "refusal": null,
+     "reasoning": "I'm considering whether Part P applies to low-voltage data cabling, since Approved Document P defines electrical installations as fixed cabling on the consumer's side of the meter — and data/telecoms cabling not powered from mains generally falls outside its scope.\n\nUnder Schedule 4 and the 2013 regs, work on telephone or extra-low voltage wiring for communications, IT, signalling and control purposes isn't notifiable, so this falls under not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether Part P applies to low-voltage data cabling, since Approved Document P defines electrical installations as fixed cabling on the consumer's side of the meter — and data/telecoms cabling not powered from mains generally falls outside its scope.\n\nUnder Schedule 4 and the 2013 regs, work on telephone or extra-low voltage wiring for communications, IT, signalling and control purposes isn't notifiable, so this falls under not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStwoKEAgSGAI4AUIIdGhpbmtpbmcSDMf1y0zl+VuaMeKDYBoM4g776EYYqP38f7VNIjC5L2yt+ZU8DOFwZAQgSdyGP1xvVCoRcd9j4ra5KvXYH2wpuoYebvpkLZByZk2VQdwq1Am++9NYjLsA1krlv2w/brPmYZZWdnM4aL1TB8LVcY6H6KdmYcIlRiGODdmjTOSYtH2GHIqyPxM5sNWwKtctsLx4pW2NpZ0fsWgzDDzzRpJZa7JQ7NOr5lVhlpVCKNyj6MXYBNwMik5iLYVg3RjldzPbWnFx5GQa1RvJfmq7XNu7ULS+z2Ru33Sh0eOF7OrHdwNvSg7U4RmBHGV7wNc7q1hakyLE3R39XYIQkGTkNNBErhzBGa/c49Ze7HHA5qjRXk1HvdZ9MHlUoiKsnyhnh/vdS8GgjWUwVD+4vM5k6unBUTQsAsaZWfOik3Gl2xkvMFAI5yAx+FDWfzpR5scln6JwWMzGsj1mgocykr3K0zFwQP9dW1Q/ABbIf2Bsq76Kl/Gxfj11Is0pZ409D1cKTuf2Kxhi75A3/Jto4TRnDrcSmZ+cH5NzOyJ9AknBzZDq4nKknx/T5bBasHAsQPx10AESmMSzRpQXzJVDQcMFTJzXwqReoBA4mhk61v7WZvgd1AgxQKMDiuzkusFeYtyMNkpr3TEBOsiYTX0ko4RwX9p25CsenCs3dfV0nP8iwmtWW9X1YW8speAlIotkT5KokGbmTJ8v4Vo5qW60knjcxv2/2TLMdOAATrq5y8wDCLYX2YsMv0PUNvPUxjUmTsYNdLPRRQW5qfiUU2AO7Se1F/+VD3I0TTZ14A3ufHEvvrL/8/wjlHM/+ZmGHOh1fcdQ4iFpd6Y3jiumlVlKMUifG1NcoSxEnE2ft0Re2EoO8nmYogZ4oI9xtJbl/Q9Su+tdHTmFvFP3sDWGX0JnyPFGvlPNRjdwZf6dcE7VYjcHqZOvCkNZUircUUew7PdgHKDiimGlqPSlPYWtp3qk8xPOqdi+6Gba1f2GwC/t9evk3q52GX/7C+5ELMnogEOg6e4i5SactIj1zfKQIZ7AKW9SLL7qaw+rGwKJuz+eKC4iCRh39hK6O7W+oJbvfQCdiLhBfFXMPUJWeWuoz3BiKjyhfGVRUVhgBwSEqV9704So7AVdNWep0XlqOc0UrE7SCKjl0w3+iLOXEtOIqTmVaNpUZJl5In1nB/AoXwZxrprQeD/w2Fmz68qAmv9vIE5bWWPgqdomnIMgZLDv4x7ZjjG/8jRcNmAZ6uCtS+BPaVsrNG4GrvVTpqq4UZ1veKzq6frtxWqRhpDdTPKFJjg2mfmEemMCUYj4PAEnxXShR3mMuEP+zpAcAvCFe0eFCpv+o2kLsTgBoZxQWMWAiSpUvbqJyXt1d+P4SEbkZBRvMPr2tj/aAGFtqnvu+pLMFBPj0/o+24O3hOEvPnQw5cU7bL5qsD+gckKwbc+SG2SVlM/Ln5EMz5tMjqU8sNKbER9KgA2j8+iqT2qpKbBJ/cCQM1nQ8jyd/yhR201dK3o3wgc1/SSO5YvZsIlpeW+a0MMLdzRDzztFe1F9IDRPudwCbB53HQooX/7iWDLXMKq6k0JKODf+ptUC0sJC7hlz3HY+rjbrZ00v6zvcAW+q0YYQmWNOPPeOJ2+n1S6JvIAgbhUMdTZL815aFQtq5RRIjvOLEaYNWxutBwSx49LygLjpsf+FIoOmfCstJ8demuXpQOnjxM1XcpwWjMQErsvkTbZpqHLXst5GOycJgvLysPkJHtZrM0kICxUB9WQYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1273,
+   "completion_tokens": 300,
+   "total_tokens": 1573,
+   "cost": 0.011092,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011092,
+    "upstream_inference_prompt_cost": 0.005092,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 263,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.807
+}

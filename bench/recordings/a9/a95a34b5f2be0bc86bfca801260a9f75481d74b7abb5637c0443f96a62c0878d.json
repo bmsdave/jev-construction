@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Motorised blinds/curtains\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678414-oy7bxLARSUCEcUFd3Vtm",
+  "object": "chat.completion",
+  "created": 1790678414,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.85, \"competent_person_scheme\": 0.12, \"building_notice_or_full_plans\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Fitting motors for blinds or curtains just means wiring into an existing circuit, like a fused spur, which isn't notifiable under Part P since this isn't a special location. Unless it required a brand new circuit, this should count as not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Fitting motors for blinds or curtains just means wiring into an existing circuit, like a fused spur, which isn't notifiable under Part P since this isn't a special location. Unless it required a brand new circuit, this should count as not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSyAcKEAgSGAI4AUIIdGhpbmtpbmcSDFAGldy5QmsZmugZYhoMyXsbICfuVupZfcbUIjCAE1ogmNzzib98u14efo2Jttg0ukMKNrx4wAta0H4l6UtDVyKpVymgJfazQF+J3WMq5Qas1Od2jhrpiYbYYNCQfJ98McsIa+32wlpdq7snoZUYlyHPAgeTQOJak9D9sDzpTcvGwmgsoqwDxNFS73fOJoWyosUCZvVw2emeJeKlVi6OVMHurKLqrl2FKdCXBQyCFgvKosjV3KVMjvwmmKHWBnZQ1SJO2ZyNdC/sxX8ed16L8PFMBh685/mCifUrpYDmSzZzcqDvhJdqu1Wc7kClhBV05gH7WPAldI2vpf55G8mDWnCdj46t7damvOeH/7tjzJZlQFRLq6irGnAmACP04FmnDpUqc8y57lc/+5lXHaRSw/ne6CGBD1tjcHvHy6T4uo3+5SPGkk4xOfYPdjMChwPy82TejcN+V7NlolI+MXILT0Ja9I6gmbXZ1ET9z6n1xMU0iLNAPtdhllghnnkAQItxOkAKe45n+0MfT9aiKO3WCp39fNw332p/Qnko307ICW34Ofco1gLAwnQWcftmJHHecATGIWvDQPoOeVh9E91q0HkvdBVgS50AnRH2qJOctAW/ukG97aV1QG81DrrRabDmbUwh5FCQLo6hhxTY8ZzvCu6RHCSVQf4MawX0NkBvO/EFZ4th4WEPyHCeFnk3JTli2marMZDs+8LRf4/QWHjY1uiIlS1spAfY8Pdk+wu369O9LYbFJDxgN2RHFHBAA4d89zQ0VDr6yLH6u0qCE603FAzdzfAn5PJnMK0ht/XNZZi7oYD5XBz0D7RZrQ3k97cfZ3rN1HHpdUvFb+hqn8oITuZu7GIHxDnsgMREnaRtHW1Vvj2yeDcdokq9w1kcp1ij3cIyfZaJX7kfcO4MHxlQVI6I0ZBEQasDSbdCDsykiZMj22Nskd36HTGAg76m416JoKXw+IKSEZAxPQYz8cHp/6ir9vAopD9UpIwdQ8l/QYb/IY44236BECH9M+D3X8mdswxenHSV5OsfaLkQnPs6Kfcnk+B9zVlxSuZmmOjIIVXZjLPjN3Zw/LsKedIh9HWxIRTOtZ6ZWvQHzG/CWsgrsIADrkm4/raMVyjqx6mdfvieM9r+T49JrM8TOMMKc1Na2rMIAeQWXv7W6r0av8xJOa3lUf4LwKT+K35OgePSKrfkIMoVPwZ5sCuV0twruN2s5HW9fBlAj+iYf0gpFYIEnzt2bL/KZs8nEPkahF1jIBkNnZ732xgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 507,
+   "completion_tokens": 233,
+   "total_tokens": 740,
+   "cost": 0.006688,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006688,
+    "upstream_inference_prompt_cost": 0.002028,
+    "upstream_inference_completions_cost": 0.00466
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 152,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.728
+}

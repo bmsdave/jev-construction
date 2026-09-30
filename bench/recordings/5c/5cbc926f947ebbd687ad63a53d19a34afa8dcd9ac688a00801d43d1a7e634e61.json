@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New dwellings on an unadopted estate road\", \"project\": \"Housing development in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"para 0.6\", \"document\": \"ADL1-2021\", \"text\": \"0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings\"}, {\"ref\": \"para 10.1\", \"document\": \"ADL1-2021\", \"text\": \"10.1 This section provides guidance for new elements in existing dwellings, including all the following types of work. a. Providing a new thermal element in an existing dwelling – follow paragraph 10.1. b. Providing a replacement thermal element in an existing dwelling – follow paragraph 10.2. c. Replacing windows, doors or rooflights (controlled fittings) in an existing dwelling – follow paragraphs 10.3 to 10.6. d. Extending an existing dwelling – follow paragraphs 10.7 to 10.11. e. Adding a conservatory or porch to an existing dwelling – follow paragraphs 10.12 and 10.13. NOTE: Guidance for renovating elements in existing dwellings is given in Section 11. New and replacement fabric elements\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678070-QoJ7XALKj7Hicxbrx6bu",
+  "object": "chat.completion",
+  "created": 1790678070,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "New dwellings on an unadopted estate road need a **full plans application**. An unadopted estate road is a private street. Under reg 12(4), erecting a building that fronts a private street must go through full plans, so a building notice cannot be used. New dwellings are not Schedule 3 competent-person work and are not exempt.\n\nThe clauses supplied (reg 12(7) and ADL1 paragraphs 0.6 and 10.1) do not change this routing.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.9, \"building_notice_or_full_plans\": 0.08, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Since these are new dwellings fronting an unadopted estate road, regulation 12(4) kicks in — buildings fronting a private street require full plans, so this should be labeled full_plans_required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since these are new dwellings fronting an unadopted estate road, regulation 12(4) kicks in — buildings fronting a private street require full plans, so this should be labeled full_plans_required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSywUKEAgSGAI4AUIIdGhpbmtpbmcSDI+fXwTaE8p4WgFIsxoMANorwzzC3ZDxvpzmIjDZnqitDU03P7PgpL2GrrZAst4EyYDxOAeDKxhxbxTxdtTf+Rfqu4QdOqsdAy3Qlp4q6AQweFurRrZHvRk2KiDxMfHeaqPXnhfFFhpn9xcpb1F0q3tQ/BtXBvwwLletxdIm4KL/XqoK9PSqkoZRdquKrPalv8NUpMfGlSauOlOxDPiyKWQPzB3JXEEK6WPWWE4yRph1secWsqXp7hwUpis1voOUf9BGBtFw1ms0hZYUOLIqJRI4/nlmAJmnv8MneriFCeFml6zojJJfKy308dhr74EGNfMbSdRTGI5pI2x6Ye0OlIs5H5IaEQ4REtSbIcz9V1ZXGMMEORE1dGywZ2A8pGLlPzzLBgJH61GobHw+wWv6RW4vflcxPlEDACLKH+Tmufto4nn1klZyW1RYQFSifF+gi38tFkRaW9eYo82CLQyogqJ9SlCFqnHbUB1Rylr+3EfXR2EoWtXpsOk1AtBEkA0dvTP1IfsLnTsenR8mZ8miHvmnC3wwO1T6qst32D9nMovWofRxK17Wgkny2beI5mEkC8N1zF5enfcMMHI4vioRWwaMaKIcANhJd4jY95pTkVXcaPuOTQa1ZqSJjSRzCYb7HkwiQmxDg9rpHVmebROziMvvWBTlTz3RxrTauk9ad9jeHmkgADT7FJCZcbMG1R2khHslCjjx3ZmoLtPm1bx0XPIPrRaldnB+orypKJ01dl7cEnTgsofa53VJlSKnJtvsE6uoNBHSKwEA79jNxn+0GHRGqB8yV5I69gcN6/BlHyyhJKCTgDbtrUP4Iyn3mjhlplCP5p2ujxdI9QNDrAVxFkY4hAnHBEKmaqGJCMyMJ9s8nztDKHmAojTWlA1bi3zemfcOS1DGBFPI9clFcSgHz/V2PhK94t5hGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1203,
+   "completion_tokens": 284,
+   "total_tokens": 1487,
+   "cost": 0.010492,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010492,
+    "upstream_inference_prompt_cost": 0.004812,
+    "upstream_inference_completions_cost": 0.00568
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 56,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 4.746
+}

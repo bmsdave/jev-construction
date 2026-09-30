@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"House distribution board\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678436-hRI4ABSgxz9kUha3rACx",
+  "object": "chat.completion",
+  "created": 1790678436,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing or installing the distribution board (consumer unit) in a dwelling is electrical work under Part P. It is specifically notifiable under reg 12(6A), so the Schedule 4 exemption for like-for-like replacement does not cover it. A registered electrician in a competent person scheme under Schedule 3 can self-certify it.",
+     "refusal": null,
+     "reasoning": "I'm working through whether replacing a consumer unit counts as notifiable work under Part P — checking Schedule 3/4 exclusions and Regulation 12(6A) to confirm this falls under competent person scheme notification requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether replacing a consumer unit counts as notifiable work under Part P — checking Schedule 3/4 exclusions and Regulation 12(6A) to confirm this falls under competent person scheme notification requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSvAgKEAgSGAI4AUIIdGhpbmtpbmcSDFDCUJvIXRXbXSRNMRoMONmDa+aTzrJLuH50IjBnqPz4U2+Z/GiZrfoNSkCsts0ewLJfNVH1IzR19qeDe3e4RSemmSrYN0IUMt0DAfEq2QezqeCpo+enR74O6U8hsiERUfPF81eN4P2w/tVvMYxN63dfwRVDdCViIC+JzjhCzRb13Ud44jd/U174Nr2zR8/ZjHpsLn0GH1UM+n00d5gqBqflBsxtcgfwFV4ReVu2FjkkC8VInMyqTXcYIAtuuWl9vZnUHHyT5vg1QsgSVEWCGyFYoJLy/b2Cvj3EKxUB4GxmrtBMG7AAJp7MFlAQwcRKBZoAcp0Nj5vePiiQ1Y+vjxQcclqSxEYEKrzLnc/QefPEZuhzYNQ6A9fc3kPaMAx4rP/ayp/KEu+1jYAGb5CIkpKCT1ZlcD150zf95mZ/SlyPasWbwKUazxdjv/4FkfUUNk2nxFZlYIqgEn9L71/rO/3yKjlicpVLNno4NorStbTsqEljZxx7ZPm8STgtPU30K9xLGgccjjxhb2B5ZOAn5LGpNOSiuJ999RkgPHixbu/5Vw07xyGQA+aYAXPbwinXF/6vh0qKHN1Ab8buJSC+bjhL5IUIiiqOW3rCu5M0C5tsaNgpcF/YL13CGm0qGDolzOehKteUdpMBuLHSxjcotUrFkR/fNYN+OFeGP4ow/hqRDILjIH8Mhx7mIHbynN3qmF39c2/kOZrcZ7m+PQZkUu8ccspiAwxvOwct13X2zQTP38m0cn+f9gE9bNDXNvS3y786BZthIflVLMMuDdgLdyaG5IP4DjQJ8fJpHQnlAckDha7lQTqAVftZLBLz/CXWna/U5yKpVIEU0RCPsYjOTK5rDXiAN/mD9RUutZcNtNEMyrWM8pRUznnWl8tKkNTYFW1rTNIPhHv8H3lE1YoLZGxJV5IS2rqDGtVDjsxqT4+5ld0ExWie6oxTp6zUI+39THvli9hjJgN8qldTM63a+Iy5v26AaFaI+aSEVl21sEkLj4cEQFGdjw5KpG/YvQLgN3omVvjgQCiFLtNSJGZXFHblqN/W7JcyDxKDAP04e/dcgeiNxkt5tKrHVf6CeYVzWM3gjIkR5X60mNzYN1NODCGUH6kmixSgaCv2fD9graotGVAj7oNh90Ym4LbS6SNcfXLG791gV80tBceAZEO+0uCPb92+VmPXF97yoNOz4vaUZ4K1rarC5vnUFwTNCqKCAgQPVXYX9mxHFhk4s/G57I7+O8nsuHUjRwB9PQwNJOdPtYAJWOML8AJ6Fe2GGq3bss3srGsrWVyIrmavorKJCQwdEnwvaT9XsFvephUUsBoFov1rxLfe4RhsHSrTBk3MtkajVIQyHGAfh1I4zoVNH85a48O0JfCDMrrquQfh1UxxuMxVQ3y4xOE+M+wUAe6YvYQII29S/QOxGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 484,
+   "completion_tokens": 300,
+   "total_tokens": 784,
+   "cost": 0.007936,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007936,
+    "upstream_inference_prompt_cost": 0.001936,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 191,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.366
+}

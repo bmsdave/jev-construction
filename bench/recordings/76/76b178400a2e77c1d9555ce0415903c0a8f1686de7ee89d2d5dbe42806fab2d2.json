@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Build a new masonry chimney for a wood-burning stove\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 3\", \"document\": \"BR2010\", \"text\": \"3. Installation of a solid fuel-burning combustion appliance other than a biomass appliance. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 3 para 2\", \"document\": \"BR2010\", \"text\": \"2. Installation of—(a) an oil-fired combustion appliance; or(b) oil storage tanks and the pipes connecting them to combustion appliances. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, ... or NAPIT Registration Limited, Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 1 J4\", \"document\": \"BR2010\", \"text\": \"Protection of building: J4. Combustion appliances and flue-pipes shall be so installed, and fireplaces and chimneys shall be so constructed and installed, as to reduce to a reasonable level the risk of people suffering burns or the building catching fire in consequence of their use. | Requirement J4 applies only to fixed combustion appliances (including incinerators).\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677922-0EZcCHiOLcHYX7fsThf7",
+  "object": "chat.completion",
+  "created": 1790677922,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Building a new masonry chimney is building work because it must meet Part J (J4, chimney construction). Schedule 3 para 3 lets a registered person self-certify installing a solid fuel appliance, but it expressly excludes \"the provision of a masonry chimney\". So the competent person route does not cover this work.\n\nA single house is not subject to the Fire Safety Order. Nothing suggests a private street or building over a sewer, so full plans is not mandatory. That leaves a building notice or a full plans application.\n\n{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"not_notifiable\": 0.02, \"competent_person_scheme\": 0.08, \"building_notice_or_full_plans\":",
+     "refusal": null,
+     "reasoning": "A new masonry chimney counts as building work under Part J, so it's excluded from the Schedule 3 para 3 exemption, meaning a building notice or full plans submission is needed. Since this is a single dwelling, the Fire Safety Order doesn't apply, and there's no mention of proximity to a sewer.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A new masonry chimney counts as building work under Part J, so it's excluded from the Schedule 3 para 3 exemption, meaning a building notice or full plans submission is needed. Since this is a single dwelling, the Fire Safety Order doesn't apply, and there's no mention of proximity to a sewer.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3QUKEAgSGAI4AUIIdGhpbmtpbmcSDHa0hzxKCnIxL5D23BoMM+Z2q2BwvLNsXQwNIjCsyJizNN7miI4B8Wkuy8jceDMXfvLlvf/YUvbLakYA48XrMXG5L/aBROlIqMkTAY4q+gQ8iKXHcwdbICRVndtJL7qJPpugYJPktxAG3vB0D+UFDPKVYHvxF9fM4TM4axY7Q6jAtlVH2b+SKY16XAUENjip91/EllvDlG9jtvu0OUAl8xfPhcQnvYfPE6ByA/YjFVJOpZ8m1Eqs0SlC1cKHEZiPZpbZyEBfVWzcOj2uz1w67tk5TXTejR+qqlXST+zrxpLce5L2YeYOKXbu93Mb66KZBxgfpqcRJw3w677i8E5vvchzpeQUH+RIygDsFE0riT9ykptB5nHoerjVMkW3R+xi55TP+htb3VNhUKviATFWzjPpNCRCfzJAG2Ocjay1tPWWZbuQSoKxRmUZ72gMu7AbUK0UKQ/adHpC0fSyQsi0x6UzsFD1R46r2HezDkcAvwYl0bou3bqNahEw//WtWJoJnxbg3JNBXdHMIG8uqjlQBF8lOGyiFyC+mZiZF0s/qJQlQd85EJajD/GZHsBRLdXahpy5FLVY6Nq8mjduiG3uxpNQGSsnv1dSY9NUq/OykjY5GL5PfqhR7I6HCbC2tzaXQIsJThFQXAT7SYuaV04slznYf01Zy/Idh6Gglf5YUNnig5c9gdsChGaQzXTEUAgVOvjfioVRtCZDwaWnvm+UosKBEdOYKidxST58DR8cNAzwUtLAIMwvnURfeW74dArYqjd0e58+dUwM+m+XlhHZs2fUhe7dutgpuj951EoZN5sOuIpw4v3peHdYQitu+jve3WjiO4f67YfDeOZhI2wgMEU8O8Mu9pRb8J8ucSB4S232a7kzoQpkbyXGd59WnkrQhTiFP5sn9WBCd8ASlEQrNs5P8RdojdgkHhnDeVyRwuJSPtS6a3gZZBgBGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1024,
+   "completion_tokens": 300,
+   "total_tokens": 1324,
+   "cost": 0.010096,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010096,
+    "upstream_inference_prompt_cost": 0.004096,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 73,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 21.562
+}

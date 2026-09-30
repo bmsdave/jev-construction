@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Buried ducts: office submain, fibre, garden power/light\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Groundworks. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678128-xsBSBUURlgjgTLKiOtEe",
+  "object": "chat.completion",
+  "created": 1790678128,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Laying the bu",
+     "refusal": null,
+     "reasoning": "I'm considering whether laying buried ducts counts as building work versus just groundworks — the ducts themselves aren't electrical, but the submain to the garden office would be a notifiable electrical circuit under Part P since it's a new circuit requiring a competent person scheme.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether laying buried ducts counts as building work versus just groundworks — the ducts themselves aren't electrical, but the submain to the garden office would be a notifiable electrical circuit under Part P since it's a new circuit requiring a competent person scheme.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7woKEAgSGAI4AUIIdGhpbmtpbmcSDK0t07aPs8gIAkVynhoMV90sv+NypQ+Yp0+tIjC3eIZYc+tcF1SoYtHQNUIPQ5NanN9f+WoZDFc+UcSrnC9pKtdhVItIP2l++rj9xScqjApldCw+VRBcycfwxiWubY96ojPTPMrrHYgr+g99xvbeFJmiC9/eSM+qmTTi9Emrax9Z7aI1u06rfmls580ktDw4wmoZTbC3PUrr/D8bO0l52dGGEjoPOBH6qkQF0FjzDjSVw+YOe4/o/5Ge1Hu1WWZ1dRqBtn/hR6WoqQZRxt1o0A0eLokrYbfQgfL1tOxxFSws+/VCEbWN9Y3gXWbtpziFT1AdPk19HcX9BApPt+cM6GqHQ1sMG9nzCKVlC3xaMS6EfSnohYMjCaUuhQTpNtNCBhVW5Xe6nUy9B9MYWsEcIRr3gYhsrDecQOPADy3/AyRB4eH0bECKtfHEksvVoJc1+kmkofy+s0GISMSwnsraz773urAj8crT0zW4A7DFNxTF4/xx2TePEc0rBYw2L8E8FiyC+KancXWR9RQhTDoTRkj0VoNVQMghQottxFpp4dn3jOdKyBDYJ2ojAR3mZ2Vhil1kJsVrkW4Lxw6VpvNX2x2keCkhd5KZA+bTAetEMv4MZSNyULS4zjL43aELmpn7M/Ch2rqd1TzWpYxg/G/Mn5BfQaO1vNsMfZIFwO0qcJsOxjkCUEwreMA6JWV2TBP+FXNyjM0pBYlBYe4MBhtiaq/tjr2+oBaJzV2rhll51Rh1KxIOmZxZ7JPYXGM/Yy6V242zRRUGS9I2IQGyZFBA3vIlIC6RkjH8zl48k2PM5/DwJjAf8ms7IBwaUlvg5UQXXAkUJzEPA0viSnW9w/n1LQIFWVM7PXKjo2Y+3wk7TG2K9nE7wa5dvpZ24AM+LW0Dmo0bP+04mq8grV5ioXTAiGcIB7gh7XBt255TG8AdJ6DPtxUThHxgZCJSFWpKoytkAO7I+9trPSOompJ6fMCr65quMGCeKyCGC/oPgyUZ5d1FXlZSiY6EViJytsgrMWut3uKXLvHkfqWOX+g7aOJI3b9660RPy5zErJQqJZMghpf+aFpdvFAndgFjvWrdLf3rOTeHy/VozLOuxxgAzwZg56P7+pZ0RkHPLkvu72ejZdwEh9kYGodRY6xL4DjIYTnjKMHlI+I5BOd/fbxN1PSyv3EoSsGlw/9c9yG2rqZLAgOYOJKYRvLxKcM99NxnaEVYFk+qF6mJ2DccKZvoNvytBfZQT+PyL2d5OMiEPG69hBwGSf8M/iuSny2+Dde539PjTRNbKjFx5TbPWdAlBceEL+jwq87WvQZukA1F4QTOv8v9AQvgmlkO68uaY4dzu+agh8SGREp7zXl2P8fXPg9k69/CjeJoBCnS1uG9CLSLt3iC533FyL+IIuFoCSoepM3WnN0PjKDIFSHfHfKWWY2U4q5KJBExfxUf3GAk1rcx/IxPqf0+0qHXdfpKt9/K2Mea7J1H1sYgr3k7FnbJV8WKty3LCFYGulXS7sGnxwMyimVR77//EBjYNc1VV8Erno+TkHqQMO7dm4396W08a2XUh9LbQsfwVr3Bq6of8edkQPR9EmtJj9WdRnj6hAVdaxfg2Xi1/hFiQld0uf/yKthtCdjzQXGRTdSUy4m676/Lsu+CHRGT6q8FvH9q0NJgcOMkqkw4ZJL4VyDyVaoHZ0+k/rDm9BaVa+MMFAG+kljOMgf4Q8wklZ4vYuS3WTKoGSe3v1KTwbHyv29VDlLsHK4suc/5FgZK+eTO01hYFvq0z5wv8QqjJI5sd6wNBJK3FSgYniF7+v8ryKVpvwBVueZ6EKSkKcRGz3N5Wx3ldhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 505,
+   "completion_tokens": 300,
+   "total_tokens": 805,
+   "cost": 0.00802,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00802,
+    "upstream_inference_prompt_cost": 0.00202,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 295,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.019
+}

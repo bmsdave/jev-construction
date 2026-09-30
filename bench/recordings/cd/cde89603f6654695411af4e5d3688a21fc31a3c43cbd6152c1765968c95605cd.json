@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Service joinery (cylinder, plant compartments, riser covers)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Service enclosures. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678366-bb1yrikr7DziVTNAXM1l",
+  "object": "chat.completion",
+  "created": 1790678366,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.82, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.13, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Boxing in cylinders, plant compartments, and riser covers is service joinery, which on its own isn't building work since it's not structural, doesn't involve controlled services, and isn't a material alteration. In a terraced house this wouldn't affect fire safety or compartmentation, so I'm leaning toward not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Boxing in cylinders, plant compartments, and riser covers is service joinery, which on its own isn't building work since it's not structural, doesn't involve controlled services, and isn't a material alteration. In a terraced house this wouldn't affect fire safety or compartmentation, so I'm leaning toward not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8AcKEAgSGAI4AUIIdGhpbmtpbmcSDPowHlpddD/YUA8/9xoMd8orjReaC3/WJeEMIjDyHAGa6ubck4X1fYaK+PHJ/umVCEeICAfELoRyXe7VcxpA8zb83i2AN238R1IdD3YqjQeAV/LoPC/G+1DSijVBUgyjOlj/qbxREFTRzOGOeyrA/0fC0+KH6IvkXATlz/EQkL/sW7d89Gqaa5HN7uahzzkeBGWGxaIubOpW3AUtlW1dFMyb0WUI0jIhxzwqSISOl146wqy2egHg5MIKbZgQaj19j40SXc7Y8byUFIqzsKhb7CHO70CaREpqHeEsXIjb9uTJXEHkSa5pwxnBd5vkwrgzMNNPXdWLTbV5Pbdy4EEJ93aphp1BF9hsRK+JHuyAHLpHL8DgWOpGqH+stVE6oYur3OtETyRTQiVaclxuPxno65YywzF7djYZi+7iKqkVAd3bW0ZIYIjPLmZV+lveUYYZN/GeT9Ya/PNpvpmKvPGn/nQirD5fLg+5sPMDaJsUX7bBQEreaAhr6En3zSe5H8NITlaNfu5Yqam4SD8sXQUijLERiwlTNPXL4B1THQk8Qf4E8Lx0PGLupVv40VwbA2OdPggv6SZkqmupGDiEYvGPK/EmugOf6JX7ha73sjS+5NmrRETAU+VVBmoTfc0eFLwk+6gdsSqmfdC1zt+o/uG4tGVr2h5linbUhCVUH0K9ddFjGwgbdd+x37B2c0Jh0yy1fnUJF8Mkvm+wiwTPwftDEjcaIFeeCY4G9+Ej62K7lJYBEErVb4SCSqjJHCjUCdNFIbrEPDJf5PKlxJHyTx2w7EqfEWzDrs0MSR6exG1CgHAdXLihlw7pFo1ieR+vuEaUZSQpv/ztYdrrQHV4AYfoEk3AcAb8t1QOI8+15obDLham/tIEL19v4NPk0DtQdOfMx7gc7oTAkL3VYx9RsL1ZVt+NcdAmYcUn6UzWeK3gLdMhavF5VU+rukE0fB+Nu4ADLaWrTZFBZfPDFLfMOmqRDQAfxu/lgg9FnmMFkyXU1ScsB0Y8hjAYdWM8+QMrwWTE9ML98DybVyhZ2jnldNf3QqQRPMMMXHSXZHCNY9k2USpeJbvyYwG+ZKo7hHhzUK2T0OWpFF6VJvGXsdt1HRcqonCrTt4wcJuUrQCu0ibAL9pmXENfcWBT3M4gFtXtEtFc1Qv/9QPNe10kfnMikxBgvVGLXKj9702GMH9MboaDScyG0PUnj7p25YKPD7G7WUw/76bUVMPg5xDv/owS+cATP74fDmuYKmjOsWVRCFVho1q8ke4tsgOuUlOAb7APdIUQ3wIYR6tJwIQtsuJGKC0rXyHLn8wBofRd4PVQn/wYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 518,
+   "completion_tokens": 236,
+   "total_tokens": 754,
+   "cost": 0.006792,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006792,
+    "upstream_inference_prompt_cost": 0.002072,
+    "upstream_inference_completions_cost": 0.00472
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 155,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.568
+}

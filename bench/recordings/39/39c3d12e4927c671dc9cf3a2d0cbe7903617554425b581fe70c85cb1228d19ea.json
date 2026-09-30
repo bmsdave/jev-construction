@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace a damaged cable for a single circuit\", \"project\": \"Flat in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677770-BQD4zt8TGKqXKzswF6Qg",
+  "object": "chat.completion",
+  "created": 1790677770,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.88,",
+     "refusal": null,
+     "reasoning": "Replacing a damaged single-circuit cable, like from fire or rodent damage, is non-notifiable under Schedule 4 as long as the current-carrying capacity and route stay the same — this falls outside the notifiable list in reg 12(6A), so anything not on that list is treated as non-notifiable work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing a damaged single-circuit cable, like from fire or rodent damage, is non-notifiable under Schedule 4 as long as the current-carrying capacity and route stay the same — this falls outside the notifiable list in reg 12(6A), so anything not on that list is treated as non-notifiable work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9AkKEAgSGAI4AUIIdGhpbmtpbmcSDO9dxsqmdE3l4Vdc6RoMjFw9Z5NTVmD+2jq1IjC7Vg56ZFkzDHPS1BpPDSQ/9isPJm4YTrF0f57hbAqFndhjj9tLtdfGnRmBafyLUcMqkQmwLGsFlEpIVXnUUPvLvVWlwurKd11nfmj6JDx5ZkDZtuE5Pnz1sbsBdrHd13qrHatW8vPCoxzNipmEh2s5GAx8AnMR7OIKYiLk8glUfsnu3fXqQ/jdtYabxIHAVkU9ec1XExWLVJdtLmreZetj7HIMrxReJj7OB8UTG5kTJCUEVBj5sKGue1a4cl144i47ecgl3Y0uWmXbQU/aT3S6XAvRctJiJIrTu2MRUPIXoycHxfzuemxUHPRNR2wKdPyO3WOo9UuyqWUnEtc5nV0iE4HmsNaeWYcMJGgDNWvRiyZYCD4EA/YHsNQaZSgxjv00mEQiMAkUgemQ6gEtGd7tQ49FMBi4eBjEU9cHDM2eZ9tfp7D2gP6lN0iG4h8cgdFtfRShsd45HznkWFij1lmNOJF83RqDtlDoIoIg6SR42gci6Z8agA65fP48QHXBy8oiRsWRdfx2ZoLHEGWminLsuKvgNw3mHq7q+kHsWBG+SS5w1PgKbA2TXfYVayYp6cScFo2GZ8YIzNfn9Z49zFCu/o7YcHRdKQ25JW3h/V5C9Xd+y8+xHMIRbXeZ1m/auGUs8AqkuWo4kqVa4YWTBks75TwE9BwBWcIClLCwANQs19eqFdOqLBDn+N0++83P7kAK73grYri2ZYf+dCDYZk6mivbzw1lcUdPXqLChdAkxtqjDRAz17VDwTm4E3E4GkRhHV5C0KdD7hoBu2T1r2GrlXWHzOzZxK5e9wKzAB97PDWQ6VAxxNu9fW5Q31bhVRgNwezPFeirWHIgItDD3KGQyWw8OHu9rPQwp2fzlg7LFjYbKU4J8oLSa5l3DYsxaXU7KH+piaSgs1zditO0Vd3jTg7zb/HJn8UTO4DWTYcpBPGjXi6+5OlNNvbD4+153zhARvkZyxYI/dih6je+702+2gRzmogmgAdj2s/BpTlBLopgFafcH3XH5/6JE0qFu6zTBN1my+DcwcEahh/0qmEEm0OOylUc2k9dEoidzzbX8v9xno8ng8yO2l0wWy+el8H7L1jRi+nVjVxn/Nu840gQrpALdOIpBC+YmZQWbaRTlDHWKCE6/PTqjmInuzDwgEa5m8Q+cU/hVuXdZ6R/jSSvoyqyG8ax0g4RjNz0fJe6uv9ISfq+u+MTO8CgQCQhAQO7ax5Kk+kmU7dNi2xiM8c2sQB4MId4XupdTG3OCmiULm6DV44uk8XTkAnOhxXMTBZL9KO30JKjgXZ7j4rpuW6B1iKnHdY58+doChvXTJGY+q8eOfNSjAcvkf/TzY1ckuM2hlsac/WVj/NLDeoQL1FD8Nu+vahi/QdsAJG0fQF13f8a5QsyGjMgazfpdHEfokGfuCV/GZpFAZd5mVJrvSQhRu5glmtqq5U9EPd51snd/XLXt8OoezKe9fK4M0N2eCn8KluTrB5kxa6vHP9BXDw5mB19WWPlvZg1ChBEGc/6HoU90C8K1bIqLs7TiMUZN6CQSq/Od4prQnx80tB2V82M1DkBqs5SLseA4zA7d+2ZidNp9gfIBVCIqqBAzc1IgCPrV/NhM3vKgQHlLkRJDzTbGe6EZjxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1284,
+   "completion_tokens": 300,
+   "total_tokens": 1584,
+   "cost": 0.011136,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011136,
+    "upstream_inference_prompt_cost": 0.005136,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 268,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.038
+}

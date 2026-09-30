@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Foundation concrete (strips, pads, deepening, HP pad)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Groundworks. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678122-lTVbvPFEBl0U3RALB7fD",
+  "object": "chat.completion",
+  "created": 1790678122,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Foundations for a new rear extension are part of erecting an extension, which is building work under reg 3. That work is not in Schedule 3, so no competent person scheme can self-certify it, and it is not exempt under Schedule 4. The default route is therefore a building notice or a full plans application under reg 12(2).\n\nA full plans application would become mandatory if the extension is built over or near a sewer, because Part H4 would then apply (reg 12(5)). That is a real possibility, since terraced houses often have shared sewers running along the back. The details given don't say either way. The Fire Safety Order does not apply",
+     "refusal": null,
+     "reasoning": "This is a rear extension foundation for a terraced house, not a Schedule 3 building — since the terrace likely has shared sewers nearby, an H4 building over sewer notice could apply, but it's a dwelling so FSO doesn't come into play. I'd say H4 is a moderate possibility here, with default being either a building notice or full plans submission.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a rear extension foundation for a terraced house, not a Schedule 3 building — since the terrace likely has shared sewers nearby, an H4 building over sewer notice could apply, but it's a dwelling so FSO doesn't come into play. I'd say H4 is a moderate possibility here, with default being either a building notice or full plans submission.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0wYKEAgSGAI4AUIIdGhpbmtpbmcSDOTny3OyxUNAljRJMhoMl7KMiXlZkk3LESPQIjA+KPrqaBdzwrh3hbW+PNJEQXuqS139lq6jGAnTzxOCtS1JolTnF5UhQWaisHTmNHUq8AVE4Ydsxvkre/JOvuA2LsaQY/jDu9jK9SO1Q8XCJueveXoVHzuWKmWDqpta9TBAz4N90tw9plsDF3GRLaB57aolJrXua3I0y55h+2GvBTKjKUlXxwm0BuRoirHzDQWk5hgacqtSx8/ljb8HVT9lN5wyqScgCZZZP1xLKic1qi7jXPACQ2bmJ4dTehugwlemL+f7dzs5e/1Q5hehi/UYYY6lEmIT7mV+Eb2qHvQDebN7GEk28dVfTxX5LEttCQ84F1IbTSbsXUvZZuCUfDIQ3eaTorNVwnstfto3iClYDvbI33ldKhqX1OJyrl1khtz/hcb7G+1jSTKD1wP6H0NUgE4MmCQvVDhTcTwrD/bJ6B5ihAhsq1sO2Xal/sPcNDYdHWlkXqdmyLQF1mm/UAhEvN/UOBZX1OjsFE+uXA49GDn8bcY67TE7wrAEYmmwiaDgUuxCFT4llYnCAGgkw6iv7BFkSrMwVr9W+Gc/VU7cCNliSX7QPhyNZU0YWvG3QwzFdRdDuRKcBXN0+pvXlheHbPYLAaZopnVm+l3dNZauVKPOvny0XKJVXZLZynSPovslXaQURlLqPWAJ19VwFOJ+PnFcDr472JwTPMY2i5b4SzQS5yNxmjSnPuqxtMDbdQCcRWw5N6mGAUIHBzeukaIoX6JWwYK+uNm0Jkmz47bByIBC35+wCxK46H49PyjVbEJ/0U2s4oW4yKvpACvF77DZj3NoYC/UagY9AHk3FZm4WQYEuYwHPhdoBc7Hox22jSeCxLznbnll/b0f0rnyL29fUYTv7plAN3mzmsroBkihkBD5r2fl6sYBKQaA8oXJygKkIctV+feXMWhEclFMn6KK85Jq4B/yzPck00VxlEDS8lUPkmOmvoeDErmQJRxXW2B2arum97tMOzESx2y7o7IEfuD5hQZtFjEFZhJPc0fJh3iXfOTIOQdYGTaGOprblVXzMG+IZJBN/EoHuPPehz6FhV2RUJSaecTidhxSmvSf5ZypYxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 509,
+   "completion_tokens": 300,
+   "total_tokens": 809,
+   "cost": 0.008036,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008036,
+    "upstream_inference_prompt_cost": 0.002036,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 109,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.276
+}

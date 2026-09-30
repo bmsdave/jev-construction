@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Underpinning the front bay after subsidence\", \"project\": \"Terraced house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(4)\", \"document\": \"BR2010\", \"text\": \"(4) A person intending to carry out building work which includes the erection of a building fronting onto a private street shall give an application for building control approval with full plans.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"Sch 1 A2\", \"document\": \"BR2010\", \"text\": \"Ground Movement: A2. The building shall be constructed so that ground movement caused by—(a) swelling, shrinkage or freezing of the subsoil; or(b) land-slip or subsidence (other than subsidence arising from shrinkage), in so far as the risk can be reasonably foreseen,will not impair the stability of any part of the building.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677749-g2Rz8P1d7SQJzUnLD6Rj",
+  "object": "chat.completion",
+  "created": 1790677749,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall the exact classification of building work under the Building Regulations 2010 - underpinning appears to be listed as its own category under regulation 3(1), alongside erection, extension, material alteration, and cavity wall insulation.\n\nConfirming that underpinning falls under (f) and isn't captured in Schedule 3, and the Fire Safety Order doesn't extend to single dwelling houses. The private street provisions only apply to erecting a building, so given no indication of proximity to a sewer, this points toward requiring a building notice or full plans submission.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall the exact classification of building work under the Building Regulations 2010 - underpinning appears to be listed as its own category under regulation 3(1), alongside erection, extension, material alteration, and cavity wall insulation.\n\nConfirming that underpinning falls under (f) and isn't captured in Schedule 3, and the Fire Safety Order doesn't extend to single dwelling houses. The private street provisions only apply to erecting a building, so given no indication of proximity to a sewer, this points toward requiring a building notice or full plans submission.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpgoKEAgSGAI4AUIIdGhpbmtpbmcSDH7dtGTkPcYL20JIdRoMFoxeHJZ7lTQULc4DIjApaECz7FWEJxw5RyKJ5vB/0cmrPSAW3kmOUtZzUN4OPED4Ar8s5pbTaSCd9C+TkbIqwwkht01dhVpAaEu0SIr28KsO/B5HGjzoXS6FNR6mVoBWXZBq28Vp65BWcIu1RUzZ7RH+XtH7JPrGY7Z8ljXxRgJc+Sh50LaZ/BS2U4gTPa+vy+Crn7qttLyVl2CKvG7ZqFOZ5CI3oLMjSn7NBQx852uE0sbPmxxP7RkeCURolbJttTzj7Re5ahNenyzOSvnn5JA7kgdrZC0mIM5iROzA1Z+kOY5pJEMo0VcbKDEw1pmCX02HhwORbn0RSFlOhppefYDqT5vg7lY0pGtFAnX2zr8QHD5cQaM/o4na5oBVaAF+ICsobrduyvHpUDjUGih9Ic6KnucwSYgVz8WEuGD2+Ue6pTxQnFKlT8Rff7hVX79Z7d4tQUIgZnj2aGuxWTVKg2Mn7UrVxT7JiHfgLsDbDE+Y58kt4hRh/OwHzkyMQ2gP/6BuVyhii2L3pD3cqecBGDBXsJxqOREhwFSu/oDLw+svG76z6bZzXJK8HvOHShMGaK29ZTdADCS9DzdJe9lp5Ch2Q2hgMHoKNB9Aqzbb0TyysbgwJ98hB5Gf0CQmuo91Eox3KVm27+Sz+wR5pWFzatb6HEhmioPdB/nrmj+/Ke3Ypa3t8U6zLe+67d93kPbk/utrRRUUC4H1kFN/msc9U58H5ImxLw6Iz6PR6KenlwNVt2gD9lZnobB+S2kLU71jGI79vNBWbYZVeaAyoCMCZ7ybLIJGuCJZmpvGYReKabOlzvn/zFDDYRG1ioQ8XNMSM8QRH1s2Eiwp0mncn5tXVfmy3SxV0Jakf7g/2kfZXyDEY9ar1Y20NLSxmzuLx1m/Dz3LNTGVE3McSbyIoxrxZI00eL6wp/qDkHMDfB68aSMSCO5qPzicd/IPIUI3WFcVdJPoGRoTbcgMaTc1jkNImnGs4//ZDErWL5zxBKIolp/Ix+0EOZqPb/VwxDlCLJsfQWDeNwAzQTpBOj8yUO5uwsf6T0Y7bkixurmfoMvB7LlCABFvZFm19lxek/aFNt8p0G/9q5NiMBSbKatS29iQ62ysdoaurZU5N2EquaP3DkNUp3vHs96UfuI7SQnVd9aTg94PfJn6bobvsdV9Mw1ZrjHXTLVNIIYV9brNDIXn8z6R5LYubadZuoP64QA+2EYuh4JaTYSLLE+3cBg9EVPWpaTvl34UvGxQQf+0Q3SR/NviAX+AZZgfsketVXoxqFzLs7zd7TrQJfnmX3CUdzl2TKIRGusL9WMV85hvtPME9OyUmK2+4rxsNSVLJjeM5Y74i7w8pY/t4eXGL4AkNRTrn32Ai1qzEBuAJk/XFtwLmsrJnDFYq44fm1kj6/XhTfRM07S8BQnJWpqxkDuBR9x7q5A8ARwQK1UjceBHhJfdZhjvurWbFNn0AKEVdk5brEXefxyzdikI+1suF6so4sCXyvVp2S+e19sGxfH9pyjcr9euWe0H524NfdQBx0ECeHxJNA3/nhWKNMQeLpUtpyfyXruTXZLtD17KrBtjWXUuk9XbZeh8+emfDPOCOGEn8m8/VqviivGCEcFAa/iuKTsGX/XN0oAneiStmiaR7o6zVeWJNlVukLd11EHuFsQeYMP5tdpPfo5q2uemVIrkZ2J+vrP9EkFZkc+POPu49gGbXrJH2GlJGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 803,
+   "completion_tokens": 300,
+   "total_tokens": 1103,
+   "cost": 0.009212,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009212,
+    "upstream_inference_prompt_cost": 0.003212,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.75
+}

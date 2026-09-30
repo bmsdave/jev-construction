@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Lay mineral wool loft insulation between and over ceiling joists (insulation only)\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(m)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 0.16\", \"document\": \"ADL1-2021\", \"text\": \"0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677961-PganL1s132Qikk71qo4h",
+  "object": "chat.completion",
+  "created": 1790677961,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person_scheme\": 0.04, \"building_notice_or_full_plans\": 0.05, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Loft insulation alone falls under Schedule 4 para 1(m), exempt from notification requirements even though it might otherwise count as building work involving a thermal element renovation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Loft insulation alone falls under Schedule 4 para 1(m), exempt from notification requirements even though it might otherwise count as building work involving a thermal element renovation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSuwYKEAgSGAI4AUIIdGhpbmtpbmcSDHINULfl+IfbnxWooxoMXFjMmSa/atx2wShGIjC7iRJI8owXLsCfvnJ9rND1KVWMCQ19bwhrBE3N4XXr2Dd3fkYGaJi3ahByWM0tWWoq2AX3OcpJ2FxDvedatsStWm5qyXuIrFlq/NrcvDu3drM6eFA0FtRfNcYFxu73IgpeQRI8JnnrSQzDopOFw4lBnDZjzGsHDm1jnmO2EjbZCzF38FcZA0NN0IXUh6aU6rNICsLvLoP/BsphCJNNQAzIqVhc3bXZkxA8ZW5cuaaQfkPGBaI0ToZPaAtuikcgdeTEsEtmHvBnzhjE0RB4VlLZUnSUCUrcYNAKpfDOgb5aRhotIlfgV1mTKx5jna/OjS5u8Y6RBsuNUmpowDYcd7hvUgfvwzbqKAYWSHsOSmFgpWt3+UflKRvDee8cse/d6w3XVebcMNEpWxS6zVQp2h6Fv0Mm+7uD4TvaInbAF4DsPWlp5bP9JPa+CF4jqhRzz8CrTyR+E/bD0vD0Yd49OQt3V9OHlxNcGru8yyNPmQY8Oj9FTT4wpzatuTTxhDfB5MknW15MZbwLo6yg/0j1K6I6KWRrNYSgBiu4zgDb3N2fuesxPfRUlbHgA4OjKZlAcxb/nXItwYn+hGH7IIMdlP7f3aHN0Gh1yOhd/4EgCe/jPgDHOLyERZc7l8PtbMkxswOK5atA3BwYIAJDs7wiXpdpdwI8JPqhBCjG5tDV6yOffdZxsEAg3SJEkBM1i5t9IbrtLJ3sF6oCY539+Pplv7C0J7ymRgZHcOXHQZSOU9sjMi4Q6UZIbmcsT4+/okn2OlvsXs/lyRuewmyRH+QV0et76ijBUi/DczWi+KmgT8ngfKtDIiyekR5uvzyt0o1z8dRtXPnB7me0mdGtB/f66rFvEBqjIdHOGCSL7agoRMKsE43SO7BURzbU04RFiUnnwXRPAX77Xk0uIP4ayfOxKzoTUZea0J1b0s2CarVE7aXBEuhYJZLLpjXSDNrbLe3HtDv7oN12srHGDdidr3tFLEckMBJfc6+OFYVIYKCCGqpqVMYI7UWCIlZtaQpEwacBrrwPqtJzrNmT+ISzvhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1507,
+   "completion_tokens": 179,
+   "total_tokens": 1686,
+   "cost": 0.009608,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009608,
+    "upstream_inference_prompt_cost": 0.006028,
+    "upstream_inference_completions_cost": 0.00358
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 98,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.799
+}

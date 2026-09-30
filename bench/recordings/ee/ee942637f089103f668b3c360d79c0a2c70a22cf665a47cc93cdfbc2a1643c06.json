@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"400 L heat-pump cylinder\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678430-mQm3KJLNCzm3Ijyf401O",
+  "object": "chat.completion",
+  "created": 1790678430,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.8, \"not_notifiable\": 0.08, \"building_notice_or_full_plans\": 0.1, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "I'm considering that installing an unvented hot water storage system, like a 400L heat-pump cylinder, falls under Schedule 3 (G3) and typically requires a competent person scheme rather than full building control notification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering that installing an unvented hot water storage system, like a 400L heat-pump cylinder, falls under Schedule 3 (G3) and typically requires a competent person scheme rather than full building control notification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9ggKEAgSGAI4AUIIdGhpbmtpbmcSDGtzBtQ309dPalH74RoMf0L6DmDkPGfHQ2ALIjCrYdkQEK/gbn1zy8HV/M0ZTuBozb3yJaf/493luK/YgTuWJ9F8dhNhKB3aeJbIaB4qkwgrzZv42AXtpJKL10T/RtPypVDBajH5qdpytNejp3OjAyQoz4h8ELlOUSDinkyOhEPEO6QA6n/763Mddu8EWGmuFgBG7sgVd5cMin5rkyM+16zQ9R4c6qbxvHV4MBZEQOWQqlfUeN1Dc1qVmQFwOc45BW8+iMpa4Bca7D1SRvUjhaK7ztnyQDcMg/V1KLRchk9zR+8LPGqV51Njp8jAeD9xT7IFIgea2Vch1dhpgZyHollamV8/LnoK1wbrJvC9V1W3ypT+rNlXe32Yrijz1Gz1oOz4z1lhS2HfyfmKB1GesTiLz53Eea/LRcDUykLkLdtdj3jNvmWecqXOZwfr+u5dCF7ZGj7yVreY4shNQoq0+Vj8+8ii5VVfdiWjS6GpScYpCKBNu2ozjVAcmJR625wBFn6HOU1LO9x37vNlmhmbCLvsDJNSLpoRVw1OAntJjYTpKKLXcH+8+rhCp2UNmQSEeqzYcCqKsXv3aMvK8dDV66Gu+rQRvNNrR+8jIkb2FYtdAQhjT6BtM8pM4oA8O7knLqntQFsDBJgp1HY7L2e37kTZvA3bHJzWop0kfDqRo3cbUbO4X9RAFMwuh25nmeGUequw3kNt3zcviNrPABzhxtJqci0REPMswuXk3b9uVKjFt0Iw3VzIAUJW12aOF/0GmCmy1Lg9CGSNvxyO1C3k8lJZ6HWfsVxaqKmqLmEfwoISuv3KdcHQiY6XZBdUQ2n52bZ3O6Xm2KnjgqvWLQmdAsca2+/wbUVoH0l/RSALHrURc9pgnXSdCAwWwhWRmmvsxFH/llVbkhAoqbMyKi3ndkpAAyUT3L+Um+fkyujWXS8Wy1SHguqvjWCYAkIfaiedz/dRJzA4tESUaZit4s6cKTvtzdc+KEisX4/cB5E2z5uoerNwQeL+1PDtPAjZbe0Tf+mDlTw/cB4OgqTfYn6wgFa0e/SA3eixmsvs4D60GSHyVkUcJA20K7RXjuGjfUC9Ag65PpdYL8ewQbitmOBr9ULpZTqbAPZ7NkXuTTk2Cv0T0V8l92gcgKKAGQCfnzGlSkjjAQ5x2XSX5b2vQyjBNbN/6Rtv5sVj4mj2aeeqvmwEanVndz1+m8MUlnBLhCkrFnrShZdOt3rqi6CVuPOiFZACemuCjWBsayDnOs0WIkIAkGbraJREKkKFXckA8VHo0IB03u2rB/ApdFvumKtAPH21QDh3MvaThWL06ngzOfTdX+npXLvKGBeU3v4z0N+9qRIwm8jbU/MP/D1jsYHewKLJZgJf6ylZ0C8PJ7z4+q9V3ByBNqq6leJ5s6SgKERCoFlSFD7rsHE8/UGD0wmeB1/I3XQxyxX2SfkVTAwIXRyIPtNsa16pnrS6fj9UkRTD0KfUEuFiquI7nJgq2RzhNLZQexgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 494,
+   "completion_tokens": 287,
+   "total_tokens": 781,
+   "cost": 0.007716,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007716,
+    "upstream_inference_prompt_cost": 0.001976,
+    "upstream_inference_completions_cost": 0.00574
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 204,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.112
+}

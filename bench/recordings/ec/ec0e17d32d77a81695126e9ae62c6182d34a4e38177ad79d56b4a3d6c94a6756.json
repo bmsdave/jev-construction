@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Service joinery (cylinder, plant compartments, riser covers)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Service enclosures. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677462-Tax8HEcLgdyMPNvutZ1S",
+  "object": "chat.completion",
+  "created": 1790677462,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Not notifiable.** Done on its own, boxing in the cylinder, forming plant compartments and fitting riser covers in a single terraced house is not \"building work\" under reg 3:\n\n- It does not alter the structure.\n- It does not install or extend a controlled service or fitting.\n- It does not reduce compliance with Parts B, L or P.\n\nThe cited clauses do not apply to this item:\n\n- **ADF1 Table 3.1** concerns energy-efficiency measures and ventilation. Enclosing services is not one of",
+     "refusal": null,
+     "reasoning": "Boxing in a cylinder, plant compartments, and riser covers is joinery work, not structural or controlled services building work. Even riser covers in a terraced house don't raise fire compartmentation concerns in a domestic setting, so this stays as not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Boxing in a cylinder, plant compartments, and riser covers is joinery work, not structural or controlled services building work. Even riser covers in a terraced house don't raise fire compartmentation concerns in a domestic setting, so this stays as not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStQcKEAgSGAI4AUIIdGhpbmtpbmcSDIZlp8IT9eUTptCjSxoM2VWsAwTIcSlPUxjCIjDAAJe9MVE92F5kgfw8BDzSDR2qBmZysvNWy2sfNmf34Xvkwj/BjPJOzJye7OMtxd0q0gZSbeIAFfyBXXBWNV9TvVkl1MBqZHPorEiGaMaWibMPzxEbKOf9q0JUaaN0ia7TEJZMH8QWDXFVocOHrO9bTV7X4qyrwb9UnBFeuU0Jv0lDhIkkwykySS0mwkUwLAzhsw/2JIKVUtX4R0iiFi8qAyhU6Db7ynUwnKBaXKESPTdxMFZZ5DXxTHL9AsIHvQupUMaIOuo0Q0fgCrOl6bIT/wdjqodll1rsHnL1d2upSqHU/W3WR+/z3R3x4+GGNmGYbR4qIvhxjC9NmAPQkIdTH8LmRVhtqvOz4Y7IoEn8JDFlnJbXYg60YflnLK3Kpm0sNqWwi7JlbO+QjKartmFiQa1Iw0Gb5bu8FsOZEGKiJhUfk5Rx+BbWqlD7hH2lgSq9n8a6xDjqy3MtYqCxxkzwSLWl/kMBUkNATMz1w0HZMe05ZpNhy/2lYpbNI/3wW1N1goJtN1T4pefNrXWKQYMLZ5FGV5y8kpF3libxdIaYoEa7jG2QQAQZ5F9OtM7LftoxBP4KvI89xuLWmPAdPr4ogWxrWpEnP1GiN4vIDhd/J6tO2q9KW0Tlk2lpX0g0n5tY+YQmdOVWtiluHbcay/dwibyqqGfNqtXJ3SFCEUsvkMzxixV8GpmirOucrId9JlJsL3O5DUXsh0jJAi0SYE7CfGUcnEJMiu2Ogz7UC5AFG0unob92w8O2Cb0GyKYhPoGoBwG6V4LhR1BeAYI1qiAdddMBwIOBl9hKtyTUUBhTbKuiZynh9FlGqkQynanb0+9Tjal9FIVUD1I2toP0YMKK7ks9V6t0GT7Cwx8ulfJGe9lt6ZecAwVhJHFg7GRuxYZOEdxu7d7xCrNg5taBJu93T4gBcv1l3XheDOWwaUtFv5o9w3CbwhMsEGy3ytS6DYX+5rn92OaWx5D/nNiPswDmeivyivV/9M2kl+UCAzBB3v0oc5jYMEQfzSMjJkn2Wg27SwaCDogPSRnKR7lZiRdn+WZoJDsqjjSUNdqw0gmExhKMl3ctTTElPhm3tBTm6eqaUxeP7eeeTqH30O4vTl9Op29gkGYuFD4A2ERcdhcR6HXZDUcyNCPsh+8hiXMCDnKjBzNF8bJZNQ3OMUXkXjLHqlM7OmAEv3IzQjjmb964Mam6gg/XGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1521,
+   "completion_tokens": 300,
+   "total_tokens": 1821,
+   "cost": 0.012084,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012084,
+    "upstream_inference_prompt_cost": 0.006084,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 132,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.748
+}

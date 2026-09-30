@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Roof penetrations (MVHR, extract, vents)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678199-vBy8b0AZLVME7s5p7rb9",
+  "object": "chat.completion",
+  "created": 1790678199,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through whether roof penetrations for MVHR or extract vents count as notifiable work, thinking about whether installing an extract fan falls under the competent person scheme for ventilation or is treated as non-notifiable minor work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether roof penetrations for MVHR or extract vents count as notifiable work, thinking about whether installing an extract fan falls under the competent person scheme for ventilation or is treated as non-notifiable minor work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9QoKEAgSGAI4AUIIdGhpbmtpbmcSDB82elWkI2TCl1UNoRoMnyCnsXHTwHkc6hU8IjCQwzjiVMTgAW1G8+foYU9Rr5Jp6MbUqROkbrZEErbWR/9MPQoQEYrZ5aM2YKouYLMqkgpBbo07wP6uiQbIvGQW94YQW1Hw82QoU0U1pl81Gy2ZvbMmzjeuCl+M3IRhPmWolLESUANXM/y420S5Z0deWvauOOa/Nm4FOh+TD19TOeIBmefIC6nC0Aa3Wlno4qOP8zENs/OJK/Gdk0eaLLS8gYC5N3jlegs3rZ6hWc3XQegKh14eHSWyRSO3+7mMf8LDDTtiDfQk9mQiZo2gURakdbVm9uLSdQ0TI1DfvugcdtJ8EM4eVKz6XyXrnFCVnLdjH9FhAGe3VADXzJi5UexDrxQqx11dfPqCyGQvqfC7xCouos7nmM+4FL9XX/uHx1BZCsyB1+fPWkp1cc4gQs1Tk16ZHo36R1FvNVWLNv5ven89OgMUoUgwZP3q/xeQvK2OCLw3lRZKdTuYoDQOgpHqIfveJGNY48HA0pehpmvKtu2oYi4DIVIBSlFXtHjqH2DxDU7txifpWBnmQkpyk5FaXrG1u9ipeWWb8BIHklBDo5ZFY3lmndrj2qKoO6tdT7Smz8qiwqS/t97MfNri9mSUjavC2USgHZawJkDbOXKyLDYUBx6Dnhi64PfVtrqQxzqgZGpqRiyNlkkdvbN7UDNfdrW3uvvMh8AFJa/l9rT4f9gP8DucVM2TQmSeEZlPb723/RDNO+OqPNmvX1LNRdm9+LQtgedc9gp2ML5mlAHDO2ySm1YJrsOaxje1tdhUHjV54U+9H/qmgPR/tZCMvxGZrHo9zrsXa5hUxzlm8rDpoTn93rCy0w49U4/aN936uHUCXMuto0gpFcVEPHHmetF4ZN7OS/uXmv62N6cgRLlkjP2wgPatVDgDKh1I4QnnlLZDzPhjTnrO9dZWEJ72o9TFraYNfMyMlVRel959FjScj48J9CEtgescoAfRRwuIEVSdvyq0OdYC/1CR/40O5cyaL1IXxvmDG/UkBIQ0bHDa9F1zKZddIcbInkgbVLWY3LlhLV7IqaY7Lkap/JbeNXzabhnabCAqS08/ZPzeG0rFPVfT2HOylit4NG1AfY5q1KrBm52HYvWX/83hy1Yw3OvLUBX3L6I3URiHFG3QEntb9B88SjpPGEVUT673/ZSz1bQYMVOXgnPJkDHWsZsf8hmJV7D7I6WQ7IDeQYtUvn2Qqey0JCUB/TTFVvUF5YqzXUHFqLCHnnYtkV98vCraUqegapvrlWuN1EIYB2MBLV2m1ziRJ/E4nfgubCvF3YHtf8K/bIlC1AtQxNsNg4NGtVA0cv8Lq5rcUTSA4Fc10DLqu/x1oZaC2cr8hDHq16bMXQt4PQzyFh5lZxFsEIn4dHB8taAZF925vbt9SgRZlq6YfsG8l4MtW+vtsgau0RIVzb40MGROJrfIhvKGEkHRVfV2TT8CWOkn/S9itg7MD8wzRmXphcYBK7iOnIRxTQAp9Nt+b3pJdzWpHg5vnp5Og3ovNY7xcVu4FjkJEPFR1XGTsFvKEB+FWGgHABOzCrP/GjS6p5TGL2GEpmRlEI98Bo9sYZa68Qctt/rjHR5M8BEAZkEZxHT/6WzkktqUUemj0E9XS3IeQv84L64mE2Fv+u5/wrjJuX1dA9RoJGF5F6Tyn8ONP0PvOAK6o8BQ5z6JqAa/UmwcuVgWvCUGsz157lyVzGz5XYlzb9IyZf56D4Mcc3VnGnoiZe2NjTTujqwQvqHKY66PTLgogsA2Mm2C4r28hs2qlcl+L2I4FnKliVFv+DhiU8OZ+RDPTB/Ev94iX/iDmoHVWBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 506,
+   "completion_tokens": 300,
+   "total_tokens": 806,
+   "cost": 0.008024,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008024,
+    "upstream_inference_prompt_cost": 0.002024,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.021
+}

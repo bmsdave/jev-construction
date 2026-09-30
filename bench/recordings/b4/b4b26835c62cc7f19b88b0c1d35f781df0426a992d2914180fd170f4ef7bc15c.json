@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rear roof outside dormer, make good\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678231-6U8zySHkQoqbXZWbLBAT",
+  "object": "chat.completion",
+  "created": 1790678231,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Making good the roof covering around the dormer is a **minor repair**, so on its own it is most likely **not notifiable**.\n\n- **Not building work:** Patching tiles or slates next to the dormer is not \"building work\" under regulation 3, as long as it covers only a small area and the roof structure is unchanged.\n- **Energy rules not triggered:** Renovation of a thermal element only brings in the energy-effic",
+     "refusal": null,
+     "reasoning": "Making good roof coverings around a dormer is a minor repair rather than building work — unlike full re-covering of a pitched roof, which falls under Schedule 3's competent person scheme, this small-scale patch job likely doesn't trigger notification requirements.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Making good roof coverings around a dormer is a minor repair rather than building work — unlike full re-covering of a pitched roof, which falls under Schedule 3's competent person scheme, this small-scale patch job likely doesn't trigger notification requirements.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSgggKEAgSGAI4AUIIdGhpbmtpbmcSDPjp0aD84AmJpJOotBoM0zEEoaFY6eme9OGqIjB2Ck3woSZr3C7nOEYIm9qliieIDG+glGPkwfNamLAkwNbO0ln0v9QhTlFirHSStOkqnwdnHGvogGuB/QbySmOPuVNEiwioV61bIY7ESyJmjvAG9ZWw52C+LLiwXniP8jtR3vAEbmBt/yHiTrKZjkAyiU4H3SaBVsad0PDpAEqTUgxDLy2gSbCoRVogdzurFi37sCzy5Tj3djMFs/yuwcO3xvBoQJvsKHOKRq6n67zNj9F4sKGi3YaET0yIxywMnUZgYV4vudXfHFrAO6tyedgGSXxlX+v9ZVA65RfyMIz6z3EOwloKnDH68jMQnpfMLWn3Y9kcI76NWP/dgTujzYlp6CqWWuATSjfeew/EpAG7uEJj+TYdedJJySw6dGV30Cd9DhOE3bjcSkWRgsYgksxaydqmVlLXMrYs+7gMWWbA172UJXWqpU+/AzAMPjbGyqwg6vtpdPntHBgezQXGhc/ZRruEkcsM6RvRkQSh/ZNJzupC36fL+NAq6Iz445YomXVeTQBGthlLJC6TUUnBjRbjkga5clDS+hMVFYi0DFs663PDcEerbkMzTF5cy4v4A7KUwdugGg1Kw83+LxdQrsAmu+RIfNS7EVYjKgqDtaJYlC4OckgP0oUNMJBJdkDBk7pQpJHOBIqVySOvUQEkIH3NxEDBUQGyLQfTSnqr5OrYOcHtMhhSIhMY2/PjMVqqAliy7mn5nKHnDjWjd5BclCSueagJIPABqYCPaD3SyiW/dj48fGZ5BDRekVV1dxHAnv6PIePcHodjtaC0W7eE4k2tNU6PgiDXsR0iw7ztOMAsmX/QPV2QCAySVaUrmWkwimHnEzlI1/H+2QmiIsbqOw3jQxVy02CkyIqZb6xKKdDwWPt6ulXWrVkaqHkYpkJdsFxK2sx1nTAs2rx+LWTUD36eMyOOiVV1jHEVAjMWVAugMkaTRy7mhfrWJOHUWLWr1OqhgCBxuuRy5D1DS+WZnELrBSQpGdFvnkFsgiB067IwMa+r7DdYwk0rAkRop0XtSCu0arWQEx/GCc8eLknqaIY7UMYgxve2XXjjWYu04MfvsV1ymrIvLE67ZBFABJAmyGRq+pdTj8Uya9IivRVdoJXa8v8VJJqVQ4T/YuKQlrXsRp4c2i/2gDeZyPyIvJH+Ac5kSOBi+EGczUTHBMth06RJGw0x8kvekkCnPDi7nNE8D63xrflpE+ZRYY8PFfP4/lF2DTFbRfS8IxCLXbIXFkORVFoZ8wJJgNM6rlAckBZqOZy5KsjE2O8PA2FJAxzSupHwQ2xmTT51VLLnRwnvICKSsaMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 500,
+   "completion_tokens": 300,
+   "total_tokens": 800,
+   "cost": 0.008,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008,
+    "upstream_inference_prompt_cost": 0.002,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 168,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.963
+}

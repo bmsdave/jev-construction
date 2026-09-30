@@ -1,0 +1,46 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Converting the ground-floor shop and upper flat of a building into three flats",
+   "project": "Mixed-use building in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended."
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "competent_person_scheme": 0.06,
+     "full_plans_required": 0.1,
+     "building_notice_or_full_plans": 0.83,
+     "not_notifiable": 0.01
+    },
+    "confidence": 0.78
+   }
+  },
+  "usage": {
+   "input_tokens": 584,
+   "output_tokens": 65,
+   "cost": 2.4528e-05
+  },
+  "id": "gen-dec-1790676097-e0nu1kTofeKHcXPteF7E",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.307
+}

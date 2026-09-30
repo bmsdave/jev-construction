@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replacement windows in an office fitted by a FENSA-registered installer\", \"project\": \"Office building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 11\", \"document\": \"BR2010\", \"text\": \"11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"para 3.8\", \"document\": \"ADP2013\", \"text\": \"3.8 If an installer is not a registered competent person and has not appointed a registered third-party certifier, then before work begins the installer must notify a building control body.\"}, {\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678112-5bQVsjWpGow3kO6jFNog",
+  "object": "chat.completion",
+  "created": 1790678112,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person",
+     "refusal": null,
+     "reasoning": "I'm working through whether a FENSA-installed replacement window job in an office triggers full plans deposit under the Building Regs, given the Fire Safety Order applies to the building — checking whether reg 12(3)'s full plans requirement overrides the usual competent person self-certification route under Schedule 3.\n\nBut reg 12(6) carves out an exception: it disapplies the full plans requirement where the work falls within Schedule 3 and is carried out by a person listed against that entry — meaning the competent person scheme still governs here. So the answer is competent_person_scheme.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether a FENSA-installed replacement window job in an office triggers full plans deposit under the Building Regs, given the Fire Safety Order applies to the building — checking whether reg 12(3)'s full plans requirement overrides the usual competent person self-certification route under Schedule 3.\n\nBut reg 12(6) carves out an exception: it disapplies the full plans requirement where the work falls within Schedule 3 and is carried out by a person listed against that entry — meaning the competent person scheme still governs here. So the answer is competent_person_scheme.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8woKEAgSGAI4AUIIdGhpbmtpbmcSDPrp+Z0ZdIPtDA9XiRoM4TENuswA654T7+VaIjAjmo7jEdzcllQpEn25bt272sHbNVbbuBDhRVNVOrHuRU6qS8+Q0A9AHxdhzSRoi5kqkAq8e2nfoHpVQ26TQBTipF18nLToRUrjZyZ1NnNXdCnc/ivXYt2QnBCG3I2Ysm8+3uKajiTxvAd9di35nyxLPBAtmurPLtS20Py+vVw7kblMTWTzjEItyKUppYkrdA+e5v0i3xaNr3mBkpaoKW7Q6jMwr4RdySTg6U0Bi6IbFOUBYeit3MIYuHWW2/IZdAfM/EE6/FmUk5swIoDu7raHL1cZ7/aimqDpbPX2I3/ecbyNF1xVLrzLA/31UKjO5SwkAJ14GJTzoWHc8FQFz0ZzptD+uZsBYQ1hcVh7tkJ5Ho8ePYAWxvn712UYBIpNBB7bPYtvANIbceD/319260otgn9cTp3R5oO2gXoAnoI4+/Y0VXAFBrzm3S3KKDJF13A2V84e13XTrlrTDQNmIaQppbZwm1x+u8bf9WX4OGFtQHbOT6B6oecjfWRSrSL1yhbj7bzT2zWKlxiwdDQxLQ/QOTGOa/GxGthGfcQCoB0X8EG5JO5FQHqYL23Gqiynz/b1Mnar5xHz/lFYlZoX4yHS5nw+rQmqADh/m/Lb4DL54l5KmqJR6+55rzDUmEsN7guHp3WefkJ5bDXLyUD9Jk+2xZXEGG8fxMyZDd+lUX2oPZ5+G5C4hhqUL4jyvbYNwuq/UgTI6NFx99t+X9tM8DAhIuLyG8FeYtxO8qSuNLdeiHlQPESrieMd93H/5BMRUHsGdHXnK7U9DvKO255HYjQUhzJaYcBRFN8DHQAsFz0A2LvhNzL/UgFbt+NscRrw7nQ/vgKRAihZnaQ01MiAX+jFwLqsbjLl6tUC83IRyfPzVlwtHZ18YUM1Dfwnpv2fl4siiRw3agl/B56gZrJb+D1VA4SC+BO/z+BQx4ForjG2RUgemrNf3Mllso4XySKfwUjiJ0MCaqKNk/I2zQiE6MppqylVm4nMk7NBhjJccvEdds74HmFUSm1Xpqwl4KH4y4YXrt7LVjKCAWSjlTY7MAC0Yc0Q8AQ5saoJH3iJov/uwIjwXdvUWtdaTMa+6Yw7Pqi37Lrn0JRf7ZxISEeLrcZQGhtukoooJ4eZq60JbRzwHTzY922QDEmewM6WY2rCl4nqpvPO7ETRkvN38f8X3/UWh1V17q+g2I2m2xg2634FWRIk6jeJaB8akvkRV0sWG4s52dv7TCKAfMHNDvwL73f+J2W1BPT0tS62486EsjMNL48nYQyGLFaMJAy9UtgnhvzOL1YL68ShHG/ockj+uicgeYsz5NUgdDW7OtezFVjMb6eicifMswFJhzZCNJZePV4jtRh7YG499opQjut87nmQ8wUG8CbkBW2HpZbg7G8f1X8OiwViBl+g5CZSEyJHgiAsmMARO8l16pO0cma0vVIZsWPuuRdJWwiDDzq4V1apvaAmSf5gKf9wbV3CrHQb/FEuVZGqDk3giBzF5J/UCAfjC2h5kKtqE4j1wlOl1D+y5gQklTqLK+1KsdASSqE/aJud57hj0y+emgXIAXsby4oLNoL2WeOyFTwOGx3/ivD2OAW8Ezzhv5b8bdHbxDZmli2NkyhdLJT+CUn8PEGAJyK0NfOJ9AUvgrIh38wkAOJWQMWnYd1U7tJoT7IBmy/mzSZDLdmggnh0FI+76+S5xGmyrITvEwIKQmSFHr3tLUxs70sahfGOlm6GKbrzGn9OK8pmVXtWVk145+UvraKECFNmHF2sFOGFTAoxeDw/+lIM3/3FA6RBRjEPhb429AVrVBAfYp8YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 936,
+   "completion_tokens": 300,
+   "total_tokens": 1236,
+   "cost": 0.009744,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009744,
+    "upstream_inference_prompt_cost": 0.003744,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 291,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.523
+}

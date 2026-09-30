@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Layered lighting gap: extra points\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678427-QlP3Vx2QviGbPqCOJDNZ",
+  "object": "chat.completion",
+  "created": 1790678427,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.68, \"competent_person_scheme\": 0.3, \"building_notice_or_full_plans\": 0.015, \"full_plans_required\": 0.005}}",
+     "refusal": null,
+     "reasoning": "Adding extra lighting points to an existing circuit falls under Schedule 4 - since 2013, only new circuits, consumer unit replacements, and work in special locations require notification, so extending an existing lighting circuit is likely not_notifiable, though there's some chance it counts as new circuit work if it's substantial enough.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Adding extra lighting points to an existing circuit falls under Schedule 4 - since 2013, only new circuits, consumer unit replacements, and work in special locations require notification, so extending an existing lighting circuit is likely not_notifiable, though there's some chance it counts as new circuit work if it's substantial enough.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSiQgKEAgSGAI4AUIIdGhpbmtpbmcSDNrDPv82B3tekhIemxoMEPceL0FGBw1Hg3ndIjC/x2byfsGV0C8ajlDz5GHf2I5iHh9eEkFrm4sRtE5TiOoupSk346Me4NNXk84DqZ0qpgf5G8w4NfUCr2z2IjJ0tQcH3PdBWYximCgqkzzL6jr/C5ZRpXP/fOgG1KB17uyy93IwdbGreCc/xLMDq7mmAn6lqBIJPuPVVgGt1YpsEJScmAXjE/yXBa5HpGzWEw3hOJa0Nf0DLDmBZ4Sn7XPNtc4reiijgi6Cisjim2qNCS8+iOqukpW/kXjZPXmRPgwj8mu1jOhI0LhuilW2WPJz/J2wRQT/vavNpH/Ab18vRhU/06V4uZs7yFMoRxLjbz8DLTEbkU0D1n8uzK5u1EowU83bSfsdl80zs98X2frqxuKRvaRq0Z1kesfr6UhuQs7d0YNIc69MqDUUTqTjyO3XTyDNvmv9p/7rPU9tzrGVePy7G1p9SyGH7tz4GOrI75Ku8AaLAnJzcQGGTXsPSfe+QCYtXIXkpZ53K0OM+auUPVlJhdDaYiDJFxAuakZCBeprQv5sIqGhzVPTXG6VmDdz3E/Pn/jlv2QqVDfisF5EW6x4kek8cf1A07guUgDKvZKCJOpiURb15WWzTwa2Si+fROEaoR6F2TOAbGQS5qTl1n9i8RJ2fy486v6CTJf56HpBUpWr1BJs+Woaf12ViT/YvUy2OCV954nNiXwfHJVNFoQTY98Jg9BlZ2Wljdjl3yIKfolDTkQE1CvMOUzO+b973WmSr8OPvyaj+9onmzQV/yBC5XBIMVf+/bXFmxiaMGtCc668PuiSovsCJhrbmeQBs4ktBFUA3IfRFyiV0rEtciyi00KUS4z4DuYjbGo5t8ZdNI0OI82y349CmnjzkxsmaEaRLTJTXyTyjmOqN3/PxIw0oiyMgsca95gI6JY3KG1GYgZmSfzvzRDW7V3fTcyiqh32ZdtGpcweSkI0v8nGivj6rKNqzFAKEc7oNnOCxvQuD8g18HmiVpNONDFTJ00pFGafZyHpjgro/yXh3suJZVGnEdcYyWlYOL/BKY+VUxnPNAHuwz6DpFTHQpHkp81Q4h9BD8TA/TmyMXzYIpJXvT1SvwcmiIjGGGJeuOQBWeNU3/IgPYLR1v+NLDnsPjoAyYCDQLCwiKIue5QXf1qD3JNWaQ0Ro+FXpl8660oc/Ej4XxJUfb4gPBYhGBSiHEFJiy8r6P+umfJkVvv4SkXzQkYpL/5Hme7VKnIrw2Yj0Ju6cKfokxnBznRN/tqV9R/qAiUBVglkENc1Bb2P5GrIIEm1x9YkemHYwnJ/8Qq0JFW9DRJFQSongU7plBO/tuZSmb4wjc6hgtb8GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 506,
+   "completion_tokens": 246,
+   "total_tokens": 752,
+   "cost": 0.006944,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006944,
+    "upstream_inference_prompt_cost": 0.002024,
+    "upstream_inference_completions_cost": 0.00492
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 165,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.066
+}

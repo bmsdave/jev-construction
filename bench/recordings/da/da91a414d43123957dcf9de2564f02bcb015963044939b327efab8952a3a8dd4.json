@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Installing a biomass boiler with a new masonry chimney\", \"project\": \"Farmhouse in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678663-iySGZxApRWOoqx0PZahS",
+  "object": "chat.completion",
+  "created": 1790678663,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm checking whether a HETAS-registered installer can self-certify a solid fuel biomass boiler under Schedule 3, and whether that covers just the appliance and flue liner or extends to building a new masonry chimney, which seems more like separate structural work under Part J.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether a HETAS-registered installer can self-certify a solid fuel biomass boiler under Schedule 3, and whether that covers just the appliance and flue liner or extends to building a new masonry chimney, which seems more like separate structural work under Part J.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSsAsKEAgSGAI4AUIIdGhpbmtpbmcSDLZzakYjBmgC9lxcoBoMoZEBOpTZJ+cKjV5RIjD8WUBKk2i4w/s9Or6idXpBwr1v6DzztK8YtS9BhlN2RL/Kvo1vYBAOrzgjapPQEuwqzQr6TBu5kedx2vJboMEn5I1tcgDKO5248IxFb+WXXnQUvq+VPOP/XTRa5rMJOdwNUlcmuYmCeHxY4gobTMkw3122wbO6oJ7JsPFH2bvtu4xst4cv2T9EvCTJSRa0XhR/4uP/uupGqo2qldXeuKoJv02mJ8ehUNzF00xZu7zDdZ1nLQjKI9Jg3pogq7mfJWx8VmGcbfwIdVEzVpMNbJqTtvTcaZUJ576v99GevNGrf0CeL1wanw23bX9ygwTkByUdAlzUv5kDeLOnFjlx3L9/H1i5HsgI8AnnbVsT7IhPUBoi3uUVm+hrgrrLib4Te4jfeyhDBWTbUKBjEUQl/+QVuebvh73LSEqF1w3/JMNxAf1vu96QNZsVHkS3buuHO+Ml8Gsy4n3Agjdi8J1qndfWGVLsNFKA2E1ScvAcUlHKBdM8v8+39XMsEQuhIQ5u58vpTUaoieH8DwsB2sHxQVjarp8ty/pEPHvbelz8ejVt4c9f2BvR8c3LrVJYHAGpgy9PdS1Weq58dpvXnLk0xt/a2mXAETaNBxARrNQ+v36QNS06lSRI4YA48WZCECMJRLEIKnXp940+Xo/XSEzRx2DFq0xEoiI548hUosVTjAWsvcQnu5KV7UV1foHRfH1D3QK6wAManczXn8XrCtwYAqJc8/LgW3+rSKdj48HKM19rPnIWX0F6ZQeU91VLLKg3BcZbLAP3Cj9pQIjKLbr5F93RopQuqJtREPl2s8G0DqLb5SngM/TwtRApH01cX5FoDWA3xDUXhyLSfra/LW025bR1ExmLjgtM2rjgjlCGkJLq7HixUark4QgIw62007fuozuLwctKICbj9R7GVQKH2R8x9ronE0WUxC4HwbqoeFGRk3JixSNuH4RVXtX2QvzNsqX1aECMM+55lDVp8bAUYSdxSbjMmGSBrG/fuZGGA2BbqMzdgDJkIV0d2Sjwjiad9oeNwmRMubb/FoVDQ9tIsMexbn5uoOmojhKZOlAsZoT572c9XEN0O1TDpCIFMGu/DyuffKVFQJ2wRpk8445W3YFhzEzNCKSuqmV9FK/ufr2DJobBfba/T+M3jmegpDEWIFhJexyM4zEcrWC2Bn1JQzmU91Vsnh67kEnWFUg5GKnp2IBTik9/ZJb8pYjzzhb1UwJvUJIynlpih9phN47k9Gm6D6lvFbWyiYm30XeXfQsLoizzUyuJOw4e6HW5Cn99YscZQnRBCj4nFfhFGYWXgOdFNAUwloIuS2Z51+sFJJiy/PaU/aht4omUZ1AOtrTZlpQk7bvlAqsWtNJa9iDGLOYBr51RYVyhJK8O4nYNOLGvPjmk+4YvypcL5IYmMlkcgaGRnR8F3AnkFBf8+5G0T8/PYqGPTmgog5j1O9SkPs8X386z5+MSOA/ic674b4+XvyFslzfF5Cs9wRL7VIFF9c+euwApRUNKUlnm3uucuzma+Xoe2PmimpadeRwy0+J3oskeW0b6pHMIawE38c+r/yKmmcqflyJssP/l2aPUful0HBbJBEYMtp/adptHKWkM5N96zHihn/mgH+mbyGTfSadQRt1F9S5eIq9aJz9fBCNdAvEfLWER4Y/VU8ekP2g2OqqvX97qo/mJTQmStZYDNKWV3jxLhc3gBReauN7fXmT5FHyl7hj3FWzn8oB6lXVKKFyrNCPKUMyNiJjhu+k0zzWbUXFK60IRskwRRTBAxfZjyBHM5Ji2gwRk7ybGoYn0yxC7PsDRQD01T2LXkqDfaEd4aNHYHJOrTeERqORp6ZV1sfq7A1c4qVm8NqhGIGgXGB+vBWHEWBNIafo8S20IVViYGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 470,
+   "completion_tokens": 300,
+   "total_tokens": 770,
+   "cost": 0.00788,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00788,
+    "upstream_inference_prompt_cost": 0.00188,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.453
+}

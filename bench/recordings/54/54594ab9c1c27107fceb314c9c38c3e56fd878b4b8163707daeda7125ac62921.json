@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Replace the consumer unit\", \"project\": \"Flat in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677783-q2dVHqg96Q3Jq35KZiH1",
+  "object": "chat.completion",
+  "created": 1790677783,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing a consumer unit in a flat is notifiable, and a registered competent person can self-certify it, so the answer is **competent_person_scheme**.\n\n- **It is notifiable.** Regulation 12(",
+     "refusal": null,
+     "reasoning": "Replacing a consumer unit in a flat falls under Part P notifiable work requiring a registered competent person. I'm weighing whether the Fire Safety Order's full plans requirement applies here — it typically governs common parts of blocks of flats rather than the interior of individual flats, so I need to check how building control practice treats this distinction for reg 12(3).\n\nBut regardless, reg 12(6) allows the competent person route to exempt the work from notice requirements, and electrical work of this type is self-certifiable either way, so the answer is competent_person_scheme.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing a consumer unit in a flat falls under Part P notifiable work requiring a registered competent person. I'm weighing whether the Fire Safety Order's full plans requirement applies here — it typically governs common parts of blocks of flats rather than the interior of individual flats, so I need to check how building control practice treats this distinction for reg 12(3).\n\nBut regardless, reg 12(6) allows the competent person route to exempt the work from notice requirements, and electrical work of this type is self-certifiable either way, so the answer is competent_person_scheme.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxwkKEAgSGAI4AUIIdGhpbmtpbmcSDBvcaEVHZOQsY/S6TRoMVMYzlg+jlOFTrIwNIjAGN5ofIQoHoveynuM7oFjKp4Z/XwNiTTtv7sqjumGgctJ/4F1DlO5oPOZMgS26oasq5AirsRun+VD4wLPAfQHFZHwv0nuVWYDMiOCkwOVDBS38IMoEKkPn2Jx9ouPDcorO0o8LkIC02PjnQlbooEW1KraB4O5aJDqYDUUyqzSsRUYXa4ZOHj7/GqxlXPmgeqJ5+xtXTy5KKQFaNovopczfUSF7GHf1DRrNtD5VXMZh2laxqQrdRiZR6PgMazWteZliJvCtDSAFcZsWGz8yqZA8vbcbC3Mw9DDG5tQcyt6YlZ6P5+FRjWJ/2sSgq0Hjd/B7SBgJBOg095UIeUP6PI1pQBQSzI2HIaovWkIqdCco2ROdleQC4rwdBYnK0TM4bZcZBGu2wbk1IlD5yWwI93As3TqgDl+TViHyICdX8XWjjCLLaNWem/hV/1nGUKvITQKI/iDoHPS8tWnTCxlHMoqzkPOwazQOBvX3GKZzt1ZH2R8gfbSNkIWA+41UroukmP6le6lw4ds0Ac984FFCRL8mJdclJsRZ1mJ1SRvMzEz9o4zg3nhXBAE4eqrVjjcf+sL6K6COxejMGZbH977ew1HIyQgLYjujn8jeL68z/s8mwPecB/YWWTrHopaQrJcBU9Q3J6um6iJ6CE47kxN7hKLEUGS7cavmwl/8svkXwCyB2n+y4iV3BF33dXGlRRW0M0VCR2aHT1rjDYUgjMaiQQJoMjH7p5qCxCXnW0psKFgVUMVpHZ3welk4EbyfnKDuFtOvTCPJGMOL1b1XcP7Dpx5HqPgjZwHrpu1DcazOIo4BNz6h2jd4segiOuu0JvnP9Af3Nx+w1005YAS0nko/Jp+d9pAfpdzmtB3l/NGeKuF9Qy3lXMhD/V5EwEU26mjczPlxQU1o6giIhj/nwOFWk4A8FuchTE+VsrHNkmAlSL7465VF727MtxGLV6cPhEE1G/LwkwB63Qx4NpNi0vYDi7O/Jumr1m2fx1SwXyu6xhbWh5w5eKPri3fzktYp/NXRdzLUokkUETV2XZyQG96Z9sUtdUaawuM12Mq42gbBGHSqDktZjzirTJGJQO6ewlanEOL9MS4mrh19exHCUvIrmmHncSp5m8aZMmM0lMBVOUcWAfRtpQLBlaWfnoHFl/6RBL7fedKdGRG1jq2aFXy/nGjfIRfX47gAotPSA5PRQCvi7nkihCeVC7PKtjE1lH9VsGkUgUJV/XB7k2Ankf2hGoeUSGp6x//yMAXlU5QEAUEDfvNKCOLeNz11bndJGnKSpYE9vkh29zz9g5Ws+txbO6ptFtkOknyrVw7eo//4sWXQISoZAZMvg55MKlQzCiIZJ0vbQTxJU29i4KtCAlzL4M4CiGsQlk8Y609UtURz74sroKvyHKZt2upsqSMFImRh4HhLp545+HhjM7tv5e0sdnACQEmDwF5Y2UQdfvRlSsGkDV7UTXVW8Fo80katN9HfpQ3O7+X5h1BUOhc3JcACa6b3Eqt7RJ8hH9aarRFUEan59jcnG/cOv8wpw1OmXen3xfVQ99WZ0CBA4nhGueOht37/oEVERPE9OhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1260,
+   "completion_tokens": 300,
+   "total_tokens": 1560,
+   "cost": 0.01104,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01104,
+    "upstream_inference_prompt_cost": 0.00504,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 232,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.549
+}

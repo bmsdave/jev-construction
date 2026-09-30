@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Front pitched roof window\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Windows & doors. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 10\", \"document\": \"BR2010\", \"text\": \"10. Installation, as a replacement, of a window, rooflight, roof window or door in an existing dwelling. | A person registered in respect of that type of work by Assure Certification Limited, ... ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 10.6\", \"document\": \"ADL1-2021\", \"text\": \"10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677279-j8rfJZKY78adpeo5wgvt",
+  "object": "chat.completion",
+  "created": 1790677279,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "This is a new roof window, not a replacement, so a building notice or full plans application is the likely route.\n\n- **Not a replacement:** Schedule 3 paragraph 10 only lets a registered installer (for example FENSA or CERTASS) self-certify a window or roof window installed *as a replacement* in an existing dwelling. Here the window is going into the roof of a loft conversion, which normally means cutting a new opening.\n- **It is building",
+     "refusal": null,
+     "reasoning": "This is a new roof window as part of a loft conversion, not a replacement, so it doesn't fall under the Schedule 3 exemption for replacement windows — it's a genuine structural and material alteration to the roof. Since it's a terraced dwelling with no indication of a private street, the FSO doesn't apply, and this requires either a building notice or full plans application.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a new roof window as part of a loft conversion, not a replacement, so it doesn't fall under the Schedule 3 exemption for replacement windows — it's a genuine structural and material alteration to the roof. Since it's a terraced dwelling with no indication of a private street, the FSO doesn't apply, and this requires either a building notice or full plans application.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6AcKEAgSGAI4AUIIdGhpbmtpbmcSDDLLEJKUNUDPLgIuCBoMQndQvItApR3BhFeTIjBdF4LKeUm8AZ33YUpivx8dO5wllOCsTk7McBJ1CPdXfx/Hi1vQn58aBGQ3LqhGW2IqhQeleM7Na9tm264biUq7pNY0rgPViJbiKUwQHS7CgTzTYhoXOHqcL8YdRvRIoAdgPyU++4udlDVTOGi/K0355I2kkOYELKIrS6vJQWxEYegZUlcawDtj6rYkhjgbB7d67vMDCXWu/aI2XLJXFsPszODP2ScHTiQVf+mZTHPWEKxk56fQkl2GdQQaUZfwjkR3OZM3vGCQCfQ3jvVoq1pZXAr7g4f6zzIDHwcVM3t7JmrsYXphamthZ5vJ9mUDAdK9TiMwIZsrKgctS8ZnabM6SLDnYEMEutjagnBJ57Nlc8uuQk9hqRDMzxNTAjCeiv9LgSWjGawZ6W9KME3maNGEgRYd6X9d9RYW3aQAGrAyii5BK0yPw+35fsIGP31lLV4vgRuudhq2l40X6UoSPmgjFphNfAvMoc/iisVYX6nC8m4WPDK4qyPqcS6Abb78fyFqPtAaBQkrUjDpNQs+4PiYkB6EUMf5wWRPqix11ljmtit3mAUoc5oDpq/NJdRM0GBBx+K1fLKpJ7EAlWKaW3ZCHkFErA/drACJG5dwPbDZO0wskfG24T88QpjGOciKLtaJpoqlp5UZe2Rxw9glautR7w85XT6crGfVbottYYKdLl0ACGCBYKqLn+HJWK2qZYlHF8JYo+LypbgCMZg89eXGEYRz0qon4Y2HpvSGpuq7yWjC6wGnzv9/lwwkk3rGHRjOX1BXWSQuQchUUaOB/zZI5Ry73GGzipCRYDwHsvteEDBuZ83GoipnD7d8Kv8nMG3v9AkGGrc/0VVopJuZ2NjFU1kQvElU75tzJ/iGnQqPMkubn99C4s4juQ28Sm6JPIo6fOFDcZiEXE0h9iohdYIufAwErQ/9m6PmgyVBgUrgqOmkSf+HHjuTTJAqJKiYY1XUfVLOoKeL9UTW939ZuNtGdmra5lTd9zovIg09QPeTcJT+9LkuFIgLxmeKAHIU2rFByi3bEWPQAWiGs2+shrROIk6Cg8usYt2fcde8qQvRLfLYBmj/lqQsl+1668ar63M9tT7WfaURb4jCyZ6iBplH4gAri26AuXYup80nQVksX2naF27I9Bs1XbgP4lJ2JFk9BKzt5TAaMuwxom8s/nJ1EAISQSCXdx1xZ20Zz7R0D61Zgvhwi4+lILRwWe9wpI7EIEVTxTsNOnAlG7qaKjuY+fUUM3aQIFlXZu3d35WXhpUzhmgK2Gr0GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1341,
+   "completion_tokens": 300,
+   "total_tokens": 1641,
+   "cost": 0.011364,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011364,
+    "upstream_inference_prompt_cost": 0.005364,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 159,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.345
+}

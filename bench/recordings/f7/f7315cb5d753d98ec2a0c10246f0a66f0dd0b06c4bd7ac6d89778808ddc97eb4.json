@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Form new en-suite shower room in bedroom connecting to existing soil stack\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677985-pZ89NmF7yZbmQVi62vKB",
+  "object": "chat.completion",
+  "created": 1790677985,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "This looks like installation work covered under Schedule 1 Part G for sanitary conveniences and washing facilities, plus H1 drainage since it connects to the existing soil stack. I'm working through whether this counts as building work requiring notification under Regulation 3, given it's the provision of new controlled fittings and services.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This looks like installation work covered under Schedule 1 Part G for sanitary conveniences and washing facilities, plus H1 drainage since it connects to the existing soil stack. I'm working through whether this counts as building work requiring notification under Regulation 3, given it's the provision of new controlled fittings and services.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1goKEAgSGAI4AUIIdGhpbmtpbmcSDKWVk8GIHLS1BW3bVxoMnPubDhxuLpxkE7IeIjBPcLuXe9Cy49ybU8D0AfASekHesLfaYxoUBCyLoKFL6L7P04TYVF9lK/+na0SsZNQq8wlR81QcVjRhipGtIK3hN9lSzrwU/xpUISQBoJkEdla48rHxhjvggpwxMfNwzwfk2U9oiKrYpyHCKSNnh99vazJSrlcqvRt5Ei8NI86KVcC/s36TZBqimdgzR05IHoEK3BB+u7yMigIhcEc6CIfPLTeww3hZDdQNCyJi+iD3W/qbJm/DKUu5tCntxlaGgYJyx6Nd5Z9LhB6WE5Bo99+f/t7KV+9yGeRUYp5j2NFZPtTTCqfOBW+svYd97w9SUBQoQ3SVFUhYbVGFTHwVVSyNGnNzoa1lHifKHnA8GsNY2k9DhIzX/EIUCkfSW79m72UmBRaZpiDw8pN5PpEFeDm88VPp+m8tR4U5dYDLK5jWdVi7YcUV0xad2BgK40kGQJFrGladieEv+Sn5RkM8LTj4Xn2dLpfMQCqEjdnlJZi9sSDiAXF4s6JKiEeyK9sPUJ5FmqeQscXZJK3pUcqFeEkGqU5QQ8ZJrbFpFcUZb1+B55aweRkuygFyN/Bt7Y+ohWX9FTApjhjw2etDjtkRH/JdDIBvdqAVigozS687sJSPkarFGbXqQb3oq46BuZP4WfUJzQSODXmINOxmxROs41UoGOKyYeGNQB8Svs9Ji/QLi9LMgKa2dPeK3/DHj/a5LjY5xkGwGmY1cMuAvLlHEQ6tM9o3GEgVWpoMJ5rpJa/La1p819/TOhdM2OAa5wejlsUc1FpDPdPwdPUswX1vRSeOvmBjDEVbSy/sIZ2clfn0r6Eb2nqrHF1RJC5/eKiF6lDR+J69/zoU+jy166PmfrvUAz3/RxI/zHHfWV9MsubhcovgYG+WAiwGfDIAUa6DI8n1oZxsiMkbkEd5ng/zHhuPv1qOmo61mH5XD9GS/IVczrZWRMQVU8ixISbnupfyaQY6vOhbfxj3yccqmBNdax8LBj2g6kQLPZD1j9tEOqvOh41zUAAvb4emB8S8J290+m5byGPfHlXLbfFpdKdfGq3rtEl0qbng5Vy8bz23TbA4qwpFMYg1VfVZ11vrH8tlQKwskB0izr1nNaiGkuGNRNgwW0UeKLmfEk4qAgNgBcNFMSsmx+oXaBksJvjYc2TodM7vnNX2iRTko7y333wWjIgykoAF3e7BllbzZoQ20WTQ8JD9Hui7nsHdV3kAI4wZaA8aBK5fGi5Qd6/7XKyREOARbX0mCjTNeUa9ODHrjD1dmMmBT7ENQkX0llsMh5/uydDI1rTKF5NF+vkYkSy/PyfY/5GGnbI7ehD29f3VSPYNDV5Z68BXDhqV8G0hoH10RF4oNRtSJz70Sl6isjRJdOgzmIFIjM2SN31pKqDUEvFjOqY3wrdt6KBD50G7hd84JbbLJJd3iwSiC2+hlM1a7ecIMTdY2UyiN9rsjK22LprtNwDjwjiBTRxwZzPUTzDS8XTFm+kN3NZkSfj3VeBxfJNOM4fSXuY6Xx4E+HnLiiXGjpcMy9RvSKfbwOm18dXo5zDzedkjYUx2owOZIEARjIVsesZnMcsV3jZfYBcQnGz7MPF0IEdx5cgmW9SYaeNDB9Q4QuPvATpzSBX2UWL06Weipf0Gsi7ZUkd3PU2CsHJm+57iIi+OWlorzmhJ63YLhWhZ7B2X2AyNkSlvCLsrhM3mPQ7fSmvlq69COJ3shb6xMspIwhTKi8LMS8koXz+VKqgV98ySxKN/A6WopfsfjsuYCbQYd67xGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1354,
+   "completion_tokens": 300,
+   "total_tokens": 1654,
+   "cost": 0.011416,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011416,
+    "upstream_inference_prompt_cost": 0.005416,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.806
+}

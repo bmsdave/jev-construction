@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Bearings, padstones, packers\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Structural steel. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678183-q8Ojh2WQFzoZgFRs0s23",
+  "object": "chat.completion",
+  "created": 1790678183,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Installing bearings, padstones and packers for structural steel is part of a structural alteration. That makes it a material alteration under Part A (structure), so it counts as building work under reg 3. It is not listed in Schedule 3, so no competent person can self-certify it, and it is not minor work under Schedule 4.\n\nThe building is a single dwellinghouse, so the Fire Safety Order does not apply. Nothing in the details suggests a private street or building over a sewer. A building notice or a full plans application is therefore acceptable.\n\n{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"not_notifi",
+     "refusal": null,
+     "reasoning": "Bearings, padstones, and packers for structural steel counts as structural alteration under Part A, and it's not covered by Schedule 3 or 4. Since this is a dwelling house, FSO doesn't apply, and H4 doesn't inherently apply either, so this needs a building notice or full plans submission.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Bearings, padstones, and packers for structural steel counts as structural alteration under Part A, and it's not covered by Schedule 3 or 4. Since this is a dwelling house, FSO doesn't apply, and H4 doesn't inherently apply either, so this needs a building notice or full plans submission.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpQYKEAgSGAI4AUIIdGhpbmtpbmcSDP2CUHclCUMpzcLzBBoMvSIyaZi8jno5UTejIjBySmR4TpoIbGFk+FFXN+/4kYOWce+lqC5n4l2kfZ5A84LbvImDC+we4uxRGAyDNigqwgV3476dxlwpNnGtsbCMUrRtczpxZCPVW4fL3mrgy6hvRYjPc8gCRaLxH9/RVoNmiYvNLFUM3NyHuojTOrEi/dTQHXYhO9XYdBNPmmOe0j/SX1d4zNh2WGA7qYou+ncwcCjKYS6lUXinHZdst38YgcXOJ3ABtWVbU1H7hQJru26ht329UKz1p1J+2w2c3naBiZdt7+wmht0Yo7lOadiBgHKNhpwieF9gRhDzyMv2lL/EB2ECNcbIWcNIyZGvaWTqqgZ0JulOZkeMJmE5VY03CtKSnajfLitpd6jp0pO7VhO3RkJ66+oNeaDjjiNARFOSzVbkug6g9xSdAtRFtSB47LbfjLerNiZDpSuvyssJYB5rTzeek/FB/tUxaPnVPlxCvPBhOczfcLwJ4vRRaEbTkctjwtbBwEnsQVZwIur7Ro+Pn7q6KpOMe8p21Fup/ozJsYUmQHNpk9knrm2wFfG1UwDkrIipt1E11dVBg6Kqh1aIBsmFP+0FBX5t2v41/u1qXH1nWV3/JXw7yf0CC9fQMFD3g3PGH8O1PkqgybUGZ90Fhy9GRHDchhXZzZzV0eJ98iHWPebUENHq0DMaxhR3jK//ZsbDj08yBwKCHgsrVpg1NV6vpc3/XfdvIY04WR4z3s63lFBPvGsWyXEXTu86STLiJ/cwpv6iYvEZnBGdfUY8dPdAhZaQZnvUueJDS+Dv1n238SBMsSewgltNw0oJ09WxUA37fRHrSlGb5MSDkBo+tiE9t6G2CUrfsA1f0xgbypUs1PbQNcsDQfjBqF1oTJNXwOp9mZvFbNrjw9YuJRd/Oj0/vEnpfQ6xJpD+IeWuq6iDKa7yqpEOZZpGOOrLD0N0yPwqSq+WJCGfVSMPfcm9oIXrXnM3g0Wz7PYX3uVlcOhtQRdiU8b5yzdCJWC8O4SqpEQvt6hl0C/kQRILQ50A7q5LGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 506,
+   "completion_tokens": 300,
+   "total_tokens": 806,
+   "cost": 0.008024,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008024,
+    "upstream_inference_prompt_cost": 0.002024,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 102,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.835
+}

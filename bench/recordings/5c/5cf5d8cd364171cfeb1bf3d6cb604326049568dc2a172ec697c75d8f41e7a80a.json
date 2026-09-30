@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Dry-line inside of external solid walls with insulated plasterboard\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 19\", \"document\": \"BR2010\", \"text\": \"19. Installation of insulating material to the external walls of a building, not including insulation of demountable-clad buildings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited, ....\"}, {\"ref\": \"Sch 3 para 20\", \"document\": \"BR2010\", \"text\": \"20. Installation of insulating material to the external and internal walls of a building (“hybrid insulation”), not including insulation of demountable-clad buildings, and not including the installation of flexible thermal linings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited ....\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677959-OaM3TLdy37caSFFQetvo",
+  "object": "chat.completion",
+  "created": 1790677959,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm checking whether dry-lining with insulated plasterboard counts as thermal element renovation, and whether it falls under the competent persons scheme coverage for insulating materials — those schemes seem geared toward cavity and external wall insulation rather than internal dry-lining, though the hybrid category might apply to both.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether dry-lining with insulated plasterboard counts as thermal element renovation, and whether it falls under the competent persons scheme coverage for insulating materials — those schemes seem geared toward cavity and external wall insulation rather than internal dry-lining, though the hybrid category might apply to both.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrAsKEAgSGAI4AUIIdGhpbmtpbmcSDLYYpgyeUMDQROfiqhoMUSAJLPupjEdYsps6IjDolUKxIQILFYZ/nPuVIwgeUDHHQMYIz+T3ENbxlZY3odDYaHLOEtmAW/Xri7/Hy0wqyQrNXizO7g8u+GvZdsdvbizd/eYNZJQmoQTPmjHi4yai2TVU9vuaDOsPJWHBW3II+hSq1/cxsfMorlsZRo7GiA1EH2hErqZg+LRnSxUSUqF4yv1c5igIFANsC8AxNb8seb5zAwmssshLa+ZPsR9orDbBiDv7P35UhFUFp5KTVMywjuxHhOYRwJrsMHl9Y2fe8SUPkhvWt79DCggqvhxYEcFiPanBVQgKJ3dQg5gJgMfycreNZ1Q92HenEkvPU6geROuThfOXcV7mTtYhtCCmDimYcbKJ2TK0/hMKAsWEfqwvsb/08V0zflv4R4q9WiT3w5RiaydZsFXJDlLCJA8m4x9/mhBXg9pUDrjFeX/dqvU49Z/ocZUazH47iWd+SXdZN3k/Cu3afzRH5qtrLbuulpJY+Q1ejOYfGvWB1zA1kFaUCHI2fjGy/xlGqDB/UcyeFnWzaD2kP775M0qeHipVuCl/o38ZRvK+HBdd56kMlx0uTPNvEEeLSQIGNqNNHLnrvFH2428pA21khi8O2NI+yeLQn+KqIIg6Dwe1E8y06Qh20zTEt8IEI4yVrAsgB/YFMZVcIutm8K/VakmL5qfrwnJticLfRqYevPMntN1WKaTO74ugF1nzGiAy4KRSlCyR7CCVGPV6BzroO9aQKIgG4bsN2n/eCw8d2zzaAax8YdXBCZcWFafhbcqAcg5bOriZ1BVy7Vs6vxMS4VsN5lzSXm7xpsSAICHvZu3827owZIYbgFzGgDThoPyuSUSCJlr0D4x9wkL4asm0sTKXqniPtqmex1O3jApW/aRDa5Q6+o52dB6qQ3l+fH12zrATNgUtUpzn59nAjabNZEDyW1gWYXpNERXkzuUFASgeW+RLKAHYynFRJP9aJhnmNut1bkbWq3dDdAgVRvYMZiMUE5ZcwKL/48m1K/G8h4PlheM+47ayh3lCTMiaN36WWUmJSTF9//z3Q9UELgLG1g9REVgTI+NHIlqr+AF8VxKgXd/nA5qMhImOM3kAPu5lRj2Sg0PUxzvY9DLf025TIpi3VzL/wZNRJJ18+InRusqbOoCO7r2lTH0xYn1F37j414x310FffPB+3e+3eyUB5JOLyghmXlDSvi1giiUcQB6aYSyb0Q85bjaW2r2GalCdKNRTZB8tQD5XQ5cRFwAwRZD6Nw2SU5yy+tdICk/7NJvv+Nv4XNAoPy2mf9INXvLXX+Pb7oVbEX3Xd4ETbHev4IZGhWGYwNWPk/RaxBP1w6z5kdTFofwZhS8udcpuEVjbDkbXxeAtl2KVKFdq1hWdg7xFbmtXT8yHf2sX4Og996McoTWJp7QOa7VuFcMngeFAN9OrKFeoY9bs6ecxIKgbodgq/LjR9SsBLYS+suWUuiKCGQF8F8FHVd2KMaGfza0kOYH/p/tJbUXHE2M9se4Bkrizt/9Fsv2LS0cfPffTcvs4QGRCouMlab9gGN2WEQmCqU8Ldakip7Kl7G/XrFPRcjKiTcKhd5e/Dhy0YMq8RgZvAwSgp+eygPBoNSiyGRPujVhqLGU4CVq3wa94vFv0xvExnOVOA/nSdXKWgGVHQOARdl34JAU2IANTz6vEGavlG6onJGAVR0YnfhJDAyKJ5oAsN+nyA/vFxr/Yo83mCiP5Uw/mr5kDhhrBOnSZdByCplNV0otDx5RQLUOPoG9OWBN9tVIcPgWaz9fMHrRKIZGuOD1CyxOjcmAlGklNepAi38dm1gK6jrhDH3eFxT8RuyZtKu7G2MeKeoAzFSa4a8qw5X00ENRg4QS3U/jvQYnd7IAArQvXJdpKg7eEXXi7VQYYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1308,
+   "completion_tokens": 300,
+   "total_tokens": 1608,
+   "cost": 0.011232,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011232,
+    "upstream_inference_prompt_cost": 0.005232,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.266
+}

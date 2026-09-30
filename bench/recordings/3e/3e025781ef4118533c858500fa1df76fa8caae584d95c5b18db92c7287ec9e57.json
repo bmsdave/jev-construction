@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office MVHR\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Ventilation. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 0.11\", \"document\": \"ADF1-2021\", \"text\": \"0.11 A unit that contains both living accommodation and space for commercial purposes (e.g. for a workshop or office) should be treated as a dwelling if the commercial part can be reverted to domestic use. Building Regulations 2010\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677529-0jFjjHzuPkBk66sCjbl6",
+  "object": "chat.completion",
+  "created": 1790677529,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The work is **not notifiable**.\n\n- **The building is exempt.** The garden office is detached, has a floor area under 15 m², and contains no sleeping accommodation. That places it in Schedule 2, Class VI, para 3.\n- **Exemption covers the whole building.** Regulation 9 means Class VI buildings are exempt from the Building Regulations requirements entirely.\n- **So no notice is needed for the MVHR.** Installing it in an exempt building is not notifiable work. No competent person scheme, building not",
+     "refusal": null,
+     "reasoning": "This is a detached garden office under 15 m2 with no sleeping accommodation, which falls under the exemption for small detached buildings in Schedule 2. Since the whole building is exempt from Building Regulations requirements, installing MVHR in it wouldn't be notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a detached garden office under 15 m2 with no sleeping accommodation, which falls under the exemption for small detached buildings in Schedule 2. Since the whole building is exempt from Building Regulations requirements, installing MVHR in it wouldn't be notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS6QYKEAgSGAI4AUIIdGhpbmtpbmcSDO9YYJ9oN6yyVxsrqRoM906/SjCpErUZDPLYIjCEybODyNdIYu0j3Hta85YwblDJG4vNGoe+PbFo8pW8+Ns/QOdzC0FEqty7L7zjtZEqhgZxAaBL4VJPPASsCqIZRZ7bFARjt60CKkHDTZnvqr69zPMhExsZqYMFoOFUMbdtsdcCGsbi9w93fokTLMwr4V+XmlmLib0lbTm4Un6sF3uMj5O8fkTLtApjPCd4PdvcsdwYQ4eul1f8ATCSRpgO26HjPYg3J/JUsfD+9PNQP3SwVxms5un1NYAiSt+hDoCxVBpsOllKzriVy+eNz0kC8LRaEFmjQqRcmVtiChPuVdWtBpi7zuY1a3AJ5Q4cqw4OaMYmHWPeWduP3vn21hpqjgQTHPvlV95ey9VfIKnvh0h8j7Gp5EvEFAgn1OD/XJTMuPGn8PEvYjMHEg4DmTqjBWoYDyhjnzEbk21BzpV4k1iRQvh8V+xzu5FnjydBFVu5xIV3XDcDYeUTYrtTCDjCw2veYyNvitsh9ZMl4InA+kGwm+l4QCJoICt0gSThKxgjTt6Cve3+bR0JLW5E8BNWIGZxEaI4pMgDO0JgFDArJWcwdkcCwtC21BcDX/YB/5CVRXC5wDTjqGHV+RWRVxKDe+XhOMojSX9lrDA4/qEeIoESKVeJUns+nIIMT1Iu4B7tQGILsAsihluURb6IBvyyRdzSZ90KA8zzIp5Z0+lovXxAI6BfM49d85rfuQM0K4x+1prxLGL7Bb70RTGSrA+GwSKAypoVA+XlwF5XOLcm/ZEo0DrIfGR2vOtaVQ/y/EJhAGxzRrWDMavMGelhBi/FVVv43l5HYEg66HU09+yks++KM84RqFIYyBTBiyKk90IoJr+fvjQCAQfHEJ92XRcHZwV1neIAX6GRDXwXrLibVM0/Tse6B0Gwe/8ZiV+lWpqi1N4SpzXShjxtv3WJCW0th1SBzfdKNA2qQ3TtNaUH1ogeW4SBlGhXd+4dmrFl4ooAWEBNPOWLvevCISIqPaFpeZvORnNkTkVE+5i1lC5sAGnpXIW5lHY/5sWEn0vPK/5RImzqdva9XBPeRqkyywC8PtgR1L1IxjNGnzOEI0y/zPQGBYYUbw1/uK+t9a1Fa2CvuUDJVGXgkmUYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 819,
+   "completion_tokens": 300,
+   "total_tokens": 1119,
+   "cost": 0.009276,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009276,
+    "upstream_inference_prompt_cost": 0.003276,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 131,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.726
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Switches and control plates\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678439-FNLFTU3TW1pSazJOMCNf",
+  "object": "chat.completion",
+  "created": 1790678439,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifi",
+     "refusal": null,
+     "reasoning": "Replacing switches and control plates in a dwelling falls under Schedule 4 non-notifiable work — swapping accessories like socket-outlets and switches doesn't require notification unless it involves new circuits, special locations, or consumer unit replacement.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing switches and control plates in a dwelling falls under Schedule 4 non-notifiable work — swapping accessories like socket-outlets and switches doesn't require notification unless it involves new circuits, special locations, or consumer unit replacement.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSiAsKEAgSGAI4AUIIdGhpbmtpbmcSDEzyJBZ5xmxXzolnOBoMpT5R04NsrPvS4aLOIjAfQAhzikYGlvuqzlvGeQqlkUD9Ey488BZXg1fmG2xGVZ4BWsxMyZPoC8hlP/I7IXIqpQpTrvGxax3wIOCXcp4UBKAxqhjVVOisWTC8jHu8XHt1LyzgcWLfIYW1Sw4Q9E3oPCXOK0iWBDs3CFXZQaZz9eWZcIaicXwib7as1nykLXfDNtWEudOBum/s8qfiVKoE5TkQoUk2fhr/rrByGq4RKv0kIRlXUlD7OzAnxOeJZH/rfZoQT2T20iB1DB9BFyoBHyDQTbrU0681YxNjvKI9Oyryew2tJNh1Bp7Bo+k9H3Hh92xZq2+zDMXGzvpp/tcN1rOsVgAoTjdmYU0j5Ry7YyPduil1VuguecVtkPTBhtJU5R9dRV006m28Mc2mLPqbNfte3zfJzD8rAAgNectFLEP9gkmtBm12wBd4134KYFmZP8aBjoiHeU85Y01brhoX776y7DWaU/Zd7EEhdkMz5hnSU/wQW3nchdNTjizdW3rPg0cXdphMFR2Hg5F3swFJG3nSfZ8K/gE7jY55dWmVL549GeqKQqlLZ5r3vuEf4wKswqspMU00SWPfzatuCF9GToLTRWFq699v1oq/pIXP6tBfaT/lu1qggNfWw2e6UW7/GMFeweJpUAuzO0S7PIZSu8UhzKvTI3P6A4GcJJ7ZDewmUMY6KlpALUQ7RbcVUqIA3woPypDQ3lzdquSDa/7GWS3qvlUi7SrRYfOmMx/Cj1oej901E0bXdhyy3PBjZ2rvGZY8UGUpG5++PsMiw4CTfW/QCZdxv9dXX5VYZi5H9K2mmrc3lNu6R6OypEzfGj6K68vWcodRVs+yjFrjDzjVarSKfLd3eLNVsupaiP2pbr5ok8vG3i0t5iD6FAaHz0AlCiY2y5DB6PJtoMvEN+EtJWiS/okbJnNeZhhMaaIonRcEFBDTuhnSOLbHAI2hmat8RteCSDlxCxLKjs1mbtYAI2dav4hcJfI0kouUN7OKL4rXOVrpTmRT32mC+9xVRSNdYhP6anBRpgfdSd9vnkZ34BzNfiizBBX24neG1d4sebHoe+aqo3YxYYr4j7V8M5LvW1pEOUobEHYw/QqN3gZR1cxknhoE8ySdZsB4kI1AXDYDucxgftzvT1ZI/5HQzdOrUb1RFnljgFe6GWxa91i2f0qFmW5uT+0eo82QtDU3qIR6pHL4FtvnUog4JgVIGcvynBSBPeL+UXRxmUWcQ/rRvYQrOle9o2KE+n656tZf4vjGyB9dtMFFeYOqO6uDgIPBH2BJoucmIyD/Cn1N7Ks6EV+kELhpJoYDPGIkc79jR+QRGbE1WwHDG21s2zqR/lKMaVd8auhmJZOoU1u1Z7HpqLYFKxK9JwnlnDRwK/bQVJp3EZKOnyp412luBoTAXnYVQcyvIGIL5BI/M/XSVaZ75dGekUH4KRlQlwegGFjsiDwojHeAtyq0CsuucLBElR4pUpgZtZ8PSWn5ADRJphgkOgHceOHqUMeZ3iiFFdEzHi7v1YgGiCxCvPOdGHDxKq0GI6SIZoAsPa7oLEzamKtZ/PBVzB5cOGy56tFebBl1GKER2jYfP2swxQJEvEaUOPh0E7Po+TMfjgTSb6eZpIGgMXXsIyik3PwcarF69/exGRrEoCJm8dOJvKq7xjyW0fdeL41Z7p395f4yW1rfcPqKrD3p3kHCEXh9obFg3u2FC8UOvwvkr9gwlT4778MRp95kHgB9RS15nbdLQI6BGWNghEQhAT8pfXdXg+9Bd2I5+WD94OMdKMGU1WKBKON2oB0OF3ZfoJD+9cLg7wKe09E30nR9JCYxPYRUj3OzsacVwrW0K3jNsNIYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 501,
+   "completion_tokens": 300,
+   "total_tokens": 801,
+   "cost": 0.008004,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008004,
+    "upstream_inference_prompt_cost": 0.002004,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 290,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.262
+}

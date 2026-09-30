@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Dormer fascia, soffit, trims\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(m)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations.\"}, {\"ref\": \"para 0.16\", \"document\": \"ADL1-2021\", \"text\": \"0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677340-gONbHk2Eow4Tuit4u6IO",
+  "object": "chat.completion",
+  "created": 1790677340,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.72, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.23, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Replacing fascia, soffit, and trims on a dormer on its own isn't building work since it's not a material alteration or controlled service — it's just fitting trims, so this leans not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing fascia, soffit, and trims on a dormer on its own isn't building work since it's not a material alteration or controlled service — it's just fitting trims, so this leans not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxAcKEAgSGAI4AUIIdGhpbmtpbmcSDI5l6e7G2pVmDoy5rxoMvDZkyEaNN2I1PvECIjBnlsFIyL3scv3fjC2LonvB+4HRmKt/WPCBm1YQH+uXoZYMSWRqMz5QSnuHhC3dklUq4QYP1ctQIEwu0zQbSUrsrr805J6wvFkJulIM8V0+9o0WT9ioXFInmZpDp7gcgin3nyGAuVvn+xUCqvk3xz8nGJgV+U7hKc0w4SMQTnk6oDgpwybsAdk1u0CNowESyceh19jtWzNTv85VDbCBlTERaYiV4oHEWQSEvRt1i7RoRtWaNQE0seAFAhGu84Jn3h9qBBNyOWHSd9LCDd3U+qOOGuTuGQNa9Yk84cUOFqb28TW9hE0z9dgJI0xmk+X4oTzDXvGuSJf6T27sG6BAfsiw4PhZncfL5OxsPR5Isdf0KQRBIR+JwOukSUpzZmbci6PflixDrhMghVA8588zjmAbetvYkvTht7ncrBpFSc3+6KbD/l0kvMGt2jPNPJnAiHGpYiQVDgm7GEeyWy9Bh3zuRLYs5HDWHpFJC7lAZ39Ayhf5Tiu8e4qEX1gYRlficMrIeodg8W4943mgZr5Za5R73Tk8FVbxQzG/072yH7Hi2jZfVnSR8syYS/0oLzbSRfnQWYfQlgfTMLKhX6BKhczQF8uFGvgO8Vn9Vdu0mpOx+NjsE/q5RYj5qeSXopQjl2qJC4Pu+eCob4EFq82m3rcMCrwf20/iYlQdQDZevLN+D5GPo215rmaIsQLfbyMe+KP3W54ZsA1gSVG1AA+u48/LhlTJ7GX5OZjLTjmV25M9MR4tep7AuwiDJ7IscWoX+c+PR199KTGBuGx0vc33ibb+NjWTQyhlGMH7fqzUu51Rd5OdXJeUP6maEtqP2zU6qSfntqjzAzqCQFuB+S8LpU8z27Y7o52RRN9A5u08CaYcQpwXYG1emxWpdjunRdKUa3+CUH2ELfhQb9La4E9KvfUHzm0w7Ur2JkdKE9iHRljNKcaIdmUAstr1+Fto4N3B2Pxp773EQE38j/dcgxuWEaxqCJWsMDbmLhb5eTquu5pnpDnuWsFvPWy7AibPmHROtU8RqWfEst+AYHS0044kHLuLlAcSdNBOtvc9X+nXhuU7hp3jE3/kp027Lq1nKrlWOdGtoKOGWDRiGJ2d97REAs7gxOSjioybloS+xORSxo97pV1JohbhvQ4zJZ1QWgi43QbL6a8cLX3Di6KvGTuWrTvJmau6APSEMPGMnpFXD4eUhMXwrneb8bP7sTTZPRNWUMojns7YGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1187,
+   "completion_tokens": 226,
+   "total_tokens": 1413,
+   "cost": 0.009268,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009268,
+    "upstream_inference_prompt_cost": 0.004748,
+    "upstream_inference_completions_cost": 0.00452
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 145,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.566
+}

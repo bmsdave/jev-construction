@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Precast sleeper vent lintels\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Masonry. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 1.7\", \"document\": \"ADA2013\", \"text\": \"1.7 Structural work of masonry: Eurocode 6: Design of Masonry Structures BS EN 1996-1-1:2005+A1:2012 Eurocode 6: Design of masonry structures – Part 1.1: General rules for reinforced and unreinforced masonry structures; with UK National Annex to BS EN 1996-1-1:2005+A1:2012 BS EN 1996-2:2006 Eurocode 6: Design of masonry structures – Part 2: Design considerations, selection of materials and execution of masonry; with UK National Annex to BS EN 1996-2:2006 BSI PD 6697:2010 Published Document – Recommendations for the design of masonry structures to BS EN 1996-1-1 and BS EN 1996-2 BS EN 1996-3:2006 Eurocode 6: Design of masonry structures – Part 3: Simplified calculation methods for unreinforced masonry structures; with UK National Annex to BS EN 1996-3:2006 BS 8103-1:2011 Structural design of low-rise buildings – Part 1: Code of Practice for stability, site investigation, foundations, precast concrete floors and ground floor slabs for housing BS 8103-2:2005 Structural design of low-rise buildings – Part 2: Code of practice for masonry walls for housing\"}, {\"ref\": \"para 11.3\", \"document\": \"ADL1-2021\", \"text\": \"11.3 If a thermal element is renovated and one of the following applies, then the whole of the thermal element should be improved to achieve at least the U-value given in Table 4.3, column (b). a. More than 50% of the surface of the individual thermal element is renovated (see paragraph 11.4). b. The work constitutes a major renovation. A major renovation is when more than 25% of the surface area of the external building envelope is renovated. NOTE: If paragraph 4.13 applies, Appendix C provides examples of renovation of an existing thermal element that are technically, functionally or economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677257-pUfaLAVppVKTwjRzyFdp",
+  "object": "chat.completion",
+  "created": 1790677257,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Most likely a **building notice or full plans application** (not a confident call).\n\n- **What the work probably is:** \"Sleeper vent lintels\" are small precast lintels span",
+     "refusal": null,
+     "reasoning": "I'm considering whether installing a lintel over a vent opening in a sleeper wall counts as structural building work affecting Part A, since inserting a lintel is a material alteration to an existing wall. This suggests it likely falls under building notice or full plans, though I want to weigh other angles before settling on that.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether installing a lintel over a vent opening in a sleeper wall counts as structural building work affecting Part A, since inserting a lintel is a material alteration to an existing wall. This suggests it likely falls under building notice or full plans, though I want to weigh other angles before settling on that.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS+wkKEAgSGAI4AUIIdGhpbmtpbmcSDFfZLAtDyA9nAJmpFxoMpo2fnGokX9YVAA1QIjB+CR2ju9vAnA6Z2wz8KrkPXOHf1brQ3RP/pi5vFwO5jlDhf9kke1sp6qUeR8HZ8vcqmAnsvCejhu7hmoPoh22ZfIoUWfRbp7m3sWH+e9E2vvbshgyiBF40s5O5L9erWS+Bzgxpl4Sjanb/IavQoZBXJjalmf9WD9W18uxi1FApMu4McHqz1+wK02PxUIazUl56OGBKVu+HsCp2WKGv+wsSa3WAQjs3Wj3hyXhWVVjsjXkch7u7R7R1fya8e6fIW1lOis9RXYLMesN9z45XG+7I7EignXD/RRHYvcEVcE3BkH0eBoEhah+8FR6cIsOuIP+S4ovXDWUNAliBNtRtiY2CHiY8Lt4MDZfZapjxb+jZmhuY6tyI1fJcOYScbZRn0uMMayCcizTmPAHqvcFXo06XQs3GzulmVeuM9dcCVnRyYZobGOujkPfGbOUGOJePFdyybweUQofY1pf9WPUtM8MZPvNO42ENJFb8xkQoCyOUc7Kee7Tj+DPvlh/dBPVad3l03VjVJqQtMssAHksKqTe4RISx1EozBKIctnYTL59uKsISbAJig9W8o6SZiacSMIea7XDmgPW0GYuzPAaaHFf8WBDV2pe28LWfbccjb3inYqrXiCG/rv7ZLvbbwPbJ6WR7B6hsLaAtsBWBrRZ7yrEGIGzKimnu4HbY7YwrWnMXjvO1YPAhjOBGJW6pzjwK0od9TeY5c81DvoAVV+hXlM/YNjjq5lxDv0zPtPwjUKmMHuhoH1ZNV272b6GM+1GsMHQ+k3tqFUcS5CEp2V488iIz1rCuTqJFVPGZxyNgS8JoOJNA8vYRFkzp6nc6aQpQF7y6u2xcbCs3HNiwHxg+yw5HOVltC3uw0QumEyAl3a6EljXZjtakqwVGh6Rpfqo+DpZJHNo0NWyOZ7WyhEzjz3CvVhgQsQ8EubbpHSyUhwJD6zWhmrb+nwoyGEcU0RGYXnytdvKXx4V5c+8Lp1rVjFVn6i+vsvZcZHUhg08gvnDSRzkXq9CfNQRbyfK1EGTJmEXwwO+9htMD4NTJFjB/r/H0lzbaEUIlmGWYF62Q5waW2uCQm2brka5+sSek8bEtR0pyTkb4ezncWeV9FZRUnp4Pppdp1zWuqJUWfHigRXT1Z+51m+bkRjHEAdGOkJ9TdiI3HU2pniPfkAu11wpHe4hi5KDKSp838zVChY4kTxRJQExxnvUlFSM+fZPDUgmrdd1vrhYCgiCSOD7kuj7bDLBYHL4tK5toVHh/nHGucO/fYzEkGVQ3yS3NppQqCVGoVUuTdRetj7bnYB6m3hBfoGpJEdniBhbqVR5aFk42rSxQ4b6PNJ3AhgREIbIomMd3CPHy7Ll4KHXdkkN8l7lYJ5CSngTyoJRdocPbpL6pskSx3dC5cd6GU+jFxNQpsf7EGxG90OgGWbgrZwLyQ+rjp+Zw/ijZ0sv4f980ikvbhOjcVt35Gp7qJtgLeynsUDCav17XEjsK6UnijYWOBMpATHTFw3UoKTHQe9uo0efnElrrZO27M3sfm7iGGpVpUhSXN+FMI4rDkYSqNllece8pR2WIneJnXS02n18F2RHKIyAcN92LN5B+DkRC6qaW6B0cO/JOLAQ8DYWNKpKiDtVE+6Y3dJWY/N1+QMfcGFMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1490,
+   "completion_tokens": 300,
+   "total_tokens": 1790,
+   "cost": 0.01196,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01196,
+    "upstream_inference_prompt_cost": 0.00596,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 246,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.984
+}

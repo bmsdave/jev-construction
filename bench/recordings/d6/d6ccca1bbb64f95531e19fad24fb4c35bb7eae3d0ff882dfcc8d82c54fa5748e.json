@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a new dedicated cooker circuit for a built-in oven\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(6A)\", \"document\": \"BR2010\", \"text\": \"(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or an application for building control approval with full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location.\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677863-pCon05eXqaQwtiCw9DGy",
+  "object": "chat.completion",
+  "created": 1790677863,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A new cooker circuit is notifiable work that a registered electrician can self-certify, so the route is the competent person scheme.\n\n- **Notifiable:** Regulation 12(6A)(a) makes installing a new circuit notifiable under Part P. Approved Document P para 2.8(a) confirms this: a built-in cooker is not notifiable unless a new cooker circuit is needed, as it is here.\n- **Not exempt:** The Schedule 4 exemption covers only additions to existing circuits outside kitchens and special locations. It does not cover a new circuit.\n- **Self-certifiable:** Schedule 3 covers electrical work by a person registered with a Part P competent",
+     "refusal": null,
+     "reasoning": "This new circuit installation is notifiable work under regulation 12(6A), falling under Schedule 3 as electrical work by a registered competent person. Since this is a house with no fire service officer involvement, full plans aren't required beyond the standard competent person scheme route.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This new circuit installation is notifiable work under regulation 12(6A), falling under Schedule 3 as electrical work by a registered competent person. Since this is a house with no fire service officer involvement, full plans aren't required beyond the standard competent person scheme route.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSgwYKEAgSGAI4AUIIdGhpbmtpbmcSDB07WDCWaOrwxdhYtRoM6DMTUidcHHazDa7fIjB6ddykeAJboRHLWd/TVVVYG5SkptIAz349Cq6BGYmKai2/A5jiLUy78VTnF7088ggqoAU1SUMcOEpiUyX77Q7iwghz0Td2TNpzMWNncy1NkWPiXdK9iABpTl5Ji9uzBPxL9KUW0c0Ld5NzwMFp76SMeN/ePPpfN2nnoVubv8ruGbDjBAgvTYowjMXrj5BHHMC1R1wrebdcDEuIvxGmc+KXSkK4NWzKUrrn/bLRU7DFeQFk7TXLXXHb0GlnyBjiBav+8l6sb7/INcKrk+bEePuaq08MRJ5pTDM1lZa0TIeUaZ+mjWMxbVQ+NNE16qqloND5A1QcsxiMP8bupijL4ygeOER9JMweiRnDOMHYoh76HPMyySARWyj1Hckbi3K4LRRsq3k4VsmUi/bXTf+CWi4/gaIzWjU0EWcZVxutgCfUA5ZPVtCN6KoTBhS2yX99s9KcdBgPqaGiuuS8/3Jydi8QDWu8YCXqZvzLQdfj4H81q08CwYFyUYfpIMkeRA3710Okvw5AYmME7uRgiYzIsx4pxVggjZxtShC1mQGvlAbV9lhGJ4ZZX41HDJhJMkkxjJIf2TZB/CiXUmcB8k74VcieH8XOznuQYaxKPVeBvYosEjQOh/nfTEoVqizndpmvuFFwFtwxn4oHXxhqm8KrpL7lA/EoeM8ywyuDKUyKAMgijJO1CQ2whrJm0OXuwZfbkxSeCTw2WfgRWpSZHVLh/bGszaa/U4eis6YQkAQQhKyM6rOp+qPTppwV0GtlY2Pbe7Nm8ue3KPH6xrav7uAOsxLK8+Ef92vFPXWEN5cJxSwYb9OBbyPArXxhU+7RRVGY8/H/Wvo/qZG5qefSMf6zRBPunhukXDDE9ucW1u1ufWH4FC3CG3Y8CBX3HRSJcM/VK2F4aPk38/J4UllP9JWl4pfrosoVZbyv/uP/Xnysz8Eafa98PhvjpICK0KeNYh06IWV/VIAYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 952,
+   "completion_tokens": 300,
+   "total_tokens": 1252,
+   "cost": 0.009808,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009808,
+    "upstream_inference_prompt_cost": 0.003808,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 78,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 21.605
+}

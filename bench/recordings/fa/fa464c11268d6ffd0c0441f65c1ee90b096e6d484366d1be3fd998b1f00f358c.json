@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Steel fire protection\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Structural steel. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 1.4\", \"document\": \"ADA2013\", \"text\": \"1.4 Structural work of steel: Eurocode 3: Design of Steel Structures BS EN 1993-1-1:2005 Eurocode 3: Design of steel structures – Part 1.1: General rules and rules for buildings; with UK National Annex to BS EN 1993-1-1:2005 BS EN 1991-1-3:2003 Eurocode 1: Actions on structures – Part 1.3: General actions – Snow loads; with UK National Annex to BS EN 1991-13:2003 BS EN 1993-1-3:2006 Eurocode 3: Design of steel structures – Part 1.3: General rules – Supplementary rules for cold-formed members and sheeting; with UK National Annex to BS EN 1993-1-3:2006 BS EN 1991-1-4:2005+A1:2010 Eurocode 1: Actions on structures – Part 1.4: General actions – Wind actions; with UK National Annex to BS EN 1991-1-4:2005+A1:2010 BS EN 1993-1-4:2006 Eurocode 3: Design of steel structures – Part 1.4: General rules – Supplementary rules for stainless steels; with UK National Annex to BS EN 1993-1-4:2006 BSI PD 6688-1-4:2009 Published Document – Background information to the National Annex to BS EN 1991-1-4 and additional guidance BS EN 1993-1-5:2006 Eurocode 3: Design of steel structures – Part 1.5: Plated structural elements; with UK National Annex to BS EN 1993-1-5:2006 BS EN 1991-1-5:2003 Eurocode 1: Actions on structures – Part 1.5: General actions – Thermal actions; with UK National Annex to BS EN 19911-5:2003 BS EN 1991-1-6:2005 Eurocode 1: Actions on structures – Part 1.6: General actions – Actions during execution; with UK National Annex to BS EN 1996-1-6:2005 BS EN 1991-1-7:2006 Eurocode …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677274-t7zw4YWuI5hPVGR35w74",
+  "object": "chat.completion",
+  "created": 1790677274,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether adding fire protection to structural steel counts as building work under Reg 3 — it relates to Part B3 structural fire resistance, and a material alteration hinges on whether the work would leave the building less compliant than before, not simply whether it improves things.\n\nSo this on its own likely doesn't trigger notification, though if it's part of a larger loft conversion or extension, the whole project would need a building notice regardless. This seems like a genuinely ambiguous case worth flagging.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether adding fire protection to structural steel counts as building work under Reg 3 — it relates to Part B3 structural fire resistance, and a material alteration hinges on whether the work would leave the building less compliant than before, not simply whether it improves things.\n\nSo this on its own likely doesn't trigger notification, though if it's part of a larger loft conversion or extension, the whole project would need a building notice regardless. This seems like a genuinely ambiguous case worth flagging.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1724,
+   "completion_tokens": 300,
+   "total_tokens": 2024,
+   "cost": 0.012896,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012896,
+    "upstream_inference_prompt_cost": 0.006896,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.794
+}

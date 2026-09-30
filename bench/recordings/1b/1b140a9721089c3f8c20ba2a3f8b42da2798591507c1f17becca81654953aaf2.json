@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"UFH local collectors\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678258-5CnmDLTpq97exOAFP49P",
+  "object": "chat.completion",
+  "created": 1790678258,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through Building Regulations Part P—checking whether adding underfloor heating manifolds connected to an existing boiler counts as notifiable work under Schedule 3, or falls under the Schedule 4 exemptions for extending or modifying an existing wet central heating system.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through Building Regulations Part P—checking whether adding underfloor heating manifolds connected to an existing boiler counts as notifiable work under Schedule 3, or falls under the Schedule 4 exemptions for extending or modifying an existing wet central heating system.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 504,
+   "completion_tokens": 300,
+   "total_tokens": 804,
+   "cost": 0.008016,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008016,
+    "upstream_inference_prompt_cost": 0.002016,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.075
+}

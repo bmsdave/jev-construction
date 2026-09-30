@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Install an air source heat pump",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 3 para 15",
+     "document": "BR2010",
+     "text": "15. Installation in a building of a system to produce electricity, heat or cooling—(a) by microgeneration; or(b) from renewable sources (as defined in Directive 2009/28/EC of the European Parliament and of the Council on the promotion of the use of energy from renewable sources). | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ...."
+    },
+    {
+     "ref": "para 0.10",
+     "document": "ADF1-2021",
+     "text": "0.10 Minor works must comply with the relevant requirements of the Building Regulations, but the building control body does not need to be notified. For mechanical ventilation and air-conditioning systems, minor works include any of the following. a. Replacing parts. b. Adding an output or control device if testing and adjusting the system would not affect its energy efficiency or would not be possible. c. Providing a self-contained mechanical ventilation or air-conditioning appliance when all the following apply. i. Any electrical work is exempt from a requirement to give advance notice to a building control body. ii. Testing and adjusting the system would not affect its energy efficiency or would not be possible. iii. The appliance is not installed in a room that contains an open-flued combustion appliance. Live/work units"
+    },
+    {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person_scheme",
+    "probabilities": {
+     "not_notifiable": 0.01,
+     "full_plans_required": 0,
+     "building_notice_or_full_plans": 0.03,
+     "competent_person_scheme": 0.96
+    },
+    "confidence": 0.94
+   }
+  },
+  "usage": {
+   "input_tokens": 1130,
+   "output_tokens": 64,
+   "cost": 4.746e-05
+  },
+  "id": "gen-dec-1790677171-wnw6pgvhPeqZxujLGMwv",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.927
+}

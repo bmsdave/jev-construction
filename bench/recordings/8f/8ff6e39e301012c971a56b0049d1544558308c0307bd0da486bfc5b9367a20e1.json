@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Engineered oak floors (dry rooms incl. office)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Floor finishes. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678353-zw9fDwOFJXUqdi58Zu03",
+  "object": "chat.completion",
+  "created": 1790678353,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Laying engineered oak flooring as a floor finish in dry rooms of a dwelling is not \"building work\" under regulation 3. It is not structural, and it does not amount to a material alteration or a controlled service or fitting, so no Building Regulations notice is needed when done on its own. There is a small chance it would be treated as part of the notifiable loft conversion or extension work, or as affecting a structural floor.\n\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.93, \"competent_person_scheme\": 0.01, \"building_notice_or_full_plans\": 0.05, \"",
+     "refusal": null,
+     "reasoning": "Laying engineered oak flooring is just a finish replacement, not a material structural alteration, so it doesn't count as building work under Schedule 4 and isn't notifiable — even if it happens within an extension, asked standalone it's still not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Laying engineered oak flooring is just a finish replacement, not a material structural alteration, so it doesn't count as building work under Schedule 4 and isn't notifiable — even if it happens within an extension, asked standalone it's still not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1AYKEAgSGAI4AUIIdGhpbmtpbmcSDNN43zev4Sp9405l2hoMi7lK1TTnhJdNhOlpIjAdm1oyb6M0nWomY6omHUWk2b8EHAZ/fYGSUyi0d6BE3zWwvESuibYkgqm/0A6c/hUq8QW+r+8Qyi349S/AKG0vrQzf/Ybg/nH7LZYGtxFyTOCnHah2UMzq2GvUtQE7MjLh8eHwQ9SYtbnzAAl9A6HlKK9RipgTeAEkG35nm8QU0Y+ikB+IPp8oZ9Uc3S4B6bJf2HXmEt8Y8WcirfoXmUd+UJJ5P0fXCPY4ldp/FcoxUXRs6VmITZpqGaNCft8qB/vDbTBELi4G+uxiqaiTHYFENaeypHNRgSGnGHZMF7e6JWgK+tiwJVtsrshfPKfay1S7xNWPazmWP/8nkr1+gClYFDYFaakjzHa+KQigwizP55oSXXRH/gfWfA90mXlXhCyzRq0V3nVKksHVWqs+vA+qnttq9pkO9RWYJnMxcCeVArtxnIaRr3T0XYZGrDt3FdMEdp7AqCmdVees4f4C1QMUFdKSs3GSzzwxDGjc0r3XvXQ+/2Uadc6CukcQkCo+rBQFqqzvmQppomxc8xD++1wkx7TiM4/iQPI2Yh8uiNBU+FKQcTkJz//IAwoWOXPwY1mhDfRFPQVoQ7aLxKcAtMjDxCAd7wV+//PwHuIXGnO6zuNIXqI0SvxT8Pquhx+QWLiqn7ZIoGjaVa+RFlmzavyZf2nhIANoheesc765ja08TzpJ1L9j/ze18YuceIeRlnewKmtNBKeTTbB9TbfGN5doq43ITypJkYLsX910rMoVsg+uozwze7bBUQF0Kvkbi91a6m3nHsUxuFIq/7nNswVmaro/wrVuelpNx1n6TfRnmJ5vWESe0H2l5fvoVIxUX3vIB7BEivD+PkboHNOX0+tdskwzw6NbO1a9PNOjWwqwLCV33k/0E4HWulBmtHSINaVPLFbTR8snglrdc39Dxnx1UqBxVu1MmEF8c8rk2lf9PyWEois+QAWyUb4IEbuZ4Zg6XYaVt6N6+DeQT8s822F0ZY3toKfF2WyHSVCvdYijJRfPzywTgNFrQUw3ZlNieHhrM+4FK300OUZikhbgaMGfkspP2TCf1U+YLCJBxsqo1I/1ua0YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 515,
+   "completion_tokens": 300,
+   "total_tokens": 815,
+   "cost": 0.00806,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00806,
+    "upstream_inference_prompt_cost": 0.00206,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 103,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.879
+}

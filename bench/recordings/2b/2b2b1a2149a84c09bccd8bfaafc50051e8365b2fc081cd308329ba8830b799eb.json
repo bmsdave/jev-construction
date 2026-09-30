@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Alterations to a house in multiple occupation\", \"project\": \"HMO in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.6\", \"document\": \"ADP2013\", \"text\": \"2.6 Diagram 2 illustrates the space around a bath tub or shower tray (a special location) within which minor additions and alterations to existing circuits, as well as the installation of new circuits, are notifiable. See paragraphs 2.5 to 2.6 600mm 600mm 2.25m Bath tub or shower tray Additions and alterations to existing circuits are notifiable in the shaded area Diagram 2 NOTE: Socket-outlets should not be located within 3m of a bath tub or shower tray Notifiable work in rooms containing a bath or shower Non-notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"reg 5(c)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (c) the building is used as an hotel or a boarding house, where previously it was not;\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678055-ZlLnvGdnUZoAsEZ12ukJ",
+  "object": "chat.completion",
+  "created": 1790678055,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The most likely route is **full",
+     "refusal": null,
+     "reasoning": "HMOs are buildings where the Fire Safety Order applies to the common parts, and Reg 12(3) requires full plans where the FSO applies or will apply after completion — so I'm considering whether the building notice route is actually excluded for HMOs on that basis.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "HMOs are buildings where the Fire Safety Order applies to the common parts, and Reg 12(3) requires full plans where the FSO applies or will apply after completion — so I'm considering whether the building notice route is actually excluded for HMOs on that basis.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9goKEAgSGAI4AUIIdGhpbmtpbmcSDNka9dRJMXzkSKwOuxoMgSZ4wCBUHJ/Q+eEFIjC9w6CvmVNL9O6E/qFqH5sRapjQsLQNjbMgxfXV4uJ5UhNnEH/kB4w3jppojQkY9WEqkwrJAYEVuTQHpYnj1Dh8+sPpmQiaSyfCeEDm0MhyZzp6HcbQLUZnVsGfL91L+or4OUuQVYnwQXdk7sFD3/CezjP8UHbcoPOGMYaGEJ2hTeBZRo4/LXV+iX0tkXxcGty65x75jaPdrzCx1LYQwU0l9SV+Zc0fecHWMEXbk7nrAFnkpoLSvX1Qi6LQrM8UPCZwGkJCfW1NAu9ssxwqJVW9GbbS/YD9haGUz0KtY2DXticiw/+sypHmuz6ySNmgt+JxNA+rbhBwCST6fTvYREa8NdqIRb/V5TZwejA/LOOjXEuztJ4qSePSoGxveLSstdNrTGF6Yn3KCFz42cGjx1vjcd0wBOFz3HS0b1ywXI5MBEk9W+z7T+hIamJIZ+vKJ82D3+vMNiB4KwFuVM3nZeWlRgsH4Bz83VFRgFFZW+cNZmjmf6yXGDkVDzmKcQ+upyqp70KmEZL9O/OLiAiTbaTaOglMLvj9iBBOoaAbGZEYzGIugCNrn0ldX+p0GhrWVsiKKYIjcw7jmbYVi1A+yDvnCChflm4UHUbu7Wmc7L3tT9SFgzgyirbMwqwiUcBqi3a0a8kdKtadKWcXLZUEjxpAG25e4fmcHXY5o+0Htn4brMsm0Pa929X3qdX4zVfKqfVsdwGnOzdddFW13B07RNzPJ7LTrsTOeIpBcEW/KQ9+zdXhawIIz+BPTFtMs9/V8nvarKSqi1LYYuvU9F/CUTkAb2saK6K7Vi/5xIh4uH90hT/E6lm3iq7patXq6Qnxn+K8Bqec0PBy9fEn/diqR3woyhb1s43prPIHLIT/iXaaWna03yECaRrUO/kajWdc1wSXG3bZMG4y30QEZ3b90hArvDzt9JqLlG4h+/F6atx8gboUzNYQKDw1SiRqIfqxZfaJK+8AHjk+5hUrnbJm51TTyBiZdCTdbn2s9VQ8kwrAzsfA2a57fTX5oJdwcePTvsAVkLbHMZ7pGaNLN6Q9yxI/Fvlrrs2HoJMS9X4CFT6Lx/fDFLnUZvy/1Qx+WMHVIrhM0+QSY2hxkwZlJlk1WyAbS5/bmWVb9KK9gT5NioPaQviu29KAaoWHN49hTBdvzGbLcXB9lXNxbwYi8carcZ7BQ/3jlyjRwdD9o11UAulhCUHhaYlVkLfqn342b04eS5/qrf4itFT0xkuGqHhFnw99FLcxTUOblA9Lra2uhj0y2XIunoYZiebD1b/1hXco0pc50ZTlSLBIOlb+ljAxa6/iu5EyTB88U+VkwpAEDJ4/jF7vrD3uagwudpzazo7bhNNIUg5BqImq/5ZtkTrDn+CkyC6iRjXMe0I2P8Sb9+0qkNgkw6VIQMn5EfK63ib3bh+3qiJ2ccFwr0oT947RolbhfLeZ+PVUynATjgTd4JMKJjwXoAcN9Ig3thflPg9mZE2CPquPMH0vZdMJD6M5xpUwvblV2FffwRb3FNEYri8Pxzk2spD71lRedL7s6RkRX6JXqbINOdq0uokxA2YRyJgF18xRqNJSbNgPZWxgdVamzkvjh0InibdwKFBx9LesQe5Ufp3ILTG7ctXTTdnqYtz7cRxMLjiiv2dObDh9WAB5bJzHnMe1DSGjStNg6C8nrq8PSSs+EZSVAYtHKXQ12id468qVeZY3AB8kBv0ECBoTz9Q6s96G+zb/jGCX2o8Dl9Nh3YlxSJthCXJM5Vv3ZWAIfN+Ib30CR3/V5oS1mjeemFBCbUwj02bPJ/j9JWvgmsTwzdHCKoYYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1070,
+   "completion_tokens": 300,
+   "total_tokens": 1370,
+   "cost": 0.01028,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01028,
+    "upstream_inference_prompt_cost": 0.00428,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 292,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.815
+}

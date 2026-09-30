@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rear extension sliding doors\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Windows & doors. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 0.14\", \"document\": \"ADL1-2021\", \"text\": \"0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See\"}, {\"ref\": \"para 10.6\", \"document\": \"ADL1-2021\", \"text\": \"10.6 The term controlled fitting refers to the entire unit of a window, roof window, rooflight or door, including the frame. Replacing glazing, or a window or door in its existing frame is not providing a controlled fitting. Such work does not need to meet the energy efficiency requirements. Extension of a dwelling\"}, {\"ref\": \"Sch 3 para 11\", \"document\": \"BR2010\", \"text\": \"11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677264-9Afe53zZYUCPPPPtuNIJ",
+  "object": "chat.completion",
+  "created": 1790677264,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "```json\n{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.8, \"competent_person_scheme\": 0.12, \"full_plans_required\": 0.05, \"not_notifiable\": 0.03}}\n```",
+     "refusal": null,
+     "reasoning": "These sliding doors are new work as part of the rear extension, not a replacement, so the Schedule 3 exemption for replacement windows/doors doesn't apply. This falls under standard building control, so it needs a building notice or full plans application.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "These sliding doors are new work as part of the rear extension, not a replacement, so the Schedule 3 exemption for replacement windows/doors doesn't apply. This falls under standard building control, so it needs a building notice or full plans application.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQgKEAgSGAI4AUIIdGhpbmtpbmcSDDXyZlmkvwttCmLWVRoMQuTNsTQ1wp20LCudIjDjxBFHwzyJF8bgEp/glEAz8Gm/xxviPzcuC/5IggStTVPJrr0Z3Qw21yrGeOF/0zsqrgcg1+y2Jq77xpSRKOg7+BP33XjYMEn57a29ClpH8kBcZmw+mzFA17RcsRKlz3Rt32ytSPGQEBxrnbvvUM3Y6KviNgoYTj5jxN/Vp2CU5DxdKLwFSgQn/CL3OMzy+fUfqWY5MLgymulsIyfi2YFmmPDDpycZA996p4YCva7ci09dwes9Zogw1RbvPIitBpokFj4yfxJlwnMyTaWk9Lcr1PxzsQHrWxkZoZAJLRQAGhy5hbZtgQaNJcsv5N0SF7n7Rvcyl/iZVKj8QvO84E0YwWtEEsvzYSGp4vFevIpI4Y3/H+FoI9bfRFXMG0BfxGnAA5wL18X2VCTNid2JFs/3MdiAykMvE/IAVL41vo3SQu+nuMWNFbHRSDl+HRo5erCQm13ZCkAUPsSHVaQMxNmJxzbg2/z3dSw+Ljdj/61C+RJhQQtFEeCPfn+57dxwWqh7k8DLVrbmOfypdDi9y9Ki2IJ1JyXRDm7It2kGI455dSTvBayP64anE4xPGbd3aABMIOD1d7Qvno4XkeUXijChHJzmlykxihZCPLbMPvmt2NuCOD6yuVJ8Aoyp64OvyVnGt+Y3QarRWcQzByky9eOISK0zML/69qtVhzXRGMmNayB0I/1gXKgErQCzvmSa5laHdcqXcxThW4CL2/L8gWCtNk8AaeCzMpXGBCsSa/MRAqFNegCrvevVairhpFSACrZ0H2SdHb2j0AUttxpPFVXzb2Ltf6Kw3p28lyRUluycqH/xRNeCuU4aq+bX5JeaVw26+wRxWiKg3NBwYYdHgP7hgaIuu/4T1nLHUdhgxO3l6mk+fkEwvxr8eNCOWUWwk+khJs33hIRplnW3buSVjZ6dLzHV6m2/GzuprwhSPVRQhvf72B0Cxd8OnO8gj7j1FdqrUBBq7igSpwK2w6B42cID5zZmNwoDE9APKsu2Y+3wIWk4UEwPkgUCzKm7B8V0b73Q5POAjuxZ/nf7+dUv7MxoFZ9YGe/oW8xv+5rnNhGLn6LNWEo5FZQ7l/Au62sL41GHdyu0HFRaG4LNHxoD63qajYZrpnDjR3T4N/695/oxZzVf/z0aZ6ePDKBVuwwthQAkSeelH4sLN7dzaM086Rsuy4DsfJL3P/gDUkpwFaAEEs/AwgpZQwYLX70gUkZge+42OYFxzkvjEhZ8NbDTF9W0pFU0O+ufydL+A1r7r4lPRvQOa3JHovjyN2jQWK/6nasMErpO82nKqj3IsY4+pXVi8XI3t6tIjuqnvMsnmQv+/FgYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1087,
+   "completion_tokens": 251,
+   "total_tokens": 1338,
+   "cost": 0.009368,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009368,
+    "upstream_inference_prompt_cost": 0.004348,
+    "upstream_inference_completions_cost": 0.00502
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 160,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.025
+}

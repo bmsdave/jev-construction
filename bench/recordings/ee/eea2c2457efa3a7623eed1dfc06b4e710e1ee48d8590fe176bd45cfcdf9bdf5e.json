@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Strip-out existing house (103 m2 GIFA)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Demolition & enabling. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 10.13\", \"document\": \"ADL1-2021\", \"text\": \"10.13 If the conservatory or porch is not exempt from the energy efficiency requirements (see paragraph 0.14), all the following elements should meet the minimum standards of paragraphs 4.7 and 4.8 and Table 4.2. a. New thermal elements. b. Replacement thermal elements. c. New windows, roof windows, rooflights and doors. The limitations on area of windows, doors and rooflights in paragraph 10.7d do not apply. In addition, both of the following should apply. a. Any walls, doors and windows should be insulated and draught-proofed to at least the same extent as in the existing dwelling. b. Fixed building services and/or on-site electricity generation within the conservatory or porch should both: i. meet the standards in Sections 5 and 6 ii. have independent temperature and on/off controls. Building Regulations 2010 R23(1), L1(a) Regulation 23(1) and requirement L1(a): Renovating elements in existing dwellings and limiting heat gains and losses This section deals with the requirements of regulation 23(1) and Part L1(a) of Schedule 1 to the Building Regulations 2010. Regulation Requirements for the renovation or replacement of thermal elements 23. (1) \\u0007Where the renovation of an individual thermal element— (a) \\u0007constitutes a major renovation; or (b) \\u0007amounts to the renovation of more than 50% of the element’s surface area; \\u0007 the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677250-PTjs3G6nqTqgnVyfu9ul",
+  "object": "chat.completion",
+  "created": 1790677250,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.8, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.14, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "A soft strip-out on its own isn't building work, since demolition notices under the Building Act are a separate matter and wouldn't apply here. Though I should consider whether removing plaster from more than half a wall could count as thermal element renovation, triggering notification requirements even though the strip-out itself is likely not_notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A soft strip-out on its own isn't building work, since demolition notices under the Building Act are a separate matter and wouldn't apply here. Though I should consider whether removing plaster from more than half a wall could count as thermal element renovation, triggering notification requirements even though the strip-out itself is likely not_notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1AgKEAgSGAI4AUIIdGhpbmtpbmcSDJ0k2/Olwnw7zlPYkhoMzll6SGSla6utxDzAIjCdTfzamC32KjJQrHQGAiV4U2gWgqiE10Xv4UJtJYGrjSE1mltL4SeS4wuM5y3hmA0q8Qd1+aoSvpho4y9vYkj9PfrhAKZ5lYvXMLJwSmjNiWot74+VWzqpd8XLGc4fMRJrjUr2ZBS1xf+ZwJJ0xhFx/kNthiydayP7mJwMfuT395VQWr1yeZW7GEc6fea2LpHsBflieVAr1dbN58OJM6FzryB9PCyQz2Xiw7NzWCG2UEGEjHvpCf2EoSaEcdVcBhb7ymi4kluzhWPG3sduwA1fIGYshxTMrcNLagH8OnQnSuKWAzqHXyFRoIZf8OgqKaDMpK2KD6/kkSz94dGDyK9CSosEHfstpniqLtbXT5jdC1WVZQHmk4lYMOPFOv9jKbSV+8ZV2EwwY5LC/yzalNcS/XhOu5MYkt1kKQVow6fM52C5mTGtxgyiCcMjQlynqPxTkeO205E8176brQB20t3Qiv6BLfldaf/KiDUMRRGNyPnWdXaBaDI/oYaUFzSmU71ttxbRb378hGS7u+5CXbr2LcTH8UUypXGwxjuYIxLXqfnDCFgtGaBuAxM487hWdyrn1vMIaRyzyYQVmtjLYWilhXj3YI5cv5ZDhtfp0CeH5jTRhYpWJ7+mS6U0Spp7LP3am6mFGnkQBcslOKWcGC4JXeRJSZ8tLUnXZrQ2B3g1BMeW0sUY3OIxtls8aUSMbu4AcKLk2dxLUETpIYuboR8lNTl8zMitCIhEk83npExhVrvljFkAbsc24M4BOIx5Hl5ZmW9TwZ2xTT8xI763vBKTRYFzmVkBubtiFHAV0/xBVLzIsFqw4+8vg0e3LPGMyLGQp0cLGscaiuHbsF/tY/y77w1i0xQvB9pGRXxMmd+RU5y/R5qKT62pHWh+d45KUdKl8uKsJMs1xlU0xGh0KylT6PUNsV77DkfdFijWgmEfe/92+fSS72+W1VsgfYVVxyKM/rkDCjdpDWrhAGEeYNp47Vm9eFh+EuxgrfznAsJ2LwKtLdEHUJvj/O2TW76U5Wn0ksMzHR9RyQrKuoBjHz+RJtb+jP2GXjrniKSHMr0Sj5TsBXk+1hvzroq74L6Ues2+Hl/xSWyFcjPptSGWU3Qbm/963n9TGYwFyHvmkiQIIm+yRtaqZvrxUJFjSvSSvxlUTVil/6EhdEU2uF0DEcdrVWek3Hg9FbjP5TPh2o38U55haghh2uqGHFFjXqKBJY0eUggy8TBowa3Sld+pdREs8foUT5RxhBWWaXzlLkxbWeZzM96/XBp6UiDU4NgwKm0fp0tIiMDCahGFGddHHyIfLnc8Aqr8RWV6LF42MpNeUJPtec9i5bDL4EJ0w6cLQUIg9D1O5LpwpauKQ2A88ZB5aIEFgwB+pzbvG8Xq4HFlOtnLHVWF2AGXRVxDoJHobNQFvONPGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1641,
+   "completion_tokens": 263,
+   "total_tokens": 1904,
+   "cost": 0.011824,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011824,
+    "upstream_inference_prompt_cost": 0.006564,
+    "upstream_inference_completions_cost": 0.00526
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 182,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.593
+}

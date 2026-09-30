@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting an integral garage into a habitable room\", \"project\": \"Detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678650-w09o7ERLeTyguzeHUJHh",
+  "object": "chat.completion",
+  "created": 1790678650,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.88, \"full_plans_required\": 0.06, \"competent_person_scheme\": 0.03, \"not_notifiable\": 0.03}}",
+     "refusal": null,
+     "reasoning": "Converting the garage into a habitable room involves structural work like new walls, foundations, insulation, and fire safety measures, which falls outside Schedule 3 exemptions since this is a dwellinghouse where FSO doesn't apply — so a building notice or full plans submission is required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Converting the garage into a habitable room involves structural work like new walls, foundations, insulation, and fire safety measures, which falls outside Schedule 3 exemptions since this is a dwellinghouse where FSO doesn't apply — so a building notice or full plans submission is required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS/wYKEAgSGAI4AUIIdGhpbmtpbmcSDHFWbHCPj3z9vOQN7RoM3JmxaqwI9AiH3GIgIjAGYPMW4XiZXkcMAlLhOvexmDER+PTMJvYvx66XyYOboWhZOcNCsbKslr5ywPMan0MqnAYh2HdvdXsZcnF9jb9cg07y+Db8O88oypunv52L4sDFrdP8ES4LlqAu0Y2kz/K+tWWHPsrsp599aIeO7hHxiwrQF8ziqAecUp6vsAd/9nCx/sfimXGHx7n4OUkYi2PJoW+7SkAwuMwVWrhtI9mF0q0UvS0i8xH89PcG1kIHzrTdgpRbFTf9/to5hqFOhOnxFaFmox69pqAN3j2DqLDAoDLGaXH7xNNR6sp+Wn2TxQc4dENmjrVlDuRgOlu6HQnbsmN7gFHbwn3PlWq39hm8zYuJA5Mc0SsKF56j63zGCtbrIwcxpXJRD+jQKN93kMAD5vkfaMptk5y/CiJPN7wk+QgrAhkJw6cIKMRriWXnmQWA2qMt4w77p8xsOdKdnUGASkwtGvo3hwUsRM6tlLh7LSfDcZsE6g1KiVDKL2TyhglhEnig48uGWCdzcqmgUb2hQOfm7lNi+LBT4dc4ywNLm+ys1XHBjTDB3rLffzXRSErXYvwSGZcPp9V2lf9poBvIIqRzyOykohX6O+7erggY1R9FbEJdEPQvJhySJm4OWtPMU75WhisSj6n94XKeI8XUzXn/vUB1771TG48ckLYbWxXg1dJ+N2eWWuSsSFwB94zdGnMtgRTBhKyTjh9OppZ7BI1GcobH1KH1iavbeAfghEkCEpo+JJIWbYOvWzFRf03VlJF8PGWiNTAqhNMJLpJNQ8Rs35jfqqM3/DzOYZ9vWLh43AHRbV5jZDYaM+jcbKPHkZqVy81hQbiyvAfeuTNW2YrLV6mhUCz7GnD6r27tk3JOnK53vIeZAZSAjtP35dlj0Hxj1zuyuEQW35bF0r0UnYgxdgLir/kE9f4rhZAMTBRjvjn8VOLKXeqDIQsW+HNHrNop/pFip1FZ2T3dcE30VQJFJwunOBwwcK2bbc9Wp2UE8q6LZI0S+X0rhVMEzX308x1nFuXrDaZDcYh6Alw3D79/I74G+UsXThQnDmNT+W6R6HGuHtLW/qQYPCxTtv4Hv8LRAT77oqAlGZodOIQCyaKxeKWViJ5HFAytvxmKVzxWycgjmLkDLv+SLFG4GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 463,
+   "completion_tokens": 210,
+   "total_tokens": 673,
+   "cost": 0.006052,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006052,
+    "upstream_inference_prompt_cost": 0.001852,
+    "upstream_inference_completions_cost": 0.0042
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 124,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.817
+}

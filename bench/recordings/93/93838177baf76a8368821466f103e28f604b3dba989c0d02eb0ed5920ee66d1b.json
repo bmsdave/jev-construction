@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Remove external doors between house and existing conservatory to open plan\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 7\", \"document\": \"BR2010\", \"text\": \"The extension of a building by the addition at ground level of— (a) a conservatory, porch, covered yard or covered way; or (b) a carport open on at least two sides;\"}, {\"ref\": \"reg 2(3)\", \"document\": \"BR2010\", \"text\": \"(3) In these Regulations “thermal element” means a wall, floor or roof (but does not include windows, doors, roof windows or roof-lights) which separates a thermally conditioned part of the building (“the conditioned space”) from— (a) the external environment (including the ground); or (b) in the case of floors and walls, another part of the building which is— (i) unconditioned; (ii) an extension falling within class 7 of Schedule 2; or (iii) where this paragraph applies, conditioned to a different temperature,and includes all parts of the element between the surface bounding the conditioned space and the external environment or other part of the building as the case may be.\"}, {\"ref\": \"para 0.6\", \"document\": \"ADL1-2021\", \"text\": \"0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678006-3P7G3ntFrdf9MLS2mZpt",
+  "object": "chat.completion",
+  "created": 1790678006,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Removing the doors takes away the thermal separation between the house and the conservatory. The Schedule 2 Class 7 conservatory exemption only holds while that separation exists. Without it, the conservatory becomes part of the heated dwelling, so this is controllable building work that must meet Part L for the combined space.\n\nIt is not covered by a competent person scheme under Schedule 3,",
+     "refusal": null,
+     "reasoning": "Removing the thermal separation between the house and an exempt conservatory would strip the conservatory of its Class 7 exemption, since that exemption relies on walls/doors separating it from the dwelling. This turns it into building work requiring Part L compliance, so it needs a building notice or full plans submission rather than falling under Schedule 3.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Removing the thermal separation between the house and an exempt conservatory would strip the conservatory of its Class 7 exemption, since that exemption relies on walls/doors separating it from the dwelling. This turns it into building work requiring Part L compliance, so it needs a building notice or full plans submission rather than falling under Schedule 3.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1wgKEAgSGAI4AUIIdGhpbmtpbmcSDI6fKdiPCHgXbcSMbhoMLbfkiFOtGg4Y6FfKIjBhEOB47KoI2D9rUjS7K/0ywwQw56SIlNMvKNxymhqVyz+2k0ObNQglgwLmPDFyNTsq9Ad8BOYBLps/rW6mpFrZ7hmXATSDCrN7OSKR3CgiFZRzz9Kn0DRaLgRoGCUJN+vUwGNjWYll/44/AvExLP07XhiGJb2YnWta9itFVkuuffqX1gb/eO+8soAc0Y67nffXPuuTCkCxgo7aZB28udZTdgcR+DVqo9M9uHfzCU2vdqDSWm6tBEMFwZWjbld9CZ5sIlcmqOg4UTCn0BLrfeSZUO99u8AxCfd2R9Eoh3weE/GNyTDzc60HdfeXYYh7CwOX0fSvWrfF9ym9vF3QazJtbijZdE+KwI/gzek0keBxlHN18+BeQ8nG6pZVDUNeRt7cEDTcZWWou1BSeGA10uPpvsoTKf6R79Uwj7JSDcOnhKNIZEd4qJne/+KllZSKt9pSzYhzIjlP94bTziRzUYyK46VlbqRn75gK+Ne+8vRZYuvVfVqvOlUiVeq7KlVKv2lNsUPYBC3Mj2jlmhReeca2N36M5/KVtFym7pkEsVqd5e2iu+Nu7K4/GoaAhDP5eWnCaCXa2r0BJ7HA5dF1+Lm+aJbUBEa1wlmeH8m23dRmIZkGtegv36SmWo1AuTb7BbZNuLxA9AUAZ2DyjX5z/o07WLTLm9SwSZdKb2vRru/NC96q9Ej5TlaWV3WpNLsmP2s67nFYRpVWr8p+fxbdwRxCcqTiiUx38o0dHErc20IGj8vhGx6OsMAziBUrSvEpTNeRX1D/spd9BRMEAF3icLig/CnJR6zsQKnXJji4czmACwLyYqBqg7DvtpWv1E3OYvuVgg8aA59PyXkmX+tO3E20/G69Wyv6SBzdLGeAmwXBii+vi2KTCi7Z3+NgHrsCjnnM2Zk2IifFcAnobxXXVuoVcIJ0OMTaJQ5OtJBeiIGdR0Snm5I1FIiyohMlFXDpCs1K6YpYNgDLOcd7muSVrnyoIxk6sTdFyHT/TOMGxrx0svLMt+kPx2K7AiydbjiC+5KslXby3lW1xLhIjcUxHz9h42LyOaFgsSSPqoNXJXRvzwAE8T7g65ZDKx1OTJTqyZ+H2Me7KbfSzZzCliSlH7SAeUuILYeYp/wZ91ZR++yBzg7Terjbg4kPn+FLb9iJ+MUQGFi5waM0bapLeAdeVTmtNtTftZdz3IdYnEL/lGhKpcY0PVSJkazc/u0kvdHMUgui+wJMy4FeGU9Y7RF+R3swUaJ8CDuXb/ltJOcTYW8v2/XUqEkdQ3pZ+Lk/AgXTv9h8kCwZXW6rXBQNfk8WEHZT1nGIfaAnAYZJjUZnow79FgJbWraUrMO+m3lKM8WrWd0vC/iIPMWr9z/XxWgnfKsY2j5lE95uRXtkxTtL8b9/j29knnika8ez12iHdysTBB6svBEigS42GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1119,
+   "completion_tokens": 300,
+   "total_tokens": 1419,
+   "cost": 0.010476,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010476,
+    "upstream_inference_prompt_cost": 0.004476,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 180,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 10.61
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Internal wall insulation to retained solid walls\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678266-hXDHjSX0LdQ3yOtV3CdZ",
+  "object": "chat.completion",
+  "created": 1790678266,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through whether internal wall insulation counts as renovation of a thermal element under Building Regs, and checking if it falls under Schedule 3 exemptions the way cavity wall insulation does through recognized competent person schemes.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether internal wall insulation counts as renovation of a thermal element under Building Regs, and checking if it falls under Schedule 3 exemptions the way cavity wall insulation does through recognized competent person schemes.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3woKEAgSGAI4AUIIdGhpbmtpbmcSDARXvsniu2PgxmoBkRoMWbDA35l7vZAPl3zAIjC7mR/TKVnPy8Xk1M86QUC6CIHrxYAtYquYNt0IjKT+IUftthirk+vsWRzzG7jxTSAq/AlfjkofOkg5/hickm+vGvPoiy82xYTelk2oVvN2siLteiKY7DRBGd3zWVkFSqUOnx9msdHWelSJTAn5uF96J/ASYrG+XINBYEGThjs08fb3qZqaA5RTnuwkchb/RFCTWX7VyLB9/bhJ/xaQUZP2Kn0Hj+fQ+NWf2el3/8nTMHKZ5S5YU48HOtSkXWhRqM7zGKvXqsxgigAj4WhcBcQYMA59CvGcsSn5J1O8hHoSORoezAYczx49TPKY+gbkCYiZYW5ra6zoT5ll9OAJ1DmQRin/k2/OVnUzxTvouVuFD8qwuHKnt9c+7wpTy0lAMuV1k/l9ZWVGwLyFbIUVtZ+7Rumaj0L7CPmNEhyTXcJ/4IWSCsliYZkdxW9x31n16MzkvCEBaYGaSaovgPjhGXRPK+mh9e9vC3o/AQ3nJR0CzT8U7X/F7o4Tz4YviuvOoytPUT7ntwKMOvQYpbHBmjZSo4K2YzrB7qOimcDEpMd7HntD0SbpthJhttNQoI0m+5v+OXQAGPXagAXNfKRPrn7RxSYXa9nnZ7kNfM9utkGPaW7rxCtBmgJekb4DTTFMtaid1xfGk9MHcROxGlTuE51l3j/ysVAqth7/GndX17SqpWtgWdOCS0xzXHgU711hU7hnyY1qXMsPyUftTrdrPi4p6k2mgVvwW+ZxESD8Gc7ThLnyAMWUsSZrVuIKHG4HRpq/v/6oW3HFfn+Xsy36fXfJNXFJ/dJxp1xa4b/vknFmkzxYTXsD0zRt+ZrRX/ith/dU0wuPjW/kJazR3fqQ7yyc303z81iJW2jmd0bUw4Z17A5uzQUJPyBjHrbEZvKqjE65wlQJd8QdDAtNNozFnkDFisn2sYBAmE/4uoqJqVzlho1Hb4kfwLHbSgvx6ld4fdUWu43KWcbITsllhdePevMdFcIIh+EUgZIKAbxognGRdsUU4zo6XC9nbN/DZVSzxLV1+IxS4Uh3kosEs6hCN7vILSCCZlUrb3r4LQPbZDZ6oDqC7fvfLtK7dhafw3A02I0Xygr78qKGnMrXZ2tX/4RZyx954WHBuBal2O2nEUcNw9+o3Aiklt9JA+lNs+pxGsp4lBccovQ8BvY3+0ifLKgmcISJC6YZxy9m+9COLBzddXBNQbfnXY9MEx7eXbGEcTwvK+4DJFhwtrlVEJCFQZpm8KPiN056w9O1z5ftLuzXM35UZrGPiMM+9Tr+NGirhLmilsbt6DUqwRsBiXTDInugMhcD10zbAhRZWi5BZyfrkwx7WgZv/3bFBs3ugSJbj8KOhaCdA8obeejHpMwkbWmYs1TJ2ujt23JvqEKlXgJo95RRaGVZMGD/W+USTzwYmrv8rSSty21fbdr8b9KpMHyJuITS78qStMNr7rYFvc/pyDu+deApOstwLqhq+Jkne/tfbeg+6CMaWTN3woyh2GCG3DnCJ6EdCcohmk+KOKbU/PmAePkyVTn2bsyTdWu1WuFCCQRd+J8WfTE65KjhKOAYwjhYeXMcqXnEK3CX2ZULPy3DJxqiPBP1UwKIM9o+3KbxvhLwbhmCYuQ9jDcTzkggyYl9IsZ91Nsk1/YMNDa9Pm1BZ07lu1w+pesuGQ+4tvB95fmqdnlgnwHkuVHZP52tY6votrKfbNWAU7nMnlBq/q86pGstGfi3S5EN5JupFg7LYUT3DFi/a4WoRspQt5RLqXdgpWC9jVWUWag2UVGLGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 498,
+   "completion_tokens": 300,
+   "total_tokens": 798,
+   "cost": 0.007992,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007992,
+    "upstream_inference_prompt_cost": 0.001992,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.484
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Kitchen appliances\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Kitchen. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678413-KyOWn6bRT7Nihv2N6G1A",
+  "object": "chat.completion",
+  "created": 1790678413,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Fitting kitchen appliances on their own is most likely **not notifiable**.\n\n- **Not building work:** Connecting appliances such",
+     "refusal": null,
+     "reasoning": "I'm thinking through whether appliance installation counts as notifiable building work — connecting appliances to an existing circuit generally isn't controlled unless a new circuit is involved, and gas appliances like a hob would fall under separate gas safety regulations instead.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through whether appliance installation counts as notifiable building work — connecting appliances to an existing circuit generally isn't controlled unless a new circuit is involved, and gas appliances like a hob would fall under separate gas safety regulations instead.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3AkKEAgSGAI4AUIIdGhpbmtpbmcSDFu/qlPqJRUTU58CBBoM3QNanDUmLqpgRbTDIjBEPeWhmHCrMVZnwiQRlfbbMAfhAN7gDuz1krF/s//X8PG5kJP/hJH9sBVvGHzx4VMq+QilcqkP6K0+jCyRZTCtdIbcdpOJZ+7qiaNkLsMetA90d8PVKCUWbIJ3Ds2hypfk9ndoPwrt8fnDySgbU/jhCam3UiNWqEFtw/6o9HkbQ09DRnLgSS/02pS9Imayl7JfnUjv0uYsLbxWoS2JQyggkdwcQV53uv8O1l+XDe4sWIASmlE+sbQdL6sd+stlsIvA4YpvH9lUWqYS9IsGWpnt5MO3oVNdE/96uaNqTcK4vng28v9DGJbIPWC0LfaAhbN9ifl3tYuNUIRZz/EDMqgpJ75zbZZ3gmiwGnONKjIaNGt23j72I4+OwviY4rx8fwLicj6oIbLLQPsrr9QdtHAEVpugNRrayr8dTXsPTFT1aP/x3QKjjt5B20r2OyOp1dn1YC8xB4HiotgRk9fHAtJBcRa1uYQf2F2UGTXDwOdc3pr0ApPzbeL+aFoLfcg2q1ajw+qBxEIgpI5/1czMaCRi+STjw/GAa2zz0qr+IP3EyB9PZAPkXgKZeZAO/IlHrlR1HE54yAXKAfekoPee/X/hUC+lIgFpdBef5eibR1aEPI7tomzrgfU7txZ5xc0RYpJGqTRhJeVfR1CcpQADDROqohVUluWR7AL/vKxAcpoQlenUUesPqpxfpqhoO8g/Yg09OtDZ09yU68ITmgmjx/5OYaL2xA/q31kZl+lrCndiP2DLtgqzmJj2ttsCeIJvF4Gh9dzzqwRsBFGNbjxnaeZNS9p4yYD9LbahN4l5R3ZwqvllwXXP02wS1TROYsMHIxgiGY8Qq234FQwXOOAXJj2+ctvrvdCYdvno/7Kq3AfmA8e/nNr+XrCXExJRx6MKb6TVRXS1OJPYgfDXSCjjcbIc01OJc984Y54fj31CtwTbTJEldFFMwBNjpCJ2b07mnQLvf5I6WPRcGzVpzdDi6IFKKNnfdVC8Z/bPix3Xv6+3ar5n0RBfAN0hB5p5xhyZRKBdYgLE+vsLn9lDmWNiiDztSu2kqcEA+Y7gyt2/jsCbAh7QXER0L5UYC77PEegpYQfmiEHVmjguXY5e+iOLTSK5dmwdSBswRJgT1iWQM2T3/PP4qtSQ76VCXV1PL33vwwy2HhCmsMxH5M8Bbzd5pHKRgzP6wvDp2G4ICg+gFx7OlxWWn/ivlWIB2PgUNv2Y5PqsiIw80veA0h9lTd19iAPnY7qJpPDKNQc6grRSmoCka52ZeKx2JnJ4kcLetcAy0WT+RoZXAtm3MvgsOp9R0CpqN+YPo6yotQ6j/UDzN294fL68kOuN8ijEfLgVbY8c00L+NRyB40/peoUoQqkdg9tq/oxgIIsfROwv6BlE8z+eOLn9QPu3ZzMP5FR2P5nt70KXyyXUxipKGg3sAZXR34AaSmLcG3Zhb/WLEt1dxP3nmvaYh+eQWf/WLhJZmkI4jd4cCE0JpCBz3zEAwmbbczCoDmoJ6kdmQg0BRUy7pVjKHPBPjEHxdYkKVMBtiZZauWQe7JFDw7ijpxrXgJ7LAB0ofDAHynEXQ67y6F9x3FprzgGQVUgHDHjI2e/ACxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 494,
+   "completion_tokens": 300,
+   "total_tokens": 794,
+   "cost": 0.007976,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007976,
+    "upstream_inference_prompt_cost": 0.001976,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 257,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.974
+}

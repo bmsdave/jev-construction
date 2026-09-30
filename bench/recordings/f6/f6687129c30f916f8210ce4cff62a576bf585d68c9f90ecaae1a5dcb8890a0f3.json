@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Structural opening between a shop and its rear store\", \"project\": \"Shop in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 5(j)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (j) the building is used as a shop, where previously it was not ; or\"}, {\"ref\": \"reg 2(2)\", \"document\": \"BR2010\", \"text\": \"(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted.\"}, {\"ref\": \"para 0.16\", \"document\": \"ADB1-2019\", \"text\": \"0.16 Where there are multiple main uses that are not ancillary to one another (for example, shops with independent offices above), each use should be assigned to a purpose group in its own right. Where there is doubt as to which purpose group is appropriate, the more onerous guidance should be applied.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677724-nZ58GaC9tqAamc2EMYiX",
+  "object": "chat.completion",
+  "created": 1790677724,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Forming a structural opening is a material alteration, because it affects compliance with Part A (structure). It is therefore building work under reg 3.\n\nIt is not listed in Schedule 3 (competent person schemes) or Schedule 4 (exempt work). A shop is also not an exempt building under Schedule 2.\n\nA shop is a non-domestic workplace, so the Regulatory Reform (Fire Safety) Order 2005 applies to it. Under reg 12(3), building work in a building to which the Fire Safety Order applies must be dealt with by a full plans application. A building",
+     "refusal": null,
+     "reasoning": "Since this is a shop, it's a workplace under the Fire Safety Order, and Regulation 12(3) requires depositing full plans for building work affecting a building the Order applies to. Structural alteration counts as material building work, so full plans are required here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since this is a shop, it's a workplace under the Fire Safety Order, and Regulation 12(3) requires depositing full plans for building work affecting a building the Order applies to. Structural alteration counts as material building work, so full plans are required here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQcKEAgSGAI4AUIIdGhpbmtpbmcSDDhMfJawdMQJq2RIuhoMxdoE5UEa3oAOZy9sIjA+PHEkY3WY1MbVBAzu4aP+JmO1PhnDBuXXQ4zThgVw7YggBPGKoP3Jvf6rZQPWBkYqrgaNEIzuquYxoF+tlhUGzTCz7W7De3uOQtT7D1K95+Lp4Zdu2QtSE5HQUjj8aQr8yLSs82GTp3ZjGk8Hq/BuPczGlnPjABzGZ1d+ck7vEgUqRBOvez25J1RJzQOmjEMOpyZZKFURt7CXwAsg3kUItauz+iMEAp+/4rnQyNMy5ncgbWt23EdXoS+UsZ8Cs6qOablmFLGLc0/6c1lxsBX+zj3Xm3+j+xNpbikA7EkMH+SIjlSn7aAyUQUURmW5Fw8LqiIdS1kA5eVlFmBfD/KZKwCnpsECjpssyAE8Mr+YMBhu1EtSw23Gsa/Srh72SBA1yF6/GkUs1/bbsjb2Pn9Ov2uiPJrNrN8tZgykzRt8pWzKqrVS6UCJ5ZR1YYJ6yrJamS5SYAD9xbJ0DmMkGBrFdzZBMzxlfIr+pdWuskJgq3S23XNBl+dBfzxbRPPsPsGYwqpIqu4QSUAGP2FI8jSVXO4vafUlCbvbWr7i+jaLkw2liFiuwPZonz2LNenGyhFalnbxznIycN038dJ777PVNukQqVEy7JgNRVFSNSlOF2M8bZZxhySpcceuWNeWdhXBEN2j1wCm9XP7MJXLT2ZzoGeWLOQwE+uLcOvbWs8Q+0FH+SMQjACCHRASPuTVmKW9pBjyHgJI8REi9hSw7lSd4mD9p/bjurNCjGdR7qUwC5qqYmeYyLCkhvprvV4TU9m09TJU2Uljm2cb/flTAeIY8zdEiG1+sFyuBjR2hMQ5p7eHo+0HwyFyGoRJWZ2gv5l85NVQ3frAZHAdDxuEkEx9TER6sqmcL6gEjAJayEPgIX1ZtpvDrFRBII1j4THFrxfDLPHLQOpc25zXQPqcrLBX4UOJ4T6hUT/ODZCiwTDp3ek4IYEOquQubTeojnXfHXwiaubLurmEnTmOoWypmHxvErXWCbR6NL47bD0nlfiWB9/iY3EqwBKbzGXtUIzbvxHU5Ae8YEn1Ipc00FPRYYi2xfPco3W4GMLb8rcGirmtUfGdg6V0gTgo0+7SQbLj0Wbnb0T/tzxQHpPkt9K+A+wJ8W1659J8sYWIIt58dQ7/qnqJOtjAgslCcxP1orKlDm3jGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 881,
+   "completion_tokens": 300,
+   "total_tokens": 1181,
+   "cost": 0.009524,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009524,
+    "upstream_inference_prompt_cost": 0.003524,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 116,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.496
+}

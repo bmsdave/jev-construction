@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting an integral garage into a habitable room\", \"project\": \"Detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.3\", \"document\": \"ADP2013\", \"text\": \"2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677746-7dWdqzuMwLkQtsG4lb40",
+  "object": "chat.completion",
+  "created": 1790677746,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.86, \"competent_person_scheme\": 0.04, \"not_notifiable\": 0.03, \"full_plans_required\": 0.07}}",
+     "refusal": null,
+     "reasoning": "Converting the integral garage into a habitable room counts as building work — it isn't a material change of use since it's already part of the dwelling, but it triggers fire safety, structural, and energy status considerations under regulation 22, meaning a building notice or full plans application is needed rather than self-certification. As a detached house, the FSO wouldn't apply here anyway.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Converting the integral garage into a habitable room counts as building work — it isn't a material change of use since it's already part of the dwelling, but it triggers fire safety, structural, and energy status considerations under regulation 22, meaning a building notice or full plans application is needed rather than self-certification. As a detached house, the FSO wouldn't apply here anyway.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSzAkKEAgSGAI4AUIIdGhpbmtpbmcSDI5Ssve4RceC0el7ChoMBxyB9HnzbYSYD48LIjDAwXwCzY3MDL29+O40Ot0G58UNgYFgXamHWSIULjUcoX6uVxIfGnIf0tlx24LmJQcq6Qi6kQ+KZDQGzJLFKVTfqWIcjtUS8ctZcX31josCvHXUXjPoZL1A9SUBJl8gQWBO3xDnO3fBf6Db2rUiCzPixmglx906L+tQCXBXkBR5QmS5pkzccOhgYZdA3TRFHwbRKBd+CgvrR3r7EbOV6AVHPe2402Ar0pyvD7m72zcEx5dEKQK94JxyBxtG4sc6uKStoLF5UN/s0jgSExcXas3ZGwjGNCauzEVZsFJ6flukTJsTqkApLt2nulk8tUszSpprgcH8/QHsPFM1Cm75ewFwJZRCXdXt6SXxBYdrU6zS+jof4S4pG3FXqKiO55RRdS9elLy/vk8dijn7UhJ6l9vt6lhVkXdI+cSRz2kNOlWJPXsymMwyd8KBCFuQGTE3f4SQv3x/h2RpVyDIxhZRxbQMejCobK+9hURAYN/I75SaC2pjNhnSeovu3/Xu/qW4RVnqgjv5lFZv+hLFg8OtfF1fg41INFeAKtpKo/KQKLFagACkhzESvXX4OGbtLdLdlxfSlnKuWb7cWdX9thmwUHv7SU/X+6FmjgrnoCvb0CaTJ4MLAmQYNzeR+vL2RfKwdZhxOPr5Og2PsMdrkpPow76fMn+zqdM+DWTcghjWukExPb1jZKoU9u3oU95sJraYODBUScKEFpLcA0uXPhaPbjP4woABXz5nO6XrNOcC6mZmmmEtioSY0xb+sD8minzO4MSvSqbo6ypRNnTWKaOBTRmThES1MPKjIZ0vFmn8193laZH0eJVN7+H0VZHPi2h0MI3c0IJlT2+4EApulze3DDg4LDMyizvTgAt5d7kzO3l9sSmi73a1h3Viy13Ktmk/P0cDMKrgzgjaasiksEFlp26EITEbdfeaSurQ7X3fjccAlHtAjrPxhs+5knI8NEhmDYlr5QZr0EUEhCrLmA4JBuqC9VbpQks/WJ2tzdmeK8Ki4BJ2fhbXCgq3lCz5HzGmZstRtQ4R/BZxXGTz08skv8nKvsXQibASD46bFocWr78f1QtcmiL/nBteotO4Q3cbJvZs5bEVihXRXEKMJLuW/r+TsacS8EutIBfM3VZyzhXkrCruccrvtKgRn/Sr1/nnYMLeIDSgirtiDe8dX7fAKFEQfnhbcoBMXy6IFdNvKiH9QDKLwGpKIb4vrthSCGJR1KG1yBIfNKe4bfCaUWrDIDDVlHg2550hX/g4V0OLTkj8W1ed2r7RASsLtfUsXD5AKfCdp9FeravYKJxRJWZYLDw1cX7vL/F4bxqMJiktyaYDeZ0BsRfoqQ6qGHdokFTkhxibwH/amrb3opIr5uGSgayyGkkWaNhVg+irWYbBWZofiLAQCuM9BdRA/JSPa82CkQ5muCh2NBTT3Z92gQX9ofd21qFzsAhVqbp0833FYcd3cqbZMh28FZjP7zAbcFAJiXlAI2CDKxNhNMALOBNM6VlFfNYr3iE9xxXUFICWTPbEo+kI2Yc55bEl2oAN9c1GcoNo4/MSa3cjnYD9+9oLD8XVaBWovMvUW2HNz3A0GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1176,
+   "completion_tokens": 297,
+   "total_tokens": 1473,
+   "cost": 0.010644,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010644,
+    "upstream_inference_prompt_cost": 0.004704,
+    "upstream_inference_completions_cost": 0.00594
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 211,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.623
+}

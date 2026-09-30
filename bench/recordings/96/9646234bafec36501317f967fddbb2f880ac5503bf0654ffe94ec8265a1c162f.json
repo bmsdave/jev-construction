@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"DHW recirculation pump\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Plumbing. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 1.3\", \"document\": \"ADP2013\", \"text\": \"1.3 Part P of the Building Regulations covers the safety of electrical installation work; it does not cover system functionality. Other parts of the Building Regulations and other legislation cover the functionality of electrically powered products such as fire alarm systems, fans and pumps. New dwellings\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 11.3\", \"document\": \"ADL1-2021\", \"text\": \"11.3 If a thermal element is renovated and one of the following applies, then the whole of the thermal element should be improved to achieve at least the U-value given in Table 4.3, column (b). a. More than 50% of the surface of the individual thermal element is renovated (see paragraph 11.4). b. The work constitutes a major renovation. A major renovation is when more than 25% of the surface area of the external building envelope is renovated. NOTE: If paragraph 4.13 applies, Appendix C provides examples of renovation of an existing thermal element that are technically, functionally or economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677584-6A9bXbcvk48whZvIe7C3",
+  "object": "chat.completion",
+  "created": 1790677584,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether adding a recirculation pump to a hot water system counts as building work under the regulations, checking whether it falls under fixed building services provisions and whether Schedule 4's non-notifiable exemptions for heating/hot water system replacement work would apply here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether adding a recirculation pump to a hot water system counts as building work under the regulations, checking whether it falls under fixed building services provisions and whether Schedule 4's non-notifiable exemptions for heating/hot water system replacement work would apply here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSvAsKEAgSGAI4AUIIdGhpbmtpbmcSDFwJHkD6mBHUWs6RyxoM+TTfRudoamhzULZ2IjAZLpcG7FljFgZu2RLNsi99pGsVUThhKMtmnDLfaRpfrhrRp9jtwslsADEwODP+Bq0q2Qq+NmY9gndiacHZ+6Qc2xPpi+pjtz7u3j/FH5NCQbRTOhvrq3IMIW8EBZqYKQB8GgjVc48WfHvbJSexpn34v67stjjxL+THTQaJifSRI+VJd5zaLRDGW8z/ve74k7B3Wxd3AnLc1jXRyi0M2i4qtS+p6NMalTmVYOEbKB1hHxh7jEspIHIkpV+D1T6aogLJidPt5YalMvab3VDkq2wG30UF9hHxEQJRG2X3vWjGSWF2E2+n4NhMdTv6oIlga9drm+VjPwQDiUuzTo4mJyr9B/z0Ezca1rhwGKpv7+pYX3dGJPCjicAGj/xN+X+96J6ojOfbVtS4xM+LIbR3oOpQFQvhDAyeFGJO+JvnnomQxly3yLibKAtD5//+W4dj6jj9VAqFlmFj1AmGEAntulZPxRy7Q7vi3XeQGJ5EDmizzokIFBYyJnTomKZfUroCCagC8z/DMUYqAnTDpiLN3c7Uws2JYF989P3hBkmB98I89FNto3E9+4xmIgmaTnAwIsBE9+vmCGeuwVc/pwWS4DAZi7EbGesfmbY2lwKrJZpCpf7VmsvlRjYXqnOdkSj6zjhQnZITT+vO2vOCoXsW4/9l7erFHAYEmdeN8FBfs6nxE8pED1f36vHWaZfZIah+Jxa1kXkn617+t9ckI5dvxf1RKOLpM7O3gsvp9TAiqfB8PULORGl+6aoLB7d1/pKndF5j7O/BTanAD1v0yQwhKVIEDncaB/xl45yZr3iAzU4xkEYAbE5nqbPAcPT57OU84qK25eBwMDug0+u1dPnZ2uX1TZZGaDOsmjFpT4eD2ai1uu5H6rZ2PRcx5tWAp4p1jVmx3LlEs8Mm9Uhxze5cO9mQDvyFgCqQ2APiDJc4Nbu4+SzIljMjIx76bnW47OPhayekbYFIM/iya2C1ydSvwvS6LylzPbZCKgvs2yeQZac0rW4v/CTIqMk1a7aR6pA4qm9o2WZ4/wm/Kk487785s71Q+P4oIWgPhS4KGdgW9nbWo6OK5IJit+4fsz9D4QCqpmqjyBfw6R9Xd+fJGblE+ohNh4fjjXUr/YfDqDlwTF0QyFKvLauHmABlCD+Zy17wuTxjvcIANI/epWRpfAlzZyeAGROUjOWEkDv0FlFKvtgjxFcpbjj78r2Ex7lKxt8l0UL4nBR7P1yBxQoN56elFB94R+Bd+iG9BNsBKDW80kaZ3/whbDeAY0rwPtpBCU/OaJSk/9LbH8kkLugjNLyybETO7d2RTgPJwLr3Cn1ic5151gna3ElziDevUQ1N23S7Ju+CbxfNzPsu8xwnBpKCwv/Auz0tijmLRpaWXckZlTf4vBo6GSLJy8neoA95noCRt0vBXWRR9QRu/pSMxnjZYlZ0CTjsobgc79Myr/v1XUOcOsvDXUEy/Mb9Jc7LcUjnlVa3eTSvJAkpYiZV7zjmhlJGUl1qcOWj9Wek5m8qcgCZKLRhQBGYR+1L4deFa1DbnptucC1bYQ6iR3m99GspF4N2UMppmeAUDZT/jrRp3zPepcv4GZjhdO3vgsiob7rVIhC2olwYDDx04I3re0ir6XUJeYL7b0E5UXNhdRnfgGjKZzEIMO9XqQ3pGwkivj6Wt3d35oq9WFdKNics34/WZdh0VymXLJm2rc8Mv695aeswMPHrfZYoSaveUuVLY8h7Qqz4oFW7PTPRkK/1HfNd6rPHdDOtZEu7GNiIex2BTriWcikKs97Qcw9k+8mlK5Occ8ZK0yiVKAPNREGDoBnHLZFqi46dd02hri6WbOKg0MnoOTaE6LDjgWLoHRVtJbNNS/313onqz6sl67Wx58453HFFwLcRcg5Rp2pNj8UtGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1137,
+   "completion_tokens": 300,
+   "total_tokens": 1437,
+   "cost": 0.010548,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010548,
+    "upstream_inference_prompt_cost": 0.004548,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.049
+}

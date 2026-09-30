@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office portable-AC port\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677591-56tZ0ADhsnFx8nwtThDd",
+  "object": "chat.completion",
+  "created": 1790677591,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "This is a portable AC unit vented through a hole in the garden office wall or window, which is just a mechanical exhaust adaptation rather than fixed electrical work, so Part P notification wouldn't be triggered by this alone. Since the building qualifies as exempt under Schedule 2 Class VI (under 15 m2, no sleeping accommodation), I'm checking whether Regulation 9's exemption carve-out for exempt buildings still leaves room for building work requirements to apply.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a portable AC unit vented through a hole in the garden office wall or window, which is just a mechanical exhaust adaptation rather than fixed electrical work, so Part P notification wouldn't be triggered by this alone. Since the building qualifies as exempt under Schedule 2 Class VI (under 15 m2, no sleeping accommodation), I'm checking whether Regulation 9's exemption carve-out for exempt buildings still leaves room for building work requirements to apply.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSgwsKEAgSGAI4AUIIdGhpbmtpbmcSDOHRMh+nnrmxADv3axoMQK0oax5UM2/Alx7TIjD3N9f+wGTUflZ36s0n8HMUBjRhHjGE7KmL6ZWEjEipRU4VBZW+R2SAjQiMjFDY81EqoAo0HWA+JqM9dlOq/E+C30Xb+vDv+uaY06ZAGKVuJ+k+OoeR9iAhTicxRQn0wyZpfWkcPgJK4IyDdxYWA4+P9CykPWrP2vUtCX8Zl0lGOPrS3/MPXB6Efk2HLPfqf4a4R8bBbFRBnNBgzX4NLRi0Otl9d32xgcPW5ehdN8SlQHQ8dqSv3SLNVvpKODvbG4mprZ71hB8gfDLXCdEj2y03wGs/k8K93bl6RU0FfG30AN5DUGHIhsTMvrW8h9YaPROiVVy30CdJC1FQfEgj6r/m7XiK6y9eEOv7mRBe7B8Q7Wou8tl++b0UdnwiZV+90yYuPjp0oJBHJd2NZbnvoOllY8Tte6QY3s3wdtDr92flp4FPfjr9p7SDEvfpUe0MDyjXUo8caivDyubVlJAcgQDmcKwWPthQvAFcj5JC3tKF9cDOJNQ2xKp79mImR8G9qHDoavsrK+ZusTuPmx8ZGCpCbRe4rwUOahDdDalHqagS0k3fHpcSzcZIJYzoolrL0YGib8ZuO56RP8VNP/RmfyVp9/LIJFOs1wHPi1qoRUy1kPGzFuoH4/FNukEDyVOf5WMLx5+QfliToGKx7BMMCejw+GgXzGf5XCOPN3EGMgecHK+IW1n0YqlKGAqrnyvqXM6GlyMyqKjzMkRD36JnxNWWojW8y/uymivOb3hm0CD0prraChH3sBbZTQRT7Qu9o4fNB9MGWYoHEl9tHgOoQvqeYfEygeDyvmJFwZWtNieQF4ROPr4FH0cdyhTIm/fgDwN0D6vWWOl3JqAhjy2vXgCT6pj4n6HOUk80Tzoo14Bu438pYH39ahLIiASrP6vw1MmS2yNuZ/y81lVygmkMMIbxb4PGTu3PLQVLsjNDCCQWMCtZpvQEOrBiXIvm6Ad5Tk+B7HtLfy9M+YP32Yhe9srRylsTeiLKePy+20x98mVkDRlDyTfmxeg/jZ5JI+1DWUQPKu+jLBdGTxO65SbU6czkpkP8AzroqOiilDDvrQT3lMK2eC7fFWhtivFaVd8w/j6QgoU8LnjE7KjlEwYoRazhtm9yNA/Ub+0kk9BpGdMk8v2nqo6OVrjAhFTSrAaacmUpIDQpTmdtwdYMZ3ZvhI0o1P9mw2p7JOp5hkXQD3WUP1io05hToHJiRpNTJP1Gk/rOrMnph5eB84aba47HYOvR1ZQUyCEqJJNCAmeVZwb3FWltswhRDfiY+df8AaRI70Wp1c5tFzG6aH9298WQ52zw2hAzw+by2QOIyJCZnpFfWjdyO4oo+qWwg0mImIyHQmPvkm76mLk4mc3QXOecK3Pz5pTvIk4QmgmtMczatzlGXdlADFe9YBW8KtaS4q7+05gPH6St4GUB+FxQf8/4nWeAb0bqciGVYFuRB6khEU8Fo7bC7RibO82y4J7zRvZFOqC44EmRJK34pm752pFcxWY1EvIrSLN+mV3Qxs2quSyyFBhXKSx8HOVkGQfo7rlSPAKldUQ1Lh80wtao39r1ubmpKZT1YbhMAgibHBqx3P2NKmjqjIvZoENpfRopCGIHerPn4GAkCRKWcoB6H6K8DOH8mPe/a1SFRGqLppXtJ59p1DdFGQxf8YDsBEPz3wPjOFZuwEVik9U3kqcJkvleHvqNpGZHqaov2qyrA1Z7eNCZG8jOh2DBZJHtOCurGHbd6IogOB64wqVXsuV29bRRJETZA5b2VhOwGcN659bL1HQ7tNlZZ/44Ze7pGr8Jzufatf5VEtVpDdKVu2EnhErkPmKrtKkFGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 987,
+   "completion_tokens": 300,
+   "total_tokens": 1287,
+   "cost": 0.009948,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009948,
+    "upstream_inference_prompt_cost": 0.003948,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.41
+}

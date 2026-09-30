@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New stud partitions (allowance, model cross-check)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678247-DAE6fNjexmqlCqbSSD73",
+  "object": "chat.completion",
+  "created": 1790678247,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"prob",
+     "refusal": null,
+     "reasoning": "I'm considering whether new stud partitions count as building work — generally non-loadbearing internal partitions aren't notifiable unless they affect means of escape under B1, but partitions forming a protected stair enclosure in a loft conversion context could be different.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether new stud partitions count as building work — generally non-loadbearing internal partitions aren't notifiable unless they affect means of escape under B1, but partitions forming a protected stair enclosure in a loft conversion context could be different.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpwsKEAgSGAI4AUIIdGhpbmtpbmcSDNaFGg9pd843O3e9QBoMwwOWefXB7w670VM4IjA4DzzJuTQYw2icj1iUOy7fKkWWzbw+g+y/k7wrWRMVUanTvxdZvWr9eY29qWjNvf4qxAoolB6KWLAF0PCVzGx39SUulw2lnLNkLA6wmlQm8WV0HgQK663Kg83ww3etO3G7wVCSfPOVUvS69ADDkW2manIthl5PAuU0KSYRCB7qPTy5AeezQARBr9xJUYkkgbnMty5nQkWlrxmp08VbcEGbReJj1FKV1sAVFuSWq2f3CWrzMYFnbNzMBxa4O+BniUSBdMpDWmYrOUBATbGZKyLiaWqD48t5Kab5lOoaJimP30JZ4UG3rjZuLMi292hc4qchTyg0TyPWEcqUdLlfaFGw7Rjlgyq6+/PxB4DASgt8w+9l0pZtiG4BRYeewpmIx9P0zSHGgvcGG4pCRuqZ+tegi1MQSpscXKgzrN2Z18nuwDw44ZklSFyonVvFz6fqkcZ+7jHKzSv4ovowtmWBQBADgfghZGdi8a4V+Ll23Ag/q9rBkdilWXt5F0wMlzJpTkPhL7Ibt8NjAGNaz3aHwrDD/5vtykZ+vzK1m0/SYVn4SfrYJuE+u1JB4xhHtFL3kc0WFrQFc7qvtZXEOp62ZGeGiHl7LYUCXeAi9j7ckfw2d9Xj6es6xz167pojGV76td5L07gzul2R1RAeagQY8HDKaE5xIysFH06+Lr3VAY7SGO1VstgPodG2WshHGRQ1RQS7gv7LiwmrfC2umiBHx4zpmgdbJG7DINo5Uu9Lom8nlibXyBnQOp5t3+36kFQ2hUJQXjBFJEk9gjnGghRcclzGmBjUlIlHU0EqoG9V8sX4jcQALOS7RNbt2s404kfminjXOMw/W4q+Kq+VPr83NjliYSEPvn62EYiDlfBOGYBa9jxPribqAdDT8AcDl9Uj63zTRxTHSTdtGeQLgsOLmmLNubqa2DMLmZWDGRLan7A27MqPxPK7/yAfaqEcZIkHTp8lLHUjtr0cMEqhUqqLVv1alb48YzMpUDmihjUXUt1ji53+Cloi6NXUX5V3d9LwNzIcAcRtFDV0dkFNDDgB+NSZTgUTq8m3FWBiU/e+2/r5LpPCcM59dHW53XoPec0boXcYyPq42ZHqu2D07o0bTr/kmy+5cuGrRwq6C8vBjEzhuyTpFBV1fHxzMb7CX5cvOHLvtgnhZuYTatT7VjNI7NjEaszzg4p1URyIpOaqW35GVa0brLMln4gxVLd6eV6QAik5JJNe7DRfEunHBILD3u7eIbWL/UTQRZKEk6p/t2eei27FZqV79S2XY7hHqrdJb/w/hZcGQfzLCOUNsp70xxnR4mEsZhtmztjLaB3on+zAjgho/f1FO4B0eyrKRkAjOVHIIcQeoCYVx0lQTBHN1Q0qrzDzcBwC6LyXICLO9L0tZ1ndPE6+fmFY/AGTnoHU23ppIdKZcKQK2+E96SQQOCJ+JxRbtVsldlDafAUer5GZ0m0Du2P7GaL5OoBUJLR68ueLWe1y7tiwgVOkkEmzDRtgpGUSNLsRySCT0iGon7fX74GhgUE8ui1LNWfTc3YfK8qJmC8NG4enYfC1y69et+Kcea6sr1GXj2ngrQU64HPcYNTjj7lgZgfDCOgtvVOWGAeuTI3gyVDSh2fATLvEMxKZsV2zVvWnMrHuHH0AJEADQA2GauWtpyWJ96uIeaudkVvWGl1A+de0oTnrulHaV9mkDhEqcNOn1sw9yLn4L4W8IZxdlt64IP4k6WCFyRvfw7oO29ZzpeQGcvR7BV/+J1xnLPKXQFAhtRN084lHim0eEgunB/JKogyb9liCMqxbxkDFJnP/zez4EBuMmKhOH7EHTfqOSi/85uegY2f/8/T5uzflqpb2D5cOayaijTcwhaICsw0mIlfOGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 515,
+   "completion_tokens": 300,
+   "total_tokens": 815,
+   "cost": 0.00806,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00806,
+    "upstream_inference_prompt_cost": 0.00206,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 286,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.036
+}

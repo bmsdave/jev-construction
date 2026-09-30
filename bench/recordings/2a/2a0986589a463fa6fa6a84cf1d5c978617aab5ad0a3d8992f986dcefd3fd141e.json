@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Precast sleeper vent lintels\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Masonry. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678143-2ihuZr9bvLRGs4dVoO7E",
+  "object": "chat.completion",
+  "created": 1790678143,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"",
+     "refusal": null,
+     "reasoning": "I'm working through what \"sleeper vent lintel\" actually refers to — likely a small precast lintel spanning over an airbrick or vent opening in an external or sleeper wall to support the masonry above the gap.\n\nInserting new lintels could count as material alteration (structural work), possibly needing a building notice or full plans, though if it's genuinely like-for-like repair without enlarging the opening it might not be notifiable. Given the uncertainty, I'm leaning moderately toward building_notice_or_full_plans.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through what \"sleeper vent lintel\" actually refers to — likely a small precast lintel spanning over an airbrick or vent opening in an external or sleeper wall to support the masonry above the gap.\n\nInserting new lintels could count as material alteration (structural work), possibly needing a building notice or full plans, though if it's genuinely like-for-like repair without enlarging the opening it might not be notifiable. Given the uncertainty, I'm leaning moderately toward building_notice_or_full_plans.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS/woKEAgSGAI4AUIIdGhpbmtpbmcSDAo9AXt07eXHmV70pBoMUmfBCmCkx1BRTFHaIjB0qvfKz6JzVf/zGlioHLyb26rmNELggnBuO3wLAvN8Hx4Cdg4EddeSX9dYxhUhqq0qnAokiOLQwZTl+DcGSJWRzunT8gXeCoz+PV/sROyrW/K+RwOgVtptIaqtAy9UEHjC6Eixl8Cit/KmD+KQS0ynIUjAge9hHqK92fI8SB5UU1JWrW7aAyWSYljOwGkddTgG/gdg/mzZDIpSJuCIOLfS2GJ8e/bTtkCdLidn1oyWip9GK+AOI0HEx5vaG4mrHXXd1iwSt1kvfge2+rCllPp9+E6oldLLdYtZEOyNFQ6BHpEgnV5QOuYp3F/PzPc8XB7Gt9riD3G75U7AQhh1e1rzKj65kqs2GHDPMiUo6FCaqIZ02Gb4emgE8tiniwL+uIcf4SPHz/k0CsGlRTuGmyNuL1yn9JW7O7muNv9L9PqTlhkEgiS0kJW2r8ibEfj+Ht9j4+5QYezujN+36SBydTegds0LcbA/A4IV6nyWPTR1PYA64g1WJqUqLnU1GxyH2nZiDRP/uWQUCwhsVWLf6wb17uTrRYpgCFFWtTIVSjcLVW2NLn3D+Bli3Hd3h/XC8fMxSVpFaOYTpHxAwy0jEldYSG3Ew8UvDcVHUqsYWjv+wNkEslBPouNrbTAxOYj2lvk5kCmOhbE1F/frOflNZvbWj1/G7gqG7bi/mXR+v7Dn0BgqMfo1akhP+pNX3YkWHHLnUDThc9DJ9jj+T2+Sa3q1ExVJWQTkWQWycAEpvjY2svCv78yh8Rp6H9i2JZiGVWymFFMdoNCT9iMad7fY1lnZCq1kSznJMBUTmuSqZhrDstYPGZPBCpO7andVSYcfE9lE/hyY/3eYB4z1eis07tIPArJoSiaQ9AH4PoZZTnfnhiorMmQ6QGbRjI6EuCubW9hK1plYddGp64RYfk/KyG3jX3/5rt1ZKOqjToNBwRrvFrbOiSoTFhqPlz6KTf4M93WowKmJ37T8f4vs6SJPcXwyt9VjB/DC23ajBpjAiDaQeWJng6B72tWWhlhuTWa+rUcytPbx5zJzGK5wZrmop6SMhSuitMHK4tbyrytoN6ApzCnenaeJ5PjFoGYhnLg7VZCFl7rF68pOlxhsnLnh01Aj57NBBi5UUiwD8NRgTbVs09mAVtiOzY6vrXF7fdgqN+wZErxEK5JXfcsMdrT36wD0juwXyG3rVWdY984NuzpLSyi4HNOOWv9VeCGLqTVQu9z3viA9j4ai7ivcUfhWNlJx5way2xn4XvPfBT9ui0cuI4UZqtDObsPtOdfavzOPswVs5UxJ+lLoU2894Q/D9DUcK5Qt1K7BfB2CKyHeFtsCl2PfFO1UnD20Ubow0kH0y/QjHyuw3qgDjIjDQIqyRqoYTohqeYCnyP3aDYOsjuS1JcsaQYf+oKvsjTyjcwYjBQ/pXPDW/zEGVaE3OBXY95iP+nIhWUN0Fdj/WjnslhcsBJhw4E9Li5YUtNffu1LK2p0trgDcU2Y/+qZ55GAByYZmGqrbMQcXkTlTskD24nSX5cNO34ydi33+VFAIpWvL3e0TzEa/eC66WXY3oRacxu5w7EWPZAT7nkB1cYzIfESg6m0Lkf/vPUtK+AtRK/G3JiJPlKS1sxM2FgcSCSlu2V4ipwxsbvy/4WKxEBAoR7sS0xQC/b315/t830Utj441RyJ0ettwYvb1QIzPttv2tqzOL8M4+Gg25bzDswEff61xLFoHYvWkzsJ8nbfcHiOg3mdI7EuHVtAvaFo7GluM004obJg7XBv3Dehy2C8wW92V+dD3F1uhbS7gXYMCCJk3dtE8iqp/nQy27WJiPTZK2pMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 491,
+   "completion_tokens": 300,
+   "total_tokens": 791,
+   "cost": 0.007964,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007964,
+    "upstream_inference_prompt_cost": 0.001964,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 298,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.66
+}

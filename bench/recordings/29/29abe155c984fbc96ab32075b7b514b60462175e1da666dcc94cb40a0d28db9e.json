@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Roof penetrations (MVHR, extract, vents)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(m)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677274-YMFL4G4uWDDRxJPe3jqw",
+  "object": "chat.completion",
+  "created": 1790677274,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether roof penetrations for MVHR ducts, extract fans, or vents count as building work requiring notification, or whether they fall under Schedule 3's exemption for installing standalone mechanical ventilation systems in a dwelling that don't tie into shared building systems.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether roof penetrations for MVHR ducts, extract fans, or vents count as building work requiring notification, or whether they fall under Schedule 3's exemption for installing standalone mechanical ventilation systems in a dwelling that don't tie into shared building systems.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSoAsKEAgSGAI4AUIIdGhpbmtpbmcSDAF0pPlwUZxqBc4l1xoMF3vSeRBC3Z+QEOREIjDeSgRD0vH0EMWDFS38vW9DkLOOxEvqinxSUqDRDypnx/imjjAgqJP1YzmeWesNl3UqvQpjcVP55olWz3rjveZC/c4sQNBsNMsN7vqmQGifFAD8QxyJIg9UNLiPueyzMw2y555j+RtJpz8eWfxsjYI9aAfLqdTkCG/RYNFDVDQgHBlxkwqLOrxRNH71EIJv4vx9llP2phHhb5NjPbQbIvTQlcwfb6d8Q8dNGdi+MmUrAn7HrDsnHZja2o+5dVEYV1oPMfQgdlLdbrpck8Rue23a4RE+Gv8ICNepE9iprhKoFDerEMqpFemqhNZRvPYtE3/J9r4lBoq2BfWu6CWklmTdKytj8s01UQF/7ldcFxCXQRXhir4wIRPpB2MDPOyoh5GkA9RdpMIim9Ss1Hh0lz5dHOi3/VxMADvOg76I6R/pKh6F2UOeyp/14FZLzeoTyMknkGOguJXylUketkoqbhOfqB/sad0X24AJErI/ak8KDLoc2ShP64vgEPbDy9T7qM1nIVk74wpnKAhc9qN9Yfp8ll0iw6HcATqxc0nV9phgP18xtYkalD09eelOa3zQ9mhGr4h61PZ84siOMvIixppFc7sfKovFJxxvp8enLR3lwkDHTz3QSGlOZxj53aaRepAPU/QIhcebpT1l1go5ONdMrU9YDiSL9WSkot5avlwmyHovW492TbDb7mCufwoitLF6oMwIZm73HZfBnPExAiqU49sp/YP8pfPIhEBIXy3qVXHSdqxtWdI4bxa8KqvOukvp6zw/NUFHV25dLiAwRj8OUDGKX5NacTjitkfPPXjUE8T5ZezCOd/Zvsy1pCekLMP1pUypC5HxsLw1QX9m5ePc3NyIjgG0628ePQGSH3pzJvSijUfk+KDBgH+qFSe2p9YVyFa798TVlBGaRAwaP+aZuxskcA9tNnYVgXgHmZE3UIwhrxOtQDw/Rmtow+R4BMK94TwUc2mXOx9GRwEixwGE0vq6SYs0Y4CvIViTUkuX+/Hf1whRfpdX9oC35lQSM1DS1g8zGeDngeqVQVuO74q3AktaOX8oAv370iA5vrqIEFiN8uYFtSNwRcAEcKm8m1+7AaXG4IcU5sdtuEK7W5sJ7GRyTya6mO9CcJkfwDUQxNoQ7D5+dfa+fgsF7I0+UY4G1diu4gHMgT/cbTLnQm7JI9oks+inmQXcnH0tdxBQyzzQ/VXepgkelpKl5hdVvf3cOT7gtl4RZgW8YpXpkfM33w2ugqAGrTMFWih75Ix3P8r4qOERBbsH4mo3MKVpjDotVT9NByPvtXohHzruysHEdMkFvJrv5d3EAHF0KlG+EaLXzinI5mgEalI4XL3gltXMg5KmBxhNdv7B0NMhoXS4cj3Srjwj3s8qZjocfPjtBpkVww9KEOIz1PRcne3JsbcXtzRse20eevoVj2mNUTAxhdbIN2CVbbPs1Kq6epqmSo5p/zGwU7ba3LtLpjIOMEPPvhnRRneaY+0UlHyoOdhTy/cdaWDWB/AS43K2kH+2P4mHw8w27BZka6EaFsCfCE3j7h5sfaNHn6DZGT1zJ/Pwc43SJg1sDrqBTW5qHqXLwWkNvtRwGl9eG9wzWX9+4/PtfgQoccqXmMWwg+rqzucjsBJbqYIhiXVLlSZ4ObisWnxqA/vjd5WoInJ5XvA+L+uIvz7+Pt5rDT6x2PZvzdLIfAYNGLSwySHa2ZkfdgMLQS8+L2Nm0RtSAvk0MyVjZHJGPK8wZjLg1jbH9nYhHRi0GUGfYOqo9rfvLF2kPoTIHoMxd3LDGTKgJkp2h+Eu5WO5fL+/8lCoyrXZZtC/8XVu4ScCoJ3scK3gNd+RYz5PDWKFiiRZotWB0BRF6yIqPrEYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1352,
+   "completion_tokens": 300,
+   "total_tokens": 1652,
+   "cost": 0.011408,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011408,
+    "upstream_inference_prompt_cost": 0.005408,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.219
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Work to a workplace or premises where the Fire Safety Order applies\", \"project\": \"Commercial premises in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 12(3)\", \"document\": \"BR2010\", \"text\": \"(3) A person intending to carry out building work in relation to a building to which the Regulatory Reform (Fire Safety) Order 2005 applies, or will apply after the completion of the building work, shall give an application for building control approval with full plans.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678062-iQL6NQJOzQf7RfykMuON",
+  "object": "chat.completion",
+  "created": 1790678062,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Reg 12(3) applies because the Fire Safety Order covers these commercial premises, so the building work needs a full plans application. A building notice is not enough. There is some uncertainty: if the work were only Schedule 3 work done by a registered competent person, it could be self-certified instead.\n\n{\"label\": \"full_plans_required\", \"probabilities\": {\"not_notifiable\": 0.03, \"competent_person_scheme\": 0.05, \"building_notice_or_full_plans\": 0.04, \"full_plans",
+     "refusal": null,
+     "reasoning": "I'm checking whether full plans are required here — building work generally triggers reg 12(3), but competent person scheme work under reg 12(6) can exempt notice requirements. Since this looks like generic workplace work rather than CPS-covered work, I'll label it full_plans_required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether full plans are required here — building work generally triggers reg 12(3), but competent person scheme work under reg 12(6) can exempt notice requirements. Since this looks like generic workplace work rather than CPS-covered work, I'll label it full_plans_required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3QcKEAgSGAI4AUIIdGhpbmtpbmcSDOc/suwVu4FXzJQE2RoMFi0hdaHRPmQg33vwIjA3Oz/y1fW1tFgl51CIp1YYnyYZJVOLxV3HtME5FQvJB5oYyF1U8Z6gg3u8pC173DIq+gYnf2r9FkXmnT0KDCZKFbOykL+0vQoL5AnTHE6ZeFb8N8KdvogYPHxiv5Nm6kqv433QQLbgOI9FgExYAIx9cweAHL5jHC1rxARNsPGVz1If3+e/wojXXzKCofZETPRJGOdXPHrjyy76+qfRX48w8fxiNXqzF1H6SS+2XkTR3Gf9YNYU7fUAe2oi6ObyjLUrz4GKDQHzCqGfAO5RuPKDBt1OOJE2G6u86DhtOzDDpDY3DwqdKFmBxC7pDp3tbjvCY+VhjJ+Oab7uItfxsUPTlC9IaDJNp8jQJVrSGKLyNEfhYt6XwtTqfqneCRlv7bUe99mFS9zJFi4HRLex4YR6+hHiTZAX51pVRiiV263dQ0/Czm+WIcfYhiVN0g7IWVO9jsGgp/IRxRNxvnZLael0ZZQsdpYyaeZ0kuX/FCKs9xfMvJxYMDlLjk0k01w0FdDIly7AUBFE0Ufjy29yYft5ZY61kIh1zBt7bmt9yyB33oUY9GLTFh5/oTPBTOoiY6hoiCyqxqfESz8Nfo8eogvv9ak7eZ1A4z7PsKCIMQOBIy8T6nNZAREdxslIBNS4ctIv+rZNzRDqH3AvLTJLXaGc3zfOLntioeq2A3wj3Ge2o2nM4Q4cs3qu1PxUWEJJhwqYhhGQGTF8Bt88CbFI2s/t1/5l6Gups6YAc1UYheXc7rD9hNv41IhZdoU5uxA0DE1/QKza0HB43QlQr2zqaDZ4s6NM9ZvV2LcLs/l0QBQsRI4/XfxoyJxtw9slbwInlqOKcbf8Cci2vEJFncfSb6M7cHbwTnym8yoRQ+1MpGwTnLpnuArNXyfefT+rOG877P7CDkW0rxJgzolx4HThMxTiogdDQkpVOiJ96csNSvN87/j95GLcISaBwlpQo51X6X17M7mTPk95fVxN1BbSVfcytW92fh06aAh7ccLNXqsgCukIWiZEpblOiFmVkrTBfNzJ8LdkIfAC17OeZBvUAk94pGrQQmhIOTp1q8Mfoo52rbqXZnYJ9o4g4DlS+eu+rPtmZDcVP84otL5bfX7U+op4MbUV7Umtg4AuOBPC5k90/o1RbWgMEdNr9PPGrF9tMY5lWZRcQ7h7jYS7Fru88B8J1MCXpi+mVMCTOjdH8KuEyqPNxT0JTqFHN4YAUeP5vjB5lZQWcvCVqxaFwHkPDuHKihG1NU9qkIE2niTJVxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 969,
+   "completion_tokens": 300,
+   "total_tokens": 1269,
+   "cost": 0.009876,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009876,
+    "upstream_inference_prompt_cost": 0.003876,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 138,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.072
+}

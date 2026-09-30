@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office sliding doors\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Windows & doors. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"Sch 3 para 11\", \"document\": \"BR2010\", \"text\": \"11. Installation, as a replacement, of a window, rooflight, roof window or door in an existing building other than a dwelling. This paragraph does not apply to glass which is load bearing or structural or which forms part of glazed curtain walling or a revolving door. | A person registered in respect of that type of work by Assure Certification Limited, ... Blue Flame Certification Limited, CERTASS Limited, Certsure LLP, by Fensa Limited under the Fenestration Self-Assessment Scheme or by NAPIT Registration Limited ..., ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677592-U5Na9vMcVc3Z6ISV5MgD",
+  "object": "chat.completion",
+  "created": 1790677592,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.88, \"competent_person_scheme\": 0.07, \"building_notice_or_full_plans\": 0.04, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "The garden office being under 15m2 with no sleeping accommodation makes it exempt under Schedule 2 Class VI para 3, so the sliding doors installed to it fall under the exempt building status and aren't notifiable — building work regulation 9 exemption applies since it's part of an exempt structure, not the main terraced house.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "The garden office being under 15m2 with no sleeping accommodation makes it exempt under Schedule 2 Class VI para 3, so the sliding doors installed to it fall under the exempt building status and aren't notifiable — building work regulation 9 exemption applies since it's part of an exempt structure, not the main terraced house.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5gYKEAgSGAI4AUIIdGhpbmtpbmcSDI4+HcKf+JCoWMq3DxoMrlzNTbWSN3fSKSCjIjBaULe1yk6b03AEM0CHvZsWc32jx0fc6W8tKHc1ygdgUHSHKqi8mFdGkjSjgpGcqyEqgwawsrDbCsuVrL9hI4CiFAB4joHL9UxKzNWSLrwaK949XGlaDM4zFHNl7B+2fryMX6iTLXHkM/fFYkWcmlvleIgyXCtv8pOZ+AyM5AJx5UPOq/B825Ug4qtXjyL4u2M1zWqJ5QXKF5wI7FdavUXMNXDOo2r4kRyrYyVf6WiGUQIMrsV237SEP7EeUyHRj1eMVI9/GHSqCrG5QpwY6oISeA6ozUDlv0IV0QCG3C1esraD/rWBbYDOerm+E5WfU9qs+hFnMzVx4agmMbt76sWX0br0Nt1o50AIrsbAMZhmVGMJPUxXa0tJBbCpy1EnvqAGGKqm2cA9sU247GTICJJw8slQPWCgzadW3FbPRB+l2MTK0R+YimsYh+1dGz8zOCAkXT8IEfWk/h+eBEUW5n05Uy418n8cFIrkfgNnhc9S7Dcpn0szTioVf1U/4p0S5g0hPYOatD+lanVfdxYWjUFeIrKpKDlm/gDc5rKA7NiezV3pDMwTEDTHk/hHz3jglsY+YwKkPk2L2V7km2GpiL9h1LOgaED5uGK7SNOqARcQ5TAW5jroZVdv/NJ2VSzhQzYV5QMWWjRI0USqvE83OhVKxbz1UlXpGvjBOaE4RKdQ7ObE3r9u4gNwPXuDJ1OruEgpke0PepaRzg0d2kxTj0JS3fvP0FzM6LetwSCNCxC/4z3b9Xj2ZvMtioq633B8nOCISZJE9jTlgp1HDudZ3hmiI3Uk+5LLcmiUSbfXdaKQWKc3kRYfBLNof9JNSRVRjXstDWR7vYHUVsHNUB4UHjwpJLhWsDF20OnfeqFocbBuo7Z10Yeo3B3XEEK8P+eB2jxvweq/iqLicrXWW1szdyFtHWdeNW3P8iqARIBV3KPff7mml+L2n4meyrdCu2UtSt4WYpA+YBb4mt4Vcz5bvXJsAl14Ru6SajlOJ9heKIhBVDxwAWRFZ5goFmHho4Vv/JWV5/IQhSWvIAs3K9V/hGNz79pX+wrtOY8ALUQZJJOvGpzF0NzdzeQKdPqmI+SphVuBT7hjHc4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 929,
+   "completion_tokens": 198,
+   "total_tokens": 1127,
+   "cost": 0.007676,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007676,
+    "upstream_inference_prompt_cost": 0.003716,
+    "upstream_inference_completions_cost": 0.00396
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 117,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.085
+}

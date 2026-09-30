@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Reinforcement\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Groundworks. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678148-Pr51auySSYCM8UZZ6fOM",
+  "object": "chat.completion",
+  "created": 1790678148,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Reinforcement placed as part of the groundworks for a new single-storey rear extension is structural work, and the extension itself is building work under reg 3 (erection of an extension). So this is notifiable building work.\n\n- **Not Schedule 4 or Schedule 3:** it is neither minor exempt work nor a type that a competent person scheme can self-certify.\n- **Not reg 12(3):** the building is a single dwelling, so the Fire Safety Order does not apply.\n- **Reg 12(4) and 12(5) not indicated:** nothing says the house fronts a private street or that the extension is over or near a",
+     "refusal": null,
+     "reasoning": "This is groundworks reinforcement for a rear extension, which counts as structural building work but doesn't fall under Schedule 3 or 4, and since it's a dwelling FSO doesn't apply. Proximity to a sewer isn't confirmed here, so this falls under building notice or full plans.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is groundworks reinforcement for a rear extension, which counts as structural building work but doesn't fall under Schedule 3 or 4, and since it's a dwelling FSO doesn't apply. Proximity to a sewer isn't confirmed here, so this falls under building notice or full plans.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSuQYKEAgSGAI4AUIIdGhpbmtpbmcSDP8XFD5m3U0Nds49AxoMHdIc6qyRAbeNjH7MIjBEgvVUB76eNAIzAbDbOUWeh4Yw1IenVgawvQCNWIqX8MYn9MKZl4eR5aCTdpuLdfcq1gU93KQGzgLAqlH9/mB12gGF3dDyJtz63anDyd2jD60FkiU+z3xLVVMpWZLz4ECm5eLUnGoQZD3jfQDGcwwJw6DV6RN1D9wYDRzP1snvO45aIp0GlgfgMQziE6PLdXoAZU6hosRZRvFo0l9LQ2ZWBxxgeAAS/fxTFIzH99MgCyQe1xrAUUmuKonSGaRY/l6ynB9IOwK1EPU3Ep0wgwnwwDoeMpzaMdeN+mwoqGa8r+g1wFyn5iDvyjp9ZTIAznMdI5rRQxIsT+yzhuDZBJcPnrehK2lWe7a8K9zEPVltlQPjSfNyc6OJOZmxvjxfYEY2Q6tnHNVUSyo4fOzpcFaefOxrFrDocQn3bkaLUUyRUEV+CiCQfv6ovE1YxtBnRKe0ONjiAdjza3GoOzlZQleF5ChUb410o6RcnVlYfnbrDSosrTftz5JaMu0wFFn7g57P5UPkXnOg+5+LBCNLWOIG4GLDY+dXM/2zWRC/No0cLKa+RlbEdAPArp4Lu203MAhJvwK5cmWUMRBdrfnTNmNkDmktcAiVzTlhRUY3CxpBNH9vLsBoizrHZl61GISMMdqDf+nBbMcA3481B/9tyu/2uTImDSAaAUVdyPP9PNdrU9SHI4r/+uJFQbcL/NMBJFwdUApT1a5kCKvQTR8pWNcOBW7PdTKweGeTcDmxCGoQh6OWyUqMYlCAPGqAlMH6puSmXMU9J7G8VCLJtokMlLiasZqsWoSrsOLjTsDYT3Bb5oibQzsKhr2o8NG3lOBqo1d6/v2ueWPDNqB9pF8Lw/QqVXTBjtbgGQiHCL9EsDFoLFWbmEknBh1OGCXp+mQFwfkk5q4lXR48YL/3x6xKnJbwR8RvqmzpsYuolMLtkqRQqxTzVZ4okbkGyVCHhvHplCzaehHQSN55KHnpbwyoFCAv3JSLr1jUlxdW8ycR0PpB/THaFi96+vp8h22Ye6f300ELM49P6cLg99IYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 492,
+   "completion_tokens": 300,
+   "total_tokens": 792,
+   "cost": 0.007968,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007968,
+    "upstream_inference_prompt_cost": 0.001968,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 103,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.873
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"House extension within 3 m of a public sewer where a build-over agreement is already in place\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 1 H4\", \"document\": \"BR2010\", \"text\": \"Building over sewers: H4.—(1) The erection or extension of a building or work involving the underpinning of a building shall be carried out in a way that is not detrimental to the building or building extension or to the continued maintenance of the drain, sewer or disposal main. (2) In this paragraph “disposal main” means any pipe, tunnel or conduit used for the conveyance of effluent to or from a sewage disposal works, which is not a public sewer. (3) In this paragraph and paragraph H5 “map of sewers” means any records kept by a sewerage undertaker under section 199 of the Water Industry Act 1991. | Requirement H4 applies only to work carried out—(a) over a drain, sewer or disposal main which is shown on any map of sewers; or(b) on any site or in such a manner as may result in interference with the use of, or obstruction of the access of any person to, any drain, sewer or disposal main which is shown on any map of sewers.\"}, {\"ref\": \"Sch 1 H1\", \"document\": \"BR2010\", \"text\": \"Foul water drainage: H1.—(1) An adequate system of drainage shall be provided to carry foul water from appliances within the building to one of the following, listed in order of priority—(a) a public sewer; or where that is not reasonably practicable,(b) a private sewer communicating with a public sewer; or where that is not reasonably practicable,(c) either a septic tank which has an appropriate form of secondary treatment or another wastewater treatment system; or, where that is not reasonably practicable,(d) a cesspool. (2) In this Part “foul water” means waste water which comprises or includes—(a) waste from a sanitary convenience, bidet or appliance used for washing receptacles for foul waste; or(b) water which has been used for food preparation, cooking or washing. | Requirement H1 does not apply to the diversion of water which has been used for personal washing or for the washing of clothes, linen or other articles to collection systems for reuse.\"}, {\"ref\": \"Sch 1 H5\", \"document\": \"BR2010\", \"text\": \"Separate systems of drainage: H5. Any system for discharging water to a sewer which is provided pursuant to paragraph H3 shall be separate from that provided for the conveyance of foul water from the building. | Requirement H5 applies only to a system provided in connection with the erection or extension of a building where it is reasonably practicable for the system to discharge directly or indirectly to a sewer for the separate conveyance of surface water which is—(a) shown on a map of sewers; or(b) under construction either by the sewerage undertaker or by some other person (where the sewer is the subject of an agreement to make a declaration of vesting pursuant to section 104 of the Water Industry Act 1991).\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678083-Hpqx6oFmWrTBOUEVyyQL",
+  "object": "chat.completion",
+  "created": 1790678083,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.88, \"building_notice_or_full_plans\": 0.1, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Since the work is within 3 metres of a public sewer, Regulation H4 kicks in requiring full plans deposit under reg 12(5) — a build-over agreement with the water company is separate and doesn't remove this building regs obligation.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since the work is within 3 metres of a public sewer, Regulation H4 kicks in requiring full plans deposit under reg 12(5) — a build-over agreement with the water company is separate and doesn't remove this building regs obligation.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0wYKEAgSGAI4AUIIdGhpbmtpbmcSDK9nIu+3Vg1YO6a71RoMUgZFmSTi7wWGNkmPIjD3UGfyj4u2yC84a8J1dPa/+ILdVTxsTn0wK3rQrl+xxRk+WncRJKf6VZRCqsFEuU4q8AXzYzA5A8STp+6CKdDNSevWdvlgHJhCKaSkb3lVQicJQhd5CjgXb3VwnMwELBiFCmurFFJtVklavTT12T+LkSZ8vxsH9clyETG+q6E+egMOGGiqU6Wo41R5BGJFDQ/UXK3k6H5LN0TgHr/Tggj8fzEAWohLJplnrYFVMx9eTTgktsfXA7CdL2e9dRiDIxfRE1xcDfsREytwbbOS7Y60SPtai7+tmRh3NZfXbOcIVEqmWhD0Bhyw2fkpMwMFI5JJhGShssilL+1WelANm+qSMJgZm3+WWhXL0AWhB0+Eh0N4hLQhGJvpHSVUB/U2sRnmUA4on2I+4YBZTp0530rMaWh6AwaaK2tVwSO5bFCp4Byw6gj+Sf00B0QG6GpYaUbmot8F28P49p2yC3y7up8/tnRgLLrbFc5PGz8NBwhEJCryWzJqP2m1iYS8EI42GTPu8upjF+X0uCKswhyAaboTqjV8Miorc2ke3zsLAmKttkokS3MxN6fXzH/tlpzCUgHGGrhJZ8Pr9NTmbY2cxYoFjfrjxXjbsl+55FbUTGfFHMtn5P5slwtYkyaPMhplps+c7N5shdJuscDmwucuxWrVniWS2hktuUsFl85GY/9mAndJ/wEY82d6WGrvWxfdsZL81ijWiB6bR7TDmtoC0dOQblVqi2+1v5BIXmty7rRUGkO5GOUmnOJxAo6NxwQhTjYNroC2/tvawFILCiuy1q5SO09bbrF3YNRI/mOcSaNC3kAwJZothtSYiJSPXdveQgJflDMZlajRxeWHCjgyBOMnL8I5TKWCMGOS7fhNnT3F+ER8NQIE1RF2k5c2OLth1g+UgJgtXQlksZ3W2/VG+AL5RnxLrIlcfGG7EyEFoCOHUFQytC8e2MjvPUfBuMz3H8mHdQ96TwvYeI5uPSRXIveTzXJ7pigmg53f/7H/c13JASCtCCWEY8D6jdhKiGjzfiGgfFuDU3j4BlWt/ln1WNYxXPCU0z/q1G4zWFF21kzAYITVmxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1399,
+   "completion_tokens": 183,
+   "total_tokens": 1582,
+   "cost": 0.009256,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009256,
+    "upstream_inference_prompt_cost": 0.005596,
+    "upstream_inference_completions_cost": 0.00366
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 102,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.042
+}

@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Extension to a factory",
+   "project": "Factory in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "reg 9(1)",
+     "document": "BR2010",
+     "text": "(1) Subject to paragraphs (2) , (3) and (4) and regulation 21(1), these Regulations do not apply to— (a) the erection of any building or extension of a kind described in Schedule 2; or (b) the carrying out of any work to or in connection with such a building or extension, if after the carrying out of that work it is still a building or extension of a kind described in that Schedule."
+    },
+    {
+     "ref": "para 0.14",
+     "document": "ADL1-2021",
+     "text": "0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See"
+    },
+    {
+     "ref": "para 0.15",
+     "document": "ADL1-2021",
+     "text": "0.15 Where a dwelling is extended by adding a carport that is open on at least two sides, a covered yard, a covered walkway or a covered driveway, the work is exempt from the energy efficiency requirements if both of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. Live/work units"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "full_plans_required": 0.08,
+     "not_notifiable": 0.41,
+     "competent_person_scheme": 0.01,
+     "building_notice_or_full_plans": 0.5
+    },
+    "confidence": 0.32
+   }
+  },
+  "usage": {
+   "input_tokens": 1006,
+   "output_tokens": 65,
+   "cost": 4.2252e-05
+  },
+  "id": "gen-dec-1790677215-BI9bnY0ry3u5D6bAsezK",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.265
+}

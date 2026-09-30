@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a point-of-use water heater of 15 litres or less on an existing circuit\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(l)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (l) providing a hot water storage system that has a storage vessel with a capacity not exceeding 15 litres, where any electrical work associated with its provision is exempt from the requirement to give a building notice or an application for building control approval with full plans by virtue of regulation 9 or 12(6)(b);\"}, {\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677900-jdI5FsmmldNjTRVdoxsd",
+  "object": "chat.completion",
+  "created": 1790677900,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Installing the heater on an existing circuit is **most likely not notifiable**.\n\n- **Schedule 4 para 1(l):** A hot water storage system with a vessel of 15 litres or less is Schedule 4 work, provided any associated electrical work is itself exempt from notification.\n- **Regulation 12(6A):** Electrical work is notifiable",
+     "refusal": null,
+     "reasoning": "For a point-of-use water heater under 15 litres wired onto an existing circuit, this falls under Schedule 4 work and isn't notifiable unless it's in a special location like near a shower. Without more details suggesting a special location, I'll treat this as not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "For a point-of-use water heater under 15 litres wired onto an existing circuit, this falls under Schedule 4 work and isn't notifiable unless it's in a special location like near a shower. Without more details suggesting a special location, I'll treat this as not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS2AcKEAgSGAI4AUIIdGhpbmtpbmcSDIsnnWJbX9/HWs/YUhoMCF4VPCsXIzI+H8DvIjCEYL2z3JBjs48gzluHVFAN/TB5rnQDd6KB+KlFag2R619G6GarjtQjSGwvP132br8q9QbluIwir2RsHRiekQXB/YHKadiep3WxDZcqnZhUlul3mqBDsz/Uy9VQIBBW4TkZuZmcq+fjxDHbhh5gYu+GB3h3sJWeW1i5hbUue48TmqcinPLQt8E6l1VhtCY4s+Qw4bMwPcvL2kVfbQaCw3ZLGnpeB7b4J2//+ZQ3Jeng+RXUj9LRXjkdzFBEOgoiLF+5B1mUv3yQoK6o2NtzsXI2v/NnK6nAROsF7FJHUmc/DJLi56fWnYwPo6eB9jQPdBgOyi8/PYIx0li5qQERpowx77idhq9Lq1o9HcuU9Q1qj6u0uqTlDowktSNzfhzhVEQajCTd91bPm/76BEtWZhAgjo2buQ8HP4yeU2/4r4D5TU4qIbq4H1llUK+CfiyK/mY0BhTJNuJ0A22WjKYp3cqQjDJlIJTC3HhaMSiTX4hnz9QbRahVeDHjZsMTL0ma35qgcj9B8ZHYpLoFow4maZVR6i8rKTDcftc8XHpyzOCjty97r6aOJ5/Zc/YdNlaF1Pjgj9bsN15zxl7tnbKp9SxYXtzO1eYHpVa02w8FMw3O+z3gv0EU0uGnblSReWPtuxJNuYnWKp6/1IMRst4Qe+YB9gwT6sbbKBjDEvN3vr0hEADTOAl0gP6TvFS05Ah2RoQ8dmCzJ9rWbU0G9CCbEErureBMdH8KnMsGZkzcqfXZSbTQ1q5yG7a7/74b5fbDx9qmnizYmH8Vs9hNc52YoldLE6CPvhOP+GyBvw44B7iGgVbFrmz3raDfH+9FDJ8nZaGwB4Egyd8pUpBfr0g4nAwnsGXA1HVIxUH1CrVH+dzdscCO4SBeH3FYcgSKmTI9XCetCADOlmEw7vZl61RpyprqSnHHXMqRKh6argT089zIYl97gJt4gW8NObm6Iz/A9IcLgfzeZSCjGuQxYvuOIq/wk5VqqIVVzla092YlKw7GpUYZ3jVoFcwxi5eUETCi+jHnGCTWH8ALN/Gqo3KNEc2BnEYHQZ/BXxtG9FOnYjV4GgzBkY/erlsq4nmoqq0a8s9OayVoQ8zz22GO0w8tewJyevXWwq1e/SmLMV16xOvlY+Q1nNTC9LL6kx1zqXuO2l7hfURVanSECKgvKSlQrBESMVDGTXeMHusxF6pz9d/3Yvr8Fi+bj5Zk6xS4id5RdoHjHlWT4OwZjybEdvPxIJzqMMRbJsdfGKYYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1268,
+   "completion_tokens": 300,
+   "total_tokens": 1568,
+   "cost": 0.011072,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011072,
+    "upstream_inference_prompt_cost": 0.005072,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 185,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.436
+}

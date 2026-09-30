@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Re-roof the main pitched roof with new tiles and membrane\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 16\", \"document\": \"BR2010\", \"text\": \"16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited.\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"para 0.16\", \"document\": \"ADL1-2021\", \"text\": \"0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677816-PHj6TNikONVpraRN46dk",
+  "object": "chat.completion",
+  "created": 1790677816,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Re-roofing a pitched roof by stripping it back to the rafters and replacing the tiles and membrane counts as renovation of a thermal element (ADL1 para 11.2c). That makes it building work, and Part L upgrade duties and structural checks apply. It is not minor, non-notifiable work under Schedule 4.\n\nSchedule 3 para 16 covers replacing a pitched or flat roof covering. So a person registered with NAPIT or NFRC can self-certify it; otherwise a building notice is needed.\n\nFor a house fronting an ordinary street there is no trigger for mandatory full plans: the Fire Safety Order does not apply to",
+     "refusal": null,
+     "reasoning": "Re-roofing with new tiles and membrane counts as renovating a thermal element since it strips down to the rafters, making it notifiable work. Schedule 3 paragraph 16 allows self-certification through a Competent Person Scheme, so that's the route here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Re-roofing with new tiles and membrane counts as renovating a thermal element since it strips down to the rafters, making it notifiable work. Schedule 3 paragraph 16 allows self-certification through a Competent Person Scheme, so that's the route here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSiQYKEAgSGAI4AUIIdGhpbmtpbmcSDNhrb5hWx22tZ8IlCBoMlscA0HjpnLVcNSU+IjBLBGEV5X17KzdlnGKkijVKijEAjsYlGn1l7YxEuojXRN8thljz87LmGmTq5qRuc14qpgUwoJjI5QdG6Xb7Y8M856eSxMpxIjJ3ID9S0wAid2q0vRxg2onlHdQKVU4FC/QJisDzkPA0OkF/Psv15+PKTq2jrZnoeQBgk0lzmrHKRcGEur42Oxd+OK2E8gMK+LUx17d2mhKeIybMQ33H8qvjQdQemBNxdFGwPdbJlQpoeaTEpnJxXIKF10jWCjSjgMmRYWEW+K0Mq0Ft60cPnjd7GMgnKeG2yf4IZbrhmscgR8INhWLuL/4tNPlEbPda2+p9xdwpK8I8Uvbsuvp86Fq5FvFEoT3kkTyhevpyFooSWbQSxQB7hHuZba59d2qEV9J0Ih+D4u0Le+KzLgaayml+BZ9UNMlxiJfZXLyj9tOdfpqI/0NqFB09AagldWLaaNY9fKJR/iO/mGJkzEqMo5lRwkyLSD16m9MnUjG76bj5cV+z4icAt08gdEM4vEXwjmgW0wExDaeT7rZP+M5hSu7w7n4tvBs2IKmzw9Row8vNsz9Dv0sRCzJRutWf+JyomtvbusBQsKGW1C+Ab/3jTbGrtUO84syqPbWnprH2GJRpS1dwXsZE+wALhnbceO/MjMoGLHabOgdCeCctFxZRMmNlvpf71rw1T44yrOHVHMC8/ULfSyvlpIWwH7H7xFNI4kli1Qnqdeb8xOaaS79qyc0YxBAGlSOI3qxMlffkTEOhaEdHLAVoXRUcFHaZ0uH7GjMmK46ZTtFSwHZMb7hXv+z7xyzR909PlFs6+DXSvVEj06D/LdEExbfNHT2skyBXBXl5qtStgnJxGq1x42Rb3h6v/QDmbJA2C4+1AeP+E7KDjiLHQYTZSNVEF9wL1SKh/pALbHs+2ta0d8g4EpgPNKvlyUkT8YYmS6kq8WnC2CKYbTdbMTfghsTfplLeIka+s87ZANwKrgM8xsoYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1192,
+   "completion_tokens": 300,
+   "total_tokens": 1492,
+   "cost": 0.010768,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010768,
+    "upstream_inference_prompt_cost": 0.004768,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 88,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.99
+}

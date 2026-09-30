@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Loft pitched-roof insulation and lining\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: loft conversion with rear dormer.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 4 para 1(m)\", \"document\": \"BR2010\", \"text\": \"Work consisting of— (m) installation of thermal insulation in a roof space or loft space where— (i) the work consists solely of the installation of such insulation, and (ii) the work is not carried out in order to comply with any requirement of these Regulations.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677274-7fys9HDvWFVSAF0NBkxl",
+  "object": "chat.completion",
+  "created": 1790677274,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through whether loft insulation and lining as part of a loft conversion qualifies for a Schedule 4 exemption — since it's not solely insulation and is done to comply with regs, that exemption doesn't apply, and this renovation of a thermal element doesn't fit Schedule 3 either, which covers things like cavity wall insulation or window replacement rather than roof work.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether loft insulation and lining as part of a loft conversion qualifies for a Schedule 4 exemption — since it's not solely insulation and is done to comply with regs, that exemption doesn't apply, and this renovation of a thermal element doesn't fit Schedule 3 either, which covers things like cavity wall insulation or window replacement rather than roof work.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShgsKEAgSGAI4AUIIdGhpbmtpbmcSDNZQ0cENCVI0D3bSdBoMfmZtBy58uotCuovjIjBToobCNMDUSMj37coSQZ87xljelDU77LOVBoFGB6Wc7gRAy3t/nrKXqulkjaYsFj4qowqU2mZ/fd7hWuMyVhn5oCBn0jbKHwsWYs9US+D6C2yf1kLKSPATvtRgxRUKFiOD+itjbIrkTQEo0MsXreAqGZFTRfkq6ydFAnT/kzJqqnQElbVO9Knf071ugLqws7ZDLDsp2gjhtrJJ69tdPCPQHtY013tjbWLIRlEjnCg6uxkIrPYsbmIJIccSTMR3LzNa/vqjj3+AWOmWgqdBtESru5YfpTAKCZax7jFnNKzCHYWmjrQ9SXo5v9v9pUC7gAC5KcNO4NyFNOM7DLo77KBYt7pS6hrqk6zfh8MozPedLBLCVSivXZA1mYywkY+PareF9cN5GdTR9FCgsOwECXGutI3cRe9nuIo7Y7mKsjE8ly3yGfE2Y2AjsXP7SRdL5JsnlS04LYhQ1h7mc0QE8Is0p+9aRnz3ixyQCHFmX7vMSpKSmJfrCKxqVswfCSz8zh8OP+yo6yX7zkPYMDhL4gS/Ivq/9RpRmi+uvaf0zI2KAfv0h3Pndl6plJHYms04EU0CxqB816a62hpef5IWhM56CrDS8FBvRq1JgmsQ+Mz6oyQUeVm76RVU6yWJJEqF6lN69KR/XgalKMQF4Kb2bfwEeWXGjNOcyJAMcmjYCe7L4rzZBC9LCpSxE8bJaQclS90IYR26tFnoix8GSHmdMDKnk44NNFN4dEXOtBFdQsELbAkYSVyjaNhzM21xYIqyBXavUGvrKFoy8Exh20F04JUkoFA1J4X1PYzCF/tR8tp73j13WVqw3YUOJgtQIQn+W30vF8OdGIYjzy0kePnkgt3KTM4QTRy9bbwzfpYOKMVxFbfwDXFYYRZ9FeuFPDZRLlTS4nCg1aSrrt1+3HYSBDAC7+/hZjEkAsG0nLw0WwjzZArCBMZKYLQR6sVIQNZJH6XpLi0jJaOncc140sNlBP1Sl6BoiK9gI6WB9F5aajKX1YDtYLuVAJAeqvbQzTBG2hDCJv+3VgcMUKFQ0VyACABBJ+bVvgirJmJMTSdPl0kIOl8oewxpAQWIIvJTSBhIEH1Qdp+vlzthtWxztxAh8+ungcp0zdmPAjt2YaGCuEZRMAvzfLB7qwPQh6EDm0ChPQ2jp78Mx0KNUjo/1PJVMBrjCqkqel9P/D2Eh4qlhevAAyKKuXyBz2fNTbfmSv0GQVGlGQw9Md1pS/kexUjCi1LK91OSVWppF84wZG3O0Il9yWUQNqqGeSWcxxohd0MlSQHQ01ugxU9tnRxX3cpwgQsGzjcRBVom0CAqvvVTOumEwBDV+227irZ2KE1QhcMuyH5g1x4tdHdSBXaDKlaFVmYIMZtaXOxNvPmDv0gJm40eul+0VSbqHXHioqDjSpmdjfKQt4GiB42PqVPe3L6e1k1VXeLZnDfvDwfLqUeiSOaWRZJrm2aHQ16I+vFEvW0l6JePRe7UzxCjr0UPBk4Bu4PBABKiCGpY1xs+2c+4O7D0il/bKa2n8AE5G4C0x/35Vx5T6h98KgmzE4vDRJpxe/SCoRfoM2gUDRdbzh2diorrDFietN6ELQRmPvmxCaYljSQAyS49/IAzFbCOt6y6jdm8ANCFdiXYIkHnbyDbHZ1ATiECDwDxrttRh8SttHCK+yACftXtT8VpWUZb0DdAVXxtRiGmRNaay1sOczKIk6F3eIH0jMjkilfXYhResobKEWJBISvmMz77fs01Ip2WZYXfgCWtTwtlvLF6stoAH606lu2aLdYuJh1jRSgmvqUZao/ESrieIH86vlNiWaktwUPBwJ3gprmUGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1359,
+   "completion_tokens": 300,
+   "total_tokens": 1659,
+   "cost": 0.011436,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011436,
+    "upstream_inference_prompt_cost": 0.005436,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.431
+}

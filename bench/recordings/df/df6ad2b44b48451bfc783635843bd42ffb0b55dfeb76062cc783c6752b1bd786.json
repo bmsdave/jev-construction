@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Wall and floor tiling (wet rooms)",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Wet rooms. Part of: whole-house renovation including loft conversion and rear extension.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "para 3.1",
+     "document": "ADF1-2021",
+     "text": "3.1 When building work in an existing dwelling includes work on ventilation, for example: a. adding a habitable room b. adding a wet room c. replacing part of the ventilation system, including extract fans the work should meet the relevant standards in this approved document."
+    },
+    {
+     "ref": "para 3.25",
+     "document": "ADF1-2021",
+     "text": "3.25 When a wet room is added to an existing dwelling, whole dwelling ventilation should be extended and extract ventilation should be provided by one of the following means. a. Intermittent extract, as specified in Table 1.1, and a background ventilator of at least 5000mm2 equivalent area. b. Continuous extract, as specified in Table 1.2. c. Single-room heat recovery ventilator, as detailed in paragraph 3.26."
+    },
+    {
+     "ref": "para 11.6",
+     "document": "ADL1-2021",
+     "text": "11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person_scheme",
+    "probabilities": {
+     "competent_person_scheme": 0.66,
+     "not_notifiable": 0.08,
+     "building_notice_or_full_plans": 0.26,
+     "full_plans_required": 0
+    },
+    "confidence": 0.54
+   }
+  },
+  "usage": {
+   "input_tokens": 1000,
+   "output_tokens": 64,
+   "cost": 4.2e-05
+  },
+  "id": "gen-dec-1790676013-kW9lMYNebDcc2vY65vjs",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.332
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Strip and re-cover whole pitched roof with like-for-like tiles\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 16\", \"document\": \"BR2010\", \"text\": \"16. Installation, as a replacement, of the covering of a pitched or flat roof and work carried out by the registered person as a necessary adjunct to that installation. This paragraph does not apply to the installation of solar panels. | A person registered in respect of that type of work by NAPIT Registration Limited or the National Federation of Roofing Contractors Limited.\"}, {\"ref\": \"para 0.16\", \"document\": \"ADL1-2021\", \"text\": \"0.16 Provide loft insulation – 250mm mineral fibre or cellulose fibre as a quilt laid between and across ceiling joists or loose fill or equivalent. This may be boarded out Assess condensation risk in roof space and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). Additional provision may be required to provide insulation and access to services in the roof void Cold structure – insulation (thickness dependent on material) placed between and below rafters Assess condensation risk (particularly interstitial condensation) and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788) Warm structure – insulation placed between and above rafters Where there is an increase in structural thickness (particularly in terraced dwellings), practical considerations may necessitate a lower performance target Renewal of roof covering: Living accommodation in roof space (room-in-the-roof arrangement), with or without dormer windows\"}, {\"ref\": \"para 1.3\", \"document\": \"ADP2013\", \"text\": \"1.3 Part P of the Building Regulations covers the safety of electrical installation work; it does not cover system functionality. Other parts of the Building Regulations and other legislation cover the functionality of electrically powered products such as fire alarm systems, fans and pumps. New dwellings\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677950-LlPk0h9n2iFKaO47puVf",
+  "object": "chat.completion",
+  "created": 1790677950,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Stripping and re-covering the whole pitched roof counts as **renovation of a thermal element**, so it is building work that must be notified. Two points follow:\n\n- **Schedule 3 route:** Sch 3 para 16 covers replacing the covering of a pitched or flat roof. A contractor regist",
+     "refusal": null,
+     "reasoning": "I'm considering whether re-roofing a whole pitched roof counts as renovating a thermal element, which would trigger building regs since it's building work under Schedule 1 requiring notification via a competent person scheme—Schedule 4 exemptions don't seem to apply to roofs, though there's a question of whether like-for-like repairs might fall outside this.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether re-roofing a whole pitched roof counts as renovating a thermal element, which would trigger building regs since it's building work under Schedule 1 requiring notification via a competent person scheme—Schedule 4 exemptions don't seem to apply to roofs, though there's a question of whether like-for-like repairs might fall outside this.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3QgKEAgSGAI4AUIIdGhpbmtpbmcSDPknGqjfWNyc/IAD3hoMZ9Acc9diBaNrPA3xIjBf1Pvp945//HPnrGquFGusXQxjPJBiEJGq0ti/k5Dtw54oxd9KN8WMuXgC1HWsrWgq+gdcyE5lHF96mMbK8JeQKqymcnTy6bDNoOsDLK80Kp3PPMf96WRUXCKmO7Yijh7ByIdFNG/jRn+x5GtGrGUvyKB84yycgbu2cJTZ/uF0KQOjGptD2G2vzuweBwJ0SleOuIopUnhFh0ZS7yN4Tdj1LiGyqO092uinmSd3FBk+SW63QpUCoFl3HAO71K2O/KANYoehQ/vndJU8ex/ZTy2FIyNPmJ5L0ANCtj8zmy/SRAvpN7GK9T/VmddALQXV0+W4KRulBptM46fPFvf9a19UPYGf6HG8xfCXPrcx135JG1BZMXTNtqXLlQMUKLIMxzCzoueyiCLa3STaI+Mp3akmGgNiQ9tlLRUpEL1DTieYHSJeVuEAmD8upUCEHi7lCObDaOvGBnbgPzJUgDPcPhQ+LE90kz5zYkwnOijUrJVpnD5x8plHOFrKTuq4BVD6AtPUacgrwxjn375wANAe3AEjeWo0lQzOOjn6Ngx6LQPmkkcUJtTj6xwfnubPTcoZ9azTwjLDg5ClM73Bc1MDjzYEAUvCD+em6Z16/UCPI135RGhXdOsGqvHuLyuuHcRh+zPO/+ccO++FjqxCUcDGxI5W3JDZdv/t7S90QkyPUMUc6y6tyJorz4KBEwW6SOyyrMblmixwZKR9ikMbt5D5bSBlOTWAluwJjEuwJT23vlFWQPq1AIPJ0hxTaJ2F8ng3Z0c/vtvxYXdzALKSLldrurdl3M9CvlwCeNckoMXDrAVQh7iccaV6B9BkgF/MwiYuaq/ElIvO+3eJgtkJaEj3718gVt9U3oFZrfFDoG3d4M9l1qMIm2TDCQpZ3mKdA+fou0B3zyEViNeMypfpBLatX+J/+tnbKAFFSMLQOtnqOUxdQFYcmoSPAUc1JOiSrWQEVD8N8xN0BjM2bMQUTWeOhvtHe8yhlbB5iSzmedo6xBXCX8uRC5WBC45OkMWheWoK7ZnmbGjE+bxmX2ai+EmWr8PJoPVffTAiViHw2UTgyd1nEFE8qEGxrxSqRQjKieTUjpOOamQrv2iO2L/RU4nPP8jW5x6WaLme9zUSC39so3r9Ob51Kq965cMVYkMQppsA/QDbvgExt7K69iY7oIQZxhhHNMuyL9/js60P6G3P+pVwn2+EVR2eJEu00zi8tqy2ID3v99Uq10iv6VOXM38fbPKfpGg0sr3xWNSyPudFmUY/hpSUlJhehswIKh08Ev4kofwj9Mtz69X82I7UqE/MWquIkG4z6XZwr2mMxgsd38LuA/qSQ2oWem+vXMzaSg4ON67yCF2M1v+xSXxYr0ZTmLn9bIsFnghgS5L/e0JpBDNuP8Adh7HfxzZUUYqVNXkjmprTF3E9FvbcwqKAK+P2GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1117,
+   "completion_tokens": 300,
+   "total_tokens": 1417,
+   "cost": 0.010468,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010468,
+    "upstream_inference_prompt_cost": 0.004468,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 204,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.465
+}

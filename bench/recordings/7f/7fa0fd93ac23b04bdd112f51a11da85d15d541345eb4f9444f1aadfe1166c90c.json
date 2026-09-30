@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Kitchen hood extract route\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Ventilation. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 3.1\", \"document\": \"ADF1-2021\", \"text\": \"3.1 When building work in an existing dwelling includes work on ventilation, for example: a. adding a habitable room b. adding a wet room c. replacing part of the ventilation system, including extract fans the work should meet the relevant standards in this approved document.\"}, {\"ref\": \"para 3.25\", \"document\": \"ADF1-2021\", \"text\": \"3.25 When a wet room is added to an existing dwelling, whole dwelling ventilation should be extended and extract ventilation should be provided by one of the following means. a. Intermittent extract, as specified in Table 1.1, and a background ventilator of at least 5000mm2 equivalent area. b. Continuous extract, as specified in Table 1.2. c. Single-room heat recovery ventilator, as detailed in paragraph 3.26.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677560-A1x4RNq7ZZVXxLynCEWG",
+  "object": "chat.completion",
+  "created": 1790677560,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether a standalone kitchen extract fan installation counts as notifiable work under Schedule 3, particularly whether the mechanical ventilation exemption applies differently for dwellings versus other buildings.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether a standalone kitchen extract fan installation counts as notifiable work under Schedule 3, particularly whether the mechanical ventilation exemption applies differently for dwellings versus other buildings.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS9QoKEAgSGAI4AUIIdGhpbmtpbmcSDHTe2ZUYTVV/PeSmNxoMem3n54a7Rkij8ze0IjB5MNiE2YbdM2Cus6XsciHHnDCEWXsySRyB824439ZM5jVKTVJJyg5D2Cr506ca5Jkqkgo8aerB9heX3admUF+VPL7L74xwbmhpVpMswVIOGUbVo+kLjJ6BU58VcWJUGKs1OFVomI0OfEeFQF0SUsPaxnKgx0bc1GzQR7iXghlvIQCDklZu170qVGad2JzqYV2kUXhcQCof/Nb0jRUCb3Du+ezrpWTZdW3+4xQHN/GII2ZJaVUAWLzcg0pPD6zq4azWa0cX2Ggtgh0XzkP9llBBtmoxZ/Dq//0+Xxkiq7Xs+xKotoEURLjAouU0aoYV2nNRQaaz8pUZ0P3v0tZsMSVpxWL7hJSv0TvK66RroG2Js+DfDGb5DvIBYIejuoyajK9AsJ4lcyT+3JS2EOhbKpXp4h3BwXI86gyc0qjjc4/70AnKTAaLM3g9+xtwN5eJvg5Ih+XMxSxourJavyesrguoU9X9jlUISL6NNdW93u8zWQkGqFeZvKLuRynjUc9DDbo7ExrDbbJmJVfHQ4y27kLYGsPd1s+aywWQQ3iBeNCP5Be+qNFMlDnqhdfCxahPU49AA/8ZtblOfFWoPR16/vlyRGxDp3W6kSS+rMcwDuYQDIE5jXGmuKWP71DWAF6d3uKoz1qi6zOiGPdbGn33HOspEFzsSni94H0AM39wOmvOvH/Ojq84YLdTX4qOKcx3C/SjYpWEINcy7ID9/gjOWqGtNG5+HxhbsSpHH2VsWBMhO5PYt8EnAGXycWJpV669tMfd+8tUbvV81QwEPSH+80ZN6rVlsyeGlC+MnvLhUGlSQNOOXN7lzLY9nKcm3dJaU1REVQv8NpgCWFlDVVFIq5G4KCrTHVbDhrSiTPIPTysGCKeXsSJU/+fgbO7FOmqgBp02rlXtWIjQDV2VvpgiAT0cHNN+fzRb0Qi1O7740hCOHUAgLjBNQxdvIyW9jGt7IcA/nP3FyNxqZwFGirUWs/WymXUnAPBqQp4BEgHvDNayjl6aCLG6SHZFxZUZ0zUOaAUMbUvUitcpS7hd076S0osCyG5Q4bo+msNN9qxWW9mi+kau2Jn+AmiWEP4EirYsGermyvp+Fh/cKGO6Hk5zSbWUQmyZ1GUYF3dT5dUPz4281NGXWwYppSaKSqRvYKHpz+IiyehpxmwH6LAT1B3Ne4WMHtopr0qXbv9XtyRy2jYOgCuk4Yf6oLlRcrgwVvA5PByjAMuoVAgEUZBY2NnI2U136qlVsXqdL3u8SfBtT3JeLS9oHEGNQ44zJ072lnpr1Fo9+Trs60IDjm83ZGJGGly9dx37CIhxFfl/sm1MQ+dziyUSDFYDxniC3fLd/2A81pfv031jPatVa+YPttmqZQUi9LkLgnpKCQ2WZkTlkW1/7YFJOrvoLAE8GA0wT0OY+5sXvnN8vlfMcFY0TSpvcDNZP+948rznnI2R73SuxmxVGOzvQq8sO1axIkj4jTd0Dwtg06MOMxHOsjTLnHwHLH3r3qDi9UZ7b4zK76F/yMbH8smmtB75+U7Z5/4OGDnQjJ71EIYxJdTkWSCDxOBaAj9SZNtjw+VjUCDtFLi/RmMn7oF0j1wEQfdGs5v+SWdFs0IZ6HMUmW1wj8V+u1JTKFe98nKG/jHln4UQksibinPuzp/kW6uLotjrYr5RCJtLQUiLJfmhiL4bPYbrDG33iES/oPeXyUtxhPsDrElGZG96AfOii72GYxn4oVwXXGLJWrwTLiRnRGjlt4sVErnx34JyIPprqd27PdA7fLusljD876TuVDsbeSebZcS2msgy37s8B2BX2hgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 914,
+   "completion_tokens": 300,
+   "total_tokens": 1214,
+   "cost": 0.009656,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009656,
+    "upstream_inference_prompt_cost": 0.003656,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 10.765
+}

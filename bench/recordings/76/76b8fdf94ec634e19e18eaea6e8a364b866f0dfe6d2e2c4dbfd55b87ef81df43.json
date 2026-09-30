@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install an air source heat pump\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 15\", \"document\": \"BR2010\", \"text\": \"15. Installation in a building of a system to produce electricity, heat or cooling—(a) by microgeneration; or(b) from renewable sources (as defined in Directive 2009/28/EC of the European Parliament and of the Council on the promotion of the use of energy from renewable sources). | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"para 0.10\", \"document\": \"ADF1-2021\", \"text\": \"0.10 Minor works must comply with the relevant requirements of the Building Regulations, but the building control body does not need to be notified. For mechanical ventilation and air-conditioning systems, minor works include any of the following. a. Replacing parts. b. Adding an output or control device if testing and adjusting the system would not affect its energy efficiency or would not be possible. c. Providing a self-contained mechanical ventilation or air-conditioning appliance when all the following apply. i. Any electrical work is exempt from a requirement to give advance notice to a building control body. ii. Testing and adjusting the system would not affect its energy efficiency or would not be possible. iii. The appliance is not installed in a room that contains an open-flued combustion appliance. Live/work units\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677929-HuRI2hyRMiVauKl2tMH5",
+  "object": "chat.completion",
+  "created": 1790677929,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.85, \"building_notice_or_full_plans\": 0.08, \"not_notifiable\": 0.05, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "This falls under Schedule 3 para 15 for renewable heat installations, so it should go through a competent person scheme rather than full building control notification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This falls under Schedule 3 para 15 for renewable heat installations, so it should go through a competent person scheme rather than full building control notification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSuwYKEAgSGAI4AUIIdGhpbmtpbmcSDOirdTpJ7iG8kF7CihoMWNRxyiY5TjEu2KJ5IjDFiEz7Pazdxo6VAQDMb+jwLzZMzwlBQX+bUpGPl2GkBMvmntZg904uW5WsfXYVBq0q2AVHZpuOrFBVKCWjVY/Ig5mAGmrCSeHb0R6Ylg8F8Gieljw3CLeCdEwO/M4etRRZ1XjxjS12SiQQ1wqfM0dB2I6vnIdxDHdc5rbjEmhxvxCPHNhj2srphB9AjL4slqHvmbmhvoae5Qfqf2V5dI87ZhvNhcp//xds4Ddhu+Tef2OMWhvS2yQWJ8TWYlBcczjIDoLaTCfkwYXz89x+iP1fLqPI5bxyjCwrN7Zu2bV7jvgYjxG/QNG6Gr5QaQkePAo98l2hvTRpePywyRe6xqMf4oaQ4pOxnmZB1KaeQ0q2zm3NVYexNTNh8d/uwrCcK5Zp8C4l471lttRwjor7AlI4qlsUO33DN0qgV5RgcJhkyxSbTrG05FoZhQJflaTLL1MOpr2H1PbejnwGneMTQEJs+MJRjnQRtR0rkrU6q1CqKbms8R+Tp9ieEWU1V6BspECGF+MCgvRoaOZmE+rqAkG5gxvNS9uSytAmX2DCyZQlTf8qHFazxZrivV9/joZ7Sr2ymuFTpZgdeCGfZKTxVEkteo5rm3RIIbJOo4g49DQSz8F0ErswJtojoyvcPHWxga5UQWhWNQyaBac0Z31I/1OH4q9AyOd62+kZN3fiQQNvFXykFuiVDQxnJbWxxyYumJz2Rwl0CMXB41TNswnEd7TyCSopdBAIUaCnkou0wVRYvCAAQ/PRZNGP2p0DxBTaqMJgdpwUCYyteff0p1JF7DsMggtTb3XBoZ+vVAhlph38bVF4caMrkItS+13GrD6KzLwUA2zoW0GCJyHpbjuv/c0IRqLQJkhd4CH2mSZQnkIlNr9YddSVKeOwGhVMAIwfSqPOXgf94lkre8aLBdLTM4VQNKhVlfwLbRyLtw4/oXLFGZWfFTndIREhyAs9K/5p+3CFU0woQYB0aGC5hPFeODSd0d0gto6/Mx/dAoA0zPZBWdn/qzUb5JI8MSBbUfe5xlrMoJuXrMu+RSsluBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1235,
+   "completion_tokens": 186,
+   "total_tokens": 1421,
+   "cost": 0.00866,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00866,
+    "upstream_inference_prompt_cost": 0.00494,
+    "upstream_inference_completions_cost": 0.00372
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 103,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.548
+}

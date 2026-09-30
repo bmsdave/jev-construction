@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Temporary works schemes\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Structural steel. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678176-9rx1VZY0VPDoQcas77N9",
+  "object": "chat.completion",
+  "created": 1790678176,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Temporary works such as propping, needling and back-propping are construction-phase measures that are removed once the job is finished. On their own they are not \"building work\" under regulation 3, so no Building Regulations notice is needed. Their design and safety fall under CDM 2015, not the Building Regulations.\n\nThe permanent structural alteration they support, such as installing a steel beam, would need a building notice or full plans. Some lean towards that route because temporary works are rarely done without it.\n\n```json\n{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.8, \"competent_person_scheme\": 0.02, \"building_",
+     "refusal": null,
+     "reasoning": "Temporary works like propping or needling during structural alterations fall under CDM as construction-phase safety measures, not building work under reg 3, so they're not notifiable on their own—though one could argue they're tied to a structural alteration that does require a building notice.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Temporary works like propping or needling during structural alterations fall under CDM as construction-phase safety measures, not building work under reg 3, so they're not notifiable on their own—though one could argue they're tied to a structural alteration that does require a building notice.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8gYKEAgSGAI4AUIIdGhpbmtpbmcSDGNjnhcI3Rf8gXG3FhoMwQRpQiTJyn53LtOOIjBQudUOhYw0WMykv6iEHvsEKAFYLxyEQnkkLxxLF/33vpaMW79x8V1+S2hStkrr02QqjwY3LSEAhg1RFD7i+AfhkiT/C6l5DjJ+Q8ySBKB8xEpjKTDB+u9rahtlXEKANrWw+KYxEYv8/YG/j0sKbkJLJCQWSlKrSw9NZVCSl8t5tULlFmZWJY668Ns7cEu/3IMfejM76i8MbWJJ+TwcnnqiUEZnkz2mM4Pok5rkBrV8wuBx9lYNndqV6MJ6pSh7cif4hh2bVTnLDHQXAeu/Jo3UpKu39W9iVfBKohl1iW7K4pEj0qJe85jrTzqaBmMkeo1n9mk5T7u3JMyHQqQYRX4O8+gwyC/M80fBmZkW38Qr6nZ0Pb0Of67w9OI9xZb/c/ZN6zUB5PtdGCQWeljn9BDS5S3HUcfbhj7su2gdssNlDDan68gdJy6FHcXm0lOogGuhTs7TXK1OLum4ONi4Vla7LmAJ10at4PgTpSMKAyoJ/9MKzHL6R4eyt4y2gYjJX/yaOMlD8ebgktbZPmipCAm3hHdELnz7HsIzJBrATufsfGBFjWMgX0pHqk2NvMACrJcPBhpHtj00vfFg28inVDW5A5Y1w0nMHC3ZF3szaO/OUi6iZkiM1xpHtWHm91ZeLmFcWOEJQdatk2p78t98BP8BXi7wEJv8CvNlBQHBMBQCwWMU9fJHSVrfWzfsLHQUW7/B1xVJOIjYDuMWx0UMUx2H8xsp1S9jexHo2B3iKiOaIrs/Ykq1/SOt2snosQPVpMsfNSr4pataLzMhw0/vLADkbvmtZt8prpGwhBRMsMdxQZwCUh1/8XfNSLwX9leIQrO68swVdOiv09eyuoUJwgzeEUH2oAageP/TCnGfZAjCu+Zyu5bqc5iukcyihGZZDvzuoqKuOI7eSFgRjKTmFcjzfZEQ6GSwnG1t5OfEMBLuqT/nZ5RLAOto2HmGOT6VFPeQ+sqPAvoPqWFSHn01zy4AWwrCttvxDOnoC3ALIebM1aIQkaPmK/g1o66/EVjUHvdjqQRd4m0EbOLkcGgJ/gi/1GbbQMDM6xseH3IVrUEeiiHGZ7a7dC/PKu76bmaNNVfFciFrZcdE7OGEqkLVGZOFpTMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 488,
+   "completion_tokens": 300,
+   "total_tokens": 788,
+   "cost": 0.007952,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007952,
+    "upstream_inference_prompt_cost": 0.001952,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 99,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.222
+}

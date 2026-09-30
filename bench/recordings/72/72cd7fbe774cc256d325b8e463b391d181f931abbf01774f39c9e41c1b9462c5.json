@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Single-storey rear extension to a house away from sewers and not on a private street\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"reg 12(4)\", \"document\": \"BR2010\", \"text\": \"(4) A person intending to carry out building work which includes the erection of a building fronting onto a private street shall give an application for building control approval with full plans.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678102-9wOSV30233nUzTACrLYE",
+  "object": "chat.completion",
+  "created": 1790678102,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "A single-storey rear extension is building work under reg 3 because it extends a building. It is not exempt:\n\n- **Schedule 2 Part 6 para 1** covers only detached buildings, and an extension is attached to the house.\n- **Schedule 2 Class 7** covers only small conservatories, porches and covered ways, not a general extension.\n\nNeither Schedule 3 nor Schedule 4 lists extensions, so self-certification by a competent person is not available.\n\nNone of the triggers for full plans applies:\n\n- **Reg 12(3):** the Fire Safety Order does not apply to a single house.\n-",
+     "refusal": null,
+     "reasoning": "This is a single-storey rear extension, so it counts as building work that isn't exempt—the exemption under Schedule 2 Class 7 only covers conservatories and porches under 30m², not general extensions. Since it's not near a private street or sewers and doesn't trigger fire safety order concerns, the standard route would be a building notice or full plans application.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a single-storey rear extension, so it counts as building work that isn't exempt—the exemption under Schedule 2 Class 7 only covers conservatories and porches under 30m², not general extensions. Since it's not near a private street or sewers and doesn't trigger fire safety order concerns, the standard route would be a building notice or full plans application.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxAYKEAgSGAI4AUIIdGhpbmtpbmcSDAlrB0ReQgkE5/RltxoMoggAvxRIWTGFk3vhIjBo7RZq+5EfDrgKpPt2//ae+c1mVHKoWryFxwQzVJ+xok265S2iHmX8FoQgXVX04bwq4QWHTsb5S0+Gcc9jNu2jntP3sTDARAnsidNqNPE3TnWtL7d5fqIgD3oE2y1SJZzrPDxheAvSUTfTK3U02u7pSsMgHzWJUQIZoakavDmh9evcXZ7hlSLJgD+ZNpBcdDPyu2zxIThTrgTDK2o0lpdIlBkapYxvz09ksTSj722Gje1LgMVfyF/1aR67TfIvslgTAl/Pm4D+Zb3R8yzv9WXhK8RoT5rDAcBAxg1Vp3eeYxOhpQkeXG5wrazYhJSx+E4pKcwjwfocbjAQfPA6+QE5tQoyPa+JrAhDxQLohYNlKl+PQDP92zO7JYXbYJmq7CQ4mbk3/62luY4bpvaPC5SljNtYyn9rltDJNzm2rS/GhQojuixrjgSZf6UPouczcA4kYhmz8EXkNTQqxFrTpERwDJTBOU0joW7DC3fMAMsQl4DS602mxsFcBrOBnDK2KegPKZswqqrQ7M+xkOicp+kmdAktOO5l73/UOZe6VTAu68NlTkCp7+/IlqhNf1sI5MbMOdWaqfIbjXroEcqeDcJrGW8ulCS3odIPZvzvtrHryRxe6cjokC7YTBuafLO5Te7B612W8nFNa5uz+nXFh7pvgJ2REiJPTReYBFHIpS/o+Gh2Q/NajEndSrEzpFFW5cs0STH9uSGkeNAtfLY0mZ33iiHVkxRTnaPoV/JzLtSlvqrUfjdqgsn0zzvNN9OF5z8HrTfOzejAOQ2hvBO2bGFfLEjrslWON7n5Qp7f9e9iF2d5tj9ezqYGEBXp1NRcaF3TOCpYCyUHRorAmZBjeEY78PfOzFqQvpUZEB1qY0a29uCfG0x1SZN64J0pj3k7z1iNQY5pB1oh6f0OP3iizSqH2Ea2eDqhsoOQMNotW3JoZc4rzCYvprcRdDHJOh7XsncigTmpOGARzsdCv2MLHyZ1YlgXru+aMbmcAhBe21qXHANYUpXT607D3Vzj4ZMSJzERNSt9xgVUK06bpvmq687NdQBwKBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 944,
+   "completion_tokens": 300,
+   "total_tokens": 1244,
+   "cost": 0.009776,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009776,
+    "upstream_inference_prompt_cost": 0.003776,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 105,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 22.511
+}

@@ -1,0 +1,46 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Office panel heater",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Heating & cooling. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended."
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "not_notifiable",
+    "probabilities": {
+     "building_notice_or_full_plans": 0.18,
+     "not_notifiable": 0.48,
+     "competent_person_scheme": 0.34,
+     "full_plans_required": 0
+    },
+    "confidence": 0.3
+   }
+  },
+  "usage": {
+   "input_tokens": 610,
+   "output_tokens": 63,
+   "cost": 2.562e-05
+  },
+  "id": "gen-dec-1790676056-YDQ0OIU8E31JCvnPXnzj",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.247
+}

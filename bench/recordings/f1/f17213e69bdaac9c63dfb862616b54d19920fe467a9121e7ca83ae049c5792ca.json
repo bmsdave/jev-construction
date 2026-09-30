@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Repair and skim retained walls\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678248-2y1i5iPXdrJe8drXfijQ",
+  "object": "chat.completion",
+  "created": 1790678248,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabil",
+     "refusal": null,
+     "reasoning": "I'm thinking about whether repairing and skimming a retained wall counts as building work under Part L — it hinges on whether it constitutes \"renovation of a thermal element\" under regulation 2(1), which defines renovation as adding or replacing a layer but excludes decorative finishes. So the question becomes whether replastering counts as replacing a layer (triggering compliance) or is just a decorative finish that's exempt.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking about whether repairing and skimming a retained wall counts as building work under Part L — it hinges on whether it constitutes \"renovation of a thermal element\" under regulation 2(1), which defines renovation as adding or replacing a layer but excludes decorative finishes. So the question becomes whether replastering counts as replacing a layer (triggering compliance) or is just a decorative finish that's exempt.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShwsKEAgSGAI4AUIIdGhpbmtpbmcSDEIDD5IeB6IaBSfzjBoMmkJXxpk75IWklmV2IjAbf6Xejgzu4TztBSdt5m96p8KT3BCKrLIJyyzuO64hbMmFOinM9Upi2bAKo5L2ob4qpArzollq3FMzz+AKGq41OY8QIvZrYnUHZtZHuNZkczhVrUn+44JsCHzJ0TmkwziLVytsqHQC0eWYFrWoZl3ZXaHqjqZ1GQaI23/9iW1mqOy+vYqgNMYtr09dLe9G1WNJ6skemLJC8+bkIJiImEOst+nMGEDT7aiMATllUrYFPCqEzEiyUQBk1kzMzvduOoDGvX/qNZXdIE4ZoI39FVGZbsxKsvdDlXSY16ElRklImJbiiWpG2K6Yc0ffCAx6GbvENrXvgcu2l4v7Xnkd7Ar86+reaHPoiwrxZNd7GnSPAm6n5qO6dbn3AwPZwFeWuPrzR9US6QlkpIW7QYbx6yILV5JkYQZEV7XQNiE5GCKeTWi6UoD1HPm84SYo4M3bLh+gCfCUkYGzA3NHJyYeNTE1OKXOrKdT1sWCBZKYkAeqYpskqTQXz5zJy+c+2X870P/Q6xl/a1GWjMAQEH6e0fCaf2UvKiHIZp+Gpin2DOmSt53oJFlM/qBv2ffmRTB196w7lBYkMLXiCY9b7zkRlgYWwlQ7bl6Mvpti6j7cydZY1myrz5p4o/x0stkaPQS8r1VgG/bUlcD+pIK5oWgbBdLdGz5uU15r85DdNkfKyH+7J86dilzoe/J1VYyUjue8tU4Ojg0lnWr00LXBO9YzTT3Ied8Vf1XTMwrjfaiAVv3YXn+OpNC/U/CnjRsdCpdeB1e4sHhYpW0Pw7aet+NECUXKYh45EQOxVRcUXozHOiYpXqYdutQGmL7ZPsBIIC0e5YBPInRqyLeOGpRM1MOpRwY3iqkn4HVxbMlmWlhFCyPb+lIGyBwajARUt+mgcv53FO21jMRdXTRB8cQfVhgPAON+F4wkojsCWY4Umf3JNy+t2PtJrWtEPuS6ALc8eKVK0ytAuYBQn9d5MWhWKekI321BPowq2ShF7tQqrkm2v7+ox512JtdrJaZOEa/y44n8QyP2Yx62eq2n74MSjPgjteFxycLfu4gP4hHZYaAhXgHiZ0Tv3xEr3nr1fjb1z1ccHGD+QcFuhdbrhuI2KLXY1isvpXOt6JpCN5eajdn9iiWm2Wffs0kkr+eis9n9qJrgRx5LwuLlZu4Sj9aYc5Ae2OBC9v/0snvVRFi1caOhpYpdNFnSa6NwCrulfEyqkCPZ8MFlMN7kRpL9Z+6H8V+99oh0//rniDD14FveG891LGeS4Pw7ZktdIVr0WGgeVYTIo4xyjTCDCpGXMc3NmpC5PddDWil3z5cKch4TNbx441fhWfaXxqGtaNkGl5esd+AGNy78XDSjv9IPOi2dS8AZxgO6rVOszhg2HgnPS4VEQiFML2cHql80JzLW9f0rWQPKg4h8UkgZC6T90Yx8qLTw76VTazYxVKg2gL4yVM/IT3LqNDxoI6ldjt4uB7EeJkKveOYgzYTgikrJZ7mz5shwQl4j786NhaAH9ZK1RQtEM6cIRGB9SW7PCMvvle/MvppVUWQNbYIS/ZvvwkuAki33drQze3HTtwDevGbxdL8YeqWu3t9hBI8CdmbpRD0eApUNWG9rfv66z277cyJZqI6xhc1s3HkwBxL0NKFiAmRqaX6dC/86/4lGpfVIzGM/JxALmBD/3x8JI1FxCTTYlLdWeOi4PuPff2B/q2OoefxSQgDlaG0GBpyWNMt27bWKARXgaOutpAuK1rCYLDcX5vCUTVf3gx0atzFtRfi+cL+6MdImXdqexRVqfo0IgSOMc9fHUx3pdTWqwr8UNKmeS+o4n83Adf2AiyFtBxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 493,
+   "completion_tokens": 300,
+   "total_tokens": 793,
+   "cost": 0.007972,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007972,
+    "upstream_inference_prompt_cost": 0.001972,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 284,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.802
+}

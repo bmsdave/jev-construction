@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Party wall linings\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 20\", \"document\": \"BR2010\", \"text\": \"20. Installation of insulating material to the external and internal walls of a building (“hybrid insulation”), not including insulation of demountable-clad buildings, and not including the installation of flexible thermal linings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited ....\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677342-wn1siRWYcQOiirORM5vl",
+  "object": "chat.completion",
+  "created": 1790677342,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether drylining a party wall in a terraced house counts as building work at all, since the party wall isn't a thermal element—it separates two heated spaces. If it's not a material change of use or renovation triggering Part L, the relevant concern would instead be whether relining affects sound performance under Part E, though that mainly applies to new builds or material changes rather than simple maintenance work on an existing wall.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether drylining a party wall in a terraced house counts as building work at all, since the party wall isn't a thermal element—it separates two heated spaces. If it's not a material change of use or renovation triggering Part L, the relevant concern would instead be whether relining affects sound performance under Part E, though that mainly applies to new builds or material changes rather than simple maintenance work on an existing wall.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSrwsKEAgSGAI4AUIIdGhpbmtpbmcSDMUi+4QdJrtVUf/CkxoMkPWnALYWMT2hQbzAIjD5IObxDG5kKt7ne2LnZ1sQ7CpuZSTXNghqoPTaloDEaFju/9opoAK+knzxTLVJtpMqzArJqXjFkWE1kKKyEgsMXrKNuLnMf1XIPv98LsCPovhmz2YTseP5Uc2dntCPHayogtOVRIHeotnixIPGYsXT+KVtmYxOE/cU8V0QbniThH3SOK75ci35XvnJawv+sbTbW0KK+b5NTitwRPw7qfWBQhjqWANqoQ737NjLuqYXWF1yYUzlQNkAvnptIey3GO0lPn/2RraNgLV8g25UOOjpIW51JBFd5Y84R8aKfvbiemv0kabX1/hkybmVhcYPCEfobJW/SNroR1+vBrAENwluCwx1TN7rN495F0McEdC1pYOLtLMGw2hKYNXmFv1rIUD1YaCD74/COHrHIgb4yIEA/qcPk5Z0hLmGF+HGcNlrmqlF7RFTYeSDgWZLhctH4wy8KGGHXPoMKImjCBAwAfiTgyq88JKXEuB1TPkAb3n29yvUlSISuu1tja1Xt+w/55Xy4rb7ULnJv8ajvqYgleM4PnL0zNH2EAO2dWdisD1PNZaWRaonQhgiSXTAYcemRVuxR21ASMeCD+uq/1LMAUoF5hffGidzf1ROt1hdep2NjyWvs30lWoAjZ+Zof4xl6KFXg9M3yfMPTsLmsHfKLaLZZ36CxTlHdx/jjG+p2HYPmmVLsG4YmHp8XtcIAsqIEvHRTzRwyFK64PuDVPfmMFfUfIE+XjCJjNcjA2Q5eJZ8vE27bHRsQKU2cYKJ0aBrNmwk9lLFZ8qO1HaUnk31sGNsHjLUKcpnwneyFl+nxu6x2P8xtDLQ7KqYZ8EdP5wPLmEiSp1xORdOhZzrfu0109evxvarEUrC8wQmPjXw8jr8FOzd4Z4+1ECauQ/zzzO68d2jMAMCHUWOixifXwvybR/8mrKihFCyFodj2EsLi67+Vxskjda35U9djdFuz9PqCWFhaGAvPcZncdPnh7UJEC4gLWV4nuad3QX8TIh7ByDgwl8zF1WBiy/pVObPQeGAwM8HGcaiDujTLsV+2ee70jW5oBjHpzN8z4T2HpQoKQ8PdlQlEFmC7Z4NUUe42PqaW2AK011sSPwYxPcOrE7STy1FhqvHjaWN326WC8PaClnACx5QeZoivHHXl+wFCiK0Vs2QA/TVLQBbpHAohWemSBR8L6oiUhWy75Q1J+72ggQvKLPdbyU6nfhR9ssmj+6ws1rsmtUSqE74odGNCPpcv7Lvd7tUS3IOYcWg1shweT9ReiygNPKP90EIyRd49t3Ywvx4Xic+pTME2Oaw1hFO213q5oZCz5AuEiJJJ6R1tEQN5OY2FFScO0mqtGKcrXUmdt5pcp5xeodN4ySbXIJpbHG3xnvZlN/OqzKChbjwl9v0g5wuIm1DVMvfzDZ8wnDr56tt5VErnh+xlAby9YchdYWv9jUIPHwMCq9Slk2HIExAQObMAUCAAxmFzvn6NBMs9DiZXiNJL4MbpRzAuDi2v4L4gibDxpX5f5D7b9qy2qpwwFFU9qZWvnRUqzddR4uyTrk9hZgl4eSmXHnrofeCQ87a+TUs2PJNnN7p/BsfV/iSItMWc4sMHWJz78RrqCheApTy7n6IndrjhSSejHBTGcRRZv0aOMnX9k7AvA2gOx4iTV7UfYiIQ66rX89jSvKpERAUKoB0+J5jONqD6I4t780nFtYCEr5VbsW+y7n5htPnhWuXhEpix+JAmogj1caQXvNgw1xfQZIdZbKMJ3Sy+hTTFgWNbYdaK8XDqzoRupxU3NF3HVnhCvQmdVB/ELV5pPNPGmwT4F6WK8wVkgLdh6xcemjSKdmaxd5OdcjD/NDgUYXU9NnTHEY1uDVnFMogMeFGdUQYQBSV/qS2/6h+s6QYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1407,
+   "completion_tokens": 300,
+   "total_tokens": 1707,
+   "cost": 0.011628,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011628,
+    "upstream_inference_prompt_cost": 0.005628,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.734
+}

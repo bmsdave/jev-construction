@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a first-floor office above a shop into a flat\", \"project\": \"Mixed-use building in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678560-uZB7cLcCXgfFG8l5m18N",
+  "object": "chat.completion",
+  "created": 1790678560,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Full plans are most likely required. Turning an office into a flat is a material change of use under reg 5, so it counts as building work under reg 3. The shop below stays a workplace, and there will be shared or common par",
+     "refusal": null,
+     "reasoning": "This creates a dwelling via material change of use, which counts as building work under reg 3(1)(c). Since the shop remains a workplace, the Fire Safety Order applies to the building, meaning reg 12(3) requires full plans because the RRO applies to this mixed-use building.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This creates a dwelling via material change of use, which counts as building work under reg 3(1)(c). Since the shop remains a workplace, the Fire Safety Order applies to the building, meaning reg 12(3) requires full plans because the RRO applies to this mixed-use building.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS0QkKEAgSGAI4AUIIdGhpbmtpbmcSDHRQBWNy4FyR/0agmhoMG/Bxe3Jbbu+PAA8bIjBwKA2n0/TGCf55xQ+OG7e0Oyw0nTJlukrmYV6cSq60xmpbCxnPW8y8CNZk74zBTyoq7ghfoTAB/UGjhntolUVQGHO9sA6uFwRlBp/z585CKmf/xej88Ndamb8B5lUImtTSjOYW+UTHXVzmRv2X1PBMtd5/X4gtm3NibHZip272xj9D3XvmydPFkOBveiLYmHYOzkb0tpr6ClQ1Ek2u7L1Y6rd3GWdSMYJacZJCFnb0+psR/sK2G90t4GLFId3/8dIPhxOf4H7ETcX0n0XZaEHd+syJ22JWG6434msy5Eqigxs9w2bDS1K+lPTGCIYbvYgifQa73i66Ja+rUh+l7VNJ8n6tDeRUPvHqjbV0P5e+xvF89Xo7TWJh+VYnsjtLYd8y4DTWXStgoHsM1WPQMRD7eXkyzoVE+bj4QyFOluank63k18z84xSEZxJ9Bo5mC1ryUMguByevDw7ZCjrn2avmY0PIsAI6zhozirQLjFtWbjZG6y4GdT68IvJG4IoHstOjZNRo8DOJC3zwTXAgG/dJd9QyHwRs9i6YxeOSY7ajoxUS5+nvxzIbO52G5NHQ/98O0JOwGCDRAB9KMoiIPH+zF6nslsxLbHVhseXsO57Z81YKzVUk5m8ugOI5PkapO/EBNNYErk1CosknWKDivQOAB+zavymc+HRKsy7SMQpqUNqw0YlMrGGXI23ROF2Za3X37XFUjTTCeeLQED9HAEUOJ1ceQ1UeVjFfI7RkWoNEtyQhCZ53wDszd5LNlE+w+pqlGefGyR8QVjMwJcTZyYvZc/JLHPR3mvpymV/l6oJyAucrw/cv3ulejBUVaMwWmr1C7cGzpCoRHj7PNP3sTZNXgr2eUVlXvMjqvcpCWMurdecYE4ngjUW9ARW6wVh6pFN/T4rjwJWW4Xo2Db2wZq7XbIrT+BX1kOKRCiNGZkA2xw6q5H6IWTDtaSWHfjABq2z36WdBiwTMvM9Q31/sW7laNiLg11MI+4KkNMvs7/Hedgm2+Q23208uAf4LAuXTHT1HbtTS6JnrOkAdw5AgF3dOhMWySGwbBF3EC4NUSDohW0sTXu8F6HZI83fqWAtLw7WL8u9/KyDIIyHRmIQojarX0i+cRZLJM9xcYt5VQRNqHAavZ8pMdn+IJ44ZY9T+XLKrKd/WfmJU9nuA+gtZqqxuMAxot65vWGPRD1ynTl5gQgX6UvfoZgiG85BhscuXSOFnFW/G8vwo289IBenTQVrapqjs9gkkACtdcofw9VWi5w1PXuUfi2RuBEwhdOS+K+KA5LrRQdRVQwxtrud4ZbUXFSY3EanOM/mwUwCWmmBfJvRkpKafzg5OE7spctx6o0FiBuUptGh/b08mg87H7KNYl6sUOq+DhOOysB9ZBPB3pasZo1PC86K5RYMIl4+G7WeHbOhUqdO1EdQI4z7mJzpfsoO/lBfI4di21t45oh5mRgj1vJvDlKm0Ar0jaRZVLNtV8f/6LNUkOzJzfzY8E9CyBe+6x9aiB/4Cw3Inko4EZhnV7H4a0Ac+ak4gtZxLW40Sv8IKNxe7nJ3oBJXwgXFm+QkruyaHzVyDjoH3D4OhkO0YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 469,
+   "completion_tokens": 300,
+   "total_tokens": 769,
+   "cost": 0.007876,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007876,
+    "upstream_inference_prompt_cost": 0.001876,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 236,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.135
+}

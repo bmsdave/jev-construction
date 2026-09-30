@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rooftop plant room added to a block of flats\", \"project\": \"Block of flats in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678612-EJpPgGnjWTF5n2SG1DOH",
+  "object": "chat.completion",
+  "created": 1790678612,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "```json\n{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.82, \"building_notice_or_full_plans\": 0.14, \"competent_person_scheme\": 0.02, \"not_notifiable\": 0.02}}\n```\n\nAdding a rooftop plant room is an extension to the building, so it is building work under regulation 3",
+     "refusal": null,
+     "reasoning": "A rooftop plant room addition to a block of flats counts as building work, and since the common parts of blocks of flats fall under the Regulatory Reform (Fire Safety) Order 2005, regulation 12(3) requires full plans to be submitted rather than a building notice.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A rooftop plant room addition to a block of flats counts as building work, and since the common parts of blocks of flats fall under the Regulatory Reform (Fire Safety) Order 2005, regulation 12(3) requires full plans to be submitted rather than a building notice.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSvggKEAgSGAI4AUIIdGhpbmtpbmcSDHixLyY+9ddSf8mBORoMNe+jhQIrvUNUdowVIjCx2BlUwfEbeNooLmX6opj+sI/GlfOoPLufU/jl8c2aaKpQcDEVm8eTBQ1bbfYUcS8q2weR/ON1dZWMluzb4d4BvuiDCkKf/OksyeqWjpTBixTsxwaHNWhXreXjri44xbUL8TCvKCGfsElfC5tRlC4/xaC4BojiFoPPSeYdwQFcNcq1L+JBqJl5HIGG/YBVQMsg1Q+GCsJVqZsMJplvTx0IzuW/qi2H4fNtWTONsIstJJiNXGycAS9i+RGJ6CWoHWXv/v4bAluoAKIyXtgkeYtZtwjln7PdV1IVlQlvMrmsfo4fgbbg06oJ7sWb/UjIBNdqrtiMtDONlZgCcLoTk45rDZT3TRyd7mX8CqQUuXLqi94jJtDql2Gze4E5sdUBECNDBe2rWMNe616IMl84B+29xHi6z7uo2F5zKBrNZ0XO996DfKUd1e3Cl0CrC5+zwKvjMxJ1nIQ4x38pvEizARMbz5XAyRNgryqA5MG0Nj4gGF03KiVzvuuq8EZHhjduQ3BqtRdyen2x0Yh4ysu0Ca0pu6L59OcLgsSf22WqrW4ydRC94ld9StN1IcSW5mgOWbZzCYwH/roDPpEEp6ocuarG5VjzgMRuM4G5KAft4DJMtUrvNGRigstnF6g1oQybFQ1lWqc2KwpFgoPPvLhzveRL1hTUHJKHSrr407Sr7r4JiduNd0LlF9I34AFQEqNWvO12wnV7QVARoQyWbP3JTtmdp0htVBn+RVG22gH095qiyiFQC/rfzI5FQCGpjsIZsIG7mA7PdFeKS58Gl5XMrUf9e59Wsvu2ghL88Rzj7LkwSv77dCE5Dabydaj2Kpa+SrkTv6vNw1pNk11N/bhFkx+35Cdntot1CApyl//PUsUqFmD5xwoMy2z7Af871Oikg38qkfhx1blWfOs42gtxFl0bjJflQBycyFvjvIvJlmz5+F+jxtrJ19Ax65QGpnuSDNpr7Tq+38YDXBHBYE+Crm8Bdzs0WWddDKC4A27yfDhS03I0mA8WmfbsIQIEoQWRJRGmIfg7pmim6jv6QsSMdVm2ika91W4/qNkRSi90aE1W1CmHGOD4ncymtsyQmwcOvAAclX2H4dYRpiajylQAByu6Afq+cb6xI5RLSU56r8Y+q/fwMKz0ziKI4kmIElMUnLlgJk0/LWJb2T1yOtvobsjzSNVwhwtgtN7sPDWWnuNnbuhVdxqIYhxrkyxha9UWMLS/+uQm77u3Q5IhZKa9YlT+6mq8NyB6CVBWloZARungR3mlDUJ7ztGgmL8iJaU6D6xEnNyZlpv3wwn8TZOeHdCGK5RCnwoiQoScAlWAsIHCnDGhCACmpPVZqdrxHqXliPwRAF+mqgrQhtAeQ2pc0nZZ59r+IcqOKjGjPuvo1VQYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 465,
+   "completion_tokens": 300,
+   "total_tokens": 765,
+   "cost": 0.00786,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00786,
+    "upstream_inference_prompt_cost": 0.00186,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 185,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.047
+}

@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Underpin part of house foundations after subsidence",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "reg 5(c)",
+     "document": "BR2010",
+     "text": "For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (c) the building is used as an hotel or a boarding house, where previously it was not;"
+    },
+    "c2": {
+     "ref": "Sch 1 E1",
+     "document": "BR2010",
+     "text": "Protection against sound from other parts of the building and adjoining buildings: E1. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that they provide reasonable resistance to sound from other parts of the same building and from adjoining buildings."
+    },
+    "c3": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c4": {
+     "ref": "para 1.11",
+     "document": "ADA2013",
+     "text": "1.11 There may be known or recorded conditions of ground instability, such as that arising from landslides, disused mines or unstable strata which, if ignored, can have a devastating effect on the safety of a building and its environs. Such conditions should be taken into account in the design of the building and its foundations. Attention is drawn to DOE Planning Policy Guidance Note 14 Development on unstable land (obtainable from The Stationery Office), which sets out the broad planning and technical issues relating to development on unstable land. Catalytic Data Ltd, The Spinney, 19 Woodlands Road, Bickley, Kent BRI 2AD. The reports from these reviews, which include 1:250,000 scale maps showing the distribution of the physical constraints, are available from the following organisations: Arup Geotechnics, 1991. Review of mining instability in Great Britain. Obtainable from Arup Geotechnics, Bede House, All Saints, Newcastle-upon-Tyne NE1 2EB. Applied Geology Ltd, 1994. Review of instability due to natural underground cavities in Great Britain. Obtainable from Kennedy & Donkin Ltd, 14 Calthorpe Road, Edgbaston, Birmingham B15 1TH. Wimpey Environmental Ltd, and National House Building Council, 1995. Foundation conditions in Great Britain, a guide for planners and developers. Obtainable from ESNR International Ltd, 16 Frogmore Road, Hemel Hempstead, Hertfordshire HP3 9RW. Existing buildings"
+    },
+    "c5": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c6": {
+     "ref": "Sch 1 A2",
+     "document": "BR2010",
+     "text": "Ground Movement: A2. The building shall be constructed so that ground movement caused by—(a) swelling, shrinkage or freezing of the subsoil; or(b) land-slip or subsidence (other than subsidence arising from shrinkage), in so far as the risk can be reasonably foreseen,will not impair the stability of any part of the building."
+    },
+    "c7": {
+     "ref": "para 1.12",
+     "document": "ADA2013",
+     "text": "1.12 Compliance with Part A (Structure) is required in certain classes of change of use of a building, subject to the control of Regulations 5 and 6. Guidance relevant to structural appraisals related to ‘change of use’ is given in the following documents: a. BRE Digest 366: Structural Appraisal of Existing Buildings, Including for a Material Change of Use, 2012 b. The Institution of Structural Engineers Technical Publication Appraisal of Existing Structures (third edition), 2010 Note: With reference to ‘design checks’ in the referenced Institution of Structural Engineers’ Technical Publication the choice of various partial factors should be made to suit the individual circumstances of each case. The Department has also sponsored a series of reviews aimed at determining the scale and nature of problems arising from mining instability, natural underground cavities and adverse foundation conditions. Databases of both subsidence incidents and subsidence potential produced from these reviews are available from the following licence holders: British Geological Survey, Sir Kingsley Dunham Centre, Keyworth, Nottingham NG12 5GG. Landmark, 7 Abbey Court, Eagle Way, Exeter, Devon EX2 7HY. Peter Brett Associates, 16 Westcote Road, Reading, Berkshire RG20 2DE. Structure"
+    },
+    "c8": {
+     "ref": "Sch 1 B3",
+     "document": "BR2010",
+     "text": "Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952."
+    },
+    "c9": {
+     "ref": "para 0.13",
+     "document": "ADL1-2021",
+     "text": "0.13 Additional guidance is available in Historic England’s Energy Efficiency and Historic Buildings: Application of Part L of the Building Regulations to Historic and Traditionally Constructed Buildings. Exemptions for conservatories and porches"
+    },
+    "c10": {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.1
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.11
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.07
+   }
+  },
+  "usage": {
+   "input_tokens": 3010,
+   "output_tokens": 175,
+   "cost": 0.00012642
+  },
+  "id": "gen-dec-1790677198-PlVwwhZXGfnrwTSZTxrD",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.295
+}

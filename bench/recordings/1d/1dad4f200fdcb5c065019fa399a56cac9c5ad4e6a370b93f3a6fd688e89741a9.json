@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Build 20 m2 ground-level conservatory separated by external doors, independent heating\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 7\", \"document\": \"BR2010\", \"text\": \"The extension of a building by the addition at ground level of— (a) a conservatory, porch, covered yard or covered way; or (b) a carport open on at least two sides;\"}, {\"ref\": \"para 0.14\", \"document\": \"ADL1-2021\", \"text\": \"0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678006-ofU33GuSbnfALj4LtCRc",
+  "object": "chat.completion",
+  "created": 1790678006,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The conservatory is an **exempt building**, so no Building Regulations notice is needed.\n\n- **Schedule 2, Class 7 exemption:** This covers a ground-level extension that is a conservatory, if its floor area is 30 m² or less and its glazing complies with Part K. A 20 m² ground-level conservatory",
+     "refusal": null,
+     "reasoning": "I'm checking Schedule 2 Class 7 for conservatory extensions—the 30m2 floor area limit and glazing compliance with Part K. The independent heating requirement actually relates to the separate energy efficiency exemption under regulation 21, not Class 7 itself, so I need to figure out whether adding heating affects which exemption applies here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking Schedule 2 Class 7 for conservatory extensions—the 30m2 floor area limit and glazing compliance with Part K. The independent heating requirement actually relates to the separate energy efficiency exemption under regulation 21, not Class 7 itself, so I need to figure out whether adding heating affects which exemption applies here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS4wgKEAgSGAI4AUIIdGhpbmtpbmcSDImx10FFoT50EHDKchoM1qfMYzBMoDUslYDxIjC3QPFsiKALwkwQskP3X0rFfDfoREpzNu0XNe7qaDoBgE3vKkGLllxuNEX206RVAvcqgAjLlcdJ4y9QguE2amwW2oq7FUE3wa96dzJi239BGqLRamnzLYybt4FFF6/q+3hK3L4VFi+nF6IpEfOVBbWvE+o1lkIHCPKIUao0q3aAiCAOR+y3dzGKjB99NARf7TWp/r9sFnz0Fxmh/phCr225yFFTP/6XaVfWFAd9+sL172umvI+OOalEYqYFnixLp9DF+LlkN11uefuDVEAemyte02lAupPhXJ/zWAAmJ/pwVoNKoThfxbcDSYpxGgnPBYRN5KR2IGFyanRACe1ISgpVfuhQrwjJVOtJl/zi65osDB96Cq81yoM8lnBfLXwTkyseE/klM6J+8I0p+PJYEI4AGgB5X1GGA099y3mCF2vLkF1yMjhCGJ5JxABEd3HQqImWk8O3/1IzA5VMh1w02UTWa6JoW9BL+kazAFOn2gnhdrY4TQMCzuGYbVRS7mamtkklfpM9NCWW7wIVMVmb8rXCdmkKHmv/1nlu8vJCYAcI82HrEhM6Qv+Cu3SL7mcNLrQ3SYSGOIPJhEGOHpk//0nFBVslzFkLWfnCQcCk7tcpXcUmeoXI4QZ6T11Hf2l9TkfWaLMA9yi4kKp5zSRVkdjU8p0iAlStuJj/+Xhp45zJzQq5F72Ak1WS1kQ9sFvafIwB3js1kPEHR+KxA5lufCBdX9kby/dCmV6lZfASiIOJp3p/utyVML6RObBye34juC+dWRXWwHsjvSgYCVMIDNdwKubYH6VcwOVGVJfKp5syjlBD2X33T3I4v2obQOF+OTmDx5NDL1cna9iFPMWbZxHn4M2MxnkImlXZ8E4h3mxSumG/H0xsqmNUZhWBvgTdrL7MTcAShHniCw5uTlIBlJeZeIA+wV0GfRPX5gdqJ+z3hz1K/+uStxBARMjd+3FgSMFhoWuUYG5KSRa+r7ZzhgBaVy4E3zjZ7IcHPlalefAHise0Gp0m2yF0wKJUXKuiQrrh5mkuvQuOH5vPRlZgpITYUJtq59rQOZLLbhOfeeO+PjleLB27cvirtE6hOcpu2qYtf52b4zlwzjf9dGblbjVmz/9gyYigQZlaKGaEOJeZ9VPZioJPq+ifRQVmr87fostIDp3BdmchDBDeP+oRn1r4NOVdMOFuC0WQrCgs1QC+Gg6uFrCgjOr4Ft7xIGAiNs2DggS/FPVr8l0ZsBk5pjVWcAMRvPNIZ+6D3JE6rEoSvxVAaKScqJiLZQfWJkBf5jNCG/S6NfC7yfEkur7lsGgs8Vf5r+PCIkeR4VPZZ/TpuLq+/U4IpJhU6mR2mP8IiFIFAUjuVsJZxQMkvGm9NfPpMb9avdetqJVXSrsIzZ7d3C2i5Dzw0XOlTbwQjyTsxjSEnYVovWVmJJSdA+mOsIhjgLd2GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1341,
+   "completion_tokens": 300,
+   "total_tokens": 1641,
+   "cost": 0.011364,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011364,
+    "upstream_inference_prompt_cost": 0.005364,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 195,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.516
+}

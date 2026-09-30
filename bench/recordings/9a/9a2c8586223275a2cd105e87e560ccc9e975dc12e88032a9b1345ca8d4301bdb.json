@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Fitted joinery\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Joinery. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 1 M1\", \"document\": \"BR2010\", \"text\": \"Access and use: M1. Reasonable provision shall be made for people to—(a) gain access to, and(b) use the building and its facilities. | The requirements of this Part do not apply to—(a) an extension of or material alteration of a dwelling; or(b) any part of a building which is used solely to enable the building or any service or fitting in the building to be inspected, repaired or maintained.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677448-v37xLzkxHHL57GXLivES",
+  "object": "chat.completion",
+  "created": 1790677448,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.86, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.1, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Fitted joinery like kitchen units, wardrobes, and shelving is generally not building work and isn't notifiable, unless it's structural in nature.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Fitted joinery like kitchen units, wardrobes, and shelving is generally not building work and isn't notifiable, unless it's structural in nature.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmgYKEAgSGAI4AUIIdGhpbmtpbmcSDDKEp9eT6ehFEVMuNBoMNNmO5e1fYr0kcfKuIjDQVC6dU1FrnEZicEMp9xMzvdub3WEdww20pxJkA7XTpdStlT1cmKmyntcuwSUkeu4qtwUVUUIQR3QCh6J4TKgieh2+eX3YJptE+TfGh4cTOJXTHQCFE4dr0UW6O6cEvl3MS2ArSer6XaRMVorDSuv8Wg4mmu2PLRaLdEx7a7XH2jsj/plIqDlaPt8PotYhgsM1opYEhJf+ZoCJRRixnb4iBGlnU3Gxupx8WtDLMR7xjX98kQ534ZhRcNW19SRquTL2/jvY1yUlO1iFsgI7EXZHqbLYMLPX7El3DmQKcXVa1eDFX2aZg9aMI4HwENSQOCbypVyEcJ0q2whZvSXecnJQSfaWQ4wQAl6J2UbVwihExASJ+Mjy1FFKaUgMFP21TLC9kW+rd+d9Fa824oNcVcJYtpWM0w7r7jTJwziXSR+fHBUJAMZMphC//uK03CaUzSy72duePN9xzNJWO5TkFhVhVv7Jo8XmOT2zxI04klj0mNxHhVzSfNKGOqq84ft7SzXWqN0eVxXG0+N7d1uZtjfn2PQXbxHCUPCETKREiGN61qsvM6pH0bRIV6GVKOyDwAl1jLwuw9G1AyI/AUyM8BFXyang240fV8OL0g9kbumYTyJgdWIcxworFGJcmY5tjPJKxNx8ggPh+4N3Oi8gML9ZCALRGs2+KHLTy/CSgFqvpm4YP8NUD9LxDqLb4xqU/Q4r60jg4Ous2jlPm8TsUg+cQ1xnfcVKMyhwhbro2P5/M86lstIGhRrE1sRquTbIW1ArDBJduiwhokNzGbTUrR+iWO8D/eMLqrAP8R8V0VW6VecZ8BFM6bepPqRtnx39j1RF9vjd9EPrGV5oYMnRGMauO1UhOIiN/3HLu/Esqch/gFjKl+RS5wxc/1GIHEr2GWZtqz4bzlzvmwUehWKkhrIAl2Omt0O9FvGPoIj6QYajbjctbwZi8MI9FwLMlEKIsi3vUVgBeX2h7BfkpZhc6wwLUDsYEadsZK8fYhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1151,
+   "completion_tokens": 174,
+   "total_tokens": 1325,
+   "cost": 0.008084,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008084,
+    "upstream_inference_prompt_cost": 0.004604,
+    "upstream_inference_completions_cost": 0.00348
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 93,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.065
+}

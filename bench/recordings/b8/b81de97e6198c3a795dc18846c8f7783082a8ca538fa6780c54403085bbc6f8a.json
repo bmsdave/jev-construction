@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Structural floor decks (ground, first, loft)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Carpentry. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678188-KPQILMnf9FI1rtFziRf2",
+  "object": "chat.completion",
+  "created": 1790678188,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "```json\n{\"label\": \"building_notice_or_full_plans\", \"probabilities\": {\"building_notice_or_full_plans\": 0.8, \"not_notifiable\": 0.12, \"full_plans_required\": 0.05, \"competent_person_scheme\": 0.03}}\n```\n\nThe most likely route is a building notice or full plans application:\n\n- **It is building work.** Putting in structural floor decks on the ground floor, first floor and in the new loft changes the building's structure. That makes it a material alteration",
+     "refusal": null,
+     "reasoning": "Replacing structural floor decks counts as a material alteration since it's structural work on a dwelling, not just repair, so it falls outside Schedule 3 and requires notification. Since it's a single dwelling, no fire safety order applies — this points to needing a building notice or full plans submission.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Replacing structural floor decks counts as a material alteration since it's structural work on a dwelling, not just repair, so it falls outside Schedule 3 and requires notification. Since it's a single dwelling, no fire safety order applies — this points to needing a building notice or full plans submission.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSxQcKEAgSGAI4AUIIdGhpbmtpbmcSDEkWx/kR/GtsmzY7+xoMiqbz7Q0qMg2DFRPqIjBEWKVdNX/YPdA9jac638tv/8ZNNlS8sZU+bbTci5OAXk3eoLEUZePtVvbLC72k0+Uq4gYNs/KdXlcb5Q2zKCB/MC/rqSr+XJvYi2ICqEv8zIgMP0AOl5AkYl00NkuB+Rw8ZRh8Aevft/16P3kc4JaY7cF/7/hpcpdltvlDEt8615Nh9vAghm0cnDI/0FtvsTnJqY7y+wlji29EOxlD0QbCdLiy+uUO6Dl/GsRExvcK/A/1sKxQG9SI1uMuFPwPlS5In/w/hcFolpY9etAPC6nDT6OCks4Z9cvLx0UqPKzEivlfZEHjaKMH1OeajCgDCjPwPWU/g6O6KmUWp9+fWooZQBLboU7nBx3jNwxWiGxnNRJHfoE7lwg+QvoIA5G1DoTmEW6neTbFmpAgYF+umxu/O7db/LYMT7bxfuJPPWGiqStW9X9webxv0dxEuAErV8N6JfBpVE+GTabWUe/6NuNK5tcw7unjwJdtcAmMa/VJRnpoItc/l2L8qODldU8oTsqYu3QpqtPhcssRj4y/QCVSTwQ5vhIv4nvL0v4CHbztL8yTE9hkrzUm5nY211sFoX+0hYBw6+X2ZJUcrobymR1T4GL+xUjnagxcYVg8LRNrjRQADmLnydFNG9fB7C0yTqSTRysl8MJ3WQ+XzOTpskhX65Gl6KvhvRN+Cl7+WSoKzZz28G3Y/9p5IISP9rVliP28KbseSr/9qVBVETbkRBtKQqLkthDRV6vwHonQMaXbgN3y6Fj0jU2e4mLxiYan0ZMETA+0L4q8Cqs7JPAGrdfp62KUjRjyjKPjKzg3YEov/hWibrEvotUTv48ccSvFVB8sOWAVwKcDB3XL3vqxmNDUPuNUrlV8AzeYzDpjGqk7iswUjOX/nrnPC6xfI9YoEctSRHK7AKy+4vTW98ECNpzm9nDqgqTjUW+xicifuGFtpJ10seqSvZCZsNYDOZCaQ255uRq1MNKmWEgYZGmtzbOjmvIBwan/lG4REFTbnU88Y7o0mMIc7JP2pCs/R44qrTMjuJXf2W+y1TqocIpLNG7p+OWaIwnFs2zVHEp/8zFQYov18KPvPHvnxvuTjiavDlaxS7lQd84QF6xHC8LFSYUdF7DgzfQsS12yPTN1Pxk8AErXO1IUU7MHH671rta2Qunvm7xdcQFq87omhDhUHs28SG5zWBOIpaxyppcbJpEf1SKcRx0TSFUT1AK5V5qSSzYrrx5C2hgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 511,
+   "completion_tokens": 300,
+   "total_tokens": 811,
+   "cost": 0.008044,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008044,
+    "upstream_inference_prompt_cost": 0.002044,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 142,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.65
+}

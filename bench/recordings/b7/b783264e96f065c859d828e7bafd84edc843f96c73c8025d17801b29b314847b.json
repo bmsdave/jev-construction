@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Kitchen hood extract route",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Ventilation. Part of: new single-storey rear extension.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 3.30",
+     "document": "ADF1-2021",
+     "text": "3.30 Where building work is carried out in a kitchen or bathroom, any existing fans (including cooker hoods, where they extract to the outside) should be retained or replaced. Appropriate checks should be made to determine whether any retained ventilation devices are working correctly."
+    },
+    "c2": {
+     "ref": "para 3.25",
+     "document": "ADF1-2021",
+     "text": "3.25 When a wet room is added to an existing dwelling, whole dwelling ventilation should be extended and extract ventilation should be provided by one of the following means. a. Intermittent extract, as specified in Table 1.1, and a background ventilator of at least 5000mm2 equivalent area. b. Continuous extract, as specified in Table 1.2. c. Single-room heat recovery ventilator, as detailed in paragraph 3.26."
+    },
+    "c3": {
+     "ref": "para 0.21",
+     "document": "ADF1-2021",
+     "text": "0.21 This document sets minimum standards for purge ventilation for rapidly diluting indoor air pollutants and extracting water vapour where necessary in habitable rooms in dwellings. For domestic-type buildings, Part O may require a higher standard than the guidance given in this document for purge ventilation to remove excess heat. In this case, the higher of the two standards should be followed. Building Regulations 2010 F1(1) Requirement F1(1): Means of ventilation This section deals with the requirements of Part F1(1) of Schedule 1 to the Building Regulations 2010. Requirement Requirement Limits on application Means of ventilation Requirement F1 does not apply to a building or space within a building: F1. (1) \u0007There shall be adequate means of ventilation provided for people in the building. a. into which people do not normally go; b. which is used solely for storage; or c. which is a garage used solely in connection with a single dwelling. Intention In the Secretary of State’s view, requirement F1(1) is met if the dwelling has a means of ventilation that achieves all of the following. a. Extracts water vapour and indoor air pollutants from areas where they are produced in significant quantities (e.g. kitchens, utility rooms and bathrooms) before they spread through the building, following the guidance on extract ventilation in paragraphs 1.17 to 1.22. b. Supplies a minimum level of outdoor air for occupants’ health, following the guidance for whole dwelling …"
+    },
+    "c4": {
+     "ref": "para 3.29",
+     "document": "ADF1-2021",
+     "text": "3.29 For a new wet room, ventilation location should follow paragraphs 1.9 to 1.31, performance testing should follow paragraph 1.32 and controls should follow paragraphs 1.33 to 1.37. Building Regulations 2010 F1(1) Refurbishing a kitchen or bathroom in an existing dwelling NOTE: If a combustion appliance is installed in a kitchen or bathroom where building work is carried out, Part J of the Building Regulations must be considered."
+    },
+    "c5": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c6": {
+     "ref": "para 3.1",
+     "document": "ADF1-2021",
+     "text": "3.1 When building work in an existing dwelling includes work on ventilation, for example: a. adding a habitable room b. adding a wet room c. replacing part of the ventilation system, including extract fans the work should meet the relevant standards in this approved document."
+    },
+    "c7": {
+     "ref": "Sch 2 Part 6 para 1",
+     "document": "BR2010",
+     "text": "(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material."
+    },
+    "c8": {
+     "ref": "para 0.11",
+     "document": "ADB1-2019",
+     "text": "0.11 While many of the provisions in this approved document for means of escape from flats are applicable to sheltered housing, the nature of the occupancy may necessitate some additional fire protection measures. The extent of such measures will depend on the form of the development. For example, a group of specially adapted bungalows or two storey flats, with few communal facilities, will not need to be treated differently from other single storey or two storey dwellinghouses or flats. Fire safety engineering"
+    },
+    "c9": {
+     "ref": "para 0.6",
+     "document": "ADL1-2021",
+     "text": "0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings"
+    },
+    "c10": {
+     "ref": "para 0.7",
+     "document": "ADF1-2021",
+     "text": "0.7 New extensions to historic and traditional dwellings should comply with all ventilation standards in this approved document unless there is a need to match the external appearance or character of the extension to that of the host building."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.07
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.2
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.05
+   }
+  },
+  "usage": {
+   "input_tokens": 2842,
+   "output_tokens": 175,
+   "cost": 0.000119364
+  },
+  "id": "gen-dec-1790676046-FqvOvfCqqH04DNgLXyq3",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.327
+}

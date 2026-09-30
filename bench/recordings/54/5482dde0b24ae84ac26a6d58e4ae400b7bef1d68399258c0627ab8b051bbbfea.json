@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New chimney and hearth for a wood burner\", \"project\": \"Cottage in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 3\", \"document\": \"BR2010\", \"text\": \"3. Installation of a solid fuel-burning combustion appliance other than a biomass appliance. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, HETAS Limited, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 3 para 1\", \"document\": \"BR2010\", \"text\": \"1. Installation of a heat-producing gas appliance. This paragraph does not apply to the provision of a masonry chimney. | A person, or an employee of a person, who is a member of a class of persons approved in accordance with regulation 3 of the Gas Safety (Installation and Use) Regulations 1998.\"}, {\"ref\": \"Sch 3 para 2\", \"document\": \"BR2010\", \"text\": \"2. Installation of—(a) an oil-fired combustion appliance; or(b) oil storage tanks and the pipes connecting them to combustion appliances. This paragraph does not apply to the provision of a masonry chimney. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, Blue Flame Certification Limited, Building Engineering Services Competence Assessment Limited, Certsure LLP, ... or NAPIT Registration Limited, Oil Firing Technical Association Limited, ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677754-QeAzge4o43nU80BryUIP",
+  "object": "chat.completion",
+  "created": 1790677754,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether a wood burner counts as a biomass appliance under Schedule 3, since the exemption wording excludes \"biomass\" installations specifically. Regardless, I note that a new masonry chimney and hearth would fall outside the Competent Person Scheme exemption.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether a wood burner counts as a biomass appliance under Schedule 3, since the exemption wording excludes \"biomass\" installations specifically. Regardless, I note that a new masonry chimney and hearth would fall outside the Competent Person Scheme exemption.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS1woKEAgSGAI4AUIIdGhpbmtpbmcSDAEGoeU6kPQoza7IvRoMD/BhC8BLX8oUpr0DIjCsEVlXaJwtSSvRs+sOtQsTiDYP2uja6Scqu/Mm9r+XMCnf61UQcMcRE/QQHzNqoQ0q9AklPEP7s6D43/FPebj1lEvRVvNYnele08DHRiV9B15EgKpzjklFe1KKxZC76L6KQxoNOM+7pzSV+pcTuJAGeeQIUJoJiIFZ2Q8Rp2FJ2doo6gajvW+igpAwPTSkttApQhKsEQCBIrxzw7T2kKLHGMj/giU5UELjBclUXJGuWmLC0NLj+vMD8EXicmygyP7h8njQ1vmtUPhe5PnMTdCwBNGB2DaK1PvWh8v18Wm07Z+pIQgBspyrLBzMBA3AK04ZFVXA9rrriofK3aCRE0MSRlfMsZanBY5qUOF7O3Q+91QU88pCYvOeD010mzy+Nljvy94jsc9R3ncbCZVUgdTZwpc09p5p2ftu0x04XRGMFhpce73j8MYNMpqDPb39GYaOAciAzzb/AgY3xA6US9HGPMD80WTx8I8Vl7OH/vssdaUtdV091OpuUvczzNAocH4gBky74uOUZYGFERczu4TxCk0gCj99xsCC35hIUMxaWz89MNMVfYssEw7jAifgpo7myVfd+lcistCER5vM+bzr60C1BWL+u4h9OX1RVzhqQ21RGKiv18ZZc/mchNs/4Si6l0b8u8cA6Ucp5eyti3JKhi9zCfBm03M94T17EQBh0l/u3XiFnM5cIBMzN1RzAKCziF4ynPFY9s+4T3THykcF54DcfTJgLyQDvpSPWBkKuoBwRTu6iGI4KlhF0j7wkxUhQcMGmYLr5NP0uH89vJV1+pOrWgnxvXwIP+2lu+BKHRxFc5lm7v+DtvZ5e0lp2u3XgXP6Pp/x3GKct+/QgtiBTTicuww1lA8CF8stRuydPDP+7xEYeKTs36MJdahEr2uiXUcqPMNgCMAyNHI6S7VZ9xKvdvex5Vzz7tLFqUEmrn3rVRRKucZtwh/le0vzd2qpbRxCgdXwn8aZpkTYN3QGDQtQj14unQYhoo7cwxK1pYkfvmzMiH/f+3ttR0T3IEKAWVQqhJUJfcH0X94wDK2vuhOSOUlkpaOUuz4RSQINLrH6/nphe9nw+mcXogQUA0lJ0zRppS5XwmA/MmnhVlW5MyGCHTn+Sm3kBy8Pe87hhC4FzC+IX75vS89dKArqixLXOHRreQek6KsDcmSA/y0sYhRs3NFffLGbqFpjBl3oYIGJ6p3035abCco9A44fkyW1TAVgq7yyHMpWumEDHrqU0Wfyp5aPFobkAq03SqSvZkKAedUj2I+1qCMwm3eqxuFwsT8WqK/20Xku7JrMXwfTIiGz0MDWfBYbc2PviD1le1sX8CCjlWrJI1GnXi8mfCZoly8YpPaJ50r40AQiz3JYn2NDB2tR2nGuZbqYohUycJsP15Ptk86yCtJis2vZyNno/4vTQbX/zbTUZG/KUhV/ztGTtkHPnBMoz8z+EygEiUNPlF0PchesFcskKRN9CZDfplj6HUzrlsIRn9O6owRb2sWElxWB951/FBbP1+QPo4pbJcMhrs4KXceUEIYETPA4pxS8iE/8pohw+Uk2yMDH0FVLpSOuu2083GrkNMkEHnCXnRDjNVaDkRhPrvlTXpNCwcxfPGlFi2IykJBehoVU9c5hR/m2IgYDhCT4r3SErHm1YziYdDbdDSS7PLZR7SIz0tZcP/QE0LhKk5iZUrUWL1QqqpTkdJvn12WBDdCLBxnlA7/XduV2wGG2cDZ+ozSd3Ynm58arBIRf2iYKJ3Hpw5dPansxzRgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1004,
+   "completion_tokens": 300,
+   "total_tokens": 1304,
+   "cost": 0.010016,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010016,
+    "upstream_inference_prompt_cost": 0.004016,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.541
+}

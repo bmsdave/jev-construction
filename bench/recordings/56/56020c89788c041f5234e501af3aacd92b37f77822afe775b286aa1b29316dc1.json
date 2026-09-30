@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "New fire doors and partitions in the common stairwell of a block of flats",
+   "project": "Block of flats in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "para 2.3",
+     "document": "ADP2013",
+     "text": "2.3 Part P does not apply to electrical installations: a. in business premises in the same building as a dwelling but with separate metering b. that supply the power for lifts in blocks of flats (but Part P does apply to lift installations in single dwellings). NOTE: Schedule 2 to the Building Regulations identifies buildings – for example unoccupied, agricultural, temporary and small detached buildings – that are generally exempt from the requirements of the Regulations. However, conservatories, porches, domestic greenhouses, garages and sheds that share their electricity with a dwelling are not exempt from Part P (by virtue of regulation 9(3)) and must comply with its requirements."
+    },
+    {
+     "ref": "Sch 1 B2",
+     "document": "BR2010",
+     "text": "Internal fire spread (linings): B2.—(1) To inhibit the spread of fire within the building, the internal linings shall—(a) adequately resist the spread of flame over their surfaces; and(b) have, if ignited, either a rate of heat release or a rate of fire growth, which is reasonable in the circumstances. (2) In this paragraph “internal linings” means the materials or products used in lining any partition, wall, ceiling or other internal structure."
+    },
+    {
+     "ref": "para 0.1",
+     "document": "ADB1-2019",
+     "text": "0.1 This approved document has been published in two volumes. Volume 1 deals solely with dwellings, including blocks of flats, while Volume 2 deals with all other types of building covered by the Building Regulations. Arrangement of sections"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "full_plans_required": 0.18,
+     "competent_person_scheme": 0.17,
+     "building_notice_or_full_plans": 0.63,
+     "not_notifiable": 0.02
+    },
+    "confidence": 0.5
+   }
+  },
+  "usage": {
+   "input_tokens": 987,
+   "output_tokens": 65,
+   "cost": 4.1454e-05
+  },
+  "id": "gen-dec-1790677221-uRvsilHKFmPsbCFGKDy2",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.283
+}

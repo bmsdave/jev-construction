@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rear awning\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 10.13\", \"document\": \"ADL1-2021\", \"text\": \"10.13 If the conservatory or porch is not exempt from the energy efficiency requirements (see paragraph 0.14), all the following elements should meet the minimum standards of paragraphs 4.7 and 4.8 and Table 4.2. a. New thermal elements. b. Replacement thermal elements. c. New windows, roof windows, rooflights and doors. The limitations on area of windows, doors and rooflights in paragraph 10.7d do not apply. In addition, both of the following should apply. a. Any walls, doors and windows should be insulated and draught-proofed to at least the same extent as in the existing dwelling. b. Fixed building services and/or on-site electricity generation within the conservatory or porch should both: i. meet the standards in Sections 5 and 6 ii. have independent temperature and on/off controls. Building Regulations 2010 R23(1), L1(a) Regulation 23(1) and requirement L1(a): Renovating elements in existing dwellings and limiting heat gains and losses This section deals with the requirements of regulation 23(1) and Part L1(a) of Schedule 1 to the Building Regulations 2010. Regulation Requirements for the renovation or replacement of thermal elements 23. (1) \\u0007Where the renovation of an individual thermal element— (a) \\u0007constitutes a major renovation; or (b) \\u0007amounts to the renovation of more than 50% of the element’s surface area; \\u0007 the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677604-Z0LjchqwR8BlTFJyFKCC",
+  "object": "chat.completion",
+  "created": 1790677604,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.8, \"competent_person_scheme\": 0.03, \"building_notice_or_full_plans\": 0.14, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "A rear awning attached to a house could fall under Class VII ground-level extensions like conservatories or covered ways, but an awning being retractable likely isn't building work at all, so this is probably not_notifiable, though a building notice possibility remains.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "A rear awning attached to a house could fall under Class VII ground-level extensions like conservatories or covered ways, but an awning being retractable likely isn't building work at all, so this is probably not_notifiable, though a building notice possibility remains.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS4gcKEAgSGAI4AUIIdGhpbmtpbmcSDEStiNzJ547hCyyRZBoM+I6goO8O6aYJ5M98IjB9CF4HDJo8yd8vRH9WxHHVhFVX16k4QKkDHVyAArOpJBE6FcL5X2vzdm0RCJhANPQq/waFawjyTrDXbNNTk4DiUJVIoRPUMa6L1s+1L2Gl8lAfvGFhYUiiZH6u8x7iL/PVIJanWj3FBrZ/fukXohGx5937L6od3rXNZCerVZywxUutqy4ZeZTa3A19BgGqWOV/oTfDUkmSeDhpWzRGHaZsBY5hkxuZg7i/FOWPggsTBX2ug+vmVraW6CjoFpPMvxzL+hEGx1j3mvgD5jWuu2pE3HqNEpl8u7S4b3vU5bTyRLkZE5nj8oNg7C4pcqFgcO3b4cR+WBH/BNEsL/Syauoz99U+z+ee4BRxYicRsbRLPNwyr0H1VO7g97M2KHVWNSi5Sw5nZWYL7xMwNIXRJm9EEmEQlfXsTjHbXuztrCIiaPPROtRV9/9iismybln+KWs0TbMzoQNccV9ZrUf4nN8ElK9Ir0AZslVRJcgFBq7+84yjmbZmx77ZLW58pqiFcxAIq1EAgNSZ0WRCdD2R3Hexb4Z03+sSmHuzPDyU+emhuosnzya5jsVh3viO+U286y2Ze9ZyYv2zOsLTsoOivS3ejUgKyWnVfHW1hZhIh7AoKAr1U+e4Cfd53hu2+2r78RXagxS1d1pnmN4Wup2P/u/kMua9QAZzjdkD8+Jw89kLRRv6+0g7mfztpMk8wQevD3dqsq+lIDAtj9dtuprZqUfcGFou56EbAyHr3wn7mo0Td0KSf3SPDiyFVbfWd66di1fZefkD8dRRzf1/xWuXTcndwNiwMlrZXj6GPnFzZSYRktE26ytGSCHSgZ+NZ3ffY7k1hnhfOmUwbfZ4XTIt1OvUowd8haB47NOQURv7kUTQUjvMvjK/MW8TCLEbv/qKdzAbHeaxAFLzFjnSrb8ysVC9Czs9nIPdv8Fj8QBLhhDMp4jkOVHZj+kjnahCvljgJQ5yZ3I9B9fVQj2WJAYzcGfRmFo3RkDQfm4SO+Y8jDLa1NRSmWpdmr06K20oru9EgjMhLBZFDgo/katIbm9HJq/jJ0+J5OSPI9tHU46yNS8P0BxEhCtOZnDO2n4D5CYPfVVB/0G4xC1pn8HI94AvUkCzQbYvN4wjHzCxILWUKeOZ0zB+/+qYpIrRZ6z5RMPUsuIfNXNehv3x7uJ317ySjyQhTkqQWnWgd0bIC/ojNZU8wd+2RT7w6Ulwoay+boJn2Z/YRlAtQztRzkwE/oTiEC4xllaYLejB3cDUnBgCH2XLDlx4GAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1450,
+   "completion_tokens": 228,
+   "total_tokens": 1678,
+   "cost": 0.01036,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01036,
+    "upstream_inference_prompt_cost": 0.0058,
+    "upstream_inference_completions_cost": 0.00456
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 147,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.348
+}

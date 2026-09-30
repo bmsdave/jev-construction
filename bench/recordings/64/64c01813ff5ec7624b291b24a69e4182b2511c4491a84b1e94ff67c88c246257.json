@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Rear extension to a dental surgery\", \"project\": \"Dental surgery in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 9(1)\", \"document\": \"BR2010\", \"text\": \"(1) Subject to paragraphs (2) , (3) and (4) and regulation 21(1), these Regulations do not apply to— (a) the erection of any building or extension of a kind described in Schedule 2; or (b) the carrying out of any work to or in connection with such a building or extension, if after the carrying out of that work it is still a building or extension of a kind described in that Schedule.\"}, {\"ref\": \"para 0.14\", \"document\": \"ADL1-2021\", \"text\": \"0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See\"}, {\"ref\": \"para 0.15\", \"document\": \"ADL1-2021\", \"text\": \"0.15 Where a dwelling is extended by adding a carport that is open on at least two sides, a covered yard, a covered walkway or a covered driveway, the work is exempt from the energy efficiency requirements if both of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. Live/work units\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677656-UkhTulplk4v8wqd7BB48",
+  "object": "chat.completion",
+  "created": 1790677656,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The dental surgery is a non-domestic workplace, so the Regulatory Reform (Fire Safety) Order 2005 applies to it. A rear extension is building work. It is not a Schedule 2 exempt extension (Class VII covers only small ground-level conservatories, porches, covered ways, carports and similar), and it is not listed in Schedule 3 or 4. Under regulation 12(3), work on a building covered by the Fire Safety Order cannot proceed on a building notice, so a full plans application is required.\n\nThe small chance of \"not notifiable\"",
+     "refusal": null,
+     "reasoning": "This is a dental surgery rear extension, which counts as a workplace under the Fire Safety Order, so it's non-domestic building work requiring full plans under reg 12(3). Checking the Schedule 2 exemptions, the small-extension exclusions like conservatories, porches, or carports under 30m2 don't apply to a general rear extension, so full plans are required.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a dental surgery rear extension, which counts as a workplace under the Fire Safety Order, so it's non-domestic building work requiring full plans under reg 12(3). Checking the Schedule 2 exemptions, the small-extension exclusions like conservatories, porches, or carports under 30m2 don't apply to a general rear extension, so full plans are required.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7wYKEAgSGAI4AUIIdGhpbmtpbmcSDIYaaTUiy5U5XSwskBoMhwwVatGMVq9teKkgIjC99N3XJSmX882tsQQyAe9xoQm6LYYy2aTgTTVZ3YkK3rjkbW9PvbcJZ7dRlYCFdukqjAYK8GILQXYeJcPbrD5nEbWj7gsejIDCoyAL/f7z11Ldo3bikSROxNB4qLnaXzHkKMOuM6E+e+ANwJ/1bc5LEIANlcAB8aW/TK+K7K8+x6XxBg3XAOYxcjcCHHxZhmFHDjpKo1koB6lGZ8iMyv35YM7snkGcJdVhZwa0aHumdTKbLdVJhmPhHuuQKO1bvtuwdhTf5SeLPTDTlFZ2XpBwWCWqXMPEgf3ic/AFB7ftsAFq/Qx5oAryOrJg5s6KYNcTXDJV36nFtYaIu0I8P1hFt5yN+ZZw5BcGmvJoEzsgUaKuIo42rGsHZWzGdQWAm21njkE0rOeUSc1ZcIWhpauaiBU6xSmIb43bxha0DJBuSvh+x3RkqQDaGHXycWjMfWQwTW2+ggEnVfxSvHm28b0wQjBUemojpYuWMxdq8lsJUfX9CQHf0EXAkr2A3Tsyh/wcxLhxaCGaz11e1ASgf/QxTaY9KM6qjOqStse+9HMT7DDjajNC+BhKQaNh4ffSMDmGvt8oeywKvJPTHAZa0S+iNr+vUAoy9UaYB2dhK79a4PGxRiTY0BROWo5+FM7SZYGcBUWFxVS36jPVQAi0Y7FyMpE89EJhzZJnBHYU+E9TKYqbOV5JSbgDe7xCZ61aMIsuef4K3xd3CjYrN/e2k++maI5VUfSlqYfNXg/pxSpYQe2HrYOjQUIS4qf6OaJOI8++cvaitZA324OJ/21vULlrS1tBR2Ur0WXBj62YnNFCB/i8wi2E9zTHEPq9lvXSKY9r3f6MmAIfsLAFcU8Nd7Iguujl6qoNzI+Jwa9NF7yw0iyUGlWm9paJJ8eWn5iIoIWVSEMUrqGFc9yOyZTS3bOBVTpUabN4zMWInXTsvm1tc/hxqieTxkHLoLRxJeAw8hWWC7/cJB0GPMtdMI6nY9ixHcfMsSvOAjvhu4IZHdM0DH+8o4muhGG0J8m1XBci6ehqKfwWK8Po3FOEhoXbE9T7fWBxJji5sy9XNydD0bqxzhGdhQKwBzko/Ria2ujo3/PMR4EmmL8FNFWcns9SB/YYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1003,
+   "completion_tokens": 300,
+   "total_tokens": 1303,
+   "cost": 0.010012,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010012,
+    "upstream_inference_prompt_cost": 0.004012,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 119,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.951
+}

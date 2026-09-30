@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cable 1.5/1 mm2\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678264-iEqixwyHCGdM4L0KodOV",
+  "object": "chat.completion",
+  "created": 1790678264,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Most likely a competent person scheme route. A 1.5/1 mm² twin-and-earth cable in a dwelling is typically used for",
+     "refusal": null,
+     "reasoning": "This 1.5mm² twin and earth cable is likely for a lighting circuit. Whether it's notifiable under Part P depends on whether it's a new circuit versus just an extension or replacement of an existing one — new circuits in dwellings fall under Schedule 3, while non-special-location extensions fall under Schedule 4. Given this is a whole-house renovation, it's probably new circuit wiring, which would make it notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This 1.5mm² twin and earth cable is likely for a lighting circuit. Whether it's notifiable under Part P depends on whether it's a new circuit versus just an extension or replacement of an existing one — new circuits in dwellings fall under Schedule 3, while non-special-location extensions fall under Schedule 4. Given this is a whole-house renovation, it's probably new circuit wiring, which would make it notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS4wkKEAgSGAI4AUIIdGhpbmtpbmcSDJBEIKKHQ6C/lEpwExoMH7COP718iIKdJQx6IjAc39xoNPqgOspxuEMz+qay2/UaYZbUm+JPfYomOI3pDtXpAqIjHz2ZuBqMn2k+An0qgAlKW0W6teKpWHXkGHjFryXa0C2Gr/AbdlIkU3bWC2x/p7RnUMW/A91VmwBb/D7de9KedV3LzJDUBd64m4m9qyGLLOeIiLjCoEdmmyXlQEcPoIVZHcJQS1A5eCAGKOSoKSe+WPyBbf5yjS7mkMwlskaRQyOODjon1Lo1RIuP64MglYi7pWrJNUqqImKFrE36xhiJ5stBkkfJdJMluhJT3fTz8ujLpa3QPT7WwtBDLV1op1yIkUnbaE7J7qwOUIh8x/YLWg36RBdoeFnMsatN8xFVpIldMMsJGjygM3aC5PvcS6hBs9nT2BScnZb4W2gjdew3Jx2gEw6jaQyIXqTeFUreVbq7VvkOkqiEDZ+kMtHgSADbIvIJcyO49acQxIACDcC2taYUZUfzi16wB6Fv2u5gQLOO1xkyMIL5dgvDV0VbW/5j96dMNqh5x3Xp53PNsfMeWOQRm2N1jg+P+w2nLqxG93BREzZlwxJxKX6qbtMnvx4LZGWo+b3iM/wRtMB7EXvP0dm5B+7OGG6Rg51FU0c9URkbDLcy4Hsz8ka+OOIRWWpAvwNuQuwUF52ww+YSadcULRiKGc04a+X2RMF9RgPU/Gn+8D4WvhvHEDFbJKaec/+uny10kNr5TkvSotBEtFWyTqQeFaKxPLXfLnp9biKdMBTIJl7IElFm6TQ36PFdcht+mAMYllz0QtnPPG2jqs2gp3XrE0ZldllO6JIhN2PQyd37kt3saMg2Sj+0ajK1UrpgJ37AZAg43h60Ow2EeaqXkWG76JockpfY6LeJwVWm7Rig+KA0tsCug+g54PJfjB5naE6Cb5PYK92Be6RPyo3sTUxuALLtoT31aVmPcr/DWO/TCmwYFNfVb+lEf4kMiIBTosgPU3uDwTgUIzgnf2jeM1AWJ9prtQ9InK87gReFBho+DV63LtPNFGGH7s8kZrmtr19zq4I+SkcfA+rhoqCIRPdt5gUbJrBMgGWOepMAWaobQjLJEA0ssTGR1nbyLhvm8f8zpFNDhPphte4QuNzR16pTGnIqWHuJFnpKSixDODmAom3aZgdvS3zcZ+LqHb4sACrH6koFBThQgAL5wnOgwknU00tY0qa48EItmcT7HTGKPa/QnrMk7G73ZdPriMjAxfQ2NQF1pEv4FZx6g1FXqOXbV858MlwfllcrLITE2QbZtd1ix8JKu0QKguDlMN3NFE3eRlXWfnU+a3IYgu8ugbyi9AlWHd5TC8r/T5kPPfGw5Ufbw2I9qvHVwghP9tfB4vsHwITqsCz9HjU0N2Kf/Bze8zXonO9XtxCYqogeq9lcyMCvkZbxKJ63jUogpe9gcsKPvGpliaVYB6A+zVCNerQq9VlmzrQ1x5OR+H0joA9MyEH6dKtFDAZ4ko/jGOKETCXChlTuDFVwV7s7hAIlL1jgmURKasxxg7y794Igy5gQPlMSg2MzGVXXupTZK8FjYy9BKubPVzIJCHfPtqGpVdGeLhMSVMrwvg2+93Z9UIs22nfsSmzLS0ixcYx/YQ4q5wIyyHir8Z1HoRalHY0YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 507,
+   "completion_tokens": 300,
+   "total_tokens": 807,
+   "cost": 0.008028,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008028,
+    "upstream_inference_prompt_cost": 0.002028,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 256,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.585
+}

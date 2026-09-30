@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New accessible toilet and ramp inside a community hall\", \"project\": \"Community hall in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678599-76IrsDmraNBT0tXQFaXY",
+  "object": "chat.completion",
+  "created": 1790678599,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "```json\n{\"label\": \"full_plans_required\", \"probab",
+     "refusal": null,
+     "reasoning": "This is a non-domestic building covered by the Fire Safety Order, and adding the toilet and ramp counts as building work under Parts G, H, and M, so full plans would be required under regulation 12(3) rather than a building notice. I'm checking whether it could instead qualify as exempt or self-certified minor work, but installing sanitary drainage in an FSO building points toward needing full plans.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a non-domestic building covered by the Fire Safety Order, and adding the toilet and ramp counts as building work under Parts G, H, and M, so full plans would be required under regulation 12(3) rather than a building notice. I'm checking whether it could instead qualify as exempt or self-certified minor work, but installing sanitary drainage in an FSO building points toward needing full plans.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSwgoKEAgSGAI4AUIIdGhpbmtpbmcSDL/fRyLGTUTc0XzJZRoM7jfSCznX+HHyEffLIjBvsRhaC5vBu+ZT4u5Z48bKryOLkbgD9EunVCsogHjA+y+V1PuEcdS02NQwvXxyXU8q3wmLMF+ZY+ZoM/sjXXMMdbMGzvIGcXoZKgd2uSiyqKnUDCJH3dQ87BeteRknEJKbcWLttFjzrZJIx78Z4ZPIq4+7UgrAKbVwb3aP+yeEOJKwTYWVUut/3Box0jfVwie4Uk+jHJ/jw1xCL4ArmIqc7jU9W0jsvP9dO36OKQJaJPnvLXnYqzymFcVhlAZfYDPlxaa9kTeo+QLeebUptb/dXDX4tzrlkg8rBo/3Gx2yoJPg43FEdHgDimF+kZJum6r+3iSp78ndC3CaHy/Fvpwc4JUlI3lGZVzdawKO+EGlqWswt5PlRwnxW/KO23h8lu5MjgxRpdKtISmIifyFp2mqncQJL7iIvUJILHHOkqabsmCTHIOhqpSs1Iskdrc2VjaLe/DspEVu+k84rdGGm2EJZNFQ3dEtvcLSb5/VwMaAimBwkuqKHuLwuH/F12mXD9WnWvDBCiLgvZ+H7S/0Rr4It+3LY84iU8Wnr6Y9nodNWUKVPHAv6NKwYPy45XV9s0uKMJyTgUWJTgxz7WrPwEAFRMnpHk1BJewnF7MPSHF/Gr49/Xg5VzEtLDGubC6PeuKRoEcCRxCsYIqtLuyg9bUItmL+jMoh5vaaD8L9O3V+iHRXs8UHiRXwNbVjxSH6fv8HuQ5ZmKif2zGHURqLmcKd6UFgWmVMr7Y06BaVUc6927fUGNHFjtVHwDJ8p8DjUz4XdtyzUmdQXsiUMTHZpJTaGuheGYRpebOoG64vcuHuw8yJkB4l4EoHeXbi6pUPngIx6lN6v+6hS7tFnFUQGSYRzC8Vh4huFqKWJqxEaNhaAuhp+nqz5ndvpKTB3N0cSAbWNAaD1ylLvoftiqCjqqbRmOJ7BYS0HCrUNgo0Q285BL0ij7HA0PbzX6EaJ5p9HTZMES3lGRwGO9qwHLC050uUmSgnGVAuKHVnqeS5o7A7JcrvKbmj7JVu7+AysyWQAM9Zz3tc6DCwfmNEslswKrfIh4zrgBkusUBCwD0xAjhdejlCG4ndHbwEwSE3a8l9h0Y3kVyTjIjcqr403vwl98xx4DTx1TRbZeNEYdjB9vHBc5peDo7GzDrlhtvwLaUVnfS9/7d1Mqu1JTWdERZHEjkiaiIZw+e+VoU126Cjliv7gpJpuilrxbnC3P1bs12aE9UxMOZ5DsaMeRIoo/SZNsPTkaxY9JyhA/vl8TuZ0vYfCkorllWO/SXusaKgY2Dw2ru9R2lvKR0gb7JJNC950Oh/X0t4B57TipEp7bEJPWEKhm7fALMxZIcTtM1l5tDb/PoSTRdL0Sbkscz0Kg9HBMB8jVPG7fmmdwA2nSoVEcsNRqGRt5MsNcyRiyRcxiZxtCex3iW42FBqgm8O2N6wYELIpRqzc8+hl6nwAQnhdEerVVLf3zgvk+RGO95t01DtY2Q7OY/7xTUK/sYNlWZr+uz+FMaVyE4lbU1sSXviacWvucM7SyqO0b7PmeH7iLa1Ql5ncQOMFV5TMndDkj+2cGcoR2pGU10D1BX90P7l05yEnxZsDqkkxazWAhmKbUMI+urtZ6SEnIIMzkBfuhS6CqKAG/eEl+lxaEuVxrd7WqDL1BxwmebHHKjt5gaG6ePGRH5lnx0edmImekcYvMfPEtOKspEtmXIs3GXOye0M6ZMqoNr9+ISZPtWmsPvax41dyRHorBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 466,
+   "completion_tokens": 300,
+   "total_tokens": 766,
+   "cost": 0.007864,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007864,
+    "upstream_inference_prompt_cost": 0.001864,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 282,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.925
+}

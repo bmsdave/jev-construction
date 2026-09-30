@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New gym changing rooms with showers in a leisure centre\", \"project\": \"Leisure centre in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678622-j0Jj2CNd0g7V5j98STxG",
+  "object": "chat.completion",
+  "created": 1790678622,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether the new changing rooms and showers count as a material alteration requiring full plans since it's a non-domestic building under the Fire Safety Order, and whether installing the sanitary fittings falls under the Schedule 3 self-certification route for plumbing rather than a full building control application.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether the new changing rooms and showers count as a material alteration requiring full plans since it's a non-domestic building under the Fire Safety Order, and whether installing the sanitary fittings falls under the Schedule 3 self-certification route for plumbing rather than a full building control application.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3goKEAgSGAI4AUIIdGhpbmtpbmcSDMObdZgv9bCd9zYubhoMyG0kpFiL7EXYSsunIjCBq54UYj8dqUrINCZhcGXcmHWjhclO+vwh0K+z6iQosaFVTki9aeQvCo+oBWG5z3wq+wlXrxdhu06npVB8GhwbwwtUk6iuXOWWFtW8odVh5vWC1yaSXMzR3+nBc++B6YAwbAbfOQSUkBfgbcgHazMjr3gXgEx8kkeRclD/ZB2CefWW07b9fL3pynzyGbbKzmFoIXr3ZmS1vUXxKt6f9h/3D8PIoNBXlPvGednqgmE3aOeCn5Y+FPZ4hhYOFo64mo/UJe9B6z2UJXDokMmaOfXjDUXyHAt/WRT+ILM1pjPi9F/8QY1cQpyt7s7tvOyurxpp4WMpozete15cggCnrQR5ASXeOTMka4epg1rSIbUv9PnFl7rFkqHiX4dogzSdqeDJiN5Rg+xGl1uAge25Bws8x5CfJ9fRDwpVMq4zpJS1x4A/xMcljlFEsLPRXIBJ4jxf4Ol++V2D9suiMDQpbgHBhQEsPJhd9T9QWmS/vTZAo+4IVhdq4IwEKCmwTAxqGOMwzBmHdzzhqlUdFOijUB+wZ3MliQ05s1X6Wn/pPVyfPtOTaJ9DIhYiASabn9ZoZcWzzUhBthY7juBh4dozxKVGsnnIuJD+VbAbrJa1Kvd4aL9JPvO24kqPRpzVY23vTFCIxLAfuT3rG7LbgDqeHjkckiTYp7cBJPGYFX+JhWBZu9eERWDKt4ibG64NVfBDMfaXenzBiS4xMCqiwRR4un380fT5Lf+nOUQ9AY/hKyCjJPabv0Pk7v3h/rtBDCCP5FVO9cuxN43TgwbFwv4Z/ss1QMIePyrBe6m0xHhIKI8qVCrdB/qQv2AcGBkGvpA/7gO8FLC1DC/anilPxLeaz/M/AtnAbx9APcQHdQkC6elvNDoWDmBdjeXfZksIGIIDhV+vpGHxS5cS2EomVWTPdbAWfMiGYLLrtdgGF+YEAPtC7kI3E1VrFV30sQiHqJ+EDLiyzDidBiTkFmPvq0nZR1fknJxNyg4HCf5H3GofYJzNM4V3C1ggG8DtuIAxBoe+pCf4/BNNB1mUD8hJGz9867gVSYmrIyxxYV3lmIl/EV9BS82QKoklUElk4Axv684P2xRtzT45Cjr3itM7IKftO/kIXx4VxheE7GH9jeQZgSCMvJsZTJv3hONmND2mrp3Czsp8zJpMLLiRYdzmMNUTzw4OV+nesEQ6T8G7c/O6/WnxMFQCpU7viIO5HXq8QGo7Jh8wYOVj2mL4HmkX3v5qTuWuWsx2LCmldLpxcKBsoaPtbKsq59Uw4R0TSpfhuz16fSmXdIfa/aGiRgeaMo0Lk8MV8QGnu0neJA6vnImZM5Ssn3D19EbDP3f/mxkeBAe6X8/+7vx2ZoDc9+k3ifkmjXwgQcjDL5Atkh1IYFg1n59kBDXXe1TkBA2EQfjLR05lzuLfmbBl6BzRFlPM2OSg2rnQu/rvJj+OQYaDQ3eSDY4ojdwMZaNmINkRlgleANlj8bhkE/2Z5Hfm7u0EIQxo2zWPvTAQ7UDOGZ+/lgLO6KYdeIv7kfivsvG10KiSdScjKv9X8x5xBywMt6PR/mt4Ucm3ulGgiW51MzcwvAWLpsioyqR6Jj/i3tD+HAmNpDUDSPkOpv8M5bUvC5AnhC/+r2L4p5Tf4NsFHYfZHJYsJwZhocR5OZFUR1DOfbf3fo4UjNe/8ORQ2AyZ5SGQBFd7/zCzRMLl3PBuB2OxKGkEcdq2JU6AhF8iKtsb/d4A1gmKJqZndtR2XQUyWO+R6uAmvXwPP6Q4lxP9LQ70Gk5m7lMYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 469,
+   "completion_tokens": 300,
+   "total_tokens": 769,
+   "cost": 0.007876,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007876,
+    "upstream_inference_prompt_cost": 0.001876,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.733
+}

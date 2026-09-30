@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a burglar alarm with low-voltage wiring\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 8\", \"document\": \"BR2010\", \"text\": \"8. Installation of fixed low or extra-low voltage electrical installations in dwellings. | A person registered in respect of that type of work by ... ... Blue Flame Certification Limited ..., Certsure LLP, NAPIT Registration Limited or Oil Firing Technical Association Limited, ....\"}, {\"ref\": \"Sch 4 para 3\", \"document\": \"BR2010\", \"text\": \"(3) Work on— (a) telephone wiring or extra-low voltage wiring for the purposes of communications, information technology, signalling, control and similar purposes, where the wiring is not in a special location; (b) equipment associated with the wiring referred to in sub-paragraph (a); (c) pre-fabricated equipment sets and associated flexible leads with integral plug and socket connections.\"}, {\"ref\": \"Sch 3 para 9\", \"document\": \"BR2010\", \"text\": \"9. Installation of fixed low or extra-low voltage electrical installations in dwellings, as a necessary adjunct to or arising out of other work being carried out by the registered person. | A person registered in respect of that type of work by Association of Plumbing and Heating Contractors (Certification) Limited, ... Blue Flame Certification Limited ..., Certsure LLP or NAPIT Registration Limited, ....\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677836-uW2HsW6zp2iIYCNn3z6K",
+  "object": "chat.completion",
+  "created": 1790677836,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Burglar alarm wiring is genuinely extra-low voltage, so despite the colloquial \"low-voltage\" label it falls under Schedule 4 para 3 as signalling wiring outside special locations, meaning it isn't notifiable — consistent with the rule that dwelling work only needs notifying for new circuits, consumer unit changes, or special locations.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Burglar alarm wiring is genuinely extra-low voltage, so despite the colloquial \"low-voltage\" label it falls under Schedule 4 para 3 as signalling wiring outside special locations, meaning it isn't notifiable — consistent with the rule that dwelling work only needs notifying for new circuits, consumer unit changes, or special locations.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS5goKEAgSGAI4AUIIdGhpbmtpbmcSDCW1vj4mB366JXPSeRoMxOVzXZ+fYm82c2//IjDDCYGBG8zU+n+YWgXOV39PMSKmN0X3+GxuwsKn+wQYoeDNlKuxnhFO/fTouBB7+BQqgwoiGk5zX/r+V7vulY469Er62J9o0nPFBI1Xi6NRNihjPV+fGnfoQSQZklIeShd8YlOEnHIb3/oMWGtoQbQUFWwXk5TujEEXKWGlfr4gHlvOumEl8kgLSg0W2UTJKArElkLPO0EgCQla2GqeDQLwk3s2N7hUSU6iQcV6Ifi/PZ3qoIgBt2hePuCyY71CMS9wHJ62eSDC2XqvilW/EwpfFyjVui1zUz1aDQqLQf3k+5InbUdVa6ShqxbeDkhqNvVn5pL77LAUu86FHxZPrOWLo11WcdhCKjAq7N6EFN3g79C57X8aCiXoPJm+8lOY81XQpuC/s1+x5B7mH40jHJX7i4kkSt/lG/wRW1lKYqnh+T2HtiAP2nEDZ7BasmxUCl6DRq8yAzhXaQFXc/IrfVfBFXHfQGoNCQn0JOvcwlQWPEYrA28szWadQd04ewFrMJ+bQoSLJwHD39PpP7MgQdbrgxyEUUiPPcgbHA+G//aTNWFoaZ3E498VDOe46zQ7UeylHBpg60eKo5d0MIhJH84E2/Wd6qyRT0kIUB6lfV8bqToHsJKOwustWKFdqUmvaLH8kELlez8izaNIt4t2sOQShuHEfRV4gUrFgbBtonzY70pzvbfPlcEC9ULos6jakUaWwlZcDwqDLSDhMRRETJW4RpenD3qLfxaSMPjzOMtZk54LschZiSyOox+RJzONJlcj2bhKmCK/CFj5JHfoVEJEcY30ptaFnlxqo0JAcqgd0/rD4upQxgHcdErMWhdtcgR0v03SvpnT9uEMKyE2FZyyQ+XpXKeRerspQaQpOh9yuWvUjBhRu9eCDqVfupIvefCBgkhRwgnJAPaxQ1DwF3Ie+QT9SfD1TbSg0HgVElYVbfnNJuAYbH53DM/DNoRCWp8iVM6v96PU2eaYv/Op//MiEgDO+znoP16ERCrViwL/YL92FsS/TGb6RxPWKr/bPBYVY0k6SW/XQ2UFcbqDoV9SmqiBc6m5bcqsUiImt/IHnqENPDLyjT9HtP0qFB7L7LMz4xL7gRSYh9eCf2vm/8HnOB4dr1J9LJ7A6gchcylHbSQD6mrqmDepKU9OiNj0p62PAZTFUilxpWGcLJBUsxsa6GeQqKQYwht+mapQQPl6SE54Iw5v7iR5bN4CqDD4RJzuK/AtWkXhfZ40jkwQ0Cl3ece5qWfQnNblj1ZBkP1Zicem2Nnp/wO4mvzqJrYRaEM2SWQQHwMBtAcS7vItwGZTvhS/g8r60kpldVpnafmhZfjFLjdcmjIEj7rOcU9y6xBkkiwyEs9zTyX4c6kXsYiZMfrv/bG90nKfDtM9DXR6FhZJ/Tpp6CKe8NYjFIg9kqe90U3OLk4nFdARKmIiD+xQSnyx8eq4ivduhd5tQLwPJMEHfZcr0/s4JnhlUB2rPc0jFA66eb4WqtDyqWhrX6gx52+Jm/N5msoepmt/WY3WXyKwLuxz9yTtbBx7Q6rCr55ofNLSIrGAtmLrMm8CQhbTpkQKl5bKZWBNLNpzHWv/1sARZx3lMUcWAchJvTYe7u2ixxVkfhBo66cv/t3h+n079/TLuVqqaqW8tcB0RnYaPf9OY7jD3loCydV8n4nAVot0ttvItqhVkTmH7K50tpwASWYp9T0DwaL7Kw1yfGnTikwMmtgJYBAs2YtuJUGnh70mYVIkY2Lpqz6p8AS2Pzkxz37GurO05idsNbfwZFrSGJf6+kmPOhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 924,
+   "completion_tokens": 300,
+   "total_tokens": 1224,
+   "cost": 0.009696,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009696,
+    "upstream_inference_prompt_cost": 0.003696,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.821
+}

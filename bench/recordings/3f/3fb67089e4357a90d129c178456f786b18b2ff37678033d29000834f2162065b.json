@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Converting a house into a six-bedroom house in multiple occupation\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 5(c)\", \"document\": \"BR2010\", \"text\": \"For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (c) the building is used as an hotel or a boarding house, where previously it was not;\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 0.17\", \"document\": \"ADB1-2019\", \"text\": \"0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677657-jIg7KLsGgUEvmzEuP2bz",
+  "object": "chat.completion",
+  "created": 1790677657,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm considering whether converting the house to a six-bed HMO counts as a material change of use under reg 5(c), likely falling under purpose group 2(b) for residential use. I also need to check whether the Fire Safety Order applies to the HMO's common parts, since those aren't classed as \"domestic premises\" occupied as a private dwelling.\n\nIf it does apply, reg 12(3) would require full plans since the FSO applies or will apply after completion — though some argue a shared-tenancy HMO still counts as a dwelling exempt from the FSO, so I'm weighing both interpretations before settling on whether full plans are actually required here.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether converting the house to a six-bed HMO counts as a material change of use under reg 5(c), likely falling under purpose group 2(b) for residential use. I also need to check whether the Fire Safety Order applies to the HMO's common parts, since those aren't classed as \"domestic premises\" occupied as a private dwelling.\n\nIf it does apply, reg 12(3) would require full plans since the FSO applies or will apply after completion — though some argue a shared-tenancy HMO still counts as a dwelling exempt from the FSO, so I'm weighing both interpretations before settling on whether full plans are actually required here.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3woKEAgSGAI4AUIIdGhpbmtpbmcSDCk6mIS7IusRb3gNnxoMbxqzppgz/kktrUIqIjCxujQCib6b/OiWsKB2ISQiS4rC77KWSBWMaRPfoRH9hdXe4ydqG2I8ZZlnIIa4gV4q/AkYFDUuYvU51kyXl3vMFYNaratBtBdFsUw8nTcLpNmjzud1eFxY0vUqK0DBVQ3w5QQgtfRoOhXOiQtND9Qhsr+3igsmEO8CEbhRjzjHDQpiWWFlKN6McFyBUz3zT/X3p3Z9nbR0Fm9KzooAWirFeudJhuL1VGhAZV7cBTdxQVCTnbiu+IgX9moJjNlCrTws6Hil0F7p6/qoqZZTm5Dp3sTq4bLlB3OTl9weBPJohRkzYEXJtodVUn8GkPNpZsnkNf6KYqd08eqrmvZ4cgIONp+kMhF+L7HWvq3NVtdhDJoxEeuJaTeCHwqAK9T/3oEAiw1W8tnfKX866q1+8d3ECb5FqvM2dSo1J1XuWBqIL6QwXnLeN6wRB8+6ZSZpIK5RtAQysGyJu0RTIt96GY4qK1cQkQy5Bhtz70svVlGV2NYhLJShjvr0SBG0IabKE1KmNRmJOgBajP5QG6bLwqL8jaJd8eJIaGrZ08DbmwexqVNtcBkzfA9N0fw2/mQF5Pj1XeLht4tDbMFIpNJk5JhGkxQYuw07aukvyc56TPVi88PlZdOTEzGXuLXUyMdU707wEmfkPHIi+PxUnz1JTRH0yWc80SDrHzEIrYekTcyq7eKrSvLgQNzYUqGaUhB7aKnn9QGnjC/W2U4BNNH1ejBamw/Li+ZpxNgvKja0ShVk6XJ0wEuIafEhWhWUkaxjSsysI+FwJ07q6dPNJ2jRu8RlHtv9PUfKmWtGTFOhwmlqdweCf9AXSgS6SQobP2RNq/+JWFYoVeg1ebSUKcEsmdY3zmGY06rJ8wDYPL+OQaXeicBKUJOFC5NyBahkkFszNFc0FG3Pd1Hv1mFqACSonWPxDdNHbsXcvklxesY3piKYVXvmo0vlQtoVODFqOWQbzNNDRlNMjOP1LIDEcSCD+LawE3yvFlQ8cYehg7h/ZWZPZMNsxze2qsiKatx0mzEIT3K2qa98Mm7k1j0Y40oKGq2pcGFmUCojGpFbgLtwGRFgB/dPW3SwSJiO77vU/zVqrUHJplI2JBALjMwXnfBVsJXDsbN+c+gjrTEkvIpQxf4z+6CcDG8UFzYrUBsm9Wl8Y0Me3MNa0CYL8ZNtH/FLP7X8A21EXApDC7rDUwgOsn+3XEwiNIZyFdWylXaNfsWbVgmL/9BxkAfbs0e/xI7lQ7++xl6Q2DRDWwM9FHIZzQBgqKYtwmNsTOvrJuliQ56dLH554ZmgVWERBj9cylnaSNU1mZWbzlzyjPIQ8BMrNjkzGdUSe/2z04V7h5cQBkeXSLx26FVBSgx/lzHObGNFEaBjqWJXRv5FJJH8CzMgBD1w9WkD4v3c5yAK9RKd8EP6EiptDU2ZY2dmTZOprLKbICg1c+gNVtQewEUytf/eWmOr52WguBqKWLNxUYaPSOE3/+TTxpmX0q1zQn0gF0Ov82IfnorUqBpgBq5QI14ukoUqWEIU8Px6yWS4wH00GS+kD9ytnkk2XO3poxVQy3yuzgkxKyp1x4ryexpafyKIWcSy3FPaeeRGuWlsn1Ad2JkQnGKO+aoYL1tB91GDhbcyv9kz/gmyoWlEHz4nDENyi4pN0cjDw6bKCZ8Li3CSrauGPpKUSRmSa7RYqUcOhQ+518oB6kcEs7FHXynJH89HeofJ94xBsIntTOVqyZr4++dvO1QdloLwRpQy+rW0wuvHY/5y1P/xNGKCphUpz4h+oJ8FGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1382,
+   "completion_tokens": 300,
+   "total_tokens": 1682,
+   "cost": 0.011528,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011528,
+    "upstream_inference_prompt_cost": 0.005528,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.499
+}

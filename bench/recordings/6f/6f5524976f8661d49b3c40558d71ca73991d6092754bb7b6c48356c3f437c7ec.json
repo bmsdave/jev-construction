@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install a new wet central heating system\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.8\", \"document\": \"ADP2013\", \"text\": \"2.8 Installing fixed electrical equipment is within the scope of Part P, even if the final connection is by a standard 13A plug and socket, but is notifiable only if it involves work set out in regulation 12(6A). For example: a. installing a built-in cooker is not notifiable work unless a new cooker circuit is needed b. connecting an electric gate or garage door to an existing isolator switch is not notifiable work, but installing a new circuit from the consumer unit to the isolator is notifiable. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"Sch 1 G3\", \"document\": \"BR2010\", \"text\": \"Hot water supply and systems: G3.—(1) There must be a suitable installation for the provision of heated wholesome water or heated softened water to—(a) any washbasin or bidet provided in or adjacent to a room containing a sanitary convenience;(b) any washbasin, bidet, fixed bath and shower in a bathroom; and(c) any sink provided in any area where food is prepared. (2) A hot water system, including any cistern or other vessel that supplies water to or receives expansion water from a hot water system, must be designed, constructed and installed so as to resist the effects of temperature and pressure that may occur either in normal use or in the event of such malfunctions as may reasonably be anticipated, and must be adequately supported.(3) A hot water system that has a hot water storage vessel must incorporate precautions to—(a) prevent the temperature of the water stored in the vessel at any time exceeding 100°C;(b) ensure that any discharge from safety devices is safely conveyed to where it is visible but will not cause a danger to persons in or about the building.(4) The hot water supply to any fixed bath must be so designed and installed as to incorporate measures to ensure that the temperature of the water than can be delivered to that bath does not exceed 48°C. | Requirement G3(3) does not apply to a system which heats or stores water for the purposes only of an industrial process.Requirement G3(4) applies only when a dwelling is—(a) erected; or (b) formed by a material change of use of a building within the meaning of regulation 5(a) or (b).\"}, {\"ref\": \"para 3.1\", \"document\": \"ADF1-2021\", \"text\": \"3.1 When building work in an existing dwelling includes work on ventilation, for example: a. adding a habitable room b. adding a wet room c. replacing part of the ventilation system, including extract fans the work should meet the relevant standards in this approved document.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677927-k9wmk8xAYadTILd6KMhO",
+  "object": "chat.completion",
+  "created": 1790677927,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.85, \"building_notice_or_full_plans\": 0.1, \"not_notifiable\": 0.03, \"full_plans_required\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Installing a new wet central heating system falls under Part L Schedule 3 building work, since it involves a heat-producing appliance connected to a heating and hot water system. This type of work qualifies for self-certification via a competent person scheme like Gas Safe, OFTEC, or HETAS, depending on the fuel type.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Installing a new wet central heating system falls under Part L Schedule 3 building work, since it involves a heat-producing appliance connected to a heating and hot water system. This type of work qualifies for self-certification via a competent person scheme like Gas Safe, OFTEC, or HETAS, depending on the fuel type.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS4QYKEAgSGAI4AUIIdGhpbmtpbmcSDElP5Ev55cZvBFnUiBoMTqvSF07K4ao1kYkuIjCg3ssCgiA1jEyvd3sAHwMiJFQXFbFPMBo/lCGRFt97YvZ7yZzRrTFwJpM9Brby4qYq/gV1rh6e2m08GD3qXjSlOtEJHzfwSoVowvClQDDsmxmaWxhInXh21gStBf7MTKhE7OKmLpcugjW0FK9d0XS9yExrDM2w57vliGWomL9z3YaQhtijHSoWnhdgMMlZGBsYoEBqkfePBV1i+od1moIcvKYVYPelZc9y4yckHQoTmEfVGhHoKLqybxhZZv5loCHf2RA18SBk2corCP3QY0vKOZsOo93Vb5SKM79krPKqyGYV74aLlu00SwMvmnVtWONs9de2RwokXPM3vc11/QT4rEU2zHnYFH01I235/dKlmTg7FD2fKWhS6I1sDLZ4xksz+HKU56xHXIVCyfg2N6XmQX0jvM4nM7jHNx25Ly38OYuxIX7YK7FIP0TMVLGF+LAh+Qyn9PAhtyNJaTBKKHtm5Sgb86zhU52oaj4ixLxIO6J23nPBDqpeha0FsfQVzpcRdeiQd6vdQWuOrK89d9dTVi+QaRHNozxDMu/4shtyY7ToQ918wIB//yjw1S4DvmFKx7P8PVMFJ3HSzW67GTYO965QZhnLwdzbwpyuvuoQEaLq5pfMXzL6l9bKsYT4h/HXn8h4yQbOFhfIKELfbfHVlm9oPI60cYtc8SzxdgGELM7zKkife372xvNeK+layNYmPicwWOHZaPKjWwSt9Q2khpQbk9i9ymM7lw4Dm2uBd3z7lxm3fzESVsnFxayuj/8I1iXYqa7kJZeUS3k3JwEIPYxLZfAPyL5kaCEeva1RUzk1n+2eoUXxsm5JF+eKmKpD76XPi/s8m6hOXeGrkIZGXpK0ADe45oaYGgFK/p6qcOwDw3GKsFGirNXW41lD4RRYvSfoYRf6FT9yUWNLxrVMFExevvSY1zn8TwiihKDhto587ny7tuO/Bw97/6eR3Ly/6hYC0MGxOsmAW9sDybExrlPPkq56teVXjXOC0hdJS5OF+/XiUDBeeeGBqEBo4GuFHWU0TorTzMlcDFbzuQkXyqNsEagCUrx7mtljkBRhDElYnS9Fc7k3+tI8pw09EhkFGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1311,
+   "completion_tokens": 198,
+   "total_tokens": 1509,
+   "cost": 0.009204,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009204,
+    "upstream_inference_prompt_cost": 0.005244,
+    "upstream_inference_completions_cost": 0.00396
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 115,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.33
+}

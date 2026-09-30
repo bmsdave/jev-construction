@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Install whole-house mechanical ventilation with heat recovery (MVHR)",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "para 3.18",
+     "document": "ADF1-2021",
+     "text": "3.18 As an alternative to paragraph 3.17, to ventilate the additional habitable room, one of the following methods could be used. a. A single-room heat recovery ventilator. The supply rate to the additional room should be determined as follows. i. Establish the whole dwelling ventilation rate from Table 1.3. ii. Calculate the room supply rate required from the following equation. (whole dwelling ventilation rate × Room volume) (Total volume of all habitable rooms) Building Regulations 2010 F1(1) b. If the dwelling already has mechanical ventilation, the centralised system could be extended into the additional room."
+    },
+    "c2": {
+     "ref": "para 3.25",
+     "document": "ADF1-2021",
+     "text": "3.25 When a wet room is added to an existing dwelling, whole dwelling ventilation should be extended and extract ventilation should be provided by one of the following means. a. Intermittent extract, as specified in Table 1.1, and a background ventilator of at least 5000mm2 equivalent area. b. Continuous extract, as specified in Table 1.2. c. Single-room heat recovery ventilator, as detailed in paragraph 3.26."
+    },
+    "c3": {
+     "ref": "para 3.12",
+     "document": "ADF1-2021",
+     "text": "3.12 If the method in Diagram 3.1 results in the work being categorised as Category C, it is likely that the ventilation provision of the dwelling has been reduced significantly below the requirements of F1(1). Further ventilation should be provided by one of the following means. a. Natural ventilation, by following expert advice for the design, sizing and positioning of ventilators to ensure adequate ventilation provision. b. Continuous mechanical extract ventilation, by following the system-specific guidance in paragraphs 1.60 to 1.66. c. Mechanical ventilation with heat recovery, by following the system-specific guidance in paragraphs 1.67 to 1.73. To avoid unintended air pathways, existing background ventilators should be covered or sealed shut."
+    },
+    "c4": {
+     "ref": "para 3.15",
+     "document": "ADF1-2021",
+     "text": "3.15 Replacing the windows is likely to increase the airtightness of the dwelling. If ventilation is not provided via a mechanical ventilation with heat recovery system, then increasing the airtightness of the building may reduce beneficial ventilation in the building. In these circumstances, it is necessary to ensure that the ventilation provision in the dwelling is no worse than it was before the work was carried out. This may be demonstrated in any of the following ways. Building Regulations 2010 F1(1) a. Incorporating background ventilators in the replacement windows equivalent to the following. i. Habitable rooms – minimum 8000mm2 equivalent area. ii. Kitchen – minimum 8000mm2 equivalent area. iii. Bathroom (with or without a toilet) – minimum 4000mm2 equivalent area. b. If the dwelling will have continuous mechanical extract ventilation, installing background ventilators in any replacement windows which are not in wet rooms, with a minimum equivalent area of 4000mm2 in each habitable room. c. Other ventilation provisions, if it can be demonstrated to a building control body that they comply with the requirements of paragraph 3.2. NOTE: If it is not technically feasible to adopt the minimum equivalent areas set out in paragraph 3.15, the background ventilators should have equivalent areas as close to the minimum value as is feasible."
+    },
+    "c5": {
+     "ref": "para 3.11",
+     "document": "ADF1-2021",
+     "text": "3.11 If the method in Diagram 3.1 results in the work being categorised as Category B, it is likely that the ventilation provision of the dwelling has been reduced below the requirements of F1(1). Further ventilation provision should be provided by one of the following means. a. Natural ventilation, by following the system-specific guidance in paragraphs 1.47 to 1.59. It is assumed that any existing purpose-built ventilators are in working order and that the equivalent area has not been compromised. b. Continuous mechanical extract ventilation, by following the system-specific guidance in paragraphs 1.60 to 1.66. c. Mechanical ventilation with heat recovery, by following the system-specific guidance in paragraphs 1.67 to 1.73. To avoid unintended air pathways, existing background ventilators should be covered or sealed shut."
+    },
+    "c6": {
+     "ref": "para 3.4",
+     "document": "ADF1-2021",
+     "text": "3.4 Air flow measurements (supply) – mechanical ventilation with heat recovery only Room reference Measured air flow – Design air flow – high Measured air flow – (location of terminals) high rate (l/s) rate (l/s) continuous rate (l/s) Refer to Table 1.2 Living room 1 Living room 2 Dining room Bedroom 1 Bedroom 2 Bedroom 3 Bedroom 4 Bedroom 5 Study Other Design air flow – continuous rate (l/s) Refer to Table 1.3"
+    },
+    "c7": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c8": {
+     "ref": "reg 5(c)",
+     "document": "BR2010",
+     "text": "For ... the purposes of these Regulations, there is a material change of use where there is a change in the purposes for which or the circumstances in which a building is used, so that after that change— (c) the building is used as an hotel or a boarding house, where previously it was not;"
+    },
+    "c9": {
+     "ref": "para 2.2",
+     "document": "ADP2013",
+     "text": "2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats."
+    },
+    "c10": {
+     "ref": "para 3.26",
+     "document": "ADF1-2021",
+     "text": "3.26 If a continuously running single-room heat recovery ventilator is used in a wet room, it should use the minimum high rate given in Table 1.2 and 50% of this value as the continuous rate. A background ventilator is not required in the same room as the single-room heat recovery ventilator."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.13
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.09
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.03
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.05
+   }
+  },
+  "usage": {
+   "input_tokens": 2997,
+   "output_tokens": 175,
+   "cost": 0.000125874
+  },
+  "id": "gen-dec-1790677193-BnyQwcXXwF4tFXX5rDW1",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.279
+}

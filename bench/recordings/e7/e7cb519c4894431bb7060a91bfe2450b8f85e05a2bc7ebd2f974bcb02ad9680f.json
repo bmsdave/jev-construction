@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Outdoor lights (front, path, seating)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678520-3DVOMqCAyGo2NIIS5CjK",
+  "object": "chat.completion",
+  "created": 1790678520,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm thinking through the notifiable work rules for garden electrical installations—since Schedule 4 changes in 2013, outdoor lighting isn't notifiable unless it involves a new circuit, consumer unit replacement, or work in a special location like near a pool.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm thinking through the notifiable work rules for garden electrical installations—since Schedule 4 changes in 2013, outdoor lighting isn't notifiable unless it involves a new circuit, consumer unit replacement, or work in a special location like near a pool.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQsKEAgSGAI4AUIIdGhpbmtpbmcSDIJibyW0C1jGMCw0ixoM1dRLTRuCUpA5JPZzIjAej6rFeMal+HhiBLIXlmDLaEsil9pee2u12c6sjHh9i+Cls1HLSgcZYGDV+daddOcqrgqrWfLXM1y1IbaPBp24ZPLZn7IyfHzyXx73oMX0CsL8L5zxBVkFpxOk3tcRhzoBq0P024Z4kC00ReQBq0B8J1g25YHho3cBAf8ve2bp5fM4FewbuY1PMrnYZ5IzXyKRLwKd3vkdQowTappNxDlNRBOxJM2cV4bc0ZHkEYB9i3pAEwItlefC/FVCayEeIs8nmkAYNa+3izkW7fRJfb7HLtRIuC6+/h4BOJAKIdqC3Qqml7MA3tSKHodA5kHSZ0ihz3yONUZzAsqpVXV0z3DAGEzADwLgfYfBvxezYt0VstxtJgoKhrAnqStzx1JQgShw/CmzwadABJzRZz11wqMb+kErX9y9QMFXL20jEt3wUtYzchmI2su49WhhWIgXS4Ip7rFjNnizA/JfHGPljOSGaDK6Nt3UWZd6WoPNr98RFSk45BPWiZuYZ0tD8NlyUasRcnySj9xBWDu30VYW0JtIUax4O7HWtbbrldaeCo5E/MF1dAyXrncmVPWIwuw0T2EJXEMRnSu0pSgxjz38ld0+9rlStf7woUdaqFAVB1mDeaOR/OoY/JgruzGIg9MwD4Eh97keQyCiwNwHq/ibg9+hqKyUGFySrSlv/S4lx5aQluLbi0Gb5FYu+hDNdswdAq1Ml9E/DlkCFmhwHXZtE/yfX7Jl1D/wk4D7Mixm53VbGUiE+V3xxApCLb92Vx0DLVppNfnAVF8CBWdXiY28xNWyXezCgHezIDZw2LMiundio0W0lCvX5TJa5igGMJcwedhFja+OJfrBWoVBygDZZpshZNeF5sVhVzr3AOOdkLI1mOJcUIAd3D7V+HHFXmQ/CkQyKY8WcXl4C9G4cn6DZcqFIE9G3F3lfmgpayrXfLAj6YuGVFL6PNP5zlSuXlp3RK8Y//+gfkf3yX9PFoJfCIw4hDzvZLUcFShuEwgPVccIn1v4fNk2NRJUVgqS3zinpKMT2M0cOR8VASZGr2WX85mftZYNHdhx9NzyGhY5W4RI4L++PUamzdjB52O1BxRC8EpbiuQV/o6pHuBKH5bNF12L8fTLUNeURel0xOPkz4+pNojJXzpA8eV8ioBUUS84j3jkmgAbYmoE3fJD47Od/YxLLo2hyXxA2DfknP4MD3Kp0SsZS//mU0bLGxoZhMhsj7GcQFLWFtYpCvH3p0i6UZZFLLpNjsMgriGiP5/C0ZZp7fWoQlEClnVufq7tHcG4TOJB0Dx6R4K4HyslYfaxlapnL+WGn0hb/lNdVa9dk+r98NdaP6vh7CNQBN3nb5xUWXywLe1q+mYsvM+tZM1VydweHZ9ijg78IW2iZLYDAv4Ac+pXvC01rPxxLztwHhibDh3uxyb5jSWXnX3BVfXg/jpMV7RvXdVQFQpbHVouVp8/OtLLLWAG4fu1T8kdc/X4nTY8QZ6+ahITeyk+7fkKW3G/hxTCmN04FUfrzN+Gf8+3XG1Li+V7QuZKtw+O6oBnatyjHi+jPPvAomxPECMwEWbflp0TsuwYIOsky3l4psqNZyFA2oDxVXAIjJ/tR3vNC9IIjcHQvvaS8jbK8XL5X7CWIu1xVrzru07hbupUZrwOIxSthLKKxCNNyPDyJo/mTSmSn8unLVC03BMMNcjp1GQ5sgB+ykMWN8MeGnsZBM6Ke9OxCmVJyc7hP+FNn88WdwVjbU8ntMNx0H7iYd9rx2N5l8Eeh4uyW4pTtdKRFK5DCJkSFq4CsHtzwZFqVX+lFX9tMINkPaPxaxHo5la8+/K9+ZCACMuO9RGnD+OUiYheBzcYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 499,
+   "completion_tokens": 300,
+   "total_tokens": 799,
+   "cost": 0.007996,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007996,
+    "upstream_inference_prompt_cost": 0.001996,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 16.13
+}

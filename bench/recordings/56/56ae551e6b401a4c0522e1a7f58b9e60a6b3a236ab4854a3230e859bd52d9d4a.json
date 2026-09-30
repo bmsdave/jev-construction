@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Add a socket outlet in a room containing a sauna heater\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.5\", \"document\": \"ADP2013\", \"text\": \"2.5 Electrical installation work that is notifiable is set out in regulation 12(6A). 12.—(6A) A person intending to carry out building work in relation to which Part P of Schedule 1 imposes a requirement is required to give a building notice or deposit full plans where the work consists of— (a) the installation of a new circuit; (b) the replacement of a consumer unit; or (c) any addition or alteration to existing circuits in a special location. —(9) In this regulation “special location” means— (a) within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends— (i) vertically from the finished floor level to— (aa) a height of 2.25 metres; or (bb) the position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; and (ii) horizontally— (aa) where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; or (bb) where there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; or (b) a room containing a swimming pool or sauna heater. Building Regulations 2010 Application of Part P\"}, {\"ref\": \"Sch 4 para 2\", \"document\": \"BR2010\", \"text\": \"(2) Work which— (a) is not in a kitchen, or a special location; (b) does not involve work on a special installation; and (c) consists of— (i) adding light fittings and switches to an existing circuit, or (ii) adding socket outlets and fused spurs to an existing ring or radial circuit.\"}, {\"ref\": \"reg 12(9)\", \"document\": \"BR2010\", \"text\": \"(9) In this regulation—“fronting” has the meaning given in section 203(3) of the Highways Act 1980; ... “private street” has the meaning given in section 203(2) of the Highways Act 1980... ; and “special location” means— within a room containing a bath or shower, the space surrounding a bath tap or shower head, where the space extends—vertically from the finished floor level to—a height of 2.25 metres; orthe position of the shower head where it is attached to a wall or ceiling at a point higher than 2.25 metres from that level; andhorizontally—where there is a bath tub or shower tray, from the edge of the bath tub or shower tray to a distance of 0.6 metres; orwhere there is no bath tub or shower tray, from the centre point of the shower head where it is attached to the wall or ceiling to a distance of 1.2 metres; ora room containing a swimming pool or sauna heater.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677887-rLC5IFY4QcxNX0roYD53",
+  "object": "chat.completion",
+  "created": 1790677887,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The work is notifiable, but a registered competent person can self-certify it, so this is the **competent_person_scheme** route.\n\n- **Special location:** under reg 12(9)(b), a room containing a sauna heater is a \"special location\".\n- **No Schedule 4 exemption:** Sch 4 para 2 exempts adding socket outlets to an existing circuit only where the work is not in a special location. That condition fails here.\n- **Notifiable:** reg 12(6A)(c) makes any addition or alteration to existing circuits in a special location notifiable.\n- **Self-certifiable:** Schedule 3 covers electrical installation work under Part P done by a registered person. So a scheme-",
+     "refusal": null,
+     "reasoning": "Since the sauna heater room counts as a special location, this addition falls under notifiable work per 12(6A)(c), and Schedule 3 confirms it needs to go through a competent person scheme registered under Part P.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since the sauna heater room counts as a special location, this addition falls under notifiable work per 12(6A)(c), and Schedule 3 confirms it needs to go through a competent person scheme registered under Part P.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkAYKEAgSGAI4AUIIdGhpbmtpbmcSDIJ5oIamyM1KdMUe/hoMB9c7bsf+pM5dj18wIjAlDF4+PMcXVKDDkMfyFcZ/w1VyWTu1qVe8qBGLNNO71LUm5KtvthDWy1/nc2RGb4sqrQUyj8jaMV8+nQPyB+WpqezEQRzJhP9RnBrvtSbSlcyU0oS1opOIew3gHx+jjfW0PJUWbZIkVHCvHu8aUdC/791CxhAYmuHFzciAioQg5XneEQX1kP2ABxOcr59WDtzPj1q4MVMJB165jhoKfeJ4nfPtiBhmMuC87C7/4VzzMJdPyUIBTmXAUHYztgj8I0rtESNu6PpVVHTphB9/EzzKFghEGNuUASj/Z8gCgxFsPg2XBrG6DJ76M0bzy2mHPOgOd0Gz3+YbIixSvN75YYeQiEt3qZDAW1RIIZvU0XsH3anRDnxYm0eIq7jCUjQFWkS11EUpGeOQt6FBtGGz9ylxa1RDn3WzNUaesOtS5/atgcecgVqL6d82kZT51SZkdzkU3xrOke3vbmvjTh9YO2dlDWKFUD7iKZz+qkn+eVqKvNJmJiateyHJbWcbJCNHNK/ZkLKil5IGZU3ohVaglHcJvv3lI4yMLZLGy1OIUKWvebs+tF2quBe9Y9rFxlbEuJnJPYnZGWK4MIerKiEeokD86QIbSbuSL+5xEYz2KEodqtFebzcOYwlEAWwTnTHcPWX5sl7i80UOib68G8q6lCPyFMxHovKU+iS2BGwoZD6+ZJrwXCUnkyl/PQR9/ual5uApfJCCTdNx32IjGERQTP/YWB2ywyPfg8aMecoBtW5ba5ehEicpMWkEurW/OFPwWPIpqnxszhk+Lze7SLH+YEyYs0R2xuBVAm/ZDJcfX1eS1/AXotboQ+keLqiFHflV4kE9Kzx07B9F22Ebv+nBsNTiV/Swcz1zV8/Aj0+7PP1IrDD0b0kOwnyOKC7HBsqqzJohN0Q8JBYr+VIuSFz82koWm8MfCCHL7eaBA+1m35r1DI6sZNYa/rbfEL5VmOxV2mO1AOqcR3WSK3HrqFMM9M2OGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1370,
+   "completion_tokens": 300,
+   "total_tokens": 1670,
+   "cost": 0.01148,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01148,
+    "upstream_inference_prompt_cost": 0.00548,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 77,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.403
+}

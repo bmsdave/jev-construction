@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Wall and floor tiling (wet rooms)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Wet rooms. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.1\", \"document\": \"ADF1-2021\", \"text\": \"3.1 When building work in an existing dwelling includes work on ventilation, for example: a. adding a habitable room b. adding a wet room c. replacing part of the ventilation system, including extract fans the work should meet the relevant standards in this approved document.\"}, {\"ref\": \"para 3.25\", \"document\": \"ADF1-2021\", \"text\": \"3.25 When a wet room is added to an existing dwelling, whole dwelling ventilation should be extended and extract ventilation should be provided by one of the following means. a. Intermittent extract, as specified in Table 1.1, and a background ventilator of at least 5000mm2 equivalent area. b. Continuous extract, as specified in Table 1.2. c. Single-room heat recovery ventilator, as detailed in paragraph 3.26.\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677461-UhzEW5btofmN87nr0yMz",
+  "object": "chat.completion",
+  "created": 1790677461,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Tiling walls and floors, done on its own, is almost certainly not \"building work\" under regulation 3. It is not an erection, extension or material alteration, and it does not provide or extend a controlled service or fitting. So no notice is needed.\n\nThe ventilation clauses provided (ADF1 3.1 and 3.25) apply only when a wet room is added or the ventilation system is altered. That work belongs to the wider renovation, not to the tiling itself.\n\nThe small remaining probability covers the case where the tiling forms",
+     "refusal": null,
+     "reasoning": "Wall and floor tiling on its own isn't classified as controlled building work, so even in the context of a wet room installation, tiling alone wouldn't be notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Wall and floor tiling on its own isn't classified as controlled building work, so even in the context of a wet room installation, tiling alone wouldn't be notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSpQcKEAgSGAI4AUIIdGhpbmtpbmcSDPl+BdbuLCZS7cO1ZxoMib+VaMvgeZQF5uBlIjDEqlZrazJh3nzWLO5TShoRbUIw7WJEUyn/lpopH+1YMW0WmWUiW9Fh/TAYBAD0XhcqwgYtNGO9y53cK/8FV29K9hmE80fLVofAbhqog4kI2qhiCab787PRyOEmbWOIifQFA8x99xI9lU5CKDS07PtKu+FS6h/CLRvGCZRi+oondxv5wRsWF7m07Ue4fmfM7jM1O4C9ViQax1anPuel9RGK3ijGxdr4fcPHTBMtZiCGi8nbplUom6oG7GJpSz63SgHLP/4Csgyij+fslONzyVRyx7cQS1zfwsiWRYs6DNg0S+jsfTekUjqRi5TltSmQKmnmatzsujgKm0gxoiVZN3vOfum9pj+GMrP5oAP5BOYo+4AyrCivyQDCnxhlZRsbjosbWu/bh2LCImvayVadYsF0QjjifFhyb3AUaxJtbYMGcrHQMl+zub59srrQAT+kwGm6mQ8Ecvtm5kYDspJlti7DnGB6q0Ct/c8NvN37PZDWwNJB0+JBtZ/S+iACWXRFCHJnsdHlOtBHRjA4fVEmCJa1K8aWgnSO1QXZmAOH90qJYHmA2LArbLXYvxplJIp6xbME9iN2y3j+fbLG9VLDagVpOo7lBtsjUEVIJalD0xLYO1Os9sGmFXR+U8SkEHjNhw0GA+Y32TqrBV034J2i1SSUpGxVIRMAqOvIWdl2H6AwZoTvjIJXfPvvqEJaYuz0xVt7GYvknDKXRUAvVjjMV9Iz3A7XDohKYewV807PwTIN9wBpEYdE3AwVo921Uxv1/9LrcCwuY7wc70tJXYxoXW5yA9Z9uYBPmIUgDvViE6StHWl/EaXgXfEyoff0It7UJ0gpDpWAboBrAExzcOUUsvQCflR2zrWcGShpHVshko00XTNsPmGagdJrvzjKSLBb34QCxfitfXfxVSgdpcRRqzW9XOHOI++80lYVNaZna09tuY6UiV+FzomsjlPHj4SZB/Ejazz3o93LKpQKrZwwRSSQVLsvLA55R8nzf/6S4OZtMVcpZLJY5M9mgzJz71+KN6rCuonY/8B7EWWm+NexGSoB4q6QNQb/ojmkg/fHXiNM0o66BrJzXnph4TsRYXhGUznEG6i5iEJ0NezbQpWlOT/WfJySMOGyC8O9VM/i1AkGnSiSJEHimCl3GxWMIyBUhkN0gsKiXLOfSmRFmXmjZVzXG9znM70YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 995,
+   "completion_tokens": 300,
+   "total_tokens": 1295,
+   "cost": 0.00998,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00998,
+    "upstream_inference_prompt_cost": 0.00398,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 136,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.032
+}

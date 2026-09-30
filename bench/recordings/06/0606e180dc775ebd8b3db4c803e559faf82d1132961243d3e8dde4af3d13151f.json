@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Underpin part of house foundations after subsidence",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "para 1.12",
+     "document": "ADA2013",
+     "text": "1.12 Compliance with Part A (Structure) is required in certain classes of change of use of a building, subject to the control of Regulations 5 and 6. Guidance relevant to structural appraisals related to ‘change of use’ is given in the following documents: a. BRE Digest 366: Structural Appraisal of Existing Buildings, Including for a Material Change of Use, 2012 b. The Institution of Structural Engineers Technical Publication Appraisal of Existing Structures (third edition), 2010 Note: With reference to ‘design checks’ in the referenced Institution of Structural Engineers’ Technical Publication the choice of various partial factors should be made to suit the individual circumstances of each case. The Department has also sponsored a series of reviews aimed at determining the scale and nature of problems arising from mining instability, natural underground cavities and adverse foundation conditions. Databases of both subsidence incidents and subsidence potential produced from these reviews are available from the following licence holders: British Geological Survey, Sir Kingsley Dunham Centre, Keyworth, Nottingham NG12 5GG. Landmark, 7 Abbey Court, Eagle Way, Exeter, Devon EX2 7HY. Peter Brett Associates, 16 Westcote Road, Reading, Berkshire RG20 2DE. Structure"
+    },
+    {
+     "ref": "Sch 1 A2",
+     "document": "BR2010",
+     "text": "Ground Movement: A2. The building shall be constructed so that ground movement caused by—(a) swelling, shrinkage or freezing of the subsoil; or(b) land-slip or subsidence (other than subsidence arising from shrinkage), in so far as the risk can be reasonably foreseen,will not impair the stability of any part of the building."
+    },
+    {
+     "ref": "reg 12(7)",
+     "document": "BR2010",
+     "text": "(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation."
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "building_notice_or_full_plans",
+    "probabilities": {
+     "competent_person_scheme": 0.18,
+     "full_plans_required": 0.01,
+     "building_notice_or_full_plans": 0.8,
+     "not_notifiable": 0.01
+    },
+    "confidence": 0.75
+   }
+  },
+  "usage": {
+   "input_tokens": 1097,
+   "output_tokens": 65,
+   "cost": 4.6074e-05
+  },
+  "id": "gen-dec-1790677198-wDX53giSdk0zfKoIlqOZ",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.3
+}

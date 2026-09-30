@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office fibre link\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: detached single-storey garden office, under 15 m2, no sleeping accommodation.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 2 Part 6 para 3\", \"document\": \"BR2010\", \"text\": \"(3) A detached building, having a floor area which does not exceed 15m2, which contains no sleeping accommodation.\"}, {\"ref\": \"Sch 2 Part 6 para 1\", \"document\": \"BR2010\", \"text\": \"(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material.\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677578-mEhfIxIS16sGG3ZUqZKz",
+  "object": "chat.completion",
+  "created": 1790677578,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "**Not notifiable.** A fibre data link is not \"building work\" under reg 3, so no notice is needed.\n\n- **Part P does not bite.** It covers fixed electrical installations, including those in outbuildings (ADP para 2.2). A fibre or data link carries no mains power and is not an electrical installation for Part P purposes, so no electrical-safety requirement applies.\n- **The building itself is exempt anyway.** It is a detached single-storey garden office under 15 ",
+     "refusal": null,
+     "reasoning": "Data cabling at extra-low voltage isn't considered electrical installation work under Part P, so the fibre link isn't notifiable regardless of the garden office's size exemption under Schedule 2.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Data cabling at extra-low voltage isn't considered electrical installation work under Part P, so the fibre link isn't notifiable regardless of the garden office's size exemption under Schedule 2.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS3AcKEAgSGAI4AUIIdGhpbmtpbmcSDNoKCLrbdFnFH0DhhhoMMiNmU03f4dxukGgEIjBl/Od+xCAhSXT0/RPXD2CHRYLhzfTe0uugpAfP5LOz+qPyUUyAjm4qz7/42bEDWLcq+QavzjIYS2tJwFCRtTp+kaMwZnaFNCmF1VcXVNcLuQTJuGz0qfwKqvoW1eZu3VGf/gt6yRWx1GDjyelHEzVzMbq62vaVKFqQCb4nN527WZWZ48mTQf1/DH1eBsEFALLmrkyawqWzKQP/yAg4ynsBXrgfTkFY6ie6PghuANQT0gbpt7qhEZ50RHP4jtPBrLKOSDRSln/DmM9oTOnflpN22Bk9EgbS8wIYR83fXGTjTinJqJ5TsR7vnnq/BPJKm/HkY5aSJXLODwf0y6KTUQa0zQ7+MqUUlDNKZEgCaf602Kk2fS/T70cXRWBucfD1Ov0PTOerz8LG+qjoi0LO2IcrnHqJ2uSnq8kVkBlaHc62kvDldDBYvJTwYTqko+R47CDvsoTdBVyTO9ziZoJOaU5Dpx2W/grrDWYCbfJ/dkv+jclWMHM4BbbsEi/QaOBayPYECyIAToqvs7+JZ1IaRBBEt8zWIXl/TTw9WHvIgSG8bohahaRTScPkaBsHe+/Jw8uk/Zdn+R2Ih3r+LeuSzgAEQgSLd8iVcNVltDbtg2G6HimmEJfCQsWyX2JNGM+5qUb89umJb1sFMOvjUYOGuuEagMGMbtuY/pggpldO2bHyieLvv8xfc4m7lUdUnUDBD4Euz+8Dxo1etl0Npk2mYiutu6oo4JSYPsgOq2MO/a0tr0ugJ1Ji9M5f11t8ekK7dV7rbkprnDbyujux8XUwgbelQmzk7uiTHm3p+Z6cA+Ugs4lz5+YBDhAymfOv+w+TjzASeO4jukIV3ME/1UesAPKUs2Dw34fvykT2Z2r3l+LhRgIdgD0nWYnqOXmlXdajManiOFXj07A/gH/6oVbIHgIS0bOwiDcPQSOWFuYtma+HAgTp+C2YxlBOFMSMm5vcWDbuhf4JBSmP8M1hYb/SFr+XpQtYtxY3by7Z3K/XGzgSC6++bjFg7S/iaGz1rWFHgqbfTn6eSSOb3O5OYTWIr+JC2DCUFG/1VRpNNlLdEeBPjE4e9kMQpISmRWeekMrKGMhwy8KS3VTHyjo3ONCG5TYZ4jUxWEZvN3V8+dcS+4ra7hP1USmRrC9lKz7Bz8LlRelPbEt7+P18DKrod4IJVUG2QyT31/X9La+2FWuYC3wvml/xopmxxvBC42Nmfg4hJNp1bnVQmXVrMMV520OcR6/8TVz9pC61y+9vrxPSGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 984,
+   "completion_tokens": 300,
+   "total_tokens": 1284,
+   "cost": 0.009936,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009936,
+    "upstream_inference_prompt_cost": 0.003936,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 147,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.177
+}

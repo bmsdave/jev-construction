@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Install cavity wall insulation\", \"project\": \"Semi-detached house in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 17\", \"document\": \"BR2010\", \"text\": \"17. Insertion of insulating material into the cavity walls of an existing building. | A person registered in respect of that type of work by Blue Flame Certification Limited, CERTASS Limited, The Insulation Assurance Authority Limited ... under the Cavity Wall Insulation Self Certification Scheme, by Certsure LLP or NAPIT Registration Limited, ....\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 0.2\", \"document\": \"ADL1-2021\", \"text\": \"0.2 A fully filled cavity with effective sealing at all exposed edges and in alignment with insulation layers in abutting elements(1)\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677806-cxxQyFRJfHPIk99PS1tx",
+  "object": "chat.completion",
+  "created": 1790677806,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"competent_person_scheme\", \"probabilities\": {\"competent_person_scheme\": 0.92, \"building_notice_or_full_plans\": 0.05, \"not_notifiable\": 0.02, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Cavity wall insulation counts as building work under the insertion of insulating material provision, and Schedule 3 para 17 confirms this falls under the competent person scheme route.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Cavity wall insulation counts as building work under the insertion of insulating material provision, and Schedule 3 para 17 confirms this falls under the competent person scheme route.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS7AUKEAgSGAI4AUIIdGhpbmtpbmcSDG1F2X+CdF70vxQLMxoMXbOgmqKlc7m+G7ShIjCypMWoC9pV50kbZolZy5pl84nmaUr3jZHMuAAsBPeAuoGz+kjXCCWmA2CBYV6ue+UqiQUpvJZUg05CehbIIiJ8u64OSv6y4yw5Uo72PxkFUgTuiyma0r8K7RpA+rxPEcoOwhH8sE/cYYd7qZEXa6JBiiWHUllqJB+s9WosfFJQZx3hoBZ2hdi94SqD0fkjtx87Tuk4Y8R/yzqpKivIkHgs0YXwt/77tpqZfLNKCUl8Fi0ibd1ZWCmWybXh/OTm1oGKjMx/VFVVDztljstCHyhsT/IntFKo1TS74gqt/UGsulhZCqO1yNh5HV1tK2AVgSLGOwn2x0sHZsgi/tPL65lWje6MtZteM5Y0fdm7qrzkFmphdK+DtsJZiIUEJfioOFPxKLNUu1RIMXNXHp86nswNbiqvJS71saQzuKw1H1SeTV0l82A3ZhWS9se6f52DTMwMNopyjey/Fih/DGrDaUyBz1syD6AmSl00VvHCirFIn6jH39dchgGLqA1EhiOrCF/rRDFTT5e08HCy/k6lr+Qvkxnrfk1W15gy9qxXqj5D8Q8IG3jRvfFEu4g/i+fMavHO11uKjyDsIXuWKvRXozfLQRayjlCXfNvVQVH33C7mMvI9bYG4hBWE7A6q8FzI8uZyz6SASw9/CKipL1y22HT5XH6dcJe4/164scajXTn9l4J1CVqqv6IQiq/3xoZq9caFYWtrJqfmOnGXlqy0TuChwue/r8m3a7HfemEo7Wq41guYNP38snROAsCKvFwz3OVd4zinstzzICnh5F24JDfvoEgi1VlMom2BYEw6vMVZjOsDLFXnwKdCXrXv8gEJ2uBB8lSbp/O8hG4c1p9bq4Hx7EIJ5k3E3wMwied7LBRXTRB+xFyzC/reL3QQre+C38nCwrFExS7QVH+pO7/dIbX1op2LQFFq5XNewScDGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1237,
+   "completion_tokens": 168,
+   "total_tokens": 1405,
+   "cost": 0.008308,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008308,
+    "upstream_inference_prompt_cost": 0.004948,
+    "upstream_inference_completions_cost": 0.00336
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 85,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.025
+}

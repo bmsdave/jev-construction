@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Network configuration\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678469-VdOQ3zOa1wSwBlJ8nJ6d",
+  "object": "chat.completion",
+  "created": 1790678469,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.96, \"competent_person_scheme\": 0.02, \"building_notice_or_full_plans\": 0.015, \"full_plans_required\": 0.005}}",
+     "refusal": null,
+     "reasoning": "Network setup like installing routers isn't building work, so it wouldn't be notifiable — even data cabling installation falls outside building work entirely.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Network setup like installing routers isn't building work, so it wouldn't be notifiable — even data cabling installation falls outside building work entirely.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQStwUKEAgSGAI4AUIIdGhpbmtpbmcSDDgkGLc6TUF8/0LgJRoMIWLSYkWXsXac82YEIjAwZjDHkOLqfpqe4MvFZTxAWTuPsWNOAI5cT7+3hPDkgxVP83i3Q00pztPDA16orswq1AQNFD4sKPx4RKJWGR32+GaKEbv29LJ/VCFOEhFqy1YsdXLPm/KvGXVw9pGxEa+K9sJ/gQpnpZIefin2DLY+QrCj4hocMbi8KCQLhISw7f20A/if2txQ5pRO6pJSHQWEOFtlOo00dDko9maGxRClNOZYg5i/1QvgkptoZmvs4QvN5dzHnqjg09vI+AqxhyXIW0dnJlIiR2VNJTp+ZfNipgOYAp+3z/f+UI9CyGaTw+YRFqedzaGIjFaGr4tnIuBa/PAd2VgPG0hBieFQarStY3TQRsL0YTdjY38aFyKH3Q+9QleRq57xFPi6j9Jfo3Cde+eMT71BG0GrFzuqc5hnKR5ipmQ72m/5seESEglcfhXpOOoMxRyIkt9FI52A++7ilWxn2OVqgGWUMXXHtmtHVt4Y8Vwgvs56nKhFjWNrH/yaMhQcx94CtWIjApgal53Bpp9/lGiYTtiZuZMZUszp0+HHMBvK/JogTRJMB9QpcLb0B/LB3E1YFc6Y+amtfq/1bNf0bIsQtKN1ONCVQ6AllSmf1gqGGKlIKMwiBDuP2PiuKIqNaTNnRVclyx738L5ovg7rsqv5wVDH4StdwUqHEOV0uwopQjt4co09P/a+NJRGtE5krrzRQTGk4/DQJ4nfkQ0mWylVNMU/3aydS+EQNC9I1dXxtNzdaS/neRptSZr2XkSE6Y7ZXp83MUnRNuJyPZjuHXcAyRzXaI0iRueg+v0OpGGSxBFNbeu1W50TXl3zVyDWwW1yz8ckA4w1yav9oVZs7nvpuYse7xTZFTi6pIZBRowdHBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 501,
+   "completion_tokens": 132,
+   "total_tokens": 633,
+   "cost": 0.004644,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.004644,
+    "upstream_inference_prompt_cost": 0.002004,
+    "upstream_inference_completions_cost": 0.00264
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 51,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 5.05
+}

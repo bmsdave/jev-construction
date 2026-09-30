@@ -1,0 +1,197 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Insulate under suspended timber ground floor (insulation only, no floor replacement)",
+   "project": "House in England",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "candidate_clauses": {
+    "c1": {
+     "ref": "Sch 4 para 3A",
+     "document": "BR2010",
+     "text": "(3A) Installation of thermal insulation to suspended timber floors where the work— (a) consists of the installation of such insulation only; and (b) the work is not carried out in order to comply with any requirements of these Regulations."
+    },
+    "c2": {
+     "ref": "para 3.9",
+     "document": "ADF1-2021",
+     "text": "3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …"
+    },
+    "c3": {
+     "ref": "para 1.6",
+     "document": "ADA2013",
+     "text": "1.6 Structural work of timber: Eurocode 5: Design of Timber Structures BS EN 1995-1-1:2004+A1:2008 Eurocode 5: Design of timber structures – Part 1.1: General – Common rules and rules for buildings; with UK National Annex to BS EN 1995-11:2004+A1:2008 BSI PD 6693-1:2012 Published Document – Recommendations for the design of timber structures to Eurocode 5: Design of timber structures Part 1: General – Common rules and rules for buildings BS 8103-3:2009 Structural design of low-rise buildings – Part 3: Code of practice for timber floors and roofs for housing"
+    },
+    "c4": {
+     "ref": "para 0.14",
+     "document": "ADL1-2021",
+     "text": "0.14 Where a dwelling is extended by adding a conservatory or porch, the work is exempt from the energy efficiency requirements, under regulation 21 of the Building Regulations, if all of the following apply. a. The extension is at ground level. b. The floor area of the extension does not exceed 30m2. c. The glazing complies with Part K of Schedule 1 to the Building Regulations. d. Any wall, door or window that separates the extension from the dwelling has been retained or, if removed, has been replaced with a wall, door or window. NOTE: Replacement walls, windows and doors should meet the requirement in regulation 23(2). See"
+    },
+    "c5": {
+     "ref": "para 0.25",
+     "document": "ADL1-2021",
+     "text": "0.25 Roof(2)(3)(4) (2)(5) (7)(8) NOTES: 1. Area-weighted average values. 2. For dormer windows, ‘roof’ includes the roof parts of the windows and ‘wall’ includes the wall parts (cheeks). 3. If meeting such a standard would limit head room, a lesser standard may be appropriate. In such cases, both of the following should be achieved. a. The depth of the insulation plus any required air gap should be at least to the depth of the rafters. b. The insulant should be chosen to achieve the lowest practicable U-value. 4. If there are problems with the load-bearing capacity of the frame or height of the upstand, for a flat roof or roof with integral insulation, a lesser standard may be appropriate. 5. This applies only to a wall that is suitable for cavity insulation. Where this is not the case, it should be treated as ‘wall – internal or external insulation’. 6. If meeting such a standard would reduce the internal floor area of the room bounded by the wall by more than 5%, a lesser standard may be appropriate. 7. The U-value of the floor of an extension may be calculated using the exposed perimeter and floor area of the whole enlarged dwelling. 8. If meeting such a standard would create significant problems in relation to adjoining floor levels, a lesser standard may be appropriate. Building Regulations 2010 L1(a) Continuity of insulation"
+    },
+    "c6": {
+     "ref": "para 0.30",
+     "document": "ADL1-2021",
+     "text": "0.30 External insulation system with rendered finish or cladding to give target U-value Assess the impact on internal floor area. In general it is reasonable to accept a reduction not exceeding 5% in the area of a room. However, the use of the room, and the space needed for people to move around and for fixtures, fittings and furniture should be assessed If acoustic attenuation issues are particularly important (e.g. where insulation is returned at party walls) a less demanding U-value may be more appropriate – the target U-value may have to be increased to 0.35 or above, depending on the circumstances Assess condensation and other moisture risks and make appropriate provision in accordance with the requirements of Part C relating to the control of condensation (BS 5250 and BS EN ISO 13788). This will usually require the provision of vapour control and damp protection of components. Guidance on the risks involved is provided in the Building Research Establishment’s BR 262 and, on the technical options, in Energy Saving Trust publications Assess technical risk and impact of increased wall thickness on adjoining buildings Building Regulations 2010 Table C1 \u0007Continued Proposed works Target U-value W/(m2·K) Typical construction Comments (reasonableness, practicability and cost-effectiveness) See comment Solid floor – replace screed with an insulated floor deck to maintain existing floor level The cost-effectiveness of floor insulation is complicated by the impact of the size …"
+    },
+    "c7": {
+     "ref": "Sch 1 E2",
+     "document": "BR2010",
+     "text": "Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use."
+    },
+    "c8": {
+     "ref": "para 0.17",
+     "document": "ADB1-2019",
+     "text": "0.17 In sheltered housing, the guidance in Approved Document B Volume 2 should be consulted for the design of communal facilities, such as a common lounge. Building Regulations 2010 Table 0.1 Classification of purpose groups Volume 1 purpose groups Title Group Purpose for which the building or compartment of a building is intended to be used Residential (dwellings) 1(a)(1) Flat. 1(b)(2) Dwellinghouse that contains a habitable storey with a floor level a minimum of 4.5m above ground level up to a maximum of 18m.(3) 1(c)(2)(4) Dwellinghouse that does not contain a habitable storey with a floor level a minimum of 4.5m above ground level. Volume 2 purpose groups Residential (institutional) 2(a) Hospital, home, school or other similar establishment, where people sleep on the premises. The building may be either of the following: • Living accommodation for, or accommodation for the treatment, care or maintenance of, either: - disabled people with a range of impairments including physical, sensory and cognitive impairments, or mental health conditions - people under the age of 5 years. • A place of lawful detention. Residential (other) 2(b) Hotel, boarding house, residential college, hall of residence, hostel or any other residential purpose not described above. Office Offices or premises used for any of the following and their control: • administration • clerical work (including writing, bookkeeping, sorting papers, filing, typing, duplicating, machine calculating, drawing and …"
+    },
+    "c9": {
+     "ref": "reg 2(3)",
+     "document": "BR2010",
+     "text": "(3) In these Regulations “thermal element” means a wall, floor or roof (but does not include windows, doors, roof windows or roof-lights) which separates a thermally conditioned part of the building (“the conditioned space”) from— (a) the external environment (including the ground); or (b) in the case of floors and walls, another part of the building which is— (i) unconditioned; (ii) an extension falling within class 7 of Schedule 2; or (iii) where this paragraph applies, conditioned to a different temperature,and includes all parts of the element between the surface bounding the conditioned space and the external environment or other part of the building as the case may be."
+    },
+    "c10": {
+     "ref": "Sch 1 C2",
+     "document": "BR2010",
+     "text": "Resistance to moisture: C2. The walls, floors and roof of the building shall adequately protect the building and people who use the building from harmful effects caused by—(a) ground moisture;(b) precipitation including wind-driven spray;(c) interstitial and surface condensation; and(d) spillage of water from or associated with sanitary fittings or fixed appliances."
+    }
+   }
+  },
+  "questions": {
+   "c1": {
+    "type": "noul",
+    "instructions": "Does clause c1 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c2": {
+    "type": "noul",
+    "instructions": "Does clause c2 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c3": {
+    "type": "noul",
+    "instructions": "Does clause c3 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c4": {
+    "type": "noul",
+    "instructions": "Does clause c4 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c5": {
+    "type": "noul",
+    "instructions": "Does clause c5 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c6": {
+    "type": "noul",
+    "instructions": "Does clause c6 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c7": {
+    "type": "noul",
+    "instructions": "Does clause c7 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c8": {
+    "type": "noul",
+    "instructions": "Does clause c8 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c9": {
+    "type": "noul",
+    "instructions": "Does clause c9 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   },
+   "c10": {
+    "type": "noul",
+    "instructions": "Does clause c10 in candidate_clauses help decide which Building Regulations notification route applies to the work item (exempt, self-certified by a competent person, building notice or full plans)?",
+    "criteria": {
+     "true": "The clause states a rule, exemption or scheme that applies to this kind of work.",
+     "false": "The clause is about something else."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "c1": {
+    "type": "noul",
+    "noul": 0.7
+   },
+   "c2": {
+    "type": "noul",
+    "noul": 0.69
+   },
+   "c3": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c4": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c5": {
+    "type": "noul",
+    "noul": 0.06
+   },
+   "c6": {
+    "type": "noul",
+    "noul": 0.05
+   },
+   "c7": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c8": {
+    "type": "noul",
+    "noul": 0.04
+   },
+   "c9": {
+    "type": "noul",
+    "noul": 0.15
+   },
+   "c10": {
+    "type": "noul",
+    "noul": 0.07
+   }
+  },
+  "usage": {
+   "input_tokens": 3634,
+   "output_tokens": 175,
+   "cost": 0.000152628
+  },
+  "id": "gen-dec-1790677187-VzM6qsWanOEhqGqYiDvX",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.265
+}

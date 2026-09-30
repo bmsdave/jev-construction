@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Irrigation and hose tap\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: External works. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678526-cE84XrccwniJ5NEkEUfk",
+  "object": "chat.completion",
+  "created": 1790678526,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "An irrigation system and an outside hose tap are not building work under regulation 3. Cold water supply to an outside tap is not a controlled service in this sense: it is not the wholesome or softened water supply that G1 controls for sanitary, food-preparation or hot-water purposes. Such fittings are governed by the Water Supply (Water Fittings) Regulations 1999, not by the Building Regulations. No Building Regulations notice is needed, though water-fittings notification or backflow requirements may still apply.\n\n```json\n{\"label\": \"not_not",
+     "refusal": null,
+     "reasoning": "An outside tap install falls under water fittings regulations rather than building regs—it's not a controlled service under Schedule 4, so it's not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "An outside tap install falls under water fittings regulations rather than building regs—it's not a controlled service under Schedule 4, so it's not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkQcKEAgSGAI4AUIIdGhpbmtpbmcSDK2clWLznwQFXGFzzhoM5YwBRVi796AxS7ybIjC4IZQhFT9RXl/g1sOFvGFjDPDbYMvLp9sG8HmQnDzuObc+IXXWNXQPgaidXj2MEDYqrgaEAl3FSxm/ME3cfk4ikVdDruaA3BaCYJDAEaH2RyryIGdShyG82QYlTfgPYQCIcgFPBQ2wgnj8jW12L/x/sR1u0bTFGhKQU3TAJ8BhJju9FDmay6msOYsezUs14RcqEBa6cQgPyjS0ji4Pm8SFkDd5FbEG6ezJY07mfOMDgbYWfmcz2JeQL81f6FYYxUrul2hbpWD+0JH0wgs+aBQa+95Ekb0aW1LHD10sXpZ0+49IyI40jlY6EzcZTFLRRGic/gSVDVb0pFhnLjMHf+z+A5N27ExBwuZS+wPzhc0uAOk4GA3wG7HsraYNdlD+W9Iq+w4mIHl/2NqU2GXgmg0cBR294xzhVMEgSxeC709bJYanfQk6Npxi3SfrdphorHRh6eKRgKln5YXl7gE4Y5DZFRUVZ+tWog4vV5RcJYOutZkk/kXnWZge+Ou4B5C9wp/g/w/sDMfnskGHWnQocc5T25tB9J/M+FewDTYg9sqQu6Aj1jiD1Ny3ZJSaxir9UTEBsDxWxRo0K604ZW2vjrlD6F20wZY4NUzRHcA22pnw8L6wAN0ej+V7HvSczZ49ZZwIyxuGddNfKdwU1hehh9hhHGWyQKqLvl9huop39iRemAnEoXuiyfNMF5vABO7jvyItkadtAhUbwoFlVdsRL0br/nc0ukvDZQVI9Yn3t84Kow1qKuLXX6v/+BCkgYAXG4vybcmxkxt+1M2S3UWU6NvuepzVWthf6V91sGIcLb1p9Te4nL/Dk/+Esv3RDDoSkn3Dok9xGvBRPIisDHYWKt1Dp7KmwKdWGBEWDq699zkcd4qjjpnruFOy6i2aj9Xd6gviFQlXsVCg8zAjNVAYf0pmWx8Icwfp8ZjJ/m41Pl8Y2f/MUUIk8J7EdEaLnzRrbQ1yibelEyfufJM78Z64OGzQU96mNH9mY9rVndPgEiH0P8hjO8XO57++307TkGE01SX0ZUuGXpOmRxFdUIhcJ1rlD5qBmH0hWG8sQX4ZUytctRMaT2utmuFhjGRUeCKv2qpWnGpvx4mUMUFqT1SJXLF5Z0Eq5jiboG/rtlNcSV+ionFfRUK5+mbQ3SFl6KT/jFbeGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 492,
+   "completion_tokens": 300,
+   "total_tokens": 792,
+   "cost": 0.007968,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007968,
+    "upstream_inference_prompt_cost": 0.001968,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 125,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.681
+}

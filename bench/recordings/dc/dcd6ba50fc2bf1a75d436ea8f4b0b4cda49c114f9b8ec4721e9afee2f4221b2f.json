@@ -1,0 +1,63 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "state": {
+   "work_item": "Inspection chamber",
+   "project": "Renovation of a terraced house (dwelling) in England. Trade: Drainage. Part of: new single-storey rear extension.",
+   "jurisdiction": "England. The Building Regulations 2010 as amended.",
+   "clauses": [
+    {
+     "ref": "Sch 2 Part 6 para 1",
+     "document": "BR2010",
+     "text": "(1) A detached single storey building, having a floor area which does not exceed 30m2, which contains no sleeping accommodation and is a building— (a) no point of which is less than one metre from the boundary of its curtilage; or (b) which is constructed substantially of non-combustible material."
+    },
+    {
+     "ref": "para 10.7",
+     "document": "ADL1-2021",
+     "text": "10.7 When a dwelling is extended, elements should satisfy all of the following. a. New thermal elements should meet the standards in Table 4.2 and paragraph 4.7. b. Replacement thermal elements should meet the standards in Table 4.2 and paragraph 4.8. c. New windows, roof windows, rooflights and doors should meet the standards in Table 4.2. d. The total area of windows, roof windows, rooflights and doors in extensions should not exceed the sum of the following. i. 25% of the floor area of the extension. ii. The total area of any windows and doors which no longer exist or are no longer exposed due to the extension. e. Existing fabric elements that will become thermal elements should meet the limiting standards in Table 4.3 by following the guidance in paragraphs 11.2 to 11.4."
+    },
+    {
+     "ref": "para 0.6",
+     "document": "ADL1-2021",
+     "text": "0.6 For a conservatory or porch installed as part of the construction of a new dwelling, the treatment of the conservatory or porch depends on whether both of the following have been achieved. a. There is adequate thermal separation between the dwelling and the conservatory or porch. b. The dwelling’s heating system is not extended into the conservatory or porch. If both (a) and (b) have been achieved, the conservatory or porch should be treated as if it were an extension being added onto an existing dwelling. The guidance for new elements in existing dwellings in Section 10 should be followed. If either or both of (a) or (b) has not been achieved, the conservatory or porch should be treated as a room in the new dwelling. The guidance for the whole new dwelling should be followed, including for dwelling primary energy rate, dwelling emission rate and dwelling fabric energy efficiency rate calculations. Extensions to and work on existing dwellings"
+    }
+   ]
+  },
+  "questions": {
+   "route": {
+    "type": "choice",
+    "instructions": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?",
+    "criteria": {
+     "not_notifiable": "No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).",
+     "competent_person_scheme": "Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.",
+     "building_notice_or_full_plans": "Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).",
+     "full_plans_required": "Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5))."
+    }
+   }
+  }
+ },
+ "response": {
+  "model": "typesafe/jev-1.13-20260917",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "competent_person_scheme",
+    "probabilities": {
+     "full_plans_required": 0.06,
+     "not_notifiable": 0.1,
+     "building_notice_or_full_plans": 0.29,
+     "competent_person_scheme": 0.55
+    },
+    "confidence": 0.38
+   }
+  },
+  "usage": {
+   "input_tokens": 1181,
+   "output_tokens": 64,
+   "cost": 4.9602e-05
+  },
+  "id": "gen-dec-1790675943-bB1VG9uIutuhSTG2BC7F",
+  "provider": "TypeSafe"
+ },
+ "latency_s": 0.305
+}

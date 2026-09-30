@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Gutters\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Roofing. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.6\", \"document\": \"ADL1-2021\", \"text\": \"11.6 A change to energy status is when a dwelling was previously exempt from the energy efficiency requirements but now is not. The change to energy status applies to the building as a whole or to parts of the building that have been designed or altered to be used separately. For example, when a previously unheated space becomes part of the heated dwelling in a garage or loft conversion, a change to energy status applies to that space. NOTE: A material change of use may result in a change to energy status, for example if a previously unheated loft is converted into a flat.\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677334-rvywH76jJXW2UBUopZdp",
+  "object": "chat.completion",
+  "created": 1790677334,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Replacing or renewing gutters on an existing dwelling is repair and maintenance. It is not \"building work\" under regulation 3: it is not an extension, a material alteration, or new controlled services or fittings. So no notice is needed. None of the energy-efficiency clauses supplied (ADF1 Table 3.1, ADL1 para 11.6, reg 23) cover gutters",
+     "refusal": null,
+     "reasoning": "Gutter replacement is like-for-like maintenance rather than building work, and since it's not listed under Schedule 4 or treated as a material alteration, this likely falls under not notifiable.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Gutter replacement is like-for-like maintenance rather than building work, and since it's not listed under Schedule 4 or treated as a material alteration, this likely falls under not notifiable.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSlggKEAgSGAI4AUIIdGhpbmtpbmcSDLce2OnFzhHCQNJuBBoM2zuntMN1d2/FO4bjIjAt1wro6WhDBVgHrOBAs5g2S2Ws1p6WzPbNVwd1w/MamEcjKin7E/68fnlw4vzvOpsqswdJiBoz9kShnvXKc6x4caS8WLiDOKSrjREXCrPfrlMYyuD7ibAmhE+xEhaOSfkGwTfhhSg0zWpnnN45Lld350QroC/32OE8IlK4eBQaSRfTjue9zXaIuwfOaaCgrLhq06GIySsrqds5SBOjktrpKirsbCpriWYM64HW7/Y0yIVwQLGofkgT4STijqTVzen8QGkU9uylHtxr4+a11lNZPW6GqvYGOFIWc8HHDEO3eoziy9eXVQ+UBZHQCkTPAS0DcesgytSLTzhYlSfH3Z0Qx/ry6VwXGGg61bP0FGOh3rInNQJb/qts8auyNr5Q5pjP/kCgeYWwl1gWtddgWzzSlx++38UWUH0xk3cKReHOFxRW09n/HNmhUkYcfCn02ErALQvgryh2vlKqDTXp44fGozUu+ljrJ6rGfwQxnDdBnDTsc2MGUH4GZEFcOIr32G8zLmZYa5yG2rd8w+e2g96v/FFEWsq9pxRb2IGh+qrr9mW5+0QUrFO9ZlEKrF1WVqrIVrs2+plT11ItWfjYKGhBhk2HNwXAU+OO7Ehg9+1U1KaLha97Jruegeqsu2sbl/0PAj1APOk80PXfjFmvheDXbM7DzZGK+gM6jx0ZjS7ooT9phLJCNYWWePNO2+0bX6ofx5b7QNLz10IZjgdzTJ6+5ZpLvcr3j7j4pe7PakeLu43RXiuRMTE04OjJzglC4zo8nPI/dTnGZZ6OCsB1OqOUbPDWqjXKqjwKYTI8OZYcC6S32z72dBklKMg5crp+fqvR8hgL1q55zlzQEEWxk0ioTS2jso4G86TZvlF8M593tTUt8RVhVzc0GHS4TPCDFgTajL0Ku5mI3IrD8jXwBodrJqAdSk1J4Ucql0f+Dkaj3yMg9BsFdINtsfKsQchvfZYIxgEzXEeSPwdRoE2Qb1xAGw7i1vtiMXyQmqiyGMystFyBUGwZQ4YvUnRppkNXVhdHnJSAJin6ZDyP/42EC9sd1EZAfhMA8VmHUGioeJCW4y9cLhJu752VNbX7NRMK5U8LG1QHI0LUw9QrwGK3Ey1OvZ3K2K/4g6pa5tSP7ZChZ0s99manv7chzDIK985LYEq9W3O1MVvsv2qq0NXzyudAsRYt5Qlv1W+ParFPAe+SX3QrTyE4gStF0Qzb+b18qaRtfn8JxGhaTNWJjP2eRI7eAOK7u6RyHBa4o1o8m98g/9FKeEGSb6sAbhIE04b0YHXsX05Nkf7x6q4kgpneN9FGXO7lSgV8XDVdJnZ+2E1Z9FH0tQM5+BgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1534,
+   "completion_tokens": 300,
+   "total_tokens": 1834,
+   "cost": 0.012136,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.012136,
+    "upstream_inference_prompt_cost": 0.006136,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 176,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 6.542
+}

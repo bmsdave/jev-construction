@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Showers\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Sanitaryware. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"reg 23\", \"document\": \"BR2010\", \"text\": \"(23) (1) Where the renovation of an individual thermal element— (a) constitutes a major renovation; or (b) amounts to the renovation of more than 50% of the element’s surface area;the renovation must be carried out so as to ensure that the whole of the element complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible. (2) Where the whole or any part of an individual thermal element is proposed to be replaced and the replacement— (a) constitutes a major renovation; or (b) (in the case of part replacement) amounts to the replacement of more than 50% of the thermal element’s surface area;the whole of the thermal element must be replaced so as to ensure that it complies with paragraph L1(a)(i) of Schedule 1, in so far as that is technically, functionally and economically feasible.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677468-Dzw4ZYkeiHdSEk2SYhnS",
+  "object": "chat.completion",
+  "created": 1790677468,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "Installing a shower falls under Part G and H requirements, but Schedule 3 allows self-certification through a competent person plumbing scheme for sanitary conveniences, washbasins, baths or showers, provided the work doesn't touch shared or underground drainage.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Installing a shower falls under Part G and H requirements, but Schedule 3 allows self-certification through a competent person plumbing scheme for sanitary conveniences, washbasins, baths or showers, provided the work doesn't touch shared or underground drainage.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8woKEAgSGAI4AUIIdGhpbmtpbmcSDAn+kLD/3AhHDhQ+2xoMDFmrRdZI13naPccPIjBa2Xok2vsYiUB5guSZGHCGnKfcH1K3rmJUxIi1lueGufCs+qcVJQ3sscshSBIgi+kqkApQWz1NBmcJdU8MU3y/7nrTvXPStNs6DI/3CWz1SKEArsSh2PKS5fsaF79sQ25Y+b5563cjEJVSO/TaIlMcbo7BIAaDWAS+CbdmVTbgqM9fywE9ekPLDN5Is/SrVFoxsHftLhmN5rF2XE+gNfl90JAVBsPiByMiznJ91g+3GI0iO3XpKt/p/XciT3Xo1TR1qSgPkM/VdmFrncFNKXCV8VcrskBNXgW33rHhHODv6ZqUfWaQDQzpEKSKk6nV+xjqC0qNKvvuLY4TGg3mmWw+Q6mjniAXJpWVUhvuwFI6mbla2Phknip5PuaL0kZJlv10MgfnCZWllL+UToZ+5uNtK52KE1oHZveBwGxWNXGGO63odx5+iA8bUiK43tFGNUCkgTIZEZSySlpQL+qrrG8oFIEpVdHsRHpJwXU8lyh69FfcupA2Y3Gh6ARJwge4cHCDa4/qxdsJ+iOGVygMpYw7NCCg2AjfTFX8AfGMqnhFQqLQhFSdzlX2HuH6oUpEVbW21Q8xTQYezwJOTqCc622lc7kv7DDlD1N/gJajGb/XE5bExdULPbGH6Xsw9LSKf2RSzPBpovkeT4iakp8gsCWmd5WxfZIOz3/o8kNWzMupGwxJwSKJ41Siswb0ONRGaaf5LxicXM+SoD9d/rIoeNYurpgibVPWIaCMsymwaEd10RbJsvZzm7gfqnEwMdwJPhCRFqBkrxQXl5nJEb2K+jCq2FERDIY11IeqUdtZ3RbRnUH2X/Jwte+QxxSM39EKQ7IwaY3rfyEiGIMqA4t2a0O7SvhOmVRtIP72SWZBkH95nCy6NDpf/jssvR1LRMPVLmWwau+kaserq4H0D62Z0nwUvVca78kek778QgjiY61mCoaNUbu6mYLl4xsZ/XcT3DL6CEPvHUsHMVLBAUHkejo08g4YhqwGRqV0nRZPcoyYp8bt/8+XZCh7vgrphYK3lQz8n0yhWsSTjxFR9/v/2fuwf6crs5Zn96Ryyw+nPoFcww9oUIhhA21i9wQ3wo/KpD60TN0ZC95aJsfNv2tSJi6bs6oJkzizBLX9B4XhInWA/qb8kzD653pyySfUnythTpFusgbpVJDZdqD5JpW3Pm/W5NBkx+JhEer5SzAifNdXsjGX1E2YhCqtW3z73xqEg2O3Uw+ENuoWoMNrWzQ4RnTYhUl4zhzw1njaotP2+pGHDwXWSUtqPLXkDRdo3ZFeIIeqlVSxNKFCWzLmTu9Y9gfH/t7KfgciZkj25nHFlfkB6p49LdQwBZKOlivjEEq7ZlzwTJtFJwqQ/0FS4hval+JyCdlOS1jyEjtBp6Fqy2SCOI9jRcNF4YMNsku941d1N841soXvw/U4HbrbMClWgLW2iU4Ztw+ZqGVXS7Va7eYOtRg1JLbPDsUsUrnka1HStgL8pkSCeOFUX2XS1XnhaToe+DIRpevLYa76zMCfjOfyvsOhKF3TEPCQdAUQ47Eup9qAVTr2D87wMLFBqAdEmPGvrk8ZLOhixpvvq18bkBmEnHK5V9f5kJxbw6yHT/jqNnSsHEjnFX2wEXg5v9Z6qp70T4bLNii8uGwoQ/SBINEA+v+m1ulMaq3JGYzleHO3D2nbj+egu2YwoqAbITw4fOsuwtLwT5JwGTqTT+lpEleZyZ4xLQN87apvgaTKI7MvQ+IsUAVGl9t9O6dbJ0/jTg2bcRU0A72iS6YcOZldhlRUnWpN82s0sauX2gj+wOUZnsTGxT4YAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1615,
+   "completion_tokens": 300,
+   "total_tokens": 1915,
+   "cost": 0.01246,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01246,
+    "upstream_inference_prompt_cost": 0.00646,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.584
+}

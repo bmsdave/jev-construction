@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Smoke/heat alarms\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 2.4\", \"document\": \"ADP2013\", \"text\": \"2.4 The scope of Part P is illustrated in Diagram 1. Building Regulations 2010 Application of Part P See paragraphs 2.2 to 2.4 Roof space Roof space✓ Loft ✓ Dwelling Dwelling ✓ ✓ ✕ Common access ✓ Loft ✓ Dwelling ✓ Garden electrics Outbuilding Dwellings Dwellings Business unit Business unit ✓ ✓ ✓ Dwellings ✓ ✓ ✓ Shared facilities such as laundries, kitchens and gymnasiums ✓ Dwellings Lifts ✕ ✓ ✕ Business unit Intake switchgear ✓ Source of electricity supply Electricity supply meter Reproduced with the permission of the Electrical Contractors’ Association Diagram 1 Scope of Part P Notifiable work\"}, {\"ref\": \"para 2.2\", \"document\": \"ADP2013\", \"text\": \"2.2 Part P applies to electrical installations: a. in a dwelling-house or flat, and to parts of the installation that are: (i) outside the dwelling – for example fixed lighting and air conditioning units attached to outside walls, photovoltaic panels on roofs, and fixed lighting and pond pumps in gardens (ii) in outbuildings such as sheds, detached garages and domestic greenhouses. b. in the common access areas of blocks of flats such as corridors and staircases c. in shared amenities of blocks of flats such as laundries, kitchens and gymnasiums d. in business premises (other than agricultural buildings) connected to the same meter as the electrical installation in a dwelling – for example shops and public houses below flats.\"}, {\"ref\": \"Sch 1 B3\", \"document\": \"BR2010\", \"text\": \"Internal fire spread (structure): B3.—(1) The building shall be designed and constructed so that, in the event of fire, its stability will be maintained for a reasonable period. (2) A wall common to two or more buildings shall be designed and constructed so that it adequately resists the spread of fire between those buildings. For the purposes of this sub-paragraph a house in a terrace and a semi-detached house are each to be treated as a separate building.(3) Where reasonably necessary to inhibit the spread of fire within the building, measures shall be taken, to an extent appropriate to the size and intended use of the building, comprising either or both of the following—(a) sub-division of the building with fire-resisting construction; (b) installation of suitable automatic fire suppression systems.(4) The building shall be designed and constructed so that the unseen spread of fire and smoke within concealed spaces in its structure and fabric is inhibited. | Requirement B3(3) does not apply to material alterations to any prison provided under section 33 of the Prison Act 1952.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677560-pAmH3GmECUOnIhg2kJmg",
+  "object": "chat.completion",
+  "created": 1790677560,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm working through whether smoke alarm installation counts as notifiable work under Part P—it depends on whether they're wired into an existing lighting circuit (not notifiable) versus a new dedicated circuit (which would be notifiable under Schedule 3 competent persons rules).\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm working through whether smoke alarm installation counts as notifiable work under Part P—it depends on whether they're wired into an existing lighting circuit (not notifiable) versus a new dedicated circuit (which would be notifiable under Schedule 3 competent persons rules).\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSggsKEAgSGAI4AUIIdGhpbmtpbmcSDEEiNKngMYXUOa2phhoMNYPYK5jAl0/l2yXVIjD0mfOHAsDZfDEAP9MLDQD1Drhm83zCuem0pWAXYcxe1qtKQeGVFIl9xH2kmOSCKpkqnwqrl/CWOQPI0OebxA+EANHVqzXgfsKEsAmCj7d2hnOBx7s/Bhxo038CZkk02uFuW/AOga+0bCtpVvodp0VEq8SjKnmlctm4OfOqfLRv/IwJBXyUmwBEPF3+jr6UlBOpkJJvsupTW9Jl9n8X7wvEwK07NDkUChrQUuOxLj7WfLRnVc/ErsIQcRY1LYG/xV8+oE848McqYkQ1Qq4g5BmNUjO2okVcmkDULiJtwXBxT9QT3rX4AiV+DmxXui0d52IeIO2wWozaIWwnHSJX/vnjytYqy9AupX08WryK/xrVRLQzkIKn+xfnwJCWkP2Fh/JY0hBEsAndNabXPw9ZIeD8B8lpTIeVdaHNGMbiGS4xWExyx6reTNS7ku/B1WLmSJurh7elhR9idOmqIDVEffEAxAWXQeQc4by5DhNOVUXPCZ4QJ2uojYCsz7OA66pOZgIomsxEYI1JxQDbkcIyViXwh3YssEI6YTM6Hkj9XMMFy3JzmzbTTsUgE9fbhZZILdxKOmq+52ORmCnigH7M42qWwgDE69AWN21PRYA5PWpuZ10ydyD7EmgR6aDrGQjMWx6+eqHrj3yWEQZ/r6yg5e1Xp5/fPUjp2jqJJrHq03hf2fXsl4b13bnV6+DPsn0eq2kBOy5RB/YBZ74jHhKHsL1nZNGfbNrifUjljE/3Ey+jFaOhmio3kcGjtW0HncZLTbkQ/c6426lYVYct//kzqg2saL7bRzPO6x2SIBiTkvJ6yWNTk9cLEnjc8q1Cl5DDjAE0nniCU9Lt2Ji73+/6C3idM+9DVpNyjACD5WgU3oJXOXeXiz4+/CBjM9CFBO4yVeUeiS17W3vOQY9dfpsvuz26Y7p1YCY8/AECGHYEJl8oMFX8gDvX3ya+qVQx5eXSfdWgB8WMkssk8ckqMwSOlXZ6R4vP1tkghFkCpADdwcU31qM3xqX0laRVTve6Gj8HD5jvElaHQjJ6GbDe70yNKS8/try6gmPwXIi1J9T6VsAg7eg9u0OPRpxfNpbF+Qey7SndXYibMOi/i6bsv6TPpmrB/KI8YKfOt/LJ3YC7NngA3zPRudqVg1XnkfxXSP193iWbgrINsfH/RGcJJfJnemewx0OiCbSkwQnJOxePcdwZ5AwWLfjiOtGBSOHKOD4ccNi0kemDxmMubaBRhLIratwyZkWpVqUo/xvgjJXcIrGMvr0Cu/pAj6pO7uUjrhvLP3fbG9HVhWJr0cRCbJ9+rmWFNNtlfKBKzCZ5fga9SrqyN4JEzOwngk7ge1dnAbFBd18J27R+GrXiOGbthBzfqUcD9NqB0Y5j9S61fcjhvdUB8NVdZYUjWxbpa1ZJaeNWKEQfm4jSpXHKZvkF/JbGnFg58JXVlumg02zRtvEk6RU3T6F8XmmK5AcXwkMhRcIooetXJCexHHC7O+9bAqXzssgvQu+ACagw8FjMWe23o122FNEjNZacQSa6K594l6/DlvhI/YXvmdoekrMf6v+CrdLD7lsL4YI71cmeni8oTZTfGfHkNl4Z6AQLt+6WyH0ye605jzaFUE+3ua/fDyC9/+0ey6OH3rCsODxi7jVUv3CdndHPi0mF+b9tNdusrRuWPLQW65sStR0cEQ8IB1EuicOQZwjZJA8T1I/X1XbLVn4WHJ+biiMqIKm57gs7PFXv6lesHqOH3/zAtCXvqLBTG5eIjACTm53kZ6x/aze6OYWlJD9RlIncG4Hf9gaD6EXuKBNRpS/6/ptO08pPB+C10y2B+RYYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1474,
+   "completion_tokens": 300,
+   "total_tokens": 1774,
+   "cost": 0.011896,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011896,
+    "upstream_inference_prompt_cost": 0.005896,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 14.708
+}

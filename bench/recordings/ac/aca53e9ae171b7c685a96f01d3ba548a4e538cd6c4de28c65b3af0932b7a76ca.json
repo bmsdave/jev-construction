@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Fit thermostatic radiator valves to existing radiators\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 10.1\", \"document\": \"ADL1-2021\", \"text\": \"10.1 This section provides guidance for new elements in existing dwellings, including all the following types of work. a. Providing a new thermal element in an existing dwelling – follow paragraph 10.1. b. Providing a replacement thermal element in an existing dwelling – follow paragraph 10.2. c. Replacing windows, doors or rooflights (controlled fittings) in an existing dwelling – follow paragraphs 10.3 to 10.6. d. Extending an existing dwelling – follow paragraphs 10.7 to 10.11. e. Adding a conservatory or porch to an existing dwelling – follow paragraphs 10.12 and 10.13. NOTE: Guidance for renovating elements in existing dwellings is given in Section 11. New and replacement fabric elements\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"para 3.13\", \"document\": \"ADF1-2021\", \"text\": \"3.13 Appendix D provides a checklist for determining the ventilation provision in an existing dwelling. It may be used before energy efficiency measures are carried out to establish whether an existing dwelling complies with the requirement for adequate means of ventilation. Replacing windows Existing windows with background ventilators\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677928-SKLdcWznGQaDCgPxAnZp",
+  "object": "chat.completion",
+  "created": 1790677928,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether fitting TRVs to existing radiators counts as notifiable work under Building Regulations 2010, checking Schedule 4's exemptions for heating system controls.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether fitting TRVs to existing radiators counts as notifiable work under Building Regulations 2010, checking Schedule 4's exemptions for heating system controls.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS2AoKEAgSGAI4AUIIdGhpbmtpbmcSDKlPuDPL3L6mq+lwQBoMAB5EkQnDfdwhfwCyIjDwxRj3VKD1ZwlLDyIKnhYyGJqISJFxVYyUXmX9DVKJizh8LgJe1of/D9r+38h/+wEq9QkZUeev9d+AaqwIjv3+vLRoaQ6H0wMlBCc0dmnzhvzvq8INi8bazgtTDhHKV9H7X2QTrtZ7c3vGY3Jwnd+mR5zLPszttpPv/AoklUSY+EZetc/0O0M9Hs3dcH2tojXcA/RMBGTNJPxHmrA2n5CHwy3uufZC0S3sPt5SwFZ+NxBIfxepgV2rj5CQTDrx54gD5gxyUr1ySPSGUztqHtnJDKMCJpRdwNCkQBPWURaerz8/6DWltGTp0DXN8MZDmBX4VdQbW8hg+2d7/pWBnZU9G5VzUPL64LFW7b0SMCm+gsS2+JDFsigJ0vj7LX7vl56uIdAJG2AOTCUwSi3hk+nw22lW5iyYSH1TgWAJ79+/eLECFNtM14VNkHs0fIsQ/BGyflWCjtKkRMF9ZZ16xuJiw1uCWDf6Yp4MzIKQVv9thVv3XLcEml/VFbJVnRa+uBVpOLxmLXBAQGC9vPOaOP8AwNzUzwN0UyRcITTpeVN+kOO8O1EzN6CLZDR+MI02Io7/mNz+DTfr/Fm8jLKlYl3RrB1fbWCtDEcuwlWirmfoVbf5dSa4DQJ7G27Q5SKY2Sopg4qH01cA4e9JtxKbNw3pB/bBPdtxsu2/xHeH5B999jQoVSLBEBoV95vx6BxXPxmcJg8fkKN/YLz4RSaICs36nuO73cTQy/HvUs2EVJ6qTEBZxukNU8Cbg26/xx+mOgsG2YnDxkI4+wm97luxWssWy2mBHEk3t+7tGfGTsuJ2Dqy4y6h94VemYLxReainezzbwGwo35UUAtQf37ffybGFU0ov9IlwKt7J418xAgmSMOMkhBPyRJL8KrwwlvwAC5NIYMH+AFIPCWA++X048NKCiyuNbSLtacoX4X5VHyIMS9GzTxkUq4MVBGJ1UooxlCqIo29HHWGK21zh9p6eT3J2q4iHaHxPvgJSYFjgvZGBN5qXdOVL0Tt+FJwGPoXTQ5jxnWtPx4RduqY8jT1ZYZfCjzQaSbG3QJaL3mdX5I+i9CfPhrgjlwtSEoETMqGFs3IVCvRfC5580lm1ydjFa1DTgjTrHjriikvYEtka0Yx/+bijl6cXzzNAUg55y82XqmVNSFJDW8v+N7al9e5hI7wrrMEi3/vNxz5DbNdloPgnjj5hL+CR2ALTqXGvsP9VFp1Jny41FKAXO7R4reyVxjemBvjA834C2y+HpargdiVJ1JeujtlIFXrANfeY/7iP+igY7Mezzt9xvVbbQw7D02TJ8V9lg30V2VD3ZxIry5ZQLA7wszhs5XniOrp8iif7RdRohIGWXtdIvLdghNZl6o3J7tc5cIWGjR2aIyekmqsTgyeH0bnsVg/pPooTvB+G3Cf14zujfwKWi9idLIdTbesMPYs7rUGJYbkF/vr0w4ObI/9Mk3Qsx5CiL2oKLhgUWav5H1rTNUW2ypBQ6dk3PEmKp3AsljkqxAGJd6hfkjKYHVcGMFBjoeQse2L6mHFChdJTdCEk1aHBYVmCD3/pB35P4ArnZd+DugyLV6pCkrD32CUKg4Wmqwpv5faKnZnr5hEtk93h00yoUFPc1H6FlKPrJRnmYm9It10fULsNawDhXUnjaSTkYHxFTlr5kouAtvI8z/8nV5NIWDjP6WRpDnqUfcLaIoF6UAHWR9eLe9xYnw8daz/SzlB/2VXp5FJcFyQCBtwmmbR88k+4xUJsur/Hz1mMIEYYF5AYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1005,
+   "completion_tokens": 300,
+   "total_tokens": 1305,
+   "cost": 0.01002,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.01002,
+    "upstream_inference_prompt_cost": 0.00402,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.795
+}

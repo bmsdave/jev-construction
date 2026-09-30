@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Double sockets (model count)\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678445-XP0F1RyY9XS8oFKGjVHp",
+  "object": "chat.completion",
+  "created": 1790678445,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Fitting double sockets on its own is most likely **not notifiable**, though this rests on an assumption.\n\n- **Why:** Under Schedule 4 of the Building Regulations 2010, electrical work in a dwelling is exempt from notification if it only replaces accessories (such as",
+     "refusal": null,
+     "reasoning": "Adding double sockets to an existing circuit outside a special location is non-notifiable, whereas installing a whole new circuit would fall under Schedule 3 and need notification. I'm leaning toward treating this as additions to an existing circuit rather than a new one, so it's likely non-notifiable on its own.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Adding double sockets to an existing circuit outside a special location is non-notifiable, whereas installing a whole new circuit would fall under Schedule 3 and need notification. I'm leaning toward treating this as additions to an existing circuit rather than a new one, so it's likely non-notifiable on its own.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQShQkKEAgSGAI4AUIIdGhpbmtpbmcSDPvutQlVsOa1WP0xsBoMwslI6yx9hAuheM9cIjAHmX9Q8e1KOMkc3w64zTrBVuY7lGe0HAsmo/hKP0oDjU1iSRdIJDxENzxoGFeim40qoggOOZpzMBCa47tMUF9DqeezR2QwsM1ykDiF7bpHJrB5V40ccz++evkZwLpVNpWbfoHmIb2erMlYbcEbWe/0+G06iefF9Z9KueiROYvg7cRMtorF5IObcLHoRpJQXZSkusLLC44DRXzj3xpMhzJqiy/fqly6TaBxNnpl55axKx4yhchZ3En3iyn69+hJRsWiznmqnAaRXlRGz0IPNPDCmZvuZag3VnQQMHD3qfBo4qvLwwra+XDfA89pw5uSGiqYAWA0ijHLG1K/2xO8JEqMI2UPSo1VUB30/3zcVjEZJ04dIpDFJenW8a7a0BKyZRgPw41HqjGMlNxclq/zIDaCSguoOc6QhsCCzq/X8/Ma8mbir9c/nRJvqO+zsORTH09UZ1p87HQZr+euYFoVOj7yD6TUvzS1E/WLbM7O1eRngZZFY9lg7f14tEUwYEgUrWyhbql2dYldNNRY3jL4SXHCgGwrsxmzRIp90YxWk53cXdNT8OfInu4H1hcVt3YxIXeGcUqH4XQ28NrrdEyY4M0nwKDmXHxB1QYwy1fxQDufjL5ZE90Qem9DdzG35USx/7SDHCNL8Fgb3X32PF3r1MRGi9/28a3AiyO4EEnRN3TDG5EqS512sBEAYmO5rBMyi/2Tq+peZrRm9D2zQPKT5fugq48MDsN6HpLFdo7L2/hVyVtt4lpBanf1VKyv28LECXCeD4JQEqReYyZ48P7coAMHJPonwnYMvXT5E07zlmVXDeOk8aWoMMknZIbwIfcqb3WJdrY+4piZtaox77oo29Mb0llW34WsFa3p8Jemi8LdBQrENXFsOacT+4asEs9He7NZYf1nEBtz687HUfgIpy/W+fXDpkYbXy6mpgPHngk4ZP1rwh+hU8YyBSjChi/ZWq8KKP12M84fnDip7oa6T1neAQuk+fy6J3cMiyqVAKbeQ+Rs8U/SUq3Z81axVEqF8io8WLlS4HQw7xocMgkvCkMjVI5pzDRgDjVt8/2coJRC21hZkWB2DA8HrPYb23bFhYjSSF4YDGebwGpm13YAxHsswdkBrEktJEBgBFi+eodKOuYPGjxRWzn7kLAybDl0ljCBzNBCJc2nMxjJiCKZ752iO8zoCB7rwTYPw9pfiZ8j22PQSG43Fst4e6t97sc0rp8TVJDV0tFs1VZq5GpajCrPWEZALdhLg7P4Jpsly6SY3O5uWUTNwQgwj+820Q7BT58r+scqobqC9zBCHR4h8zXzTIJHcjRYHqj3pqcSUAzJnKoivAqOBXex0J2mako/a637DpTQeWXFrvvbw6hgkRvT/qhoso61fVmHY2lkzZqZBZyIRMyI5rlCQfet2Q1y3Eca7ycQuL5beQoaN1fUxRG/D+ioNQYJGils4uFktt3CAwDiGZQMNHCIrljEQSYFJnRwQ7y+VBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 503,
+   "completion_tokens": 300,
+   "total_tokens": 803,
+   "cost": 0.008012,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.008012,
+    "upstream_inference_prompt_cost": 0.002012,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 210,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.897
+}

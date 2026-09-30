@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Relocate WC and basin with new connection to underground drain\", \"project\": \"House in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 1 H4\", \"document\": \"BR2010\", \"text\": \"Building over sewers: H4.—(1) The erection or extension of a building or work involving the underpinning of a building shall be carried out in a way that is not detrimental to the building or building extension or to the continued maintenance of the drain, sewer or disposal main. (2) In this paragraph “disposal main” means any pipe, tunnel or conduit used for the conveyance of effluent to or from a sewage disposal works, which is not a public sewer. (3) In this paragraph and paragraph H5 “map of sewers” means any records kept by a sewerage undertaker under section 199 of the Water Industry Act 1991. | Requirement H4 applies only to work carried out—(a) over a drain, sewer or disposal main which is shown on any map of sewers; or(b) on any site or in such a manner as may result in interference with the use of, or obstruction of the access of any person to, any drain, sewer or disposal main which is shown on any map of sewers.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}, {\"ref\": \"Sch 1 E2\", \"document\": \"BR2010\", \"text\": \"Protection against sound within a dwelling-house etc: E2. Dwelling-houses, flats and rooms for residential purposes shall be designed and constructed in such a way that—(a) internal walls between a bedroom or a room containing a water closet, and other rooms; and(b) internal floors, provide reasonable resistance to sound. | Requirement E2 does not apply to—(a) an internal wall which contains a door;(b) an internal wall which separates an ensuite toilet from the associated bedroom;(c) existing walls and floors in a building which is subject to a material change of use.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677991-IumfxCqGXQlspqSRWWjv",
+  "object": "chat.completion",
+  "created": 1790677991,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\":",
+     "refusal": null,
+     "reasoning": "I'm checking whether relocating the WC and connecting to underground drainage still falls under Schedule 3's permitted development for sanitary conveniences, since that exemption typically excludes work involving shared or underground drainage.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm checking whether relocating the WC and connecting to underground drainage still falls under Schedule 3's permitted development for sanitary conveniences, since that exemption typically excludes work involving shared or underground drainage.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS8goKEAgSGAI4AUIIdGhpbmtpbmcSDDezL34H5+T2YpVeGRoMEfKbdrz8zBw+q2TfIjCYD5DGeGUhCJ60z92meU3mpDpqzIRDG0JRRBeu4w12wFPni5gOPol2vhPpC1OIM40qjwrzp1+uOPKY9VI6LXePgRvNMt18cso24sKuaKSTvscmkQPsPVErdWRK7q02ULp1G9902JidC+1luar3RdaqJ4tgT/fsczX/gAfVAfaXwSoUHK5F2cXoOOMvQEQ84y4lF+skHhlEapRyh7BaSKSehOsKGI3HV2vMern/uz+7wrn47Pc13pHGs9HwlRKRnG3yp77W38sM/+brqoacDYGE/ChLU/NzG1YIWlXugfX3agcZjBbNwLSQVoA2N6JO6RP31AvJ8AHXI46E8jliXVn5QzxB0Yww9KvYuLBnge0DOVpJomn574tTgPZDUpJ248MSSnXnXKspa5crzKY1W5NCtu9YLPtqGmHcv9TrJpuruJMhxzyV7M+FGAEIBsDt8FUagbJaRUD8qA9lY8Wh9Z71LbM3xcglBdPADdYsTamUUpIJE9KN9DEtAVKYwcFGShheb9A6KLlJ8K3t8g+xFP+KG6zZ5ZEefklWKriU3yLH+qkSihvd3O9u04az3PojQeGfvL5wOZU5beYG3Y43Bi4+gfvkGobJS8yJVVXpOfWI62W58deKmNnR1LrdSQYweJMzM4eOIjXtNPbr4rDI8NLLOpK2K+Idrd7NyuKNYjSEgEOMSuQkvnG0cl/A2gQpzyzlS1QXxxVvIRdAs+jFejHLFpT4rcdzoQl1AbZgXG5yD575R2vzAcgZ50BptDvgrGeXCH8w8tiz2RibXO/VxA81/YSikJxHWw0sM0HUGXJycrmqKZXQA3mcATbG2ne9+63FZW4m4G45WZIZIvwqZyY64hme1iE2/ghhs2KHNFAt418ZFxbkn+wEfTu4uI/b6mVdBPDfxUVGSV5t8PfVWKkq4iMwXUjDoltHYHjUZriXjC3E92R2Hi+up+LA7VyQ8tMuO1Vg8LelWksRckMxRlggySbHo8PeUOCRThdqJzL6oUnMBCn8VZtWW2xYW7CsW8CfppTqVHo2eE+zc8n3ABsKLFdKiR/BhluyhXvpFMxfkRzGXKpFtWo3B/TDexyRM89rFAWaXq+itZqH/ZZZ5KnxaPGGZZkt3DwJ7rURrwAPGTtti9u80QxBfbYj+Mb0F101bIg8oA10L+cpe6scbkiCzkGDAggBbDnF6nnqo6XEOtlej43sAWndkRMegaVqs/rDgN5P4cxwnTCodId9p20vzKDTmwsuL6JTuMcVvlxGp4aUAkrFh4dPSXwvw2U1LJQVutS3MF9hrv1infBvxTeRCSI1EzpK0YViqkqWn0rNFPRhZxdOOrnrl+Y5F3p/cgfw9rN8KgW1kB48TTJT6OLGm/FOdvZRpkLw8qoGs8t9A5aYe+Kl7Z0nc56YTgh2St8DTSfF8sVjcZw8VYY91hvvXxgog3k3jbvgKlHDJyay9f/rxAzG3nJ25ViyjR39tuOu+tZVANjk9Cr13KfOQfMhxOgOvmT9OfZeKTYJxEXcTcNrS724Cem328oB+V5xduRQcAqXmWpfragdpyj6x9wAnqREJ5+yKiQ6shmxkCB5ztfFFSo149pTLA/4MWekCee2plCbKaD51lyvWiiYNxYnD7A/guojUSokRsySJQ0LX5GQEmzguumkSxyQAOjZ+MErxsuXesJu5Ic7vIOxLHnLlStr3VWCf0v4Faiccacte9P6QY6Pn+zcikk/5OZu7ij1hbqFg0WQWTESf6mi8DCtYxOeIkzNxwMjQZysO4t/ZOnxMBzoworT8HxdwzXLdYHDzxgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1139,
+   "completion_tokens": 300,
+   "total_tokens": 1439,
+   "cost": 0.010556,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.010556,
+    "upstream_inference_prompt_cost": 0.004556,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 296,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 8.006
+}

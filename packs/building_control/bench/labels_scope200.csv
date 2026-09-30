@@ -1,0 +1,142 @@
+row,label,gold_clauses,confidence,rationale
+10,not_notifiable,BR2010:reg-3,medium,Internal strip-out alone is not building work under reg 3 (no erection/extension/material alteration).
+11,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Foundations for an extension: erection/extension of a building (reg 3(1)(a)); A1/A2 apply; not in Sch 3 or 4.
+12,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Foundations for an extension (reg 3(1)(a)); structural work not in Sch 3 or 4.
+13,competent_person_scheme,BR2010:sch-3-para-15;BR2010:sch-3-para-4,medium,Component of a heat pump (microgeneration/heating system) installation: Sch 3 paras 15 and 4.
+14,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,low,Ducts serve new outdoor and office circuits; the job is new circuits (reg 12(6A)(a)) self-certifiable under Sch 3 para 8. Ducts alone would not be building work.
+15,building_notice_or_full_plans,BR2010:reg-3;BR2010:reg-23,medium,New suspended ground floor structure: material alteration and renovation of a thermal element (reg 23); not in Sch 3 or 4.
+16,building_notice_or_full_plans,BR2010:sch-1-H1;BR2010:reg-3,high,Underground drainage alteration: controlled service (H1); Sch 3 para 12 excludes underground drainage.
+17,competent_person_scheme,BR2010:sch-3-para-15;BR2010:sch-3-para-4,low,Trench is part of the heat pump installation (Sch 3 paras 15 and 4); a trench alone is not building work.
+18,building_notice_or_full_plans,BR2010:sch-1-H1;BR2010:reg-3,high,New inspection chamber on underground drainage (H1); not in Sch 3 or 4.
+19,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,medium,Part of new suspended ground floor structure (sleeper walls): structural material alteration.
+20,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Foundation reinforcement for an extension (reg 3(1)(a)).
+21,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Structural steel for loft conversion/extension: material alteration affecting A1 (reg 3(2)).
+22,competent_person_scheme,BR2010:sch-3-para-10,high,Replacement windows in an existing dwelling: Sch 3 para 10 (FENSA/CERTASS etc.).
+23,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,New structural timber joists: material alteration affecting A1.
+24,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Structural steel connections: part of structural alteration (A1).
+25,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-3-para-10,medium,Mostly new windows in a new dormer (part of the loft conversion); Sch 3 para 10 covers only replacements.
+26,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-3-para-10,high,New doors in a new extension are part of the extension; Sch 3 para 10 covers only replacements.
+27,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-3-para-10,high,New rooflight in a new extension roof; not a replacement so not Sch 3 para 10.
+28,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Structural connection detail (A1).
+29,building_notice_or_full_plans,BR2010:sch-1-K1;BR2010:sch-1-B1,high,New stair to a loft conversion: K1 and B1 means of escape; material alteration.
+30,building_notice_or_full_plans,BR2010:sch-1-K1;BR2010:reg-3,low,Replacing a staircase is a material alteration where K1/B1 compliance is affected; like-for-like repair would not be building work.
+31,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,New dormer roof: extension/material alteration (A1 and L1).
+32,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,medium,Temporary works support structural alterations (A1).
+33,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Bearings and padstones for new beams (A1).
+34,competent_person_scheme,BR2010:sch-3-para-16;BR2010:reg-23,high,Replacement of a pitched roof covering: Sch 3 para 16 (registered roofer); thermal element renovation (reg 23).
+35,competent_person_scheme,BR2010:sch-3-para-10;BR2010:sch-4-para-1-h,medium,Replacement front door with glazed sidelights: Sch 3 para 10; Sch 4 para 1(h) would cover only a mostly opaque door.
+36,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,New structural floor decks: material alteration (A1).
+37,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Structural fixings for new steelwork (A1).
+38,building_notice_or_full_plans,BR2010:sch-1-B3;BR2010:reg-3,high,Fire protection to structural steel in a loft conversion (B3).
+39,building_notice_or_full_plans,BR2010:sch-1-E1;BR2010:sch-1-B3,high,Raising a party wall in a loft conversion: B3/E1/A1 material alteration (Party Wall Act also applies).
+40,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-4-para-1-m,high,Insulation as part of a loft conversion is done to comply with the Regulations so Sch 4 para 1(m) does not apply.
+41,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-3-para-6,medium,Roof penetrations formed as part of the loft conversion roof works.
+42,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,New dormer wall: extension/material alteration.
+43,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-3-para-10,medium,New roof window in the loft conversion (new opening); only a replacement would be Sch 3 para 10.
+44,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-1-A1,high,Roof of a new extension (reg 3(1)(a)).
+45,not_notifiable,BR2010:sch-2-Part-7,medium,Open porch canopy at ground level: Sch 2 Class 7 exempt extension (under 30 m2).
+46,not_notifiable,BR2010:sch-4-para-1-j,high,Replacing rainwater downpipes: Sch 4 para 1(j)(vi).
+47,not_notifiable,BR2010:sch-4-para-1-j,high,Replacing rainwater gutters: Sch 4 para 1(j)(v).
+48,building_notice_or_full_plans,BR2010:reg-3;BR2010:sch-3-para-16,medium,Making good the roof around a new dormer is part of the loft conversion.
+49,building_notice_or_full_plans,BR2010:reg-3,low,Dormer trims are part of the dormer construction; replacing fascias alone would not be building work.
+50,not_notifiable,BR2010:reg-3,medium,Boxing-in and casings for services are not building work.
+51,not_notifiable,BR2010:reg-3,low,Linings to party walls (non-thermal-element) are not a material alteration on their own.
+52,not_notifiable,BR2010:reg-3,medium,Re-boarding and plastering ceilings is not building work on its own.
+53,building_notice_or_full_plans,BR2010:sch-1-B3;BR2010:reg-3,low,Fire-stopping of new floor/ceiling penetrations is part of the loft conversion (B3).
+54,not_notifiable,BR2010:reg-3,low,Non-loadbearing partitions are not building work unless they affect means of escape (B1).
+55,not_notifiable,BR2010:reg-3,high,Repair and skim of walls is not building work.
+56,not_notifiable,BR2010:reg-3,low,Access panels are not building work on their own.
+57,building_notice_or_full_plans,BR2010:sch-1-B3;BR2010:reg-3,low,Fire-stopping for services through compartment floors is part of the loft conversion (B3).
+58,competent_person_scheme,BR2010:sch-3-para-4,high,Underfloor heating manifold: heating system (Sch 3 para 4).
+59,competent_person_scheme,BR2010:sch-3-para-4,high,Underfloor heating installation: heating system (Sch 3 para 4).
+60,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Cabling for new circuits is notifiable (reg 12(6A)(a)); self-certified under Sch 3 para 8.
+61,competent_person_scheme,BR2010:sch-3-para-18;BR2010:reg-23,high,Internal wall insulation: Sch 3 para 18; thermal element renovation (reg 23).
+62,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Cabling for new circuits (reg 12(6A)(a)); Sch 3 para 8.
+63,building_notice_or_full_plans,BR2010:sch-1-B3;BR2010:reg-3,low,Fire stops in a service riser through floors: part of the loft conversion (B3).
+64,not_notifiable,BR2010:sch-4-para-3,high,Data wiring is extra-low voltage IT wiring: Sch 4 para 3.
+65,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8;BR2010:reg-9-3,high,New submain circuit to an outbuilding: reg 12(6A)(a); Part P applies to the outbuilding (reg 9(3)); Sch 3 para 8.
+66,not_notifiable,BR2010:reg-3,low,Insulating existing pipes is not building work on its own.
+67,competent_person_scheme,BR2010:sch-3-para-13,medium,New cold water pipework: installation/extension of a wholesome cold water supply (Sch 3 para 13).
+68,competent_person_scheme,BR2010:sch-3-para-12,medium,Above-ground soil and waste for new sanitary fittings: Sch 3 para 12 (no underground drainage).
+69,competent_person_scheme,BR2010:sch-3-para-4,medium,Controls for a new heating system: Sch 3 para 4.
+70,competent_person_scheme,BR2010:sch-3-para-4,high,Heating pipework: heating system (Sch 3 para 4).
+71,not_notifiable,BR2010:sch-4-para-3,medium,Extra-low voltage control wiring: Sch 4 para 3.
+72,competent_person_scheme,BR2010:sch-3-para-4,high,Heating pipework: Sch 3 para 4.
+73,not_notifiable,BR2010:reg-3,low,Pipe insulation on its own is not building work.
+74,competent_person_scheme,BR2010:sch-3-para-4,high,Heating pipework: Sch 3 para 4.
+75,competent_person_scheme,BR2010:sch-3-para-12,medium,Above-ground wastes for new sanitary fittings: Sch 3 para 12.
+76,competent_person_scheme,BR2010:sch-3-para-13,medium,New cold water pipework: Sch 3 para 13.
+77,competent_person_scheme,BR2010:sch-3-para-4,medium,Hot water pipework: hot water system (Sch 3 para 4).
+78,competent_person_scheme,BR2010:sch-3-para-4;BR2010:sch-3-para-13,medium,Hot and cold water manifolds: Sch 3 paras 4 and 13.
+79,competent_person_scheme,BR2010:sch-3-para-4,medium,Heating controls: Sch 3 para 4.
+80,competent_person_scheme,BR2010:sch-3-para-13,medium,New cold water pipework: Sch 3 para 13.
+81,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Cabling for new circuits: reg 12(6A)(a); Sch 3 para 8.
+82,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Cabling for new circuits: reg 12(6A)(a); Sch 3 para 8.
+83,competent_person_scheme,BR2010:sch-3-para-4,medium,Hot water pipework: Sch 3 para 4.
+84,competent_person_scheme,BR2010:sch-3-para-4,medium,Hot water return pipework: Sch 3 para 4.
+85,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Cabling for new circuits: reg 12(6A)(a); Sch 3 para 8.
+86,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Cabling for new circuits: reg 12(6A)(a); Sch 3 para 8.
+87,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Cabling for new circuits: reg 12(6A)(a); Sch 3 para 8.
+88,competent_person_scheme,BR2010:sch-3-para-4,medium,Hot water pipework: Sch 3 para 4.
+89,not_notifiable,BR2010:reg-3,high,Fitted furniture is not building work.
+90,not_notifiable,BR2010:reg-3,high,Floor finishes are not building work.
+91,not_notifiable,BR2010:reg-3;BR2010:sch-4-para-1-j,medium,Kitchen units are not building work; replacing a sink is Sch 4 para 1(j)(ii).
+92,not_notifiable,BR2010:reg-3,medium,Replacing internal doors is not building work (fire doors forming a protected route in a loft conversion would be).
+93,not_notifiable,BR2010:reg-3,high,Decoration is not building work.
+94,not_notifiable,BR2010:reg-3,high,Tiling is not building work.
+95,not_notifiable,BR2010:reg-3,high,Joinery casings are not building work.
+96,not_notifiable,BR2010:reg-3,high,Joinery enclosures are not building work.
+97,not_notifiable,BR2010:reg-3,high,Skirtings are not building work.
+98,competent_person_scheme,BR2010:sch-3-para-12;BR2010:sch-4-para-1-j,low,New showers in new bathrooms: Sch 3 para 12; a like-for-like replacement would be Sch 4 para 1(j)(iv).
+99,competent_person_scheme,BR2010:sch-3-para-12;BR2010:sch-4-para-1-j,low,New WCs in new bathrooms: Sch 3 para 12; a replacement would be Sch 4 para 1(j)(i).
+100,competent_person_scheme,BR2010:sch-3-para-12;BR2010:sch-4-para-1-j,low,New basins in new bathrooms: Sch 3 para 12; a replacement would be Sch 4 para 1(j)(ii).
+101,not_notifiable,BR2010:sch-4-para-1-j,low,Replacing the bath in the existing bathroom: Sch 4 para 1(j)(iii).
+102,not_notifiable,BR2010:reg-3,low,Waterproof tanking is not building work on its own.
+103,competent_person_scheme,BR2010:sch-3-para-12,low,New kitchen sink in a new kitchen position: Sch 3 para 12; a replacement would be Sch 4 para 1(j)(ii).
+104,not_notifiable,BR2010:sch-4-para-1-k,medium,Appliance connections add an output device to the existing cold water supply: Sch 4 para 1(k)(ii).
+105,competent_person_scheme,BR2010:sch-3-para-15;BR2010:sch-3-para-4,high,Heat pump: microgeneration and heating system (Sch 3 paras 15 and 4; MCS installer).
+106,competent_person_scheme,BR2010:sch-3-para-6,high,Mechanical ventilation system in a dwelling: Sch 3 para 6.
+107,competent_person_scheme,BR2010:sch-3-para-6;BR2010:sch-3-para-4,medium,Fan coils are emitters of the heating/cooling system: Sch 3 paras 4 and 6.
+108,not_notifiable,BR2010:reg-3;ADP2013:para-2-8,high,Appliances plugged in or connected to existing outlets: not notifiable (AD P 2.8).
+109,not_notifiable,BR2010:sch-4-para-2;ADP2013:para-2-7,medium,Blind motors on fused spurs from existing circuits outside special locations: not notifiable (Sch 4 para 2; AD P 2.7).
+110,not_notifiable,BR2010:sch-4-para-2;ADP2013:para-2-7,medium,Adding light fittings to existing circuits: Sch 4 para 2; AD P 2.7.
+111,not_notifiable,BR2010:sch-4-para-3,high,Network and camera equipment is extra-low voltage/IT: Sch 4 para 3.
+112,not_notifiable,ADP2013:para-2-7;BR2010:reg-3,medium,Supply upgrade is carried out by the distribution network operator on its own equipment; no Building Regulations notice.
+113,not_notifiable,BR2010:sch-4-para-2;ADP2013:para-2-7,low,Extra lighting points on existing circuits: not notifiable (AD P 2.7); new circuits would be notifiable.
+114,competent_person_scheme,BR2010:sch-3-para-4;BR2010:sch-1-G3,high,Unvented hot water cylinder over 15 litres: G3; hot water system (Sch 3 para 4).
+115,not_notifiable,BR2010:sch-2-Part-6-para-3;BR2010:reg-9-1,medium,Garden office under 15 m2 with no sleeping accommodation is an exempt building (Sch 2 Class 6).
+116,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,high,Replacing a consumer unit is notifiable (reg 12(6A)(b)); Sch 3 para 8.
+117,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,low,Relays are part of the new consumer unit and circuits.
+118,not_notifiable,ADP2013:para-2-7;BR2010:sch-4-para-2,medium,Replacing or adding switches on existing circuits: not notifiable (AD P 2.7).
+119,not_notifiable,BR2010:sch-4-para-2;ADP2013:para-2-7,medium,Adding fused spurs to existing circuits: Sch 4 para 2(c)(ii).
+120,not_notifiable,BR2010:sch-4-para-2;ADP2013:para-2-7,medium,Adding socket outlets to existing circuits: Sch 4 para 2(c)(ii).
+121,competent_person_scheme,BR2010:sch-3-para-13,medium,Softened wholesome cold water supply: Sch 3 para 13.
+122,not_notifiable,BR2010:sch-4-para-1-k,medium,Replacing part of an existing cold water supply (lead pipe): Sch 4 para 1(k)(i).
+123,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,medium,Electrical work in a bathroom special location is notifiable (reg 12(6A)(c)); Sch 3 para 8.
+124,not_notifiable,ADP2013:para-2-7,medium,Replacing light fittings: replacement work is not notifiable (AD P 2.7).
+125,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8,low,Mains smoke alarms usually need a new circuit (reg 12(6A)(a)); Sch 3 para 8.
+126,not_notifiable,BR2010:sch-4-para-1-g,low,Cooker hood extract: self-contained fixed building service (Sch 4 para 1(g)) where no open-flued appliance.
+127,not_notifiable,BR2010:sch-4-para-2;ADP2013:para-2-7,low,Light points on existing circuits: not notifiable; new circuits would be.
+128,not_notifiable,BR2010:reg-3,high,Network configuration is not building work.
+129,not_notifiable,BR2010:sch-4-para-3,high,Data outlets are IT wiring: Sch 4 para 3.
+130,not_notifiable,BR2010:sch-4-para-1-k,medium,Adding a control device to the existing cold water supply: Sch 4 para 1(k)(iii).
+132,competent_person_scheme,BR2010:reg-9-3;BR2010:reg-12-6A;BR2010:sch-3-para-8,high,Part P applies to an outbuilding supplied from the dwelling (reg 9(3)); a new consumer unit/circuits are notifiable; Sch 3 para 8.
+133,not_notifiable,BR2010:sch-4-para-2;ADP2013:para-2-7,medium,Additional sockets on existing circuits: Sch 4 para 2.
+134,not_notifiable,BR2010:sch-4-para-3,high,Fibre link is IT wiring: Sch 4 para 3.
+136,not_notifiable,BR2010:sch-4-para-1-k,medium,Adding an output device to the existing cold water supply: Sch 4 para 1(k)(ii).
+137,not_notifiable,BR2010:sch-4-para-1-f,low,Adding a component to an existing hot water service: Sch 4 para 1(f).
+138,not_notifiable,BR2010:sch-4-para-2;BR2010:reg-9-3,low,Heater on a fused spur from the outbuilding's existing circuit: not notifiable (Part P applies via reg 9(3)).
+139,not_notifiable,BR2010:reg-3,high,Empty ducts are not building work.
+140,not_notifiable,BR2010:sch-2-Part-6-para-3,high,Garden office is an exempt building (Sch 2 Class 6).
+141,not_notifiable,BR2010:sch-2-Part-6-para-3,high,Doors to an exempt garden office (Sch 2 Class 6).
+142,not_notifiable,BR2010:sch-2-Part-6-para-3,high,Walls of an exempt garden office (Sch 2 Class 6).
+144,not_notifiable,BR2010:reg-3,high,A fence is not a building.
+145,not_notifiable,BR2010:sch-2-Part-6-para-3,high,Roof of an exempt garden office (Sch 2 Class 6).
+146,not_notifiable,BR2010:reg-3,high,Paving is not building work (planning may apply).
+147,not_notifiable,BR2010:sch-2-Part-7,medium,Awning/covered way at ground level: exempt (Sch 2 Class 7).
+148,not_notifiable,BR2010:reg-3,high,A patio is not building work.
+149,competent_person_scheme,BR2010:reg-12-6A;BR2010:sch-3-para-8;ADP2013:para-2-2,medium,Garden lighting on a new circuit is notifiable (reg 12(6A)(a); AD P 2.2); Sch 3 para 8.
+150,not_notifiable,BR2010:sch-4-para-1-k,medium,Hose tap adds an output device to the existing cold water supply (Sch 4 para 1(k)(ii)); water undertaker notice may apply.
+151,not_notifiable,BR2010:sch-2-Part-6-para-3,high,Floor of an exempt garden office (Sch 2 Class 6).
+152,not_notifiable,BR2010:reg-3,high,A timber deck is not building work.
+153,not_notifiable,BR2010:reg-3,high,A garden path is not building work.

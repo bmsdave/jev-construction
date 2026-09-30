@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Extension to a warehouse loading bay\", \"project\": \"Warehouse in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"reg 9(1)\", \"document\": \"BR2010\", \"text\": \"(1) Subject to paragraphs (2) , (3) and (4) and regulation 21(1), these Regulations do not apply to— (a) the erection of any building or extension of a kind described in Schedule 2; or (b) the carrying out of any work to or in connection with such a building or extension, if after the carrying out of that work it is still a building or extension of a kind described in that Schedule.\"}, {\"ref\": \"reg 2(2)\", \"document\": \"BR2010\", \"text\": \"(2) In these Regulations “public building” means a building consisting of or containing— (a) a theatre, public library, hall or other place of public resort; (b) a school or other educational establishment not exempted from the operation of building regulations by virtue of section 4(1)(a) of the Act ; or (c) a place of public worship;but a building is not to be treated as a place of public resort because it is, or it contains, a shop, storehouse or warehouse, or is a dwelling to which members of the public are occasionally admitted.\"}, {\"ref\": \"reg 12(7)\", \"document\": \"BR2010\", \"text\": \"(7) Where regulation 22 of the Building (Registered Building Control Approvers etc.) (England) Regulations 2024 (local authority powers in relation to partly completed work) applies, the owner shall comply with the requirements of that regulation instead of with this regulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677708-Bv1keDdwpa2h7sRwADUq",
+  "object": "chat.completion",
+  "created": 1790677708,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "The Fire Safety Order applies to the warehouse, so this extension needs a full plans application.\n\n- **It is building work.** Extending a building is building work under reg 3, so the Regulations apply",
+     "refusal": null,
+     "reasoning": "I'm considering whether this loading bay extension falls under permitted development as a covered yard addition, but since the warehouse is non-domestic, the Fire Safety Order for workplaces likely applies, and I need to check whether full building control plans are required given the building's classification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm considering whether this loading bay extension falls under permitted development as a covered yard addition, but since the warehouse is non-domestic, the Fire Safety Order for workplaces likely applies, and I need to check whether full building control plans are required given the building's classification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSyQkKEAgSGAI4AUIIdGhpbmtpbmcSDDXpuOXOysYJETiZrhoMtwVGoza0CRSUdTnGIjBW3tm4UKi5N5xKZeR/6fsj8/mpv7S/fm41er9UYdM4dpZZPJa1YbDIFqfpGILzlEYq5gindhAhmLWyvlaWsV4JA5fuVhEfV9k1eEyO6uBGicdWX4QEUX7pf0KyISQuzOxUGg+Uwu9bFrw7YT+ckzEiRaHz3sIpFo7th48ysyFtBiHZ3qdSKeVvw26guVZ3uCL7A0Fhf5t/krCnKOzQGTDUbxvwvsJgD9vIHl2PeHFJ0gjuSH+w1WVyX5smtIrCjkX7b/8ycQTv0GSsifiHALos/887DU2uhNZTV6mAJKdlVDPTfReae/lqJ6JU7Q3o8Kwoltnj0c/vdATji3hhrbqeD5JOkPUbqNtgF/Wh1Fe/C2DhkBJdm5zvnRuOcCfxb+qh27Het/WoTtkffMb68hx/mTzyA4rUBCzLxcI1LQv4oo66oUVLbKwsh0mHUN0n+/sEUxsEqXNLUMup45M8G+XQoOhqELNtL8JxznReXIpAwHdMj0lerBAhS2drpRNt1rGTi3p0Q1rhWIbZpvAACUc09gqznxyqBMs9/j+NCZAZkIJZXFn3hj0BYRzzapC7i+E/eGTY8ipEQ0ONx6XEjwhB1itN+b1Vs4MG/4/EIPHoNsgGRXzWwjO9oIifglASc31767jGRkg2B2tdGcA1a1zZNHq0fph8PEgiBRgIAlg1UzRPQr/p31OxE79jDxbcPXGV6qwPw974kvFuen+SWZVHmucZJyujGB9XVBI+D1r+7XcU2le1eJBYbRFjvHQtAMewy9fbbG4CA3aHNXVULnWlkXtWSpjY8GNHIIe9p4OqxzIL0geQBab4YrfbeoJP97v0MlIBprAvIhUdhnbKlBY737kT8Hur1THL3UTxfU9LISBPth98mFBPmQwqZaUtvOfQJ1APoYLHarebJag9xIxCPqteq7BLS5au94FKFn9YmZIGqZfLeI7Uu/WVpT1X2jTUh95yu/wSCsAts+9e2tMNN4GDkVzMN++qbTgF02ODBPejhjbI671xXOoVLMmgbUcMNnW9+vRhiuXVjM9h3x4k3YdtETSjjqeiZQ/FueWB3SnTStCSPPniwH6FH33PnCIRMqc0ZAz7PRGpQMqjdLXohPAjRiNwSLp2yYfzAG9TjYM+vMYlJ+YfpcYr3QQ4HUemNXLYLhxczlePqZzRUY07S/2edX8SrbcHO6tEPx5HPNqgE6miWjpFzOYJEwiahFboDX229/CsDHSHl2F5nG/ZougwN2bO84hLn6e9cH6sh2Ko5F/hwEo0Cp6I//9/W2aXWk22mrzYjOJegaQHbInatqE8uhhDkenherW0EewiTSAMHIPVCX5/QLDRsd/ccFGz5jlHXC7dDJTbmbVVWDFt13Y+M3IP01K0uevh2+lltDWsnl+MTAZTJcfIb/tSDOcK3fKLRadCE0m1fsJr0hLhEnBUuIuT5vab93qzZ9Dx428QRf9QoJ1jiejjMJ3GU97fP1x8W4b+nJVhsj0D407AOjILSJc53dyvdcZw+H8XcSbE5GPXJtxRbze9LypsykXFZ/zhGEBzTXbmrTBKD1NLa5VBt6atvu/TGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 929,
+   "completion_tokens": 300,
+   "total_tokens": 1229,
+   "cost": 0.009716,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009716,
+    "upstream_inference_prompt_cost": 0.003716,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 239,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.958
+}

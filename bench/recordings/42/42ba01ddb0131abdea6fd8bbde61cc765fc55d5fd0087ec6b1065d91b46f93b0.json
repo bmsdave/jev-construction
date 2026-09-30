@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"New fire-resisting lobby to the common stair of a block of flats\", \"project\": \"Block of flats in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678581-xoZRfSZlUdZxyJaeZdDU",
+  "object": "chat.completion",
+  "created": 1790678581,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"full_plans_required\", \"probabilities\": {\"full_plans_required\": 0.9, \"building_notice_or_full_plans\": 0.07, \"competent_person_scheme\": 0.01, \"not_notifiable\": 0.02}}",
+     "refusal": null,
+     "reasoning": "Since the common parts of a block of flats fall under the Fire Safety Order, Regulation 12(3) requires full plans where the building is subject to that Order. Adding a new lobby to the common stair counts as building work affecting fire safety (B1/B3), so full plans are required, with taller buildings potentially also falling under BSR oversight.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Since the common parts of a block of flats fall under the Fire Safety Order, Regulation 12(3) requires full plans where the building is subject to that Order. Adding a new lobby to the common stair counts as building work affecting fire safety (B1/B3), so full plans are required, with taller buildings potentially also falling under BSR oversight.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSkgcKEAgSGAI4AUIIdGhpbmtpbmcSDGPyZXMulkEwRD4pzRoMn1i6GDbgwMSm39kdIjD30cbwREnCRR9OOHb+VUw0sjTnTlgGehffGNXwHsylegCeu7W/LVI8S67JCPuYuQ8qrwa62/I1j/MNNkOsbgI3jetmLGfLmfsDo2IbJBKKmoFDY0bSWYsx8QGmoWzWCz43iLab7K6Tu8uZGrSYpQEnCdvxHLZ2MMkWNunt0iKdN6CqX53FQXjSYwIF6GATAVexHDXHdyRypnjevomBWRFj7Miq0AN2Yn8wlviRDmfVYeu+woX+w8OeDQT2CmRklVtn/9brCl4zWYGjHzCuTcyDMTqDbChD+bY404UgoplLG4VDXiIfe+ir/HfYzAVuC0Hv7IIG+TzcuPQ2l/zLCQxgTQhweHgwe8DEM0DsqlJJ7I4wLblB/uouMDWZwFfDjVTtWbNF1q9WJTuuKIsvMhNFjE5uHj4F3KnmJrTJlsGg93fgpIMxrDGSWyQ8pFtzHz6+dAfc7ZxyU1/2J9C4lvNljdN60RjRVzNF05KAqImedHd36p/QvK3GD/EiGw/9HEfA1zC9Kc24Q36wwY1LXHva9qbCk8L8EkOTs1x5EC1wDD1+hZQjBaXkDeNrDZpeZ+w7PNWJZhtIQ8/QO0Ky/c5hPeN2DDiCwLfnev7F3mb0SsgnU4USenBYgoLcaW/4f4OHVM/IcYm/BqBacrM/Wq2BvQUPWwOrUS+RNDOn4e4yIlqAk7eh3AIeU/x0PiNmnbvne2dwOqdw6V/d2PdYHI3faX8YUkIMUg05c/a1ypWAgpjnGWVlnnvX+W+hLe3vpfSGnjVVl89xC0bajSEH/27mkhtSTlfLYLn2h+nyDNysFaKBfdxakx49hjY1/kPioBIYSqZC+yKE0pASzbc3YcrlJH9SvOhBedJsGcnjneGy19h3evpJtNLBSzaxVaMmkyskmvmVjbbrTMQ401JnQqXfCAhazLdggQmmHXGo5P5n31plCf5uutAG58Ckk3G8L6fGJ/bIriJJygreC5JXTKQh/5Rr1iZ+gyANUJxomHjTyRbys8MgBB8upO90r/S5A7ZgkBncWIQBFOSlgILVj3WMmwMgj1aQGLxFmP0inp2inKU2bVZFXkFlRmAr1rOsojlrrl+9dtUyGF3q/z2N8JlONRVhSEb+cz/i1vYBK98fIyuIjtCafceOI1qymLJDDIHQIBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 471,
+   "completion_tokens": 208,
+   "total_tokens": 679,
+   "cost": 0.006044,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.006044,
+    "upstream_inference_prompt_cost": 0.001884,
+    "upstream_inference_completions_cost": 0.00416
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 127,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.107
+}

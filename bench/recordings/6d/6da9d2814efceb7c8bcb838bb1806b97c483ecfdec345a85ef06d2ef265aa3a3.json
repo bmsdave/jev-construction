@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Internal wall insulation to retained solid walls\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Insulation & drylining. Part of: existing house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"Sch 3 para 20\", \"document\": \"BR2010\", \"text\": \"20. Installation of insulating material to the external and internal walls of a building (“hybrid insulation”), not including insulation of demountable-clad buildings, and not including the installation of flexible thermal linings. | A person registered in respect of that type of work by Blue Flame Certification Limited, British Board of Agrément, CERTASS Limited, Certsure LLP or NAPIT Registration Limited ....\"}, {\"ref\": \"para 3.9\", \"document\": \"ADF1-2021\", \"text\": \"3.9 Diagram 3.1 should then be used to determine the category that the works result in. Building Regulations 2010 F1(1) Table 3.1 Energy efficiency measures Category of measure Roof insulation a. Renewing loft insulation, including effective edge sealing at junctions and penetrations Minor b. Loft conversions or works that include changing a cold loft (insulation at ceiling level) to a warm loft (insulation at roof level) Minor Wall insulation c. Installing cavity wall insulation to any external wall Minor d. Installing external or internal wall insulation to less than or equal to 50% of the external wall area Minor e. Major Installing external or internal wall insulation to more than 50% of the external wall area Replacement of windows and doors (1) f. Replacing less than or equal to 30% of the total existing windows or door units Minor g. Replacing more than 30% of the total existing windows or door units Major Draught-proofing (other than openings)(2) h. Replacing a loft hatch with a sealed/insulated unit Minor i. Sealing around structural or service penetrations through walls, floors or ceiling/roof Minor j. Sealing and/or insulating a suspended ground floor Major k. Removing chimney or providing another means of sealing over chimney, internally or externally Major NOTES: 1. If the energy efficiency works involve only replacing windows, then the guidance in paragraphs 3.14 to 3.16 may be followed as an alternative means of demonstrating compliance. 2. Draught-proofing …\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677372-9gdeoHy5DmN7iLtNN2bD",
+  "object": "chat.completion",
+  "created": 1790677372,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "I'm trying to recall whether Schedule 3 of the Building Regulations lists internal wall insulation separately, alongside cavity and external wall insulation, since this would determine whether the renovation counts as a controlled thermal element under reg 22/23.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "I'm trying to recall whether Schedule 3 of the Building Regulations lists internal wall insulation separately, alongside cavity and external wall insulation, since this would determine whether the renovation counts as a controlled thermal element under reg 22/23.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSqQsKEAgSGAI4AUIIdGhpbmtpbmcSDLuPCUWnhca8KHNA8xoM/27LZLe0eJLJN7FMIjBTmCUviXumIoWh8D3S0MXi9FC3gRt4bFchwd0tRtTzCl2BIlhMUYeuKz1FhaNgDGAqxgpX2XXvx5ZXI66qqddldOgwF3tOLWk5FQZ7nWgUXhgWUrquizzhZBwn8HYod4arswO982hyf0BmWAHZMd/AhSh1TXrbt2PhA2HiHYKeUbLUsC5SQhPiXs7yf3APwGlcJYXIRt29cWItHZxRO7IyKT+SQCJu3oLHc4xQjxoJMRf/8oUH36yClzVu/OIUrOzGzJPAAG6CJh9obmAy7tpJ1VVN5vE8NFSvmZQvdjjVydKtP0KZSxdSxr/eYrECPlHW3dwLYDQWUYvgt2srU4pOXADxpzzjzlvnqzSIfwhMOHBI2o+MoAQWZMt8Xm5ZnaaqvdASjUN6d14tzp2/1lBEIe1RIsuIYeD6v9yyMPVpdttcbECYYTCiLxVsN8DGpFOFUMxBZwol5UUvO52Td+8SZjf6mwJbE8sMWNUp7XnCFvZ+1fuVt9UJv+V68lY3gYI3xs9YuaJYBSYLGCVOYUNmH4GfwtbGyMqyFDEEnniIcWZtL+RSWbadhZgu2K9qs6cGFTEY1XGDmLOInFjXBsvAidWklF/RKtMApVhqZ0SzW07dAfHuU1ivScFrKHutqP1dW2erIIbAYwUYzP2LpxkrtSzvX+ZL57q0AHzmqY7MYK3j/LNsPOq64UkAaEC4zscv8LtOp/MpQP8+DEtjLB+FHel0LXLgueSS8qdoQIbbBj6OIcU0D0wLb2LxAJ1ZoUMaYFHaAUNCT23ssOI6qCnbWH4cUhw60mfQGvgn0yoLckcolnL8yhAW8XZZa7L3veclnmFN+RZUtqLnhn6YY/1Gr1OpI/+F6pheo1jDUWZrvmBI7F8L1DXXxjxd+u7CJMMwJu5WdqzU8wJ4CFo80gN2DvsdWAabp14AaWmBpX6yKtoB/w1vnw6C1IW0VtbzH/jn5x3aTyNeey5FOOvxzdrJ5DGSi9M5AeY5AtGeKzeircMXEiQ49VWmCDqhvyBy18BK13H5v/SSNSXdS/Jw3i/Y3JGSjkwnrQalE+sWktArHZ6EC1vu0jLDDOMwv76KRyXqs32WrHPJpBrxn7DuB9oyw97DymoZZg9uTKa16bmYUrVLyb4GURTFr14uDC+huvXh9WlNa7+JSfwoKNjqFZxkVsKMZ0reOt7IOwA36SeUdEePswkBDGGazQd+jYgrLeVcn1KgZBl3pcmqydrj+HDBo6n/aikkulAaHAJoQaPNmgDb5yiZ3JvUZaMx6dFcpY1wDH6gz23i7v+U2zlMeCdivUarrP03GrARjCLBq0nbVAeYKMHuKF+MjSktSgsIS9tohkMmtTf/kBcGpC5KaPo0wb5MGfAiSwsJGuND5x4OOtG00k00F+hSKClWB0z0up84YBBkRcikU5wnwlRgJ+3OP1rq/+QopCMV2cEVlPNE56bPtLblQ/1o3GlJumXv0FcFhjzcM1V603qDZkhbbgiamDWc2iJ7txj+K1Cvby8U9UnnND/RP8gGvAiXMBwNu1FGiy//6pvpUcoJaAN3fgyG9PBbxzkB75OP2NhCgQTbQ/l0x9BdaC2E42Nz1G/38kCwc+xe7SL2h/uN4Zd/0BpVneAiEZt9S8cKHnSpylcpl1QVO4W2KRy9yIlQtyEic7quvxDM8GhVHNGkXMp49EpzqRyQgidudi/gNeSU/dkNwqG2JcFFIivd86m640aweM92phjT1TWTPgVxoCW/te89kflxT2NBbf4Lx0G4HEX/o78o8lPOs1N3Aho7g0ZweE85w6YEM7bIe16sW5OQQ6f02T9tfiH/CyF04jFPXXdLkNb4vOnC/qbr8EMh8E7S0Xb+gInM1X2vEUQYAQ=="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1401,
+   "completion_tokens": 300,
+   "total_tokens": 1701,
+   "cost": 0.011604,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.011604,
+    "upstream_inference_prompt_cost": 0.005604,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 7.463
+}

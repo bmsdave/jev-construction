@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Cat6A data cabling\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Data & smart home. Part of: whole-house renovation including loft conversion and rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678282-ySoZul2Nr70BhjgggznN",
+  "object": "chat.completion",
+  "created": 1790678282,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.9, \"competent_person_scheme\": 0.04, \"building_notice_or_full_plans\": 0.05, \"full_plans_required\": 0.01}}",
+     "refusal": null,
+     "reasoning": "Data cabling is ELV, not electrical work under Part P, so it isn't building work and isn't notifiable—though cabling through fire-separating elements could raise separate concerns on its own that wouldn't trigger notification.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Data cabling is ELV, not electrical work under Part P, so it isn't building work and isn't notifiable—though cabling through fire-separating elements could raise separate concerns on its own that wouldn't trigger notification.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSmQYKEAgSGAI4AUIIdGhpbmtpbmcSDEvVSrGIJt9N6hdCPhoMhUb/C4xnvku9w63RIjC0g7CSCO2nxdWr+2tV0NEHL0sa7x2Bo2XyCpYdO9v/e5AhJgG8nIF4inR96fNw9cEqtgUpKicG9LDKfISU4BWN8S1J0yPH9FyvSw2DXdJW01kQTyoCvVHWOJYflHQN/wfDnZkqfTD6gacAtAY7KRk7XvOGbi4BFA+E48UPrgjTQ1sm1lxiz4JpvAOIs2X/tm4fvr1f68AsbP7RtNUhfUcvHl3AbPKlnUPPxHQc6i/jjTavG+DWoOtlzKBViWMAZcS0FfldqWseDOVzRy1zkF9+OVAu4TWNQFeQbzY9Wh3Cd6BeaABTfWGiyVlmiABE42nKEMdxJhjdIKw/fAraTATF/jJxo7+W9iobgk/Q8FnLxt9uufdZrlAk6/rD6rTuV2b4cN1rKjma1tT+OizTJGvOzdf/4fAoYYrJg7UzmwkQSVHY/zuc0As2BU/+PAxB1e0b5+ubYD91xoAUWDtmIWH4WaV9s6ziCYDBMXj97GODvbVLhrLx/FhD2CcPHZwJSUxbKeEgEqsYokSLU2FgruMvk83Nv0spgurHhRlQwEfgJq2tXeefbqaKfo9aTCH+kkCuS1Cx98uuqNHnG0h3PG/yaaB2/rL3AO2J9hyfy7S4xwHOjx9y3B8yjQA7zmj5RIAjzOZ5IrkJQzlSRdTTfNdCptC9jgY9qsaj/7MV4V4vjXhDky7nExu//9O5LPfeS9V4+CieXCYQZjgPJVDgeSYuss8+/QV20LEXKWfaR8qA8qoqylJt230fa+D9QZBiIzkvi6ImK8YquqFdj08+LeVfPCaPdpdXSgmr3rZtHiScdXi2acHM4IiPWq7oV9Hf8NkYi+2w2Fh8v7aY4O3LSklsUB+1zSa0+fXhKfs2CmIgNBm3oG6PsSKYw7IQJcW2tTaSthl74VIr6MRy1+6wHgJnSJ/Zl2WQ7AWRHra6dmr44y7Z/XKpAzP0d2PAd9NCJ8aOTLazshM8b0ZUgMayvS/yucYdntPP0gVhGAE="
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 505,
+   "completion_tokens": 164,
+   "total_tokens": 669,
+   "cost": 0.0053,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0053,
+    "upstream_inference_prompt_cost": 0.00202,
+    "upstream_inference_completions_cost": 0.00328
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 83,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 14.421
+}

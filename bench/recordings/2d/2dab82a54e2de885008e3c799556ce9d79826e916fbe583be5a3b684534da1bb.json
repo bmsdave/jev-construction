@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Restaurant kitchen fit-out with a new extract duct through the roof\", \"project\": \"Restaurant in England\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\", \"clauses\": [{\"ref\": \"para 0.15\", \"document\": \"ADF1-2021\", \"text\": \"0.15 The requirements of Part B apply if, for example, ducts pass through any of the following. a. A fire resisting structure. b. A fire compartment. c. A protected stairway. Building Regulations 2010\"}, {\"ref\": \"para 11.2\", \"document\": \"ADL1-2021\", \"text\": \"11.2 Renovation of a thermal element means one of the following. a. Providing a new layer through cladding or rendering the external surface of a thermal element. b. Providing a new layer through dry-lining the internal surface of a thermal element. c. Replacing an existing layer through stripping down the element to expose basic structural components (e.g. bricks, blocks, rafters, joists, frame) and then rebuilding. d. Replacing the waterproof membrane on a flat roof. e. Providing cavity wall insulation.\"}, {\"ref\": \"para 3.30\", \"document\": \"ADF1-2021\", \"text\": \"3.30 Where building work is carried out in a kitchen or bathroom, any existing fans (including cooker hoods, where they extract to the outside) should be retained or replaced. Appropriate checks should be made to determine whether any retained ventilation devices are working correctly.\"}]}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790677686-PP4PiBcz0M77x9pDJBpN",
+  "object": "chat.completion",
+  "created": 1790677686,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": null,
+     "refusal": null,
+     "reasoning": "This is a non-domestic building, so the Fire Safety Order applies rather than domestic rules. I'm working through whether installing a new extract duct through the roof counts as building work under Part B (fire) or falls under Schedule 3's provisions for mechanical ventilation systems in non-dwellings.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "This is a non-domestic building, so the Fire Safety Order applies rather than domestic rules. I'm working through whether installing a new extract duct through the roof counts as building work under Part B (fire) or falls under Schedule 3's provisions for mechanical ventilation systems in non-dwellings.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "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"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 893,
+   "completion_tokens": 300,
+   "total_tokens": 1193,
+   "cost": 0.009572,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.009572,
+    "upstream_inference_prompt_cost": 0.003572,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 300,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 23.05
+}

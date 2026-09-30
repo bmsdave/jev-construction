@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Office submain SWA 16 mm2\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Electrical. Part of: garden and external works of the house.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678280-EGL7PQnJPOLoZVkloTmE",
+  "object": "chat.completion",
+  "created": 1790678280,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "length",
+    "native_finish_reason": "max_tokens",
+    "message": {
+     "role": "assistant",
+     "content": "Supplying a garden office with an SWA submain means **installing a new circuit** from the dwelling's installation. Under Part P (regulation 12(6A)), a new circuit is notifiable electrical work. Part P also covers electrical installations in outbuildings and gardens that serve a dwelling, so the work stays notifiable even though it",
+     "refusal": null,
+     "reasoning": "Installing a submain to a garden office counts as a new circuit, which makes it notifiable work under Part P since 2013 — this should go through a competent person scheme even though the office itself is a separate outbuilding, since the work originates at the dwelling's supply.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Installing a submain to a garden office counts as a new circuit, which makes it notifiable work under Part P since 2013 — this should go through a competent person scheme even though the office itself is a separate outbuilding, since the work originates at the dwelling's supply.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQSwAgKEAgSGAI4AUIIdGhpbmtpbmcSDNsSUewZOcil3ou+bBoMgFJVHeUndP+ZtE6OIjCdd6JpSuWirIGExn/2iSgJdD0hN9gNOtfcQbxJzJ6k58xb+wcl9dKRpvcBAhyeM+Aq3QfUA+A3B2RWspLrMA0CU97RGTCUhDFKTM/wMbgLzGwfU0JikIYRNLEhpCq2JaJHWacao3c4b13JAfnAQmQgMCauGjpMsyzPwYOj6ojwWLQ/+1Yh5xjReM/qDGR2fQi3vFP0RCVI1FEbDm58c1fIIsl+SN5Y4t80s4YLvMsx7BLkh/AYnUDeK07eynDSUstP9+H8WROJB5+KPWpfJpgPy9NnRouPSph7zZ+91Tug8syBEIAn3RTmSzOSnvqis29KY9lrRenAP4g9szQQ1VgmTOHo9GhNGTBk0OhhoJdEUmY6mfbrgoiQezOm7dMYudEhoSnahy8SwwgfrI2L9nJrAkrR9GJbx/ybzJReE9J8dkRcWu3quzPx4L+5yanEfF204K6DBgeiMrafFF+IBqqlXL5xE5IWVl7TVpmEqJ0rjVu1g0eOlgImX+zu/y8T1QafBz7UgTomUKGERqNglqi7RoNoJKufbbldKzpyJrhQ68vVoHHlBkcy3vIDocAI1vohCIqUmTTk/+RzBs5X9mkizezexl8k+VNORCkFm7POKQNHVjLtvFOVnLX34AXrymiDHa4AjxGGhJIel+H9RweaI80kudWb3aLjyCDCiasMGfM0VW7tosavB5wp9lOFFvc/t5qM4TA49zKyWzWldkal7yLfHh0csN15TTKo7omS5qE05JTfH2DgsWTnAARXrnFpIxIucGguAeU68PBDEUwxJDfeM3ow5eOJjYTMdMwU0Hocju6iYMLrXNfSO5vtfaTcCGd5DRlav193eiHhhuJpPT3I8HAe9aTcIKLYyT2H6AGF+TBp3oSxdc1e3KSGRkboeFjFuC/DVf7pJ6+EHZS1f2cgMs3KJPheboGWN+xEg+PFjo1c0RVdYqbo6qigBS6CQrM2F8d1xG4fxj1T/g+uKVx3VV+zwZIqFUiq9Mg5CWL1JJ5ylXaboOtlfGktr+5hZnS8kjkRUg4oALC7sx3AzCFwLPsISTZVaBzzLmRaQbuNePjB+fNoig55HNNPQ8es7Yb9dJIsyZkKg7HeJAh2QgAAyKhXOCcFdM1KBFIxtB8na29NyVr7Xou+CotlUfad0Nmihy/jW0gpT9UfAUq98tvU6ART+yQvHU571HjNVHjIPKLYiOsaO5hNRlM2E86dcQOWXpnvD+czH6Xb8DxrbouKdHfFRF7rnQkgI3p710UqZQ0nMkBNVpuf/lSPKaD+S2GG4uo4vy49ny0ard7vTIBXKZZLHiB1WM31fvsZj9ItvEFv0/qS+SuoZtBZHUPwIGMnBiV0Mfda4pLqYccLp+JTGW1OP1P+NN99a3ZUrhgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 497,
+   "completion_tokens": 300,
+   "total_tokens": 797,
+   "cost": 0.007988,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007988,
+    "upstream_inference_prompt_cost": 0.001988,
+    "upstream_inference_completions_cost": 0.006
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 192,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 11.508
+}

@@ -1,0 +1,73 @@
+{
+ "request": {
+  "model": "anthropic/claude-opus-5.5",
+  "max_tokens": 300,
+  "temperature": 0,
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are an experienced UK building control surveyor. Answer the question about the work item\nin the JSON state. Choose exactly one label:\n- not_notifiable: No Building Regulations notice needed: not building work (reg 3), only Schedule 4 work, or an exempt building (reg 9, Schedule 2).\n- competent_person_scheme: Notifiable work listed in Schedule 3: a registered competent person can self-certify it (reg 12(6)(a)); otherwise a building notice is needed.\n- building_notice_or_full_plans: Building work not covered by Schedules 3 or 4: a building notice or a full plans application to building control (reg 12(2)).\n- full_plans_required: Building work that must have a full plans application: the Fire Safety Order applies to the building (reg 12(3)), it fronts a private street (12(4)), or H4 applies (building over or near a sewer, 12(5)).\nReply with JSON only: {\"label\": \"<one label>\", \"probabilities\": {\"<label>\": <0..1>, ...}} with a\nprobability for every label, summing to 1."
+   },
+   {
+    "role": "user",
+    "content": "Under the Building Regulations 2010 in England, which notification route applies to this work item if it is carried out on its own in the building described?\n\n{\"work_item\": \"Kitchen and island\", \"project\": \"Renovation of a terraced house (dwelling) in England. Trade: Kitchen. Part of: new single-storey rear extension.\", \"jurisdiction\": \"England. The Building Regulations 2010 as amended.\"}"
+   }
+  ]
+ },
+ "response": {
+  "id": "gen-1790678355-qnFDLKzfb4jsFC90hwVZ",
+  "object": "chat.completion",
+  "created": 1790678355,
+  "model": "anthropic/claude-opus-5.5",
+  "provider": "Claude Platform on AWS",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "logprobs": null,
+    "finish_reason": "stop",
+    "native_finish_reason": "end_turn",
+    "message": {
+     "role": "assistant",
+     "content": "{\"label\": \"not_notifiable\", \"probabilities\": {\"not_notifiable\": 0.72, \"competent_person_scheme\": 0.15, \"building_notice_or_full_plans\": 0.1, \"full_plans_required\": 0.03}}",
+     "refusal": null,
+     "reasoning": "Fitting kitchen units alone isn't building work, and even adding an island with sockets is typically just extending an existing circuit rather than a notifiable new one, so this likely doesn't count as building work on its own.\n\n",
+     "reasoning_details": [
+      {
+       "type": "reasoning.text",
+       "text": "Fitting kitchen units alone isn't building work, and even adding an island with sockets is typically just extending an existing circuit rather than a notifiable new one, so this likely doesn't count as building work on its own.\n\n",
+       "format": "anthropic-claude-v1",
+       "index": 0,
+       "signature": "CAQS2wgKEAgSGAI4AUIIdGhpbmtpbmcSDIIo5QSPaU2x5TfwdxoM3NpHNwh76pEzPKezIjA3JaTfnFDTI2NdHrEN2Zqc9/VpV8SJCiKS6ya+yU2CU2vywB1jqj3XeaI/+90Ll1Mq+AeHfGsgrFleTSzL77lFSP9jPjl17lV0PCdDLbwuXWvr92ymLXMiUsyZrif9DYUt7QQmv6AlxjU0tKR+AypMkYpPmjWjI+NLyksDusTtBpVGJGdrF+tdTWbYUf84drqWofoagyJV2XMeZpiAdfbkmemOZzl08YGbhlQ3+3cJCMNr2eedvJV+12T+lqEi5S+CYOp215pfY64Y7I+1VRq8jgX4rKG/0gbfYhFcn1XoIuhs/LblTrgwO6OsSKyceyIzAgpnqciMU49FsLmLmlHktn1LIm2NeHCEvH2j0E0oP2rf/hN5VQgjY7FPPrndMHfn+Gs0Sy5SZ0YgeDS1vUe9zOkJrAQEbiyZsX8r9HxrwyopP7hO4I/Qut8HNWBcUFZxM0YsYgCOMv0PAN58/d86nxv9jBLy+HpbdwEsRDsy6taikuVouquMH5jjBoEYpW4OUfVs26+xj5J9wT1zGmStQFkbl3i5gfgAuf5nJSR965b0LmTpU270KBSGOjeTy+cImMcPJPbahdiPzxe44xbZfP3LGDHfU0qHWwvjeQq/we6AZmUoqRL9hPoX+fMKxsZSwLULMtkjoaCAbR6xGBTkt8CwN6Jqp/v1FXYBQtKL1009M3uT3yoazBuv1YPbm3+bONXz/E/nOJ3Ig0iBhlPcEka6U725Hd+9hvD8mGO8Zv3A+dueGKz0zFtYnSH6ibPpX6r8fsTGIDzIj889DLHvWgVaVtuHN4x+ERjs2z8H7oYdG3TOmR08uH6eu7x4pWzcn4LAkis1Rs9JxwkYamWv/tt2KvvqxabNJZvVEPLcufULYsiJd65sc8F737X1YFCwUJGSSLysBzdBGlAMBIy+2eSgHVSqswetoiJG+I7n6OwD29TvDF4R3EspuM/jzzTlX2AyRExes3A9vrzmox9NL34U3MRcvJUj8vJbKdp/yZuFa92yTY4GNVhEwRxBt11CAYwmWVHjR3OONqgrr9ZdTahimaYBSB23/d/1hkG6bEvW0tBo/cjY3n7m8DAR/pxjCp8iYjnUuNzY8MC/tdIJIVkgqwYxhrvIhCPdDEHIwJg8yVHjDLm9IMkSJU/U+KxNABXB2l4vz6xfmS6tQ3jGvoXJij+F7saBBi3mBLKA7+d3bDAUFo2hpIRaYjK1vgA7pw+nUt9sn23b1ncC2Sxhp3hFLAxF9O2Az/niAyCmvvyEJ8HBLe9woKZMYyImk8F3snfuUPojtUpTVNnCWyhkhghrBWIXEQ9ucUZnGpAZrS2SQFo9JymwTNFk8sSILf9XWKiB/wAOXuxkksstWk9NghIqDEeIR/ja/0tGx5Abj0loSBV//9H69Lp2GHP3jpkS+dpMJJjuhcB6mBgB"
+      }
+     ]
+    }
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 493,
+   "completion_tokens": 268,
+   "total_tokens": 761,
+   "cost": 0.007332,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.007332,
+    "upstream_inference_prompt_cost": 0.001972,
+    "upstream_inference_completions_cost": 0.00536
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 187,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ "latency_s": 9.269
+}
